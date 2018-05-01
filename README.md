@@ -14,6 +14,8 @@ Katana uses the **Canvas SDK**, another NodeJS package written by Brigham Young 
 
 Each fix tool performs a different change to the selected courses. Every change made can be (and should be) reviewed by the user before confirming that they should be implemented. Post-user approval, the change is implemented in each of the selected courses. To give an example:
 
+[comment]: # (TODO Update this with an actual example, once it is more fleshed out)
+
 1. John needs to fix a spelling error that has happened on a page that is copied into every course. The spelling error is only in the current semester's courses.
 2. John opens Katana and selects all of the current semester's courses.
 3. John selects the "Pages" category, and then selects the "Text Find and Replace" tool.
@@ -21,11 +23,36 @@ Each fix tool performs a different change to the selected courses. Every change 
 5. Each change is previewed to John, and asks for his approval. He gives his approval or denies each change as they are shown to him.
 6. Once all have been approved or denied, John submits the fixes. All changes are made within the next couple minutes.
 
-## Fix Tools
+## Categories
 
-Here are the currently available Fix Tools and their categories:
+[comment]: # (TODO This could have a much better explanation of what universal means)
 
-|Tool Name|Categories|
-|---------|----------|
-| Text Find and Replace | Pages |
-| Attribute Editor | Universal |
+Here are the available categories:
+
+- Pages
+- Files
+- Assignments
+- Discussion Topics
+- Quizzes
+- Quiz Questions
+- Modules
+- Module Items
+- Course Settings
+- Universal (Tools in this category affect all possible places in the course)
+
+## Fix Tools (Potential)
+
+Here are the potential Fix Tools:
+
+|Tool Name|Categories Affected|Description|
+|---------|----------|--------------------|
+| Text Find and Replace | Pages | Locates the specific text and replaces it with what the user provides |
+| Attribute Editor | Universal | Allows editing of a given attribute on any HTML tags throughout the course (i.e. target attributes, alt text) |
+| Broken Links | Universal | Locates all broken links in the course and steps the user through fixing each one |
+| HTML Find and Replace | Universal | Locates specific HTML and replaces it with user-given HTML |
+| Delete Items | Any | Deletes items in the course based on user input |
+| Create Items | Any | Creates new items in the course based on user input |
+| Modify Item Titles | Any | Sets titles to what the user provides |
+| Modify Settings | Any | Sets item settings to what the user provides |
+| Modify Due Dates | Assignments, Discussions, Quizzes | Offsets, removes, udpates, etc. due dates throughout the course |
+| Transcripts | Universal | Identifies videos that do not have a transcript and guides the user to provide one |
