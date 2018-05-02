@@ -29,3 +29,34 @@ Here are the currently available Fix Tools and their categories:
 |---------|----------|
 | Text Find and Replace | Pages |
 | Attribute Editor | Universal |
+
+
+
+
+## Styleguide
+
+The following items will need to be styled so we can keep the same style across the entire tool:
+
+- Primary Color: FILL
+- Secondary Color: FILL
+- Accent 1 Color: FILL
+- Accent 2 Color: FILL
+- Button (Generic)
+  - Action Button
+  - Cancel Button
+- Body
+  - Font: Roboto
+  - Font Size: 14px
+- Header 1 (Largest)
+- Header 2
+- Header 3
+- Subtitle
+- Anchor Tags
+- Card Panels
+- Images
+
+ADD COMPONENTS TO COMPONENT LIST
+- Spinner
+- View Button (Takes user to item in Canvas course)
+- Badges
+- 
