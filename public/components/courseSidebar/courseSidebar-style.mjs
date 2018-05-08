@@ -7,6 +7,7 @@ export default function getStyles(elName) {
       top: 0;
       position: fixed;
       width: var(--sidebar-width);
+      z-index: 2;
     }
     .${elName}__title {
       text-align: center;
@@ -23,6 +24,15 @@ export default function getStyles(elName) {
       text-align: center;
       font-size: 32px;
       cursor: pointer;
+    }
+    .${elName}__overlay {
+      width: calc(100% - var(--sidebar-width));
+      position: absolute;
+      top: 0;
+      left: -4000px;
+      height: 100vh;
+      background-color: var(--color-1);
+      z-index: 1;
     }
   `;
 }
