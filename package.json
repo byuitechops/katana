@@ -1,0 +1,29 @@
+{
+  "name": "katana",
+  "version": "1.0.0",
+  "description": "Because a bunch of figurative butter knives weren't good enough for the development team.",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byuitechops/katana.git"
+  },
+  "author": "Zachary Williams, Seth Childers, Daniel Green, Benjamin Earl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/byuitechops/katana/issues"
+  },
+  "homepage": "https://github.com/byuitechops/katana#readme",
+  "dependencies": {
+    "canvas-api-wrapper": "^3.0.1",
+    "electron": "^2.0.0",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "reload": "^2.2.2"
+  }
+}
