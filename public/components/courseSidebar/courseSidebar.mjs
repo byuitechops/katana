@@ -25,8 +25,9 @@ class KatanaSidebar extends HTMLElement {
         var overlay = document.querySelector(`.${elName}__overlay`);
         var sidebarWidth = window.getComputedStyle(document.documentElement).getPropertyValue('--sidebar-width').replace('px', '');
         var overlayWidth = getComputedStyle(overlay).width.replace('px', '');
+        var toggleArrow = document.querySelector(`.${elName}__arrow`);
         overlay.style.left = overlay.style.left[0] === '-' || !overlay.style.left ? `${sidebarWidth}px` : `${-1 * overlayWidth}px`;
-        document.querySelector(`.${elName}__arrow`).style.transform = overlay.style.left[0] === '-' || !overlay.style.left ? '' : 'rotate(180deg)';
+        toggleArrow.innerText = toggleArrow.innerText === '⮞' ? '⮜' : '⮞';
     }
 }
 

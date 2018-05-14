@@ -4,7 +4,9 @@
     --color-2: #f2f2f2;
     --color-3: #4b5970;
     --color-4: #7f8faa;
-    --sidebar-width: 85px;
+    --color-5: #d2d2d2;
+    --sidebar-width: 100px;
+    --navbar-height: 50px;
 }
 
 body {
@@ -12,6 +14,7 @@ body {
     padding: 0;
     font-family: "Roboto", sans-serif;
     font-size: 16px;
+    margin-left: var(--sidebar-width);
 }
 
 /* Buttons */
@@ -51,21 +54,12 @@ h6 {
     user-select: none;
 }
 
-/* General Classes */
+/* Component Top Level */
 
-.main-container {
-    margin-left: var(--sidebar-width);
+katana-router {
+    width: 100%;
     padding: 20px;
 }
-
-.category-container {
-    max-width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-/* Component Top Level */
 
 katana-category-item {
     width: calc(100% / 6 - 40px);
