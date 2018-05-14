@@ -11,6 +11,8 @@ The layout of the database is as follows:
             course_code: 'M 450',
             // The name of the course in Canvas
             course_name: 'Mythical Analytics',
+            // The SIS ID for the course
+            sis_course_id: 'Online.Master.M 450',
             // The list of issues for this specific course
             issues: {
                 <issue ID>: {
@@ -35,8 +37,7 @@ The layout of the database is as follows:
                     // The details of the Canvas item involved with the issue (i.e. the module item's ID and title)
                     details: <object>
                 },
-            // The SIS ID for the course
-            sis_course_id: 'Online.Master.M 450'
+            }
         }
     },
     users: {
