@@ -28,21 +28,23 @@ The layout of the database is as follows:
             // When the issue was created
             created_at: <date>,
             // Who ran the tool that discovered it
-            created_by: <username>,
+            // created_by: <username>, // deprecated for the time being
             // Whether or not the issue has been resolved
             resolved: <bool>,
             // Who resolved the issue
-            resolved_by: <username>,
+            // resolved_by: <username>, // deprecated for the time being
             // What the issue was resolved with (manual indicates it was done outside of katana)
             resolved_With: <manual/tool name>,
             // When it was resolved
             resolved_at: <date>,
             // Marking an issue as an exception causes it to be ignored by katana
             exception: <bool>,
-            // The type of issue determines how it is handled by katana
+            // The tool that discovered the issue, and would be used to fix it
+            tool: <string>,
+            // The type of the item in Canvas
             type: <string>,
-            // The details of the Canvas item involved with the issue (i.e. the module item's ID and title)
-            details: <object>
+            // The ID of the item in Canvas
+            content_id: <int>
         },
     }
 }
