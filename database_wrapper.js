@@ -1,18 +1,9 @@
 /**
- * Retrieves a specific user from the database.
- * @param {string} - The user's name
- * @returns {object} - The user
- */
-function getUser(username) {
-
-}
-
-/**
  * Retrieves a specific course from the database.
  * @param {integer} - The course's ID
  * @returns {object} - The course
  */
-function getCourse(courseID) {
+function getCourse(courseId) {
 
 }
 
@@ -26,56 +17,58 @@ function getReport(username) {
 }
 
 /**
- * Updates a specific user's information in the database.
- * @param {string} - The user's name
- * @returns {object} - The user
+ * Retrieves a specific issue from the database.
+ * @param {integer} - The issue's ID
+ * @returns {object} - The issue
  */
-function updateUser(username) {
+function getIssue(issueId) {
 
 }
 
 /**
  * Updates a specific course's information in the database.
  * @param {integer} - The course's ID
+ * @param {object} - Options to update the course
  * @returns {object} - The course
  */
-function updateCourse(courseID) {
+function updateCourse(courseId, options) {
 
 }
 
 /**
- * Creates a new user in the database.
- * @param {string} - The user's name
- * @returns {object} - The user
+ * Updates a specific issue's information in the database.
+ * @param {integer} - The issue's ID
+ * @param {object} - Options to update the issue
+ * @returns {object} - The issue
  */
-function newUser(username) {
+function updateIssue(issueId, options) {
 
 }
 
 /**
  * Creates a new course in the database.
- * @param {integer} - The course's ID
+ * @param {object} - Options to create the course
  * @returns {object} - The course
  */
-function newCourse(courseID) {
+function newCourse(options) {
 
 }
 
 /**
  * Creates a new report in the database.
- * @param {integer} - The report's ID
+ * @param {object} - Options to create the report
  * @returns {object} - The report
  */
-function newReport(username) {
+function newReport(options) {
 
 }
 
 /**
- * Deletes a specific user from the database.
- * @param {string} - The user's name
- * @returns {object} - The user
+ * Creates a new report in the database.
+ * @param {object} - Options to create the issue
+ * @returns {object} - The report
  */
-function deleteUser(username) {
+function newIssue(options) {
 
 }
 
@@ -84,7 +77,7 @@ function deleteUser(username) {
  * @param {integer} - The course's ID
  * @returns {object} - The course
  */
-function deleteCourse(courseID) {
+function deleteCourse(courseId) {
 
 }
 
@@ -93,6 +86,6 @@ function deleteCourse(courseID) {
  * @param {integer} - The report's ID
  * @returns {object} - The report
  */
-function deleteReport(username) {
+function deleteReport(reportId) {
 
 }
