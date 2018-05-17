@@ -10,7 +10,7 @@
 
 Each of the endpoints are described in detail below. Please view the [Database Structure](./database_structure.md) documentation to see the structure of returned items, such as an `Issue`.
 
-## Homepage <a name="homepage"></a>
+## <a name="homepage"></a>Homepage 
 ```
 GET /
 ```
