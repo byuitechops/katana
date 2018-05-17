@@ -28,7 +28,7 @@ You can view the entire structure of the database in JSON [at the bottom of this
 |resolved_with|*string*|Which tool was used to resolve the issue (`manual` indicates it was solved by hand)|
 |resolved_at|*date*|When the issue was resolved|
 |exception|*boolean*|Indicates an issue that is an exception to the rules, and should be ignored by Katana|
-|tool|*string*|Which tool created the issue, and should solve it|
+|tool|*string*|Which tool created the issue, and should be used to it|
 |item_type|*string*|The Canvas item type of the item containing the issue in Canvas|
 |content_id|*number*|The ID of the Canvas item|
 |created_by|*string*|[DEPRECATED] User who created the issue|
