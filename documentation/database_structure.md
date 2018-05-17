@@ -41,7 +41,7 @@ You can view the entire structure of the database in JSON [at the bottom of this
 |--------|----|-----------|
 |link|*string*|URL to the location in Google Drive of the report|
 
-<a name="reportitem"></a>
+<a name="fullstructure"></a>
 ## Full Database Structure
 ```js
 {
