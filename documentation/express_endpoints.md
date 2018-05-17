@@ -1,22 +1,22 @@
 # Katana Server API
 
-## Brief Overview
+## Overview
 
-|Method|URI|Result|
-|------|---|------|
-|GET|`/`|Serves the user the Homepage|
-|GET|`/tools/<tool>?<options>`|Discovers issues using the provided tool and options|
-|PUT|`/tools/<tool>?<options>`|Fixes issues using the provided tool and options|
+|Name|Method|URI|Result|
+|----|------|---|------|
+|[Homepage](#homepage)              |GET|`/`|Serves the user the Homepage|
+|[Discover Issues](#discoverissues) |GET|`/tools/<tool>?<options>`|Discovers issues using the provided tool and options|
+|[Fix Issues](#fixissues)           |PUT|`/tools/<tool>?<options>`|Fixes issues using the provided tool and options|
 
 Each of the endpoints are described in detail below. Please view the [Database Structure](./database_structure.md) documentation to see the structure of returned items, such as an `Issue`.
 
-## Homepage
+## Homepage <a name="homepage"></a>
 ```
 GET /
 ```
 Serves the user the homepage.
 
-## Discover Issues
+## Discover Issues <a name="discoverissues"></a>
 ```
 GET /tools/<tool>?<options>
 ```
@@ -29,7 +29,7 @@ Discovers issues in the selected courses. The `<tool>` field should match the to
 
 **Returns** `[Issue]`
 
-## Fix Issues
+## Fix Issues <a name="fixissues"></a>
 ```
 PUT /tools/<tool>?<options>
 ```
