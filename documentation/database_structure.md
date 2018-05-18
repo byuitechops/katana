@@ -1,6 +1,6 @@
 # Database Structure
 
-The database consists of collections of three different types of items:
+The database consists of three different collections of items: Courses, Issues, and Reports. Each item and its properties are available in detail below. View the [Database Wrapper](./database_wrapper.md) documentation on how these items are retrieved, created, and updated in the database.
 
 |Item|Description|
 |----|-----------|
@@ -8,7 +8,7 @@ The database consists of collections of three different types of items:
 |[Issue](#issueitem)    |Information about an issue within a course. Does not contain information about the related item in Canvas.|
 |[Report](#reportitem)  |Solely a reference to where a given report is stored in Google Drive.|
 
-You can view the entire structure in JSON [at the bottom of this page](#fullstructure).
+You can view the entire structure of the database in JSON [at the bottom of this page](#fullstructure).
 
 <a name="courseitem"></a>
 ## Course Item
@@ -28,7 +28,7 @@ You can view the entire structure in JSON [at the bottom of this page](#fullstru
 |resolved_with|*string*|Which tool was used to resolve the issue (`manual` indicates it was solved by hand)|
 |resolved_at|*date*|When the issue was resolved|
 |exception|*boolean*|Indicates an issue that is an exception to the rules, and should be ignored by Katana|
-|tool|*string*|Which tool created the issue, and should solve it|
+|tool|*string*|Which tool created the issue, and should be used to fix it|
 |item_type|*string*|The Canvas item type of the item containing the issue in Canvas|
 |content_id|*number*|The ID of the Canvas item|
 |created_by|*string*|[DEPRECATED] User who created the issue|
