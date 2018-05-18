@@ -1,6 +1,7 @@
 # Angular Components
 
 Below are all of the Angular components used client-side in Katana:
+
 |Component|Page/Container|Description|
 |---------|----|-----------|
 |[Course Sidebar](#courseSidebar)                   |All                            |An always-present bar on the left of every page that displays the currently selected courses. From here, the user can access the course selection overlay.|
