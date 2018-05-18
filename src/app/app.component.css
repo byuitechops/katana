@@ -1,0 +1,18 @@
+.katana-poc {
+  width: 100%;
+  padding: 20px;
+  font-size: 72px;
+  color: var(--blue-1);
+}
+
+.katana-poc p {
+  width: 100%;
+  text-align: center;
+}
+
+.katana-poc div {
+  margin: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

@@ -1,4 +1,4 @@
-# Katana Server API
+# Server API
 
 ## Overview
 
