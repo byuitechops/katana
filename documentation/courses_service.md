@@ -4,7 +4,7 @@ This Angular service provides all the functionality used in managing currently s
 
 A course object looks like this:
 
-```json
+```
 {
     course_id: <number>,
     course_code: <string>,
@@ -14,7 +14,7 @@ A course object looks like this:
 
 ## Properties
 ```
-courses `<course[]>`
+courses *<course[]>*
 ```
 Holds all of the currently selected courses.
 
