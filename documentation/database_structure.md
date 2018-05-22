@@ -1,22 +1,13 @@
 # Database Structure
 
-The database consists of three different collections of items: Courses, Issues, and Reports. Each item and its properties are available in detail below. View the [Database Wrapper](./database_wrapper.md) documentation on how these items are retrieved, created, and updated in the database.
+The database consists of two collections: Issues and Reports. Each item and its properties are available in detail below. View the [Database Wrapper](./database_wrapper.md) documentation on how these items are retrieved, created, and updated in the database.
 
 |Item|Description|
 |----|-----------|
-|[Course](#courseitem)  |Represents a course in canvas. Use solely for identifying a course.|
 |[Issue](#issueitem)    |Information about an issue within a course. Does not contain information about the related item in Canvas.|
 |[Report](#reportitem)  |Solely a reference to where a given report is stored in Google Drive.|
 
 You can view the entire structure of the database in JSON [at the bottom of this page](#fullstructure).
-
-<a name="courseitem"></a>
-## Course Item
-|Property|Type|Description|
-|--------|----|-----------|
-|course_code|*string*|The course's shortname/identifier|
-|course_name|*string*|Full title for the course|
-|sis_course_id|*string*|Student information system ID|
 
 <a name="issueitem"></a>
 ## Issue Item
@@ -34,7 +25,6 @@ You can view the entire structure of the database in JSON [at the bottom of this
 |created_by|*string*|[DEPRECATED] User who created the issue|
 |resolved_by|*string*|[DEPRECATED] User who resolved the issue|
 
-
 <a name="reportitem"></a>
 ## Report Item
 |Property|Type|Description|
@@ -45,17 +35,6 @@ You can view the entire structure of the database in JSON [at the bottom of this
 ## Full Database Structure
 ```js
 {
-    courses: {
-        // The ID for the course in Canvas
-        <canvas course ID>: {
-            // The course code for the Canvas course
-            course_code: 'M 450',
-            // The name of the course in Canvas
-            course_name: 'Mythical Analytics',
-            // The SIS ID for the course
-            sis_course_id: 'Online.Master.M 450'
-        }
-    },
     issues: {
         // The list of issues for this specific course
         <issue ID>: {
