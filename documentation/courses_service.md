@@ -14,7 +14,7 @@ A course object looks like this:
 
 ## Properties
 ```
-courses *<course[]>*
+courses <course[]>
 ```
 Holds all of the currently selected courses.
 
