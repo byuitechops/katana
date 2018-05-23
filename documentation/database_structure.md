@@ -1,35 +1,42 @@
 # Database Structure
 
-The database consists of two collections: Issues and Reports. Each item and its properties are available in detail below. View the [Database Wrapper](./database_wrapper.md) documentation on how these items are retrieved, created, and updated in the database.
+The database consists of three types of items: Items, Issues, and Reports. Each item and its properties are available in detail below. View the [Database Wrapper](./database_wrapper.md) documentation on how these items are retrieved, created, and updated in the database.
 
-|Item|Description|
-|----|-----------|
-|[Issue](#issueitem)    |Information about an issue within a course. Does not contain information about the related item in Canvas.|
-|[Report](#reportitem)  |Solely a reference to where a given report is stored in Google Drive.|
+|Item               |Description|
+|-------------------|-----------|
+|[Item](#item)      |Information about an item within a course. Holds all of the discovered issues for the item, along with what tool was used to create the item in the database. Does not contain any data for the actual canvas item aside from its type and its ID.|
+|[Issue](#issue)    |An issue related to an item. These are stored on [Items](#item).|
+|[Report](#report)  |Solely a reference to where a given report is stored in Google Drive.|
 
 You can view the entire structure of the database in JSON [at the bottom of this page](#fullstructure).
 
-<a name="issueitem"></a>
-## Issue Item
-|Property|Type|Description|
-|--------|----|-----------|
-|course_id|*number*|The ID of the course the issue is for|
-|created_at|*date*|When the issue was created|
-|resolved|*boolean*|Whether or not the issue has been resolved|
-|resolved_with|*string*|Which tool was used to resolve the issue (`manual` indicates it was solved by hand)|
-|resolved_at|*date*|When the issue was resolved|
-|exception|*boolean*|Indicates an issue that is an exception to the rules, and should be ignored by Katana|
-|tool|*string*|Which tool created the issue, and should be used to fix it|
-|item_type|*string*|The Canvas item type of the item containing the issue in Canvas|
-|content_id|*number*|The ID of the Canvas item|
-|created_by|*string*|[DEPRECATED] User who created the issue|
-|resolved_by|*string*|[DEPRECATED] User who resolved the issue|
+<a name="item"></a>
+## Item
+|Property       |Type                   |Description|
+|---------------|-----------------------|-----------|
+|course_id      |*number*               |The ID of the course the issue is for|
+|item_type      |*string*               |The Canvas item type of the item containing the issue in Canvas|
+|content_id     |*number*               |The ID of the Canvas item|
+|issues         |*[Issue](#issue)*[]    |Array of issues discovered in this item|
 
-<a name="reportitem"></a>
-## Report Item
-|Property|Type|Description|
-|--------|----|-----------|
-|link|*string*|URL to the location in Google Drive of the report|
+<a name="issue"></a>
+## Issue
+|Property       |Type       |Description|
+|---------------|-----------|-----------|
+|resolved       |*boolean*  |Whether or not the issue has been resolved|
+|exception      |*boolean*  |Indicates an issue that is an exception to the rules, and should be ignored by Katana|
+|created_with   |*string*   |Which tool created the issue, and should be used to fix or verify it|
+|resolved_with  |*string*   |Which tool was used to resolve the issue (`manual` indicates it was not solved by a katana tool)|
+|created_at     |*date*     |When the issue was created|
+|resolved_at    |*date*     |When the issue was resolved|
+|created_by     |*string*   |[DEPRECATED] User who created the issue|
+|resolved_by    |*string*   |[DEPRECATED] User who resolved the issue|
+
+<a name="report"></a>
+## Report
+|Property|Type       |Description|
+|--------|-----------|-----------|
+|link    |*string*   |URL to the location in Google Drive of the report|
 
 <a name="fullstructure"></a>
 ## Full Database Structure
@@ -40,26 +47,30 @@ You can view the entire structure of the database in JSON [at the bottom of this
         <issue ID>: {
             // ID for the course in Canvas
             course_id: <canvas course ID>,
-            // When the issue was created
-            created_at: <date>,
-            // Whether or not the issue has been resolved
-            resolved: <bool>,
-            // What the issue was resolved with (manual indicates it was done outside of katana)
-            resolved_with: <manual | tool name>,
-            // When it was resolved
-            resolved_at: <date>,
-            // Marking an issue as an exception causes it to be ignored by katana
-            exception: <bool>,
-            // The tool that discovered the issue, and would be used to fix it
-            tool: <string>,
             // The type of the item in Canvas
             item_type: <string>,
             // The ID of the item in Canvas
             content_id: <number>
-            // Who ran the tool that discovered it (deprecated for the time being)
-            created_by: <username>,
-            // Who resolved the issue (deprecated for the time being)
-            resolved_by: <username>
+            issues: [
+                {
+                    // Whether or not the issue has been resolved
+                    resolved: <bool>,
+                    // Marking an issue as an exception causes it to be ignored by katana
+                    exception: <bool>,
+                    // What the issue was created with
+                    created_with: <manual | tool name>,
+                    // The tool that discovered the issue, and would be used to fix it
+                    resolved_with: <string>,
+                    // When the issue was created
+                    created_at: <date>,
+                    // When it was resolved
+                    resolved_at: <date>,
+                    // Who ran the tool that discovered it (deprecated for the time being)
+                    created_by: <username>,
+                    // Who resolved the issue (deprecated for the time being)
+                    resolved_by: <username>
+                }
+            ]
         }
     },
     reports: {
