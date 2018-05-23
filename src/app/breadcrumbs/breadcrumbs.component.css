@@ -1,0 +1,24 @@
+.breadcrumbs {
+  line-height: var(--breadcrumbs-height);
+  margin-left: calc(-1 * var(--course-sidebar-width));
+  color: var(--primary-4);
+  width: 100vw;
+  height: var(--breadcrumbs-height);
+  background-color: var(--primary-1);
+  display: flex;
+  position: fixed;
+  top: 0;
+}
+
+.breadcrumbs__icon {
+  background-image: url('/assets/wrench_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 9px 15px 9px 15px;
+  height: 32px;
+  width: 32px;
+}
+
+.breadcrumbs__arrow {
+  font-size: 1em;
+}

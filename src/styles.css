@@ -1,10 +1,22 @@
 :root {
   /* CSS3 Variables here */
-  --blue-1: #0076c6;
+  --primary-1: #01579b;
+  --primary-2: #cfd8dc;
+  --primary-3: #90a4ae;
+  --primary-4: #eceff1;
+  --primary-5: #78909c;
+  --accent-1: #2196f3;
+  --course-sidebar-width: 85px;
+  --breadcrumbs-height: 50px;
+  --issueList-width: 250px;
 }
 
 body {
-  margin: 0;
-  font-size: 16px;
+  margin: var(--breadcrumbs-height) 0 0 var(--course-sidebar-width);
+  font-size: 14px;
   font-family: "Roboto", sans-serif;
+}
+
+ul {
+  margin: 0;
 }

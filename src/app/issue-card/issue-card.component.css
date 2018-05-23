@@ -1,0 +1,71 @@
+.issueCard {
+  padding: 5px;
+  margin: 7px;
+  background-color: white;
+  /* border-radius: 3px; */
+}
+
+.issueCard>ul {
+  margin: 5px;
+}
+
+.issueCard_titleLine {
+  display: flex;
+  justify-content: space-between;
+}
+
+.issueCard_title {}
+
+.issueCard_link {
+  /* border: solid 1px var(--primary-3); */
+  height: 16px;
+  width: 16px;
+  line-height: 16px;
+  margin-right: 2px;
+  text-align: center;
+  border-radius: 50px;
+}
+
+.issueCard_link>i {
+  font-size: 20px;
+}
+
+.issueCard_type {
+  font-size: 11px;
+  color: var(--primary-3);
+}
+
+.issueCard_issue {}
+
+.issueCard_issue::before {
+  content: "• ";
+}
+
+.issueCard_reason {}
+
+.issueCard_tag {
+  font-size: 10px;
+  line-height: 10px;
+  border-radius: 20px;
+  margin-left: 5px;
+  padding: 2px 3px;
+  vertical-align: center;
+}
+
+.issueCard_tag_fixed {
+  border: solid 1px;
+  border-color: blue;
+  color: blue;
+}
+
+.issueCard_tag_ready {
+  border: solid 1px;
+  border-color: limegreen;
+  color: limegreen;
+}
+
+.issueCard_tag_skipped {
+  border: solid 1px;
+  border-color: red;
+  color: red;
+}

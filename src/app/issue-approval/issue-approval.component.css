@@ -1,0 +1,8 @@
+.issueApproval {
+  height: 70px;
+  position: fixed;
+  bottom: 0;
+  left: calc(var(--course-sidebar-width) + var(--issueList-width));
+  width: calc(100vw - (var(--course-sidebar-width) + var(--issueList-width)));
+  background-color: var(--primary-4);
+}

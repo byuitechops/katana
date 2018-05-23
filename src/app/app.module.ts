@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CourseSidebarComponent } from './course-sidebar/course-sidebar.component';
@@ -8,6 +9,15 @@ import { IssueCardComponent } from './issue-card/issue-card.component';
 import { IssueDetailsComponent } from './issue-details/issue-details.component';
 import { IssueApprovalComponent } from './issue-approval/issue-approval.component';
 import { IssueViewComponent } from './issue-view/issue-view.component';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { ToolViewComponent } from './tool-view/tool-view.component';
+
+const appRoutes: Routes = [
+  { path: '', component: CategoriesComponent },
+  { path: 'categories', component: CategoriesComponent },
+  { path: 'tool-view', component: ToolViewComponent },
+];
 
 @NgModule({
   declarations: [
@@ -17,10 +27,17 @@ import { IssueViewComponent } from './issue-view/issue-view.component';
     IssueCardComponent,
     IssueDetailsComponent,
     IssueApprovalComponent,
-    IssueViewComponent
+    IssueViewComponent,
+    BreadcrumbsComponent,
+    CategoriesComponent,
+    ToolViewComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

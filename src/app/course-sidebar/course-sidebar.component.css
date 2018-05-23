@@ -1,0 +1,33 @@
+.courseSidebar {
+  position: fixed;
+  top: var(--breadcrumbs-height);
+  left: 0;
+  height: 100vh;
+  width: var(--course-sidebar-width);
+  background-color: var(--primary-3);
+}
+
+.courseSidebar__title {
+  font-size: 16px;
+  line-height: 18px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+
+.courseSidebar__chip {
+  background-color: var(--primary-2);
+  border-radius: 15px;
+  padding: 5px;
+  margin: auto auto 3px;
+  width: 78px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all .1s ease-in-out;
+}
+
+.courseSidebar__chip:hover {
+  background-color: var(--primary-4);
+}
