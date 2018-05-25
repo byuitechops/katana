@@ -30,6 +30,8 @@ ul {
   margin: 0;
 }
 
+/* Don't think we need this here - can go back into the issue list component */
+
 .selectedItem {
   border: solid 1px var(--accent-1) !important;
   /* background-color: var(--primary-6) !important; */
