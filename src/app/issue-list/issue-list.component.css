@@ -9,7 +9,7 @@
   min-height: calc(100vh - (var(--breadcrumbs-height) + 30px));
   max-height: calc(100vh - (var(--breadcrumbs-height) + 30px));
   background-color: var(--primary-4);
-  overflow: scroll;
+  overflow: auto;
   overflow-x: hidden;
 }
 
@@ -38,11 +38,11 @@
 /* Handle */
 
 ::-webkit-scrollbar-thumb {
-  background: #757575;
+  background: var(--primary-3);
 }
 
 /* Handle on hover */
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #757575;
 }

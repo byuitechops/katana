@@ -20,4 +20,13 @@ export class IssueCardComponent implements OnInit {
   ngOnInit() {
   }
 
+  getStatusIcon(status) {
+    let statusIcons = {
+      'fixed': 'check_circle',
+      'ready': 'check_circle_outline',
+      'skipped': 'remove'
+    }
+    return statusIcons[status];
+  }
+
 }

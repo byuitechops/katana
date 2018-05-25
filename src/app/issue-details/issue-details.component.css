@@ -1,3 +1,6 @@
 .issueDetails {
-  height: calc(40vh - 70px);
+  padding: 20px;
+  box-sizing: border-box;
+  width: calc(100vw - (var(--course-sidebar-width) + 250px));
+  height: calc(100vh - (70px + var(--breadcrumbs-height)));
 }

@@ -7,10 +7,10 @@
   </div>
   <div class="issueCard_type">{{itemType}}</div>
   <ul>
-    <li class="divider" tabindex="-1"></li>
+    <!-- <li class="divider" tabindex="-1"></li> -->
     <li *ngFor="let itemIssue of itemIssues" class="issueCard_issue">
-      <span class="issueCard_reason">{{itemIssue.problem}}</span>
-      <span class="issueCard_tag issueCard_tag_{{itemIssue.status}}">{{itemIssue.status}}</span>
+      {{itemIssue.problem}}
+      <i class="material-icons issueCard_tag issueCard_tag_{{itemIssue.status}}">{{getStatusIcon(itemIssue.status)}}</i>
     </li>
   </ul>
 </div>
