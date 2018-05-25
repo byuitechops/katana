@@ -1,7 +1,5 @@
 <div class="courseSidebar">
   <div class="courseSidebar__title">Selected Courses</div>
-  <app-course-chip></app-course-chip>
-  <app-course-chip></app-course-chip>
-  <app-course-chip></app-course-chip>
+  <app-course-chip *ngFor="let course of courses" [courseCode]="course.courseCode"></app-course-chip>
 </div>
 <app-course-search></app-course-search>

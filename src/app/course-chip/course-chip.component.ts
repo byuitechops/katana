@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-course-chip',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./course-chip.component.css']
 })
 export class CourseChipComponent implements OnInit {
+  @Input() // Course Code
+  courseCode: string;
 
   constructor() { }
 

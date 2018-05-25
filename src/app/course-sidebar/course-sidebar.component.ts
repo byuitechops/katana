@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseSidebarComponent implements OnInit {
 
+  courses = [{
+    courseCode: 'B 383'
+  }, {
+    courseCode: 'CS 364'
+  }, {
+    courseCode: 'COMM 130'
+  }];
+  
   constructor() { }
 
   ngOnInit() {
