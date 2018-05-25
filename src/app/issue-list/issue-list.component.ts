@@ -13,14 +13,4 @@ export class IssueListComponent implements OnInit {
   ngOnInit() {
 
   }
-
-  setSelectedItem(elementId) {
-    let el = document.getElementById(elementId);
-    if (this.issuesService.selectedItem) {
-      this.issuesService.selectedItem.classList.remove('selectedItem');
-    }
-    el.classList.add('selectedItem')
-    this.issuesService.selectedItem = el;
-    console.log(this.issuesService.selectedItem);
-  }
 }

@@ -1,5 +1,5 @@
 .issueList {
-  height: calc(100vh - var(--breadcrumbs-height));
+  height: calc(100vh - (var(--breadcrumbs-height) + 70px));
   border-right: solid 1px var(--primary-2);
   width: var(--issueList-width);
   box-sizing: border-box;

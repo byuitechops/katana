@@ -1,48 +1,52 @@
 <div materialize class="issueApproval">
 
-  <div class="issueApproval__navigation">
-    <a class="btn-floating waves-effect waves-light greyhover">
-      <i class="material-icons">keyboard_arrow_left</i>
-    </a>
-    <div class="issueApproval__counter">
-      12 of 15
+  <div>
+    <div class="issueApproval__navigation">
+      <a class="blue-grey lighten-2 btn-floating waves-effect waves-light greyhover" (click)="shiftSelectedItem('up')">
+        <i class="material-icons">keyboard_arrow_up</i>
+      </a>
+      <div class="issueApproval__counter">
+        12 of 15
+      </div>
+      <a class="blue-grey lighten-2 btn-floating waves-effect waves-light greyhover" (click)="shiftSelectedItem('down')">
+        <i class="material-icons">keyboard_arrow_down</i>
+      </a>
     </div>
-    <a class="btn-floating waves-effect waves-light greyhover">
-      <i class="material-icons">keyboard_arrow_right</i>
-    </a>
+
+    <div class="issueApproval__buttonContainer">
+      <div class="issueApproval__button">
+        <a class="waves-effect green waves-light btn">
+          <i class="material-icons left">check</i>
+          approve
+        </a>
+      </div>
+
+      <div class="issueApproval__button">
+        <a class="waves-effect red waves-light btn">
+          <i class="material-icons left">remove</i>
+          skip
+        </a>
+      </div>
+
+    </div>
   </div>
 
-  <div class="issueApproval__buttonContainer">
-    <div class="issueApproval__button">
-      <a class="waves-effect green waves-light btn">
-        <i class="material-icons left">check</i>
-        approve
+  <ul id="dropdown1" class="dropdown-content">
+    <li>
+      <a href="#!" class="green-text">
+        Approve All
       </a>
-    </div>
-
-    <div class="issueApproval__button">
-      <a class="waves-effect red waves-light btn">
-        <i class="material-icons left">remove</i>
-        skip
+    </li>
+    <li>
+      <a href="#!" class="red-text">
+        Mark as Exception
       </a>
-    </div>
-
-    <ul id="dropdown1" class="dropdown-content">
-      <li>
-        <a href="#!" class="green-text">
-          Approve All
-        </a>
-      </li>
-      <li>
-        <a href="#!" class="red-text">
-          Mark as Exception
-        </a>
-      </li>
-    </ul>
+    </li>
+  </ul>
+  <div>
     <a materialize="dropdown" [materializeParams]="[{constrain_width: false, alignment: 'left'}]" class="dropdown-button issueApproval_moreButton"
       data-activates="dropdown1">
-      <i class="material-icons right">more_vert</i>
+      <i class="material-icons">more_vert</i>
     </a>
   </div>
-
 </div>

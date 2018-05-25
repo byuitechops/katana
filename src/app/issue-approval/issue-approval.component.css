@@ -2,17 +2,25 @@
   height: 70px;
   position: fixed;
   bottom: 0;
-  left: calc(var(--course-sidebar-width) + var(--issueList-width));
-  width: calc(100vw - (var(--course-sidebar-width) + var(--issueList-width)));
+  border-top: solid 1px var(--primary-2);
+  left: var(--course-sidebar-width);
+  width: calc(100vw - var(--course-sidebar-width));
   background-color: var(--primary-4);
   display: flex;
   justify-content: space-between;
 }
 
-.issueApproval__navigation {
-  margin: 12px 20px;
-  line-height: 46px;
+.issueApproval>div {
   display: flex;
+}
+
+.issueApproval__navigation {
+  padding: 12px 20px;
+  line-height: 46px;
+  width: var(--issueList-width);
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 
 .issueApproval__buttonContainer {
