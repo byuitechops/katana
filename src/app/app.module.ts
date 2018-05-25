@@ -16,7 +16,6 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ToolViewComponent } from './tool-view/tool-view.component';
 import { CourseSearchComponent } from './course-search/course-search.component';
-import { GroupSidebarComponent } from './group-sidebar/group-sidebar.component';
 import { CourseChipComponent } from './course-chip/course-chip.component';
 
 const appRoutes: Routes = [
@@ -39,7 +38,6 @@ const appRoutes: Routes = [
     CategoriesComponent,
     ToolViewComponent,
     CourseSearchComponent,
-    GroupSidebarComponent,
     CourseChipComponent,
   ],
   imports: [

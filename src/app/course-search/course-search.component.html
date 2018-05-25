@@ -10,6 +10,7 @@
         <option value="pathway">Pathway</option>
         <option value="all">All</option>
       </select>
+
       <div class="courseSearch__options__title">Term</div>
       <select class="courseSearch__term">
         <option value="" selected></option>
@@ -18,25 +19,68 @@
         <option value="spring">Spring</option>
         <option value="all">All</option>
       </select>
+
       <div class="courseSearch__options__title">Blueprint</div>
       <select class="courseSearch__blueprint">
         <option value="" selected></option>
         <option value="true">True</option>
         <option value="false">False</option>
       </select>
+
       <div class="courseSearch__options__title">Group</div>
       <select class="courseSearch__group">
         <option value="" selected></option>
       </select>
     </div>
+
     <div class="courseSearch__search">
       <div class="courseSearch__searchbar__title">Search</div>
       <input type="text" />
       <div class="courseSearch__courseResults__title">Results</div>
-      <div class="courseSearch__courseResults">
-        <div>Name</div>
-      </div>
+      <table class="highlight">
+        <thead>
+          <tr>
+            <th>+/-</th>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Teacher</th>
+            <th>Term</th>
+            <th>Sections</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <i class="material-icons">add_circle</i>
+            </td>
+            <td>Course Improvement</td>
+            <td>DADD 301</td>
+            <td>Ron Vallejo</td>
+            <td>All</td>
+            <td>All</td>
+          </tr>
+          <tr>
+            <td>
+              <i class="material-icons">add_circle</i>
+            </td>
+            <td>Course Improvement</td>
+            <td>DADD 301</td>
+            <td>Ron Vallejo</td>
+            <td>All</td>
+            <td>All</td>
+          </tr>
+          <tr>
+            <td>
+              <i class="material-icons">add_circle</i>
+            </td>
+            <td>Course Improvement</td>
+            <td>DADD 301</td>
+            <td>Ron Vallejo</td>
+            <td>All</td>
+            <td>All</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  <app-group-sidebar></app-group-sidebar>
 </div>

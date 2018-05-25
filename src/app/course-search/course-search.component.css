@@ -1,15 +1,14 @@
 .courseSearch__title {
   width: 100%;
-  line-height: 40px;
+  line-height: 90px;
   text-align: center;
-  font-size: 40px;
-  padding-top: 10px;
+  font-size: 60px;
 }
 
 .courseSearch__courseSelection {
   display: flex;
   width: 100%;
-  flex-flow: row nowrap;
+  flex-flow: row;
   justify-content: center;
 }
 
@@ -21,10 +20,10 @@
   display: flex;
   flex-flow: column nowrap;
   position: fixed;
-  margin: 80px 50px;
+  margin: 80px 80px;
   top: var(--breadcrumbs-height);
   left: var(--course-sidebar-width);
-  width: 200px;
+  width: 250px;
   height: 100vh - var(--breadcrumbs-height);
 }
 
@@ -45,13 +44,11 @@ select {
 ****************************************/
 
 .courseSearch__search {
-  display: flex;
+  display: block;
   flex-flow: column nowrap;
   position: fixed;
   margin-top: 80px;
   top: var(--breadcrumbs-height);
-  /* left: var(--course-sidebar-width) + 30px; */
-  width: 100vw - (var(--course-sidebar-width) - 200);
 }
 
 .courseSearch__searchbar__title,
@@ -61,19 +58,41 @@ select {
 
 .courseSearch__search>input {
   border: 1px solid var(--primary-3);
-  width: 600px;
   font-size: 20px;
+  width: 700px;
 }
 
-.courseSearch__courseResults {
+.courseSearch__search>table {
   display: flex;
-  flex-flow: row nowrap;
-  border: 1px solid var(--primary-3);
-  width: 100vw - (var(--course-sidebar-width) - 250);
-  font-size: 20px;
+  flex-flow: column nowrap;
+  width: 900px;
 }
 
-.courseSearch__courseResults > * {
-    display: flex;
-    flex-flow: column nowrap;
+.courseSearch__courseResults>* {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+thead th:nth-of-type(1), tbody td:nth-of-type(1) {
+  width: 20px;
+}
+
+thead th:nth-of-type(2), tbody td:nth-of-type(2) {
+  width: 400px;
+}
+
+thead th:nth-of-type(3), tbody td:nth-of-type(3) {
+  width: 100px;
+}
+
+thead th:nth-of-type(4), tbody td:nth-of-type(4) {
+  width: 180px;
+}
+
+thead th:nth-of-type(5), tbody td:nth-of-type(5) {
+  width: 100px;
+}
+
+thead th:nth-of-type(6), tbody td:nth-of-type(6) {
+  width: 100px;
 }
