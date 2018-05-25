@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import 'materialize-css';
+import { MaterializeModule } from "angular2-materialize";
 
+/* Katana Components */
 import { AppComponent } from './app.component';
 import { CourseSidebarComponent } from './course-sidebar/course-sidebar.component';
 import { IssueListComponent } from './issue-list/issue-list.component';
@@ -34,6 +37,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    MaterializeModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
