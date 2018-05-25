@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IssueApprovalComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+
+
+  }
 
   ngOnInit() {
   }

@@ -5,4 +5,63 @@
   left: calc(var(--course-sidebar-width) + var(--issueList-width));
   width: calc(100vw - (var(--course-sidebar-width) + var(--issueList-width)));
   background-color: var(--primary-4);
+  display: flex;
+  justify-content: space-between;
+}
+
+.issueApproval__navigation {
+  margin: 12px 20px;
+  line-height: 46px;
+  display: flex;
+}
+
+.issueApproval__buttonContainer {
+  display: flex;
+}
+
+.issueApproval__counter {
+  font-size: 18px;
+  padding: 0 10px;
+}
+
+.greyhover {
+  margin-top: 4px;
+}
+
+.issueApproval__navigation .greyhover:hover i {
+  color: white !important;
+}
+
+.issueApproval__arrow {
+  font-size: 50px;
+  font-weight: bold;
+  transform: scaleX(.5);
+  color: var(--primary-3);
+  padding: 0 20px;
+  cursor: pointer;
+  transition: all .1s ease-in-out;
+}
+
+.issueApproval__arrow:hover {
+  user-select: none;
+  color: var(--primary-1);
+}
+
+.issueApproval__button {
+  line-height: 46px;
+  margin: 12px 10px;
+  border-radius: 3px;
+}
+
+.issueApproval_moreButton>i {
+  line-height: 70px;
+  font-size: 30px;
+  color: var(--primary-1);
+  margin: 0 10px 0 0;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  width: 200px !important;
+  transform: translate(-50px);
 }

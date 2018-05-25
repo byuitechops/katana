@@ -1,3 +1,43 @@
-<div class="issueApproval">
-  Issue approval stuff
+<div materialize class="issueApproval">
+
+  <div class="issueApproval__navigation">
+    <a class="btn-floating waves-effect waves-light greyhover">
+      <i class="material-icons">keyboard_arrow_left</i>
+    </a>
+    <div class="issueApproval__counter">
+      12 of 15
+    </div>
+    <a class="btn-floating waves-effect waves-light greyhover">
+      <i class="material-icons">keyboard_arrow_right</i>
+    </a>
+  </div>
+
+  <div class="issueApproval__buttonContainer">
+    <div class="issueApproval__button">
+      <a class="waves-effect green waves-light btn">
+        <i class="material-icons left">check</i>
+        approve
+      </a>
+    </div>
+
+    <div class="issueApproval__button">
+      <a class="waves-effect red waves-light btn">
+        skip
+      </a>
+    </div>
+
+    <ul id="dropdown1" class="dropdown-content">
+      <li>
+        <a href="#!">Approve All</a>
+      </li>
+      <li>
+        <a href="#!">Mark as Exception</a>
+      </li>
+    </ul>
+    <a materialize="dropdown" [materializeParams]="[{constrain_width: false, alignment: 'left'}]" class="dropdown-button issueApproval_moreButton"
+      data-activates="dropdown1">
+      <i class="material-icons right">more_vert</i>
+    </a>
+  </div>
+
 </div>
