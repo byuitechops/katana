@@ -3,15 +3,8 @@
     Issues
   </div>
   <div class="issueList__list">
-    <app-issue-card></app-issue-card>
-    <app-issue-card></app-issue-card>
-    <app-issue-card></app-issue-card>
-    <app-issue-card></app-issue-card>
-    <app-issue-card></app-issue-card>
-    <app-issue-card></app-issue-card>
-    <app-issue-card></app-issue-card>
-    <app-issue-card></app-issue-card>
-    <app-issue-card></app-issue-card>
-    <app-issue-card></app-issue-card>
+    <app-issue-card *ngFor="let issue of issues" [itemTitle]="issue.itemTitle" [itemType]="issue.itemType" [itemLink]="issue.itemLink"
+      [itemIssues]="issue.itemIssues">
+    </app-issue-card>
   </div>
 </div>

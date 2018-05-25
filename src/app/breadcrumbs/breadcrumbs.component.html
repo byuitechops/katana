@@ -1,10 +1,8 @@
 <div class="breadcrumbs">
   <div class="breadcrumbs__icon"></div>
-  <span>
-    Home
-    <span class="breadcrumbs__arrow">&gt;</span>
-    Pages
-    <span class="breadcrumbs__arrow">&gt;</span>
-    Attribute Modifier
-  </span>
+  <div class="nav-wrapper">
+    <div id="breadcrumb-links" class="col s12">
+      <a *ngFor="let breadcrumb of breadcrumbs" href="{{breadcrumb.url}}" class="breadcrumb">{{breadcrumb.title}}</a>
+    </div>
+  </div>
 </div>

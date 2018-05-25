@@ -6,6 +6,7 @@
 }
 
 .issueList__list {
+  min-height: calc(100vh - (var(--breadcrumbs-height) + 30px));
   max-height: calc(100vh - (var(--breadcrumbs-height) + 30px));
   background-color: var(--primary-4);
   overflow: scroll;

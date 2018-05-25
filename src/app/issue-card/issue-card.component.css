@@ -12,9 +12,12 @@
 .issueCard_titleLine {
   display: flex;
   justify-content: space-between;
+  padding: 5px 5px 0;
 }
 
-.issueCard_title {}
+.issueCard_title {
+  font-size: 16px;
+}
 
 .issueCard_link {
   /* border: solid 1px var(--primary-3); */
@@ -32,13 +35,15 @@
 
 .issueCard_type {
   font-size: 11px;
+  padding: 0 5px;
   color: var(--primary-3);
 }
 
-.issueCard_issue {}
-
-.issueCard_issue::before {
-  content: "• ";
+.issueCard_issue {
+  font-size: 12px;
+  margin-top: 2px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .issueCard_reason {}
@@ -50,6 +55,7 @@
   margin-left: 5px;
   padding: 2px 3px;
   vertical-align: center;
+  user-select: none;
 }
 
 .issueCard_tag_fixed {
@@ -68,4 +74,8 @@
   border: solid 1px;
   border-color: red;
   color: red;
+}
+
+.divider {
+  margin-bottom: 5px;
 }

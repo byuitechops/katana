@@ -56,12 +56,12 @@
 .issueApproval_moreButton>i {
   line-height: 70px;
   font-size: 30px;
-  color: var(--primary-1);
+  color: var(--primary-5);
   margin: 0 10px 0 0;
   cursor: pointer;
 }
 
 .dropdown-content {
   width: 200px !important;
-  transform: translate(-50px);
+  transform: translate(0, -70px);
 }

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import 'materialize-css';
 import { MaterializeModule } from "angular2-materialize";
+import 'rxjs';
 
 /* Katana Components */
 import { AppComponent } from './app.component';
