@@ -17,6 +17,21 @@
   box-sizing: border-box;
 }
 
+/************************************
+ * Course Selection Button
+ ************************************/
+
+.courseSidebar__expandSidebar {
+  position: absolute;
+  bottom: 60px;
+  text-align: center;
+  width: var(--course-sidebar-width);
+}
+
+.courseSidebar__expandSidebar>* {
+  color: white;
+}
+
 app-course-search {
   display: none;
 }
