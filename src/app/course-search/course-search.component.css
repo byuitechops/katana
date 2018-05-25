@@ -1,0 +1,79 @@
+.courseSearch__title {
+  width: 100%;
+  line-height: 40px;
+  text-align: center;
+  font-size: 40px;
+  padding-top: 10px;
+}
+
+.courseSearch__courseSelection {
+  display: flex;
+  width: 100%;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+/**************************************
+* Course Search Option Dropdowns
+***************************************/
+
+.courseSearch__options {
+  display: flex;
+  flex-flow: column nowrap;
+  position: fixed;
+  margin: 80px 50px;
+  top: var(--breadcrumbs-height);
+  left: var(--course-sidebar-width);
+  width: 200px;
+  height: 100vh - var(--breadcrumbs-height);
+}
+
+.courseSearch__options__title {
+  font-size: 20px;
+}
+
+select {
+  display: block;
+  color: black;
+  background-color: var(--primary-4);
+  border: 1px solid var(--primary-3);
+  margin-bottom: 5px;
+}
+
+/***************************************
+* Course Search Search Bar and Results
+****************************************/
+
+.courseSearch__search {
+  display: flex;
+  flex-flow: column nowrap;
+  position: fixed;
+  margin-top: 80px;
+  top: var(--breadcrumbs-height);
+  /* left: var(--course-sidebar-width) + 30px; */
+  width: 100vw - (var(--course-sidebar-width) - 200);
+}
+
+.courseSearch__searchbar__title,
+.courseSearch__courseResults__title {
+  font-size: 20px;
+}
+
+.courseSearch__search>input {
+  border: 1px solid var(--primary-3);
+  width: 600px;
+  font-size: 20px;
+}
+
+.courseSearch__courseResults {
+  display: flex;
+  flex-flow: row nowrap;
+  border: 1px solid var(--primary-3);
+  width: 100vw - (var(--course-sidebar-width) - 250);
+  font-size: 20px;
+}
+
+.courseSearch__courseResults > * {
+    display: flex;
+    flex-flow: column nowrap;
+}

@@ -1,0 +1,18 @@
+.groupSidebar {
+    position: fixed;
+    top: var(--breadcrumbs-height);
+    right: 0;
+    height: 100vh;
+    width: var(--course-sidebar-width);
+    background-color: var(--primary-3);
+  }
+  
+  .groupSidebar__title {
+    font-size: 16px;
+    line-height: 18px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 10px 0;
+    box-sizing: border-box;
+  }

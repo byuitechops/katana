@@ -17,17 +17,6 @@
   box-sizing: border-box;
 }
 
-.courseSidebar__chip {
-  background-color: var(--primary-2);
-  border-radius: 15px;
-  padding: 5px;
-  margin: auto auto 3px;
-  width: 78px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all .1s ease-in-out;
-}
-
-.courseSidebar__chip:hover {
-  background-color: var(--primary-4);
+app-course-search {
+  display: none;
 }
