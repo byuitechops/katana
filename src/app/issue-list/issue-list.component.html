@@ -3,8 +3,8 @@
     Issues
   </div>
   <div class="issueList__list">
-    <app-issue-card *ngFor="let issue of issues" [itemTitle]="issue.itemTitle" [itemType]="issue.itemType" [itemLink]="issue.itemLink"
-      [itemIssues]="issue.itemIssues">
+    <app-issue-card *ngFor="let issue of issuesService.issues" [itemTitle]="issue.itemTitle" [itemID]="issue.itemID" [itemType]="issue.itemType"
+      [itemLink]="issue.itemLink" [itemIssues]="issue.itemIssues" (click)="setSelectedItem(issue.itemType + '_' + issue.itemID)">
     </app-issue-card>
   </div>
 </div>

@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IssuesService } from '../issues.service';
 
 @Component({
   selector: 'app-issue-card',
@@ -8,6 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class IssueCardComponent implements OnInit {
   @Input() // Item Title
   itemTitle: string;
+  @Input() // Item Title
+  itemID: number;
   @Input() // Item Type
   itemType: string;
   @Input() // Item Link
@@ -15,7 +18,10 @@ export class IssueCardComponent implements OnInit {
   @Input() // Item Issues
   itemIssues: object[];
 
-  constructor() { }
+  // @Output() // When a card is clicked
+  // cardSelected: EventEmitter<Element> = new EventEmitter<Element>();
+
+  constructor(private issuesService: IssuesService) { }
 
   ngOnInit() {
   }
@@ -27,6 +33,12 @@ export class IssueCardComponent implements OnInit {
       'skipped': 'remove'
     }
     return statusIcons[status];
+  }
+
+  cardClicked(event) {
+    console.log(event);
+    this.issuesService.selectedItem = document.querySelector(`${this.itemType}_${this.itemID}`);
+    // this.cardSelected.emit(event.target);
   }
 
 }

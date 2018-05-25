@@ -9,10 +9,15 @@
   --primary-3: #90a4ae;
   --primary-4: #eceff1;
   --primary-5: #78909c;
+  --primary-6: #f0f0f0;
   --accent-1: #2196f3;
   --course-sidebar-width: 85px;
   --breadcrumbs-height: 50px;
   --issueList-width: 250px;
+}
+
+* {
+  transition: all .075s ease-in-out;
 }
 
 body {
@@ -23,4 +28,9 @@ body {
 
 ul {
   margin: 0;
+}
+
+.selectedItem {
+  border: solid 1px var(--accent-1) !important;
+  /* background-color: var(--primary-6) !important; */
 }

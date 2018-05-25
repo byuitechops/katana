@@ -2,7 +2,9 @@
   padding: 5px;
   margin: 7px;
   width: calc(100% - 14px);
+  border: solid 1px white;
   background-color: white;
+  cursor: pointer;
 }
 
 .issueCard>ul {
@@ -19,6 +21,10 @@
   font-size: 16px;
 }
 
+.issueCard_link:hover {
+  opacity: .7;
+}
+
 .issueCard_link {
   /* border: solid 1px var(--primary-3); */
   height: 16px;
@@ -26,7 +32,6 @@
   line-height: 16px;
   margin-right: 5px;
   text-align: center;
-  border-radius: 50px;
 }
 
 .issueCard_link>i {

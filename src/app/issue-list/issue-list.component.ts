@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IssuesService } from '../issues.service';
 
 @Component({
   selector: 'app-issue-list',
@@ -7,159 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IssueListComponent implements OnInit {
 
-  issues = [{
-    itemTitle: 'Potato Instructions',
-    itemType: 'Page',
-    itemLink: 'https://byui.instructure.com/courses/12872/pages/setup-for-course-instructor?module_item_id=850086',
-    itemIssues: [{
-      problem: 'Thing Done B0rkEd',
-      details: {},
-      status: 'fixed'
-    }, {
-      problem: 'This is Broken',
-      details: {},
-      status: ''
-    }]
-  }, {
-    itemTitle: 'Potato Quiz',
-    itemType: 'Quiz',
-    itemLink: 'https://byui.instructure.com/courses/12872/pages/setup-for-course-instructor?module_item_id=850086',
-    itemIssues: [{
-      problem: 'Fails to Actually Quiz Students',
-      details: {},
-      status: 'skipped'
-    }, {
-      problem: 'No Questions',
-      details: {},
-      status: 'ready'
-    }, {
-      problem: 'Just a Flesh Wound',
-      details: {},
-      status: 'fixed'
-    }]
-  }, {
-    itemTitle: 'Potato Quiz',
-    itemType: 'Quiz',
-    itemLink: 'https://byui.instructure.com/courses/12872/pages/setup-for-course-instructor?module_item_id=850086',
-    itemIssues: [{
-      problem: 'Fails to Actually Quiz Students',
-      details: {},
-      status: 'skipped'
-    }, {
-      problem: 'No Questions',
-      details: {},
-      status: 'ready'
-    }, {
-      problem: 'Just a Flesh Wound',
-      details: {},
-      status: 'fixed'
-    }]
-  }, {
-    itemTitle: 'Potato Quiz',
-    itemType: 'Quiz',
-    itemLink: 'https://byui.instructure.com/courses/12872/pages/setup-for-course-instructor?module_item_id=850086',
-    itemIssues: [{
-      problem: 'Fails to Actually Quiz Students',
-      details: {},
-      status: 'skipped'
-    }, {
-      problem: 'No Questions',
-      details: {},
-      status: 'ready'
-    }, {
-      problem: 'Just a Flesh Wound',
-      details: {},
-      status: 'fixed'
-    }]
-  }, {
-    itemTitle: 'Potato Quiz',
-    itemType: 'Quiz',
-    itemLink: 'https://byui.instructure.com/courses/12872/pages/setup-for-course-instructor?module_item_id=850086',
-    itemIssues: [{
-      problem: 'Fails to Actually Quiz Students',
-      details: {},
-      status: 'skipped'
-    }, {
-      problem: 'No Questions',
-      details: {},
-      status: 'ready'
-    }, {
-      problem: 'Just a Flesh Wound',
-      details: {},
-      status: 'fixed'
-    }]
-  }, {
-    itemTitle: 'Potato Quiz',
-    itemType: 'Quiz',
-    itemLink: 'https://byui.instructure.com/courses/12872/pages/setup-for-course-instructor?module_item_id=850086',
-    itemIssues: [{
-      problem: 'Fails to Actually Quiz Students',
-      details: {},
-      status: 'skipped'
-    }, {
-      problem: 'No Questions',
-      details: {},
-      status: 'ready'
-    }, {
-      problem: 'Just a Flesh Wound',
-      details: {},
-      status: 'fixed'
-    }]
-  }, {
-    itemTitle: 'Potato Quiz',
-    itemType: 'Quiz',
-    itemLink: 'https://byui.instructure.com/courses/12872/pages/setup-for-course-instructor?module_item_id=850086',
-    itemIssues: [{
-      problem: 'Fails to Actually Quiz Students',
-      details: {},
-      status: 'skipped'
-    }, {
-      problem: 'No Questions',
-      details: {},
-      status: 'ready'
-    }, {
-      problem: 'Just a Flesh Wound',
-      details: {},
-      status: 'fixed'
-    }]
-  }, {
-    itemTitle: 'Potato Quiz',
-    itemType: 'Quiz',
-    itemLink: 'https://byui.instructure.com/courses/12872/pages/setup-for-course-instructor?module_item_id=850086',
-    itemIssues: [{
-      problem: 'Fails to Actually Quiz Students',
-      details: {},
-      status: 'skipped'
-    }, {
-      problem: 'No Questions',
-      details: {},
-      status: 'ready'
-    }, {
-      problem: 'Just a Flesh Wound',
-      details: {},
-      status: 'fixed'
-    }]
-  }, {
-    itemTitle: 'Potato Quiz',
-    itemType: 'Quiz',
-    itemLink: 'https://byui.instructure.com/courses/12872/pages/setup-for-course-instructor?module_item_id=850086',
-    itemIssues: [{
-      problem: 'Fails to Actually Quiz Students',
-      details: {},
-      status: 'skipped'
-    }, {
-      problem: 'No Questions',
-      details: {},
-      status: 'ready'
-    }, {
-      problem: 'Just a Flesh Wound',
-      details: {},
-      status: 'fixed'
-    }]
-  }];
-
-  constructor() { }
+  constructor(private issuesService: IssuesService) { }
 
   ngOnInit() {
+
+  }
+
+  setSelectedItem(elementId) {
+    let el = document.getElementById(elementId);
+    if (this.issuesService.selectedItem) {
+      this.issuesService.selectedItem.classList.remove('selectedItem');
+    }
+    el.classList.add('selectedItem')
+    this.issuesService.selectedItem = el;
+    console.log(this.issuesService.selectedItem);
   }
 }
