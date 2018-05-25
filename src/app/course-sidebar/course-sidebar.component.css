@@ -17,17 +17,21 @@
   box-sizing: border-box;
 }
 
-.courseSidebar__chip {
-  background-color: var(--primary-2);
-  border-radius: 15px;
-  padding: 5px;
-  margin: auto auto 3px;
-  width: 78px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all .1s ease-in-out;
+/************************************
+ * Course Selection Button
+ ************************************/
+
+.courseSidebar__expandSidebar {
+  position: absolute;
+  bottom: 60px;
+  text-align: center;
+  width: var(--course-sidebar-width);
 }
 
-.courseSidebar__chip:hover {
-  background-color: var(--primary-4);
+.courseSidebar__expandSidebar>* {
+  color: white;
+}
+
+app-course-search {
+  display: none;
 }

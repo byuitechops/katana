@@ -16,11 +16,14 @@ import { IssueViewComponent } from './issue-view/issue-view.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ToolViewComponent } from './tool-view/tool-view.component';
+import { CourseSearchComponent } from './course-search/course-search.component';
+import { CourseChipComponent } from './course-chip/course-chip.component';
 
 const appRoutes: Routes = [
   { path: '', component: CategoriesComponent },
   { path: 'categories', component: CategoriesComponent },
   { path: 'tool-view', component: ToolViewComponent },
+  { path: 'course-search', component: CourseSearchComponent },
 ];
 
 @NgModule({
@@ -35,6 +38,8 @@ const appRoutes: Routes = [
     BreadcrumbsComponent,
     CategoriesComponent,
     ToolViewComponent,
+    CourseSearchComponent,
+    CourseChipComponent,
   ],
   imports: [
     BrowserModule,
