@@ -2,10 +2,10 @@
   <div class="courseSidebar__title">Selected Courses</div>
   <app-course-chip *ngFor="let course of courses" [courseCode]="course.courseCode"></app-course-chip>
   <div class="courseSidebar__expandSidebar">
-    <a href="/course-search">
+    <a href="/course-selection">
       <p>Course Selection</p>
       <i class="material-icons">arrow_forward</i>
     </a>
   </div>
 </div>
-<app-course-search></app-course-search>
+<app-course-selection></app-course-selection>

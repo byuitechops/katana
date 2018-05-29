@@ -16,7 +16,7 @@ import { IssueViewComponent } from './issue-view/issue-view.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ToolViewComponent } from './tool-view/tool-view.component';
-import { CourseSearchComponent } from './course-search/course-search.component';
+import { CourseSelectionComponent } from './course-selection/course-selection.component';
 import { CourseChipComponent } from './course-chip/course-chip.component';
 
 export const appRoutes: Routes = [
@@ -42,8 +42,8 @@ export const appRoutes: Routes = [
         }
     },
     {
-        path: 'course-search',
-        component: CourseSearchComponent,
+        path: 'course-selection',
+        component: CourseSelectionComponent,
         data: {
             breadcrumb: 'Course Selection'
         }
@@ -62,7 +62,7 @@ export const appRoutes: Routes = [
         BreadcrumbsComponent,
         CategoriesComponent,
         ToolViewComponent,
-        CourseSearchComponent,
+        CourseSelectionComponent,
         CourseChipComponent,
     ],
     imports: [
