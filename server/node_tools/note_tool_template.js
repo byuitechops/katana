@@ -1,9 +1,3 @@
-# Node Tool Template
-
-This template represents the format each of the node tools should follow.
-
-```js
-
 var canvas = require('canvas-api-wrapper');
 
 /*****************************************************************
@@ -13,11 +7,11 @@ var canvas = require('canvas-api-wrapper');
  * @returns {array} fixedIssues - All issues discovered.
  *****************************************************************/
 function check(item, options) {
-    // see if the item has the issue this tool is looking for
-    // If yes, then...
+  // see if the item has the issue this tool is looking for
+  // If yes, then...
 
-    item.issues = [] // all issues discovered
-    return item;
+  item.issues = [] // all issues discovered
+  return item;
 }
 
 /*****************************************************************
@@ -27,7 +21,7 @@ function check(item, options) {
  * @returns {array} fixedIssues - All issues successfully fixed.
  *****************************************************************/
 function fix(item, options) {
-   // Fix the item, if there is anything to fix
+  // Fix the item, if there is anything to fix
 }
 
 /*****************************************************************
@@ -36,33 +30,31 @@ function fix(item, options) {
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {array} issues - All issues discovered or fixed.
  *****************************************************************/
-function discovery(course, options) {
+async function discovery(course, options) {
+  return new Promise((resolve, reject) => {
     // Set this to the canvas items you need
     let items = await course.modules.get(true);
 
-    if (options.fix !== true) {
-        // run each item through check
-    } else {
-        // run each item through fix
-    }
+    // discover list of issues and then resolve the promise with the list
+
+  })
 }
 
 const details = {
-    name: 'tool_name',
-    itemTypes: [
-        'Page',
-        'Assignment',
-        'Discussion',
-        'Quiz',
-        'QuizQuestion',
-        'Module',
-        'ModuleItem'
-    ]
+  name: 'tool_name',
+  itemTypes: [
+    'Page',
+    'Assignment',
+    'Discussion',
+    'Quiz',
+    'QuizQuestion',
+    'Module',
+    'ModuleItem'
+  ]
 };
 
 module.exports = {
-    details,
-    fix,
-    discovery
+  details,
+  fix,
+  discovery
 };
-```

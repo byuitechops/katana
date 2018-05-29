@@ -28,15 +28,13 @@
   transition: all .1s ease-in-out;
 }
 
-.categoryIcon:hover i {
+.categoryIcon i:hover {
   color: var(--primary-4);
   padding: 25px;
   margin-top: 5px;
   margin-bottom: 5px;
   background-color: var(--primary-1);
 }
-
-.categoryIcon:hover {}
 
 .categoryIcon p {
   color: var(--primary-3);

@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const canvas = require('canvas-api-wrapper');
+const business = require('./business_logic.js');
 const app = express();
 const serverPort = 8000;
 
@@ -16,18 +17,25 @@ app.get('/', (req, res) => {
  * Handles the "issue discovery" sequence for Node Tools
  * @returns {object[]} - Array of Issues
  ************************************************************************/
-app.get('/tools/*', (req, res) => {
-  /* Get the courses from the query string */
-  let courseList = req.query.courses.map(courseId => canvas.getCourse(courseId));
+app.get('/tools/*', async (req, res) => {
+  try {
+    let {
+      tool_id,
+      courses,
+      options
+    } = req.body;
 
-  let allIssues = courseList.reduce((acc, course) => {
-    let issues = fixTool.discovery(course, req.query);
-    return [...acc, ...issues];
-  }, []);
+    let issueItems = await business.discoverIssues(tool_id, courses, options);
 
-  // TODO Save to Database
+    if (typeof issueItems === 'string') {
+      res.send('Invalid Tool ID');
+    } else {
+      res.status(200).send(JSON.stringify(issueItems));
+    }
 
-  res.send(JSON.stringify(allIssues)); // SEND ISSUES FROM DATABASE, NOT ALLISSUES
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 });
 
 /*************************************************************************
@@ -36,6 +44,7 @@ app.get('/tools/*', (req, res) => {
  * @returns {object[]} - Array of Issues
  ************************************************************************/
 app.put('/tools/*', (req, res) => {
+  // TODO Add to business logic
   res.send('This is for testing the PUT request - Please remove!');
 });
 

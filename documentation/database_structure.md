@@ -1,5 +1,7 @@
 # Database Structure
 
+Please note that the database is not being used for the first iteration of the tool.
+
 The database consists of three types of items: Items, Issues, and Reports. Each item and its properties are available in detail below. View the [Database Wrapper](./database_wrapper.md) documentation on how these items are retrieved, created, and updated in the database.
 
 |Item               |Description|

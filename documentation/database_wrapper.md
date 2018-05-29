@@ -1,3 +1,5 @@
+Please note that the database is not being used for the first iteration of the tool.
+
 ## Functions
 
 <dl>

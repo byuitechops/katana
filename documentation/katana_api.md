@@ -20,9 +20,22 @@ Serves the user the homepage.
 <a name="discoverissues"></a>
 ## Discover Issues 
 ```
-GET /tools/<tool>?<options>
+POST /tools/<tool>
 ```
 Discovers issues in the selected courses. The `<tool>` field should match the tool name of any available tool. The options provided in the query parameters should match the options needed for the provided tool.
+
+### Request Body
+
+```
+{
+    // ID of the tool to be run in discovery mode
+    tool_id: <string>,
+    // The courses the tool should look through
+    courses: <object[]>,
+    // The options for the specified tool
+    options: <object>
+}
+```
 
 ### Options
 |name|type|description|
@@ -34,10 +47,22 @@ Discovers issues in the selected courses. The `<tool>` field should match the to
 <a name="fixissues"></a>
 ## Fix Issues 
 ```
-PUT /tools/<tool>?<options>
+PUT /tools/<tool>
 ```
 ### Request Body
-The body should be an array of approved issues, in the format they are received from the GET version of this request. The options provided in the query parameters should match the options needed for the provided tool. Keep in mind, these options will be used to implement fixes to the provided issues.
+
+```
+{
+    // ID of the tool to be run in discovery mode
+    tool_id: <string>,
+    // The courses the tool should affect
+    courses: <object[]>,
+    // The options for the specified tool
+    options: <object>,
+    // The approved issues to be fixed
+    issueItems: <object[]>
+}
+```
 
 ### Options
 |name|type|description|

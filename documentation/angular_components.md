@@ -16,6 +16,7 @@ Below are all of the Angular components used client-side in Katana:
 |[Issue View](#issueView)                            |Tool View                      |Displays details about an issue. The user can use the [Issue Approval](#issueApproval) section and the [Issue Options](#issueOptions) from here.|
 |[Issue Approval](#issueApproval)                    |Tool View                      |Allows the user to approve, deny, and navigate forward and backward in the [Issue List](#issueList).|
 |[Issue Options](#issueOptions)                      |Tool View, Options Page        |Also used for the options page, this displays the options for a given tool.|
+|[Breadcrumbs](#breadcrumbs)                         |All                            |Displays the path the user has navigated through up until the page they were on, with each previous page being a link back to it.|
 
 <a name="courseSidebar"></a>
 ## Course Sidebar
@@ -51,5 +52,8 @@ Below are all of the Angular components used client-side in Katana:
 ## Issue Approval
 
 <a name="issueOptions"></a>
+## Issue Options
+
+<a name="breadcrumbs"></a>
 ## Issue Options
 

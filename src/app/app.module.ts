@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import 'materialize-css';
-import { MaterializeModule } from "angular2-materialize";
+import { MaterializeModule } from 'angular2-materialize';
 import 'rxjs';
 
 /* Katana Components */
@@ -19,37 +19,61 @@ import { ToolViewComponent } from './tool-view/tool-view.component';
 import { CourseSearchComponent } from './course-search/course-search.component';
 import { CourseChipComponent } from './course-chip/course-chip.component';
 
-const appRoutes: Routes = [
-  { path: '', component: CategoriesComponent },
-  { path: 'categories', component: CategoriesComponent },
-  { path: 'tool-view', component: ToolViewComponent },
-  { path: 'course-search', component: CourseSearchComponent },
+export const appRoutes: Routes = [
+    {
+        path: '',
+        component: CategoriesComponent,
+        data: {
+            breadcrumb: 'Home'
+        }
+    },
+    {
+        path: 'categories',
+        component: CategoriesComponent,
+        data: {
+            breadcrumb: 'Categories'
+        }
+    },
+    {
+        path: 'tool-view',
+        component: ToolViewComponent,
+        data: {
+            breadcrumb: 'Tool View'
+        }
+    },
+    {
+        path: 'course-search',
+        component: CourseSearchComponent,
+        data: {
+            breadcrumb: 'Course Selection'
+        }
+    },
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CourseSidebarComponent,
-    IssueListComponent,
-    IssueCardComponent,
-    IssueDetailsComponent,
-    IssueApprovalComponent,
-    IssueViewComponent,
-    BreadcrumbsComponent,
-    CategoriesComponent,
-    ToolViewComponent,
-    CourseSearchComponent,
-    CourseChipComponent,
-  ],
-  imports: [
-    BrowserModule,
-    MaterializeModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        CourseSidebarComponent,
+        IssueListComponent,
+        IssueCardComponent,
+        IssueDetailsComponent,
+        IssueApprovalComponent,
+        IssueViewComponent,
+        BreadcrumbsComponent,
+        CategoriesComponent,
+        ToolViewComponent,
+        CourseSearchComponent,
+        CourseChipComponent,
+    ],
+    imports: [
+        RouterModule.forRoot(
+            appRoutes,
+            { enableTracing: true } // <-- debugging purposes only
+        ),
+        BrowserModule,
+        MaterializeModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
