@@ -19,7 +19,7 @@ export class IssueCardComponent implements OnInit {
     getStatusIcon(status) {
         let statusIcons = {
             'fixed': 'check_circle',
-            'ready': 'check_circle_outline',
+            'approved': 'check_circle_outline',
             'skipped': 'remove',
             'untouched': 'panorama_fish_eye'
         }
@@ -30,7 +30,7 @@ export class IssueCardComponent implements OnInit {
         let doc = getComputedStyle(document.body);
         let statusColors = {
             'fixed': doc.getPropertyValue('--accent-1'),
-            'ready': '#00c853',
+            'approved': '#00c853',
             'skipped': '#e53935',
             'untouched': doc.getPropertyValue('--primary-6')
         }

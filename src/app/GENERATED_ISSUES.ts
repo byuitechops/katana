@@ -50,12 +50,12 @@ export var TEST_ISSUES = [{
     link: 'https://byui.instructure.com/courses/12872/pages/setup-for-course-instructor?module_item_id=850086',
     issues: [{
         title: 'Freedom Fighters of Asgardia',
-        status: 'ready',
+        status: 'approved',
         description: 'Asgardia is a real thing, apparently. World\'s first space nation.',
         details: {}
     }, {
         title: 'Freedom Fighters of Asgardia',
-        status: 'ready',
+        status: 'approved',
         description: 'Asgardia is a real thing, apparently. World\'s first space nation.',
         details: {}
     }]
@@ -133,7 +133,7 @@ export var TEST_ISSUES = [{
     link: 'https://byui.instructure.com/courses/12872/pages/setup-for-course-instructor?module_item_id=850086',
     issues: [{
         title: 'Hostile Stack Overflow Comments Embedded',
-        status: 'ready',
+        status: 'approved',
         description: 'Hostile stack overflow comments should not be allowed anywhere in the course.',
         details: {}
     }]
@@ -150,7 +150,7 @@ export var TEST_ISSUES = [{
         details: {}
     }, {
         title: 'Freedom Fighters of Asgardia',
-        status: 'ready',
+        status: 'approved',
         description: 'Asgardia is a real thing, apparently. World\'s first space nation.',
         details: {}
     }]
@@ -167,7 +167,7 @@ export var TEST_ISSUES = [{
         details: {}
     }, {
         title: 'Hostile Stack Overflow Comments Embedded',
-        status: 'ready',
+        status: 'approved',
         description: 'Hostile stack overflow comments should not be allowed anywhere in the course.',
         details: {}
     }]
@@ -206,7 +206,7 @@ export var TEST_ISSUES = [{
         details: {}
     }, {
         title: 'Divides by zero',
-        status: 'ready',
+        status: 'approved',
         description: 'I do not get the hype about Avacados. Probably because they make me painfully tingly in my throat.',
         details: {}
     }, {
@@ -228,7 +228,7 @@ export var TEST_ISSUES = [{
     link: 'https://byui.instructure.com/courses/12872/pages/setup-for-course-instructor?module_item_id=850086',
     issues: [{
         title: 'Hostile Stack Overflow Comments Embedded',
-        status: 'ready',
+        status: 'approved',
         description: 'Hostile stack overflow comments should not be allowed anywhere in the course.',
         details: {}
     }]
@@ -245,7 +245,7 @@ export var TEST_ISSUES = [{
         details: {}
     }, {
         title: 'Freedom Fighters of Asgardia',
-        status: 'ready',
+        status: 'approved',
         description: 'Asgardia is a real thing, apparently. World\'s first space nation.',
         details: {}
     }]
@@ -262,7 +262,7 @@ export var TEST_ISSUES = [{
         details: {}
     }, {
         title: 'Hostile Stack Overflow Comments Embedded',
-        status: 'ready',
+        status: 'approved',
         description: 'Hostile stack overflow comments should not be allowed anywhere in the course.',
         details: {}
     }]

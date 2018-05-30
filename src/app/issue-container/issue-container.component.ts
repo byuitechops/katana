@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Issue } from '../issues.service';
 
 @Component({
     selector: 'app-issue-container',
@@ -7,12 +8,20 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class IssueContainerComponent implements OnInit {
     @Input() // Issue
-    issue: object;
+    issue: Issue;
 
     constructor() { }
 
     ngOnInit() {
 
+    }
+
+    setIssueStatus(newStatus) {
+        if (newStatus === this.issue.status) {
+            this.issue.status = 'untouched';
+        } else {
+            this.issue.status = newStatus;
+        }
     }
 
 }

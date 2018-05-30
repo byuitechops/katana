@@ -6,14 +6,14 @@
     </div>
 
     <div class="card-action">
-        <a (click)="" class="waves-effect green-text waves btn-flat">
-            <i class="material-icons left">check</i>
-            approve
+        <a (click)="setIssueStatus('approved')" [ngClass]="issue.status !== 'approved' ? 'green-text' : 'orange-text'" class="waves-effect waves btn-flat">
+            <i [ngClass]="issue.status !== 'approved' ? 'green-text' : 'orange-text'" class="material-icons left">check</i>
+            {{issue.status !== 'approved' ? 'approve' : 'unapprove'}}
         </a>
 
-        <a (click)="" class="waves-effect red-text waves btn-flat">
-            <i class="material-icons left">remove</i>
-            skip
+        <a (click)="setIssueStatus('skipped')" [ngClass]="issue.status !== 'skipped' ? 'red-text' : 'red-text text-lighten-4'" class="waves-effect red-text waves btn-flat">
+            <i [ngClass]="issue.status !== 'skipped' ? 'red-text' : 'red-text text-lighten-4'" class="material-icons left">{{issue.status !== 'skipped' ? 'remove' : 'call_missed_outgoing'}}</i>
+            {{issue.status !== 'skipped' ? 'skip' : 'skipped'}}
         </a>
     </div>
 
