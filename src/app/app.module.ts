@@ -12,7 +12,7 @@ import { CourseSidebarComponent } from './course-sidebar/course-sidebar.componen
 import { IssueListComponent } from './issue-list/issue-list.component';
 import { IssueCardComponent } from './issue-card/issue-card.component';
 import { IssueDetailsComponent } from './issue-details/issue-details.component';
-import { IssueApprovalComponent } from './issue-approval/issue-approval.component';
+import { IssueNavComponent } from './issue-nav/issue-nav.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ToolViewComponent } from './tool-view/tool-view.component';
@@ -58,7 +58,7 @@ export const appRoutes: Routes = [
         IssueListComponent,
         IssueCardComponent,
         IssueDetailsComponent,
-        IssueApprovalComponent,
+        IssueNavComponent,
         BreadcrumbsComponent,
         CategoriesComponent,
         ToolViewComponent,

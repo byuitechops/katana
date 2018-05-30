@@ -1,15 +1,13 @@
 .issueApproval {
-  height: 70px;
-  position: fixed;
-  bottom: 0;
-  border-top: solid 1px var(--primary-2);
-  left: var(--course-sidebar-width);
-  width: calc(100vw - var(--course-sidebar-width));
-  background-color: var(--primary-4);
-  display: flex;
-  justify-content: space-between;
-  overflow: hidden;
-  z-index: 1;
+    background-color: var(--primary-4);
+    border-top: solid 1px var(--primary-2);
+    bottom: 0;
+    display: flex;
+    height: 70px;
+    justify-content: space-between;
+    position: fixed;
+    right: 0;
+    width: calc(100vw - var(--course-sidebar-width));
 }
 
 .issueApproval__navigation {

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { IssuesService } from '../issues.service';
 
 @Component({
-    selector: 'app-issue-approval',
-    templateUrl: './issue-approval.component.html',
-    styleUrls: ['./issue-approval.component.css']
+    selector: 'app-issue-nav',
+    templateUrl: './issue-nav.component.html',
+    styleUrls: ['./issue-nav.component.css']
 })
-export class IssueApprovalComponent implements OnInit {
+export class IssueNavComponent implements OnInit {
 
     constructor(private issuesService: IssuesService) { }
 
@@ -31,16 +31,6 @@ export class IssueApprovalComponent implements OnInit {
             } else if (direction === 'down' && currentIndex !== courseIssueItems.length - 1) {
                 this.issuesService.selectedItem = courseIssueItems[currentIndex + 1];
             }
-        }
-    }
-
-    // TODO Add docs
-    getCardPosition() {
-        let courseIssueItems = this.issuesService.issueItems.filter(issueItem => issueItem.course_id === this.issuesService.selectedCourse.id);
-        let currentIndex = courseIssueItems.findIndex(courseIssueItem => courseIssueItem === this.issuesService.selectedItem);
-        return {
-            currentIndex: currentIndex + 1,
-            totalLength: courseIssueItems.length
         }
     }
 }
