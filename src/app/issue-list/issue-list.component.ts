@@ -6,6 +6,7 @@ import { IssuesService } from '../issues.service';
     templateUrl: './issue-list.component.html',
     styleUrls: ['./issue-list.component.css']
 })
+
 export class IssueListComponent implements OnInit {
 
     constructor(private issuesService: IssuesService) { }

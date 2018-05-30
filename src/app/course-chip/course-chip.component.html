@@ -1,3 +1,3 @@
-<div class="courseSidebar__chip" [class.selectedChip]="this.issuesService.selectedCourse && this.issuesService.selectedCourse.id === course.id">
-  {{course.course_code}}
+<div class="courseSidebar__chip" [class.selectedChip]="this.issuesService.selectedCourse !== null && this.issuesService.selectedCourse.id === course.id">
+    {{course.course_code}}
 </div>

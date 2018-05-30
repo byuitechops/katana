@@ -10,10 +10,8 @@ export class IssueApprovalComponent implements OnInit {
 
     constructor(private issuesService: IssuesService) { }
 
-    ngOnInit() {
+    ngOnInit() { }
 
-    }
-    
     /*****************************************************************
      * Switches the selected card and item to the one below or above the currently selected card
      * @param {string} direction - Either "up" or "down", indicates the direction it should shift
@@ -24,7 +22,7 @@ export class IssueApprovalComponent implements OnInit {
      * 4. If direction is up and we aren't on index 0, set the selected item to the one above
      * 5. If direction is down and we aren't on the last index, set the selected item to the one below
      ****************************************************************/
-    shiftSelectedItem(direction) {
+    shiftSelectedItem(direction: string) {
         if (this.issuesService.selectedItem) {
             let courseIssueItems = this.issuesService.issueItems.filter(issueItem => issueItem.course_id === this.issuesService.selectedCourse.id);
             let currentIndex = courseIssueItems.findIndex(issueItem => this.issuesService.selectedItem === issueItem);

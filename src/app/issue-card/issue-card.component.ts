@@ -37,8 +37,4 @@ export class IssueCardComponent implements OnInit {
         return statusColors[status];
     }
 
-    cardClicked(event) {
-        this.issuesService.selectedItem = document.querySelector(`${this.issueItem.item_type}_${this.issueItem.item_id}`);
-    }
-
 }

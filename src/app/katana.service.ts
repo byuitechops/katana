@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CoursesService, Course } from './courses.service';
+import { IssuesService, IssueItem } from './issues.service';
 
 @Injectable({
     providedIn: 'root'
@@ -22,7 +24,7 @@ export class KatanaService {
      * 4. When successful, resolves the promise with the data retrieved
      * 5. When unsuccessful, rejects the promise with the given error
      ****************************************************************/
-    discoverIssues(tool_id: string, courses: object[], options: object) {
+    discoverIssues(tool_id: string, courses: Course[], options: object) {
         return new Promise((resolve, reject) => {
             let body = {
                 tool_id,
@@ -47,7 +49,7 @@ export class KatanaService {
      * 4. When successful, resolves the promise with the fixed items returned by the server
      * 5. When unsuccessful, rejects the promise with the given error
      ****************************************************************/
-    fixIssues(tool_id: string, issueItems: object[], options: object) {
+    fixIssues(tool_id: string, issueItems: IssueItem[], options: object) {
         return new Promise((resolve, reject) => {
             let body = {
                 tool_id,
