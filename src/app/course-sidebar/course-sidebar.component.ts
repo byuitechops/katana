@@ -16,6 +16,7 @@ export class CourseSidebarComponent implements OnInit {
 
     courseOverlay() {
         document.querySelector('app-course-selection').style.display = this.courseSelectionOpen ? 'none' : 'block';
+        document.querySelector('app-course-sidebar .courseSidebar__expandSidebar i').innerHTML = this.courseSelectionOpen ? 'arrow_forward' : 'arrow_back';
         this.courseSelectionOpen = !this.courseSelectionOpen;
     }
 
