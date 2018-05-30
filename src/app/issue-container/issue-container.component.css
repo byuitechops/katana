@@ -1,0 +1,26 @@
+/* A container for a single issue */
+
+.issueContainer {
+    background-color: white;
+    border-bottom: solid 1px var(--primary-4);
+    box-sizing: border-box;
+    margin: 0 0 15px;
+}
+
+/* Overwrites the card class from materialize */
+
+.issueContainer.card {
+    border-radius: 0;
+}
+
+/* The issue description on an issue container */
+
+.issueContainer__issueDescription {
+    color: var(--primary-5);
+}
+
+/* Overwrites the card content class from materialize */
+
+.issueContainer.card .card-content {
+    padding: 20px;
+}

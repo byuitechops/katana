@@ -1,48 +1,38 @@
+/* Container for the issue-list element */
+
 .issueList {
-  height: calc(100vh - (var(--breadcrumbs-height) + 70px));
-  border-right: solid 1px var(--primary-2);
-  width: var(--issueList-width);
-  box-sizing: border-box;
+    height: calc(100vh - (var(--breadcrumbs-height) + 70px));
+    width: var(--issueList-width);
+    box-sizing: border-box;
 }
+
+/* The box all issue-cards go into */
 
 .issueList__list {
-  min-height: calc(100vh - (var(--breadcrumbs-height) + 30px));
-  max-height: calc(100vh - (var(--breadcrumbs-height) + 30px));
-  background-color: var(--primary-4);
-  overflow: auto;
-  overflow-x: hidden;
+    min-height: calc(100vh - (var(--breadcrumbs-height) + var(--toolView-titleBar-height) + 70px));
+    max-height: calc(100vh - (var(--breadcrumbs-height) + var(--toolView-titleBar-height) + 70px));
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 0 10px 0 20px;
 }
+
+/* The title for the issue list */
 
 .issueList__title {
-  font-size: 16px;
-  width: 100%;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  box-sizing: border-box;
-  border-bottom: 1px solid var(--primary-2);
+    width: 100%;
+    height: var(--toolView-titleBar-height);
+    line-height: var(--toolView-titleBar-height);
+    box-sizing: border-box;
+    padding-left: 20px;
+    font-size: 20px;
 }
 
-/* width */
+/* The message that appears if no issue items are avaiable */
 
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-/* Track */
-
-::-webkit-scrollbar-track {
-  background: var(--primary-4);
-}
-
-/* Handle */
-
-::-webkit-scrollbar-thumb {
-  background: var(--primary-3);
-}
-
-/* Handle on hover */
-
-::-webkit-scrollbar-thumb:hover {
-  background: #757575;
+.noIssuesMessage {
+    width: 100%;
+    z-index: 100;
+    margin-top: 50px;
+    font-size: 14px;
+    text-align: center;
 }

@@ -5,7 +5,21 @@ import { Injectable } from '@angular/core';
 })
 export class CoursesService {
 
-    courses: object[] = [];
+    // courses: object[] = [];
+
+    courses = [{
+        id: 123,
+        course_name: 'Cow Surfing',
+        course_code: 'B 383'
+    }, {
+        id: 456,
+        course_name: 'Deforesting With Passion',
+        course_code: 'CS 364'
+    }, {
+        id: 789,
+        course_name: 'Marx Brothers - A History',
+        course_code: 'COMM 130'
+    }];
 
     constructor() { }
 

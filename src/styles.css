@@ -11,9 +11,12 @@
   --primary-5: #78909c;
   --primary-6: #f0f0f0;
   --accent-1: #2196f3;
-  --course-sidebar-width: 85px;
+  --background-dark: #546e7a;
+  --background-light: #eceff1;
+  --course-sidebar-width: 100px;
   --breadcrumbs-height: 50px;
-  --issueList-width: 250px;
+  --issueList-width: 350px;
+  --toolView-titleBar-height: 60px;
 }
 
 * {
@@ -24,10 +27,17 @@ body {
   margin: var(--breadcrumbs-height) 0 0 var(--course-sidebar-width);
   font-size: 14px;
   font-family: "Roboto", sans-serif;
+  background-color: var(--background-light);
 }
 
 ul {
   margin: 0;
+}
+
+/* Overwrite Materialize Card Margins */
+
+.card {
+  margin: 0 0 15px;
 }
 
 /* Don't think we need this here - can go back into the issue list component */
@@ -35,4 +45,34 @@ ul {
 .selectedItem {
   border: solid 1px var(--accent-1) !important;
   /* background-color: var(--primary-6) !important; */
+}
+
+/* width */
+
+::-webkit-scrollbar {
+  display: none;
+  width: 5px;
+}
+
+::-webkit-scrollbar:hover {
+  display: block;
+  width: 5px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+  background: var(--primary-4);
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-3);
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+  background: #757575;
 }

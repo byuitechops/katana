@@ -1,6 +1,26 @@
+/* The container for all issue-container elements */
+
 .issueDetails {
-  padding: 20px;
-  box-sizing: border-box;
-  width: calc(100vw - (var(--course-sidebar-width) + 250px));
-  height: calc(100vh - (70px + var(--breadcrumbs-height)));
+    width: calc(100vw - (var(--course-sidebar-width) + var(--issueList-width)));
+    height: calc(100vh - (70px + var(--breadcrumbs-height)));
+}
+
+/* The header for issue-details */
+
+.issueDetails__header {
+    box-sizing: border-box;
+    font-size: 20px;
+    height: var(--toolView-titleBar-height);
+    line-height: var(--toolView-titleBar-height);
+    padding: 0 10px;
+}
+
+/* The box that holds all of the issue-container elements */
+
+.issueDetails__issueBox {
+    padding: 0 20px 20px 10px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow: auto;
+    max-height: calc(100% - var(--toolView-titleBar-height) + 20px);
 }

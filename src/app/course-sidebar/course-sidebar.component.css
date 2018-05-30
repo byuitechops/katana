@@ -1,20 +1,21 @@
 .courseSidebar {
   position: fixed;
-  top: var(--breadcrumbs-height);
+  top: 0;
   left: 0;
   height: 100vh;
   width: var(--course-sidebar-width);
-  background-color: var(--primary-3);
+  background-color: var(--background-dark);
+  padding: 0 10px
 }
 
 .courseSidebar__title {
-  font-size: 16px;
-  line-height: 18px;
   width: 100%;
-  text-align: center;
-  color: white;
-  padding: 10px 0;
   box-sizing: border-box;
+  font-size: 20px;
+  color: var(--background-light);
+  text-align: center;
+  height: calc(var(--breadcrumbs-height) - 2px);
+  line-height: calc(var(--breadcrumbs-height) - 2px);
 }
 
 /************************************
@@ -23,9 +24,9 @@
 
 .courseSidebar__expandSidebar {
   position: absolute;
-  bottom: 60px;
+  bottom: 20px;
   text-align: center;
-  width: var(--course-sidebar-width);
+  width: calc(var(--course-sidebar-width) - 20px);
 }
 
 .courseSidebar__expandSidebar>* {

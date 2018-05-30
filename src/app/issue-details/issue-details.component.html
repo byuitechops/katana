@@ -1,5 +1,8 @@
 <div class="issueDetails">
-  <h5>Issue Title/Reason</h5>
-  <div>This is the description of the issue, which provides better details than the cryptic 5-word title.</div>
-
+  <div class="issueDetails__header">
+    <div *ngIf="this.issuesService.selectedItem">Issues</div>
+  </div>
+  <div class="issueDetails__issueBox">
+    <app-issue-container *ngFor="let issue of issuesService.selectedItem.issues" [issue]="issue"></app-issue-container>
+  </div>
 </div>

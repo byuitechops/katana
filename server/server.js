@@ -16,8 +16,12 @@ app.get('/', (req, res) => {
 /*************************************************************************
  * Handles the "issue discovery" sequence for Node Tools
  * @returns {object[]} - Array of Issues
+ * Process:
+ * 1. Pulls the tool ID, course list, and options from the request body
+ * 2. Runs the discoverIssues() function, which returns a list of items with issues
+ * 3. Sends the response with status 400 and the stringified issue items
  ************************************************************************/
-app.get('/tools/*', async (req, res) => {
+app.post('/tool/discovery', async (req, res) => {
   try {
     let {
       tool_id,
@@ -26,15 +30,9 @@ app.get('/tools/*', async (req, res) => {
     } = req.body;
 
     let issueItems = await business.discoverIssues(tool_id, courses, options);
-
-    if (typeof issueItems === 'string') {
-      res.send('Invalid Tool ID');
-    } else {
-      res.status(200).send(JSON.stringify(issueItems));
-    }
-
+    res.status(200).send(JSON.stringify(issueItems));
   } catch (e) {
-    res.status(400).send(e.message);
+    res.status(400).send(JSON.stringify(e));
   }
 });
 
@@ -43,9 +41,10 @@ app.get('/tools/*', async (req, res) => {
  * How do we add body and option requests and whatnot to jsdocs?
  * @returns {object[]} - Array of Issues
  ************************************************************************/
-app.put('/tools/*', (req, res) => {
-  // TODO Add to business logic
-  res.send('This is for testing the PUT request - Please remove!');
+app.put('/tool/fix', (req, res) => {
+
+  // TODO
+
 });
 
 /* This serves the entire dist folder, allowing the angular files to talk to each other */

@@ -1,10 +1,15 @@
 <div class="issueList">
   <div class="issueList__title">
-    Issues
+    Items
   </div>
   <div class="issueList__list">
-    <app-issue-card *ngFor="let item of issuesService.issueItems; let i = index" [itemTitle]="item.itemTitle" [itemID]="item.itemID"
-      [itemType]="item.itemType" [itemLink]="item.itemLink" [itemIssues]="item.itemIssues" (click)="this.issuesService.setSelectedItem(item.itemType + '_' + item.itemID)">
+    <app-issue-card *ngFor="let issueItem of issuesService.issueItems" [issueItem]="issueItem" (click)="this.issuesService.selectedItem = issueItem">
     </app-issue-card>
+    <div class="noIssuesMessage" *ngIf="verifyIssueCount()">
+      No issues were discovered in this course.
+      <div>
+        <i class="material-icons">tag_faces</i>
+      </div>
+    </div>
   </div>
 </div>

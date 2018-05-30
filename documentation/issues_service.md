@@ -8,10 +8,12 @@ An issue item object looks like this:
 {
     // The title of the item in Canvas (i.e. the page name)
     title: <string>,
-    // The type of item in Canvas (i.e. Page)
-    type: <string>,
+    // The ID of the course the item belongs to
+    course_id: <number>,
     // The ID of the item in Canvas
-    content_id: <number>,
+    item_id: <number>,
+    // The type of item in Canvas (i.e. Page)
+    Item_type: <string>,
     // URL to the item in Canvas, or a location where it can be conveniently accessed
     link: <string>,
     // The issues contained within the item in Canvas
@@ -20,10 +22,10 @@ An issue item object looks like this:
       title: <string>,
       // Full description of the issue, written for the user to better understand the issue
       description: <string>,
-      // The details of an issue will include anything that the view or fixing tool may need
-      details: <object>,
       // Three possible statuses: ready, skipped, and fixed
       status: <string>
+      // The details of an issue will include anything that the view or fixing tool may need
+      details: <object>,
     }]
 }
 ```

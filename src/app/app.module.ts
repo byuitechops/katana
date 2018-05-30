@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import 'materialize-css';
 import { MaterializeModule } from 'angular2-materialize';
 import 'rxjs';
@@ -12,12 +13,12 @@ import { IssueListComponent } from './issue-list/issue-list.component';
 import { IssueCardComponent } from './issue-card/issue-card.component';
 import { IssueDetailsComponent } from './issue-details/issue-details.component';
 import { IssueApprovalComponent } from './issue-approval/issue-approval.component';
-import { IssueViewComponent } from './issue-view/issue-view.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ToolViewComponent } from './tool-view/tool-view.component';
 import { CourseSearchComponent } from './course-search/course-search.component';
 import { CourseChipComponent } from './course-chip/course-chip.component';
+import { IssueContainerComponent } from './issue-container/issue-container.component';
 
 export const appRoutes: Routes = [
     {
@@ -58,19 +59,19 @@ export const appRoutes: Routes = [
         IssueCardComponent,
         IssueDetailsComponent,
         IssueApprovalComponent,
-        IssueViewComponent,
         BreadcrumbsComponent,
         CategoriesComponent,
         ToolViewComponent,
         CourseSearchComponent,
         CourseChipComponent,
+        IssueContainerComponent,
     ],
     imports: [
         RouterModule.forRoot(
-            appRoutes,
-            { enableTracing: true } // <-- debugging purposes only
+            appRoutes
         ),
         BrowserModule,
+        HttpClientModule,
         MaterializeModule,
     ],
     providers: [],

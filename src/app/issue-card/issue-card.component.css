@@ -1,75 +1,78 @@
+/* The full card for an issue item */
+
 .issueCard {
-  padding: 5px;
-  margin: 7px;
-  width: calc(100% - 14px);
-  border: solid 1px white;
-  background-color: white;
-  cursor: pointer;
+    padding: 15px;
+    margin: 0 0 15px;
+    width: calc(100%);
+    border: solid 1px white;
+    cursor: pointer;
 }
 
-.issueCard>ul {
-  margin: 5px;
-}
+/* The line containing the item title and link to Canvas */
 
 .issueCard_titleLine {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 5px 0;
+    display: flex;
+    justify-content: space-between;
 }
+
+/* The item title */
 
 .issueCard_title {
-  font-size: 16px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
-.issueCard_link:hover {
-  opacity: .7;
-}
+/* Link to Canvs */
 
 .issueCard_link {
-  /* border: solid 1px var(--primary-3); */
-  height: 16px;
-  width: 16px;
-  line-height: 16px;
-  margin-right: 5px;
-  text-align: center;
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    margin-right: 5px;
+    text-align: center;
 }
+
+/* The link to canvas */
+
+.issueCard_link:hover {
+    opacity: .7;
+}
+
+/* Icon within the link to Canvas */
 
 .issueCard_link>i {
-  font-size: 22px;
+    font-size: 22px;
 }
+
+/* The item type (i.e. Page) */
 
 .issueCard_type {
-  font-size: 11px;
-  padding: 0 5px;
-  color: var(--primary-3);
+    font-size: 12px;
+    color: var(--primary-3);
+    margin-bottom: 10px;
 }
+
+/* The issue title */
 
 .issueCard_issue {
-  font-size: 12px;
-  margin-top: 2px;
-  display: flex;
-  line-height: 22px;
-  justify-content: space-between;
+    font-size: 12px;
+    margin-top: 2px;
+    display: flex;
+    line-height: 22px;
 }
+
+/* The issue tag (the icon) */
 
 .issueCard_tag {
-  font-size: 22px;
-  vertical-align: center;
-  user-select: none;
+    font-size: 22px;
+    margin: 0 5px 0 0;
+    user-select: none;
+    vertical-align: center;
+    width: 22px;
 }
 
-.issueCard_tag_fixed {
-  color: var(--primary-1);
-}
+/* A selected card */
 
-.issueCard_tag_ready {
-  color: #00c853;
-}
-
-.issueCard_tag_skipped {
-  color: #e53935;
-}
-
-.divider {
-  margin-bottom: 5px;
+.selectedCard {
+    border: solid 1px var(--accent-1);
 }

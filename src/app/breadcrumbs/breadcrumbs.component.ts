@@ -12,6 +12,12 @@ export class BreadcrumbsComponent implements OnInit {
     breadcrumbs = [{
         url: '/',
         title: 'Home'
+    }, {
+        url: '/',
+        title: 'Pages'
+    }, {
+        url: '/',
+        title: 'Modify Attributes'
     }];
 
     constructor() { }
