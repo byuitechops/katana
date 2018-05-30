@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IssuesService } from '../issues.service';
+import { Course } from '../courses.service';
 
 @Component({
     selector: 'app-course-chip',
@@ -8,7 +9,7 @@ import { IssuesService } from '../issues.service';
 })
 export class CourseChipComponent implements OnInit {
     @Input() // Course Code
-    course: object;
+    course: Course;
 
     constructor(private issuesService: IssuesService) { }
 

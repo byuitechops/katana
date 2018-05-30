@@ -2,7 +2,7 @@
   <div class="issueDetails__header">
     <div *ngIf="this.issuesService.selectedItem">Issues</div>
   </div>
-  <div class="issueDetails__issueBox">
+  <div *ngIf="issuesService.selectedItem !== null" class="issueDetails__issueBox">
     <app-issue-container *ngFor="let issue of issuesService.selectedItem.issues" [issue]="issue"></app-issue-container>
   </div>
 </div>

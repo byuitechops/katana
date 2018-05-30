@@ -31,7 +31,12 @@
 
 .courseSidebar__expandSidebar>* {
   color: white;
+  cursor: pointer;
 }
+
+/* .courseSidebar__expandSidebar i {
+  cursor: pointer;
+} */
 
 app-course-selection {
   display: none;

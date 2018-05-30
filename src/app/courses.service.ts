@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 export interface Course {
     id: number,
     course_name: string,
-    course_code: string
+    course_code: string,
+    instructor: string
 }
 
 @Injectable({
@@ -14,15 +15,23 @@ export class CoursesService {
     courses: Course[] = [{
         id: 123,
         course_name: 'Cow Surfing',
-        course_code: 'B 383'
+        course_code: 'B 383',
+        instructor: 'Childers, Seth'
     }, {
         id: 456,
         course_name: 'Deforesting With Passion',
-        course_code: 'CS 364'
+        course_code: 'CS 364',
+        instructor: 'Williams, Zachary'
     }, {
         id: 789,
         course_name: 'Marx Brothers - A History',
-        course_code: 'COMM 130'
+        course_code: 'COMM 130',
+        instructor: 'Dowdle-Sessions, Theron'
+    }, {
+        id: 342,
+        course_name: 'How to Eat',
+        course_code: 'AGBUS 300A',
+        instructor: 'Earl, Benjamin'
     }];
 
     constructor() { }

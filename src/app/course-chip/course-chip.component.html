@@ -1,3 +1,6 @@
-<div class="courseSidebar__chip" [class.selectedChip]="this.issuesService.selectedCourse !== null && this.issuesService.selectedCourse.id === course.id">
+<div class="courseChip" [class.selectedChip]="this.issuesService.selectedCourse !== null && this.issuesService.selectedCourse.id === course.id">
     {{course.course_code}}
+    <div class="courseChip__instructorName">
+        {{this.course.instructor.split(', ')[0].replace('-', '‑')}}
+    </div>
 </div>

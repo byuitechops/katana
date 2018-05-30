@@ -7,7 +7,7 @@
     </div>
     <div class="issueCard_type ">{{issueItem.item_type}}</div>
     <ul>
-        <li *ngFor="let issue of issueItem.issues " class="issueCard_issue ">
+        <li *ngFor="let issue of issueItem.issues" class="issueCard_issue ">
             <i class="material-icons issueCard_tag" [style.color]="getIconColor(issue.status)">
                 {{getStatusIcon(issue.status)}}
             </i>{{issue.title}}

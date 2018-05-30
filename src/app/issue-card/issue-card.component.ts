@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IssuesService } from '../issues.service';
+import { IssuesService, IssueItem } from '../issues.service';
 
 @Component({
     selector: 'app-issue-card',
@@ -8,13 +8,13 @@ import { IssuesService } from '../issues.service';
 })
 export class IssueCardComponent implements OnInit {
     @Input() // Issue Item
-    issueItem;
+    issueItem: IssueItem;
+    @Input() // Card Position
+    position: number;
 
     constructor(private issuesService: IssuesService) { }
 
-    ngOnInit() {
-
-    }
+    ngOnInit() { }
 
     getStatusIcon(status) {
         let statusIcons = {
