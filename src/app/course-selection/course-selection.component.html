@@ -17,35 +17,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <i class="material-icons">add_circle</i>
-            </td>
-            <td>Course Improvement</td>
-            <td>DADD 301</td>
-            <td>Ron Vallejo</td>
-            <td>All</td>
-            <td>All</td>
-          </tr>
-          <tr>
-            <td>
-              <i class="material-icons">add_circle</i>
-            </td>
-            <td>Course Improvement</td>
-            <td>DADD 301</td>
-            <td>Ron Vallejo</td>
-            <td>All</td>
-            <td>All</td>
-          </tr>
-          <tr>
-            <td>
-              <i class="material-icons">add_circle</i>
-            </td>
-            <td>Course Improvement</td>
-            <td>DADD 301</td>
-            <td>Ron Vallejo</td>
-            <td>All</td>
-            <td>All</td>
+          <tr *ngFor="let course of courses">
+            <td><i class="material-icons">add_circle</i></td>
+            <td>{{course.name}}</td>
+            <td>{{course.code}}</td>
+            <td>{{course.instructor}}</td>
+            <td>{{course.term}}</td>
+            <td>{{course.section}}</td>
           </tr>
         </tbody>
       </table>

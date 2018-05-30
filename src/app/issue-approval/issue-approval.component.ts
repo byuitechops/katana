@@ -13,7 +13,7 @@ export class IssueApprovalComponent implements OnInit {
     ngOnInit() {
 
     }
-
+    
     /*****************************************************************
      * Switches the selected card and item to the one below or above the currently selected card
      * @param {string} direction - Either "up" or "down", indicates the direction it should shift

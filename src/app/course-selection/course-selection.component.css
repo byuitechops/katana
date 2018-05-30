@@ -21,7 +21,7 @@
   flex-flow: column nowrap;
   position: fixed;
   margin: 80px 80px;
-  top: var(--breadcrumbs-height);
+  top: calc(var(--breadcrumbs-height) + 30px);
   right: var(--course-sidebar-width);
   width: 250px;
   height: 100vh - var(--breadcrumbs-height);
@@ -37,19 +37,22 @@ select {
   background-color: var(--primary-4);
   border: 1px solid var(--primary-3);
   margin-bottom: 5px;
+  cursor: pointer;
+  /* The selected option will be size 20px */
+  font-size: 20px;
+}
+
+option {
+  font-size: 16px;
 }
 
 /***************************************
-* Course Search Search Bar and Results
+* Course Search Search Bar and Headers
 ****************************************/
 
 .courseSearch__search {
   display: block;
   flex-flow: column nowrap;
-  /* position: fixed; */
-  /* margin-top: 80px;
-  top: var(--breadcrumbs-height);
-  left: var(--course-sidebar-width); */
 }
 
 .courseSearch__searchbar__title,
@@ -63,6 +66,10 @@ select {
   width: 700px;
 }
 
+/***************************************
+* Course Search Results
+****************************************/
+
 .courseSearch__search>table {
   display: flex;
   flex-flow: column nowrap;
@@ -74,26 +81,36 @@ select {
   flex-flow: column nowrap;
 }
 
-thead th:nth-of-type(1), tbody td:nth-of-type(1) {
+tbody > tr {
+  cursor: pointer;
+}
+
+thead th:nth-of-type(1),
+tbody td:nth-of-type(1) {
   width: 20px;
 }
 
-thead th:nth-of-type(2), tbody td:nth-of-type(2) {
+thead th:nth-of-type(2),
+tbody td:nth-of-type(2) {
   width: 400px;
 }
 
-thead th:nth-of-type(3), tbody td:nth-of-type(3) {
+thead th:nth-of-type(3),
+tbody td:nth-of-type(3) {
   width: 100px;
 }
 
-thead th:nth-of-type(4), tbody td:nth-of-type(4) {
+thead th:nth-of-type(4),
+tbody td:nth-of-type(4) {
   width: 180px;
 }
 
-thead th:nth-of-type(5), tbody td:nth-of-type(5) {
+thead th:nth-of-type(5),
+tbody td:nth-of-type(5) {
   width: 100px;
 }
 
-thead th:nth-of-type(6), tbody td:nth-of-type(6) {
+thead th:nth-of-type(6),
+tbody td:nth-of-type(6) {
   width: 100px;
 }
