@@ -17,8 +17,21 @@ export class CourseSidebarComponent implements OnInit {
         private activatedRoute: ActivatedRoute) { }
 
     courseOverlay() {
+        // cast the returned Element object to an HTMLElement object
         let overlay: HTMLElement = document.querySelector('app-course-selection');
-        overlay.style.display = this.courseSelectionOpen ? 'none' : 'block';
+
+        // toggle add the 'open' class to the app-course-selection component
+        if (overlay.className === 'open') {
+            overlay.className = 'close';
+        } else if (overlay.className === 'close') {
+            overlay.className = 'open';
+        } else {
+            overlay.style.display = 'block';
+            overlay.className = 'open'
+        }
+
+        console.log(overlay);
+        // change the -> arrow to <- after opening the course selection overlay
         document.querySelector('app-course-sidebar .courseSidebar__expandSidebar i').innerHTML = this.courseSelectionOpen ? 'arrow_forward' : 'arrow_back';
         this.courseSelectionOpen = !this.courseSelectionOpen;
     }

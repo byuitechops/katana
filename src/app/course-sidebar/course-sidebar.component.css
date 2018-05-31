@@ -5,7 +5,8 @@
   height: 100vh;
   width: var(--course-sidebar-width);
   background-color: var(--background-dark);
-  padding: 0 10px
+  padding: 0 10px;
+  z-index: 5;
 }
 
 .courseSidebar__title {
@@ -34,10 +35,40 @@
   cursor: pointer;
 }
 
-/* .courseSidebar__expandSidebar i {
-  cursor: pointer;
-} */
+/******************************************
+ * Course Selection Overlay Component
+ ******************************************/
 
 app-course-selection {
   display: none;
+  background-color: var(--primary-3);
+}
+
+app-course-selection.open {
+  display: block;
+  animation: slidein 1s;
+}
+
+app-course-selection.close {
+  display: block;
+  animation: slideout 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: -100vw;
+  }
+  to {
+    margin-left: 0;
+  }
+}
+
+@keyframes slideout {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: -100vw;
+  }
 }

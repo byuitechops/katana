@@ -1,12 +1,15 @@
 .courseSearch {
   height: calc(100vw - var(--course-sidebar-width) - 25px);
+  position: fixed;
+  z-index: 4;
 }
 
 .courseSearch__title {
+  background-color: var(--primary-4);  
   font-size: 60px;
-  margin: 15px 0 0 50px;
+  padding: 10px 0 0 45px;
   position: fixed;
-  width: 100%;
+  width: calc(100vw - var(--course-sidebar-width));
 }
 
 .courseSearch__courseSelection {
@@ -17,7 +20,6 @@
   padding-left: 50px;
   top: calc(var(--breadcrumbs-height) + 95px);
   width: calc(100vw - var(--course-sidebar-width));
-  z-index: 10;
 }
 
 /**************************************
@@ -25,14 +27,14 @@
 ***************************************/
 
 .courseSearch__options {
-  display: flex;
-  flex-flow: column nowrap;
-  position: fixed;
+  /* display: flex;
+  flex-flow: column nowrap; */
+  /* position: fixed; */
   margin: 80px 80px;
-  top: calc(var(--breadcrumbs-height) + 30px);
+  top: calc(var(--breadcrumbs-height));
   right: var(--course-sidebar-width);
   width: 250px;
-  height: 100vh - var(--breadcrumbs-height);
+  /* height: 100vh - var(--breadcrumbs-height); */
 }
 
 .courseSearch__options__title {

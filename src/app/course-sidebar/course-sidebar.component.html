@@ -1,11 +1,11 @@
-<app-course-selection></app-course-selection>
 <div class="courseSidebar">
-    <div class="courseSidebar__title">Courses</div>
-    <app-course-chip *ngFor="let course of this.coursesService.courses" [course]="course" (click)="setSelectedCourse(course)"></app-course-chip>
-    <div class="courseSidebar__expandSidebar">
-        <div (click)="courseOverlay()">
-            <p>Course Selection</p>
-            <i class="material-icons">arrow_forward</i>
-        </div>
+  <div class="courseSidebar__title">Courses</div>
+  <app-course-chip *ngFor="let course of this.coursesService.courses" [course]="course" (click)="this.issuesService.selectedCourse = course"></app-course-chip>
+  <div class="courseSidebar__expandSidebar">
+    <div (click)="courseOverlay()">
+      <p>Course Selection</p>
+      <i class="material-icons">arrow_forward</i>
     </div>
+  </div>
 </div>
+<app-course-selection></app-course-selection>
