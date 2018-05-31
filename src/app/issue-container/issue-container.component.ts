@@ -24,4 +24,14 @@ export class IssueContainerComponent implements OnInit {
         }
     }
 
+    getBorderColor() {
+        let doc = getComputedStyle(document.body);
+        let borderColors = {
+            'fixed': doc.getPropertyValue('--accent-1'),
+            'approved': '#00c853',
+            'skipped': '#e53935',
+            'untouched': doc.getPropertyValue('--primary-6')
+        }
+        return `solid 3px ${borderColors[this.issue.status]}`;
+    }
 }

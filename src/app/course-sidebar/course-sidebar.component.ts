@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IssuesService } from '../issues.service';
-import { CoursesService } from '../courses.service';
+import { CoursesService, Course } from '../courses.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-course-sidebar',
@@ -9,15 +10,23 @@ import { CoursesService } from '../courses.service';
 })
 export class CourseSidebarComponent implements OnInit {
 
-    selectedCourse: Element;
     courseSelectionOpen: boolean = false;
 
-    constructor(private issuesService: IssuesService, private coursesService: CoursesService) { }
+    constructor(private issuesService: IssuesService,
+        private coursesService: CoursesService,
+        private activatedRoute: ActivatedRoute) { }
 
     courseOverlay() {
-        document.querySelector('app-course-selection').style.display = this.courseSelectionOpen ? 'none' : 'block';
+        let overlay: HTMLElement = document.querySelector('app-course-selection');
+        overlay.style.display = this.courseSelectionOpen ? 'none' : 'block';
         document.querySelector('app-course-sidebar .courseSidebar__expandSidebar i').innerHTML = this.courseSelectionOpen ? 'arrow_forward' : 'arrow_back';
         this.courseSelectionOpen = !this.courseSelectionOpen;
+    }
+
+    setSelectedCourse(course: Course) {
+        if (window.location.href.includes('tool-view')) {
+            this.issuesService.selectedCourse = course;
+        }
     }
 
     ngOnInit() {

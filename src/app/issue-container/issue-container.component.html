@@ -1,4 +1,4 @@
-<div class="issueContainer card">
+<div [style.borderLeft]="getBorderColor()" class="issueContainer card">
 
     <div class="card-content">
         <div class="card-title">{{issue.title}}</div>
@@ -6,9 +6,9 @@
     </div>
 
     <div class="card-action">
-        <a (click)="setIssueStatus('approved')" [ngClass]="issue.status !== 'approved' ? 'green-text' : 'orange-text'" class="waves-effect waves btn-flat">
-            <i [ngClass]="issue.status !== 'approved' ? 'green-text' : 'orange-text'" class="material-icons left">check</i>
-            {{issue.status !== 'approved' ? 'approve' : 'unapprove'}}
+        <a (click)="setIssueStatus('approved')" [ngClass]="issue.status !== 'approved' ? 'green-text' : 'green-text text-lighten-4'" class="waves-effect waves btn-flat">
+            <i [ngClass]="issue.status !== 'approved' ? 'green-text' : 'green-text text-lighten-4'" class="material-icons left">check</i>
+            {{issue.status !== 'approved' ? 'approve' : 'approved'}}
         </a>
 
         <a (click)="setIssueStatus('skipped')" [ngClass]="issue.status !== 'skipped' ? 'red-text' : 'red-text text-lighten-4'" class="waves-effect red-text waves btn-flat">
