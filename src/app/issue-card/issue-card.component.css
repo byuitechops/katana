@@ -13,6 +13,15 @@
 .issueCard_titleLine {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.issueCard_titleLine>div {
+    display: flex;
+}
+
+.issueCard_titleLine>div>i {
+    color: var(--primary-5);
 }
 
 /* The item title */
@@ -68,11 +77,11 @@
     margin: 0 5px 0 0;
     user-select: none;
     vertical-align: center;
-    width: 22px;
+    width: 26px;
 }
 
 /* A selected card */
 
 .selectedCard {
-    border: solid 1px var(--accent-1);
+    border-left: solid 5px var(--accent-1);
 }

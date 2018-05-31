@@ -17,11 +17,24 @@ export class IssueContainerComponent implements OnInit {
     }
 
     setIssueStatus(newStatus) {
-        if (newStatus === this.issue.status) {
+        if (this.issue.status === 'fixed') {
+            return;
+        } else if (newStatus === this.issue.status) {
             this.issue.status = 'untouched';
         } else {
             this.issue.status = newStatus;
         }
+    }
+
+    getButtonClasses(desiredStatus: string, elType: string) {
+        let classes = '';
+        if (elType === 'button') {
+            classes += 'waves-effect waves btn-flat';
+        }
+        if (this.issue.status !== 'untouched' && this.issue.status !== desiredStatus) {
+            classes += ' text-lighten-4';
+        }
+        return classes;
     }
 
     getBorderColor() {
@@ -32,6 +45,6 @@ export class IssueContainerComponent implements OnInit {
             'skipped': '#e53935',
             'untouched': doc.getPropertyValue('--primary-6')
         }
-        return `solid 3px ${borderColors[this.issue.status]}`;
+        return `solid 5px ${borderColors[this.issue.status]}`;
     }
 }

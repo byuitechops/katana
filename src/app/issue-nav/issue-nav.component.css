@@ -1,3 +1,7 @@
+/** Container for this component
+ * Note: z-index must be higher than 1 so buttons in the Issues
+ * column do not overlap. */
+
 .issueApproval {
     background-color: var(--primary-4);
     border-top: solid 1px var(--primary-2);
@@ -8,7 +12,10 @@
     position: fixed;
     right: 0;
     width: calc(100vw - var(--course-sidebar-width));
+    z-index: 2;
 }
+
+/* Container for the up/down arrows and issue count */
 
 .issueApproval__navigation {
     box-sizing: border-box;
@@ -19,25 +26,35 @@
     width: var(--issueList-width);
 }
 
+/* The up and down arrows in issue navigation */
+
 .issueApproval__navigation>a {
     margin-top: 14px;
 }
+
+/* Container to hold the "fix approved" and kebob menu */
 
 .issueApproval__buttonContainer {
     display: flex;
     justify-content: space-between;
 }
 
+/* Counter for number of issues */
+
 .issueApproval__counter {
     font-size: 18px;
     margin: 0 20px;
 }
+
+/* Buttons within this component */
 
 .issueApproval__button {
     border-radius: 3px;
     line-height: 46px;
     margin: 12px 10px;
 }
+
+/* The kebob menu */
 
 .issueApproval_moreButton>i {
     color: var(--primary-5);
@@ -46,6 +63,8 @@
     line-height: 70px;
     margin: 0 10px 0 0;
 }
+
+/* The kebob menu's dropdown content */
 
 .dropdown-content {
     width: 200px !important;

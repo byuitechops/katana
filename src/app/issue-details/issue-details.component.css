@@ -15,6 +15,13 @@
     padding: 0 10px;
 }
 
+/* The currently selected item's title */
+
+.issueDetails__itemTitle {
+    margin-left: 15px;
+    font-weight: 200;
+}
+
 /* The box that holds all of the issue-container elements */
 
 .issueDetails__issueBox {

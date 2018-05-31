@@ -24,3 +24,15 @@
 .issueContainer.card .card-content {
     padding: 20px;
 }
+
+.issueContainer.card .card-action a {
+    width: 141px;
+    text-align: center;
+    margin: 0;
+    padding: 0 15px;
+    border-radius: 0;
+}
+
+.issueContainer.card .card-action a:hover {
+    /* border-bottom: solid 1px var(--primary-4); */
+}

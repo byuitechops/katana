@@ -20,7 +20,7 @@ import { CourseSelectionComponent } from './course-selection/course-selection.co
 import { CourseChipComponent } from './course-chip/course-chip.component';
 import { IssueContainerComponent } from './issue-container/issue-container.component';
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
     {
         path: '',
         component: CategoriesComponent,

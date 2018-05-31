@@ -33,4 +33,14 @@ export class IssueNavComponent implements OnInit {
             }
         }
     }
+
+    // TODO Add docs
+    getCardPosition() {
+        let courseIssueItems = this.issuesService.issueItems.filter(issueItem => issueItem.course_id === this.issuesService.selectedCourse.id);
+        let currentIndex = courseIssueItems.findIndex(courseIssueItem => courseIssueItem === this.issuesService.selectedItem);
+        return {
+            currentIndex: currentIndex + 1,
+            totalLength: courseIssueItems.length
+        }
+    }
 }
