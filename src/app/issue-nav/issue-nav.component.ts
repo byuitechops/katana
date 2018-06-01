@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IssuesService } from '../issues.service';
+import { CourseService } from '../course.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { EventEmitter } from '@angular/core';
 
@@ -33,12 +33,12 @@ export class IssueNavComponent implements OnInit {
     }
 
     // The current contents of the modal
-    modal: object = this.modalContents['approveAll'];
+    modal = this.modalContents['approveAll'];
 
     // This allows the modal to open and close
     modalActions = new EventEmitter<string | MaterializeAction>();
 
-    constructor(public issuesService: IssuesService) { }
+    constructor(public courseService: CourseService) { }
 
     ngOnInit() { }
 
@@ -68,13 +68,13 @@ export class IssueNavComponent implements OnInit {
      * 5. If direction is down and we aren't on the last index, set the selected item to the one below
      ****************************************************************/
     shiftSelectedItem(direction: string) {
-        if (this.issuesService.selectedItem) {
-            let courseIssueItems = this.issuesService.issueItems.filter(issueItem => issueItem.course_id === this.issuesService.selectedCourse.id);
-            let currentIndex = courseIssueItems.findIndex(issueItem => this.issuesService.selectedItem === issueItem);
+        if (this.courseService.selectedItem) {
+            let courseIssueItems = this.courseService.issueItems.filter(issueItem => issueItem.course_id === this.courseService.selectedCourse.id);
+            let currentIndex = courseIssueItems.findIndex(issueItem => this.courseService.selectedItem === issueItem);
             if (direction === 'up' && currentIndex !== 0) {
-                this.issuesService.selectedItem = courseIssueItems[currentIndex - 1];
+                this.courseService.selectedItem = courseIssueItems[currentIndex - 1];
             } else if (direction === 'down' && currentIndex !== courseIssueItems.length - 1) {
-                this.issuesService.selectedItem = courseIssueItems[currentIndex + 1];
+                this.courseService.selectedItem = courseIssueItems[currentIndex + 1];
             }
         }
     }
@@ -88,8 +88,8 @@ export class IssueNavComponent implements OnInit {
      * 3. Returns the index + 1 and the total length of the array of cards for the currently selected course
      ****************************************************************/
     getCardPosition() {
-        let courseIssueItems = this.issuesService.issueItems.filter(issueItem => issueItem.course_id === this.issuesService.selectedCourse.id);
-        let currentIndex = courseIssueItems.findIndex(courseIssueItem => courseIssueItem === this.issuesService.selectedItem);
+        let courseIssueItems = this.courseService.issueItems.filter(issueItem => issueItem.course_id === this.courseService.selectedCourse.id);
+        let currentIndex = courseIssueItems.findIndex(courseIssueItem => courseIssueItem === this.courseService.selectedItem);
         return {
             currentIndex: currentIndex + 1,
             totalLength: courseIssueItems.length
@@ -105,7 +105,7 @@ export class IssueNavComponent implements OnInit {
      * 3. If not, set it's status to approved
      ****************************************************************/
     setApproved(newStatus: string) {
-        this.issuesService.issueItems.forEach(issueItem => {
+        this.courseService.issueItems.forEach(issueItem => {
             issueItem.issues.forEach(issue => {
                 if (newStatus === 'approved' && issue.status === 'untouched') {
                     issue.status = newStatus;
@@ -126,7 +126,7 @@ export class IssueNavComponent implements OnInit {
      * 3. Return the number of issues discovered
      ****************************************************************/
     getIssueCount(statusArray) {
-        let issues = this.issuesService.issueItems.reduce((acc, issueItem) => [...acc, ...issueItem.issues], []);
+        let issues = this.courseService.issueItems.reduce((acc, issueItem) => [...acc, ...issueItem.issues], []);
         return issues.filter(issue => statusArray.includes(issue.status)).length;
     }
 }

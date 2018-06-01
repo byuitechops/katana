@@ -19,11 +19,14 @@ import { ToolViewComponent } from './tool-view/tool-view.component';
 import { CourseSelectionComponent } from './course-selection/course-selection.component';
 import { CourseChipComponent } from './course-chip/course-chip.component';
 import { IssueContainerComponent } from './issue-container/issue-container.component';
+import { ToolSelectionComponent } from './tool-selection/tool-selection.component';
+import { OptionsViewComponent } from './options-view/options-view.component';
 
 export const appRoutes: Routes = [
     {
         path: '',
-        component: CategoriesComponent,
+        redirectTo: 'categories',
+        pathMatch: 'full',
         data: {
             breadcrumb: 'Home'
         }
@@ -36,19 +39,26 @@ export const appRoutes: Routes = [
         }
     },
     {
-        path: 'tool-view',
-        component: ToolViewComponent,
+        path: 'categories/tools',
+        component: ToolSelectionComponent,
         data: {
-            breadcrumb: 'Tool View'
+            breadcrumb: 'Tool Selection'
         }
     },
     {
-        path: 'course-selection',
-        component: CourseSelectionComponent,
+        path: 'categories/tools/:tool_id/options',
+        component: OptionsViewComponent,
         data: {
-            breadcrumb: 'Course Selection'
+            breadcrumb: 'Options'
         }
     },
+    {
+        path: 'categories/tools/:tool_id/issues',
+        component: ToolViewComponent,
+        data: {
+            breadcrumb: 'Issues'
+        }
+    }
 ];
 
 @NgModule({
@@ -65,6 +75,8 @@ export const appRoutes: Routes = [
         CourseSelectionComponent,
         CourseChipComponent,
         IssueContainerComponent,
+        ToolSelectionComponent,
+        OptionsViewComponent,
     ],
     imports: [
         RouterModule.forRoot(

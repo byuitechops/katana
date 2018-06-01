@@ -1,3 +1,4 @@
+import { TEST_ISSUES } from './GENERATED_ISSUES';
 import { Injectable } from '@angular/core';
 
 export interface Course {
@@ -7,10 +8,26 @@ export interface Course {
     instructor: string
 }
 
+export interface Issue {
+    title: string,
+    status: string,
+    description: string,
+    details: object
+}
+
+export interface IssueItem {
+    title: string,
+    course_id: number,
+    item_id: number,
+    item_type: string,
+    link: string,
+    issues: Issue[]
+}
+
 @Injectable({
     providedIn: 'root'
 })
-export class CoursesService {
+export class CourseService {
 
     courses: Course[] = [{
         id: 123,
@@ -33,12 +50,23 @@ export class CoursesService {
         course_code: 'AGBUS 300A',
         instructor: 'Earl, Benjamin'
     }];
-    // courses: Course[] = [{
-    //     id: 12919,
-    //     course_name: 'Nursing 400)',
-    //     course_code: 'NURS 400',
-    //     instructor: 'Williams, Zachary'
-    // }];
+
+    issueItems: IssueItem[] = TEST_ISSUES;
+
+    _selectedCourse: Course = this.courses[0] || null;
+
+    selectedItem: IssueItem = this.issueItems[0] || null;
+
+    get selectedCourse() {
+        return this._selectedCourse;
+    }
+
+    // This setter changes the selected item to the first item of the newly selected course
+    set selectedCourse(course: Course) {
+        if (course === this._selectedCourse) return;
+        this._selectedCourse = course;
+        this.selectedItem = this.issueItems.find(issueItem => issueItem.course_id === course.id) || null;
+    }
 
     constructor() { }
 

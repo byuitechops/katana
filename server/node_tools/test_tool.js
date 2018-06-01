@@ -42,14 +42,18 @@ function discover(course, options) {
 }
 
 const details = {
-    name: 'test_tool',
-    itemTypes: [
+    id: 'test_tool',
+    title: 'Test Tool',
+    icon: 'settings',
+    categories: [
         'Page',
         'Assignment',
         'Discussion',
         'Quiz',
         'QuizQuestion'
-    ]
+    ],
+    discoverOptions: [],
+    fixOptions: [],
 };
 
 module.exports = {

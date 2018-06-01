@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CoursesService, Course } from './courses.service';
-import { IssuesService, IssueItem } from './issues.service';
+import { CourseService } from './course.service';
+import { ToolService, Tool } from './tool.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,8 +10,24 @@ import { IssuesService, IssueItem } from './issues.service';
 export class KatanaService {
 
     constructor(private http: HttpClient,
-        private coursesService: CoursesService,
-        private issuesService: IssuesService) { }
+        private toolsService: ToolService,
+        private courseService: CourseService) { }
+
+    /*****************************************************************
+     * Retrieves the list of tools from the server.
+     * Process:
+     * 1. Returns a promise
+     * 2. Sends a GET request to the server for the tool list
+     * 3. On success, sets the toolList property on the tools service to the response data
+     ****************************************************************/
+    getToolList() {
+        return new Promise((resolve, reject) => {
+            this.http.get('/tool-list').subscribe((toolList: any): any => {
+                this.toolsService.toolList = toolList;
+                resolve();
+            }, reject);
+        });
+    }
 
     /*****************************************************************
      * Runs a tool on the server in discovery mode, then returns the issue items discovered.
@@ -29,7 +45,7 @@ export class KatanaService {
         return new Promise((resolve, reject) => {
             let body = {
                 tool_id,
-                courses: this.coursesService.courses,
+                courses: this.courseService.courses,
                 options
             };
             let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -54,7 +70,7 @@ export class KatanaService {
         return new Promise((resolve, reject) => {
             let body = {
                 tool_id,
-                issueItems: this.issuesService.issueItems,
+                issueItems: this.courseService.issueItems,
                 options
             };
             let headers = new HttpHeaders({ 'Content-Type': 'application/json' });

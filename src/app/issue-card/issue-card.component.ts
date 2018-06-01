@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { IssuesService, IssueItem } from '../issues.service';
+import { CourseService, IssueItem } from '../course.service';
 
 @Component({
     selector: 'app-issue-card',
@@ -14,7 +14,7 @@ export class IssueCardComponent implements AfterViewInit {
     // Reference to the typeIcon
     @ViewChild('typeIcon') typeIcon: ElementRef;
 
-    constructor(public issuesService: IssuesService) { }
+    constructor(public courseService: CourseService) { }
 
     /***********************************************************************
      * This class implements AfterViewInit, which runs after the element

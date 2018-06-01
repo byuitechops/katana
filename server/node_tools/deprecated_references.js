@@ -72,14 +72,18 @@ function discover(course, options) {
 }
 
 const details = {
-    name: 'deprecated_references',
-    itemTypes: [
+    id: 'deprecated_references',
+    title: 'Deprecated References',
+    icon: 'settings',
+    categories: [
         'Page',
         'Assignment',
         'Discussion',
         'Quiz',
         'QuizQuestion'
-    ]
+    ],
+    discoverOptions: [],
+    fixOptions: [],
 };
 
 module.exports = {

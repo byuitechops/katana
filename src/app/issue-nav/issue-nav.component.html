@@ -6,7 +6,7 @@
             <i class="material-icons">keyboard_arrow_up</i>
         </a>
         <div class="issueApproval__counter">
-            {{this.issuesService.selectedItem ? this.getCardPosition().currentIndex : '--'}} of {{this.issuesService.selectedItem ? this.getCardPosition().totalLength : '--'}}
+            {{this.courseService.selectedItem ? this.getCardPosition().currentIndex : '--'}} of {{this.courseService.selectedItem ? this.getCardPosition().totalLength : '--'}}
         </div>
         <a class="blue lighten-1 btn-floating waves-effect waves-light" (click)="shiftSelectedItem('down')">
             <i class="material-icons">keyboard_arrow_down</i>
@@ -18,6 +18,12 @@
 
         <!-- Fix Approved Button -->
         <div class="issueApproval__button">
+            <a href="#fixModal" class="modal-trigger waves-effect teal waves-light btn" (click)="openModal('fixApproved')">
+                    <i class="material-icons left">refresh</i>
+                    Start Over
+                </a>
+        </div>
+        <div class="issueApproval__button">
             <a href="#fixModal" class="modal-trigger waves-effect blue waves-light btn" (click)="openModal('fixApproved')">
                 <i class="material-icons left">build</i>
                 Fix Approved
@@ -27,7 +33,7 @@
         <!-- The dropdown menu from the kebob menu -->
         <ul id="dropdown1" class="dropdown-content">
             <li>
-                <a href="#fixModal" class="green-text modal-trigger" (click)="openModal('approveAll')">
+                <a href="#fixModal" class="green-text text-accent-4 modal-trigger" (click)="openModal('approveAll')">
                     Approve All
                 </a>
             </li>
@@ -65,7 +71,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="teal-text">
+                <tr class="green-text text-green-4">
                     <td>Approved</td>
                     <td>{{getIssueCount('approved')}}</td>
                 </tr>
@@ -82,6 +88,6 @@
     </div>
     <div class="modal-footer">
         <a class="waves-effect btn-flat blue-grey-text" (click)="closeModal()">Nevermind</a>
-        <a class="modal-action modal-close waves-effect btn-flat teal-text" (click)="modal.action()">{{modal.actionText}}</a>
+        <a class="modal-action modal-close waves-effect btn-flat green-text text-accent-4" (click)="modal.action()">{{modal.actionText}}</a>
     </div>
 </div>

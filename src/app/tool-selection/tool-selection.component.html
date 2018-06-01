@@ -1,0 +1,8 @@
+<div class="tools">
+    <div *ngFor="let tool of this.toolService.toolList" [style.display]="tool.categories.includes(this.toolService.selectedCategory) ? 'block' : 'none'" class="toolIcon card">
+        <a (click)="this.toolService.selectedTool = tool" [routerLink]="[tool.id, 'options']">
+            <i class="material-icons">{{tool.icon}}</i>
+            <p>{{tool.title}}</p>
+        </a>
+    </div>
+</div>

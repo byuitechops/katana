@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Issue } from '../issues.service';
+import { Issue } from '../course.service';
 
 @Component({
     selector: 'app-issue-container',

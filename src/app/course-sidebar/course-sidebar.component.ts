@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IssuesService } from '../issues.service';
-import { CoursesService, Course } from '../courses.service';
+import { CourseService, Course } from '../course.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,8 +11,7 @@ export class CourseSidebarComponent implements OnInit {
 
     courseSelectionOpen: boolean = false;
 
-    constructor(private issuesService: IssuesService,
-        public coursesService: CoursesService,
+    constructor(public courseService: CourseService,
         private activatedRoute: ActivatedRoute) { }
 
     courseOverlay() {
@@ -37,7 +35,7 @@ export class CourseSidebarComponent implements OnInit {
 
     setSelectedCourse(course: Course) {
         if (window.location.href.includes('tool-view')) {
-            this.issuesService.selectedCourse = course;
+            this.courseService.selectedCourse = course;
         }
     }
 

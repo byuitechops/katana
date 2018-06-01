@@ -1,4 +1,4 @@
-.categories {
+.tools {
     display: flex;
     flex-flow: row wrap;
     margin: auto;
@@ -6,7 +6,7 @@
     height: calc(100vh - var(--course-sidebar-height));
 }
 
-.categoryIcon {
+.toolIcon {
     display: flex;
     padding: 20px;
     font-size: 25px;
@@ -20,19 +20,19 @@
     cursor: pointer;
 }
 
-.categoryIcon i {
-    color: var(--primary-1);
+.toolIcon i {
+    color: #00796b;
     font-size: 90px;
     padding: 30px;
     border-radius: calc(((100vw - var(--course-sidebar-width)) / 4) - 30px);
     transition: all .1s ease-in-out;
 }
 
-.categoryIcon:hover {
+.toolIcon:hover {
     background-color: var(--primary-4);
 }
 
-.categoryIcon p {
+.toolIcon p {
     color: var(--primary-3);
     margin: 0;
 }

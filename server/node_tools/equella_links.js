@@ -147,14 +147,18 @@ function discover(course, options) {
 }
 
 const details = {
-  name: 'equella_links',
-  itemTypes: [
-    'Page',
-    'Assignment',
-    'Discussion',
-    'Quiz',
-    'QuizQuestion'
-  ]
+    id: 'equella_links',
+    title: 'Equella Links',
+    icon: 'settings',
+    categories: [
+        'Page',
+        'Assignment',
+        'Discussion',
+        'Quiz',
+        'QuizQuestion'
+    ],
+    discoverOptions: [],
+    fixOptions: [],
 };
 
 module.exports = {

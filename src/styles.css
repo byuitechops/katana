@@ -2,77 +2,92 @@
 
 @import "~materialize-css/dist/css/materialize.css";
 :root {
-  /* CSS3 Variables here */
-  --primary-1: #1565c0;
-  --primary-1-clear: #01589b15;
-  --primary-2: #cfd8dc;
-  --primary-3: #90a4ae;
-  --primary-4: #eceff1;
-  --primary-5: #78909c;
-  --primary-6: #f0f0f0;
-  --accent-1: #2196f3;
-  --background-dark: #546e7a;
-  --background-light: #eceff1;
-  --course-sidebar-width: 115px;
-  --breadcrumbs-height: 50px;
-  --issueList-width: 350px;
-  --toolView-titleBar-height: 60px;
+    /* CSS3 Variables here */
+    --primary-1: #1565c0;
+    --primary-1-clear: #01589b15;
+    --primary-2: #cfd8dc;
+    --primary-3: #90a4ae;
+    --primary-4: #eceff1;
+    --primary-5: #78909c;
+    --primary-6: #f0f0f0;
+    --accent-1: #2196f3;
+    --background-dark: #546e7a;
+    --background-light: #eceff1;
+    --course-sidebar-width: 115px;
+    --breadcrumbs-height: 50px;
+    --issueList-width: 350px;
+    --toolView-titleBar-height: 60px;
 }
 
 * {
-  transition: all .075s ease-in-out;
+    transition: all .075s ease-in-out;
 }
 
 body {
-  margin: var(--breadcrumbs-height) 0 0 var(--course-sidebar-width);
-  font-size: 14px;
-  font-family: "Roboto", sans-serif;
-  background-color: var(--background-light);
+    margin: var(--breadcrumbs-height) 0 0 var(--course-sidebar-width);
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+    background-color: var(--background-light);
 }
 
 ul {
-  margin: 0;
+    margin: 0;
+}
+
+.header_1 {
+    font-size: 38px;
+    width: 100%;
+    padding-bottom: 10px;
+    border-bottom: solid 1px var(--primary-4);
+}
+
+.header_thin {
+    font-weight: 200;
+}
+
+.header_bold {
+    font-weight: 400;
 }
 
 /* Overwrite Materialize Card Margins */
 
 .card {
-  margin: 0 0 15px;
+    margin: 0 0 15px;
 }
 
 /* Don't think we need this here - can go back into the issue list component */
 
 .selectedItem {
-  border: solid 1px var(--accent-1) !important;
-  /* background-color: var(--primary-6) !important; */
+    border: solid 1px var(--accent-1) !important;
+    /* background-color: var(--primary-6) !important; */
 }
 
 /* width */
 
 ::-webkit-scrollbar {
-  display: none;
-  width: 5px;
+    display: none;
+    width: 5px;
 }
 
 ::-webkit-scrollbar:hover {
-  display: block;
-  width: 5px;
+    display: block;
+    width: 5px;
 }
 
 /* Track */
 
 ::-webkit-scrollbar-track {
-  background: var(--primary-4);
+    background: var(--primary-4);
 }
 
 /* Handle */
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-3);
+    background: var(--primary-3);
 }
 
 /* Handle on hover */
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #757575;
+    background: #757575;
 }
