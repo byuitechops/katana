@@ -1,6 +1,6 @@
 <div materialize class="issueApproval">
 
-
+    <!-- Up and Down arrows for navigating through issue items -->
     <div class="issueApproval__navigation">
         <a class="blue lighten-1 btn-floating waves-effect waves-light" (click)="shiftSelectedItem('up')">
             <i class="material-icons">keyboard_arrow_up</i>
@@ -13,31 +13,75 @@
         </a>
     </div>
 
-
+    <!-- Container to hold the fix approved and kebob menu buttons -->
     <div class="issueApproval__buttonContainer">
+
+        <!-- Fix Approved Button -->
         <div class="issueApproval__button">
-            <a class="waves-effect blue waves-light btn">
+            <a href="#fixModal" class="modal-trigger waves-effect blue waves-light btn" (click)="openModal('fixApproved')">
                 <i class="material-icons left">build</i>
                 Fix Approved
             </a>
         </div>
 
+        <!-- The dropdown menu from the kebob menu -->
         <ul id="dropdown1" class="dropdown-content">
             <li>
-                <a href="#!" class="green-text">
-                Approve All
+                <a href="#fixModal" class="green-text modal-trigger" (click)="openModal('approveAll')">
+                    Approve All
                 </a>
             </li>
             <li>
-                <a href="#!" class="red-text">
-                    Mark as Exception
+                <a href="#fixModal" class="grey-text modal-trigger" (click)="openModal('unapproveAll')">
+                    Unapprove All
                 </a>
             </li>
+            <!-- <li>
+                <a class="red-text">
+                    Mark as Exception
+                </a>
+            </li> -->
         </ul>
+
+        <!-- The Kebob menu at the far right of the bottom bar -->
         <div>
             <a materialize="dropdown" [materializeParams]="[{constrain_width: false, alignment: 'left'}]" class="dropdown-button issueApproval_moreButton" data-activates="dropdown1">
-        <i class="material-icons">more_vert</i>
-      </a>
+                <i class="material-icons">more_vert</i>
+            </a>
         </div>
+    </div>
+</div>
+
+<!-- Approve All modal - Must stay beneath the main container -->
+<div id="fixModal" class="modal" materialize="modal" [materializeActions]="modalActions">
+    <div class="modal-content">
+        <h4>{{modal.title}}</h4>
+        <p>{{modal.contents}}</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Issue</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="teal-text">
+                    <td>Approved</td>
+                    <td>{{getIssueCount('approved')}}</td>
+                </tr>
+                <tr class="red-text">
+                    <td>Skipped</td>
+                    <td>{{getIssueCount('skipped')}}</td>
+                </tr>
+                <tr class="grey-text">
+                    <td>Untouched</td>
+                    <td>{{getIssueCount('untouched')}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <a class="waves-effect btn-flat blue-grey-text" (click)="closeModal()">Nevermind</a>
+        <a class="modal-action modal-close waves-effect btn-flat teal-text" (click)="modal.action()">{{modal.actionText}}</a>
     </div>
 </div>

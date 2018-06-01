@@ -13,11 +13,32 @@ export interface Course {
 export class CoursesService {
 
     courses: Course[] = [{
-        id: 12919,
-        course_name: 'Nursing 400)',
-        course_code: 'NURS 400',
+        id: 123,
+        course_name: 'Cow Surfing',
+        course_code: 'B 383',
+        instructor: 'Childers, Seth'
+    }, {
+        id: 456,
+        course_name: 'Deforesting With Passion',
+        course_code: 'CS 364',
         instructor: 'Williams, Zachary'
+    }, {
+        id: 789,
+        course_name: 'Marx Brothers - A History',
+        course_code: 'COMM 130',
+        instructor: 'Dowdle-Sessions, Theron'
+    }, {
+        id: 342,
+        course_name: 'How to Eat',
+        course_code: 'AGBUS 300A',
+        instructor: 'Earl, Benjamin'
     }];
+    // courses: Course[] = [{
+    //     id: 12919,
+    //     course_name: 'Nursing 400)',
+    //     course_code: 'NURS 400',
+    //     instructor: 'Williams, Zachary'
+    // }];
 
     constructor() { }
 
@@ -27,7 +48,7 @@ export class CoursesService {
     * @param {string} courseName - The full name of the course
     * @param {string} courseCode - The course code
     *****************************************************************/
-    addCourse(courseId: number, courseName: string, courseCode: string) {
+    addCourse(courseId: number, courseName: string, courseCode: string, instructor: string = '') {
 
         // TODO Check to see if course already exists in the currently selected courses before adding it
 

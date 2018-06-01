@@ -70,3 +70,7 @@
     width: 200px !important;
     transform: translate(0, -70px);
 }
+
+.modal-footer {
+    border-top: solid 1px var(--primary-2);
+}
