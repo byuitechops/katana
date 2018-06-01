@@ -30,7 +30,6 @@ export class CourseSidebarComponent implements OnInit {
             overlay.className = 'open'
         }
 
-        console.log(overlay);
         // change the -> arrow to <- after opening the course selection overlay
         document.querySelector('app-course-sidebar .courseSidebar__expandSidebar i').innerHTML = this.courseSelectionOpen ? 'arrow_forward' : 'arrow_back';
         this.courseSelectionOpen = !this.courseSelectionOpen;

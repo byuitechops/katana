@@ -42,6 +42,7 @@
 app-course-selection {
   display: none;
   background-color: var(--primary-3);
+  border-right: 1px solid black;
 }
 
 app-course-selection.open {

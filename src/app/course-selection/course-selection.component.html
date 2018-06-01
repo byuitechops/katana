@@ -2,8 +2,33 @@
   <div class="courseSearch__title">Course Selection</div>
   <div class="courseSearch__courseSelection">
     <div class="courseSearch__search">
-      <div class="courseSearch__searchbar__title">Search</div>
-      <input type="text" />
+      <div>
+        <div class="courseSearch__options">
+          <select class="courseSearch__account">
+            <option value="" disabled selected>Account</option>
+            <option value="online">Online</option>
+            <option value="campus">Campus</option>
+            <option value="pathway">Pathway</option>
+            <option value="all">All</option>
+          </select>
+
+          <select class="courseSearch__term">
+            <option value="" disabled selected>Term</option>
+            <option value="fall">Fall</option>
+            <option value="winter">Winter</option>
+            <option value="spring">Spring</option>
+            <option value="all">All Terms</option>
+          </select>
+
+          <select class="courseSearch__blueprint">
+            <option value="" disabled selected>Blueprint</option>
+            <option value="true">True</option>
+            <option value="false">False</option>
+          </select>
+        </div>
+
+        <input type="text" placeholder="  Search courses..." />
+      </div>
       <div class="courseSearch__courseResults__title">Results</div>
       <table class="highlight">
         <thead>
@@ -11,9 +36,12 @@
             <th>+/-</th>
             <th>Name</th>
             <th>Code</th>
-            <th>Teacher</th>
-            <th>Term</th>
+            <th>Instructor</th>
             <th>Sections</th>
+            <th>Account</th>
+            <th>Term</th>
+            <th>Blueprint</th>
+            <th class="material-icons">open_in_new</th>
           </tr>
         </thead>
         <tbody>
@@ -24,38 +52,18 @@
             <td>{{course.name}}</td>
             <td>{{course.code}}</td>
             <td>{{course.instructor}}</td>
-            <td>{{course.term}}</td>
             <td>{{course.section}}</td>
+            <td>{{course.account}}</td>
+            <td>{{course.term}}</td>
+            <td>{{course.blueprint}}</td>
+            <td>
+              <a href="{{course.url}}" target="_blank">
+                <i class="material-icons">open_in_new</i>
+              </a>
+            </td>
           </tr>
         </tbody>
       </table>
-    </div>
-    <div class="courseSearch__options">
-      <div class="courseSearch__options__title">Account</div>
-      <select class="courseSearch__account" name="Account">
-        <option value="" selected></option>
-        <option value="online">Online</option>
-        <option value="campus">Campus</option>
-        <option value="pathway">Pathway</option>
-        <option value="all">All</option>
-      </select>
-
-      <div class="courseSearch__options__title">Term</div>
-      <select class="courseSearch__term">
-        <option value="" selected></option>
-        <option value="fall">Fall</option>
-        <option value="winter">Winter</option>
-        <option value="spring">Spring</option>
-        <option value="all">All</option>
-      </select>
-
-      <div class="courseSearch__options__title">Blueprint</div>
-      <select class="courseSearch__blueprint">
-        <option value="" selected></option>
-        <option value="true">True</option>
-        <option value="false">False</option>
-      </select>
-
     </div>
   </div>
 </div>
