@@ -19,22 +19,22 @@ export class ToolService {
 
     // The Tool List (set immediately by Katana service)
     toolList: Tool[] = [{
-        id: 'test_tool',
-        title: 'Test Tool on Pages',
+        id: 'page_tool',
+        title: 'A Page Tool',
         icon: 'settings',
         categories: ['Page'],
         discoverOptions: [{}],
         fixOptions: [{}],
     }, {
-        id: 'test_tool',
-        title: 'Test Tool on Quizzes',
+        id: 'quiz_tool',
+        title: 'A Quiz Tool',
         icon: 'settings',
         categories: ['Quiz'],
         discoverOptions: [{}],
         fixOptions: [{}],
     }, {
-        id: 'test_tool',
-        title: 'Test Tool on Discussions',
+        id: 'discussion_tool',
+        title: 'A Discussions Tool',
         icon: 'settings',
         categories: ['Discussion'],
         discoverOptions: [{}],
@@ -48,11 +48,18 @@ export class ToolService {
 
     constructor(private router: Router) {
         let loc = window.location.href;
-        if (loc.includes('?') && loc.includes('category=')) {
+
+        // If we're on a tool selection screen, set the selected category
+        if (loc.includes('tools?') && loc.includes('category=')) {
             this.selectedCategory = loc.split('category=')[1].split('&')[0];
-        } else if (!this.selectedCategory) {
+        } else if (!loc.includes('options') && !this.selectedCategory) {
             router.navigate(['/']);
         }
-        console.log(this.selectedCategory);
+
+        // If we're on an options page, set the selected tool
+        if (loc.includes('/options')) {
+            let toolId = loc.split('tools/')[1].split('/options')[0];
+            this.selectedTool = this.toolList.find(tool => tool.id === toolId);
+        }
     }
 }

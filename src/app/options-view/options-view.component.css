@@ -2,8 +2,18 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    padding: 40px 0;
 }
 
 .optionsView__container {
+    color: black;
     width: 75%;
+}
+
+.optionsView__toolTitle {
+    /* margin-left: 30px; */
+}
+
+.optionsView__title {
+    padding: 10px 20px;
 }

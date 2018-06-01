@@ -1,6 +1,6 @@
 <div class="categories">
     <div *ngFor="let category of categories" class="categoryIcon card">
-        <a (click)="setSelectedCategory(category.type)" [routerLink]="['tools']" [queryParams]="{category:'Page'}">
+        <a (click)="setSelectedCategory(category)" [routerLink]="['tools']" [queryParams]="{category: category.type}">
             <i class="material-icons">{{category.icon}}</i>
             <p>{{category.title}}</p>
         </a>

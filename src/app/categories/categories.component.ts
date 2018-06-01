@@ -62,9 +62,17 @@ export class CategoriesComponent implements OnInit {
 
     }
 
-    setSelectedCategory(newCategory) {
-        console.log(newCategory);
-        this.toolService.selectedCategory = newCategory;
+    /************************************************************
+     * This sets the selected category on the Tool service.
+     * Note that this MUST return false, so it doesn't reload
+     * the entire page, just the router-outlet.
+     * @param {object} category - The category to set
+     * @returns {false} - This is so it doesn't refresh the entire page
+     ************************************************************/
+    setSelectedCategory(category) {
+        this.toolService.selectedCategory = category.type;
+        console.log(this.toolService.selectedCategory);
+        return false;
     }
 
     ngOnInit() { }

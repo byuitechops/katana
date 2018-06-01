@@ -25,7 +25,8 @@ import { OptionsViewComponent } from './options-view/options-view.component';
 export const appRoutes: Routes = [
     {
         path: '',
-        component: CategoriesComponent,
+        redirectTo: 'categories',
+        pathMatch: 'full',
         data: {
             breadcrumb: 'Home'
         }
@@ -38,28 +39,21 @@ export const appRoutes: Routes = [
         }
     },
     {
-        path: 'course-selection',
-        component: CourseSelectionComponent,
-        data: {
-            breadcrumb: 'Course Selection'
-        }
-    },
-    {
-        path: 'tools',
+        path: 'categories/tools',
         component: ToolSelectionComponent,
         data: {
             breadcrumb: 'Tool Selection'
         }
     },
     {
-        path: ':type/tools/:tool_id/options',
+        path: 'categories/tools/:tool_id/options',
         component: OptionsViewComponent,
         data: {
             breadcrumb: 'Options'
         }
     },
     {
-        path: ':type/tools/:tool_id/issues',
+        path: 'categories/tools/:tool_id/issues',
         component: ToolViewComponent,
         data: {
             breadcrumb: 'Issues'
