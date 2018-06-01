@@ -62,16 +62,24 @@ function discovery(course, options) {
 }
 
 const details = {
-    name: 'tool_name',
-    itemTypes: [
+    id: 'tool_id',
+    title: 'Tool Title',
+    icon: 'icon_name_from_google_icons',
+    categories: [
         'Page',
         'Assignment',
         'Discussion',
         'Quiz',
         'QuizQuestion',
         'Module',
-        'ModuleItem'
-    ]
+        'ModuleItem',
+        'File',
+        'Folder',
+        'CourseSettings',
+        'Universal'
+    ],
+    discoverOptions: [],
+    fixOptions: [],
 };
 
 module.exports = {

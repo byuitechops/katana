@@ -7,8 +7,8 @@
 
     <div class="card-action">
 
-        <a *ngIf="issue.status !== 'fixed'" (click)="setIssueStatus('approved')" [ngClass]="getButtonClasses('approved', 'button')" class="green-text">
-            <i [ngClass]="getButtonClasses('approved', 'icon')" class="green-text material-icons left">
+        <a *ngIf="issue.status !== 'fixed'" (click)="setIssueStatus('approved')" [ngClass]="getButtonClasses('approved', 'button')" class="green-text text-accent-4">
+            <i [ngClass]="getButtonClasses('approved', 'icon')" class="green-text text-accent-4 material-icons left">
                 {{issue.status !== 'approved' ? 'check' : 'check_circle_outline'}}
             </i>
             {{issue.status !== 'approved' ? (issue.status !== 'fixed' ? 'approve' : 'fixed') : 'approved'}}

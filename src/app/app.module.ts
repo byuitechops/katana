@@ -19,6 +19,8 @@ import { ToolViewComponent } from './tool-view/tool-view.component';
 import { CourseSelectionComponent } from './course-selection/course-selection.component';
 import { CourseChipComponent } from './course-chip/course-chip.component';
 import { IssueContainerComponent } from './issue-container/issue-container.component';
+import { ToolSelectionComponent } from './tool-selection/tool-selection.component';
+import { OptionsViewComponent } from './options-view/options-view.component';
 
 export const appRoutes: Routes = [
     {
@@ -36,19 +38,33 @@ export const appRoutes: Routes = [
         }
     },
     {
-        path: 'tool-view',
-        component: ToolViewComponent,
-        data: {
-            breadcrumb: 'Tool View'
-        }
-    },
-    {
         path: 'course-selection',
         component: CourseSelectionComponent,
         data: {
             breadcrumb: 'Course Selection'
         }
     },
+    {
+        path: 'tools',
+        component: ToolSelectionComponent,
+        data: {
+            breadcrumb: 'Tool Selection'
+        }
+    },
+    {
+        path: ':type/tools/:tool_id/options',
+        component: OptionsViewComponent,
+        data: {
+            breadcrumb: 'Options'
+        }
+    },
+    {
+        path: ':type/tools/:tool_id/issues',
+        component: ToolViewComponent,
+        data: {
+            breadcrumb: 'Issues'
+        }
+    }
 ];
 
 @NgModule({
@@ -65,6 +81,8 @@ export const appRoutes: Routes = [
         CourseSelectionComponent,
         CourseChipComponent,
         IssueContainerComponent,
+        ToolSelectionComponent,
+        OptionsViewComponent,
     ],
     imports: [
         RouterModule.forRoot(

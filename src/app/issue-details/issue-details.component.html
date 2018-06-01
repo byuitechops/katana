@@ -1,12 +1,12 @@
 <div class="issueDetails">
     <div class="issueDetails__header">
-        <div *ngIf="this.issuesService.selectedItem">
+        <div *ngIf="this.courseService.selectedItem">
             Issues
-            <span class="issueDetails__itemTitle">{{this.issuesService.selectedItem.title}}</span>
+            <span class="issueDetails__itemTitle">{{this.courseService.selectedItem.title}}</span>
         </div>
 
     </div>
-    <div *ngIf="issuesService.selectedItem !== null" class="issueDetails__issueBox">
-        <app-issue-container *ngFor="let issue of issuesService.selectedItem.issues" [issue]="issue"></app-issue-container>
+    <div *ngIf="courseService.selectedItem !== null" class="issueDetails__issueBox">
+        <app-issue-container *ngFor="let issue of courseService.selectedItem.issues" [issue]="issue"></app-issue-container>
     </div>
 </div>

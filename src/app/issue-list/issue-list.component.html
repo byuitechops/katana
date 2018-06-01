@@ -3,7 +3,7 @@
         Items
     </div>
     <div class="issueList__list">
-        <app-issue-card *ngFor="let issueItem of issuesService.issueItems; let i = index" [position]="i" [issueItem]="issueItem" (click)="this.issuesService.selectedItem = issueItem">
+        <app-issue-card *ngFor="let issueItem of courseService.issueItems; let i = index" [position]="i" [issueItem]="issueItem" (click)="this.courseService.selectedItem = issueItem">
         </app-issue-card>
         <div class="noIssuesMessage" *ngIf="verifyIssueCount()">
             No issues were discovered in this course.

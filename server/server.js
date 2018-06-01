@@ -14,7 +14,6 @@ app.use(express.static('dist/katana'));
 // Parses incoming request's body when JSON
 app.use(bodyParser.json());
 
-
 /*************************************************************************
  * Sends the homepage to the user.
  * @returns {page} - Homepage
@@ -28,7 +27,7 @@ app.get('/', (req, res) => {
  * @returns {string[]} - List of tools available from the server
  ************************************************************************/
 app.get('/tool-list', (req, res) => {
-    res.send(Object.keys(nodeTools.tools));
+    res.send(nodeTools.toolList);
 });
 
 /*************************************************************************
@@ -56,8 +55,7 @@ app.post('/tool/discover', async (req, res) => {
 });
 
 /*************************************************************************
- * Handles the "issue discovery" sequence for Node Tools
- * How do we add body and option requests and whatnot to jsdocs?
+ * Handles the "issue discovery" sequence for Node Tools.
  * @returns {object[]} - Array of Issues
  ************************************************************************/
 app.put('/tool/fix', async (req, res) => {

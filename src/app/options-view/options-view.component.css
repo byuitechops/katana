@@ -1,0 +1,9 @@
+.optionsView {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.optionsView__container {
+    width: 75%;
+}

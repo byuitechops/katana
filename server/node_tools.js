@@ -3,8 +3,8 @@ const canvas = require('canvas-api-wrapper');
 const chalk = require('chalk');
 
 /* Node Tools | (Key) Tool ID: (Value) require(pathToTool) */
-const tools = {
-    'example_tool_id': require('./node_tools/note_tool_template.js'),
+const toolList = {
+    'example_tool_id': require('./node_tools/node_tool_template.js'),
     'test_tool': require('./node_tools/test_tool.js'),
     'deprecated_references': require('./node_tools/deprecated_references.js'),
     'equella_links': require('./node_tools/equella_links.js')
@@ -32,10 +32,10 @@ function discoverIssues(toolId, courses, options) {
     try {
         console.log(`${chalk.whiteBright('STARTED:')} ${chalk.cyanBright('Discover')} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(toolId)} | ${chalk.whiteBright('COURSES:')} ${chalk.greenBright(courses.length)}`)
         return new Promise((resolve, reject) => {
-            if (tools[toolId]) {
+            if (toolList[toolId]) {
                 let allIssueItems = courses.reduce(async (acc, course) => {
                     let canvasCourse = canvas.getCourse(course.id);
-                    let problemItems = await tools[toolId].discover(canvasCourse, options);
+                    let problemItems = await toolList[toolId].discover(canvasCourse, options);
                     problemItems.forEach(problemItem => problemItem.issues.forEach(issue => issue.status = 'untouched'));
                     let issueItems = problemItems.map(item => {
                         return {
@@ -77,11 +77,11 @@ function discoverIssues(toolId, courses, options) {
 function fixIssues(toolId, issueItems, options) {
     console.log(`${chalk.whiteBright('STARTED:')} ${chalk.cyanBright('Fix')} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(toolId)} | ${chalk.whiteBright('ISSUE ITEMS:')} ${chalk.greenBright(issueItems.length)}`)
     return new Promise(async (resolve, reject) => {
-        if (tools[toolId]) {
+        if (toolList[toolId]) {
             // let fixedItems = issueItems.map(async issueItem => await tools[toolId].fix(issueItem, options));
             let fixedItems = [];
             for (var x = 0; x < issueItems.length; x++) {
-                let fixedItem = await tools[toolId].fix(issueItems[x], options);
+                let fixedItem = await toolList[toolId].fix(issueItems[x], options);
                 fixedItems.push(fixedItem);
             }
             console.log(`${chalk.whiteBright('COMPLETE:')} ${chalk.cyanBright('Fix')} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(toolId)} | ${chalk.whiteBright('FIXED ITEMS:')} ${chalk.greenBright(fixedItems.length)}`)
@@ -93,7 +93,7 @@ function fixIssues(toolId, issueItems, options) {
 }
 
 module.exports = {
-    tools,
+    toolList,
     discoverIssues,
     fixIssues
 };

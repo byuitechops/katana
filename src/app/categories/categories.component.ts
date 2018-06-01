@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToolService } from '../tool.service';
 
 @Component({
     selector: 'app-categories',
@@ -10,46 +11,61 @@ export class CategoriesComponent implements OnInit {
     categories = [{
         icon: 'insert_drive_file',
         title: 'Pages',
+        type: 'Page'
     }, {
         icon: 'assignment',
-        title: 'Assignments'
+        title: 'Assignments',
+        type: 'Assignment'
     }, {
         icon: 'attach_file',
-        title: 'Files'
+        title: 'Files',
+        type: 'File'
     }, {
         icon: 'folder',
-        title: 'Folders'
+        title: 'Folders',
+        type: 'Folder'
     }, {
         icon: 'question_answer',
-        title: 'Discussions'
+        title: 'Discussions',
+        type: 'Discussion'
     }, {
         icon: 'view_agenda',
-        title: 'Modules'
+        title: 'Modules',
+        type: 'Module'
     }, {
         icon: 'view_list',
-        title: 'Module Items'
+        title: 'Module Items',
+        type: 'ModuleItem'
     }, {
         icon: 'gavel',
-        title: 'Quizzes'
+        title: 'Quizzes',
+        type: 'Quiz'
     }, {
         icon: 'help_outline',
-        title: 'Quiz Questions'
+        title: 'Quiz Questions',
+        type: 'QuizQuestion'
     }, {
         icon: 'explore',
-        title: 'Syllabus'
+        title: 'Syllabus',
+        type: 'Syllabus'
     }, {
         icon: 'language',
-        title: 'Universal'
+        title: 'Course Wide',
+        type: ''
     }, {
         icon: 'settings',
-        title: 'Course Settings'
+        title: 'Course Settings',
+        type: ''
     }];
 
-    constructor() {
+    constructor(private toolService: ToolService) {
 
     }
 
-    ngOnInit() {
+    setSelectedCategory(newCategory) {
+        console.log(newCategory);
+        this.toolService.selectedCategory = newCategory;
     }
 
+    ngOnInit() { }
 }
