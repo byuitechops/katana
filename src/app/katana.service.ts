@@ -34,7 +34,7 @@ export class KatanaService {
             };
             let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             headers.append('Content-Type', 'application/json');
-            this.http.post('/tool/discovery', body, { headers: headers }).subscribe(resolve, reject);
+            this.http.post('/tool/discover', body, { headers: headers }).subscribe(resolve, reject);
         });
     }
 

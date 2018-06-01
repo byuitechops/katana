@@ -1,16 +1,19 @@
 const path = require('path');
 const express = require('express');
+const morgan = require('morgan');
+const chalk = require('chalk');
 const bodyParser = require('body-parser');
 const nodeTools = require('./node_tools.js');
 const app = express();
 const serverPort = 8000;
 
-/* This serves the entire dist folder, allowing the angular files to talk to each other */
+// This logs every request made to the server to the console
+app.use(morgan(`${chalk.greenBright(':method')} ${chalk.yellowBright(':url')} :status :res[content-length] - :response-time ms`));
+// This serves the entire dist folder, allowing the angular files to talk to each other
 app.use(express.static('dist/katana'));
-app.use(bodyParser.json()); // Parses incoming request's body when JSON
-// app.use(bodyParser.urlencoded({
-//     extended: true
-// })); // Parses incoming request's body when x-www-form-urlencoded
+// Parses incoming request's body when JSON
+app.use(bodyParser.json());
+
 
 /*************************************************************************
  * Sends the homepage to the user.
@@ -36,7 +39,7 @@ app.get('/tool-list', (req, res) => {
  * 2. Runs the discoverIssues() function, which returns a list of items with issues
  * 3. Sends the response with status 400 and the stringified issue items
  ************************************************************************/
-app.post('/tool/discovery', async (req, res) => {
+app.post('/tool/discover', async (req, res) => {
     try {
         let {
             tool_id,
