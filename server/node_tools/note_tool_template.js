@@ -8,13 +8,13 @@ var canvas = require('canvas-api-wrapper');
  *****************************************************************/
 function check(item, options) {
 
-  /* Check the item to see if it is one the tool should run on.
-    This might include the item type, or checking the item title */
+    /* Check the item to see if it is one the tool should run on.
+      This might include the item type, or checking the item title */
 
-  /* Now check if the item has any issues. Make sure to save all
-    of the issues for a single item. */
+    /* Now check if the item has any issues. Make sure to save all
+      of the issues for a single item. */
 
-  /* On each item with issues, add a property named "issues" with an 
+    /* On each item with issues, add a property named "issues" with an 
     array of objects, one for each issue. Each object should look like this:
 
     {
@@ -30,7 +30,7 @@ function check(item, options) {
     }
 */
 
-  return item;
+    return item;
 }
 
 /*****************************************************************
@@ -39,8 +39,8 @@ function check(item, options) {
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {array} fixedIssues - All issues successfully fixed.
  *****************************************************************/
-function fix(item, options) {
-  // Fix the item, if there is anything to fix
+function fix(issueItem, options) {
+    // Fix the item, if there is anything to fix
 }
 
 /*****************************************************************
@@ -50,32 +50,32 @@ function fix(item, options) {
  * @returns {array} issues - All issues discovered or fixed.
  *****************************************************************/
 function discovery(course, options) {
-  return new Promise(async (resolve, reject) => {
-    // Set this to the canvas items you need
-    let items = await course.modules.get(true);
+    return new Promise(async (resolve, reject) => {
+        // Set this to the canvas items you need
+        let items = await course.modules.get(true);
 
-    // discover list of issues using check() and then resolve the promise with the list
+        // discover list of issues using check() and then resolve the promise with the list
 
-    // resolve promise with issueItems
+        // resolve promise with issueItems
 
-  })
+    })
 }
 
 const details = {
-  name: 'tool_name',
-  itemTypes: [
-    'Page',
-    'Assignment',
-    'Discussion',
-    'Quiz',
-    'QuizQuestion',
-    'Module',
-    'ModuleItem'
-  ]
+    name: 'tool_name',
+    itemTypes: [
+        'Page',
+        'Assignment',
+        'Discussion',
+        'Quiz',
+        'QuizQuestion',
+        'Module',
+        'ModuleItem'
+    ]
 };
 
 module.exports = {
-  fix,
-  discovery,
-  details
+    fix,
+    discovery,
+    details
 };

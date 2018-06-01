@@ -84,4 +84,5 @@
 
 .selectedCard {
     border-left: solid 5px var(--accent-1);
+    padding-left: 11px;
 }

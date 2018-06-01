@@ -11,7 +11,7 @@ export class CourseChipComponent implements OnInit {
     @Input() // Course Code
     course: Course;
 
-    constructor(private issuesService: IssuesService) { }
+    constructor(public issuesService: IssuesService) { }
 
     ngOnInit() { }
 }

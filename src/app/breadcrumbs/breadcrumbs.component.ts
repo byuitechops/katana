@@ -16,7 +16,7 @@ export class BreadcrumbsComponent implements OnInit {
         url: '/',
         title: 'Pages'
     }, {
-        url: '/',
+        url: '/tool-view',
         title: 'Modify Attributes'
     }];
 

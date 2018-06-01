@@ -13,25 +13,10 @@ export interface Course {
 export class CoursesService {
 
     courses: Course[] = [{
-        id: 123,
-        course_name: 'Cow Surfing',
-        course_code: 'B 383',
-        instructor: 'Childers, Seth'
-    }, {
-        id: 456,
-        course_name: 'Deforesting With Passion',
-        course_code: 'CS 364',
+        id: 12919,
+        course_name: 'Nursing 400)',
+        course_code: 'NURS 400',
         instructor: 'Williams, Zachary'
-    }, {
-        id: 789,
-        course_name: 'Marx Brothers - A History',
-        course_code: 'COMM 130',
-        instructor: 'Dowdle-Sessions, Theron'
-    }, {
-        id: 342,
-        course_name: 'How to Eat',
-        course_code: 'AGBUS 300A',
-        instructor: 'Earl, Benjamin'
     }];
 
     constructor() { }

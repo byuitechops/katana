@@ -13,7 +13,7 @@ export class CourseSidebarComponent implements OnInit {
     courseSelectionOpen: boolean = false;
 
     constructor(private issuesService: IssuesService,
-        private coursesService: CoursesService,
+        public coursesService: CoursesService,
         private activatedRoute: ActivatedRoute) { }
 
     courseOverlay() {

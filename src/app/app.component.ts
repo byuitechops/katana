@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { IssuesService } from './issues.service';
+import { Router, Event, NavigationEnd } from '@angular/router';
+import { IssuesService, IssueItem } from './issues.service';
+import { CoursesService } from './courses.service';
+import { KatanaService } from './katana.service';
 
 @Component({
     selector: 'app-root',
@@ -21,14 +23,37 @@ export class AppComponent {
      * 3. Set the IssuesService values for selectedItem and selectedCourse to null
      */
     constructor(private router: Router,
-        private issuesService: IssuesService) {
-        router.events.subscribe(event => {
-            if (event.constructor.name === 'NavigationEnd' &&
+        private coursesService: CoursesService,
+        private issuesService: IssuesService,
+        private katanaService: KatanaService) {
+
+        router.events.subscribe((event: Event) => {
+            if (event instanceof NavigationEnd &&
                 !event.urlAfterRedirects.includes('tool-view')) {
                 issuesService.selectedItem = null;
                 issuesService.selectedCourse = null;
             }
         });
+    }
+
+    // TESTING This function will be removed
+    testRunDiscover() {
+        this.katanaService.discoverIssues('equella_links', {
+
+        }).then((issueItems: IssueItem[]) => {
+            console.log('DISCOVERED', issueItems);
+            this.issuesService.issueItems = issueItems;
+        }).catch(console.error);
+    }
+
+    // TESTING This function will be removed
+    testRunFix() {
+        this.katanaService.fixIssues('equella_links', {
+
+        }).then((issueItems: IssueItem[]) => {
+            console.log('FIXED', issueItems);
+            this.issuesService.issueItems = issueItems;
+        }).catch(console.error);
     }
 
     title = 'app';

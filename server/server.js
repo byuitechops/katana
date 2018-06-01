@@ -1,16 +1,31 @@
 const path = require('path');
 const express = require('express');
-const canvas = require('canvas-api-wrapper');
-const business = require('./business_logic.js');
+const bodyParser = require('body-parser');
+const nodeTools = require('./node_tools.js');
 const app = express();
 const serverPort = 8000;
+
+/* This serves the entire dist folder, allowing the angular files to talk to each other */
+app.use(express.static('dist/katana'));
+app.use(bodyParser.json()); // Parses incoming request's body when JSON
+// app.use(bodyParser.urlencoded({
+//     extended: true
+// })); // Parses incoming request's body when x-www-form-urlencoded
 
 /*************************************************************************
  * Sends the homepage to the user.
  * @returns {page} - Homepage
  ************************************************************************/
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, './dist/katana/index.html'))
+    res.sendFile(path.join(__dirname, '../dist/katana/index.html'))
+});
+
+/*************************************************************************
+ * Sends the list of tools to the client.
+ * @returns {string[]} - List of tools available from the server
+ ************************************************************************/
+app.get('/tool-list', (req, res) => {
+    res.send(Object.keys(nodeTools.tools));
 });
 
 /*************************************************************************
@@ -22,18 +37,19 @@ app.get('/', (req, res) => {
  * 3. Sends the response with status 400 and the stringified issue items
  ************************************************************************/
 app.post('/tool/discovery', async (req, res) => {
-  try {
-    let {
-      tool_id,
-      courses,
-      options
-    } = req.body;
+    try {
+        let {
+            tool_id,
+            courses,
+            options
+        } = req.body;
 
-    let issueItems = await business.discoverIssues(tool_id, courses, options);
-    res.status(200).send(JSON.stringify(issueItems));
-  } catch (e) {
-    res.status(400).send(JSON.stringify(e));
-  }
+        let issueItems = await nodeTools.discoverIssues(tool_id, courses, options);
+        res.status(200).send(issueItems);
+    } catch (e) {
+        console.log(e);
+        res.status(400).send(e);
+    }
 });
 
 /*************************************************************************
@@ -41,16 +57,23 @@ app.post('/tool/discovery', async (req, res) => {
  * How do we add body and option requests and whatnot to jsdocs?
  * @returns {object[]} - Array of Issues
  ************************************************************************/
-app.put('/tool/fix', (req, res) => {
+app.put('/tool/fix', async (req, res) => {
+    try {
+        let {
+            tool_id,
+            issueItems,
+            options
+        } = req.body;
 
-  // TODO
-
+        let fixedIssueItems = await nodeTools.fixIssues(tool_id, issueItems, options);
+        res.status(200).send(fixedIssueItems);
+    } catch (e) {
+        console.log(e);
+        res.status(400).send(e);
+    }
 });
-
-/* This serves the entire dist folder, allowing the angular files to talk to each other */
-app.use(express.static('./dist/katana'));
 
 /* Starts the server */
 app.listen(serverPort, () => {
-  console.log('Katana Express server has launched on port:', serverPort);
+    console.log('Katana Express server has launched on port:', serverPort);
 });

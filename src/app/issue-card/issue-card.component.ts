@@ -14,7 +14,7 @@ export class IssueCardComponent implements AfterViewInit {
     // Reference to the typeIcon
     @ViewChild('typeIcon') typeIcon: ElementRef;
 
-    constructor(private issuesService: IssuesService) { }
+    constructor(public issuesService: IssuesService) { }
 
     /***********************************************************************
      * This class implements AfterViewInit, which runs after the element
