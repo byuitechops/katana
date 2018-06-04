@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { appRoutes } from '../app.module';
+import { Router } from '@angular/router';
+import { ToolService } from '../tool.service';
 
 @Component({
     selector: 'app-breadcrumbs',
@@ -20,8 +21,11 @@ export class BreadcrumbsComponent implements OnInit {
         title: 'Modify Attributes'
     }];
 
-    constructor() { }
+    constructor(private router: Router, public toolService: ToolService) { }
 
-    ngOnInit() {
+    ngOnInit() { }
+
+    buildRouterLink(pathPieces) {
+        this.router.navigate(pathPieces);
     }
 }

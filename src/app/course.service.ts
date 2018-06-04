@@ -63,7 +63,7 @@ export class CourseService {
 
     // This setter changes the selected item to the first item of the newly selected course
     set selectedCourse(course: Course) {
-        if (course === this._selectedCourse) return;
+        if (course === this._selectedCourse || !course) return;
         this._selectedCourse = course;
         this.selectedItem = this.issueItems.find(issueItem => issueItem.course_id === course.id) || null;
     }

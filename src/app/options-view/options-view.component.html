@@ -3,16 +3,18 @@
         <div class="optionsView__title header_1">
             <span class="header_bold">Conditions</span>
             <span class="optionsView__toolTitle header_thin right">
-                {{this.toolService.selectedTool.title}}
-            </span>
+          {{toolService.selectedTool.title}}
+        </span>
         </div>
-        <div class="card-content">
-            <!-- Options Generated Here -->
-
-        </div>
-        <div class="card-action">
-            <a routerLink="/">Cancel</a>
-            <a (click)="navToIssues()">Continue</a>
-        </div>
+        <form id="optionsForm" (ngSubmit)="onSubmit()">
+            <div class="card-content">
+                <!-- Options Generated Here -->
+                <div *ngFor="let option of options" [innerHTML]="createOption(option) | bypassSanitize"></div>
+            </div>
+            <div class="card-action">
+                <button type="button" class="btn-flat grey-text" routerLink="/">Cancel</button>
+                <button type="submit" class="btn-flat green-text text-accent-4">Continue</button>
+            </div>
+        </form>
     </div>
 </div>

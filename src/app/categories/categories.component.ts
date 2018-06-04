@@ -8,59 +8,7 @@ import { ToolService } from '../tool.service';
 })
 export class CategoriesComponent implements OnInit {
 
-    categories = [{
-        icon: 'insert_drive_file',
-        title: 'Pages',
-        type: 'Page'
-    }, {
-        icon: 'assignment',
-        title: 'Assignments',
-        type: 'Assignment'
-    }, {
-        icon: 'attach_file',
-        title: 'Files',
-        type: 'File'
-    }, {
-        icon: 'folder',
-        title: 'Folders',
-        type: 'Folder'
-    }, {
-        icon: 'question_answer',
-        title: 'Discussions',
-        type: 'Discussion'
-    }, {
-        icon: 'view_agenda',
-        title: 'Modules',
-        type: 'Module'
-    }, {
-        icon: 'view_list',
-        title: 'Module Items',
-        type: 'ModuleItem'
-    }, {
-        icon: 'gavel',
-        title: 'Quizzes',
-        type: 'Quiz'
-    }, {
-        icon: 'help_outline',
-        title: 'Quiz Questions',
-        type: 'QuizQuestion'
-    }, {
-        icon: 'explore',
-        title: 'Syllabus',
-        type: 'Syllabus'
-    }, {
-        icon: 'language',
-        title: 'Course Wide',
-        type: ''
-    }, {
-        icon: 'settings',
-        title: 'Course Settings',
-        type: ''
-    }];
-
-    constructor(private toolService: ToolService) {
-
-    }
+    constructor(public toolService: ToolService) { }
 
     /************************************************************
      * This sets the selected category on the Tool service.
@@ -70,8 +18,7 @@ export class CategoriesComponent implements OnInit {
      * @returns {false} - This is so it doesn't refresh the entire page
      ************************************************************/
     setSelectedCategory(category) {
-        this.toolService.selectedCategory = category.type;
-        console.log(this.toolService.selectedCategory);
+        this.toolService.selectedCategory = category;
         return false;
     }
 

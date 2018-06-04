@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
  * @returns {string[]} - List of tools available from the server
  ************************************************************************/
 app.get('/tool-list', (req, res) => {
-    res.send(nodeTools.toolList);
+    res.send(Object.keys(nodeTools.toolList).map(toolId => nodeTools.toolList[toolId].details));
 });
 
 /*************************************************************************

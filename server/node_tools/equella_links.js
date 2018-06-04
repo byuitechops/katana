@@ -3,73 +3,73 @@ const canvas = require('canvas-api-wrapper');
 
 /*****************************************************************
  * Runs the prescribed fix on each item provided.
- * @param {object} item - Canvas item produced by the Canvas API Wrapper 
+ * @param {object} item - Canvas item produced by the Canvas API Wrapper
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {array} fixedIssues - All issues discovered.
  *****************************************************************/
 function checkItem(item, options) {
-  item.issues = [];
+    item.issues = [];
 
-  /* If the item is a module item, and it has an External URL, and it isn't the syllabus, then continue... */
-  if (item.constructor.name === 'ModuleItem' && item.type === 'ExternalUrl' && !/syllabus|syllabi/i.test(item.getTitle())) {
-    /* If it's a module item, treat it differently here */
-    var oldUrl = item.external_url;
-    if (item.external_url.includes('content.byui.edu/file/') &&
-      !item.external_url.includes('content.byui.edu/integ/gen/')) {
-      var newUrl = oldUrl;
-      newUrl = newUrl.replace(/\/file\//i, '/integ/gen/');
-      newUrl = newUrl.replace(/\/\d+\//i, '/0/');
-      item.external_url = newUrl;
+    /* If the item is a module item, and it has an External URL, and it isn't the syllabus, then continue... */
+    if (item.constructor.name === 'ModuleItem' && item.type === 'ExternalUrl' && !/syllabus|syllabi/i.test(item.getTitle())) {
+        /* If it's a module item, treat it differently here */
+        var oldUrl = item.external_url;
+        if (item.external_url.includes('content.byui.edu/file/') &&
+            !item.external_url.includes('content.byui.edu/integ/gen/')) {
+            var newUrl = oldUrl;
+            newUrl = newUrl.replace(/\/file\//i, '/integ/gen/');
+            newUrl = newUrl.replace(/\/\d+\//i, '/0/');
+            item.external_url = newUrl;
 
-      item.issues.push({
-        title: 'Module Item External URL Static Equella Link',
-        description: `Contains an equella link that points to a specific version. It should be changed to automatically go to the newest version.`,
-        details: {
-          oldUrl,
-          newUrl
+            item.issues.push({
+                title: 'Module Item External URL Static Equella Link',
+                description: `Contains an equella link that points to a specific version. It should be changed to automatically go to the newest version.`,
+                details: {
+                    oldUrl,
+                    newUrl
+                }
+            });
         }
-      });
-    }
-    return;
-  }
-
-  if (item.getHtml() === null) return false;
-
-  var $ = cheerio.load(item.getHtml());
-  var links = $('a').get();
-
-  /* If there aren't any links in the item then return */
-  if (links.length === 0) {
-    return false;
-  }
-
-  links.forEach(link => {
-    var oldUrl = '';
-    /* Assign the oldUrl name for logging purposes */
-    if ($(link).attr('href')) {
-      oldUrl = $(link).attr('href');
+        return;
     }
 
-    /* Check if the link has an href, and if it is already the correct href */
-    if ($(link).attr('href') &&
-      $(link).attr('href').includes('content.byui.edu/file/') &&
-      !$(link).attr('href').includes('content.byui.edu/integ/gen/')) {
-      var newUrl = $(link).attr('href');
-      newUrl = newUrl.replace(/\/file\//i, '/integ/gen/');
-      newUrl = newUrl.replace(/\/\d+\//i, '/0/');
+    if (item.getHtml() === null) return false;
 
-      item.issues.push({
-        title: 'HTML Static Equella Link',
-        description: `Contains an equella link that points to a specific version. It should be changed to automatically go to the newest version.`,
-        details: {
-          oldUrl,
-          newUrl
+    var $ = cheerio.load(item.getHtml());
+    var links = $('a').get();
+
+    /* If there aren't any links in the item then return */
+    if (links.length === 0) {
+        return false;
+    }
+
+    links.forEach(link => {
+        var oldUrl = '';
+        /* Assign the oldUrl name for logging purposes */
+        if ($(link).attr('href')) {
+            oldUrl = $(link).attr('href');
         }
-      });
-    }
-  });
 
-  return item;
+        /* Check if the link has an href, and if it is already the correct href */
+        if ($(link).attr('href') &&
+            $(link).attr('href').includes('content.byui.edu/file/') &&
+            !$(link).attr('href').includes('content.byui.edu/integ/gen/')) {
+            var newUrl = $(link).attr('href');
+            newUrl = newUrl.replace(/\/file\//i, '/integ/gen/');
+            newUrl = newUrl.replace(/\/\d+\//i, '/0/');
+
+            item.issues.push({
+                title: 'HTML Static Equella Link',
+                description: `Contains an equella link that points to a specific version. It should be changed to automatically go to the newest version.`,
+                details: {
+                    oldUrl,
+                    newUrl
+                }
+            });
+        }
+    });
+
+    return item;
 }
 
 /*****************************************************************
@@ -79,41 +79,41 @@ function checkItem(item, options) {
  * @returns {array} fixedIssues - All issues successfully fixed.
  *****************************************************************/
 async function fix(issueItem, options) {
-  let course = canvas.getCourse(issueItem.course_id);
-  let canvasItem;
+    let course = canvas.getCourse(issueItem.course_id);
+    let canvasItem;
 
-  if (issueItem.item_type == 'Page') {
-    canvasItem = await course.pages.getOne(issueItem.item_id);
-  } else if (issueItem.item_type === 'Assignment') {
-    canvasItem = await course.assignments.getOne(issueItem.item_id);
-  } else if (issueItem.item_type === 'Discussion') {
-    canvasItem = await course.discussions.getOne(issueItem.item_id);
-  } else if (issueItem.item_type === 'Quiz') {
-    canvasItem = await course.quizzes.getOne(issueItem.item_id);
-  }
-
-  if (!canvasItem) {
-    console.log('CRAZY', canvasItem, issueItem);
-    return issueItem;
-  }
-
-  var $ = cheerio.load(canvasItem.getHtml());
-
-  issueItem.issues.forEach(issue => {
-    if (issue.status === 'approved') {
-      let link = $(`a[href="${issue.details.oldUrl}"]`).first();
-      if (!link) {
-        issue.status = 'fixed';
-      } else {
-        $(link).attr('href', issue.details.newUrl);
-        issue.status = 'fixed';
-      }
+    if (issueItem.item_type == 'Page') {
+        canvasItem = await course.pages.getOne(issueItem.item_id);
+    } else if (issueItem.item_type === 'Assignment') {
+        canvasItem = await course.assignments.getOne(issueItem.item_id);
+    } else if (issueItem.item_type === 'Discussion') {
+        canvasItem = await course.discussions.getOne(issueItem.item_id);
+    } else if (issueItem.item_type === 'Quiz') {
+        canvasItem = await course.quizzes.getOne(issueItem.item_id);
     }
-  });
 
-  canvasItem.setHtml($.html());
-  await canvasItem.update();
-  return issueItem;
+    if (!canvasItem) {
+        console.log('CRAZY', canvasItem, issueItem);
+        return issueItem;
+    }
+
+    var $ = cheerio.load(canvasItem.getHtml());
+
+    issueItem.issues.forEach(issue => {
+        if (issue.status === 'approved') {
+            let link = $(`a[href="${issue.details.oldUrl}"]`).first();
+            if (!link) {
+                issue.status = 'fixed';
+            } else {
+                $(link).attr('href', issue.details.newUrl);
+                issue.status = 'fixed';
+            }
+        }
+    });
+
+    canvasItem.setHtml($.html());
+    await canvasItem.update();
+    return issueItem;
 }
 
 /*****************************************************************
@@ -123,27 +123,27 @@ async function fix(issueItem, options) {
  * @returns {array} issues - All issues discovered or fixed.
  *****************************************************************/
 function discover(course, options) {
-  return new Promise(async (resolve, reject) => {
-    await course.assignments.get();
-    await course.discussions.get();
-    // await course.modules.getComplete();
-    await course.pages.getComplete();
-    await course.quizzes.getComplete();
+    return new Promise(async (resolve, reject) => {
+        await course.assignments.get();
+        await course.discussions.get();
+        // await course.modules.getComplete();
+        await course.pages.getComplete();
+        await course.quizzes.getComplete();
 
-    let assignments = course.assignments.filter(assignment => checkItem(assignment, options));
-    let discussions = course.discussions.filter(discussion => checkItem(discussion, options));
-    // let moduleItems = course.modules.reduce((acc, module) => acc.concat(module.items), []).filter(module => checkItem(module, options));
-    let pages = course.pages.filter(page => checkItem(page, options));
-    let quizzes = course.quizzes.filter(quiz => checkItem(quiz, options));
-    // let quizQuestions = course.quizzes.reduce((acc, quiz) => acc.concat(quiz.questions), []).filter(question => checkItem(question, options));
+        let assignments = course.assignments.filter(assignment => checkItem(assignment, options));
+        let discussions = course.discussions.filter(discussion => checkItem(discussion, options));
+        // let moduleItems = course.modules.reduce((acc, module) => acc.concat(module.items), []).filter(module => checkItem(module, options));
+        let pages = course.pages.filter(page => checkItem(page, options));
+        let quizzes = course.quizzes.filter(quiz => checkItem(quiz, options));
+        // let quizQuestions = course.quizzes.reduce((acc, quiz) => acc.concat(quiz.questions), []).filter(question => checkItem(question, options));
 
-    let allItems = [].concat(pages, assignments, discussions, quizzes);
+        let allItems = [].concat(pages, assignments, discussions, quizzes);
 
-    let items = allItems.map(item => checkItem(item, options));
-    items = items.filter(item => item.issues.length > 0);
+        let items = allItems.map(item => checkItem(item, options));
+        items = items.filter(item => item.issues.length > 0);
 
-    resolve(items);
-  })
+        resolve(items);
+    })
 }
 
 const details = {
@@ -157,13 +157,29 @@ const details = {
         'Quiz',
         'QuizQuestion'
     ],
-    discoverOptions: [],
+    discoverOptions: [{
+        title: 'Option 2',
+        description: 'Description Dropdown',
+        type: 'dropdown',
+        choices: [{
+            key: 'choice1',
+            text: 'Dropdown One'
+        }, {
+            key: 'choice2',
+            text: 'Dropdown Two'
+        }, {
+            key: 'choice3',
+            text: 'Dropdown Three'
+        }],
+        defaults: ['choice3'],
+        required: true
+    }],
     fixOptions: [],
 };
 
 module.exports = {
-  fix,
-  discover,
-  checkItem,
-  details
+    fix,
+    discover,
+    checkItem,
+    details
 };

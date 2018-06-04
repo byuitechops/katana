@@ -8,7 +8,7 @@ import { ToolService } from '../tool.service';
 })
 export class ToolSelectionComponent implements OnInit {
 
-    constructor(private toolService: ToolService) { }
+    constructor(public toolService: ToolService) { }
 
     ngOnInit() { }
 

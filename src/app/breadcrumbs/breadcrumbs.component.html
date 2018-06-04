@@ -1,7 +1,9 @@
 <div class="breadcrumbs">
-  <div class="nav-wrapper">
-    <div id="breadcrumb-links" class="col s12">
-      <a *ngFor="let breadcrumb of breadcrumbs" href="{{breadcrumb.url}}" class="breadcrumb">{{breadcrumb.title}}</a>
+    <div class="nav-wrapper">
+        <div id="breadcrumb-links" class="col s12">
+            <a href="/" class="breadcrumb">Categories</a>
+            <a *ngIf="toolService.selectedCategory" [routerLink]="['categories', 'tools']" [queryParams]="{category: toolService.selectedCategory.type}" (click)="buildRouterLink()" class="breadcrumb">{{toolService.selectedCategory.title}}</a>
+            <a *ngIf="toolService.selectedTool" [routerLink]="['categories', 'tools', toolService.selectedTool.id, 'options']" class="breadcrumb">{{toolService.selectedTool.title}}</a>
+        </div>
     </div>
-  </div>
 </div>

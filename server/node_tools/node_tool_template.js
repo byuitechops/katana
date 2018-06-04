@@ -2,7 +2,7 @@ var canvas = require('canvas-api-wrapper');
 
 /*****************************************************************
  * Runs the prescribed fix on each item provided.
- * @param {object} item - Canvas item produced by the Canvas API Wrapper 
+ * @param {object} item - Canvas item produced by the Canvas API Wrapper
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {array} fixedIssues - All issues discovered.
  *****************************************************************/
@@ -14,15 +14,15 @@ function check(item, options) {
     /* Now check if the item has any issues. Make sure to save all
       of the issues for a single item. */
 
-    /* On each item with issues, add a property named "issues" with an 
+    /* On each item with issues, add a property named "issues" with an
     array of objects, one for each issue. Each object should look like this:
 
     {
       title: 'Less than 6 Word Description',
       status: '', // This should always come back empty
-      description: 'Detailed description of the problem. You may have multiple 
-                    descriptions for different issues that the tool can discover. 
-                    Consider saving these as an object at the top of the tool, 
+      description: 'Detailed description of the problem. You may have multiple
+                    descriptions for different issues that the tool can discover.
+                    Consider saving these as an object at the top of the tool,
                     instead of keeping them inline.',
       details: {} /* These are any details needed for the angular side of Katana
                     to know how to display the issue. This should include enough
@@ -64,7 +64,7 @@ function discovery(course, options) {
 const details = {
     id: 'tool_id',
     title: 'Tool Title',
-    icon: 'icon_name_from_google_icons',
+    icon: 'settings',
     categories: [
         'Page',
         'Assignment',
