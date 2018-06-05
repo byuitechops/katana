@@ -23,6 +23,7 @@ module.exports = (body) => {
             blueprint: course.blueprint
         }
       });
+      console.log(`formattedCourses: `, typeof formattedCourses, formattedCourses);
       resolve(formattedCourses);
     });
   });

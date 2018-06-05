@@ -1,23 +1,23 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { KatanaService } from '../katana.service';
+import { Course } from '../course.service';
 
 @Component({
     selector: 'app-course-selection',
     templateUrl: './course-selection.component.html',
     styleUrls: ['./course-selection.component.css']
 })
-export class CourseSelectionComponent implements OnInit{
+export class CourseSelectionComponent {
     @ViewChild('account') private account: ElementRef;
     @ViewChild('term') private term: ElementRef;
     @ViewChild('blueprint') private blueprint: ElementRef;
     @ViewChild('searchText') private searchText: ElementRef;
 
-    courses = [{
-        name: 'Katana 101',
+    courseResults: Course[] = [{
+        course_name: 'Katana 101',
         id: 13028,
-        code: 'K 101',
+        course_code: 'K 101',
         instructor: 'Zach Williams',
-        section: 'Reference',
         account: 'Online',
         term: 'All',
         blueprint: false,
@@ -77,12 +77,12 @@ export class CourseSelectionComponent implements OnInit{
                 blueprint: this.blueprint.nativeElement.value, 
                 searchText: searchText
             })
-            .then(courses => {
-                console.log(typeof courses, courses)
+            .then((courses: Course[]) => {
+                console.log(`COURSES`, courses)
                 // Use them to heart's content
                 // courses.forEach(course => {
-                    this.courses.push(courses);
-                    console.log(this.courses);
+                    this.courseResults = courses;
+                    // console.log(this.courses);
                 // });
             })
             .catch(console.error);

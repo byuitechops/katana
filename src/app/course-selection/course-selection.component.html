@@ -45,12 +45,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let course of courses">
+                    <tr *ngFor="let course of courseResults">
                         <td>
                             <i class="material-icons">add_circle</i>
                         </td>
-                        <td>{{course.name}}</td>
-                        <td>{{course.code}}</td>
+                        <td>{{course.course_name}}</td>
+                        <td>{{course.course_code}}</td>
                         <td>{{course.instructor}}</td>
                         <td>{{course.section}}</td>
                         <td>{{course.account}}</td>
