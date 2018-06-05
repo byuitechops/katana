@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CourseService } from './course.service';
+import { CourseService, IssueItem } from './course.service';
 import { ToolService, Tool } from './tool.service';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { catchError, retry } from 'rxjs/operators';
 export class KatanaService {
 
     constructor(private http: HttpClient,
-        private toolsService: ToolService,
+        private toolService: ToolService,
         private courseService: CourseService) { }
 
     /*****************************************************************
@@ -25,7 +25,7 @@ export class KatanaService {
     getToolList() {
         return new Promise((resolve, reject) => {
             this.http.get('/tool-list').subscribe((toolList: any): any => {
-                this.toolsService.toolList = toolList;
+                this.toolService.toolList = toolList;
                 resolve();
             }, reject);
         });
@@ -67,6 +67,8 @@ export class KatanaService {
      ****************************************************************/
     discoverIssues(tool_id: string, options: object) {
         return new Promise((resolve, reject) => {
+            this.toolService.processingMessage = 'Discovering Issues...';
+            this.toolService.processing = true;
             let body = {
                 tool_id,
                 courses: this.courseService.courses,
@@ -74,7 +76,15 @@ export class KatanaService {
             };
             let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             headers.append('Content-Type', 'application/json');
-            this.http.post('/tool/discover', body, { headers: headers }).subscribe(resolve, reject);
+            this.http.post('/tool/discover', body, { headers: headers }).subscribe(
+                (issueItems: IssueItem[]) => {
+                    this.courseService.issueItems = issueItems;
+                    this.toolService.processing = false;
+                    resolve(issueItems);
+                },
+                (err) => {
+                    console.error(err);
+                });
         });
     }
 
@@ -92,6 +102,8 @@ export class KatanaService {
      ****************************************************************/
     fixIssues(tool_id: string, options: object) {
         return new Promise((resolve, reject) => {
+            this.toolService.processingMessage = 'Fixing Issues...';
+            this.toolService.processing = true;
             let body = {
                 tool_id,
                 issueItems: this.courseService.issueItems,
@@ -99,7 +111,15 @@ export class KatanaService {
             };
             let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             headers.append('Content-Type', 'application/json');
-            this.http.put('/tool/fix', body, { headers: headers }).subscribe(resolve, reject);
+            this.http.put('/tool/fix', body, { headers: headers }).subscribe(
+                (fixedItems: IssueItem[]) => {
+                    this.courseService.issueItems = fixedItems;
+                    this.toolService.processing = false;
+                    resolve(fixedItems);
+                },
+                (err) => {
+                    console.error(err);
+                });
         });
     }
 }

@@ -1,4 +1,25 @@
-<div style="display: flex;">
+<div *ngIf="toolService.processing">
+    <div class="loader">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="loader">
+        {{toolService.processingMessage}}
+    </div>
+</div>
+
+<div style="display: flex;" *ngIf="!toolService.processing">
     <app-issue-list></app-issue-list>
     <div>
         <app-issue-details></app-issue-details>

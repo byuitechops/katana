@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router, Event, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { CourseService, IssueItem } from './course.service';
+import { toast } from 'angular2-materialize';
 import { KatanaService } from './katana.service';
+import { ErrorHandlerService } from './error-handler.service';
 
 @Component({
     selector: 'app-root',
@@ -24,7 +26,8 @@ export class AppComponent {
     constructor(private router: Router,
         private route: ActivatedRoute,
         private courseService: CourseService,
-        private katanaService: KatanaService) {
+        private katanaService: KatanaService,
+        private errorHandler: ErrorHandlerService) {
 
 
         router.events.subscribe((event: Event) => {
@@ -36,7 +39,12 @@ export class AppComponent {
         });
 
         // Retrieve the tool list on start
-        this.katanaService.getToolList().then(results => console.log(results)).catch(console.error);
+        this.katanaService.getToolList()
+            .catch((e) => {
+                this.errorHandler.devMode = true;
+                this.errorHandler.toastError(new Error('You are in Development Mode'));
+                console.error(e);
+            });
     }
 
     // TESTING This function will be removed

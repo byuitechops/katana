@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ToolService, DiscoverOption } from '../tool.service';
+import { KatanaService } from '../katana.service';
 
 @Component({
     selector: 'app-options-view',
@@ -16,11 +17,22 @@ export class OptionsViewComponent {
     formGroup = this.optionModel.toGroup();
 
     constructor(public toolService: ToolService,
+        public katanaService: KatanaService,
         private router: Router) { }
 
 
 
+    onSubmit() {
+        var options = {};
+        Object.keys(this.formGroup.controls).forEach(key => {
+            options[key] = this.formGroup.controls[key].value;
+        });
 
+        // Send request
+        this.katanaService.discoverIssues(this.toolService.selectedTool.id, options)
+            .catch(console.error);
+        this.router.navigate([`categories/tools/${this.toolService.selectedTool.id}/issues`]);
+    }
 
 
 
@@ -71,28 +83,28 @@ export class OptionsViewComponent {
      * Fires when the options form is submitted. This builds the options object
      * to be used by the Katana service in communicating with the server.
      *****************************************************************************/
-    onSubmit() {
-        let textInputs: any = document.querySelectorAll('#optionsForm input');
-        let selectInputs: any = document.querySelectorAll('#optionsForm select');
-        let options = [];
+    // onSubmit() {
+    //     let textInputs: any = document.querySelectorAll('#optionsForm input');
+    //     let selectInputs: any = document.querySelectorAll('#optionsForm select');
+    //     let options = [];
 
-        textInputs.forEach(textInput => {
-            let obj = {};
-            obj[textInput.name] = textInput.value;
-            options.push(obj);
-        });
+    //     textInputs.forEach(textInput => {
+    //         let obj = {};
+    //         obj[textInput.name] = textInput.value;
+    //         options.push(obj);
+    //     });
 
-        selectInputs.forEach(selectInput => {
-            Array.from(selectInput.selectedOptions).forEach(selectedOption => {
-                let obj = {};
-                obj[selectInput.name] = selectedOption['value'];
-                options.push(obj);
-            });
-        });
+    //     selectInputs.forEach(selectInput => {
+    //         Array.from(selectInput.selectedOptions).forEach(selectedOption => {
+    //             let obj = {};
+    //             obj[selectInput.name] = selectedOption['value'];
+    //             options.push(obj);
+    //         });
+    //     });
 
-        // Send somewhere
-        console.log(options);
-    }
+    //     // Send somewhere
+    //     console.log(options);
+    // }
 
     /******************************************************************************
      * Navigates the user to the issues page for the currently running tool.
