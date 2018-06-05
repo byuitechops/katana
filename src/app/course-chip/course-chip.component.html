@@ -1,4 +1,4 @@
-<div class="courseChip" [class.selectedChip]="this.courseService.selectedCourse !== null && this.courseService.selectedCourse.id === course.id">
+<div class="courseChip" [class.selectedChip]="isSelected()">
     {{course.course_code}}
     <div class="courseChip__instructorName">
         {{this.course.instructor.split(', ')[0].replace('-', '‑')}}

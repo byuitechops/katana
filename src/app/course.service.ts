@@ -1,16 +1,6 @@
 import { TEST_ISSUES } from './GENERATED_ISSUES';
 import { Injectable } from '@angular/core';
 
-export interface Course {
-    id: number,
-    course_name: string,
-    course_code: string,
-    instructor: string,
-    account?: string,
-    term?: string
-    blueprint?: boolean,
-}
-
 export interface Issue {
     title: string,
     status: string,
@@ -27,6 +17,17 @@ export interface IssueItem {
     issues: Issue[]
 }
 
+export interface Course {
+    id: number,
+    course_name: string,
+    course_code: string,
+    instructor: string,
+    issueItems: IssueItem[],
+    account?: string,
+    term?: string
+    blueprint?: boolean,
+}
+
 @Injectable({
     providedIn: 'root'
 })
@@ -36,14 +37,12 @@ export class CourseService {
         id: 13018,
         course_name: 'Katana 101',
         course_code: 'K 101',
-        instructor: 'Zach Williams',
+        instructor: 'Seth Childers',
+        issueItems: []
     }];
 
-    issueItems: IssueItem[] = [];
-
-    _selectedCourse: Course = this.courses[0] || null;
-
-    selectedItem: IssueItem = this.issueItems[0] || null;
+    selectedIssueItem: IssueItem;
+    _selectedCourse: Course;
 
     get selectedCourse() {
         return this._selectedCourse;
@@ -53,7 +52,7 @@ export class CourseService {
     set selectedCourse(course: Course) {
         if (course === this._selectedCourse || !course) return;
         this._selectedCourse = course;
-        this.selectedItem = this.issueItems.find(issueItem => issueItem.course_id === course.id) || null;
+        this.selectedIssueItem = this._selectedCourse.issueItems.find(issueItem => issueItem.course_id === course.id) || null;
     }
 
     constructor() { }

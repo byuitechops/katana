@@ -1,9 +1,9 @@
 <div class="issueDetails">
     <div class="issueDetails__header">
         Issues
-        <span class="issueDetails__itemTitle header_thin">{{this.courseService.selectedItem.title}}</span>
+        <span class="issueDetails__itemTitle header_thin">{{this.courseService.selectedItem ? this.courseService.selectedItem.title : ''}}</span>
     </div>
-    <div *ngIf="courseService.selectedItem !== null" class="issueDetails__issueBox">
+    <div *ngIf="courseService.selectedItem" class="issueDetails__issueBox">
         <app-issue-container *ngFor="let issue of courseService.selectedItem.issues" [issue]="issue"></app-issue-container>
     </div>
 </div>

@@ -78,11 +78,11 @@ app.put('/tool/fix', async (req, res) => {
     try {
         let {
             tool_id,
-            issueItems,
+            courses,
             options
         } = req.body;
 
-        let fixedIssueItems = await nodeTools.fixIssues(tool_id, issueItems, options);
+        let fixedIssueItems = await nodeTools.fixIssues(tool_id, courses, options);
         res.status(200).send(fixedIssueItems);
     } catch (e) {
         console.log(e);

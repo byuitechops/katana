@@ -68,13 +68,13 @@ export class IssueNavComponent implements OnInit {
      * 5. If direction is down and we aren't on the last index, set the selected item to the one below
      ****************************************************************/
     shiftSelectedItem(direction: string) {
-        if (this.courseService.selectedItem) {
-            let courseIssueItems = this.courseService.issueItems.filter(issueItem => issueItem.course_id === this.courseService.selectedCourse.id);
-            let currentIndex = courseIssueItems.findIndex(issueItem => this.courseService.selectedItem === issueItem);
+        if (this.courseService.selectedIssueItem) {
+            let courseIssueItems = this.courseService.selectedCourse.issueItems.filter(issueItem => issueItem.course_id === this.courseService.selectedCourse.id);
+            let currentIndex = courseIssueItems.findIndex(issueItem => this.courseService.selectedIssueItem === issueItem);
             if (direction === 'up' && currentIndex !== 0) {
-                this.courseService.selectedItem = courseIssueItems[currentIndex - 1];
+                this.courseService.selectedIssueItem = courseIssueItems[currentIndex - 1];
             } else if (direction === 'down' && currentIndex !== courseIssueItems.length - 1) {
-                this.courseService.selectedItem = courseIssueItems[currentIndex + 1];
+                this.courseService.selectedIssueItem = courseIssueItems[currentIndex + 1];
             }
         }
     }
@@ -88,11 +88,10 @@ export class IssueNavComponent implements OnInit {
      * 3. Returns the index + 1 and the total length of the array of cards for the currently selected course
      ****************************************************************/
     getCardPosition() {
-        let courseIssueItems = this.courseService.issueItems.filter(issueItem => issueItem.course_id === this.courseService.selectedCourse.id);
-        let currentIndex = courseIssueItems.findIndex(courseIssueItem => courseIssueItem === this.courseService.selectedItem);
+        let currentIndex = this.courseService.selectedCourse.issueItems.findIndex(issueItem => issueItem === this.courseService.selectedIssueItem);
         return {
             currentIndex: currentIndex + 1,
-            totalLength: courseIssueItems.length
+            totalLength: this.courseService.selectedCourse.issueItems.length
         }
     }
 
@@ -105,7 +104,7 @@ export class IssueNavComponent implements OnInit {
      * 3. If not, set it's status to approved
      ****************************************************************/
     setApproved(newStatus: string) {
-        this.courseService.issueItems.forEach(issueItem => {
+        this.courseService.selectedCourse.issueItems.forEach(issueItem => {
             issueItem.issues.forEach(issue => {
                 if (newStatus === 'approved' && issue.status === 'untouched') {
                     issue.status = newStatus;
@@ -126,7 +125,7 @@ export class IssueNavComponent implements OnInit {
      * 3. Return the number of issues discovered
      ****************************************************************/
     getIssueCount(statusArray) {
-        let issues = this.courseService.issueItems.reduce((acc, issueItem) => [...acc, ...issueItem.issues], []);
+        let issues = this.courseService.selectedCourse.issueItems.reduce((acc, issueItem) => [...acc, ...issueItem.issues], []);
         return issues.filter(issue => statusArray.includes(issue.status)).length;
     }
 }
