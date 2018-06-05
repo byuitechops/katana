@@ -37,7 +37,6 @@ export class KatanaService {
      * 1. 
      ****************************************************************/
     getCourses(body) {
-        // console.log(body);
         return new Promise((resolve, reject) => {
             let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             headers.append('Content-Type', 'application/json');

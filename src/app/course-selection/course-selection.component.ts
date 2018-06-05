@@ -22,44 +22,8 @@ export class CourseSelectionComponent {
         account: 'Online',
         term: 'All',
         blueprint: false,
+        url: 'www.google.com'
     }
-        //     {
-        //     name: 'Course Support',
-        //     id: 1234,
-        //     code: 'DAA 300',
-        //     instructor: 'Ron Vallejo',
-        //     section: 'Reference',
-        //     account: 'Online',
-        //     term: 'All',
-        //     blueprint: false,
-        // }, {
-        //     name: 'Technical Operations',
-        //     id: 1347,
-        //     code: 'TECH 100',
-        //     instructor: 'Corey Moore',
-        //     section: 'Reference',
-        //     account: 'Pathway',
-        //     term: 'Fall',
-        //     blueprint: true,
-        // }, {
-        //     name: 'Visual Media and Design',
-        //     id: 2451,
-        //     code: 'COMM 130',
-        //     instructor: 'Seth Childers',
-        //     section: '3',
-        //     account: 'Campus',
-        //     term: 'Fall',
-        //     blueprint: false,
-        // }, {
-        //     name: 'Software Engineering I',
-        //     id: 4321,
-        //     code: 'CS 364',
-        //     instructor: 'William Clements',
-        //     section: '1, 4',
-        //     account: 'LDSBC',
-        //     term: 'Spring',
-        //     blueprint: true,
-        // }
     ];
 
     constructor(private katanaService: KatanaService) { }
@@ -69,24 +33,21 @@ export class CourseSelectionComponent {
 
         if (textInput.length > 2) {
             /* Replace any whitespaces with '%20' for the query parameter */
+            // Perhaps trim the white spaces from the beginning of the search? Perhaps convert double/triple spaces into one?
             let searchText = this.searchText.nativeElement.value.replace(/\s/g, '%20');
 
-            // CHANGE make this use the course search filters
+            /* Send the search parameters to the katana service to build the correct URI */
             this.katanaService.getCourses({
                 account: this.account.nativeElement.value,
                 term: this.term.nativeElement.value,
                 blueprint: this.blueprint.nativeElement.value,
                 searchText: searchText
             })
-                .then((courses: Course[]) => {
-                    console.log(`COURSES`, courses)
-                    // Use them to heart's content
-                    // courses.forEach(course => {
-                    this.courseResults = courses;
-                    // console.log(this.courses);
-                    // });
-                })
-                .catch(console.error);
-        }
+            .then((courses: Course[]) => {
+                console.log(`COURSES`, courses)
+                this.courseResults = courses;
+            })
+            .catch(console.error);
+        }   
     }
 }

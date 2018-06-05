@@ -26,6 +26,7 @@ export interface Course {
     account?: string,
     term?: string
     blueprint?: boolean,
+    url: string
 }
 
 @Injectable({
@@ -38,7 +39,8 @@ export class CourseService {
         course_name: 'Katana 101',
         course_code: 'K 101',
         instructor: 'Seth Childers',
-        issueItems: []
+        issueItems: [],
+        url: 'www.google.com'
     }];
 
     selectedIssueItem: IssueItem;
