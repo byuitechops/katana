@@ -5,7 +5,10 @@ export interface Course {
     id: number,
     course_name: string,
     course_code: string,
-    instructor: string
+    instructor: string,
+    account?: string,
+    term?: string
+    blueprint?: boolean,
 }
 
 export interface Issue {

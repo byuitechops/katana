@@ -4,7 +4,7 @@
         <div class="courseSearch__search">
             <div>
                 <div class="courseSearch__options">
-                    <select class="courseSearch__account">
+                    <select class="courseSearch__account" #account>
                         <option value="" disabled selected>Account</option>
                         <option value="online">Online</option>
                         <option value="campus">Campus</option>
@@ -12,7 +12,7 @@
                         <option value="all">All</option>
                     </select>
 
-                    <select class="courseSearch__term">
+                    <select class="courseSearch__term" #term>
                         <option value="" disabled selected>Term</option>
                         <option value="fall">Fall</option>
                         <option value="winter">Winter</option>
@@ -20,14 +20,14 @@
                         <option value="all">All Terms</option>
                     </select>
 
-                    <select class="courseSearch__blueprint">
+                    <select class="courseSearch__blueprint" #blueprint>
                         <option value="" disabled selected>Blueprint</option>
                         <option value="true">True</option>
                         <option value="false">False</option>
                     </select>
                 </div>
 
-                <input type="text" placeholder="Search courses..." (keydown)="getCourses()" />
+                <input type="text" placeholder="Search courses..." (input)="getCourses()" #searchText/>
             </div>
             <div class="courseSearch__courseResults__title">Results</div>
             <table class="highlight">

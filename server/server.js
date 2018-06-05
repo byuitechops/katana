@@ -24,8 +24,8 @@ app.get('/', (req, res) => {
 });
 
 /*************************************************************************
- * Sends the homepage to the user.
- * @returns {page} - Homepage
+ * Sends the list of courses searched for to the user.
+ * @returns {courses[]} - List of courses that match the search criteria
  ************************************************************************/
 app.post('/course-retrieval', (req, res) => {
     courseRetrieval(req.body)

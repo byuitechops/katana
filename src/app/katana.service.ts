@@ -36,11 +36,9 @@ export class KatanaService {
      * Process:
      * 1. 
      ****************************************************************/
-    getCourses() {
+    getCourses(body) {
+        // console.log(body);
         return new Promise((resolve, reject) => {
-            let body = {
-                meta: 'tomato'
-            };
             let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             headers.append('Content-Type', 'application/json');
             this.http.post('/course-retrieval', body, { headers: headers }).subscribe(

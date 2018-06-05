@@ -42,17 +42,16 @@
 app-course-selection {
   display: none;
   background-color: var(--primary-3);
-  border-right: 1px solid black;
 }
 
 app-course-selection.open {
   display: block;
-  animation: slidein 1s;
+  animation: slidein .5s ease-in-out;
 }
 
 app-course-selection.close {
   display: block;
-  animation: slideout 1s;
+  animation: slideout .5s ease-in-out;
   animation-fill-mode: forwards;
 }
 

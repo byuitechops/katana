@@ -1,8 +1,29 @@
 const canvas = require('canvas-api-wrapper');
 
 module.exports = (body) => {
-    return new Promise((resolve, reject) => {
-        // Build and make course api request here
-        resolve({data: 'POTATO'})
+  return new Promise((resolve, reject) => {
+    // In the URI, the enrollment_term_id needs to be part of the query, but we 
+    // currently do not know which ids we're looking for so it is not included yet
+
+    // The account should be ${searchParams.account_id} instead of /1/, but we again
+    // don't have all of the account info
+    canvas.get(`/api/v1/accounts/1/courses?search_term=${body.searchText}&include[]=term&include[]=teachers&blueprint=${body.blueprint}`, (err, courses) => {
+      if (err) {
+        console.error(err);
+        reject(err);
+      }
+      var formattedCourses = courses.map(course => {
+        return {
+            id: course.id,
+            course_name: course.name,
+            course_code: course.course_code,
+            instructor: course.teachers[0] ? course.teachers[0].display_name : 'none' ,
+            account: course.account_id,
+            term: course.term.name,
+            blueprint: course.blueprint
+        }
+      });
+      resolve(formattedCourses);
     });
+  });
 };
