@@ -6,13 +6,22 @@ import { KatanaService } from '../katana.service';
     templateUrl: './course-selection.component.html',
     styleUrls: ['./course-selection.component.css']
 })
-export class CourseSelectionComponent {
+export class CourseSelectionComponent implements OnInit{
     @ViewChild('account') private account: ElementRef;
     @ViewChild('term') private term: ElementRef;
     @ViewChild('blueprint') private blueprint: ElementRef;
     @ViewChild('searchText') private searchText: ElementRef;
 
-    courses = [
+    courses = [{
+        name: 'Katana 101',
+        id: 13028,
+        code: 'K 101',
+        instructor: 'Zach Williams',
+        section: 'Reference',
+        account: 'Online',
+        term: 'All',
+        blueprint: false,
+    }
     //     {
     //     name: 'Course Support',
     //     id: 1234,

@@ -7,8 +7,7 @@
             </span>
         </div>
 
-        <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
-
+        <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" #optionsForm="ngForm">
 
             <div class="card-content">
                 <div *ngFor="let option of optionModel.options" class="form-row">
@@ -20,12 +19,12 @@
                         </div>
                         <div *ngSwitchCase="'dropdown'">
                             <select style="display: block" [formControlName]="option.key">
-                                <option *ngFor="let choice of option.choices" [value]="choice.key">{{choice.text}}</option>
+                                <option *ngFor="let choice of option.choices">{{choice.text}}</option>
                             </select>
                         </div>
                         <div *ngSwitchCase="'multiselect'">
                             <select style="display: block" [formControlName]="option.key" multiple>
-                                <option *ngFor="let choice of option.choices" [value]="choice.key">{{choice.text}}</option>
+                                <option *ngFor="let choice of option.choices">{{choice.text}}</option>
                             </select>
                         </div>
                     </div>
@@ -39,16 +38,5 @@
                 <div class="required legend">Required</div>
             </div>
         </form>
-
-
-        <!-- <form #optionsForm (ngSubmit)="onSubmit()">
-            <div class="card-content">
-                <div *ngFor="let option of options" [innerHTML]="createOption(option) | bypassSanitize"></div>
-            </div>
-            <div class="card-action">
-                <button type="button" class="btn-flat grey-text" routerLink="/">Cancel</button>
-                <button type="submit" class="btn-flat green-text text-accent-4">Continue</button>
-            </div>
-        </form> -->
     </div>
 </div>

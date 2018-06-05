@@ -8,7 +8,7 @@ export interface DiscoverOption {
     description: string,
     type: string,
     choices: object[],
-    defaults: string[],
+    defaultText?: string,
     required: boolean
 }
 
@@ -27,6 +27,9 @@ export interface Tool {
 
 export class ToolService {
 
+    processing: boolean = false;
+    processingMessage: string = '';
+
     // The Tool List (set immediately by Katana service)
     toolList: Tool[] = [{
         id: 'page_tool',
@@ -39,7 +42,7 @@ export class ToolService {
             description: 'Please insert the title of the page you are looking for.',
             type: 'text',
             choices: [],
-            defaults: [],
+            defaultText: 'Default Test',
             required: true
         }, {
             title: 'Module',
@@ -48,15 +51,17 @@ export class ToolService {
             type: 'dropdown',
             choices: [{
                 key: 'allModules',
-                text: 'All Modules'
+                text: 'All Modules',
+                default: false
             }, {
                 key: 'instructorResources',
-                text: 'Instructor Resources'
+                text: 'Instructor Resources',
+                default: true
             }, {
                 key: 'studentResources',
-                text: 'Student Resources'
+                text: 'Student Resources',
+                default: false
             }],
-            defaults: ['allModules'],
             required: true
         }, {
             title: 'Feelings',
@@ -65,24 +70,29 @@ export class ToolService {
             type: 'multiselect',
             choices: [{
                 key: 'nope1',
-                text: 'Definitely Not'
+                text: 'Definitely Not',
+                default: false
             }, {
                 key: 'nope12',
-                text: 'No'
+                text: 'No',
+                default: true
             }, {
                 key: 'nope123',
-                text: 'Nope'
+                text: 'Nope',
+                default: true
             }, {
-                key: 'nope1',
-                text: 'Definitely Not'
+                key: 'nope11',
+                text: 'Definitely Not3',
+                default: false
             }, {
-                key: 'nope12',
-                text: 'No'
+                key: 'nope121',
+                text: 'No1',
+                default: false
             }, {
-                key: 'nope123',
-                text: 'Nope'
+                key: 'nope1231',
+                text: 'Nope2',
+                default: true
             }],
-            defaults: ['nope123'],
             required: true
         }],
         fixOptions: [],
