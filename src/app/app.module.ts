@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import 'materialize-css';
 import { MaterializeModule } from 'angular2-materialize';
@@ -25,72 +25,77 @@ import { OptionsViewComponent } from './options-view/options-view.component';
 import { BypassSanitize } from './options-view/bypass-sanitize.pipe';
 
 export const appRoutes: Routes = [
-  {
-    path: '',
-    redirectTo: 'categories',
-    pathMatch: 'full',
-    data: {
-      breadcrumb: 'Home'
+    {
+        path: '',
+        redirectTo: 'categories',
+        pathMatch: 'full',
+        data: {
+            breadcrumb: 'Home'
+        }
+    },
+    {
+        path: 'categories',
+        component: CategoriesComponent,
+        data: {
+            breadcrumb: 'Categories'
+        }
+    },
+    {
+        path: 'categories/tools',
+        component: ToolSelectionComponent,
+        data: {
+            breadcrumb: 'Tool Selection'
+        }
+    },
+    {
+        path: 'categories/tools/:tool_id/options',
+        component: OptionsViewComponent,
+        data: {
+            breadcrumb: 'Options'
+        }
+    },
+    {
+        path: 'categories/tools/:tool_id/issues',
+        component: ToolViewComponent,
+        data: {
+            breadcrumb: 'Issues'
+        }
     }
-  },
-  {
-    path: 'categories',
-    component: CategoriesComponent,
-    data: {
-      breadcrumb: 'Categories'
-    }
-  },
-  {
-    path: 'categories/tools',
-    component: ToolSelectionComponent,
-    data: {
-      breadcrumb: 'Tool Selection'
-    }
-  },
-  {
-    path: 'categories/tools/:tool_id/options',
-    component: OptionsViewComponent,
-    data: {
-      breadcrumb: 'Options'
-    }
-  },
-  {
-    path: 'categories/tools/:tool_id/issues',
-    component: ToolViewComponent,
-    data: {
-      breadcrumb: 'Issues'
-    }
-  }
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CourseSidebarComponent,
-    IssueListComponent,
-    IssueCardComponent,
-    IssueDetailsComponent,
-    IssueNavComponent,
-    BreadcrumbsComponent,
-    CategoriesComponent,
-    ToolViewComponent,
-    CourseSelectionComponent,
-    CourseChipComponent,
-    IssueContainerComponent,
-    ToolSelectionComponent,
-    OptionsViewComponent,
-    BypassSanitize,
-  ],
-  imports: [
-    RouterModule.forRoot(
-      appRoutes
-    ),
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    MaterializeModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        CourseSidebarComponent,
+        IssueListComponent,
+        IssueCardComponent,
+        IssueDetailsComponent,
+        IssueNavComponent,
+        BreadcrumbsComponent,
+        CategoriesComponent,
+        ToolViewComponent,
+        CourseSelectionComponent,
+        CourseChipComponent,
+        IssueContainerComponent,
+        ToolSelectionComponent,
+        OptionsViewComponent,
+        BypassSanitize,
+    ],
+    imports: [
+        RouterModule.forRoot(
+            appRoutes
+        ),
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MaterializeModule,
+    ],
+    exports: [
+        FormsModule,
+        ReactiveFormsModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

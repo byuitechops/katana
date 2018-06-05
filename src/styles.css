@@ -11,6 +11,7 @@
     --primary-5: #78909c;
     --primary-6: #f0f0f0;
     --accent-1: #2196f3;
+    --accent-2: #e53935 ;
     --background-dark: #546e7a;
     --background-light: #eceff1;
     --course-sidebar-width: 115px;
@@ -39,6 +40,12 @@ ul {
     width: 100%;
     padding-bottom: 10px;
     border-bottom: solid 1px var(--primary-4);
+}
+
+.header_2 {
+    font-size: 30px;
+    width: 100%;
+    margin-top: 20px;
 }
 
 .header_thin {

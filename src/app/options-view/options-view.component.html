@@ -1,20 +1,54 @@
 <div class="optionsView">
     <div class="optionsView__container card">
         <div class="optionsView__title header_1">
-            <span class="header_bold">Conditions</span>
+            <span class="header_bold">Options</span>
             <span class="optionsView__toolTitle header_thin right">
-          {{toolService.selectedTool.title}}
-        </span>
+                {{toolService.selectedTool.title}}
+            </span>
         </div>
-        <form id="optionsForm" (ngSubmit)="onSubmit()">
+
+        <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+
+
             <div class="card-content">
-                <!-- Options Generated Here -->
+                <div *ngFor="let option of optionModel.options" class="form-row">
+                    <div class="header_2">{{option.title}}</div>
+                    <div class="option__description">{{option.description}}</div>
+                    <div [ngSwitch]="option.type" class="option__container" [class.multiselect]="option.type === 'multiselect'" [class.required]="!formGroup.controls[option.key].valid && !formGroup.controls[option.key].pristine">
+                        <div *ngSwitchCase="'text'">
+                            <input type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key">
+                        </div>
+                        <div *ngSwitchCase="'dropdown'">
+                            <select style="display: block" [formControlName]="option.key">
+                                <option *ngFor="let choice of option.choices" [value]="choice.key">{{choice.text}}</option>
+                            </select>
+                        </div>
+                        <div *ngSwitchCase="'multiselect'">
+                            <select style="display: block" [formControlName]="option.key" multiple>
+                                <option *ngFor="let choice of option.choices" [value]="choice.key">{{choice.text}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-action">
+                <button type="button" class="btn-flat grey-text" routerLink="/">Cancel</button>
+                <button type="submit" class="btn-flat green-text text-accent-4" [disabled]="!formGroup.valid">Continue</button>
+                <div class="required legend">Required</div>
+            </div>
+        </form>
+
+
+        <!-- <form #optionsForm (ngSubmit)="onSubmit()">
+            <div class="card-content">
                 <div *ngFor="let option of options" [innerHTML]="createOption(option) | bypassSanitize"></div>
             </div>
             <div class="card-action">
                 <button type="button" class="btn-flat grey-text" routerLink="/">Cancel</button>
                 <button type="submit" class="btn-flat green-text text-accent-4">Continue</button>
             </div>
-        </form>
+        </form> -->
     </div>
 </div>

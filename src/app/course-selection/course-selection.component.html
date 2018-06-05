@@ -1,69 +1,69 @@
 <div class="courseSearch">
-  <div class="courseSearch__title">Course Selection</div>
-  <div class="courseSearch__courseSelection">
-    <div class="courseSearch__search">
-      <div>
-        <div class="courseSearch__options">
-          <select class="courseSearch__account">
-            <option value="" disabled selected>Account</option>
-            <option value="online">Online</option>
-            <option value="campus">Campus</option>
-            <option value="pathway">Pathway</option>
-            <option value="all">All</option>
-          </select>
+    <div class="courseSearch__title">Course Selection</div>
+    <div class="courseSearch__courseSelection">
+        <div class="courseSearch__search">
+            <div>
+                <div class="courseSearch__options">
+                    <select class="courseSearch__account">
+                        <option value="" disabled selected>Account</option>
+                        <option value="online">Online</option>
+                        <option value="campus">Campus</option>
+                        <option value="pathway">Pathway</option>
+                        <option value="all">All</option>
+                    </select>
 
-          <select class="courseSearch__term">
-            <option value="" disabled selected>Term</option>
-            <option value="fall">Fall</option>
-            <option value="winter">Winter</option>
-            <option value="spring">Spring</option>
-            <option value="all">All Terms</option>
-          </select>
+                    <select class="courseSearch__term">
+                        <option value="" disabled selected>Term</option>
+                        <option value="fall">Fall</option>
+                        <option value="winter">Winter</option>
+                        <option value="spring">Spring</option>
+                        <option value="all">All Terms</option>
+                    </select>
 
-          <select class="courseSearch__blueprint">
-            <option value="" disabled selected>Blueprint</option>
-            <option value="true">True</option>
-            <option value="false">False</option>
-          </select>
+                    <select class="courseSearch__blueprint">
+                        <option value="" disabled selected>Blueprint</option>
+                        <option value="true">True</option>
+                        <option value="false">False</option>
+                    </select>
+                </div>
+
+                <input type="text" placeholder="Search courses..." (keydown)="getCourses()" />
+            </div>
+            <div class="courseSearch__courseResults__title">Results</div>
+            <table class="highlight">
+                <thead>
+                    <tr>
+                        <th>+/-</th>
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>Instructor</th>
+                        <th>Sections</th>
+                        <th>Account</th>
+                        <th>Term</th>
+                        <th>Blueprint</th>
+                        <th class="material-icons">open_in_new</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let course of courses">
+                        <td>
+                            <i class="material-icons">add_circle</i>
+                        </td>
+                        <td>{{course.name}}</td>
+                        <td>{{course.code}}</td>
+                        <td>{{course.instructor}}</td>
+                        <td>{{course.section}}</td>
+                        <td>{{course.account}}</td>
+                        <td>{{course.term}}</td>
+                        <td>{{course.blueprint}}</td>
+                        <td>
+                            <a href="{{course.url}}" target="_blank">
+                                <i class="material-icons">open_in_new</i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-
-        <input type="text" placeholder="Search courses..." />
-      </div>
-      <div class="courseSearch__courseResults__title">Results</div>
-      <table class="highlight">
-        <thead>
-          <tr>
-            <th>+/-</th>
-            <th>Name</th>
-            <th>Code</th>
-            <th>Instructor</th>
-            <th>Sections</th>
-            <th>Account</th>
-            <th>Term</th>
-            <th>Blueprint</th>
-            <th class="material-icons">open_in_new</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let course of courses">
-            <td>
-              <i class="material-icons">add_circle</i>
-            </td>
-            <td>{{course.name}}</td>
-            <td>{{course.code}}</td>
-            <td>{{course.instructor}}</td>
-            <td>{{course.section}}</td>
-            <td>{{course.account}}</td>
-            <td>{{course.term}}</td>
-            <td>{{course.blueprint}}</td>
-            <td>
-              <a href="{{course.url}}" target="_blank">
-                <i class="material-icons">open_in_new</i>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
-  </div>
 </div>

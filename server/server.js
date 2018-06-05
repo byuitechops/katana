@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const chalk = require('chalk');
 const bodyParser = require('body-parser');
 const nodeTools = require('./node_tools.js');
+const courseRetrieval = require('./course_retrieval.js');
 const app = express();
 const serverPort = 8000;
 
@@ -20,6 +21,21 @@ app.use(bodyParser.json());
  ************************************************************************/
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/katana/index.html'))
+});
+
+/*************************************************************************
+ * Sends the homepage to the user.
+ * @returns {page} - Homepage
+ ************************************************************************/
+app.post('/course-retrieval', (req, res) => {
+    courseRetrieval(req.body)
+        .then(courses => {
+            res.status(200).send(courses);
+        })
+        .catch((e) => {
+            console.log(e);
+            res.status(500).send(new Error(`Internal Server Error`));
+        });
 });
 
 /*************************************************************************

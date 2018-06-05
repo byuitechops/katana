@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CourseService } from './course.service';
 import { ToolService, Tool } from './tool.service';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -24,9 +26,30 @@ export class KatanaService {
         return new Promise((resolve, reject) => {
             this.http.get('/tool-list').subscribe((toolList: any): any => {
                 this.toolsService.toolList = toolList;
-                console.log('TOOLLIST', this.toolsService.toolList);
                 resolve();
             }, reject);
+        });
+    }
+
+    /*****************************************************************
+     * Retrieves...
+     * Process:
+     * 1. 
+     ****************************************************************/
+    getCourses() {
+        return new Promise((resolve, reject) => {
+            let body = {
+                meta: 'tomato'
+            };
+            let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+            headers.append('Content-Type', 'application/json');
+            this.http.post('/course-retrieval', body, { headers: headers }).subscribe(
+                (data) => {
+                    resolve(data);
+                },
+                (err) => {
+                    console.error(err);
+                });
         });
     }
 

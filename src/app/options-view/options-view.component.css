@@ -17,3 +17,50 @@
 .optionsView__title {
     padding: 10px 20px;
 }
+
+.option__container {
+    border: solid 1px var(--primary-2);
+    border-left: solid 5px var(--accent-1);
+}
+
+.option__description {
+    padding: 0 0 10px;
+}
+
+.legend {
+    border: solid 1px var(--primary-2);
+    padding: 5px 10px;
+    margin-top: 0;
+    float: right;
+}
+
+.required {
+    border-left: solid 5px var(--accent-2);
+}
+
+select[multiple] {
+    height: 150px;
+}
+
+input[type="text"], input:focus {
+    padding-left: 10px !important;
+    margin: 0 !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    outline: 1px solid #c9f3ef !important;
+}
+
+.multiselect {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.multiselect::after {
+    content: "Ctrl + Click to select multiple items";
+    font-size: 10px;
+    padding-left: 7px;
+    color: var(--accent-1);
+    /* position: absolute;
+    left: -5px;
+    bottom: -20px; */
+}
