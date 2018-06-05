@@ -14,12 +14,4 @@ export class IssueListComponent implements OnInit {
     ngOnInit() {
 
     }
-
-    verifyIssueCount() {
-        if (this.courseService.selectedCourse) {
-            return !this.courseService.selectedCourse.issueItems.some(issueItem => issueItem.course_id === this.courseService.selectedCourse.id);
-        } else {
-            return false;
-        }
-    }
 }

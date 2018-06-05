@@ -125,7 +125,9 @@ export class IssueNavComponent implements OnInit {
      * 3. Return the number of issues discovered
      ****************************************************************/
     getIssueCount(statusArray) {
-        let issues = this.courseService.selectedCourse.issueItems.reduce((acc, issueItem) => [...acc, ...issueItem.issues], []);
-        return issues.filter(issue => statusArray.includes(issue.status)).length;
+        // REMOVE: Find a better way to do this
+        // let issues = this.courseService.selectedCourse.issueItems.reduce((acc, issueItem) => [...acc, ...issueItem.issues], []);
+        // return issues.filter(issue => statusArray.includes(issue.status)).length;
+        return 1;
     }
 }

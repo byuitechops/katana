@@ -33,6 +33,8 @@ export class IssueContainerComponent implements OnInit {
         }
         if (this.issue.status !== 'untouched' && this.issue.status !== desiredStatus) {
             classes += ' text-lighten-4';
+        } else if (desiredStatus === 'approved') {
+            classes += ' text-accent-4';
         }
         return classes;
     }

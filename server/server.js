@@ -62,8 +62,8 @@ app.post('/tool/discover', async (req, res) => {
             options
         } = req.body;
 
-        let issueItems = await nodeTools.discoverIssues(tool_id, courses, options);
-        res.status(200).send(issueItems);
+        let investigatedCourses = await nodeTools.discoverIssues(tool_id, courses, options);
+        res.status(200).send(investigatedCourses);
     } catch (e) {
         console.log(e);
         res.status(400).send(e);
@@ -82,8 +82,8 @@ app.put('/tool/fix', async (req, res) => {
             options
         } = req.body;
 
-        let fixedIssueItems = await nodeTools.fixIssues(tool_id, courses, options);
-        res.status(200).send(fixedIssueItems);
+        let fixedCourses = await nodeTools.fixIssues(tool_id, courses, options);
+        res.status(200).send(fixedCourses);
     } catch (e) {
         console.log(e);
         res.status(400).send(e);

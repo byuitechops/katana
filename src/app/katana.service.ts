@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CourseService, IssueItem } from './course.service';
+import { CourseService, IssueItem, Course } from './course.service';
 import { ToolService, Tool } from './tool.service';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -60,7 +60,7 @@ export class KatanaService {
      * 1. Returns a promise
      * 2. Builds the request object using the provided parameters
      * 3. Sends the request to the discovery URI
-     * 4. When successful, resolves the promise with the data retrieved
+     * 4. When successful, sets the course service's courses to the new course objects with issueItems
      * 5. When unsuccessful, rejects the promise with the given error
      ****************************************************************/
     discoverIssues(tool_id: string, options: object) {
@@ -75,10 +75,11 @@ export class KatanaService {
             let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             headers.append('Content-Type', 'application/json');
             this.http.post('/tool/discover', body, { headers: headers }).subscribe(
-                (issueItems: IssueItem[]) => {
-                    this.courseService.selectedCourse.issueItems = issueItems;
+                (courses: Course[]) => {
+                    this.courseService.courses = courses;
+                    this.courseService.selectedCourse = courses[0];
                     this.toolService.processing = false;
-                    resolve(issueItems);
+                    resolve();
                 },
                 (err) => {
                     console.error(err);
@@ -95,7 +96,7 @@ export class KatanaService {
      * 1. Returns a promise
      * 2. Builds the request object using the provided parameters
      * 3. Sends the request to the fix tool URI
-     * 4. When successful, resolves the promise with the fixed items returned by the server
+     * 4. When successful, sets the courses property on the course service to the received courses
      * 5. When unsuccessful, rejects the promise with the given error
      ****************************************************************/
     fixIssues(tool_id: string, options: object) {
@@ -110,10 +111,12 @@ export class KatanaService {
             let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             headers.append('Content-Type', 'application/json');
             this.http.put('/tool/fix', body, { headers: headers }).subscribe(
-                (fixedItems: IssueItem[]) => {
-                    this.courseService.selectedCourse.issueItems = fixedItems;
+                (courses: Course[]) => {
+                    this.courseService.courses = courses;
+                    this.courseService.selectedCourse = courses[0];
                     this.toolService.processing = false;
-                    resolve(fixedItems);
+                    this.toolService.processing = false;
+                    resolve();
                 },
                 (err) => {
                     console.error(err);
