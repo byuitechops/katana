@@ -7,8 +7,9 @@ export interface Course {
     course_code: string,
     instructor: string,
     account?: string,
-    term?: string
+    term?: string,
     blueprint?: boolean,
+    url: string
 }
 
 export interface Issue {
