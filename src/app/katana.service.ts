@@ -75,7 +75,7 @@ export class KatanaService {
             headers.append('Content-Type', 'application/json');
             this.http.post('/tool/discover', body, { headers: headers }).subscribe(
                 (issueItems: IssueItem[]) => {
-                    this.courseService.issueItems = issueItems;
+                    this.courseService.selectedCourse.issueItems = issueItems;
                     this.toolService.processing = false;
                     resolve(issueItems);
                 },
@@ -103,14 +103,14 @@ export class KatanaService {
             this.toolService.processing = true;
             let body = {
                 tool_id,
-                issueItems: this.courseService.issueItems,
+                issueItems: this.courseService.selectedCourse.issueItems,
                 options
             };
             let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             headers.append('Content-Type', 'application/json');
             this.http.put('/tool/fix', body, { headers: headers }).subscribe(
                 (fixedItems: IssueItem[]) => {
-                    this.courseService.issueItems = fixedItems;
+                    this.courseService.selectedCourse.issueItems = fixedItems;
                     this.toolService.processing = false;
                     resolve(fixedItems);
                 },

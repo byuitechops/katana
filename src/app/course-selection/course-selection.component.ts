@@ -18,13 +18,14 @@ export class CourseSelectionComponent {
         id: 13028,
         course_code: 'K 101',
         instructor: 'Zach Williams',
+        issueItems: [],
         account: 'Online',
         term: 'All',
         blueprint: false,
         url: 'www.google.com'
     }
-];
-    
+    ];
+
     constructor(private katanaService: KatanaService) { }
 
     getCourses() {
@@ -37,9 +38,9 @@ export class CourseSelectionComponent {
 
             /* Send the search parameters to the katana service to build the correct URI */
             this.katanaService.getCourses({
-                account: this.account.nativeElement.value, 
-                term: this.term.nativeElement.value, 
-                blueprint: this.blueprint.nativeElement.value, 
+                account: this.account.nativeElement.value,
+                term: this.term.nativeElement.value,
+                blueprint: this.blueprint.nativeElement.value,
                 searchText: searchText
             })
             .then((courses: Course[]) => {

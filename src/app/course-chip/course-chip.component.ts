@@ -13,4 +13,12 @@ export class CourseChipComponent implements OnInit {
     constructor(public courseService: CourseService) { }
 
     ngOnInit() { }
+
+    isSelected() {
+        if (this.courseService.selectedCourse) {
+            return this.courseService.selectedCourse !== null && this.courseService.selectedCourse.id === this.course.id;
+        } else {
+            return false;
+        }
+    }
 }

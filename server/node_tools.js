@@ -30,12 +30,15 @@ const courseSearch = require('./course_search/course_search.js');
  ****************************************************************/
 function discoverIssues(toolId, courses, options) {
     try {
-        console.log(`${chalk.whiteBright('STARTED:')} ${chalk.cyanBright('Discover')} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(toolId)} | ${chalk.whiteBright('COURSES:')} ${chalk.greenBright(courses.length)}`)
+        console.log(`${chalk.whiteBright('STARTED:')} ${chalk.cyanBright('Discover')} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(toolId)} | ${chalk.whiteBright('COURSES:')} ${chalk.greenBright(courses.length + 1)}`)
+
         return new Promise((resolve, reject) => {
             if (toolList[toolId]) {
-                let allIssueItems = courses.reduce(async (acc, course) => {
+                let allIssueItems = courses.forEach(async course => {
+
                     let canvasCourse = canvas.getCourse(course.id);
                     let problemItems = await toolList[toolId].discover(canvasCourse, options);
+
                     problemItems.forEach(problemItem => problemItem.issues.forEach(issue => issue.status = 'untouched'));
                     let issueItems = problemItems.map(item => {
                         return {
@@ -47,10 +50,11 @@ function discoverIssues(toolId, courses, options) {
                             issues: item.issues
                         }
                     });
-                    return [...acc, ...issueItems];
-                }, []);
 
-                console.log(`${chalk.whiteBright('COMPLETE:')} ${chalk.cyanBright('Discover')} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(toolId)} | ${chalk.whiteBright('COURSES:')} ${chalk.greenBright(courses.length)}`)
+                    course.issueItems = issueItems;
+                });
+
+                console.log(`${chalk.whiteBright('COMPLETE:')} ${chalk.cyanBright('Discover')} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(toolId)} | ${chalk.whiteBright('COURSES:')} ${chalk.greenBright(courses.length + 1)}`)
                 resolve(allIssueItems);
             } else {
                 reject(new Error('Invalid Tool ID'));
@@ -74,8 +78,9 @@ function discoverIssues(toolId, courses, options) {
  * 3. Runs each item through the specified tool and maps results to an array called "fixedItems"
  * 4. Resolves with "fixedItems"
  ****************************************************************/
-function fixIssues(toolId, issueItems, options) {
-    console.log(`${chalk.whiteBright('STARTED:')} ${chalk.cyanBright('Fix')} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(toolId)} | ${chalk.whiteBright('ISSUE ITEMS:')} ${chalk.greenBright(issueItems.length)}`)
+function fixIssues(toolId, courses, options) {
+    console.log(`${chalk.whiteBright('STARTED:')} ${chalk.cyanBright('Fix')} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(toolId)} | ${chalk.whiteBright('ISSUE ITEMS:')} ${chalk.greenBright(issueItems.length + 1)}`)
+
     return new Promise(async (resolve, reject) => {
         if (toolList[toolId]) {
             // let fixedItems = issueItems.map(async issueItem => await tools[toolId].fix(issueItem, options));
@@ -84,7 +89,7 @@ function fixIssues(toolId, issueItems, options) {
                 let fixedItem = await toolList[toolId].fix(issueItems[x], options);
                 fixedItems.push(fixedItem);
             }
-            console.log(`${chalk.whiteBright('COMPLETE:')} ${chalk.cyanBright('Fix')} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(toolId)} | ${chalk.whiteBright('FIXED ITEMS:')} ${chalk.greenBright(fixedItems.length)}`)
+            console.log(`${chalk.whiteBright('COMPLETE:')} ${chalk.cyanBright('Fix')} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(toolId)} | ${chalk.whiteBright('FIXED ITEMS:')} ${chalk.greenBright(fixedItems.length + 1)}`)
             resolve(fixedItems);
         } else {
             reject(new Error('Invalid Tool ID'));

@@ -33,8 +33,13 @@ export class AppComponent {
         router.events.subscribe((event: Event) => {
             if (event instanceof NavigationEnd &&
                 !event.urlAfterRedirects.includes('/issues')) {
-                courseService.selectedItem = null;
+                courseService.selectedIssueItem = null;
                 courseService.selectedCourse = null;
+            } else if (event instanceof NavigationEnd &&
+                event.urlAfterRedirects.includes('/issues')) {
+                if (courseService.courses.length > 0) {
+                    courseService.selectedCourse = courseService.courses[0];
+                }
             }
         });
 
@@ -53,7 +58,7 @@ export class AppComponent {
 
         }).then((issueItems: IssueItem[]) => {
             console.log('DISCOVERED', issueItems);
-            this.courseService.issueItems = issueItems;
+            this.courseService.selectedCourse.issueItems = issueItems;
         }).catch(console.error);
     }
 
@@ -63,7 +68,7 @@ export class AppComponent {
 
         }).then((issueItems: IssueItem[]) => {
             console.log('FIXED', issueItems);
-            this.courseService.issueItems = issueItems;
+            this.courseService.selectedCourse.issueItems = issueItems;
         }).catch(console.error);
     }
 
