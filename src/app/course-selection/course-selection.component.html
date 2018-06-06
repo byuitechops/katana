@@ -21,7 +21,7 @@
                         <option value="spring">Spring</option>
                         <option value="all">All Terms</option>
                     </select>
-                    
+
                     <select #blueprint>
                         <option value="" disabled selected>Blueprint</option>
                         <option value=""></option>
@@ -50,7 +50,7 @@
                 <tbody>
                     <tr *ngFor="let course of courseResults">
                         <td>
-                            <i class="material-icons">add_circle</i>
+                            <i (click)="courseService.courses.push(course)" class="material-icons">add_circle</i>
                         </td>
                         <td>{{course.course_name}}</td>
                         <td>{{course.course_code}}</td>

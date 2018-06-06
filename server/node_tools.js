@@ -85,39 +85,7 @@ function discoverIssues(toolId, courses, options) {
  ****************************************************************/
 function fixIssues(toolId, courses, options) {
 
-    function repairItems(issueItem) {
-        return new Promise(async (resolve, reject) => {
-            let canvasCourse = canvas.getCourse(course.id);
-
-            let problemItems = await toolList[toolId].fix(issueItem, options);
-
-            course.issueItems = issueItems;
-            resolve();
-        });
-    }
-    try {
-        logMe('STARTED', 'Fix', toolId, courses.length + 1);
-        return new Promise(async (resolve, reject) => {
-            if (toolList[toolId]) {
-
-                for (var x = 0; x < courses.length; x++) {
-
-                    let promiseActions = course[x].issueItems.map(issueItem => repairItem(issueItem));
-
-                }
-
-                Promise.all(promiseActions)
-                    .then(() => {
-                        logMe('COMPLETE', 'Fix', toolId, courses.length + 1);
-                        resolve(courses);
-                    });
-            } else {
-                reject(new Error('Invalid Tool ID'));
-            }
-        });
-    } catch (e) {
-        reject(e);
-    }
+    // Zach's next big task
 }
 
 module.exports = {

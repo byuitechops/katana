@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { KatanaService } from '../katana.service';
-import { Course } from '../course.service';
+import { Course, CourseService } from '../course.service';
 
 @Component({
     selector: 'app-course-selection',
@@ -26,7 +26,8 @@ export class CourseSelectionComponent {
     }
     ];
 
-    constructor(private katanaService: KatanaService) { }
+    constructor(private katanaService: KatanaService,
+        public courseService: CourseService) { }
 
     getCourses() {
         let textInput = this.searchText.nativeElement.value.replace(/\s/g, '');
@@ -43,11 +44,11 @@ export class CourseSelectionComponent {
                 blueprint: this.blueprint.nativeElement.value,
                 searchText: searchText
             })
-            .then((courses: Course[]) => {
-                console.log(`COURSES`, courses)
-                this.courseResults = courses;
-            })
-            .catch(console.error);
-        }   
+                .then((courses: Course[]) => {
+                    console.log(`COURSES`, courses)
+                    this.courseResults = courses;
+                })
+                .catch(console.error);
+        }
     }
 }

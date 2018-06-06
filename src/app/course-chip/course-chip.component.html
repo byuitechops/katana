@@ -1,5 +1,5 @@
 <div class="courseChip" [class.selectedChip]="isSelected()">
-    {{course.course_code}}
+    {{course.course_code}} {{course.issueItems ? '(' + course.issueItems.length + ')' : '' }}
     <div class="courseChip__instructorName">
         {{this.course.instructor.split(', ')[0].replace('-', '‑')}}
     </div>

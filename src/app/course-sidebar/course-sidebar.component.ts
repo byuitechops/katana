@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService, Course } from '../course.service';
+import { ToolService } from '../tool.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,6 +13,7 @@ export class CourseSidebarComponent implements OnInit {
     courseSelectionOpen: boolean = false;
 
     constructor(public courseService: CourseService,
+        private toolService: ToolService,
         private activatedRoute: ActivatedRoute) { }
 
     courseOverlay() {
