@@ -74,8 +74,6 @@ option {
   width: calc(100vw - var(--course-sidebar-width));
 }
 
-/* .courseSearch__searchbar__title, */
-
 .courseSearch__courseResults__title {
   font-size: 20px;
 }
@@ -98,6 +96,30 @@ option {
   display: flex;
   flex-flow: column nowrap;
   width: 89vw;
+  max-height: 700px;
+}
+
+.courseSearch__search>table>tbody::-webkit-scrollbar {
+  display: block;
+  width: 5px;
+  padding-top: 44px;
+}
+
+.courseSearch__search>table>thead {
+  background-color: white;
+  border-bottom: 1px solid var(--primary-3);
+  height: 45px;
+  position: fixed;
+  /* The width of the table (89vw) minus the 1px border width
+  minus 1px so the white background doesn't overlap the table border */
+  width: calc(89vw - 2px); 
+}
+
+.courseSearch__search>table>tbody {
+  overflow-y: scroll;
+  position: relative;
+  /* One pixel less than <thead> to account for the border on <thead> */
+  margin-top: 44px;
 }
 
 .courseSearch__courseResults>* {

@@ -3,15 +3,15 @@ const canvas = require('canvas-api-wrapper');
 module.exports = (body) => {
     canvas.oncall = e => console.log(e.method,e.url);
     return new Promise((resolve, reject) => {
-    // In the URI, the enrollment_term_id needs to be part of the query, but we 
-    // currently do not know which ids we're looking for so it is not included yet
+    // ADD In the URI, the enrollment_term_id needs to be part of the query, but we currently do not know which ids we're looking for so it is not included yet
 
-    // The account should be ${searchParams.account_id} instead of /1/, but we again
-    // don't have all of the account info
+    // ADD The account should be ${searchParams.account_id} instead of /1/, but we again, don't have all of the account info
+
+    // ADD Currently the URI has 'search_by=course' which will make the search term look through the course name, course code, and the SIS ID. It can toggle between that and searching by teacher. 
     console.log(`searchParams`, body);
-    console.log(`URI`, `/api/v1/accounts/1/courses?search_term=${body.searchText}&include[]=term${body.account ? `&by_subaccounts[]=${body.account}` : ''}&include[]=teachers${body.blueprint ? `&blueprint=${body.blueprint}` : ''}`);
+    console.log(`URI`, `/api/v1/accounts/${body.account ? `${body.account}` : '1'}/courses?search_by=course&search_term=${body.searchText}&include[]=term${body.term ? `&enrollment_term_id=${body.term}` : ''}&include[]=teachers${body.blueprint ? `&blueprint=${body.blueprint}` : ''}`);
 
-    canvas.get(`/api/v1/accounts/${body.account ? `${body.account}` : '1'}/courses?search_term=${body.searchText}&include[]=term&include[]=teachers${body.blueprint ? `&blueprint=${body.blueprint}` : ''}`, (err, courses) => {
+    canvas.get(`/api/v1/accounts/${body.account ? `${body.account}` : '1'}/courses?search_by=course&search_term=${body.searchText}&include[]=term${body.term ? `&enrollment_term_id=${body.term}` : ''}&include[]=teachers${body.blueprint ? `&blueprint=${body.blueprint}` : ''}`, (err, courses) => {
       if (err) {
         console.error(err);
         reject(err);

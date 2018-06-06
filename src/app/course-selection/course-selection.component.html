@@ -4,7 +4,7 @@
         <div class="courseSearch__search">
             <div>
                 <div class="courseSearch__options">
-                    <select #account>
+                    <select (change)="getCourses()" #account>
                         <option value="" disabled selected>Account</option>
                         <option value=""></option>
                         <option value="13">Development</option>
@@ -13,16 +13,17 @@
                         <option value="1">All</option>
                     </select>
 
-                    <select #term>
+                    <select (change)="getCourses()" #term>
                         <option value="" disabled selected>Term</option>
                         <option value=""></option>
-                        <option value="fall">Fall</option>
-                        <option value="winter">Winter</option>
-                        <option value="spring">Spring</option>
-                        <option value="all">All Terms</option>
+                        <option value="10">Fall</option>
+                        <option value="4">Winter</option>
+                        <option value="9">Spring</option>
+                        <option value="5">Master Courses</option>
+                        <option value="">All Terms</option>
                     </select>
 
-                    <select #blueprint>
+                    <select (change)="getCourses()" #blueprint>
                         <option value="" disabled selected>Blueprint</option>
                         <option value=""></option>
                         <option value="true">True</option>
@@ -32,7 +33,7 @@
 
                 <input type="text" placeholder="Search courses..." (input)="getCourses()" #searchText/>
             </div>
-            <div class="courseSearch__courseResults__title">Results</div>
+            <!-- <div class="courseSearch__courseResults__title">Results</div> -->
             <table class="highlight">
                 <thead>
                     <tr>
@@ -40,25 +41,25 @@
                         <th>Name</th>
                         <th>Code</th>
                         <th>Instructor</th>
-                        <th>Sections</th>
                         <th>Account</th>
                         <th>Term</th>
                         <th>Blueprint</th>
+                        <th>ID</th>
                         <th class="material-icons">open_in_new</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let course of courseResults">
+                    <tr *ngFor="let course of courseResults" (click)="courseService.addCourse(course)" class="table-element-{{course.id}}">
                         <td>
-                            <i (click)="courseService.courses.push(course)" class="material-icons">add_circle</i>
+                            <i class="material-icons">add_circle</i>
                         </td>
                         <td>{{course.course_name}}</td>
                         <td>{{course.course_code}}</td>
                         <td>{{course.instructor}}</td>
-                        <td>{{course.section}}</td>
                         <td>{{course.account}}</td>
                         <td>{{course.term}}</td>
                         <td>{{course.blueprint}}</td>
+                        <td>{{course.id}}</td>
                         <td>
                             <a href="{{course.url}}" target="_blank">
                                 <i class="material-icons">open_in_new</i>

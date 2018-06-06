@@ -34,14 +34,16 @@ export interface Course {
 })
 export class CourseService {
 
-    courses = [{
-        id: 13018,
-        course_name: 'Katana 101',
-        course_code: 'K 101',
-        instructor: 'Seth Childers',
-        issueItems: [],
-        url: 'www.google.com'
-    }];
+    courses = [
+    //     {
+    //     id: 13018,
+    //     course_name: 'Katana 101',
+    //     course_code: 'K 101',
+    //     instructor: 'Seth Childers',
+    //     issueItems: [],
+    //     url: 'www.google.com'
+    // }
+    ];
 
     selectedIssueItem: IssueItem;
     _selectedCourse: Course;
@@ -65,21 +67,28 @@ export class CourseService {
     * @param {string} courseName - The full name of the course
     * @param {string} courseCode - The course code
     *****************************************************************/
-    addCourse(courseId: number, courseName: string, courseCode: string, instructor: string = '') {
+    addCourse(course: Course) {
 
         // TODO Check to see if course already exists in the currently selected courses before adding it
-
         // TODO Add courses according to the format in courses_service.md
-
+        let found = this.courses.find(existingCourse => existingCourse.id === course.id );
+        
+        if (!found) {
+            this.courses.push(course);
+        } 
+        else {
+            this.removeCourse(course);
+        }
+        
     }
-
+    
     /*****************************************************************
-    * Removes a course from the list of currently selected courses.
-    * @param {number} courseId - The ID of the course
-    *****************************************************************/
-    removeCourse(courseId: number) {
-
+     * Removes a course from the list of currently selected courses.
+     * @param {number} courseId - The ID of the course
+     *****************************************************************/
+    removeCourse(course: Course) {
+        
         // TODO Use a regular for loop to break out of the search for the course as quick as possible
-
+        this.courses = this.courses.filter(currCourse => currCourse.id !== course.id );
     }
 }

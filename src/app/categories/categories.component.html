@@ -1,8 +1,8 @@
 <div class="categories">
-    <div *ngFor="let category of toolService.categories" class="categoryIcon card">
-        <a (click)="setSelectedCategory(category)" [routerLink]="['tools']" [queryParams]="{category: category.type}">
+    <div *ngFor="let category of toolService.categories" (click)="setSelectedCategory(category)" [routerLink]="['tools']" [queryParams]="{category: category.type}" class="categoryIcon card">
+        <div>
             <i class="material-icons">{{category.icon}}</i>
             <p>{{category.title}}</p>
-        </a>
+        </div>
     </div>
 </div>
