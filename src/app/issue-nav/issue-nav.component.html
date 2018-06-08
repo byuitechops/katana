@@ -6,7 +6,7 @@
             <i class="material-icons">keyboard_arrow_up</i>
         </a>
         <div class="issueApproval__counter">
-            {{this.courseService.selectedItem ? this.getCardPosition().currentIndex : '--'}} of {{this.courseService.selectedItem ? this.getCardPosition().totalLength : '--'}}
+            {{this.courseService.selectedIssueItem ? this.getCardPosition().currentIndex : '--'}} of {{this.courseService.selectedIssueItem ? this.getCardPosition().totalLength : '--'}}
         </div>
         <a class="blue lighten-1 btn-floating waves-effect waves-light" (click)="shiftSelectedItem('down')">
             <i class="material-icons">keyboard_arrow_down</i>

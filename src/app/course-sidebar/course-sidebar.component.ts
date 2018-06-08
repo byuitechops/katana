@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CourseService, Course } from '../course.service';
 import { ToolService } from '../tool.service';
 import { ActivatedRoute } from '@angular/router';
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
     templateUrl: './course-sidebar.component.html',
     styleUrls: ['./course-sidebar.component.css']
 })
-export class CourseSidebarComponent implements OnInit {
+export class CourseSidebarComponent implements AfterViewInit {
 
     courseSelectionOpen: boolean = false;
 
@@ -19,7 +19,7 @@ export class CourseSidebarComponent implements OnInit {
     courseOverlay() {
         // cast the returned Element object to an HTMLElement object
         let overlay: HTMLElement = document.querySelector('app-course-selection');
-
+        
         // toggle add the 'open' class to the app-course-selection component
         if (overlay.className === 'open') {
             overlay.className = 'close';
@@ -41,8 +41,13 @@ export class CourseSidebarComponent implements OnInit {
         }
     }
 
-    ngOnInit() {
-
+    ngAfterViewInit() {
+        // if there are no courses selected, open the course selection overlay
+        if (this.courseService.courses.length === 0) {
+            // this.courseOverlay();
+            document.querySelector('app-course-selection').className = 'open';
+            document.querySelector('app-course-sidebar .courseSidebar__expandSidebar i').innerHTML = 'arrow_back';
+        }
     }
 
 }

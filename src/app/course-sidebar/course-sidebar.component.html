@@ -6,6 +6,9 @@
             <p>Course Selection</p>
             <i class="material-icons">arrow_forward</i>
         </div>
+        <div *ngIf="toolService.processing">
+            <p>Course Selection Not Available While Running the Tool</p>
+        </div>
     </div>
 </div>
 <app-course-selection></app-course-selection>

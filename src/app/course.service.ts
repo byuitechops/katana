@@ -56,7 +56,8 @@ export class CourseService {
     set selectedCourse(course: Course) {
         if (course === this._selectedCourse || !course) return;
         this._selectedCourse = course;
-        this.selectedIssueItem = this._selectedCourse.issueItems.find(issueItem => issueItem.course_id === course.id) || null;
+        // this.selectedIssueItem = this._selectedCourse.issueItems.find(issueItem => issueItem.course_id === course.id) || null;
+        this.selectedIssueItem = this._selectedCourse.issueItems ? this._selectedCourse.issueItems.find(issueItem => issueItem.course_id === course.id) : null;
     }
 
     constructor() { }
