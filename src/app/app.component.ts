@@ -3,7 +3,7 @@ import { Router, Event, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { CourseService, IssueItem } from './course.service';
 import { toast } from 'angular2-materialize';
 import { KatanaService } from './katana.service';
-import { ErrorHandlerService } from './error-handler.service';
+import { ToastService } from './toast.service';
 
 @Component({
     selector: 'app-root',
@@ -27,7 +27,7 @@ export class AppComponent {
         private route: ActivatedRoute,
         private courseService: CourseService,
         private katanaService: KatanaService,
-        private errorHandler: ErrorHandlerService) {
+        private toastService: ToastService) {
 
 
         router.events.subscribe((event: Event) => {
@@ -46,8 +46,8 @@ export class AppComponent {
         // Retrieve the tool list on start
         this.katanaService.getToolList()
             .catch((e) => {
-                this.errorHandler.devMode = true;
-                this.errorHandler.toastError(new Error('You are in Development Mode'));
+                this.toastService.devMode = true;
+                this.toastService.toastError(new Error('You are in Development Mode'));
                 console.error(e);
             });
     }

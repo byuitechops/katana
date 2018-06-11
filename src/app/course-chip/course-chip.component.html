@@ -1,6 +1,9 @@
 <div class="courseChip" [class.selectedChip]="isSelected()">
-    {{course.course_code}} {{course.issueItems ? '(' + course.issueItems.length + ')' : '' }}
+    {{course.course_code}}
     <div class="courseChip__instructorName">
         {{this.course.instructor.split(', ')[0].replace('-', '‑')}}
+    </div>
+    <div class="courseChip__issueCount z-depth-1" *ngIf="course.issueItems && course.issueItems.length > 0">
+        {{course.issueItems && course.issueItems.length > 0 ? course.issueItems.length : '' }}
     </div>
 </div>
