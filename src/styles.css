@@ -56,6 +56,17 @@ ul {
     font-weight: 400;
 }
 
+.loader {
+    width: calc(100vw - var(--course-sidebar-width));
+    display: flex;
+    justify-content: center;
+    padding: 25px 0;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+
 /* Overwrite Materialize Card Margins */
 
 .card {

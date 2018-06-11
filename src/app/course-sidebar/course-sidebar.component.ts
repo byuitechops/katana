@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { CourseService, Course } from '../course.service';
 import { ToolService } from '../tool.service';
 import { ActivatedRoute } from '@angular/router';
@@ -17,6 +17,11 @@ export class CourseSidebarComponent implements AfterViewInit {
         private activatedRoute: ActivatedRoute) { }
 
     courseOverlay() {
+        // if the tool is running, don't do anything
+        if (this.toolService.processing) {
+            return;
+        }
+
         // cast the returned Element object to an HTMLElement object
         let overlay: HTMLElement = document.querySelector('app-course-selection');
         
@@ -30,8 +35,6 @@ export class CourseSidebarComponent implements AfterViewInit {
             overlay.className = 'open'
         }
 
-        // change the -> arrow to <- after opening the course selection overlay
-        document.querySelector('app-course-sidebar .courseSidebar__expandSidebar i').innerHTML = this.courseSelectionOpen ? 'arrow_forward' : 'arrow_back';
         this.courseSelectionOpen = !this.courseSelectionOpen;
     }
 
@@ -44,9 +47,8 @@ export class CourseSidebarComponent implements AfterViewInit {
     ngAfterViewInit() {
         // if there are no courses selected, open the course selection overlay
         if (this.courseService.courses.length === 0) {
-            // this.courseOverlay();
+            this.courseSelectionOpen = true;
             document.querySelector('app-course-selection').className = 'open';
-            document.querySelector('app-course-sidebar .courseSidebar__expandSidebar i').innerHTML = 'arrow_back';
         }
     }
 

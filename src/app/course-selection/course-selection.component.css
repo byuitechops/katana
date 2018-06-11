@@ -8,7 +8,7 @@
   /* border-right: 1px solid var(--primary-3); */
   background-color: var(--primary-4);
   font-size: 60px;
-  padding: 10px 0 0 45px;
+  padding: 5px 0 0 45px;
   position: fixed;
   width: calc(100vw - var(--course-sidebar-width));
 }
@@ -19,9 +19,9 @@
   display: flex;
   height: 100%;
   position: fixed;
-  padding-left: 50px;
+  margin: 0 50px;
   top: calc(var(--breadcrumbs-height) + 95px);
-  width: calc(100vw - var(--course-sidebar-width));
+  width: calc(100vw - var(--course-sidebar-width) - 50px);
 }
 
 /**************************************
@@ -31,8 +31,8 @@
 .courseSearch__options {
   display: flex;
   flex-flow: row nowrap;
-  margin-right: 20px;
-  width: 40vw;
+  padding-top: 10px;
+  width: calc(100vw - var(--course-sidebar-width));
 }
 
 select {
@@ -54,10 +54,13 @@ option {
   font-size: 16px;
 }
 
-/* select + option {
-  color: #999;
-} */
-
+.courseSearch__options input {
+  background-color: white;
+  border: 1px solid var(--primary-3);
+  font-size: 20px;
+  padding-left: 10px;
+  width: 47.4vw;
+}
 /***************************************
 * Course Search Search Bar and Headers
 ****************************************/
@@ -67,24 +70,10 @@ option {
   flex-flow: column nowrap;
 }
 
-.courseSearch__search>div:first-of-type {
-  display: flex;
-  flex-flow: row nowrap;
-  padding-top: 10px;
-  width: calc(100vw - var(--course-sidebar-width));
-}
-
-.courseSearch__courseResults__title {
+/* .courseSearch__courseResults__title {
   font-size: 20px;
-}
+} */
 
-.courseSearch__search>div>input {
-  background-color: white;
-  border: 1px solid var(--primary-3);
-  font-size: 20px;
-  padding-left: 10px;
-  width: 47.4vw;
-}
 
 /***************************************
 * Course Search Results
@@ -96,7 +85,7 @@ option {
   display: flex;
   flex-flow: column nowrap;
   width: 89vw;
-  max-height: 700px;
+  max-height: 655px;
 }
 
 .courseSearch__search>table>tbody::-webkit-scrollbar {
@@ -112,13 +101,14 @@ option {
   position: fixed;
   /* The width of the table (89vw) minus the 1px border width
   minus 1px so the white background doesn't overlap the table border */
-  width: calc(89vw - 2px); 
+  width: calc(89vw - 2px);
 }
 
 .courseSearch__search>table>tbody {
   overflow-y: scroll;
   position: relative;
-  /* One pixel less than <thead> to account for the border on <thead> */
+  /* The same as the padding-top for the Scrollbar, one pixel 
+  less than the thead height to account for the thead border */
   margin-top: 44px;
 }
 
