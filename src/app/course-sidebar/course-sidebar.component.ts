@@ -18,13 +18,12 @@ export class CourseSidebarComponent implements AfterViewInit {
 
     courseOverlay() {
         // if the tool is running, don't do anything
-        if (this.toolService.processing) {
+        if (this.toolService.processing || this.courseService.courses.length === 0) {
             return;
         }
 
         // cast the returned Element object to an HTMLElement object
         let overlay: HTMLElement = document.querySelector('app-course-selection');
-        
         // toggle add the 'open' class to the app-course-selection component
         if (overlay.className === 'open') {
             overlay.className = 'close';
@@ -34,16 +33,16 @@ export class CourseSidebarComponent implements AfterViewInit {
             overlay.style.display = 'block';
             overlay.className = 'open'
         }
-
+        
         this.courseSelectionOpen = !this.courseSelectionOpen;
     }
-
+    
     setSelectedCourse(course: Course) {
         if (window.location.href.includes('tool-view')) {
             this.courseService.selectedCourse = course;
         }
     }
-
+    
     ngAfterViewInit() {
         // if there are no courses selected, open the course selection overlay
         if (this.courseService.courses.length === 0) {

@@ -1,7 +1,7 @@
 <div class="courseSidebar">
     <div class="courseSidebar__title">Courses</div>
     <app-course-chip *ngFor="let course of this.courseService.courses" [course]="course" (click)="this.courseService.selectedCourse = course"></app-course-chip>
-    <div class="courseSidebar__expandSidebar">
+    <div [style.cursor]="courseService.courses.length === 0 || toolService.processing ? 'default' : 'pointer'" class="courseSidebar__expandSidebar">
         <div (click)="courseOverlay()">
             <p>Course Selection</p>
             <i *ngIf="!toolService.processing && courseService.courses.length !== 0" class="material-icons">{{courseSelectionOpen ? 'arrow_back' : 'arrow_forward'}}</i>

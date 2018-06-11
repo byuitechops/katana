@@ -6,8 +6,8 @@
       <div class="courseSearch__options">
         <label>Sub-Account
           <select (change)="getCourses()" #subAccount>
-            <option value="" disabled selected>Sub-Account</option>
-            <option value=""></option>
+            <!-- <option value="" disabled selected>Sub-Account</option> -->
+            <option value="" selected></option>
             <option value="13">Development</option>
             <option value="">Campus</option>
             <option value="pathway">Pathway</option>
@@ -16,8 +16,8 @@
         </label>
         <label>Term
           <select (change)="getCourses()" #term>
-            <option value="" disabled selected>Term</option>
-            <option value=""></option>
+            <!-- <option value="" disabled selected>Term</option> -->
+            <option value="" selected></option>
             <option value="10">Fall</option>
             <option value="4">Winter</option>
             <option value="9">Spring</option>
@@ -27,18 +27,21 @@
         </label>
         <label>Blueprint
           <select (change)="getCourses()" #blueprint>
-            <option value="" disabled selected>Blueprint</option>
-            <option value=""></option>
+            <!-- <option value="" disabled selected>Blueprint</option> -->
+            <option value="" selected></option>
             <option value="true">True</option>
             <option value="false">False</option>
+            <option value="">All</option>
           </select>
         </label>
-        <label>Search
-          <input type="text" placeholder="Search courses..." (input)="getCourses()" #searchText/>
-        </label>
+        <div class="courseSearch__input">
+          <label>Search</label>
+            <input type="text" placeholder="Search courses..." (input)="getCourses()" #searchText/>
+        </div>
       </div>
       <!-- </div> -->
       <!-- <div class="courseSearch__courseResults__title">Results</div> -->
+      <label>Results {{courseResults.length !== 0 ? '(' + courseResults.length + ')': '0'}}</label>
       <table class="highlight">
         <thead>
           <tr>
@@ -54,7 +57,8 @@
           </tr>
         </thead>
         <tbody *ngIf="!searching">
-          <tr *ngFor="let course of courseResults" [ngClass]="isAdded(course) ? 'red' : ''" (click)="courseService.addCourse(course); toggleSelected();" class="table-element-{{course.id}}">
+          <tr *ngFor="let course of courseResults" [ngClass]="isAdded(course) ? 'grey lighten-2' : ''" (click)="courseService.addCourse(course); toggleSelected();"
+            class="table-element-{{course.id}}">
             <td>
               <i class="material-icons">{{isAdded(course) ? 'remove_circle' : 'add_circle'}}</i>
             </td>
@@ -74,24 +78,24 @@
         </tbody>
       </table>
       <div *ngIf="searching">
-          <div class="loader" style="margin: 50px 0 0 -50px">
-              <div class="preloader-wrapper big active">
-                  <div class="spinner-layer spinner-blue-only">
-                      <div class="circle-clipper left">
-                          <div class="circle"></div>
-                      </div>
-                      <div class="gap-patch">
-                          <div class="circle"></div>
-                      </div>
-                      <div class="circle-clipper right">
-                          <div class="circle"></div>
-                      </div>
-                  </div>
+        <div class="loader" style="margin: 50px 0 0 -50px">
+          <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
               </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
           </div>
-          <div class="loader" style="margin: 50px 0 0 -50px">
-              Searching ...
-          </div>
+        </div>
+        <div class="loader" style="margin: 50px 0 0 -50px">
+          Searching ...
+        </div>
       </div>
     </div>
   </div>

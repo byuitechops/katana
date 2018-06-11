@@ -1,5 +1,5 @@
 .courseSearch {
-  height: calc(100vw - var(--course-sidebar-width) - 25px);
+  height: 100vh;
   position: fixed;
   z-index: 4;
 }
@@ -8,8 +8,9 @@
   /* border-right: 1px solid var(--primary-3); */
   background-color: var(--primary-4);
   font-size: 60px;
-  padding: 5px 0 0 45px;
+  padding: 15px 0 0 45px;
   position: fixed;
+  top: 0;
   width: calc(100vw - var(--course-sidebar-width));
 }
 
@@ -19,9 +20,9 @@
   display: flex;
   height: 100%;
   position: fixed;
-  margin: 0 50px;
-  top: calc(var(--breadcrumbs-height) + 95px);
-  width: calc(100vw - var(--course-sidebar-width) - 50px);
+  padding: 0 50px;
+  top: 95px;
+  width: calc(100vw - var(--course-sidebar-width));
 }
 
 /**************************************
@@ -32,7 +33,7 @@
   display: flex;
   flex-flow: row nowrap;
   padding-top: 10px;
-  width: calc(100vw - var(--course-sidebar-width));
+  width: calc(100vw - var(--course-sidebar-width) - 45px);
 }
 
 select {
@@ -42,6 +43,9 @@ select {
   cursor: pointer;
   display: block;
   margin-right: 15px;
+  width: 10vw;
+  /* This height matches the height of the input */
+  height: 47px;
   /* The selected option will be size 20px */
   font-size: 20px;
 }
@@ -59,7 +63,7 @@ option {
   border: 1px solid var(--primary-3);
   font-size: 20px;
   padding-left: 10px;
-  width: 47.4vw;
+  width: 56.1vw;
 }
 /***************************************
 * Course Search Search Bar and Headers
@@ -70,10 +74,14 @@ option {
   flex-flow: column nowrap;
 }
 
-/* .courseSearch__courseResults__title {
+label {
   font-size: 20px;
-} */
+}
 
+.courseSearch__input {
+  display: flex;
+  flex-flow: column nowrap;
+}
 
 /***************************************
 * Course Search Results
@@ -121,21 +129,24 @@ tbody>tr {
   cursor: pointer;
 }
 
+tbody>th, tbody>td {
+  padding-left: 10px;
+}
 thead th:nth-of-type(1),
 tbody td:nth-of-type(1) {
-  padding: 0 15px;
+  /* padding-left: 15px; */
   width: 50px;
 }
 
 thead th:nth-of-type(2),
 tbody td:nth-of-type(2) {
-  padding-left: 10px;
+  /* padding-left: 10px; */
   width: 400px;
 }
 
 thead th:nth-of-type(3),
 tbody td:nth-of-type(3) {
-  width: 175px;
+  width: 200px;
 }
 
 thead th:nth-of-type(4),
@@ -165,5 +176,6 @@ tbody td:nth-of-type(8) {
 
 thead th:nth-of-type(9),
 tbody td:nth-of-type(9) {
-  width: 100px;
+  width: 150px;
+  text-align: center;
 }

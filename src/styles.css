@@ -73,6 +73,11 @@ ul {
     margin: 0 0 15px;
 }
 
+/* Overwrite Materialize Table Details */
+tbody>tr>td {
+    border-radius: 0;
+}
+
 /* Don't think we need this here - can go back into the issue list component */
 
 .selectedItem {
