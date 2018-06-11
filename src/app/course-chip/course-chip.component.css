@@ -37,7 +37,7 @@
     color: var(--accent-2);
     font-weight: bold;
     height: 20px;
-    left: -7px;
+    right: -7px;
     line-height: 20px;
     position: absolute;
     top: calc(50% - 10px);
