@@ -19,7 +19,7 @@ app.use(bodyParser.json());
  * Sends the homepage to the user.
  * @returns {page} - Homepage
  ************************************************************************/
-app.get('/', (req, res) => {
+app.get(['/', '/categories'], (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/katana/index.html'))
 });
 
