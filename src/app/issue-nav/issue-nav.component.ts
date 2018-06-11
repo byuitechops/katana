@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../course.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { EventEmitter } from '@angular/core';
+import { ToolService, Tool } from '../tool.service';
 
 @Component({
     selector: 'app-issue-nav',
@@ -29,6 +30,15 @@ export class IssueNavComponent implements OnInit {
             contents: 'Are you sure you want to fix all approved issues? \nThis will only affect the currently selected course.',
             actionText: 'Fix Approved Issues',
             action: () => console.log('THINGS BE FIXED HERE SOOON') // THIS WILL NEED TO BE CHANGED LATER
+        }, 
+        'startOver': {
+            title: 'Start Tool Over',
+            contents: 'Are you sure you want to discard the approvals made and start over? \nThis will take you back to the options page for this tool.',
+            actionText: 'Start Tool Over',
+            action: () => {
+                document.getElementsByClassName('restart')[0].setAttribute('routerLink', '../options');
+                // routerLink="../options"
+            }
         }
     }
 
@@ -38,7 +48,8 @@ export class IssueNavComponent implements OnInit {
     // This allows the modal to open and close
     modalActions = new EventEmitter<string | MaterializeAction>();
 
-    constructor(public courseService: CourseService) { }
+    constructor(public courseService: CourseService,
+        public toolService: ToolService) { }
 
     ngOnInit() { }
 

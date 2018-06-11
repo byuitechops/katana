@@ -73,6 +73,11 @@ ul {
     margin: 0 0 15px;
 }
 
+/* Overwrite Materialize flat buttons background color on hover */
+.btn-flat:hover {
+    background-color: #ebebeb;
+}
+
 /* Overwrite Materialize Table Details */
 tbody>tr>td {
     border-radius: 0;
