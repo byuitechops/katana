@@ -29,7 +29,8 @@ export class OptionsViewComponent {
         });
 
         // Send request
-        this.katanaService.discoverIssues(this.toolService.selectedTool.id, options)
+        this.toolService.selectedDiscoverOptions = options;
+        this.katanaService.discoverIssues()
             .catch(console.error);
         this.router.navigate([`categories/tools/${this.toolService.selectedTool.id}/issues`]);
     }

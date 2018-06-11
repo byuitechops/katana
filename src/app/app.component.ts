@@ -47,29 +47,9 @@ export class AppComponent {
         this.katanaService.getToolList()
             .catch((e) => {
                 this.toastService.devMode = true;
-                this.toastService.toastError(new Error('You are in Development Mode'));
+                this.toastService.toast('You are in development mode.');
                 console.error(e);
             });
-    }
-
-    // TESTING This function will be removed
-    testRunDiscover() {
-        this.katanaService.discoverIssues('equella_links', {
-
-        }).then((issueItems: IssueItem[]) => {
-            console.log('DISCOVERED', issueItems);
-            this.courseService.selectedCourse.issueItems = issueItems;
-        }).catch(console.error);
-    }
-
-    // TESTING This function will be removed
-    testRunFix() {
-        this.katanaService.fixIssues('equella_links', {
-
-        }).then((issueItems: IssueItem[]) => {
-            console.log('FIXED', issueItems);
-            this.courseService.selectedCourse.issueItems = issueItems;
-        }).catch(console.error);
     }
 
     title = 'app';

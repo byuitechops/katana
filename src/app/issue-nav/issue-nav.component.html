@@ -6,7 +6,8 @@
             <i class="material-icons">keyboard_arrow_up</i>
         </a>
         <div class="issueApproval__counter">
-            {{this.courseService.selectedIssueItem ? this.getCardPosition().currentIndex : '--'}} of {{this.courseService.selectedIssueItem ? this.getCardPosition().totalLength : '--'}}
+            {{this.courseService.selectedIssueItem ? this.getCardPosition().currentIndex : '--'}} of {{this.courseService.selectedIssueItem
+            ? this.getCardPosition().totalLength : '--'}}
         </div>
         <a class="blue lighten-1 btn-floating waves-effect waves-light" (click)="shiftSelectedItem('down')">
             <i class="material-icons">keyboard_arrow_down</i>
@@ -18,10 +19,10 @@
 
         <!-- Fix Approved Button -->
         <div class="issueApproval__button">
-            <a href="#fixModal" class="modal-trigger waves-effect teal waves-light btn" (click)="openModal('fixApproved')">
-                    <i class="material-icons left">refresh</i>
-                    Start Over
-                </a>
+            <a href="#fixModal" class="modal-trigger waves-effect red-text waves-light btn-flat" (click)="openModal('fixApproved')">
+                <i class="material-icons left">refresh</i>
+                Start Over
+            </a>
         </div>
         <div class="issueApproval__button">
             <a href="#fixModal" class="modal-trigger waves-effect blue waves-light btn" (click)="openModal('fixApproved')">
@@ -51,7 +52,8 @@
 
         <!-- The Kebob menu at the far right of the bottom bar -->
         <div>
-            <a materialize="dropdown" [materializeParams]="[{constrain_width: false, alignment: 'left'}]" class="dropdown-button issueApproval_moreButton" data-activates="dropdown1">
+            <a materialize="dropdown" [materializeParams]="[{constrain_width: false, alignment: 'left'}]" class="dropdown-button issueApproval_moreButton"
+                data-activates="dropdown1">
                 <i class="material-icons">more_vert</i>
             </a>
         </div>

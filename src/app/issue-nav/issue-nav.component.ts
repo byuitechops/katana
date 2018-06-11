@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../course.service';
+import { KatanaService } from '../katana.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { EventEmitter } from '@angular/core';
 
@@ -28,7 +29,7 @@ export class IssueNavComponent implements OnInit {
             title: 'Fix Approved Issues',
             contents: 'Are you sure you want to fix all approved issues? \nThis will only affect the currently selected course.',
             actionText: 'Fix Approved Issues',
-            action: () => console.log('THINGS BE FIXED HERE SOOON') // THIS WILL NEED TO BE CHANGED LATER
+            action: () => this.katanaService.fixIssues()
         }
     }
 
@@ -38,7 +39,8 @@ export class IssueNavComponent implements OnInit {
     // This allows the modal to open and close
     modalActions = new EventEmitter<string | MaterializeAction>();
 
-    constructor(public courseService: CourseService) { }
+    constructor(public courseService: CourseService,
+        public katanaService: KatanaService) { }
 
     ngOnInit() { }
 

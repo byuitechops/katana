@@ -67,14 +67,16 @@ export class KatanaService {
      * 4. When successful, sets the course service's courses to the new course objects with issueItems
      * 5. When unsuccessful, rejects the promise with the given error
      ****************************************************************/
-    discoverIssues(tool_id: string, options: object) {
+    discoverIssues() {
         return new Promise((resolve, reject) => {
+            // REMOVE log
+            console.log(this.toolService.selectedTool.id);
             this.toolService.processingMessage = 'Discovering Issues...';
             this.toolService.processing = true;
             let body = {
-                tool_id,
+                tool_id: this.toolService.selectedTool.id,
                 courses: this.courseService.courses,
-                options
+                options: this.toolService.selectedDiscoverOptions
             };
             let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             headers.append('Content-Type', 'application/json');
@@ -105,14 +107,14 @@ export class KatanaService {
      * 4. When successful, sets the courses property on the course service to the received courses
      * 5. When unsuccessful, rejects the promise with the given error
      ****************************************************************/
-    fixIssues(tool_id: string, options: object) {
+    fixIssues() {
         return new Promise((resolve, reject) => {
             this.toolService.processingMessage = 'Fixing Issues...';
             this.toolService.processing = true;
             let body = {
-                tool_id,
-                issueItems: this.courseService.selectedCourse.issueItems,
-                options
+                tool_id: this.toolService.selectedTool.id,
+                courses: this.courseService.courses,
+                options: this.toolService.selectedDiscoverOptions
             };
             let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             headers.append('Content-Type', 'application/json');

@@ -162,10 +162,11 @@ export class ToolService {
         type: ''
     }];
 
-    // The currently selected category (i.e. Page)
     selectedCategory: object;
-    // The currently selected tool
-    selectedTool;
+    selectedTool: Tool;
+    selectedDiscoverOptions;
+    selectedFixOptions;
+
 
     constructor(private router: Router) {
         let loc = window.location.href;

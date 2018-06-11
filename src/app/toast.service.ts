@@ -19,10 +19,13 @@ export class ToastService {
             `;
         }
         var text = e.message;
-        if (e.status === 0) {
+        if (e.message === 'Http failure response for http://localhost:4200/course-retrieval: 404 Not Found') {
             text = 'The server is not available. Please check with a Katana Admin.';
         }
         toast(buildHTML(text));
+        setTimeout(() => {
+            document.querySelector('.toast').remove();
+        }, 15000);
     }
 
     toast(text) {

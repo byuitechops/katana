@@ -7,7 +7,8 @@ const toolList = {
     // 'example_tool_id': require('./node_tools/node_tool_template.js'),
     // 'test_tool': require('./node_tools/test_tool.js'),
     // 'deprecated_references': require('./node_tools/deprecated_references.js'),
-    'equella_links': require('./node_tools/equella_links.js')
+    // 'equella_links': require('./node_tools/equella_links.js'),
+    'rename_pages': require('./node_tools/rename_pages.js')
 }
 
 /* Course Search */
@@ -35,31 +36,19 @@ function logMe(status, type, toolId, count) {
 function discoverIssues(toolId, courses, options) {
     function constructIssues(course) {
         return new Promise(async (resolve, reject) => {
-            let canvasCourse = canvas.getCourse(course.id);
-            let problemItems = await toolList[toolId].discover(canvasCourse, options);
-            problemItems.forEach(problemItem => problemItem.issues.forEach(issue => issue.status = 'untouched'));
-            let issueItems = problemItems.map(item => {
-                return {
-                    title: item.getTitle(),
-                    course_id: course.id,
-                    item_id: item.getId(),
-                    item_type: item.constructor.name,
-                    link: item.getUrl(),
-                    issues: item.issues
-                }
-            });
-            course.issueItems = issueItems;
+            await toolList[toolId].discoverCourseIssues(course, options);
+            course.issueItems.forEach(issueItem => issueItem.issues.forEach(issue => issue.status = 'untouched'));
             resolve();
         });
     }
     try {
-        logMe('STARTED', 'Discover', toolId, courses.length + 1);
+        logMe('STARTED', 'Discover', toolId, courses.length);
         return new Promise(async (resolve, reject) => {
             if (toolList[toolId]) {
                 let promiseActions = courses.map(course => constructIssues(course));
                 Promise.all(promiseActions)
                     .then(() => {
-                        logMe('COMPLETE', 'Discover', toolId, courses.length + 1);
+                        logMe('COMPLETE', 'Discover', toolId, courses.length);
                         resolve(courses);
                     });
             } else {
@@ -67,7 +56,7 @@ function discoverIssues(toolId, courses, options) {
             }
         });
     } catch (e) {
-        reject(e);
+        console.error(e);
     }
 }
 
@@ -84,8 +73,30 @@ function discoverIssues(toolId, courses, options) {
  * 4. Resolves with "fixedItems"
  ****************************************************************/
 function fixIssues(toolId, courses, options) {
-
-    // Zach's next big task
+    function fixAllIssues(course) {
+        return new Promise(async (resolve, reject) => {
+            let fixedIssueItems = await toolList[toolId].fixCourseIssues(course, options);
+            course.issueItems = fixedIssueItems;
+            resolve();
+        });
+    }
+    try {
+        logMe('STARTED', 'Fix', toolId, courses.length);
+        return new Promise(async (resolve, reject) => {
+            if (toolList[toolId]) {
+                let promiseActions = courses.map(course => fixAllIssues(course));
+                Promise.all(promiseActions)
+                    .then(() => {
+                        logMe('COMPLETE', 'Fix', toolId, courses.length);
+                        resolve(courses);
+                    });
+            } else {
+                reject(new Error('Invalid Tool ID'));
+            }
+        });
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 module.exports = {

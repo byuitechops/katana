@@ -1,4 +1,4 @@
-<div class="courseSidebar">
+<div class="courseSidebar light-blue darken-3">
     <div class="courseSidebar__title">Courses</div>
     <app-course-chip *ngFor="let course of this.courseService.courses" [course]="course" (click)="this.courseService.selectedCourse = course"></app-course-chip>
     <div [style.cursor]="courseService.courses.length === 0 || toolService.processing ? 'default' : 'pointer'" class="courseSidebar__expandSidebar">
