@@ -47,72 +47,72 @@ export class CourseSelectionComponent implements AfterViewInit {
         url: 'www.google.com',
         blueprint: false
     }, {
-        id: 1318,
-        course_name: 'Katana 10',
+        id: 13181,
+        course_name: 'Katana 1110',
         course_code: 'K 101',
         instructor: 'Seth Childers',
         issueItems: [],
         url: 'www.google.com',
         blueprint: false
     }, {
-        id: 1301,
-        course_name: 'Katana 11',
+        id: 13011,
+        course_name: 'Katana 1111',
         course_code: 'K 101',
         instructor: 'Seth Childers',
         issueItems: [],
         url: 'www.google.com',
         blueprint: true
     }, {
-        id: 3018,
-        course_name: 'Katana 01',
+        id: 30181,
+        course_name: 'Katana 0111',
         course_code: 'K 101',
         instructor: 'Seth Childers',
         issueItems: [],
         url: 'www.google.com',
         blueprint: false
     }, {
-        id: 1318,
-        course_name: 'Katana 10',
+        id: 13182,
+        course_name: 'Katana 1011',
         course_code: 'K 101',
         instructor: 'Seth Childers',
         issueItems: [],
         url: 'www.google.com',
         blueprint: false
     }, {
-        id: 1301,
-        course_name: 'Katana 11',
+        id: 13012,
+        course_name: 'Katana 1122',
         course_code: 'K 101',
         instructor: 'Seth Childers',
         issueItems: [],
         url: 'www.google.com',
         blueprint: true
     }, {
-        id: 3018,
-        course_name: 'Katana 01',
+        id: 30182,
+        course_name: 'Katana 0122',
         course_code: 'K 101',
         instructor: 'Seth Childers',
         issueItems: [],
         url: 'www.google.com',
         blueprint: false
     }, {
-        id: 1318,
-        course_name: 'Katana 10',
+        id: 13183,
+        course_name: 'Katana 1022',
         course_code: 'K 101',
         instructor: 'Seth Childers',
         issueItems: [],
         url: 'www.google.com',
         blueprint: false
     }, {
-        id: 1301,
-        course_name: 'Katana 11',
+        id: 13013,
+        course_name: 'Katana 1133',
         course_code: 'K 101',
         instructor: 'Seth Childers',
         issueItems: [],
         url: 'www.google.com',
         blueprint: true
     }, {
-        id: 3018,
-        course_name: 'Katana 01',
+        id: 30183,
+        course_name: 'Katana 0133',
         course_code: 'K 101',
         instructor: 'Seth Childers',
         issueItems: [],
@@ -178,29 +178,8 @@ export class CourseSelectionComponent implements AfterViewInit {
                         this.courseResults = courses;
                     }
                 })
-                .then(this.toggleSelected)
                 .catch(console.error);
         }
-    }
-
-    toggleSelected() {
-        // if (this.courseResults) {
-        //     this.courseResults.forEach(courseResult => {
-        //         this.courseService.courses.forEach(selectedCourse => {
-        //             console.log(courseResult.id, selectedCourse.id)
-        //             if (courseResult.id === selectedCourse.id) {
-        //                 if (document.querySelector("tr.table-element-"+courseResult.id+" td>i").innerHTML === "remove_circle") {
-        //                     console.log("tr.table-element-"+selectedCourse.id+" td>i", `it's remove circle`);
-        //                     document.querySelector("tr.table-element-"+selectedCourse.id+" td>i").innerHTML = "add_circle"
-        //                 } else {
-        //                     console.log("tr.table-element-"+selectedCourse.id+" td>i", `it's add circle`);
-        //                     document.querySelector("tr.table-element-"+selectedCourse.id+" td>i").innerHTML = "remove_circle"
-        //                 }
-        //             }
-        //         });
-
-        //     });
-        // }
     }
 
     isAdded(course) {

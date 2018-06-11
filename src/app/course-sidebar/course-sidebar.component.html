@@ -1,6 +1,9 @@
 <div class="courseSidebar">
     <div class="courseSidebar__title">Courses</div>
+    <div class="courseSidebar__courseChip__container">
     <app-course-chip *ngFor="let course of this.courseService.courses" [course]="course" (click)="this.courseService.selectedCourse = course"></app-course-chip>
+    </div>
+    <a *ngIf="!toolService.processing && courseService.courses.length !== 0 && courseSelectionOpen === true" class="waves-effect red btn" (click)="courseService.courses = [];">Remove All</a>
     <div [style.cursor]="courseService.courses.length === 0 || toolService.processing ? 'default' : 'pointer'" class="courseSidebar__expandSidebar">
         <div (click)="courseOverlay()">
             <p>Course Selection</p>
