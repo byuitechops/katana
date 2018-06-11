@@ -8,6 +8,7 @@
   transition: all .1s ease-in-out;
   box-sizing: border-box;
   margin: 0 0 5px;
+  position: relative;
   text-align: center;
   font-weight: 700;
 }
@@ -28,4 +29,17 @@
 .selectedChip {
   color: var(--accent-1);
   background-color: var(--primary-6);
+}
+
+.courseChip__issueCount {
+    background-color: white !important;
+    border-radius: 20px;
+    color: var(--accent-2);
+    font-weight: bold;
+    height: 20px;
+    left: -7px;
+    line-height: 20px;
+    position: absolute;
+    top: calc(50% - 10px);
+    width: 20px;
 }

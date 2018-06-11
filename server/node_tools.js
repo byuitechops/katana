@@ -4,9 +4,9 @@ const chalk = require('chalk');
 
 /* Node Tools | (Key) Tool ID: (Value) require(pathToTool) */
 const toolList = {
-    'example_tool_id': require('./node_tools/node_tool_template.js'),
-    'test_tool': require('./node_tools/test_tool.js'),
-    'deprecated_references': require('./node_tools/deprecated_references.js'),
+    // 'example_tool_id': require('./node_tools/node_tool_template.js'),
+    // 'test_tool': require('./node_tools/test_tool.js'),
+    // 'deprecated_references': require('./node_tools/deprecated_references.js'),
     'equella_links': require('./node_tools/equella_links.js')
 }
 

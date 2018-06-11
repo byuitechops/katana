@@ -4,6 +4,8 @@ import { CourseService, IssueItem, Course } from './course.service';
 import { ToolService, Tool } from './tool.service';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { ToastService } from './toast.service';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +15,9 @@ export class KatanaService {
 
     constructor(private http: HttpClient,
         private toolService: ToolService,
-        private courseService: CourseService) { }
+        private courseService: CourseService,
+        private router: Router,
+        private toastService: ToastService) { }
 
     /*****************************************************************
      * Retrieves the list of tools from the server.
@@ -45,6 +49,7 @@ export class KatanaService {
                     resolve(data);
                 },
                 (err) => {
+                    this.toastService.toastError(err);
                     console.error(err);
                 });
         });
@@ -81,7 +86,9 @@ export class KatanaService {
                     resolve();
                 },
                 (err) => {
+                    this.toastService.toastError(err);
                     console.error(err);
+                    this.router.navigate(['/']);
                 });
         });
     }
@@ -118,6 +125,7 @@ export class KatanaService {
                     resolve();
                 },
                 (err) => {
+                    this.toastService.toastError(err);
                     console.error(err);
                 });
         });
