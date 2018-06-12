@@ -17,10 +17,6 @@
   background-color: var(--primary-6);
 }
 
-.courseChip {
-    /* background-color: blue !important; */
-}
-
 .courseChip__instructorName {
   font-size: 10px;
   font-weight: 400;
