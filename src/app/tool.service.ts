@@ -115,31 +115,31 @@ export class ToolService {
     categories = [{
         icon: 'insert_drive_file',
         title: 'Pages',
-        type: 'Page'
+        type: 'pages'
     }, {
         icon: 'assignment',
         title: 'Assignments',
-        type: 'Assignment'
+        type: 'assignments'
     }, {
         icon: 'attach_file',
         title: 'Files',
-        type: 'File'
+        type: 'files'
     }, {
         icon: 'folder',
         title: 'Folders',
-        type: 'Folder'
+        type: 'folders'
     }, {
         icon: 'question_answer',
         title: 'Discussions',
-        type: 'Discussion'
+        type: 'discussions'
     }, {
         icon: 'view_agenda',
         title: 'Modules',
-        type: 'Module'
+        type: 'modules'
     }, {
         icon: 'view_list',
         title: 'Module Items',
-        type: 'ModuleItem'
+        type: 'moduleItems'
     }, {
         icon: 'gavel',
         title: 'Quizzes',

@@ -3,8 +3,8 @@ const express = require('express');
 const morgan = require('morgan');
 const chalk = require('chalk');
 const bodyParser = require('body-parser');
-const nodeTools = require('./node_tools.js');
-const courseRetrieval = require('./course_retrieval.js');
+const node_tools = require('./node_tools.js');
+const course_retrieval = require('./course_retrieval.js');
 const app = express();
 const serverPort = 8000;
 
@@ -28,7 +28,7 @@ app.get(['/', '/categories'], (req, res) => {
  * @returns {courses[]} - List of courses that match the search criteria
  ************************************************************************/
 app.post('/course-retrieval', (req, res) => {
-    courseRetrieval(req.body)
+    course_retrieval(req.body)
         .then(courses => {
             res.status(200).send(courses);
         })
@@ -40,10 +40,11 @@ app.post('/course-retrieval', (req, res) => {
 
 /*************************************************************************
  * Sends the list of tools to the client.
- * @returns {string[]} - List of tools available from the server
+ * @returns {Tool[]} - List of tools available from the server
  ************************************************************************/
 app.get('/tool-list', (req, res) => {
-    res.send(Object.keys(nodeTools.toolList).map(toolId => nodeTools.toolList[toolId].details));
+    let toolArray = Object.keys(node_tools.toolList).map(key => node_tools.toolList[key]);
+    res.send(toolArray);
 });
 
 /*************************************************************************
@@ -62,7 +63,7 @@ app.post('/tool/discover', async (req, res) => {
             options
         } = req.body;
 
-        await nodeTools.discoverIssues(tool_id, courses, options);
+        await node_tools.discoverIssues(tool_id, courses, options);
         res.status(200).send(courses);
     } catch (e) {
         console.log(e);
@@ -82,8 +83,7 @@ app.put('/tool/fix', async (req, res) => {
             options
         } = req.body;
 
-        await nodeTools.fixIssues(tool_id, courses, options);
-        console.log('ISSUE ITEMS', courses[0].issueItems);
+        await node_tools.fixIssues(tool_id, courses, options);
         res.status(200).send(courses);
     } catch (e) {
         console.log(e);

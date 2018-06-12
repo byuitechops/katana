@@ -69,8 +69,6 @@ export class KatanaService {
      ****************************************************************/
     discoverIssues() {
         return new Promise((resolve, reject) => {
-            // REMOVE log
-            console.log(this.toolService.selectedTool.id);
             this.toolService.processingMessage = 'Discovering Issues...';
             this.toolService.processing = true;
             let body = {
@@ -120,9 +118,9 @@ export class KatanaService {
             headers.append('Content-Type', 'application/json');
             this.http.put('/tool/fix', body, { headers: headers }).subscribe(
                 (courses: Course[]) => {
+                    console.log(courses);
                     this.courseService.courses = courses;
                     this.courseService.selectedCourse = courses[0];
-                    this.toolService.processing = false;
                     this.toolService.processing = false;
                     resolve();
                 },

@@ -1,102 +1,116 @@
 /* Dependencies */
 const canvas = require('canvas-api-wrapper');
 const chalk = require('chalk');
+const IssueItem = require('./issue_item.js');
 
-/* Node Tools | (Key) Tool ID: (Value) require(pathToTool) */
-const toolList = {
-    // 'example_tool_id': require('./node_tools/node_tool_template.js'),
-    // 'test_tool': require('./node_tools/test_tool.js'),
-    // 'deprecated_references': require('./node_tools/deprecated_references.js'),
-    // 'equella_links': require('./node_tools/equella_links.js'),
-    'rename_pages': require('./node_tools/rename_pages.js')
-}
 
 /* Course Search */
 const courseSearch = require('./course_search/course_search.js');
 
-function logMe(status, type, toolId, count) {
-    console.log(`${chalk.whiteBright(status)}: ${chalk.cyanBright(type)} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(toolId)} | ${chalk.whiteBright('COURSES:')} ${chalk.greenBright(count)}`)
+/* Node Tools | (Key) Tool ID: (Value) require(pathToTool) */
+const toolList = {
+    'rename_pages': require('./node_tools/rename_pages.js')
+}
+
+/* Used to log start/stop of different tools */
+function logMe(status, type, tool_id, count) {
+    console.log(`${chalk.whiteBright(status)}: ${chalk.cyanBright(type)} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(tool_id)} | ${chalk.whiteBright('COURSES:')} ${chalk.greenBright(count)}`)
 }
 
 /*****************************************************************
  * Runs a tool in discovery mode, then returns the issue items discovered.
- * @param {string} toolId - The ID of the tool to be run
+ * @param {string} tool_id - The ID of the tool to be run
  * @param {object[]} courses - Array of courses to be run (typically the currently selected courses)
  * @param {object} options - An object containing the option values specific to the tool
  * @returns {object[]} - Array of issue items discovered by the tool
- * Process:
- * 1. Returns a promise
- * 2. Makes sure the tool specified exists, and rejects with an error if it does not
- * 3. Creates "allIssueItems", which is a flat array of all issueItems discovered in each course
- * 4. Loops through each course provided and sends it through the discovery function of the tool specified
- * 5. Sets all issue status to 'untouched'
- * 6. Formats all problemItems into IssueItems
- * 7. Resolves promise with the list of issueItems
  ****************************************************************/
-function discoverIssues(toolId, courses, options) {
-    function constructIssues(course) {
+function discoverIssues(tool_id, courses, options) {
+    function courseDiscover(course) {
         return new Promise(async (resolve, reject) => {
-            await toolList[toolId].discoverCourseIssues(course, options);
-            course.issueItems.forEach(issueItem => issueItem.issues.forEach(issue => issue.status = 'untouched'));
-            resolve();
-        });
-    }
-    try {
-        logMe('STARTED', 'Discover', toolId, courses.length);
-        return new Promise(async (resolve, reject) => {
-            if (toolList[toolId]) {
-                let promiseActions = courses.map(course => constructIssues(course));
-                Promise.all(promiseActions)
-                    .then(() => {
-                        logMe('COMPLETE', 'Discover', toolId, courses.length);
-                        resolve(courses);
-                    });
-            } else {
-                reject(new Error('Invalid Tool ID'));
+            try {
+                logMe('START', 'DISCOVER', tool_id, courses.length);
+
+                // Build the canvas-api-wrapper and get all the needed items
+                let canvasCourse = canvas.getCourse(course.id);
+                for (var i = 0; i < toolList[tool_id].categories.length; i++) {
+                    if (['pages', 'quizzes', 'modules'].includes(toolList[tool_id].categories[i])) {
+                        await canvasCourse[toolList[tool_id].categories[i]].getComplete();
+                    } else {
+                        await canvasCourse[toolList[tool_id].categories[i]].get();
+                    }
+                }
+
+                // Put all of the items into a single array
+                let allItems = canvasCourse.getSubs().reduce((acc, sub) => acc.concat(sub));
+
+                // Run each item through the discover function of the selected tool
+                course.issueItems = allItems.reduce((acc, item) => {
+                    let issueItem = new IssueItem(item);
+                    toolList[tool_id].discover(item, issueItem, options);
+                    return issueItem.issues.length > 0 ? acc.concat(issueItem) : acc;
+                }, []);
+
+                // Resolve the promise
+                resolve();
+                logMe('COMPLETE', 'DISCOVER', tool_id, courses.length);
+            } catch (e) {
+                reject(e);
             }
         });
-    } catch (e) {
-        console.error(e);
     }
+
+    return new Promise((resolve, reject) => {
+        let promises = courses.map(course => courseDiscover(course));
+        Promise.all(promises)
+            .then(resolve)
+            .catch(reject);
+    });
 }
 
 /*****************************************************************
  * Fixes the provided issue items in Canvas with the specified tool.
- * @param {string} toolId - The ID of the tool to be run
+ * @param {string} tool_id - The ID of the tool to be run
  * @param {object[]} courses - Array of courses to be run, with their IssueItems attached (typically the currently selected courses)
  * @param {object} options - An object containing the option values specific to the tool
- * @returns {object[]} - Array of issue items fixed by the tool
- * Process:
- * 1. Returns a promise
- * 2. Makes sure the specified tool exists, and rejects with an error if it does not
- * 3. Runs each item through the specified tool and maps results to an array called "fixedItems"
- * 4. Resolves with "fixedItems"
+ * @returns {Course[]} - Array of courses, which include their updated IssueItems
  ****************************************************************/
-function fixIssues(toolId, courses, options) {
-    function fixAllIssues(course) {
+function fixIssues(tool_id, courses, options) {
+    function courseFix(course) {
         return new Promise(async (resolve, reject) => {
-            let fixedIssueItems = await toolList[toolId].fixCourseIssues(course, options);
-            course.issueItems = fixedIssueItems;
-            resolve();
-        });
-    }
-    try {
-        logMe('STARTED', 'Fix', toolId, courses.length);
-        return new Promise(async (resolve, reject) => {
-            if (toolList[toolId]) {
-                let promiseActions = courses.map(course => fixAllIssues(course));
-                Promise.all(promiseActions)
-                    .then(() => {
-                        logMe('COMPLETE', 'Fix', toolId, courses.length);
-                        resolve(courses);
+            try {
+                logMe('START', 'FIX', tool_id, courses.length);
+
+                let fixPromises = course.issueItems.map(issueItem => {
+                    return new Promise(async (resolve, reject) => {
+                        try {
+                            let canvasCourse = canvas.getCourse(course.id);
+                            let canvasItem = await canvasCourse[issueItem.category].getOne(issueItem.item_id);
+                            await toolList[tool_id].fix(canvasItem, issueItem, options);
+                            resolve();
+                        } catch (e) {
+                            reject(e);
+                        }
                     });
-            } else {
-                reject(new Error('Invalid Tool ID'));
+                });
+
+                Promise.all(fixPromises)
+                    .then(() => {
+                        logMe('COMPLETE', 'FIX', tool_id, courses.length);
+                        resolve();
+                    })
+                    .catch(console.error);
+            } catch (e) {
+                reject(e);
             }
         });
-    } catch (e) {
-        console.error(e);
     }
+
+    return new Promise((resolve, reject) => {
+        let promises = courses.map(course => courseFix(course));
+        Promise.all(promises)
+            .then(resolve)
+            .catch(reject);
+    });
 }
 
 module.exports = {

@@ -15,7 +15,7 @@
 
 /* The issue description on an issue container */
 
-.issueContainer__issueDescription {
+.issueContainer__issueDetails {
     color: var(--primary-5);
 }
 

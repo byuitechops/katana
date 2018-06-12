@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Issue } from '../course.service';
 
 @Component({
@@ -9,11 +9,12 @@ import { Issue } from '../course.service';
 export class IssueContainerComponent implements OnInit {
     @Input() // Issue
     issue: Issue;
+    @ViewChild('issueDetails') issueDetails: ElementRef;
 
     constructor() { }
 
     ngOnInit() {
-
+        this.issueDetails.nativeElement.innerHTML = this.issue.details;
     }
 
     setIssueStatus(newStatus) {

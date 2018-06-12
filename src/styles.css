@@ -66,6 +66,18 @@ ul {
     font-weight: 500;
 }
 
+.pad-10 {
+    padding: 10px;
+}
+
+.pad-15 {
+    padding: 15px;
+}
+
+.pad-20 {
+    padding: 20px;
+}
+
 
 /* Overwrite Materialize Card Margins */
 

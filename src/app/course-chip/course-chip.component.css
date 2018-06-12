@@ -38,7 +38,7 @@
 .courseChip__issueCount {
     background-color: white !important;
     border-radius: 20px;
-    color: var(--accent-2);
+    color: var(--accent-1);
     font-weight: bold;
     height: 20px;
     right: -7px;

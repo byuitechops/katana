@@ -1,18 +1,16 @@
-import { TEST_ISSUES } from './GENERATED_ISSUES';
 import { Injectable } from '@angular/core';
 
 export interface Issue {
     title: string,
     status: string,
-    description: string,
-    details: object
+    details: string
 }
 
 export interface IssueItem {
     title: string,
     course_id: number,
     item_id: number,
-    item_type: string,
+    category: string,
     link: string,
     issues: Issue[]
 }
@@ -34,19 +32,9 @@ export interface Course {
 })
 export class CourseService {
 
-    courses = [
-    //     {
-    //     id: 13018,
-    //     course_name: 'Katana 101',
-    //     course_code: 'K 101',
-    //     instructor: 'Seth Childers',
-    //     issueItems: [],
-    //     url: 'www.google.com'
-    // }
-    ];
-
-    selectedIssueItem: IssueItem;
+    courses: Course[] = [];
     _selectedCourse: Course;
+    selectedIssueItem: IssueItem;
 
     get selectedCourse() {
         return this._selectedCourse;
@@ -72,24 +60,24 @@ export class CourseService {
 
         // TODO Check to see if course already exists in the currently selected courses before adding it
         // TODO Add courses according to the format in courses_service.md
-        let found = this.courses.find(existingCourse => existingCourse.id === course.id );
-        
+        let found = this.courses.find(existingCourse => existingCourse.id === course.id);
+
         if (!found) {
             this.courses.push(course);
-        } 
+        }
         else {
             this.removeCourse(course);
         }
-        
+
     }
-    
+
     /*****************************************************************
      * Removes a course from the list of currently selected courses.
      * @param {number} courseId - The ID of the course
      *****************************************************************/
     removeCourse(course: Course) {
-        
+
         // TODO Use a regular for loop to break out of the search for the course as quick as possible
-        this.courses = this.courses.filter(currCourse => currCourse.id !== course.id );
+        this.courses = this.courses.filter(currCourse => currCourse.id !== course.id);
     }
 }

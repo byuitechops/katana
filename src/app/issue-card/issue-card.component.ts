@@ -23,7 +23,7 @@ export class IssueCardComponent implements AfterViewInit {
      **********************************************************************/
     ngAfterViewInit() {
         if (!this.typeIcon) return;
-        this.typeIcon.nativeElement.setAttribute('data-tooltip', this.issueItem.item_type);
+        this.typeIcon.nativeElement.setAttribute('data-tooltip', this.issueItem.category);
     }
 
     /***********************************************************************
@@ -33,20 +33,17 @@ export class IssueCardComponent implements AfterViewInit {
      **********************************************************************/
     getTypeIcon() {
         let typeIcons = {
-            'Page': 'insert_drive_file',
-            'Assignment': 'assignment',
-            'Discussion': 'question_answer',
-            'File': 'attach_file',
-            'Folder': 'folder',
-            'Quiz': 'gavel',
-            'QuizQuestion': 'help_outline',
-            'Module': 'view_agenda',
-            'ModuleItem': 'view_list',
-            'Universal': '',
-            'Syllabus': 'language',
-            'CourseSetting': 'settings',
+            'pages': 'insert_drive_file',
+            'assignments': 'assignment',
+            'discussions': 'question_answer',
+            'files': 'attach_file',
+            'folders': 'folder',
+            'muizzes': 'gavel',
+            'muizQuestions': 'help_outline',
+            'modules': 'view_agenda',
+            'moduleItems': 'view_list',
         }
-        return typeIcons[this.issueItem.item_type];
+        return typeIcons[this.issueItem.category];
     }
 
     /***********************************************************************

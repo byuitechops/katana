@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class IssueNavComponent implements OnInit {
 
-    // The contents of the modal - dynamically set by the open event
+    // The contents of the modal - dynamically sets the modal during the open event
     modalContents: object = {
         'approveAll': {
             title: 'Approve All Fixes',
@@ -141,15 +141,17 @@ export class IssueNavComponent implements OnInit {
      * 3. Return the number of issues discovered
      ****************************************************************/
     getIssueCount(statusArray) {
-        let issues = this.courseService.selectedCourse.issueItems.reduce((acc, issueItem) => {
-            issueItem.issues.forEach(issue => {
-                if (statusArray.includes(issue)) {
-                    acc.push(issue);
-                }
-                return issue;
-            });
-            return acc;
-        }, []);
-        return issues.length;
+        if (this.courseService.selectedCourse && this.courseService.selectedCourse.issueItems) {
+            let issues = this.courseService.selectedCourse.issueItems.reduce((acc, issueItem) => {
+                issueItem.issues.forEach(issue => {
+                    if (statusArray.includes(issue)) {
+                        acc.push(issue);
+                    }
+                    return issue;
+                });
+                return acc;
+            }, []);
+            return issues.length;
+        } else return 0;
     }
 }
