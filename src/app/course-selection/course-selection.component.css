@@ -43,7 +43,7 @@ select {
   cursor: pointer;
   display: block;
   margin-right: 15px;
-  width: 10vw;
+  width: 9vw;
   /* This height matches the height of the input */
   height: 47px;
   /* The selected option will be size 20px */
@@ -63,7 +63,7 @@ option {
   border: 1px solid var(--primary-3);
   font-size: 20px;
   padding-left: 10px;
-  width: 56.1vw;
+  width: 49.3vw;
 }
 /***************************************
 * Course Search Search Bar and Headers
@@ -105,7 +105,7 @@ label {
 .courseSearch__search>table>thead {
   background-color: white;
   border-bottom: 1px solid var(--primary-3);
-  height: 45px;
+  height: 52px;
   position: fixed;
   /* The width of the table (89vw) minus the 1px border width
   minus 1px so the white background doesn't overlap the table border */
@@ -125,13 +125,18 @@ label {
   flex-flow: column nowrap;
 }
 
-tbody>tr {
+tbody>tr, tr>th {
   cursor: pointer;
 }
 
-tbody>th, tbody>td {
+tr>th:hover {
+  background-color: #ebebeb;
+}
+
+tr>th, tr>td {
   padding-left: 10px;
 }
+
 thead th:nth-of-type(1),
 tbody td:nth-of-type(1) {
   /* padding-left: 15px; */

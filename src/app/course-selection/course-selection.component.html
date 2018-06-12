@@ -34,6 +34,12 @@
             <option value="">All</option>
           </select>
         </label>
+        <label>Search By
+          <select (change)="getCourses()" #searchBy>
+            <option value="course">Course</option>
+            <option value="teacher">Instructor</option>
+          </select>
+        </label>
         <div class="courseSearch__input">
           <label>Search</label>
             <input type="text" placeholder="Search courses..." (input)="getCourses()" #searchText/>
@@ -46,13 +52,13 @@
         <thead>
           <tr>
             <th>+/-</th>
-            <th>Name</th>
-            <th>Code</th>
-            <th>Instructor</th>
-            <th>Account</th>
-            <th>Term</th>
-            <th>Blueprint</th>
-            <th>ID</th>
+            <th (click)="sortBy('course_name')">Name</th>
+            <th (click)="sortBy('course_code')">Code</th>
+            <th (click)="sortBy('instructor')">Instructor</th>
+            <th (click)="sortBy('account')">Account</th>
+            <th (click)="sortBy('term')">Term</th>
+            <th (click)="sortBy('blueprint')">Blueprint</th>
+            <th (click)="sortBy('id')">ID</th>
             <th>Open in Canvas</th>
           </tr>
         </thead>

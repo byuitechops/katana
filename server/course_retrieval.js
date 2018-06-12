@@ -7,11 +7,10 @@ module.exports = (body) => {
 
     // ADD The account should be ${searchParams.account_id} instead of /1/, but we again, don't have all of the account info
 
-    // ADD Currently the URI has 'search_by=course' which will make the search term look through the course name, course code, and the SIS ID. It can toggle between that and searching by teacher. 
     console.log(`searchParams`, body);
     console.log(`URI`, `/api/v1/accounts/${body.account ? `${body.account}` : '1'}/courses?search_by=course&search_term=${body.searchText}&include[]=term${body.term ? `&enrollment_term_id=${body.term}` : ''}&include[]=teachers${body.blueprint ? `&blueprint=${body.blueprint}` : ''}`);
 
-    canvas.get(`/api/v1/accounts/${body.account ? `${body.account}` : '1'}/courses?search_by=course&search_term=${body.searchText}&include[]=term${body.term ? `&enrollment_term_id=${body.term}` : ''}&include[]=teachers${body.blueprint ? `&blueprint=${body.blueprint}` : ''}&per_page=50`, (err, courses) => {
+    canvas.get(`/api/v1/accounts/${body.account ? `${body.account}` : '1'}/courses?search_by=${body.searchBy}&search_term=${body.searchText}&include[]=term${body.term ? `&enrollment_term_id=${body.term}` : ''}&include[]=teachers${body.blueprint ? `&blueprint=${body.blueprint}` : ''}&per_page=50`, (err, courses) => {
       if (err) {
         console.error(err);
         reject(err);
