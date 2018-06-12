@@ -19,10 +19,10 @@
 
         <!-- Fix Approved Button -->
         <div class="issueApproval__button">
-            <a class="restart modal-trigger waves-effect red-text waves-light btn-flat" routerLink="../options" (click)="openModal('startOver')" >
-                    <i class="material-icons left">refresh</i>
-                    Start Over
-                </a>
+            <a class="modal-trigger waves-effect red-text waves-light btn-flat" (click)="openModal('startOver')">
+                <i class="material-icons left">refresh</i>
+                Start Over
+            </a>
         </div>
         <div class="issueApproval__button">
             <a href="#fixModal" class="modal-trigger waves-effect blue waves-light btn" (click)="openModal('fixApproved')">

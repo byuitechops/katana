@@ -4,6 +4,7 @@ import { KatanaService } from '../katana.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { EventEmitter } from '@angular/core';
 import { ToolService, Tool } from '../tool.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-issue-nav',
@@ -37,7 +38,8 @@ export class IssueNavComponent implements OnInit {
             contents: 'Are you sure you want to discard the approvals made and start over? \nThis will take you back to the options page for this tool.',
             actionText: 'Start Tool Over',
             action: () => {
-                document.getElementsByClassName('restart')[0].setAttribute('routerLink', '../options');
+                this.router.navigate(['categories', 'tools', this.toolService.selectedTool.id, 'options']);
+                // document.getElementsByClassName('restart')[0].setAttribute('routerLink', '../options');
                 // routerLink="../options"
             }
         }
@@ -51,7 +53,8 @@ export class IssueNavComponent implements OnInit {
 
     constructor(public courseService: CourseService,
         public toolService: ToolService,
-        public katanaService: KatanaService) { }
+        public katanaService: KatanaService,
+        private router: Router) { }
 
     ngOnInit() { }
 
