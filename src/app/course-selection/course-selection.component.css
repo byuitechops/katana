@@ -133,9 +133,10 @@ tr>th:hover {
   background-color: #ebebeb;
 }
 
-tbody>td {
+tr>th, tr>td {
   padding-left: 10px;
 }
+
 thead th:nth-of-type(1),
 tbody td:nth-of-type(1) {
   /* padding-left: 15px; */

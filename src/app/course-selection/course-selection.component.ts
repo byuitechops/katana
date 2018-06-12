@@ -42,123 +42,25 @@ export class CourseSelectionComponent implements AfterViewInit {
         issueItems: [],
         url: 'www.google.com',
         blueprint: false
-    }, {
-        id: 13181,
-        course_name: 'Katana 1110',
-        course_code: 'K 101',
-        instructor: 'Seth Childers',
-        issueItems: [],
-        url: 'www.google.com',
-        blueprint: false
-    }, {
-        id: 13011,
-        course_name: 'Katana 1111',
-        course_code: 'K 101',
-        instructor: 'Seth Childers',
-        issueItems: [],
-        url: 'www.google.com',
-        blueprint: true
-    }, {
-        id: 30181,
-        course_name: 'Katana 0111',
-        course_code: 'K 101',
-        instructor: 'Seth Childers',
-        issueItems: [],
-        url: 'www.google.com',
-        blueprint: false
-    }, {
-        id: 13182,
-        course_name: 'Katana 1011',
-        course_code: 'K 101',
-        instructor: 'Seth Childers',
-        issueItems: [],
-        url: 'www.google.com',
-        blueprint: false
-    }, {
-        id: 13012,
-        course_name: 'Katana 1122',
-        course_code: 'K 101',
-        instructor: 'Seth Childers',
-        issueItems: [],
-        url: 'www.google.com',
-        blueprint: true
-    }, {
-        id: 30182,
-        course_name: 'Katana 0122',
-        course_code: 'K 101',
-        instructor: 'Seth Childers',
-        issueItems: [],
-        url: 'www.google.com',
-        blueprint: false
-    }, {
-        id: 13183,
-        course_name: 'Katana 1022',
-        course_code: 'K 101',
-        instructor: 'Seth Childers',
-        issueItems: [],
-        url: 'www.google.com',
-        blueprint: false
-    }, {
-        id: 13013,
-        course_name: 'Katana 1133',
-        course_code: 'K 101',
-        instructor: 'Seth Childers',
-        issueItems: [],
-        url: 'www.google.com',
-        blueprint: true
-    }, {
-        id: 30183,
-        course_name: 'Katana 0133',
-        course_code: 'K 101',
-        instructor: 'Seth Childers',
-        issueItems: [],
-        url: 'www.google.com',
-        blueprint: false
-    }, {
-        id: 12853,
-        course_name: "Conversion Gauntlet 5/24 9:58 - Seth Childers",
-        course_code: "CG 5/24 9:58",
-        instructor: "none",
-        issueItems: [],
-        url: 'www.google.com',
-        blueprint: false
-    }, {
-        id: 12856,
-        course_name: "Conversion Gauntlet 5/24 10:10 - Seth Childers",
-        course_code: "CG 5/24 10:10",
-        instructor: "none",
-        issueItems: [],
-        url: 'www.google.com',
-        blueprint: false
-    }, {
-        id: 12890,
-        course_name: "Conversion Gauntlet 5/25 10:05 - Seth Childers",
-        course_code: "CG 5/25 10:5",
-        instructor: "none",
-        issueItems: [],
-        url: 'www.google.com',
-        blueprint: false
-    }, {
-        id: 12891,
-        course_name: "Conversion Gauntlet 5/25 10:12 - Seth Childers",
-        course_code: "CG 5/25 10:12",
-        instructor: "none",
-        issueItems: [],
-        url: 'www.google.com',
-        blueprint: false
     }];
 
     constructor(private katanaService: KatanaService,
         public courseService: CourseService) { }
 
+    /*************************************************************************
+     * This retrieves all courses that match the given parameters from Canvas 
+     * and returns them as an array of course objects that have been modified 
+     * by us. The returned results will populate the 'courseResults' array and 
+     * will display in the results table in the course-selection html file.
+     *************************************************************************/
     async getCourses() {
-
+        /* Canvas makes you have an input of at least three characters to use the search_term in the API */
         if (this.searchText.nativeElement.value.length > 2) {
 
             /* Replace any whitespaces with '%20' for the query parameter */
-            // Perhaps trim the white spaces from the beginning of the search? Perhaps convert double/triple spaces into one?
             var searchText = this.searchText.nativeElement.value.replace(/\s/g, '%20');
 
+            /* Set the loading circle to display before retrieving the courses */
             this.searching = true;
 
             /* Send the search parameters to the katana service to build the correct URI */
@@ -169,6 +71,8 @@ export class CourseSelectionComponent implements AfterViewInit {
                 searchText: searchText,
                 searchBy: this.searchBy.nativeElement.value
             })
+                /* After getting the courses from Canvas, check to make sure what you 
+                got back matches what is currently in the search text input box */
                 .then((courses: Course[]) => {
                     if (searchText === this.searchText.nativeElement.value.replace(/\s/g, '%20')) {
                         this.searching = false;
@@ -179,7 +83,12 @@ export class CourseSelectionComponent implements AfterViewInit {
         }
     }
 
-
+    /******************************************************************
+     * Sorts the courseResults array according to the 
+     * course attribute defined by 'param'
+     * @param {string} param - The object key to be sorted
+     * @returns {number} - The new position of the object in the array
+     ******************************************************************/
     sortBy(param) {
         /* If they click on the same category more than once, it will reverse the order of the results */
         if (this.lastSortedBy === param) {
@@ -210,6 +119,12 @@ export class CourseSelectionComponent implements AfterViewInit {
         }
     }
 
+    /************************************************************
+     * Checks to see if the selected course from courseResults
+     * is already in the courses array in courseService.
+     * @param {object} course - The course that is being checked
+     * @returns {boolean} - Whether the course is already added
+     ************************************************************/
     isAdded(course) {
         return this.courseService.courses.find(c => c.id === course.id) !== undefined;
     }
