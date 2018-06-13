@@ -1,6 +1,6 @@
 <div id="{{issueItem.item_type}}_{{issueItem.item_id}}" [class.selectedCard]="this.courseService.selectedIssueItem === issueItem"
-    class="issueCard card z-depth-1 ">
-    <div class="issueCard_titleLine ">
+    class="issueCard card z-depth-1 scale-transition">
+    <div class="issueCard_titleLine">
         <div>
             <i #typeIcon id="typeIcon" materialize="tooltip" class="material-icons issueCard_tag tooltipped" data-position="left">
                 {{getTypeIcon()}}
@@ -9,7 +9,8 @@
                 {{issueItem.title}}
             </div>
         </div>
-        <a target="_blank" href="{{issueItem.link}}" class="issueCard_link tooltipped" data-position="right" data-tooltip="Open in Canvas">
+        <a target="_blank" href="{{issueItem.link}}" class="issueCard_link tooltipped" materialize="tooltip" data-position="right"
+            data-tooltip="Open in Canvas">
             <i class="material-icons">open_in_new</i>
         </a>
     </div>

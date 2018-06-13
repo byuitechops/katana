@@ -33,16 +33,20 @@ export class CourseSidebarComponent implements AfterViewInit {
             overlay.style.display = 'block';
             overlay.className = 'open'
         }
-        
+
         this.courseSelectionOpen = !this.courseSelectionOpen;
     }
-    
+
     setSelectedCourse(course: Course) {
         if (window.location.href.includes('tool-view')) {
             this.courseService.selectedCourse = course;
         }
     }
-    
+
+    removeAll() {
+        this.courseService.courses.forEach(c => this.courseService.removeCourse(c));
+    }
+
     ngAfterViewInit() {
         // if there are no courses selected, open the course selection overlay
         if (this.courseService.courses.length === 0) {

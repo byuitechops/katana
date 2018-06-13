@@ -13,40 +13,7 @@ import { Router } from '@angular/router';
 })
 export class IssueNavComponent implements OnInit {
 
-    // The contents of the modal - dynamically sets the modal during the open event
-    modalContents: object = {
-        'approveAll': {
-            title: 'Approve All Fixes',
-            contents: 'Are you sure you want to approve all fixes? This will only approved untouched issues in the currently selected course. It will ignore skipped issues.',
-            actionText: 'Approve All Fixes',
-            action: () => this.setApproved('approved')
-        },
-        'unapproveAll': {
-            title: 'Unapprove All Issues',
-            contents: 'Are you sure you want to unapprove all approved issues? This will only affect approved issues.',
-            actionText: 'Unapprove All Fixes',
-            action: () => this.setApproved('untouched')
-        },
-        'fixApproved': {
-            title: 'Fix Approved Issues',
-            contents: 'Are you sure you want to fix all approved issues? \nThis will only affect the currently selected course.',
-            actionText: 'Fix Approved Issues',
-            action: () => this.katanaService.fixIssues()
-        },
-        'startOver': {
-            title: 'Start Tool Over',
-            contents: 'Are you sure you want to discard the approvals made and start over? \nThis will take you back to the options page for this tool.',
-            actionText: 'Start Tool Over',
-            action: () => {
-                this.router.navigate(['categories', 'tools', this.toolService.selectedTool.id, 'options']);
-                // document.getElementsByClassName('restart')[0].setAttribute('routerLink', '../options');
-                // routerLink="../options"
-            }
-        }
-    }
-
-    // The current contents of the modal
-    modal = this.modalContents['approveAll'];
+    selectedModal: string = 'approveAll';
 
     // This allows the modal to open and close
     modalActions = new EventEmitter<string | MaterializeAction>();
@@ -58,6 +25,10 @@ export class IssueNavComponent implements OnInit {
 
     ngOnInit() { }
 
+    getModal() {
+        return this.selectedModal;
+    }
+
     /*****************************************************************
      * Opens and closes the modal. Populates the modal based on the input.
      * @param {string} contentKey - Should match one of the keys of the modalContents property on this component
@@ -65,8 +36,8 @@ export class IssueNavComponent implements OnInit {
      * 1. Sets the contents of the modal based on the provided contentKey
      * 2. Emits the "open" event for the modal (or close, for the close method)
      ****************************************************************/
-    openModal(contentKey) {
-        this.modal = this.modalContents[contentKey];
+    openModal(modalName) {
+        this.selectedModal = modalName;
         this.modalActions.emit({ action: "modal", params: ['open'] });
     }
     closeModal() {
@@ -129,29 +100,5 @@ export class IssueNavComponent implements OnInit {
                 }
             });
         });
-    }
-
-    /*****************************************************************
-     * Gets the count of issues under the specified statuses.
-     * @param {string[]} statusArray - An array of all statuses desired
-     * @returns {number} - The number of issues with the specified statuses
-     * Process:
-     * 1. Get a flat array of all issues off of the issue items
-     * 2. Filter it down to just the ones that have a status that matches an item in the statusArray param
-     * 3. Return the number of issues discovered
-     ****************************************************************/
-    getIssueCount(statusArray) {
-        if (this.courseService.selectedCourse && this.courseService.selectedCourse.issueItems) {
-            let issues = this.courseService.selectedCourse.issueItems.reduce((acc, issueItem) => {
-                issueItem.issues.forEach(issue => {
-                    if (statusArray.includes(issue)) {
-                        acc.push(issue);
-                    }
-                    return issue;
-                });
-                return acc;
-            }, []);
-            return issues.length;
-        } else return 0;
     }
 }

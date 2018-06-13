@@ -3,13 +3,13 @@ const canvas = require('canvas-api-wrapper');
 const chalk = require('chalk');
 const IssueItem = require('./issue_item.js');
 
-
 /* Course Search */
 const courseSearch = require('./course_search/course_search.js');
 
 /* Node Tools | (Key) Tool ID: (Value) require(pathToTool) */
 const toolList = {
-    'rename_pages': require('./node_tools/rename_pages.js')
+    'rename_pages': require('./node_tools/rename_pages.js'),
+    'equella_links': require('./node_tools/equella_links.js')
 }
 
 /* Used to log start/stop of different tools */
@@ -28,7 +28,7 @@ function discoverIssues(tool_id, courses, options) {
     function courseDiscover(course) {
         return new Promise(async (resolve, reject) => {
             try {
-                logMe('START', 'DISCOVER', tool_id, courses.length);
+                logMe('START', 'DISCOVER', tool_id, course.course_name);
 
                 // Build the canvas-api-wrapper and get all the needed items
                 let canvasCourse = canvas.getCourse(course.id);
@@ -52,7 +52,7 @@ function discoverIssues(tool_id, courses, options) {
 
                 // Resolve the promise
                 resolve();
-                logMe('COMPLETE', 'DISCOVER', tool_id, courses.length);
+                logMe('COMPLETE', 'DISCOVER', tool_id, course.course_name);
             } catch (e) {
                 reject(e);
             }
@@ -70,7 +70,7 @@ function discoverIssues(tool_id, courses, options) {
 /*****************************************************************
  * Fixes the provided issue items in Canvas with the specified tool.
  * @param {string} tool_id - The ID of the tool to be run
- * @param {object[]} courses - Array of courses to be run, with their IssueItems attached (typically the currently selected courses)
+ * @param {Course[]} courses - Array of courses to be run, with their IssueItems attached (typically the currently selected courses)
  * @param {object} options - An object containing the option values specific to the tool
  * @returns {Course[]} - Array of courses, which include their updated IssueItems
  ****************************************************************/
@@ -78,7 +78,7 @@ function fixIssues(tool_id, courses, options) {
     function courseFix(course) {
         return new Promise(async (resolve, reject) => {
             try {
-                logMe('START', 'FIX', tool_id, courses.length);
+                logMe('START', 'FIX', tool_id, course.course_name);
 
                 let fixPromises = course.issueItems.map(issueItem => {
                     return new Promise(async (resolve, reject) => {
@@ -95,7 +95,7 @@ function fixIssues(tool_id, courses, options) {
 
                 Promise.all(fixPromises)
                     .then(() => {
-                        logMe('COMPLETE', 'FIX', tool_id, courses.length);
+                        logMe('COMPLETE', 'FIX', tool_id, course.course_name);
                         resolve();
                     })
                     .catch(console.error);

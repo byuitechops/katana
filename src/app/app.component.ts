@@ -16,12 +16,8 @@ export class AppComponent {
      * Constructor for the AppComponent class. Listens for the "NavigationEnd" event
      * on the Router, and then clears the selectedItem and selectedCourse values
      * from the Issues service if the user is not on a tool view page.
-     * @param router 
-     * @param courseService 
-     * Process:
-     * 1. Subscribe to the events from the router
-     * 2. If the "NavigationEnd" event fires and they are no longer on a tool-view route
-     * 3. Set the CourseService values for selectedItem and selectedCourse to null
+     * @param router
+     * @param courseService
      ***************************************************************************************/
     constructor(private router: Router,
         private route: ActivatedRoute,
@@ -50,6 +46,14 @@ export class AppComponent {
                 this.toastService.toast('You are in development mode.');
                 console.error(e);
             });
+
+        // Set the saved courses they had last selected as the currently selected courses
+        Object.keys(sessionStorage).forEach(key => {
+            if (key.includes('katana_course')) {
+                let course = JSON.parse(sessionStorage[key]);
+                this.courseService.addCourse(course);
+            }
+        });
     }
 
     title = 'app';

@@ -1,185 +1,116 @@
 const cheerio = require('cheerio');
-const canvas = require('canvas-api-wrapper');
 
 /*****************************************************************
- * Runs the prescribed fix on each item provided.
- * @param {object} item - Canvas item produced by the Canvas API Wrapper
+ * Discovers issues in the item provided.
+ * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
+ * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
- * @returns {array} fixedIssues - All issues discovered.
+ * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
-function checkItem(item, options) {
-    item.issues = [];
+function discover(canvasItem, issueItem, options) {
 
-    /* If the item is a module item, and it has an External URL, and it isn't the syllabus, then continue... */
-    if (item.constructor.name === 'ModuleItem' && item.type === 'ExternalUrl' && !/syllabus|syllabi/i.test(item.getTitle())) {
-        /* If it's a module item, treat it differently here */
-        var oldUrl = item.external_url;
-        if (item.external_url.includes('content.byui.edu/file/') &&
-            !item.external_url.includes('content.byui.edu/integ/gen/')) {
-            var newUrl = oldUrl;
-            newUrl = newUrl.replace(/\/file\//i, '/integ/gen/');
-            newUrl = newUrl.replace(/\/\d+\//i, '/0/');
-            item.external_url = newUrl;
+    if (canvasItem.getHtml() === null) return;
 
-            item.issues.push({
-                title: 'Module Item External URL Static Equella Link',
-                description: `Contains an equella link that points to a specific version. It should be changed to automatically go to the newest version.`,
-                details: {
-                    oldUrl,
-                    newUrl
-                }
-            });
-        }
-        return;
-    }
-
-    if (item.getHtml() === null) return false;
-
-    var $ = cheerio.load(item.getHtml());
+    var $ = cheerio.load(canvasItem.getHtml());
     var links = $('a').get();
 
     /* If there aren't any links in the item then return */
-    if (links.length === 0) {
-        return false;
-    }
+    if (links.length === 0) return;
 
     links.forEach(link => {
-        var oldUrl = '';
+
         /* Assign the oldUrl name for logging purposes */
-        if ($(link).attr('href')) {
-            oldUrl = $(link).attr('href');
+        if (!$(link).attr('href')) {
+            return;
+        }
+
+        var oldUrl = $(link).attr('href');
+
+        var keywords = options.excludeKeywords.replace(/\s/g, '');
+        if (keywords && keywords.split(',').some(keyword => oldUrl.includes(keyword))) {
+            return;
         }
 
         /* Check if the link has an href, and if it is already the correct href */
-        if ($(link).attr('href') &&
-            $(link).attr('href').includes('content.byui.edu/file/') &&
+        if ($(link).attr('href').includes('content.byui.edu/file/') &&
             !$(link).attr('href').includes('content.byui.edu/integ/gen/')) {
             var newUrl = $(link).attr('href');
             newUrl = newUrl.replace(/\/file\//i, '/integ/gen/');
             newUrl = newUrl.replace(/\/\d+\//i, '/0/');
 
-            item.issues.push({
-                title: 'HTML Static Equella Link',
-                description: `Contains an equella link that points to a specific version. It should be changed to automatically go to the newest version.`,
-                details: {
-                    oldUrl,
-                    newUrl
+            let title = 'Static Equella Link in HTML';
+            let display = `
+            <div style="margin-bottom: 10px">This item contains an equella link that points to a specific version. This will update it so it always uses the latest version.</div>
+            <div class="pad-10">
+                <p><div style="display:inline-block;min-width:100px;"><strong>Original URL:</strong></div> ${oldUrl}</p>
+                <p><div style="display:inline-block;min-width:100px;"><strong>Updated URL:</strong></div> ${newUrl}</p>
+            </div>
+            `;
+            let details = {
+                oldUrl,
+                newUrl
+            };
+
+            issueItem.newIssue(title, display, details);
+        }
+    });
+}
+
+/*****************************************************************
+ * Fixes issues in the item provided.
+ * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
+ * @param {IssueItem} issueItem - The IssueItem for the item, including its issues
+ * @param {object} options - Options specific to the tool selected by the user
+ * @returns {array} fixedIssues - All issues discovered.
+ *****************************************************************/
+function fix(canvasItem, issueItem, options) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            var $ = cheerio.load(canvasItem.getHtml());
+
+            issueItem.issues.forEach(issue => {
+                if (issue.status === 'approved') {
+                    let link = $(`a[href="${issue.details.oldUrl}"]`).first();
+                    if (link) {
+                        let newUrl = $(link).attr('href');
+                        newUrl = newUrl.replace(/\/file\//i, '/integ/gen/');
+                        newUrl = newUrl.replace(/\/\d+\//i, '/0/');
+                        $(link).attr('href', newUrl);
+                    }
+                    issue.status = 'fixed';
                 }
             });
+
+            canvasItem.setHtml($.html());
+            await canvasItem.update();
+            resolve();
+        } catch (e) {
+            issueItem.issues[0].status = 'untouched';
+            reject(e);
         }
     });
-
-    return item;
 }
-
-/*****************************************************************
- * Runs the prescribed fix on each item provided.
- * @param {object} item - Canvas item produced by the Canvas API Wrapper
- * @param {object} options - Options specific to the tool selected by the user
- * @returns {array} fixedIssues - All issues successfully fixed.
- *****************************************************************/
-async function fix(issueItem, options) {
-    let course = canvas.getCourse(issueItem.course_id);
-    let canvasItem;
-
-    if (issueItem.item_type == 'Page') {
-        canvasItem = await course.pages.getOne(issueItem.item_id);
-    } else if (issueItem.item_type === 'Assignment') {
-        canvasItem = await course.assignments.getOne(issueItem.item_id);
-    } else if (issueItem.item_type === 'Discussion') {
-        canvasItem = await course.discussions.getOne(issueItem.item_id);
-    } else if (issueItem.item_type === 'Quiz') {
-        canvasItem = await course.quizzes.getOne(issueItem.item_id);
-    }
-
-    if (!canvasItem) {
-        console.log('CRAZY', canvasItem, issueItem);
-        return issueItem;
-    }
-
-    var $ = cheerio.load(canvasItem.getHtml());
-
-    issueItem.issues.forEach(issue => {
-        if (issue.status === 'approved') {
-            let link = $(`a[href="${issue.details.oldUrl}"]`).first();
-            if (!link) {
-                issue.status = 'fixed';
-            } else {
-                $(link).attr('href', issue.details.newUrl);
-                issue.status = 'fixed';
-            }
-        }
-    });
-
-    canvasItem.setHtml($.html());
-    await canvasItem.update();
-    return issueItem;
-}
-
-/*****************************************************************
- * Runs the prescribed fix on each item provided.
- * @param {object} course - Canvas API wrapper course object
- * @param {object} options - Options specific to the tool selected by the user
- * @returns {array} issues - All issues discovered or fixed.
- *****************************************************************/
-function discover(course, options) {
-    return new Promise(async (resolve, reject) => {
-        await course.assignments.get();
-        await course.discussions.get();
-        // await course.modules.getComplete();
-        await course.pages.getComplete();
-        await course.quizzes.getComplete();
-
-        let assignments = course.assignments.filter(assignment => checkItem(assignment, options));
-        let discussions = course.discussions.filter(discussion => checkItem(discussion, options));
-        // let moduleItems = course.modules.reduce((acc, module) => acc.concat(module.items), []).filter(module => checkItem(module, options));
-        let pages = course.pages.filter(page => checkItem(page, options));
-        let quizzes = course.quizzes.filter(quiz => checkItem(quiz, options));
-        // let quizQuestions = course.quizzes.reduce((acc, quiz) => acc.concat(quiz.questions), []).filter(question => checkItem(question, options));
-
-        let allItems = [].concat(pages, assignments, discussions, quizzes);
-
-        let items = allItems.map(item => checkItem(item, options));
-        items = items.filter(item => item.issues.length > 0);
-
-        resolve(items);
-    })
-}
-
-const details = {
-    id: 'equella_links',
-    title: 'Equella Links',
-    icon: 'settings',
-    categories: [
-        'Page',
-        'Assignment',
-        'Discussion',
-        'Quiz',
-        'QuizQuestion'
-    ],
-    discoverOptions: [{
-        title: 'Option 2',
-        description: 'Description Dropdown',
-        type: 'dropdown',
-        choices: [{
-            key: 'choice1',
-            text: 'Dropdown One'
-        }, {
-            key: 'choice2',
-            text: 'Dropdown Two'
-        }, {
-            key: 'choice3',
-            text: 'Dropdown Three'
-        }],
-        defaults: ['choice3'],
-        required: true
-    }],
-    fixOptions: [],
-};
 
 module.exports = {
-    fix,
     discover,
-    checkItem,
-    details
+    fix,
+    id: 'equella_links',
+    title: 'Update Equella Links',
+    description: 'This tool will identify Equella links that are statically set to use a single version of the Equella item. With approval, it will change these links to use the dynamic format.',
+    icon: 'link',
+    categories: [
+        'pages',
+        'assignments',
+        'discussions',
+        'quizzes'
+    ],
+    discoverOptions: [{
+        title: 'Exclusions',
+        key: 'excludeKeywords',
+        description: 'List key words separated by commas for equella links you would like to skip. If the key word is in the equella URL, the URL will not be affected.',
+        type: 'text',
+        choices: [],
+        required: false
+    }],
+    fixOptions: [],
 };

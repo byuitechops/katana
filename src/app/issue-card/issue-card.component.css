@@ -1,11 +1,11 @@
 /* The full card for an issue item */
 
 .issueCard {
-    padding: 15px;
-    margin: 0 0 15px;
-    width: calc(100%);
-    border: solid 1px white;
     cursor: pointer;
+    margin: 0 0 15px;
+    padding: 15px;
+    position: relative;
+    width: calc(100%);
 }
 
 /* The line containing the item title and link to Canvas */
@@ -82,7 +82,16 @@
 
 /* A selected card */
 
-.selectedCard {
-    border-left: solid 5px var(--accent-1);
-    padding-left: 11px;
+.issueCard::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: white;
+    width: 5px;
+}
+
+.issueCard.selectedCard::before {
+    background-color: var(--accent-1);
 }

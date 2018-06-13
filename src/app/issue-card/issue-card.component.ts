@@ -23,7 +23,18 @@ export class IssueCardComponent implements AfterViewInit {
      **********************************************************************/
     ngAfterViewInit() {
         if (!this.typeIcon) return;
-        this.typeIcon.nativeElement.setAttribute('data-tooltip', this.issueItem.category);
+        let types = {
+            'pages': 'Page',
+            'assignments': 'Assignment',
+            'discussions': 'Discussion',
+            'files': 'File',
+            'folders': 'Folder',
+            'quizzes': 'Quiz',
+            'quizQuestions': 'Quiz Question',
+            'modules': 'Module',
+            'moduleItems': 'Module Item',
+        }
+        this.typeIcon.nativeElement.setAttribute('data-tooltip', types[this.issueItem.category]);
     }
 
     /***********************************************************************
@@ -38,8 +49,8 @@ export class IssueCardComponent implements AfterViewInit {
             'discussions': 'question_answer',
             'files': 'attach_file',
             'folders': 'folder',
-            'muizzes': 'gavel',
-            'muizQuestions': 'help_outline',
+            'quizzes': 'gavel',
+            'quizQuestions': 'help_outline',
             'modules': 'view_agenda',
             'moduleItems': 'view_list',
         }

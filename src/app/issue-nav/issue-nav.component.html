@@ -27,7 +27,7 @@
         <div class="issueApproval__button">
             <a href="#fixModal" class="modal-trigger waves-effect blue waves-light btn" (click)="openModal('fixApproved')">
                 <i class="material-icons left">build</i>
-                Fix Approved
+                Fix Approved Issues
             </a>
         </div>
 
@@ -43,11 +43,6 @@
                     Unapprove All
                 </a>
             </li>
-            <!-- <li>
-                <a class="red-text">
-                    Mark as Exception
-                </a>
-            </li> -->
         </ul>
 
         <!-- The Kebob menu at the far right of the bottom bar -->
@@ -62,34 +57,70 @@
 
 <!-- Approve All modal - Must stay beneath the main container -->
 <div id="fixModal" class="modal" materialize="modal" [materializeActions]="modalActions">
-    <div class="modal-content">
-        <h4>{{modal.title}}</h4>
-        <p>{{modal.contents}}</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Issue</th>
-                    <th>Count</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="green-text text-green-4">
-                    <td>Approved</td>
-                    <td>{{getIssueCount('approved')}}</td>
-                </tr>
-                <tr class="red-text">
-                    <td>Skipped</td>
-                    <td>{{getIssueCount('skipped')}}</td>
-                </tr>
-                <tr class="grey-text">
-                    <td>Untouched</td>
-                    <td>{{getIssueCount('untouched')}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="modal-footer">
-        <a class="waves-effect btn-flat blue-grey-text" (click)="closeModal()">Nevermind</a>
-        <a class="modal-action modal-close waves-effect btn-flat green-text text-accent-4" (click)="modal.action()">{{modal.actionText}}</a>
+
+    <div [ngSwitch]="getModal()">
+        <div *ngSwitchCase="'approveAll'">
+            <div class="modal-content">
+                <h4>Approve all fixes in {{courseService.selectedCourse.course_code}}?</h4>
+                <p>This will approve all unapproved fixes in the current course. This will not approve "skipped" fixes.</p>
+                <p>
+                    <strong>Unapproved Fixes:</strong> {{courseService.getCourseIssueCount('untouched')}}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a class="waves-effect btn-flat blue-grey-text" (click)="closeModal()">Cancel</a>
+                <a class="modal-action modal-close waves-effect btn green" (click)="setApproved('approved')">Approve All</a>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'unapproveAll'">
+            <div class="modal-content">
+                <h4>Unapprove all fixes in {{courseService.selectedCourse.course_code}}?</h4>
+                <p>This will unapprove all approved fixes in the current course.</p>
+                <p>
+                    <strong>Approved Fixes:</strong> {{courseService.getCourseIssueCount('approved')}}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a class="waves-effect btn-flat blue-grey-text" (click)="closeModal()">Cancel</a>
+                <a class="modal-action modal-close waves-effect btn blue-grey" (click)="setApproved('untouched')">Unapprove All</a>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'fixApproved'">
+            <div class="modal-content">
+                <h4>Fixed all approved issues?</h4>
+                <p>This will attempt to fix all approved issues in ALL selected courses. Are you sure?</p>
+                <p>
+                    <strong>Approved Fixes:</strong> {{courseService.getCourseIssueCount('approved')}}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a class="waves-effect btn-flat blue-grey-text" (click)="closeModal()">Cancel</a>
+                <a class="modal-action modal-close waves-effect btn blue" (click)="katanaService.fixIssues()">Fix Approved Issues</a>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'startOver'">
+            <div class="modal-content">
+                <h4>Start Over?</h4>
+                <p>This will take you back to the options page, and your progress will be lost.</p>
+            </div>
+            <div class="modal-footer">
+                <a class="waves-effect btn-flat blue-grey-text" (click)="closeModal()">Cancel</a>
+                <a class="modal-action modal-close waves-effect btn red" (click)="this.router.navigate(['categories', 'tools', this.toolService.selectedTool.id, 'options'])">Start Over</a>
+            </div>
+        </div>
+
+        <div *ngSwitchDefault>
+            <div class="modal-content">
+                <h4>c( '_' c)</h4>
+                <p>Something went wrong. Contact a Katana admin. Be entertained by the text-kirby above until the issue is resolved.</p>
+            </div>
+            <div class="modal-footer">
+                <a class="waves-effect btn-flat blue-grey-text" (click)="closeModal()">Cancel</a>
+            </div>
+        </div>
+
     </div>
 </div>

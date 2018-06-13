@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 export interface Issue {
     title: string,
     status: string,
-    details: string
+    display: string,
+    details: object
 }
 
 export interface IssueItem {
@@ -51,18 +52,20 @@ export class CourseService {
     constructor() { }
 
     /*****************************************************************
-    * Adds a course to the list of currently selected courses.
+    * Adds a course to the list of currently selected courses. This
+    * will also add and remove them from the user's local storage.
     * @param {number} courseId - The ID of the course
     * @param {string} courseName - The full name of the course
     * @param {string} courseCode - The course code
     *****************************************************************/
     addCourse(course: Course) {
-
-        // TODO Check to see if course already exists in the currently selected courses before adding it
-        // TODO Add courses according to the format in courses_service.md
         let found = this.courses.find(existingCourse => existingCourse.id === course.id);
 
         if (!found) {
+            // If it isn't in session storage, add it
+            if (!sessionStorage['katana_course' + course.id]) {
+                sessionStorage['katana_course' + course.id] = JSON.stringify(course);
+            }
             this.courses.push(course);
         }
         else {
@@ -76,8 +79,40 @@ export class CourseService {
      * @param {number} courseId - The ID of the course
      *****************************************************************/
     removeCourse(course: Course) {
-
-        // TODO Use a regular for loop to break out of the search for the course as quick as possible
+        // If it is in session storage, remove it
+        if (sessionStorage['katana_course' + course.id]) {
+            delete sessionStorage['katana_course' + course.id];
+        }
         this.courses = this.courses.filter(currCourse => currCourse.id !== course.id);
+    }
+
+    /*****************************************************************
+     * Gets the count of issues under a given status for a single course.
+     * Status is optional; returns total count if left blank.
+     * @param {string} status - The status desired
+     * @returns {number} - The number of issues with the specified status
+     ****************************************************************/
+    getCourseIssueCount(status) {
+        if (this.selectedCourse) {
+            return this.selectedCourse.issueItems.reduce((acc, issueItem) => {
+                if (!status) {
+                    return acc + issueItem.issues.length;
+                }
+                let issues = issueItem.issues.filter(issue => issue.status === status);
+                return acc + issues.length;
+            }, 0);
+        }
+    }
+
+    /*****************************************************************
+     * Gets the count of issues under a given status for all courses.
+     * Status is optional; returns total count if left blank.
+     * @param {string} status - The status desired
+     * @returns {number} - The number of issues with the specified status
+     ****************************************************************/
+    getTotalIssuecount(status) {
+        return this.courses.reduce((acc, course) => {
+            return acc + this.getCourseIssueCount(status);
+        }, 0);
     }
 }

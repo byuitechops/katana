@@ -10,6 +10,11 @@
         <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" #optionsForm="ngForm">
 
             <div class="card-content">
+
+                <div>
+                    {{toolService.selectedTool.description}}
+                </div>
+
                 <div *ngFor="let option of optionModel.options" class="form-row">
                     <div class="header_2">{{option.title}}</div>
                     <div class="option__description">{{option.description}}</div>

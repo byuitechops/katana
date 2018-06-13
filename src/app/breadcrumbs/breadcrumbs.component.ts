@@ -27,5 +27,6 @@ export class BreadcrumbsComponent implements OnInit {
 
     buildRouterLink(pathPieces) {
         this.router.navigate(pathPieces);
+        return false;
     }
 }

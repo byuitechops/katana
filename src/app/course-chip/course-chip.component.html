@@ -4,6 +4,7 @@
         {{this.course.instructor.split(', ')[0].replace('-', '‑')}}
     </div>
     <div class="courseChip__issueCount z-depth-1" *ngIf="course.issueItems && course.issueItems.length > 0">
-        {{course.issueItems && course.issueItems.length > 0 ? course.issueItems.length : '' }}
+        {{course.issueItems && course.issueItems.length > 0 ? courseService.getCourseIssueCount('untouched') + courseService.getCourseIssueCount('approved')
+        : '' }}
     </div>
 </div>

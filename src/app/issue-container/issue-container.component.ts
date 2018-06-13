@@ -14,7 +14,7 @@ export class IssueContainerComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        this.issueDetails.nativeElement.innerHTML = this.issue.details;
+        this.issueDetails.nativeElement.innerHTML = this.issue.display;
     }
 
     setIssueStatus(newStatus) {

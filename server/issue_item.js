@@ -9,10 +9,6 @@ var categories = {
     'Folder': 'folders'
 }
 
-/*********************************************************************
- * 
- * 
- * ******************************************************************/
 module.exports = class IssueItem {
     constructor(item) {
         this.title = item.getTitle();
@@ -23,14 +19,11 @@ module.exports = class IssueItem {
         this.issues = [];
     }
 
-    /*********************************************************************
-     * 
-     * 
-     * ******************************************************************/
-    newIssue(title, details) {
+    newIssue(title, display, details = {}) {
         this.issues.push({
             title,
             details,
+            display,
             status: 'untouched'
         });
     }

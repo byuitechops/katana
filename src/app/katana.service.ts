@@ -49,6 +49,7 @@ export class KatanaService {
                     resolve(data);
                 },
                 (err) => {
+                    this.toolService.processing = false;
                     this.toastService.toastError(err);
                     console.error(err);
                 });
@@ -86,6 +87,7 @@ export class KatanaService {
                     resolve();
                 },
                 (err) => {
+                    this.toolService.processing = false;
                     this.toastService.toastError(err);
                     console.error(err);
                     this.router.navigate(['/']);
@@ -125,6 +127,7 @@ export class KatanaService {
                     resolve();
                 },
                 (err) => {
+                    this.toolService.processing = false;
                     this.toastService.toastError(err);
                     console.error(err);
                 });
