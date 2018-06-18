@@ -9,8 +9,8 @@
 /* The box all issue-cards go into */
 
 .issueList__list {
-    min-height: calc(100vh - (var(--breadcrumbs-height) + var(--toolView-titleBar-height) + 70px));
-    max-height: calc(100vh - (var(--breadcrumbs-height) + var(--toolView-titleBar-height) + 70px));
+    min-height: calc(100vh - (var(--breadcrumbs-height) + 60px));
+    max-height: calc(100vh - (var(--breadcrumbs-height) + 60px));
     overflow: auto;
     overflow-x: hidden;
     padding: 0 10px 0 20px;

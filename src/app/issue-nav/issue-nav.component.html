@@ -1,31 +1,31 @@
-<div materialize class="issueApproval">
+<div materialize class="issueApproval blue-grey darken-2">
     <!-- Container to hold the fix approved and kebob menu buttons -->
     <div class="issueApproval__buttonContainer">
-        <!-- Fix Approved Button -->
-        <div class="issueApproval__button">
-            <a href="#fixModal" class="modal-trigger waves-effect blue waves-light btn" (click)="openModal('fixApproved')">
-                <i class="material-icons left">build</i>
-                Fix Approved Issues
-            </a>
-        </div>
         <!-- Start Over Button -->
         <div class="issueApproval__button">
-            <a class="modal-trigger waves-effect red-text waves btn-flat" (click)="openModal('startOver')">
+            <a class="modal-trigger waves-effect deep-orange-text text-accent-3 waves btn-flat" (click)="openModal('startOver')">
                 <i class="material-icons left">refresh</i>
                 Start Over
+            </a>
+        </div>
+        <!-- Fix Approved Button -->
+        <div class="issueApproval__button">
+            <a href="#fixModal" class="modal-trigger waves-effect light-blue-text waves-light btn-flat" (click)="openModal('fixApproved')">
+                <i class="material-icons left">build</i>
+                Fix Approved Issues
             </a>
         </div>
     </div>
 
     <!-- The dropdown menu from the kebob menu -->
-    <ul id="dropdown1" class="dropdown-content">
+    <ul id="dropdown1" class="blue-grey darken-2 dropdown-content">
         <li>
             <a href="#fixModal" class="green-text text-accent-4 modal-trigger" (click)="openModal('approveAll')">
                 Approve All Fixes
             </a>
         </li>
         <li>
-            <a href="#fixModal" class="grey-text modal-trigger" (click)="openModal('unapproveAll')">
+            <a href="#fixModal" class="grey-text text-lighten-2 modal-trigger" (click)="openModal('unapproveAll')">
                 Unapprove All Fixes
             </a>
         </li>
@@ -35,7 +35,7 @@
     <div>
         <a materialize="dropdown" [materializeParams]="[{constrain_width: false, alignment: 'left'}]" class="dropdown-button issueApproval_moreButton"
             data-activates="dropdown1">
-            <i class="material-icons">more_vert</i>
+            <i class="material-icons blue-grey-text text-lighten-5">more_vert</i>
         </a>
     </div>
 </div>

@@ -2,7 +2,7 @@
 
 .issueDetails {
     width: calc(100vw - (var(--course-sidebar-width) + var(--issueList-width)));
-    height: calc(100vh - (70px + var(--breadcrumbs-height)));
+    height: calc(100vh - (20px + var(--breadcrumbs-height)));
 }
 
 /* The header for issue-details */
