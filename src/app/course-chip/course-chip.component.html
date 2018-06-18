@@ -10,16 +10,16 @@
         </span>
 
         <div *ngIf="toolService.toolViewOpen" style="display: flex" class="smooth-width badgeContainer">
-            <div class="white-text courseChip__issueCount smooth-width">
+            <div class="blue-grey white-text courseChip__issueCount">
                 {{getIssueCount('untouched')}}
             </div>
-            <div class="blue-grey darken-1 green-text text-accent-3 courseChip__issueCount smooth-width">
+            <div class="blue-grey darken-1 green-text text-accent-3 courseChip__issueCount">
                 {{getIssueCount('approved')}}
             </div>
-            <div class="blue-grey darken-1 red-text text-accent-3 courseChip__issueCount smooth-width">
+            <div class="blue-grey darken-1 red-text text-accent-3 courseChip__issueCount">
                 {{getIssueCount('skipped')}}
             </div>
-            <div class="blue-grey darken-1 light-blue-text text-accent-3 courseChip__issueCount smooth-width">
+            <div class="blue-grey darken-1 light-blue-text text-accent-3 courseChip__issueCount">
                 {{getIssueCount('fixed')}}
             </div>
         </div>
