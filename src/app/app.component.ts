@@ -45,8 +45,8 @@ export class AppComponent {
                 // Select the first course and adjust the bar width
                 if (courseService.courses.length > 0) {
                     courseService.selectedCourse = courseService.courses[0];
-                    document.documentElement.style.setProperty(`--course-sidebar-width`, '144px');
-                    document.documentElement.style.setProperty(`--course-chip-width`, '132px');
+                    document.documentElement.style.setProperty(`--course-sidebar-width`, '275px');
+                    document.documentElement.style.setProperty(`--course-chip-width`, '263px');
                 }
 
                 // Set the toolView tracking prop to true, all others off

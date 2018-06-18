@@ -1,14 +1,30 @@
 <div class="courseChip__container">
     <div class="courseChip blue-grey darken-2 z-depth-1" [class.selectable]="toolService.toolViewOpen" [class.selected]="courseService.selectedCourse === course"
         (click)="courseService.selectedCourse = course">
-        {{course.course_code.split(':')[0]}}
-        <div class="courseChip__instructorName">
-            {{buildInstructorName()}}
+
+        <span>
+            {{course.course_code.split(':')[0]}}
+            <div class="courseChip__instructorName">
+                {{buildInstructorName()}}
+            </div>
+        </span>
+
+        <div *ngIf="toolService.toolViewOpen" style="display: flex" class="smooth-width badgeContainer">
+            <div class="white-text courseChip__issueCount smooth-width">
+                {{getIssueCount('untouched')}}
+            </div>
+            <div class="blue-grey darken-1 green-text text-accent-3 courseChip__issueCount smooth-width">
+                {{getIssueCount('approved')}}
+            </div>
+            <div class="blue-grey darken-1 red-text text-accent-3 courseChip__issueCount smooth-width">
+                {{getIssueCount('skipped')}}
+            </div>
+            <div class="blue-grey darken-1 light-blue-text text-accent-3 courseChip__issueCount smooth-width">
+                {{getIssueCount('fixed')}}
+            </div>
         </div>
     </div>
-    <div *ngIf="toolService.toolViewOpen && !toolService.processing" class="courseChip__issueCount z-depth-1" [ngClass]="course.issueItems">
-        {{course.issueItems ? getIssueCount() : ''}}
-    </div>
+
     <i class=" material-icons smooth-width " *ngIf="courseService.courseEditOpen " (click)="courseService.removeCourse(course) ">
         clear
     </i>

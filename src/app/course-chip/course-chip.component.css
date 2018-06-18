@@ -7,11 +7,12 @@
     border-radius: 3px;
     color: white;
     width: var(--course-chip-width);
+    display: flex;
+    justify-content: space-between;
 }
 
 .courseChip__container {
     display: flex;
-    /* justify-content: center; */
     width: 100%;
     position: relative;
 }
@@ -49,18 +50,19 @@
 
 .courseChip__issueCount {
     height: 25px;
-    width: 25px;
+    min-width: 25px;
     line-height: 25px;
     text-align: center;
     border-radius: 50%;
-    background-color: white;
-    color: var(--accent-1);
-    position: absolute;
-    left: 100px;
-    top: 12px;
     cursor: pointer;
     font-weight: bold;
+    margin: 4px 2px;
 }
+
+.badgeContainer {
+    padding: 0 5px;
+}
+
 
 .selectable:hover {
     cursor: pointer;
