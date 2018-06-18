@@ -1,8 +1,10 @@
 <div class="tools">
-    <div *ngFor="let tool of this.toolService.toolList" (click)="this.toolService.selectedTool = tool" [routerLink]="[tool.id, 'options']" [style.display]="tool.categories.includes(this.toolService.selectedCategory.type) ? 'block' : 'none'" class="toolIcon card">
-        <!-- <div> -->
-            <i class="material-icons">{{tool.icon}}</i>
-            <p>{{tool.title}}</p>
-        <!-- </div> -->
+    <div *ngFor="let tool of this.toolService.toolList" (click)="this.toolService.selectedTool = tool" [routerLink]="[tool.id, 'options']"
+        style="display: block" class="toolIcon card">
+        <i class="material-icons">{{tool.icon}}</i>
+        <p>{{tool.title}}</p>
     </div>
 </div>
+
+<!-- [style.display]="tool.categories.includes(this.toolService.selectedCategory.categoryId) ? 'block' : 'none'" -->
+<!-- Swap out style display with this when its ready -->

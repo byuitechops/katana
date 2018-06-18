@@ -22,5 +22,7 @@ export class CategoriesComponent implements OnInit {
         return false;
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        console.log(this.toolService.selectedCategory);
+    }
 }

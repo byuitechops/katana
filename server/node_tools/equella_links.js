@@ -93,6 +93,7 @@ module.exports = {
         'discussions',
         'quizzes'
     ],
+    toolCategory: 'html',
     discoverOptions: [{
         title: 'Exclusions',
         key: 'excludeKeywords',

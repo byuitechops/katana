@@ -54,6 +54,7 @@ module.exports = {
     categories: [
         'pages',
     ],
+    toolCategory: 'titles',
     discoverOptions: [{
         title: 'Current Page Title',
         key: 'currentTitle',

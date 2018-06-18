@@ -18,6 +18,7 @@ export interface Tool {
     description: string,
     icon: string,
     categories: string[],
+    toolCategory: string,
     discoverOptions: DiscoverOption[],
     fixOptions: object[],
 };
@@ -36,53 +37,33 @@ export class ToolService {
     toolList: Tool[] = [];
 
     categories = [{
-        icon: 'insert_drive_file',
-        title: 'Pages',
-        type: 'pages'
+        icon: 'code',
+        title: 'HTML',
+        categoryId: 'html'
     }, {
-        icon: 'assignment',
-        title: 'Assignments',
-        type: 'assignments'
+        icon: 'title',
+        title: 'Titles',
+        categoryId: 'titles'
     }, {
-        icon: 'attach_file',
-        title: 'Files',
-        type: 'files'
+        icon: 'create',
+        title: 'Create',
+        categoryId: 'create'
     }, {
-        icon: 'folder',
-        title: 'Folders',
-        type: 'folders'
+        icon: 'delete_outline',
+        title: 'Remove',
+        categoryId: 'remove'
     }, {
-        icon: 'question_answer',
-        title: 'Discussions',
-        type: 'discussions'
+        icon: 'language',
+        title: 'Course Settings',
+        categoryId: 'courseSettings'
     }, {
-        icon: 'view_agenda',
-        title: 'Modules',
-        type: 'modules'
-    }, {
-        icon: 'view_list',
-        title: 'Module Items',
-        type: 'moduleItems'
-    }, {
-        icon: 'gavel',
-        title: 'Quizzes',
-        type: 'Quiz'
-    }, {
-        icon: 'help_outline',
-        title: 'Quiz Questions',
-        type: 'QuizQuestion'
+        icon: 'settings',
+        title: 'Item Settings',
+        categoryId: 'itemSettings'
     }, {
         icon: 'explore',
         title: 'Syllabus',
-        type: 'Syllabus'
-    }, {
-        icon: 'code',
-        title: 'HTML',
-        type: 'html'
-    }, {
-        icon: 'settings',
-        title: 'Course Settings',
-        type: ''
+        categoryId: 'syllabus'
     }];
 
     selectedCategory: object;
@@ -90,13 +71,12 @@ export class ToolService {
     selectedDiscoverOptions;
     selectedFixOptions;
 
-
     constructor(private router: Router) {
         let loc = window.location.href;
 
         // If we're on a tool selection screen, set the selected category
         if (loc.includes('tools?') && loc.includes('category=')) {
-            this.selectedCategory = this.categories.find(category => category.type === loc.split('category=')[1].split('&')[0]);
+            this.selectedCategory = this.categories.find(category => category.categoryId === loc.split('category=')[1].split('&')[0]);
         } else if (!loc.includes('options') && !this.selectedCategory) {
             router.navigate(['/']);
         }
