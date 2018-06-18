@@ -10,15 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CourseSidebarComponent implements AfterViewInit {
 
-    courseSelectionOpen: boolean = false;
-
     constructor(public courseService: CourseService,
-        private toolService: ToolService,
-        private activatedRoute: ActivatedRoute) { }
+        private toolService: ToolService) { }
 
     courseOverlay() {
         // if the tool is running, don't do anything
-        if (this.toolService.processing || this.courseService.courses.length === 0) {
+        if (this.toolService.processing) {
             return;
         }
 
@@ -34,7 +31,10 @@ export class CourseSidebarComponent implements AfterViewInit {
             overlay.className = 'open'
         }
 
-        this.courseSelectionOpen = !this.courseSelectionOpen;
+        if (this.courseService.courseEditOpen) {
+            this.toggleEditWindow();
+        }
+        this.courseService.courseSelectionOpen = !this.courseService.courseSelectionOpen;
     }
 
     setSelectedCourse(course: Course) {
@@ -47,12 +47,20 @@ export class CourseSidebarComponent implements AfterViewInit {
         this.courseService.courses.forEach(c => this.courseService.removeCourse(c));
     }
 
+    toggleEditWindow() {
+        if (this.courseService.courseSelectionOpen) {
+            this.courseOverlay();
+        }
+        this.courseService.courseEditOpen = !this.courseService.courseEditOpen;
+        let newWidth = this.courseService.courseEditOpen ? '207px' : '112px';
+        document.documentElement.style.setProperty(`--course-sidebar-width`, newWidth);
+    }
+
     ngAfterViewInit() {
         // if there are no courses selected, open the course selection overlay
         if (this.courseService.courses.length === 0) {
-            this.courseSelectionOpen = true;
+            this.courseService.courseSelectionOpen = true;
             document.querySelector('app-course-selection').className = 'open';
         }
     }
-
 }

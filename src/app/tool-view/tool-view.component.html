@@ -1,3 +1,9 @@
+<div class="statContainer">
+    <app-stat-badge [statTitle]="'Courses'" [statCount]="45"></app-stat-badge>
+    <app-stat-badge [statTitle]="'Items'" [statCount]="45"></app-stat-badge>
+    <app-stat-badge [statTitle]="'Issues'" [statCount]="11145"></app-stat-badge>
+</div>
+
 <div *ngIf="toolService.processing">
     <div class="loader">
         <div class="preloader-wrapper big active">

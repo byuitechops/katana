@@ -9,27 +9,11 @@
     display: flex;
     height: 70px;
     justify-content: space-between;
+    padding: 0 15px;
     position: fixed;
     right: 0;
     width: calc(100vw - var(--course-sidebar-width));
     z-index: 2;
-}
-
-/* Container for the up/down arrows and issue count */
-
-.issueApproval__navigation {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    line-height: 70px;
-    padding: 0 10px 0 20px;
-    width: var(--issueList-width);
-}
-
-/* The up and down arrows in issue navigation */
-
-.issueApproval__navigation>a {
-    margin-top: 14px;
 }
 
 /* Container to hold the "fix approved" and kebob menu */
@@ -37,13 +21,6 @@
 .issueApproval__buttonContainer {
     display: flex;
     justify-content: space-between;
-}
-
-/* Counter for number of issues */
-
-.issueApproval__counter {
-    font-size: 18px;
-    margin: 0 20px;
 }
 
 /* Buttons within this component */

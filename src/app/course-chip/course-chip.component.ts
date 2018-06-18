@@ -1,31 +1,42 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CourseService, Course } from '../course.service';
 import { Router } from '@angular/router';
+import { ToolService } from '../tool.service';
 
 @Component({
     selector: 'app-course-chip',
     templateUrl: './course-chip.component.html',
     styleUrls: ['./course-chip.component.css']
 })
-export class CourseChipComponent implements OnInit {
-    @Input() // Course Code
-    course: Course;
+export class CourseChipComponent {
+    @Input() course: Course;
 
     constructor(public courseService: CourseService,
+        private toolService: ToolService,
         private router: Router) { }
 
-    ngOnInit() { }
+    openCourse() {
+        window.open('https://byui.instructure.com/courses/' + this.course.id, '_blank');
+    }
 
-    isSelected() {
-        let loc = window.location.href;
-        // if the current page is not the tool page, don't let the chips be selected
-        if (!loc.includes('issues')) {
-            return false;
+    buildInstructorName() {
+        let names = this.course.instructor.replace(/,/, '').split(' ');
+        var instructorName = this.course.instructor === 'none' ? 'No Instructor' : this.course.instructor;
+        if (names.length > 1 && this.course.instructor.includes(',')) {
+            instructorName = `${names[1][0]}. ${names[0]}`;
+        } else if (names.length > 1) {
+            instructorName = `${names[0][0]}. ${names[1]}`;
         }
-        if (this.courseService.selectedCourse) {
-                return this.courseService.selectedCourse !== null && this.courseService.selectedCourse.id === this.course.id;
-            } else {
-                return false;
-            }
+
+        return instructorName;
+    }
+
+    getIssueCount() {
+        return this.course.issueItems.reduce((acc, issueItem) => {
+            let issues = issueItem.issues.filter(issue => {
+                return issue.status === 'approved' || issue.status === 'untouched';
+            });
+            return acc + issues.length;
+        }, 0);
     }
 }

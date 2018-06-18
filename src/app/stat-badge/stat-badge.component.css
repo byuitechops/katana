@@ -1,0 +1,27 @@
+.statBadge {
+    height: 36px;
+    line-height: 36px;
+    border-radius: 36px;
+    display: inline-flex;
+    margin-left: 15px;
+}
+
+.statBadge__title {
+    padding: 0 10px 0 15px;
+    font-size: 16px;
+    color: #eee;
+}
+
+.statBadge__count {
+    height: 38px;
+    min-width: 38px;
+    margin: -1px -1px 0 0;
+    line-height: 38px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 38px;
+    background-color: white;
+    text-align: center;
+    color: var(--accent-1);
+    padding: 0 5px;
+}

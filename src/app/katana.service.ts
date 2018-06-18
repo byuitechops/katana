@@ -70,6 +70,7 @@ export class KatanaService {
      ****************************************************************/
     discoverIssues() {
         return new Promise((resolve, reject) => {
+            this.courseService.courseEditOpen = false;
             this.toolService.processingMessage = 'Discovering Issues...';
             this.toolService.processing = true;
             let body = {
@@ -109,6 +110,7 @@ export class KatanaService {
      ****************************************************************/
     fixIssues() {
         return new Promise((resolve, reject) => {
+            this.courseService.courseEditOpen = false;
             this.toolService.processingMessage = 'Fixing Issues...';
             this.toolService.processing = true;
             let body = {

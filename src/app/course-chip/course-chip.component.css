@@ -1,45 +1,85 @@
 .courseChip {
-  background-color: var(--primary-2);
-  border-radius: 30px;
-  padding: 5px 10px;
-  width: 100%;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all .1s ease-in-out;
-  box-sizing: border-box;
-  margin: 0 0 5px;
-  position: relative;
-  text-align: center;
-  font-weight: 700;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    margin: 3px 10px 3px 10px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    color: white;
+    width: var(--course-chip-width);
 }
 
-.courseChip:hover {
-  background-color: var(--primary-6);
+.courseChip__container {
+    display: flex;
+    /* justify-content: center; */
+    width: 100%;
+    position: relative;
+}
+
+.courseChip__container i {
+    line-height: 43px;
+    margin: 3px 0;
+    height: 43px;
+    width: 43px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+}
+
+.courseChip__container i:hover {
+    background-color: #dddddd54;
 }
 
 .courseChip__instructorName {
-  font-size: 10px;
-  font-weight: 400;
-  width: 100%;
-  text-align: center;
-  opacity: .8;
-  color: black;
+    font-size: 10px;
+    font-weight: 400;
+    opacity: .7;
+    color: white;
+    text-overflow: ellipsis;
 }
 
-.selectedChip {
-  color: var(--accent-1);
-  background-color: var(--primary-6);
+.courseChip__courseDetail {
+    line-height: 51px;
+    padding: 0 10px;
+    color: white;
+    opacity: .8;
+    width: 150px;
 }
 
 .courseChip__issueCount {
-    background-color: white !important;
-    border-radius: 20px;
+    height: 25px;
+    width: 25px;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: white;
     color: var(--accent-1);
-    font-weight: bold;
-    height: 20px;
-    right: -7px;
-    line-height: 20px;
     position: absolute;
-    top: calc(50% - 10px);
-    width: 20px;
+    left: 100px;
+    top: 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.selectable:hover {
+    cursor: pointer;
+    background-color: #2e3d44 !important;
+}
+
+.selected {
+    background-color: #2e3d44 !important;
+}
+
+.smooth-width {
+    animation: smoothWidth .22s;
+}
+
+@keyframes smoothWidth {
+    from {
+        width: 0;
+    }
+    to {
+        width: 40px;
+    }
 }

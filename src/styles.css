@@ -14,14 +14,15 @@
     --accent-2: #e53935 ;
     --background-dark: #546e7a;
     --background-light: #eceff1;
-    --course-sidebar-width: 115px;
+    --course-sidebar-width: 112px;
     --breadcrumbs-height: 50px;
     --issueList-width: 350px;
     --toolView-titleBar-height: 60px;
+    --course-chip-width: 92px;
 }
 
 * {
-    transition: all .075s ease-in-out;
+    transition: all .15s ease-in-out;
 }
 
 body {

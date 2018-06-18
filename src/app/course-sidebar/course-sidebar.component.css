@@ -5,7 +5,6 @@
   height: 100vh;
   width: var(--course-sidebar-width);
   background-color: var(--background-dark);
-  padding: 0 10px;
   z-index: 5;
 }
 
@@ -36,6 +35,34 @@ a {
   font-size: 12px;
 }
 
+.courseSidebar__actionItem {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    width: 112px;
+    padding-top: 10px;
+}
+
+.courseSidebar__actionItem i {
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 30px;
+    max-width: 50px;
+}
+
+.courseSidebar__actionItem i.addButton {
+    font-size: 40px;
+    padding: 5px;
+}
+
+.courseSidebar__actionItem i:hover {
+    background-color: #dddddd54;
+}
+
+.enabled {
+    background-color: #dddddd54;
+}
+
 /************************************
  * Course Selection Button
  ************************************/
@@ -44,7 +71,7 @@ a {
   position: absolute;
   bottom: 20px;
   text-align: center;
-  width: calc(var(--course-sidebar-width) - 20px);
+  width: 100%;
 }
 
 .courseSidebar__expandSidebar>* {
@@ -62,12 +89,12 @@ app-course-selection {
 
 app-course-selection.open {
   display: block;
-  animation: slidein .5s ease-in-out;
+  animation: slidein .15s ease-in-out;
 }
 
 app-course-selection.close {
   display: block;
-  animation: slideout .5s ease-in-out;
+  animation: slideout .15s ease-in-out;
   animation-fill-mode: forwards;
 }
 

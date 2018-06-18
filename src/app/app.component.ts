@@ -4,6 +4,7 @@ import { CourseService, IssueItem } from './course.service';
 import { toast } from 'angular2-materialize';
 import { KatanaService } from './katana.service';
 import { ToastService } from './toast.service';
+import { ToolService } from './tool.service';
 
 @Component({
     selector: 'app-root',
@@ -20,22 +21,39 @@ export class AppComponent {
      * @param courseService
      ***************************************************************************************/
     constructor(private router: Router,
-        private route: ActivatedRoute,
         private courseService: CourseService,
         private katanaService: KatanaService,
+        private toolService: ToolService,
         private toastService: ToastService) {
 
 
         router.events.subscribe((event: Event) => {
             if (event instanceof NavigationEnd &&
                 !event.urlAfterRedirects.includes('/issues')) {
+
+                // RESET all properties not used outside of tool view
                 courseService.selectedIssueItem = null;
                 courseService.selectedCourse = null;
+                toolService.toolViewOpen = false
+
+                document.documentElement.style.setProperty(`--course-sidebar-width`, '112px');
+                document.documentElement.style.setProperty(`--course-chip-width`, '92px');
+
             } else if (event instanceof NavigationEnd &&
                 event.urlAfterRedirects.includes('/issues')) {
+
+                // Select the first course and adjust the bar width
                 if (courseService.courses.length > 0) {
                     courseService.selectedCourse = courseService.courses[0];
+                    document.documentElement.style.setProperty(`--course-sidebar-width`, '144px');
+                    document.documentElement.style.setProperty(`--course-chip-width`, '132px');
                 }
+
+                // Set the toolView tracking prop to true, all others off
+                toolService.toolViewOpen = true;
+                courseService.courseEditOpen = false;
+                courseService.courseSelectionOpen = false;
+
             }
         });
 

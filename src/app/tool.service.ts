@@ -30,6 +30,7 @@ export class ToolService {
 
     processing: boolean = false;
     processingMessage: string = '';
+    toolViewOpen: boolean = false;
 
     // The Tool List (set immediately by Katana service when server is live)
     toolList: Tool[] = [];

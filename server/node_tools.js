@@ -83,9 +83,12 @@ function fixIssues(tool_id, courses, options) {
                 let fixPromises = course.issueItems.map(issueItem => {
                     return new Promise(async (resolve, reject) => {
                         try {
-                            let canvasCourse = canvas.getCourse(course.id);
-                            let canvasItem = await canvasCourse[issueItem.category].getOne(issueItem.item_id);
-                            await toolList[tool_id].fix(canvasItem, issueItem, options);
+                            console.log(issueItem.item_id);
+                            if (issueItem.item_id) {
+                                let canvasCourse = canvas.getCourse(course.id);
+                                let canvasItem = await canvasCourse[issueItem.category].getOne(issueItem.item_id);
+                                await toolList[tool_id].fix(canvasItem, issueItem, options);
+                            }
                             resolve();
                         } catch (e) {
                             reject(e);

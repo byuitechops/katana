@@ -23,6 +23,7 @@ import { IssueContainerComponent } from './issue-container/issue-container.compo
 import { ToolSelectionComponent } from './tool-selection/tool-selection.component';
 import { OptionsViewComponent } from './options-view/options-view.component';
 import { BypassSanitize } from './options-view/bypass-sanitize.pipe';
+import { StatBadgeComponent } from './stat-badge/stat-badge.component';
 
 export const appRoutes: Routes = [
     {
@@ -80,6 +81,7 @@ export const appRoutes: Routes = [
         ToolSelectionComponent,
         OptionsViewComponent,
         BypassSanitize,
+        StatBadgeComponent,
     ],
     imports: [
         RouterModule.forRoot(

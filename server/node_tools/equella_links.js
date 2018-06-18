@@ -8,29 +8,21 @@ const cheerio = require('cheerio');
  * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
-
     if (canvasItem.getHtml() === null) return;
-
     var $ = cheerio.load(canvasItem.getHtml());
     var links = $('a').get();
-
     /* If there aren't any links in the item then return */
     if (links.length === 0) return;
-
     links.forEach(link => {
-
         /* Assign the oldUrl name for logging purposes */
         if (!$(link).attr('href')) {
             return;
         }
-
         var oldUrl = $(link).attr('href');
-
         var keywords = options.excludeKeywords.replace(/\s/g, '');
         if (keywords && keywords.split(',').some(keyword => oldUrl.includes(keyword))) {
             return;
         }
-
         /* Check if the link has an href, and if it is already the correct href */
         if ($(link).attr('href').includes('content.byui.edu/file/') &&
             !$(link).attr('href').includes('content.byui.edu/integ/gen/')) {
@@ -50,7 +42,6 @@ function discover(canvasItem, issueItem, options) {
                 oldUrl,
                 newUrl
             };
-
             issueItem.newIssue(title, display, details);
         }
     });
@@ -67,7 +58,6 @@ function fix(canvasItem, issueItem, options) {
     return new Promise(async (resolve, reject) => {
         try {
             var $ = cheerio.load(canvasItem.getHtml());
-
             issueItem.issues.forEach(issue => {
                 if (issue.status === 'approved') {
                     let link = $(`a[href="${issue.details.oldUrl}"]`).first();
@@ -80,7 +70,6 @@ function fix(canvasItem, issueItem, options) {
                     issue.status = 'fixed';
                 }
             });
-
             canvasItem.setHtml($.html());
             await canvasItem.update();
             resolve();

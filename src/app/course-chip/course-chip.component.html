@@ -1,10 +1,18 @@
-<div class="courseChip" [class.selectedChip]="isSelected()">
-    {{course.course_code}}
-    <div class="courseChip__instructorName">
-        {{this.course.instructor.split(', ')[0].replace('-', '‑')}}
+<div class="courseChip__container">
+    <div class="courseChip blue-grey darken-2 z-depth-1" [class.selectable]="toolService.toolViewOpen" [class.selected]="courseService.selectedCourse === course"
+        (click)="courseService.selectedCourse = course">
+        {{course.course_code.split(':')[0]}}
+        <div class="courseChip__instructorName">
+            {{buildInstructorName()}}
+        </div>
     </div>
-    <div class="courseChip__issueCount z-depth-1" *ngIf="course.issueItems && course.issueItems.length > 0">
-        {{course.issueItems && course.issueItems.length > 0 ? courseService.getCourseIssueCount('untouched') + courseService.getCourseIssueCount('approved')
-        : '' }}
+    <div *ngIf="toolService.toolViewOpen && !toolService.processing" class="courseChip__issueCount z-depth-1" [ngClass]="course.issueItems">
+        {{course.issueItems ? getIssueCount() : ''}}
     </div>
+    <i class=" material-icons smooth-width " *ngIf="courseService.courseEditOpen " (click)="courseService.removeCourse(course) ">
+        clear
+    </i>
+    <i class="material-icons smooth-width " *ngIf="courseService.courseEditOpen " (click)="openCourse() ">
+        open_in_new
+    </i>
 </div>
