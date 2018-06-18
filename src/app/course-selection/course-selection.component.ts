@@ -19,27 +19,12 @@ export class CourseSelectionComponent implements AfterViewInit {
 
     courseResults: Course[] = [{
         id: 1318,
-        course_name: 'Katana 10',
-        course_code: 'K 101',
-        instructor: 'Seth Childers',
+        course_name: 'Example Course 123',
+        course_code: 'E123',
+        instructor: 'Katana Jones',
         issueItems: [],
-
-        url: 'www.google.com',
-        blueprint: false
-    }, {
-        id: 1301,
-        course_name: 'Katana 11',
-        course_code: 'K 101',
-        instructor: 'Seth Childers',
-        issueItems: [],
-        url: 'www.google.com',
-        blueprint: true
-    }, {
-        id: 3018,
-        course_name: 'Katana 01',
-        course_code: 'K 101',
-        instructor: 'Seth Childers',
-        issueItems: [],
+        account: '3',
+        term: 'Fall 2018',
         url: 'www.google.com',
         blueprint: false
     }];
