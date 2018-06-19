@@ -30,9 +30,15 @@
 /* The message that appears if no issue items are avaiable */
 
 .noIssuesMessage {
-    width: 100%;
+    position: absolute;
+    width: calc(100vw - var(--course-sidebar-width));
+    height: 100vh;
+    padding-top: 200px;
     z-index: 100;
-    margin-top: 50px;
-    font-size: 14px;
+    font-size: 30px;
     text-align: center;
+}
+
+.noIssuesMessage i { 
+    font-size: 40px;
 }
