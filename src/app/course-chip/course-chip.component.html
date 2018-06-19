@@ -1,5 +1,5 @@
 <div class="courseChip__container">
-    <div class="courseChip blue-grey darken-2 z-depth-1" [class.selectable]="toolService.toolViewOpen" [class.selected]="courseService.selectedCourse === course"
+    <div class="courseChip blue-grey darken-2 z-depth-1" [class.selectable]="toolService.toolViewOpen" [class.selected]="courseService.selectedCourse === course && toolService.toolViewOpen"
         (click)="courseService.selectedCourse = course">
 
         <span>
