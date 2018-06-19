@@ -1,6 +1,8 @@
 <div class="issueList">
     <div class="issueList__title">
         Items
+        <span class="header_thin">({{courseService.selectedCourse && courseService.selectedCourse.issueItems ? courseService.selectedCourse.issueItems.length
+            : 0}})</span>
     </div>
     <div class="issueList__list">
         <app-issue-card *ngFor="let issueItem of courseService.selectedCourse.issueItems; let i = index" [position]="i" [issueItem]="issueItem"

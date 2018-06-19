@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CourseService } from '../course.service';
 import { KatanaService } from '../katana.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { EventEmitter } from '@angular/core';
-import { ToolService, Tool } from '../tool.service';
-import { Router } from '@angular/router';
+import { ToolService } from '../tool.service';
 
 @Component({
     selector: 'app-issue-nav',
     templateUrl: './issue-nav.component.html',
     styleUrls: ['./issue-nav.component.css']
 })
-export class IssueNavComponent implements OnInit {
+export class IssueNavComponent {
 
     selectedModal: string = 'approveAll';
 
@@ -20,10 +19,7 @@ export class IssueNavComponent implements OnInit {
 
     constructor(public courseService: CourseService,
         public toolService: ToolService,
-        public katanaService: KatanaService,
-        private router: Router) { }
-
-    ngOnInit() { }
+        public katanaService: KatanaService) { }
 
     getModal() {
         return this.selectedModal;

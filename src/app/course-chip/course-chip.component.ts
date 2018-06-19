@@ -31,12 +31,13 @@ export class CourseChipComponent {
         return instructorName;
     }
 
-    getIssueCount() {
+    getIssueCount(status) {
+        if (!this.course.issueItems) return '';
         return this.course.issueItems.reduce((acc, issueItem) => {
             let issues = issueItem.issues.filter(issue => {
-                return issue.status === 'approved' || issue.status === 'untouched';
+                return issue.status === status;
             });
             return acc + issues.length;
-        }, 0);
+        }, 0) || '';
     }
 }

@@ -45,3 +45,20 @@
         </form>
     </div>
 </div>
+
+<!-- Modal - Must stay beneath the main container -->
+<div id="fixModal" class="modal" materialize="modal" [materializeActions]="modalActions">
+    <div class="modal-content">
+        <h4>No Courses Selected</h4>
+        <p>You must select at least one course before continuing.</p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect btn blue" (click)="setApproved('approved')">Got it!</a>
+    </div>
+</div>
+<div *ngIf="modalIsOpen()" class="arrowIndicator">
+    <i style="font-size: 40px;margin-right: 15px;" class="material-icons">arrow_back</i>
+    <div>
+        Click here to Add Courses
+    </div>
+</div>

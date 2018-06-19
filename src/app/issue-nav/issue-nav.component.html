@@ -10,7 +10,7 @@
         </div>
         <!-- Fix Approved Button -->
         <div class="issueApproval__button">
-            <a href="#fixModal" class="modal-trigger waves-effect light-blue-text waves-light btn-flat" (click)="openModal('fixApproved')">
+            <a href="#fixModal" class="modal-trigger waves-effect light-blue-text waves btn-flat" (click)="openModal('fixApproved')">
                 <i class="material-icons left">build</i>
                 Fix Approved Issues
             </a>
@@ -35,12 +35,12 @@
     <div>
         <a materialize="dropdown" [materializeParams]="[{constrain_width: false, alignment: 'left'}]" class="dropdown-button issueApproval_moreButton"
             data-activates="dropdown1">
-            <i class="material-icons blue-grey-text text-lighten-5">more_vert</i>
+            <i class="material-icons blue-grey-text text-lighten-3">more_vert</i>
         </a>
     </div>
 </div>
 
-<!-- Approve All modal - Must stay beneath the main container -->
+<!-- Modal - Must stay beneath the main container -->
 <div id="fixModal" class="modal" materialize="modal" [materializeActions]="modalActions">
 
     <div [ngSwitch]="getModal()">

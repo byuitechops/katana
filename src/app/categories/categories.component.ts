@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ToolService } from '../tool.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ToolService } from '../tool.service';
     templateUrl: './categories.component.html',
     styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent {
 
     constructor(public toolService: ToolService) { }
 
@@ -22,7 +22,4 @@ export class CategoriesComponent implements OnInit {
         return false;
     }
 
-    ngOnInit() {
-        console.log(this.toolService.selectedCategory);
-    }
 }

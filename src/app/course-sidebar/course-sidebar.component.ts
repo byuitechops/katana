@@ -57,10 +57,6 @@ export class CourseSidebarComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        // if there are no courses selected, open the course selection overlay
-        if (this.courseService.courses.length === 0) {
-            this.courseService.courseSelectionOpen = true;
-            document.querySelector('app-course-selection').className = 'open';
-        }
+
     }
 }
