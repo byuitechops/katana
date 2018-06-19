@@ -62,6 +62,11 @@ a {
     background-color: #dddddd54;
 }
 
+/* .pulse {
+    background-color: yellow;
+    transition: background 1.5s;
+} */
+
 /************************************
  * Course Selection Button
  ************************************/
@@ -80,11 +85,6 @@ a {
 /******************************************
  * Course Selection Overlay Component
  ******************************************/
-
-app-course-selection {
-  display: none;
-  background-color: var(--primary-3);
-}
 
 app-course-selection.open {
   display: block;
