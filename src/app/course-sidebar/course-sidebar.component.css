@@ -19,11 +19,10 @@
 }
 
 .courseSidebar__courseChip__container {
-  height: 78vh;
+  max-height: 78vh;
   overflow-y: scroll;
   margin-bottom: 5px; 
   padding-bottom: 15px;
-  overflow: visible;
 }
 
 a {

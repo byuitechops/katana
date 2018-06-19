@@ -23,6 +23,12 @@ export interface Tool {
     fixOptions: object[],
 };
 
+export interface Category {
+    icon: string,
+    title: string,
+    toolCategory: string
+}
+
 @Injectable({
     providedIn: 'root'
 })
@@ -39,34 +45,34 @@ export class ToolService {
     categories = [{
         icon: 'code',
         title: 'HTML',
-        categoryId: 'html'
+        toolCategory: 'html'
     }, {
         icon: 'title',
         title: 'Titles',
-        categoryId: 'titles'
+        toolCategory: 'titles'
     }, {
         icon: 'create',
         title: 'Create',
-        categoryId: 'create'
+        toolCategory: 'create'
     }, {
         icon: 'delete_outline',
         title: 'Remove',
-        categoryId: 'remove'
+        toolCategory: 'remove'
     }, {
         icon: 'language',
         title: 'Course Settings',
-        categoryId: 'courseSettings'
+        toolCategory: 'courseSettings'
     }, {
         icon: 'settings',
         title: 'Item Settings',
-        categoryId: 'itemSettings'
+        toolCategory: 'itemSettings'
     }, {
         icon: 'explore',
         title: 'Syllabus',
-        categoryId: 'syllabus'
+        toolCategory: 'syllabus'
     }];
 
-    selectedCategory: object;
+    selectedCategory: Category;
     selectedTool: Tool;
     selectedDiscoverOptions;
     selectedFixOptions;
@@ -76,7 +82,7 @@ export class ToolService {
 
         // If we're on a tool selection screen, set the selected category
         if (loc.includes('tools?') && loc.includes('category=')) {
-            this.selectedCategory = this.categories.find(category => category.categoryId === loc.split('category=')[1].split('&')[0]);
+            this.selectedCategory = this.categories.find(category => category.toolCategory === loc.split('category=')[1].split('&')[0]);
         } else if (!loc.includes('options') && !this.selectedCategory) {
             router.navigate(['/']);
         }

@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ToolService, DiscoverOption } from '../tool.service';
+import { CourseService } from '../course.service';
 import { KatanaService } from '../katana.service';
+import { MaterializeAction } from 'angular2-materialize';
 
 @Component({
     selector: 'app-options-view',
@@ -12,17 +14,45 @@ import { KatanaService } from '../katana.service';
 
 export class OptionsViewComponent {
 
-    options = this.toolService.selectedTool.discoverOptions || [];
+    options: DiscoverOption[] = this.toolService.selectedTool.discoverOptions || [];
     optionModel = new OptionModel(this.options);
     formGroup = this.optionModel.toGroup();
 
+    // This allows the modal to open and close
+    modalActions = new EventEmitter<string | MaterializeAction>();
+    modalOpen: boolean = false;
+
     constructor(public toolService: ToolService,
         public katanaService: KatanaService,
+        private courseService: CourseService,
         private router: Router) { }
 
+    /*****************************************************************
+     * Opens and closes the modal. Populates the modal based on the input.
+     * @param {string} contentKey - Should match one of the keys of the modalContents property on this component
+     * Process:
+     * 1. Sets the contents of the modal based on the provided contentKey
+     * 2. Emits the "open" event for the modal (or close, for the close method)
+     ****************************************************************/
+    openModal() {
+        this.modalOpen = true;
+        this.modalActions.emit({ action: "modal", params: ['open'] });
+    }
+    closeModal() {
+        this.modalOpen = false;
+        this.modalActions.emit({ action: "modal", params: ['close'] });
+    }
 
+    modalIsOpen() {
+        return !!document.querySelector('.modal-overlay');
+    }
 
     onSubmit() {
+        if (this.courseService.courses.length === 0) {
+            this.openModal();
+            return;
+        }
+
         var options = {};
         Object.keys(this.formGroup.controls).forEach(key => {
             options[key] = this.formGroup.controls[key].value;
@@ -35,15 +65,6 @@ export class OptionsViewComponent {
         this.router.navigate([`categories/tools/${this.toolService.selectedTool.id}/issues`]);
     }
 
-
-
-
-
-
-
-
-
-
     /******************************************************************************
      * Creates an option on the options page based on the options provided by the
      * currently selected tool.
@@ -51,7 +72,6 @@ export class OptionsViewComponent {
      * @returns {string} - The HTML to be inserted into the DOM
      *****************************************************************************/
     createOption(option) {
-
         var choices = option.choices.reduce((acc, choice) => {
             return acc += `<option value="${choice.key}" ${option.defaults.includes(choice.key) ? 'selected' : ''}>${choice.text}</option>`
         }, '');
@@ -78,41 +98,6 @@ export class OptionsViewComponent {
         `
         }
         return builders[option.type];
-    }
-
-    /******************************************************************************
-     * Fires when the options form is submitted. This builds the options object
-     * to be used by the Katana service in communicating with the server.
-     *****************************************************************************/
-    // onSubmit() {
-    //     let textInputs: any = document.querySelectorAll('#optionsForm input');
-    //     let selectInputs: any = document.querySelectorAll('#optionsForm select');
-    //     let options = [];
-
-    //     textInputs.forEach(textInput => {
-    //         let obj = {};
-    //         obj[textInput.name] = textInput.value;
-    //         options.push(obj);
-    //     });
-
-    //     selectInputs.forEach(selectInput => {
-    //         Array.from(selectInput.selectedOptions).forEach(selectedOption => {
-    //             let obj = {};
-    //             obj[selectInput.name] = selectedOption['value'];
-    //             options.push(obj);
-    //         });
-    //     });
-
-    //     // Send somewhere
-    //     console.log(options);
-    // }
-
-    /******************************************************************************
-     * Navigates the user to the issues page for the currently running tool.
-     * CHANGE: This will probably be removed soon.
-     *****************************************************************************/
-    navToIssues() {
-        this.router.navigate([`categories/tools/${this.toolService.selectedTool.id}/issues`]);
     }
 }
 

@@ -5,9 +5,7 @@
     </div>
 
     <div class="courseSidebar__expandSidebar">
-        <!-- <div class="courseSidebar__actionItem"> -->
         <button *ngIf="courseService.courseEditOpen" (click)="removeAll()" class="waves-effect blue-grey darken-2 btn">Remove All</button>
-        <!-- </div> -->
         <div class="courseSidebar__actionItem">
             <i *ngIf="!toolService.toolViewOpen" [class.enabled]="courseService.courseSelectionOpen" class="material-icons addButton"
                 (click)="courseOverlay()" materialize="tooltip" data-position="right" data-tooltip="Add Courses">add</i>

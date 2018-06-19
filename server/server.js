@@ -33,7 +33,7 @@ app.post('/course-retrieval', (req, res) => {
             res.status(200).send(courses);
         })
         .catch((e) => {
-            console.log(e);
+            console.error(e);
             res.status(500).send(new Error(`Internal Server Error`));
         });
 });
@@ -66,7 +66,7 @@ app.post('/tool/discover', async (req, res) => {
         await node_tools.discoverIssues(tool_id, courses, options);
         res.status(200).send(courses);
     } catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(400).send(e);
     }
 });
@@ -86,7 +86,7 @@ app.put('/tool/fix', async (req, res) => {
         await node_tools.fixIssues(tool_id, courses, options);
         res.status(200).send(courses);
     } catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(400).send(e);
     }
 });

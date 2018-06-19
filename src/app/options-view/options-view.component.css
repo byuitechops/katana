@@ -64,3 +64,17 @@ input[type="text"], input:focus {
     left: -5px;
     bottom: -20px; */
 }
+
+.arrowIndicator {
+    display: flex;
+    position: absolute;
+    bottom: 86px;
+    left: 86px;
+    color: white;
+    z-index: 2000;
+    font-size: 20px;
+}
+
+.arrowIndicator>div {
+    line-height: 40px;
+}
