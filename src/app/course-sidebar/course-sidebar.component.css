@@ -19,10 +19,8 @@
 }
 
 .courseSidebar__courseChip__container {
-  max-height: 78vh;
+  max-height: calc(100vh - (var(--breadcrumbs-height) + 140px));
   overflow-y: scroll;
-  margin-bottom: 5px; 
-  padding-bottom: 15px;
 }
 
 a {
@@ -43,29 +41,32 @@ a {
 }
 
 .courseSidebar__actionItem i {
-    padding: 10px;
-    border-radius: 50%;
-    font-size: 30px;
-    max-width: 50px;
+    line-height: 45px;
+    text-align: center;
+    border-radius: 90px;
+    padding: 0 0 0 2px;
+    font-size: 25px;
+    width: 45px;
+    height: 45px;
 }
 
 .courseSidebar__actionItem i.addButton {
-    font-size: 40px;
-    padding: 5px;
+    font-size: 30px;
 }
 
 .courseSidebar__actionItem i:hover {
-    background-color: #dddddd54;
+    background-color: #263238 !important;
 }
 
 .enabled {
-    background-color: #dddddd54;
+    color: #37474f  !important;
+    background-color: #eceff1 !important;
 }
 
-/* .pulse {
-    background-color: yellow;
-    transition: background 1.5s;
-} */
+.courseSidebar__actionItem i.enabled:hover {
+    color: #eceff1 !important;
+    background-color: #263238 !important;
+}
 
 /************************************
  * Course Selection Button

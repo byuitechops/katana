@@ -1,7 +1,7 @@
 /* Container for the issue-list element */
 
 .issueList {
-    height: calc(100vh - (var(--breadcrumbs-height) + 70px));
+    height: calc(100vh - (var(--breadcrumbs-height) + 60px));
     width: var(--issueList-width);
     box-sizing: border-box;
 }
@@ -9,8 +9,8 @@
 /* The box all issue-cards go into */
 
 .issueList__list {
-    min-height: calc(100vh - (var(--breadcrumbs-height) + 60px));
-    max-height: calc(100vh - (var(--breadcrumbs-height) + 60px));
+    min-height: calc(100vh - (var(--breadcrumbs-height) + 70px));
+    max-height: calc(100vh - (var(--breadcrumbs-height) + 70px));
     overflow: auto;
     overflow-x: hidden;
     padding: 0 10px 0 20px;

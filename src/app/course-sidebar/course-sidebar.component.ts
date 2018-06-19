@@ -1,31 +1,29 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CourseService, Course } from '../course.service';
 import { ToolService } from '../tool.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-course-sidebar',
     templateUrl: './course-sidebar.component.html',
     styleUrls: ['./course-sidebar.component.css']
 })
-export class CourseSidebarComponent implements AfterViewInit {
+export class CourseSidebarComponent {
 
     constructor(public courseService: CourseService,
         private toolService: ToolService) { }
 
     courseOverlay() {
-        // if the tool is running, don't do anything
-        if (this.toolService.processing) {
-            return;
-        }
-
+        console.log('opening');
         // cast the returned Element object to an HTMLElement object
         let overlay: HTMLElement = document.querySelector('app-course-selection');
+
         // toggle add the 'open' class to the app-course-selection component
         if (overlay.className === 'open') {
             overlay.className = 'close';
+
         } else if (overlay.className === 'close') {
             overlay.className = 'open';
+
         } else {
             overlay.style.display = 'block';
             overlay.className = 'open'
@@ -34,6 +32,7 @@ export class CourseSidebarComponent implements AfterViewInit {
         if (this.courseService.courseEditOpen) {
             this.toggleEditWindow();
         }
+
         this.courseService.courseSelectionOpen = !this.courseService.courseSelectionOpen;
     }
 
@@ -54,9 +53,5 @@ export class CourseSidebarComponent implements AfterViewInit {
         this.courseService.courseEditOpen = !this.courseService.courseEditOpen;
         let newWidth = this.courseService.courseEditOpen ? '207px' : '112px';
         document.documentElement.style.setProperty(`--course-sidebar-width`, newWidth);
-    }
-
-    ngAfterViewInit() {
-
     }
 }

@@ -31,6 +31,7 @@
     border: solid 1px var(--primary-2);
     padding: 5px 10px;
     margin-top: 0;
+    margin-left: 10px;
     float: right;
 }
 
@@ -47,7 +48,10 @@ input[type="text"], input:focus {
     margin: 0 !important;
     border-bottom: none !important;
     box-shadow: none !important;
-    outline: 1px solid #c9f3ef !important;
+}
+
+input:focus {
+    background-color: #f2f2f2;
 }
 
 .multiselect {
