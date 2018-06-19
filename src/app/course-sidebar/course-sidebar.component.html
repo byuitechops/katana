@@ -4,16 +4,18 @@
         <app-course-chip *ngFor="let course of this.courseService.courses" [course]="course" (click)="this.courseService.selectedCourse = course"></app-course-chip>
     </div>
 
-    <div class="courseSidebar__expandSidebar">
+    <div class="courseSidebar__expandSidebar" *ngIf="!toolService.toolViewOpen">
         <button *ngIf="courseService.courseEditOpen" (click)="removeAll()" class="waves-effect blue-grey darken-2 btn">Remove All</button>
         <div class="courseSidebar__actionItem">
-            <i *ngIf="!toolService.toolViewOpen" [class.enabled]="courseService.courseSelectionOpen" class="material-icons addButton"
-                (click)="courseOverlay()" materialize="tooltip" data-position="right" data-tooltip="Add Courses">add</i>
+            <i [class.enabled]="courseService.courseSelectionOpen" class="material-icons addButton no-select" (click)="courseOverlay()"
+                materialize="tooltip" data-position="right" data-tooltip="Add Courses">{{courseService.courseSelectionOpen ? 'arrow_back' : 'add'}}</i>
         </div>
         <div class="courseSidebar__actionItem">
-            <i *ngIf="!toolService.toolViewOpen" [class.enabled]="courseService.courseEditOpen" class="material-icons" (click)="toggleEditWindow()"
-                materialize="tooltip" data-position="right" data-tooltip="Edit Courses">edit</i>
+            <i [class.enabled]="courseService.courseEditOpen" class="material-icons no-select" (click)="toggleEditWindow()" materialize="tooltip"
+                data-position="right" data-tooltip="Edit Courses">edit</i>
         </div>
     </div>
 </div>
 <app-course-selection></app-course-selection>
+
+<div (click)="toggleEditWindow()" *ngIf="courseService.courseEditOpen" class="dark-overlay"></div>

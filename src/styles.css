@@ -57,6 +57,10 @@ ul {
     font-weight: 400;
 }
 
+.no-select {
+    user-select: none;
+}
+
 .loader {
     width: calc(100vw - var(--course-sidebar-width));
     display: flex;
