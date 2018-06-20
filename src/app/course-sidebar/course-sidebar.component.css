@@ -104,6 +104,11 @@ app-course-selection.close {
   animation-fill-mode: forwards;
 }
 
+.removeAll {
+    width: calc(100% - 20px);
+    margin: 10px;
+}
+
 .dark-overlay {
     position: absolute;
     top: 0;

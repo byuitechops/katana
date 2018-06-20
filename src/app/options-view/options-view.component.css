@@ -7,7 +7,7 @@
 
 .optionsView__container {
     color: black;
-    width: 75%;
+    width: 60%;
 }
 
 .optionsView__toolTitle {
@@ -21,6 +21,8 @@
 .option__container {
     border: solid 1px var(--primary-2);
     border-left: solid 5px var(--accent-1);
+    width: 30%;
+    min-width: 200px;
 }
 
 .option__description {
@@ -37,6 +39,12 @@
 
 .required {
     border-left: solid 5px var(--accent-2);
+}
+
+.categories-container>label {
+    margin-right: 20px;
+    font-size: 16px;
+    padding-left: 30px;
 }
 
 select[multiple] {
@@ -81,4 +89,9 @@ input:focus {
 
 .arrowIndicator>div {
     line-height: 40px;
+}
+
+[type="checkbox"].filled-in:checked + label::after {
+    border-color: #2979FF !important;
+    background-color: #2979FF !important;
 }

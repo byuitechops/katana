@@ -29,13 +29,14 @@ function discoverIssues(tool_id, course, options) {
         try {
             logMe('START', 'DISCOVER', tool_id, course.course_name, course.id);
 
-            // Build the canvas-api-wrapper and get all the needed items
+            // Build the canvas-api-wrapper course and get all the needed items
+            console.log(options.categories);
             let canvasCourse = canvas.getCourse(course.id);
-            for (var i = 0; i < toolList[tool_id].categories.length; i++) {
-                if (['pages', 'quizzes', 'modules'].includes(toolList[tool_id].categories[i])) {
-                    await canvasCourse[toolList[tool_id].categories[i]].getComplete();
+            for (var i = 0; i < options.categories.length; i++) {
+                if (['pages', 'quizzes', 'modules'].includes(options.categories[i])) {
+                    await canvasCourse[options.categories[i]].getComplete();
                 } else {
-                    await canvasCourse[toolList[tool_id].categories[i]].get();
+                    await canvasCourse[options.categories[i]].get();
                 }
             }
 

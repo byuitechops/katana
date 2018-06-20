@@ -21,7 +21,6 @@
 }
 
 .toolIcon i {
-    color: #00796b;
     font-size: 90px;
     padding: 30px;
     border-radius: calc(((100vw - var(--course-sidebar-width)) / 4) - 30px);
