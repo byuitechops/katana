@@ -13,7 +13,6 @@ export class CourseSidebarComponent {
         private toolService: ToolService) { }
 
     courseOverlay() {
-        console.log('opening');
         // cast the returned Element object to an HTMLElement object
         let overlay: HTMLElement = document.querySelector('app-course-selection');
 
@@ -54,4 +53,5 @@ export class CourseSidebarComponent {
         let newWidth = this.courseService.courseEditOpen ? '207px' : '112px';
         document.documentElement.style.setProperty(`--course-sidebar-width`, newWidth);
     }
+
 }

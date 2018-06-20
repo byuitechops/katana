@@ -4,7 +4,7 @@
     <app-stat-badge [statTitle]="'Issues'" [statCount]="getIssueCount()"></app-stat-badge>
 </div>
 
-<div *ngIf="toolService.processing">
+<div style="margin-top: 300px" *ngIf="courseService.selectedCourse.processing">
     <div class="loader">
         <div class="preloader-wrapper big active">
             <div class="spinner-layer spinner-blue-only">
@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<div style="display: flex;" *ngIf="!toolService.processing">
+<div style="display: flex;" *ngIf="!courseService.selectedCourse.processing">
     <app-issue-list></app-issue-list>
     <div>
         <app-issue-details></app-issue-details>

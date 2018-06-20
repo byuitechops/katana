@@ -35,6 +35,7 @@ export class AppComponent {
                 courseService.selectedIssueItem = null;
                 courseService.selectedCourse = null;
                 toolService.toolViewOpen = false
+                courseService.courses.forEach(course => course.processing = false);
 
                 document.documentElement.style.setProperty(`--course-sidebar-width`, '112px');
                 document.documentElement.style.setProperty(`--course-chip-width`, '92px');

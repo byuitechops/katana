@@ -22,10 +22,12 @@ export interface Course {
     course_code: string,
     instructor: string,
     issueItems: IssueItem[],
+    url: string
     account?: string,
     term?: string
     blueprint?: boolean,
-    url: string
+    processing?: boolean,
+    error?: string,
 }
 
 @Injectable({
@@ -33,7 +35,7 @@ export interface Course {
 })
 export class CourseService {
 
-    courses: Course[] = [];
+    coursesObj: object = {};
     _selectedCourse: Course;
     selectedIssueItem: IssueItem;
     courseSelectionOpen: boolean = false;
@@ -50,6 +52,10 @@ export class CourseService {
         this.selectedIssueItem = this._selectedCourse.issueItems ? this._selectedCourse.issueItems.find(issueItem => issueItem.course_id === course.id) : null;
     }
 
+    get courses() {
+        return Object.keys(this.coursesObj).reduce((acc, key) => [...acc, this.coursesObj[key]], []);
+    }
+
     constructor() { }
 
     /*****************************************************************
@@ -60,19 +66,18 @@ export class CourseService {
     * @param {string} courseCode - The course code
     *****************************************************************/
     addCourse(course: Course) {
-        let found = this.courses.find(existingCourse => existingCourse.id === course.id);
-
-        if (!found) {
-            // If it isn't in session storage, add it
+        if (!this.coursesObj[`c${course.id}`]) {
             if (!sessionStorage['katana_course' + course.id]) {
                 sessionStorage['katana_course' + course.id] = JSON.stringify(course);
             }
-            this.courses.push(course);
+            if (!course.issueItems) {
+                course.issueItems = [];
+            }
+            this.coursesObj[`c${course.id}`] = course;
         }
         else {
             this.removeCourse(course);
         }
-
     }
 
     /*****************************************************************
@@ -80,11 +85,10 @@ export class CourseService {
      * @param {number} courseId - The ID of the course
      *****************************************************************/
     removeCourse(course: Course) {
-        // If it is in session storage, remove it
         if (sessionStorage['katana_course' + course.id]) {
             delete sessionStorage['katana_course' + course.id];
         }
-        this.courses = this.courses.filter(currCourse => currCourse.id !== course.id);
+        delete this.coursesObj[`c${course.id}`];
     }
 
     /*****************************************************************

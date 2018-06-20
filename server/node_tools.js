@@ -13,106 +13,87 @@ const toolList = {
 }
 
 /* Used to log start/stop of different tools */
-function logMe(status, type, tool_id, count) {
-    console.log(`${chalk.whiteBright(status)}: ${chalk.cyanBright(type)} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(tool_id)} | ${chalk.whiteBright('COURSES:')} ${chalk.greenBright(count)}`)
+function logMe(status, type, tool_id, count, id) {
+    console.log(`${chalk.whiteBright(status)}: ${chalk.cyanBright(type)} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(tool_id)} | ${chalk.whiteBright('COURSES:')} ${chalk.greenBright(count)} | ${chalk.whiteBright('ID:')} ${chalk.greenBright(id)}`);
 }
 
 /*****************************************************************
  * Runs a tool in discovery mode, then returns the issue items discovered.
  * @param {string} tool_id - The ID of the tool to be run
- * @param {object[]} courses - Array of courses to be run (typically the currently selected courses)
+ * @param {object[]} course - The course to be run
  * @param {object} options - An object containing the option values specific to the tool
  * @returns {object[]} - Array of issue items discovered by the tool
  ****************************************************************/
-function discoverIssues(tool_id, courses, options) {
-    function courseDiscover(course) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                logMe('START', 'DISCOVER', tool_id, course.course_name);
+function discoverIssues(tool_id, course, options) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            logMe('START', 'DISCOVER', tool_id, course.course_name, course.id);
 
-                // Build the canvas-api-wrapper and get all the needed items
-                let canvasCourse = canvas.getCourse(course.id);
-                for (var i = 0; i < toolList[tool_id].categories.length; i++) {
-                    if (['pages', 'quizzes', 'modules'].includes(toolList[tool_id].categories[i])) {
-                        await canvasCourse[toolList[tool_id].categories[i]].getComplete();
-                    } else {
-                        await canvasCourse[toolList[tool_id].categories[i]].get();
-                    }
+            // Build the canvas-api-wrapper and get all the needed items
+            let canvasCourse = canvas.getCourse(course.id);
+            for (var i = 0; i < toolList[tool_id].categories.length; i++) {
+                if (['pages', 'quizzes', 'modules'].includes(toolList[tool_id].categories[i])) {
+                    await canvasCourse[toolList[tool_id].categories[i]].getComplete();
+                } else {
+                    await canvasCourse[toolList[tool_id].categories[i]].get();
                 }
-
-                // Put all of the items into a single array
-                let allItems = canvasCourse.getSubs().reduce((acc, sub) => acc.concat(sub));
-
-                // Run each item through the discover function of the selected tool
-                course.issueItems = allItems.reduce((acc, item) => {
-                    let issueItem = new IssueItem(item);
-                    toolList[tool_id].discover(item, issueItem, options);
-                    return issueItem.issues.length > 0 ? acc.concat(issueItem) : acc;
-                }, []);
-
-                // Resolve the promise
-                resolve();
-                logMe('COMPLETE', 'DISCOVER', tool_id, course.course_name);
-            } catch (e) {
-                reject(e);
             }
-        });
-    }
 
-    return new Promise((resolve, reject) => {
-        let promises = courses.map(course => courseDiscover(course));
-        Promise.all(promises)
-            .then(resolve)
-            .catch(reject);
+            // Put all of the items into a single array
+            let allItems = canvasCourse.getSubs().reduce((acc, sub) => acc.concat(sub));
+
+            // Run each item through the discover function of the selected tool
+            course.issueItems = allItems.reduce((acc, item) => {
+                let issueItem = new IssueItem(item);
+                toolList[tool_id].discover(item, issueItem, options);
+                return issueItem.issues.length > 0 ? acc.concat(issueItem) : acc;
+            }, []);
+
+            // Resolve the promise
+            resolve();
+            logMe('COMPLETE', 'DISCOVER', tool_id, course.course_name, course.id);
+        } catch (e) {
+            reject(e);
+        }
     });
 }
 
 /*****************************************************************
  * Fixes the provided issue items in Canvas with the specified tool.
  * @param {string} tool_id - The ID of the tool to be run
- * @param {Course[]} courses - Array of courses to be run, with their IssueItems attached (typically the currently selected courses)
+ * @param {Course[]} course - The course who's issueItems are to be fixed
  * @param {object} options - An object containing the option values specific to the tool
  * @returns {Course[]} - Array of courses, which include their updated IssueItems
  ****************************************************************/
-function fixIssues(tool_id, courses, options) {
-    function courseFix(course) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                logMe('START', 'FIX', tool_id, course.course_name);
+function fixIssues(tool_id, course, options) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            logMe('START', 'FIX', tool_id, course.course_name, course.id);
 
-                let fixPromises = course.issueItems.map(issueItem => {
-                    return new Promise(async (resolve, reject) => {
-                        try {
-                            console.log(issueItem.item_id);
-                            if (issueItem.item_id) {
-                                let canvasCourse = canvas.getCourse(course.id);
-                                let canvasItem = await canvasCourse[issueItem.category].getOne(issueItem.item_id);
-                                await toolList[tool_id].fix(canvasItem, issueItem, options);
-                            }
-                            resolve();
-                        } catch (e) {
-                            reject(e);
+            let fixPromises = course.issueItems.map(issueItem => {
+                return new Promise(async (resolve, reject) => {
+                    try {
+                        if (issueItem.item_id) {
+                            let canvasCourse = canvas.getCourse(course.id);
+                            let canvasItem = await canvasCourse[issueItem.category].getOne(issueItem.item_id);
+                            await toolList[tool_id].fix(canvasItem, issueItem, options);
                         }
-                    });
-                });
-
-                Promise.all(fixPromises)
-                    .then(() => {
-                        logMe('COMPLETE', 'FIX', tool_id, course.course_name);
                         resolve();
-                    })
-                    .catch(console.error);
-            } catch (e) {
-                reject(e);
-            }
-        });
-    }
+                    } catch (e) {
+                        reject(e);
+                    }
+                });
+            });
 
-    return new Promise((resolve, reject) => {
-        let promises = courses.map(course => courseFix(course));
-        Promise.all(promises)
-            .then(resolve)
-            .catch(reject);
+            Promise.all(fixPromises)
+                .then(() => {
+                    logMe('COMPLETE', 'FIX', tool_id, course.course_name, course.id);
+                    resolve();
+                })
+                .catch(console.error);
+        } catch (e) {
+            reject(e);
+        }
     });
 }
 

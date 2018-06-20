@@ -49,7 +49,6 @@ export class KatanaService {
                     resolve(data);
                 },
                 (err) => {
-                    this.toolService.processing = false;
                     this.toastService.toastError(err);
                     console.error(err);
                 });
@@ -71,28 +70,46 @@ export class KatanaService {
     discoverIssues() {
         return new Promise((resolve, reject) => {
             this.courseService.courseEditOpen = false;
-            this.toolService.processingMessage = 'Discovering Issues...';
+            this.toolService.processingMessage = 'Searching for Issues...';
             this.toolService.processing = true;
-            let body = {
-                tool_id: this.toolService.selectedTool.id,
-                courses: this.courseService.courses,
-                options: this.toolService.selectedDiscoverOptions
-            };
-            let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-            headers.append('Content-Type', 'application/json');
-            this.http.post('/tool/discover', body, { headers: headers }).subscribe(
-                (courses: Course[]) => {
-                    this.courseService.courses = courses;
-                    this.courseService.selectedCourse = courses[0];
-                    this.toolService.processing = false;
-                    resolve();
-                },
-                (err) => {
-                    this.toolService.processing = false;
-                    this.toastService.toastError(err);
-                    console.error(err);
-                    this.router.navigate(['/']);
+            var completed = 0;
+
+            const socket = new WebSocket('ws://localhost:8000/tool/discover');
+
+            socket.addEventListener('open', (event) => {
+                this.courseService.courses.forEach(course => {
+                    course.processing = true;
+                    let data = JSON.stringify({
+                        tool_id: this.toolService.selectedTool.id,
+                        course: course,
+                        options: this.toolService.selectedDiscoverOptions
+                    });
+                    socket.send(data);
                 });
+            });
+
+            socket.addEventListener('message', (event) => {
+
+                let course = JSON.parse(event.data);
+                if (course.error) {
+                    console.error(course.error);
+                }
+                this.courseService.coursesObj[`c${course.id}`] = course;
+                course.processing = false;
+                completed++;
+                if (completed === 1) {
+                    this.courseService.selectedCourse = this.courseService.courses[0];
+                } else if (completed === this.courseService.courses.length) {
+                    this.toolService.processing = false;
+                    socket.close();
+                }
+            });
+
+            socket.onerror = (err) => {
+                this.toastService.toastError(err);
+                this.toolService.processing = false;
+                console.error(err);
+            };
         });
     }
 
@@ -113,26 +130,56 @@ export class KatanaService {
             this.courseService.courseEditOpen = false;
             this.toolService.processingMessage = 'Fixing Issues...';
             this.toolService.processing = true;
-            let body = {
-                tool_id: this.toolService.selectedTool.id,
-                courses: this.courseService.courses,
-                options: this.toolService.selectedDiscoverOptions
-            };
-            let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-            headers.append('Content-Type', 'application/json');
-            this.http.put('/tool/fix', body, { headers: headers }).subscribe(
-                (courses: Course[]) => {
-                    console.log(courses);
-                    this.courseService.courses = courses;
-                    this.courseService.selectedCourse = courses[0];
-                    this.toolService.processing = false;
-                    resolve();
-                },
-                (err) => {
-                    this.toolService.processing = false;
-                    this.toastService.toastError(err);
-                    console.error(err);
+
+            var fixables = this.courseService.courses.filter(course => {
+                return course.issueItems && course.issueItems.some(issueItems => {
+                    if (issueItems.issues.some(issue => issue.status === 'approved')) {
+                        course.processed = false;
+                        return true;
+                    } else {
+                        course.processed = true;
+                        return false;
+                    }
                 });
+            });
+
+            var completed = 0;
+
+            const socket = new WebSocket('ws://localhost:8000/tool/fix');
+
+            socket.addEventListener('open', (event) => {
+                fixables.forEach(course => {
+                    course.processing = true;
+                    let data = JSON.stringify({
+                        tool_id: this.toolService.selectedTool.id,
+                        course: course,
+                        options: this.toolService.selectedDiscoverOptions
+                    });
+                    socket.send(data);
+                });
+            });
+
+            socket.addEventListener('message', (event) => {
+                let course = JSON.parse(event.data);
+                if (course.error) {
+                    console.error(course.error);
+                }
+                this.courseService.coursesObj[`c${course.id}`] = course;
+                course.processing = false;
+                completed++;
+                if (completed === 1) {
+                    this.courseService.selectedCourse = this.courseService.courses[0];
+                } else if (completed >= fixables.length) {
+                    this.toolService.processing = false;
+                    socket.close();
+                }
+            });
+
+            socket.onerror = (err) => {
+                this.toastService.toastError(err);
+                this.toolService.processing = false;
+                console.error(err);
+            };
         });
     }
 }

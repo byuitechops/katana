@@ -1,7 +1,6 @@
 const canvas = require('canvas-api-wrapper');
 
 module.exports = (body) => {
-    canvas.oncall = e => console.log(e.method, e.url);
     return new Promise((resolve, reject) => {
         // ADD In the URI, the enrollment_term_id needs to be part of the query, but we currently do not know which ids we're looking for so it is not included yet
 

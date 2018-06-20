@@ -8,12 +8,18 @@ const course_retrieval = require('./course_retrieval.js');
 const app = express();
 const serverPort = 8000;
 
+// TESTING
+var expressWd = require('express-ws')(app);
+
 // This logs every request made to the server to the console
 app.use(morgan(`${chalk.greenBright(':method')} ${chalk.yellowBright(':url')} :status :res[content-length] - :response-time ms`));
+
 // This serves the entire dist folder, allowing the angular files to talk to each other
 app.use(express.static('dist/katana'));
+
 // Parses incoming request's body when JSON
 app.use(bodyParser.json());
+
 
 /*************************************************************************
  * Sends the homepage to the user.
@@ -34,7 +40,7 @@ app.post('/course-retrieval', (req, res) => {
         })
         .catch((e) => {
             console.error(e);
-            res.status(500).send(new Error(`Internal Server Error`));
+            res.status(500).send(new Error(`Internal server error`));
         });
 });
 
@@ -49,49 +55,43 @@ app.get('/tool-list', (req, res) => {
 
 /*************************************************************************
  * Handles the "issue discovery" sequence for Node Tools
- * @returns {object[]} - Array of Issues
- * Process:
- * 1. Pulls the tool ID, course list, and options from the request body
- * 2. Runs the discoverIssues() function, which returns a list of items with issues
- * 3. Sends the response with status 400 and the stringified issue items
+ * @returns {Course} - The course provided in the message
  ************************************************************************/
-app.post('/tool/discover', async (req, res) => {
-    try {
-        let {
-            tool_id,
-            courses,
-            options
-        } = req.body;
-
-        await node_tools.discoverIssues(tool_id, courses, options);
-        res.status(200).send(courses);
-    } catch (e) {
-        console.error(e);
-        res.status(400).send(e);
-    }
+app.ws('/tool/discover', (ws, req) => {
+    ws.on('message', async (dataString) => {
+        try {
+            let data = JSON.parse(dataString);
+            await node_tools.discoverIssues(data.tool_id, data.course, data.options);
+            ws.send(JSON.stringify(data.course));
+        } catch (e) {
+            console.log(e);
+            let data = JSON.parse(dataString);
+            data.course.error = 'Internal server error while processing course - please contact a Katana developer';
+            ws.send(JSON.stringify(data.course));
+        }
+    });
 });
 
 /*************************************************************************
- * Handles the "issue discovery" sequence for Node Tools.
- * @returns {object[]} - Array of Issues
+ * Handles the "issue fix" sequence for Node Tools
+ * @returns {Course} - The course provided in the message
  ************************************************************************/
-app.put('/tool/fix', async (req, res) => {
-    try {
-        let {
-            tool_id,
-            courses,
-            options
-        } = req.body;
-
-        await node_tools.fixIssues(tool_id, courses, options);
-        res.status(200).send(courses);
-    } catch (e) {
-        console.error(e);
-        res.status(400).send(e);
-    }
+app.ws('/tool/fix', (ws, req) => {
+    ws.on('message', async (dataString) => {
+        try {
+            let data = JSON.parse(dataString);
+            await node_tools.fixIssues(data.tool_id, data.course, data.options);
+            ws.send(JSON.stringify(data.course));
+        } catch (e) {
+            console.log(e);
+            let data = JSON.parse(dataString);
+            data.course.error = 'Internal server error while processing course - please contact a Katana developer';
+            ws.send(JSON.stringify(data.course));
+        }
+    });
 });
 
 /* Starts the server */
 app.listen(serverPort, () => {
-    console.log('Katana Express server has launched on port:', serverPort);
+    console.log('Katana Server has launched on port:', serverPort);
 });

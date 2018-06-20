@@ -10,19 +10,20 @@
         </span>
 
         <div *ngIf="toolService.toolViewOpen" style="display: flex" class="smooth-width badgeContainer">
-            <div class="blue-grey darken-1 white-text courseChip__issueCount">
+            <div *ngIf="!course.processing" class="blue-grey darken-2 white-text courseChip__issueCount">
                 {{getIssueCount('untouched')}}
             </div>
-            <div class="blue-grey darken-1 green-text text-accent-3 courseChip__issueCount">
+            <!-- <div class="blue-grey darken-2 green-text text-accent-3 courseChip__issueCount">
                 {{getIssueCount('approved')}}
             </div>
-            <div class="blue-grey darken-1 red-text text-accent-3 courseChip__issueCount">
+            <div class="blue-grey darken-2 red-text text-accent-3 courseChip__issueCount">
                 {{getIssueCount('skipped')}}
             </div>
-            <div class="blue-grey darken-1 light-blue-text text-accent-3 courseChip__issueCount">
+            <div class="blue-grey darken-2 light-blue-text text-accent-3 courseChip__issueCount">
                 {{getIssueCount('fixed')}}
-            </div>
+            </div> -->
         </div>
+        <div *ngIf="course.processing" class="loading-dancer green accent-3" style="margin: 18px 13px 0"></div>
     </div>
 
     <i class=" material-icons smooth-width " *ngIf="courseService.courseEditOpen " (click)="courseService.removeCourse(course) ">

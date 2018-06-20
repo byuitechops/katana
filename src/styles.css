@@ -129,3 +129,21 @@ tbody>tr>td {
 ::-webkit-scrollbar-thumb:hover {
     background: #757575;
 }
+
+.loading-dancer {
+    height: 7px;
+    width: 7px;
+    border-radius: 7px;
+    padding-top: 6px;
+    transform-origin: 0 -2px;
+    animation: loadingDancer .5s linear infinite;
+}
+
+@keyframes loadingDancer {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

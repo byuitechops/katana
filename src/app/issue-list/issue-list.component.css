@@ -32,7 +32,6 @@
 .noIssuesMessage {
     position: absolute;
     width: calc(100vw - var(--course-sidebar-width));
-    height: 100vh;
     padding-top: 200px;
     z-index: 100;
     font-size: 30px;

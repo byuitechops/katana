@@ -1,4 +1,5 @@
 var categories = {
+    'Assignment': 'assignments',
     'Page': 'pages',
     'Quiz': 'quizzes',
     'QuizQuestion': 'quizQuestions',

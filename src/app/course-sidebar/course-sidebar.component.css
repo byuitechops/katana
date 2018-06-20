@@ -23,6 +23,10 @@
   overflow-y: scroll;
 }
 
+.courseSidebar__courseChip__container.toolView {
+    max-height: calc(100vh - var(--breadcrumbs-height));
+}
+
 a {
   text-align: center;
   bottom: 10px;
@@ -50,22 +54,24 @@ a {
     height: 45px;
 }
 
+/* Action buttons at the bottom of the sidebar */
+
 .courseSidebar__actionItem i.addButton {
     font-size: 30px;
 }
 
 .courseSidebar__actionItem i:hover {
-    background-color: #263238 !important;
+    background-color: #2962ff !important;
 }
 
 .enabled {
-    color: #37474f  !important;
+    color: #2979FF !important;
     background-color: #eceff1 !important;
 }
 
 .courseSidebar__actionItem i.enabled:hover {
     color: #eceff1 !important;
-    background-color: #263238 !important;
+    background-color: #2962ff !important;
 }
 
 /************************************

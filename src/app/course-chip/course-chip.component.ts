@@ -32,12 +32,13 @@ export class CourseChipComponent {
     }
 
     getIssueCount(status) {
-        if (!this.course.issueItems) return '';
+        if (!this.course.issueItems) return 0;
+        if (this.course.error) return 'E';
         return this.course.issueItems.reduce((acc, issueItem) => {
             let issues = issueItem.issues.filter(issue => {
                 return issue.status === status;
             });
             return acc + issues.length;
-        }, 0) || '';
+        }, 0);
     }
 }
