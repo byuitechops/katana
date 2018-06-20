@@ -92,7 +92,10 @@ a {
 /******************************************
  * Course Selection Overlay Component
  ******************************************/
-
+ app-course-selection {
+  display: none;
+  background-color: var(--primary-3);	
+}
 app-course-selection.open {
   display: block;
   animation: slidein .15s ease-in-out;
