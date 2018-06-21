@@ -96,7 +96,7 @@ input:focus {
     background-color: #2979FF !important;
 }
 
-/* Frosted blur effect for course selection overlay */
-.frost {
+/* frosteded blur effect for course selection overlay */
+.frosted {
     filter: blur(5px);
 }
