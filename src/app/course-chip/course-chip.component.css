@@ -59,6 +59,19 @@
     margin: 4px 2px;
 }
 
+.courseChip__courseDetails {
+    max-width: 100px;
+}
+
+.courseChip__issueCount__hidden {
+    display: none;
+}
+
+.courseChip.selected .courseChip__issueCount__hidden, 
+.courseChip:hover .courseChip__issueCount__hidden {
+    display: inline-block;
+}
+
 .badgeContainer {
     padding: 0 5px;
 }
