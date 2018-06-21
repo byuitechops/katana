@@ -82,11 +82,11 @@
 
 .selectable:hover {
     cursor: pointer;
-    background-color: #2e3d44 !important;
+    background-color: #455a64 !important;
 }
 
 .selected {
-    background-color: #2e3d44 !important;
+    background-color: #455a64 !important;
 }
 
 .smooth-width {

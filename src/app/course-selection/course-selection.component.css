@@ -3,7 +3,7 @@
   position: fixed;
   width: calc(100vw - var(--course-sidebar-width));
   z-index: 4;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .courseSearch__title {
@@ -12,7 +12,7 @@
   position: fixed;
   top: 0;
   width: calc(100vw - var(--course-sidebar-width));
-  color: var(--primary-2);
+  color: white; 
 }
 
 .courseSearch__courseSelection {
@@ -75,7 +75,7 @@ option {
 
 label {
   font-size: 20px;
-  color: var(--primary-2);
+  color: white;
 }
 
 .courseSearch__input {

@@ -1,5 +1,5 @@
 <div class="courseChip__container no-select">
-    <div class="courseChip blue-grey darken-1 z-depth-1" [class.selectable]="toolService.toolViewOpen" [class.selected]="courseService.selectedCourse === course && toolService.toolViewOpen"
+    <div class="courseChip blue-grey z-depth-1" [class.selectable]="toolService.toolViewOpen" [class.selected]="courseService.selectedCourse === course && toolService.toolViewOpen"
         (click)="courseService.selectedCourse = course">
 
         <span class="courseChip__courseDetails">
@@ -23,7 +23,7 @@
                 {{getIssueCount('fixed')}}
             </div>
         </div>
-        <div *ngIf="course.processing" class="loading-dancer green accent-3" style="margin: 18px 13px 0"></div>
+        <div *ngIf="course.processing" class="loading-dancer">.</div>
     </div>
 
     <i class=" material-icons smooth-width " *ngIf="courseService.courseEditOpen " (click)="courseService.removeCourse(course) ">
