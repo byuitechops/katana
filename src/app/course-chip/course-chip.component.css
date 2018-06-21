@@ -77,7 +77,7 @@
 }
 
 .error {
-    color: rgb(255, 57, 57) !important;
+    background-color: rgb(255, 57, 57) !important;
 }
 
 .selectable:hover {
