@@ -48,6 +48,7 @@ export class CourseService {
     // This setter changes the selected item to the first item of the newly selected course
     set selectedCourse(course: Course) {
         if (course === this._selectedCourse || !course) return;
+        // Set the selected course to a reference, so we don't have issues when updating the course objects
         this._selectedCourse = course;
         this.selectedIssueItem = this._selectedCourse.issueItems ? this._selectedCourse.issueItems.find(issueItem => issueItem.course_id === course.id) : null;
     }

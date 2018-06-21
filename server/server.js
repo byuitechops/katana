@@ -62,14 +62,24 @@ app.ws('/tool/discover', (ws, req) => {
         try {
             let data = JSON.parse(dataString);
             await node_tools.discoverIssues(data.tool_id, data.course, data.options);
-            ws.send(JSON.stringify(data.course));
+
+            if (ws.readyState !== 'CLOSED' && ws.readyState !== 'CLOSING') {
+                ws.send(JSON.stringify(data.course));
+            }
         } catch (e) {
             console.log(e);
             let data = JSON.parse(dataString);
-            data.course.error = 'Internal server error while processing course - please contact a Katana developer';
-            ws.send(JSON.stringify(data.course));
+            data.course.error = 'Internal server error while processing course. Please contact a Katana developer with the course ID and tool name.';
+
+            if (ws.readyState !== 'CLOSED' && ws.readyState !== 'CLOSING') {
+                ws.send(JSON.stringify(data.course));
+            }
         }
     });
+
+    ws.on('close', () => {
+        console.log('Web Socket closed by client.');
+    })
 });
 
 /*************************************************************************
@@ -79,16 +89,32 @@ app.ws('/tool/discover', (ws, req) => {
 app.ws('/tool/fix', (ws, req) => {
     ws.on('message', async (dataString) => {
         try {
+            if (dataString === 'close') {
+                ws.close();
+                console.log('CLOSED BY CLIENT');
+                return;
+            }
+
             let data = JSON.parse(dataString);
             await node_tools.fixIssues(data.tool_id, data.course, data.options);
-            ws.send(JSON.stringify(data.course));
+
+            if (ws.readyState !== 'CLOSED' && ws.readyState !== 'CLOSING') {
+                ws.send(JSON.stringify(data.course));
+            }
         } catch (e) {
             console.log(e);
             let data = JSON.parse(dataString);
             data.course.error = 'Internal server error while processing course - please contact a Katana developer';
-            ws.send(JSON.stringify(data.course));
+
+            if (ws.readyState !== 'CLOSED' && ws.readyState !== 'CLOSING') {
+                ws.send(JSON.stringify(data.course));
+            }
         }
     });
+
+    ws.on('close', () => {
+        console.log('Web Socket closed by client.');
+    })
 });
 
 /* Starts the server */

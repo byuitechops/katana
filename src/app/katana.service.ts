@@ -100,9 +100,12 @@ export class KatanaService {
                 this.courseService.coursesObj[`c${course.id}`] = course;
                 course.processing = false;
                 completed++;
-                if (completed === 1) {
-                    this.courseService.selectedCourse = this.courseService.courses[0];
-                } else if (completed === this.courseService.courses.length) {
+
+                if (course.id === this.courseService.selectedCourse.id) {
+                    this.courseService.selectedCourse = this.courseService.coursesObj[`c${course.id}`];
+                }
+
+                if (completed === this.courseService.courses.length) {
                     this.toolService.processing = false;
                     socket.close();
                 }
