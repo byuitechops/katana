@@ -10,12 +10,14 @@ const cheerio = require('cheerio');
 function discover(canvasItem, issueItem, options) {
     if (canvasItem.getHtml() === null) return;
     var $ = cheerio.load(canvasItem.getHtml());
-    var hrefLinks = $('a').get();
-    var srcLinks = $('iframe').get();
+    var aLinks = $('a').get();
+    var iframeLinks = $('iframe').get();
+    var imgLinks = $('img').get();
     
     var links = [
-        ...hrefLinks,
-        ...srcLinks
+        ...aLinks,
+        ...iframeLinks,
+        ...imgLinks
     ];
 
     /* If there aren't any links in the item then return */
@@ -50,7 +52,7 @@ function discover(canvasItem, issueItem, options) {
             </div>
             `;
             let details = {
-                tag: attribute === 'href' ? 'a' : 'iframe',
+                tag: link.tagName,
                 attribute,
                 oldUrl,
                 newUrl
