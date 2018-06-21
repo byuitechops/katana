@@ -50,8 +50,8 @@ function discoverIssues(tool_id, course, options) {
             }, []);
 
             // Resolve the promise
-            resolve();
             logMe('COMPLETE', 'DISCOVER', tool_id, course.course_name, course.id);
+            resolve();
         } catch (e) {
             reject(e);
         }
@@ -87,6 +87,7 @@ function fixIssues(tool_id, course, options) {
 
             Promise.all(fixPromises)
                 .then(() => {
+                    // ADD TO COURSE MAINTENANCE LOG HERE
                     logMe('COMPLETE', 'FIX', tool_id, course.course_name, course.id);
                     resolve();
                 })

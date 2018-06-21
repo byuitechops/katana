@@ -1,4 +1,4 @@
-<div materialize class="issueApproval blue-grey darken-3">
+<div materialize class="issueApproval blue-grey darken-3" *ngIf="courseService.selectedCourse.error === undefined">
     <!-- Container to hold the fix approved and kebob menu buttons -->
     <div class="issueApproval__buttonContainer">
         <!-- Start Over Button -->
@@ -46,15 +46,22 @@
     <div [ngSwitch]="getModal()">
         <div *ngSwitchCase="'approveAll'">
             <div class="modal-content">
-                <h4>Approve all fixes in {{courseService.selectedCourse.course_code}}?</h4>
-                <p>This will approve all unapproved fixes in the current course. This will not approve "skipped" fixes.</p>
+                <h4>Approve Issues</h4>
                 <p>
-                    <strong>Unapproved Fixes:</strong> {{courseService.getCourseIssueCount('untouched')}}
+                    This will approve all unapproved issues.
+                    <span class="red-text"> This will not approve "skipped" issues.</span>
                 </p>
+
+                <div style="margin-bottom:20px">
+                    <h5 class="pad-20">Unapproved Issues</h5>
+                    <app-stat-badge [statTitle]="'All Courses'" [statCount]="courseService.getTotalIssuecount()"></app-stat-badge>
+                    <app-stat-badge [statTitle]="courseService.selectedCourse.course_code" [statCount]="courseService.getCourseIssueCount('untouched')"></app-stat-badge>
+                </div>
             </div>
             <div class="modal-footer">
-                <a class="waves-effect btn-flat blue-grey-text" (click)="closeModal()">Cancel</a>
-                <a class="modal-action modal-close waves-effect btn green" (click)="setApproved('approved')">Approve All</a>
+                <a class="modal-action modal-close waves-effect btn-flat blue-grey-text text-darken-3 left" (click)="closeModal()">Cancel</a>
+                <a class="modal-action modal-close waves-effect btn-flat green-text" (click)="closeModal()">Approve All Courses</a>
+                <a class="modal-action modal-close waves-effect btn-flat green-text" (click)="setApproved('approved')">Approve {{courseService.selectedCourse.course_code}}</a>
             </div>
         </div>
 

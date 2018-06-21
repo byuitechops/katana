@@ -44,9 +44,9 @@ ul {
 }
 
 .header_2 {
-  font-size: 30px;
-  width: 100%;
-  margin: 20px 0;
+    font-size: 30px;
+    width: 100%;
+    margin: 20px 0 10px;
 }
 
 .header_thin {
@@ -83,6 +83,14 @@ ul {
   padding: 20px;
 }
 
+<<<<<<< HEAD
+.flex-container {
+    display: flex;
+}
+
+
+=======
+>>>>>>> 55d4e7b176cecd03c9085d9cbba423e7cbb57471
 /* Overwrite Materialize Card Margins */
 
 .card {

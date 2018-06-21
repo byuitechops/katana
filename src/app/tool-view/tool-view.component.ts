@@ -15,7 +15,7 @@ export class ToolViewComponent {
     getIssueItemCount() {
         return this.courseService.courses.reduce((acc, course) => {
             if (!course.issueItems) return acc;
-            return acc += course.issueItems.length
+            return acc += course.issueItems.length;
         }, 0);
     }
 
@@ -24,7 +24,7 @@ export class ToolViewComponent {
             if (!course.issueItems) return acc;
             return acc += course.issueItems.reduce((acc2, issueItem) => {
                 if (!issueItem.issues) return acc2;
-                return acc2 += issueItem.issues.length
+                return acc2 += issueItem.issues.length;
             }, 0)
         }, 0);
     }
