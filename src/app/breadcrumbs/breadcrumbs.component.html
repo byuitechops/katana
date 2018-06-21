@@ -1,10 +1,24 @@
-<div [class.frosted]="this.courseService.courseSelectionOpen || this.courseService.courseEditOpen" class="breadcrumbs">
+<div materialize [class.frosted]="this.courseService.courseSelectionOpen || this.courseService.courseEditOpen" class="breadcrumbs">
     <div class="nav-wrapper">
         <div id="breadcrumb-links" class="col s12">
             <a class="breadcrumb blue-text text-accent-3" href="/">Home</a>
             <a class="breadcrumb blue-text text-accent-3" *ngIf="toolService.selectedCategory" [routerLink]="['categories', 'tools']"
                 [queryParams]="{category: toolService.selectedCategory.type}">{{toolService.selectedCategory.title}}</a>
             <a class="breadcrumb blue-text text-accent-3" *ngIf="toolService.selectedTool" [routerLink]="['categories', 'tools', toolService.selectedTool.id, 'options']">{{toolService.selectedTool.title}}</a>
+
+            <a class="feedback-button modal-trigger right" (click)="openModal()">
+                <i class="material-icons blue-text text-accent-3" materialize="tooltip" data-tooltip="Feedback" data-position="left">
+                    feedback
+                </i>
+            </a>
         </div>
+    </div>
+</div>
+
+<!-- Feedback Modal - Must stay beneath the main container -->
+<div id="feedbackModal" class="modal" materialize="modal" [materializeActions]="modalActions">
+    <div class="modal-content no-padding">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeMqVujrTfgj056YfvnhtOWEKB3Y1-Ziyp73JB0yqNjx0cwyg/viewform?embedded=true"
+            frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
     </div>
 </div>

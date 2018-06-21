@@ -1,5 +1,5 @@
 .statContainer {
     position: absolute;
-    top: 20px;
+    top: calc(var(--breadcrumbs-height) + 12px);
     right: 20px;
 }

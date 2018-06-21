@@ -30,9 +30,6 @@ export class IssueNavComponent {
     /*****************************************************************
      * Opens and closes the modal. Populates the modal based on the input.
      * @param {string} contentKey - Should match one of the keys of the modalContents property on this component
-     * Process:
-     * 1. Sets the contents of the modal based on the provided contentKey
-     * 2. Emits the "open" event for the modal (or close, for the close method)
      ****************************************************************/
     openModal(modalName) {
         this.selectedModal = modalName;
