@@ -36,6 +36,7 @@ export class CourseChipComponent {
         if (this.course.error) return 'E';
         return this.course.issueItems.reduce((acc, issueItem) => {
             let issues = issueItem.issues.filter(issue => {
+                if (!status) return true;
                 return issue.status === status;
             });
             return acc + issues.length;
