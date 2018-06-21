@@ -1,4 +1,4 @@
-<div materialize class="issueApproval blue-grey darken-2">
+<div materialize class="issueApproval blue-grey darken-2" *ngIf="courseService.selectedCourse.error !== undefined">
     <!-- Container to hold the fix approved and kebob menu buttons -->
     <div class="issueApproval__buttonContainer">
         <!-- Start Over Button -->
