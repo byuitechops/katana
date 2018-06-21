@@ -131,9 +131,13 @@ tbody>tr>td {
   background: #757575;
 }
 
+/* frosteded blur effect for course selection overlay */
+.frosted {
+    filter: blur(7px);
+}
+
 div.loading-dancer::before {
     content: ".";
-    /* margin: 0; */
     font-size: 30px;
     font-weight: 700;
     animation: loadingDancer 0.75s ease-in-out 0s infinite alternate;
@@ -155,7 +159,6 @@ div.loading-dancer {
 
 div.loading-dancer::after {
     content: ".";
-    /* margin: 0; */
     font-size: 30px;
     font-weight: 700;
     animation: loadingDancer 0.75s ease-in-out 0.5s infinite alternate;
