@@ -23,7 +23,7 @@
                 {{getIssueCount('fixed')}}
             </div> -->
         </div>
-        <div *ngIf="course.processing" class="loading-dancer green accent-3" style="margin: 18px 13px 0"></div>
+        <div *ngIf="course.processing" class="loading-dancer">.</div>
     </div>
 
     <i class=" material-icons smooth-width " *ngIf="courseService.courseEditOpen " (click)="courseService.removeCourse(course) ">
