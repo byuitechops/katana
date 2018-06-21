@@ -14,9 +14,9 @@ import { MaterializeAction } from 'angular2-materialize';
 
 export class OptionsViewComponent {
 
-    options: DiscoverOption[] = this.toolService.selectedTool.discoverOptions || [];
-    optionModel = new OptionModel(this.options);
-    formGroup = this.optionModel.toGroup();
+    options: DiscoverOption[];
+    optionModel: OptionModel;
+    formGroup;
 
     // This allows the modal to open and close
     modalActions = new EventEmitter<string | MaterializeAction>();
@@ -25,7 +25,13 @@ export class OptionsViewComponent {
     constructor(public toolService: ToolService,
         public katanaService: KatanaService,
         private courseService: CourseService,
-        private router: Router) { }
+        private router: Router) {
+
+        console.log(this.toolService.selectedTool);
+        this.options = this.toolService.selectedTool.discoverOptions;
+        this.optionModel = new OptionModel(this.options);
+        this.formGroup = this.optionModel.toGroup();
+    }
 
     /*****************************************************************
      * Opens and closes the modal. Populates the modal based on the input.

@@ -97,14 +97,17 @@ export class KatanaService {
                 if (course.error) {
                     console.error(`${course.course_code} (${course.id}): ${course.error}`);
                 }
+
                 this.courseService.coursesObj[`c${course.id}`] = course;
                 course.processing = false;
                 completed++;
 
+                // Update the currently selected course, if this is the currently selected course
                 if (course.id === this.courseService.selectedCourse.id) {
                     this.courseService.selectedCourse = this.courseService.coursesObj[`c${course.id}`];
                 }
 
+                // If this was the last course, then close the socket
                 if (completed === this.courseService.courses.length) {
                     this.toolService.processing = false;
                     socket.close();
@@ -171,12 +174,18 @@ export class KatanaService {
                 if (course.error) {
                     console.error(`${course.course_code} (${course.id}): ${course.error}`);
                 }
+
                 this.courseService.coursesObj[`c${course.id}`] = course;
                 course.processing = false;
                 completed++;
-                if (completed === 1) {
-                    this.courseService.selectedCourse = this.courseService.courses[0];
-                } else if (completed >= fixables.length) {
+
+                // Update the currently selected course, if this is the currently selected course
+                if (course.id === this.courseService.selectedCourse.id) {
+                    this.courseService.selectedCourse = this.courseService.coursesObj[`c${course.id}`];
+                }
+
+                // If this was the last course, then close the socket
+                if (completed === this.courseService.courses.length) {
                     this.toolService.processing = false;
                     socket.close();
                 }

@@ -26,7 +26,6 @@ export class AppComponent {
         private toolService: ToolService,
         private toastService: ToastService) {
 
-
         router.events.subscribe((event: Event) => {
             if (event instanceof NavigationEnd &&
                 !event.urlAfterRedirects.includes('/issues')) {

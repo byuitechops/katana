@@ -35,13 +35,6 @@ export interface Category {
 
 export class ToolService {
 
-    processing: boolean = false;
-    processingMessage: string = '';
-    toolViewOpen: boolean = false;
-
-    // The Tool List (set immediately by Katana service when server is live)
-    toolList: Tool[] = [];
-
     categories = [{
         icon: 'code',
         title: 'HTML',
@@ -72,25 +65,55 @@ export class ToolService {
         toolCategory: 'syllabus'
     }];
 
-    selectedCategory: Category;
-    selectedTool: Tool;
+    processing: boolean = false;
+    processingMessage: string = '';
+    toolViewOpen: boolean = false;
+
+    // The Tool List (set immediately by Katana service when server is live)
+    toolList: Tool[] = [];
+
+    _selectedCategory: Category;
+    _selectedTool: Tool;
     selectedDiscoverOptions;
     selectedFixOptions;
+
+    get selectedCategory() {
+        return this._selectedCategory;
+    }
+
+    set selectedCategory(category) {
+        sessionStorage.selectedCategory = category.title;
+        this._selectedCategory = category;
+    }
+
+    get selectedTool() {
+        return this._selectedTool;
+    }
+
+    set selectedTool(tool) {
+        sessionStorage.selectedTool = tool.id;
+        this._selectedTool = tool;
+    }
 
     constructor(private router: Router) {
         let loc = window.location.href;
 
-        // If we're on a tool selection screen, set the selected category
-        if (loc.includes('tools?') && loc.includes('category=')) {
-            this.selectedCategory = this.categories.find(category => category.toolCategory === loc.split('category=')[1].split('&')[0]);
-        } else if (!loc.includes('options') && !this.selectedCategory) {
+        if (loc.includes('options') && !this._selectedTool && sessionStorage.selectedTool) {
+            this._selectedTool = this.toolList.find(tool => tool.id === sessionStorage.selectedTool);
+        }
+
+        if (loc.includes('tools') && !this._selectedCategory && sessionStorage.selectedCategory) {
+            this._selectedCategory = this.categories.find(category => category.title === sessionStorage.selectedCategory);
+        }
+
+        // I don't feel like this is the right place for this...
+        if (loc.includes('options') && !this._selectedTool) {
             router.navigate(['/']);
         }
 
-        // If we're on an options page, set the selected tool
-        if (loc.includes('/options')) {
-            let toolId = loc.split('tools/')[1].split('/options')[0];
-            this.selectedTool = this.toolList.find(tool => tool.id === toolId);
+        // I don't feel like this is the right place for this...
+        if (loc.includes('tools') && !this._selectedCategory) {
+            router.navigate(['/']);
         }
     }
 }
