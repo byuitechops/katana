@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router'; // Used by the component's template, don't remove
 import { CourseService } from '../course.service';
 import { KatanaService } from '../katana.service';
 import { MaterializeAction } from 'angular2-materialize';
@@ -19,7 +20,8 @@ export class IssueNavComponent {
 
     constructor(public courseService: CourseService,
         public toolService: ToolService,
-        public katanaService: KatanaService) { }
+        public katanaService: KatanaService,
+        private router: Router) { }
 
     getModal() {
         return this.selectedModal;
