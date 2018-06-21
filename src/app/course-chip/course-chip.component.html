@@ -10,7 +10,7 @@
         </span>
 
         <div *ngIf="toolService.toolViewOpen" style="display: flex" class="smooth-width badgeContainer">
-            <div *ngIf="!course.processing" class="blue-grey darken-2 white-text courseChip__issueCount">
+            <div *ngIf="!course.processing" class="blue-grey darken-2 white-text courseChip__issueCount" [class.error]="course.error !== undefined">
                 {{getIssueCount('untouched')}}
             </div>
             <!-- <div class="blue-grey darken-2 green-text text-accent-3 courseChip__issueCount">
