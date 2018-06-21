@@ -34,3 +34,8 @@
 .categoryIcon p {
     margin: 0;
 }
+
+/* frosteded blur effect for course selection overlay */
+.frosted {
+    filter: blur(5px);
+}

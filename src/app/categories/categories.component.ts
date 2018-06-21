@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ToolService } from '../tool.service';
+import { CourseService } from '../course.service';
 
 @Component({
     selector: 'app-categories',
@@ -8,7 +9,8 @@ import { ToolService } from '../tool.service';
 })
 export class CategoriesComponent {
 
-    constructor(public toolService: ToolService) { }
+    constructor(public toolService: ToolService,
+        private courseService: CourseService) { }
 
     /************************************************************
      * This sets the selected category on the Tool service.

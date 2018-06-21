@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToolService } from '../tool.service';
+import { CourseService } from '../course.service';
 
 @Component({
     selector: 'app-breadcrumbs',
@@ -21,7 +22,7 @@ export class BreadcrumbsComponent implements OnInit {
         title: 'Modify Attributes'
     }];
 
-    constructor(private router: Router, public toolService: ToolService) { }
+    constructor(private router: Router, public toolService: ToolService, private courseService: CourseService) { }
 
     ngOnInit() { }
 

@@ -10,23 +10,34 @@ const cheerio = require('cheerio');
 function discover(canvasItem, issueItem, options) {
     if (canvasItem.getHtml() === null) return;
     var $ = cheerio.load(canvasItem.getHtml());
-    var links = $('a').get();
+    var hrefLinks = $('a').get();
+    var srcLinks = $('iframe').get();
+    
+    var links = [
+        ...hrefLinks,
+        ...srcLinks
+    ];
+
     /* If there aren't any links in the item then return */
     if (links.length === 0) return;
     links.forEach(link => {
         /* Assign the oldUrl name for logging purposes */
-        if (!$(link).attr('href')) {
+        if (!$(link).attr('href') && !$(link).attr('src')) {
             return;
         }
-        var oldUrl = $(link).attr('href');
+        /* If the link has an href then use it, else use the src */
+        var attribute = $(link).attr('href') ? 'href' : 'src';
+        var oldUrl = $(link).attr(attribute);
         var keywords = options.excludeKeywords.replace(/\s/g, '');
         if (keywords && keywords.split(',').some(keyword => oldUrl.includes(keyword))) {
             return;
         }
         /* Check if the link has an href, and if it is already the correct href */
-        if ($(link).attr('href').includes('content.byui.edu/file/') &&
-            !$(link).attr('href').includes('content.byui.edu/integ/gen/')) {
-            var newUrl = $(link).attr('href');
+        if ($(link).attr(attribute).includes('content.byui.edu/file/') &&
+            !$(link).attr(attribute).includes('content.byui.edu/integ/gen/') && 
+            !$(link).attr(attribute).includes('syllabus') &&
+            !$(link).attr(attribute).includes('Syllabus')) {
+            var newUrl = $(link).attr(attribute);
             newUrl = newUrl.replace(/\/file\//i, '/integ/gen/');
             newUrl = newUrl.replace(/\/\d+\//i, '/0/');
 
@@ -39,6 +50,8 @@ function discover(canvasItem, issueItem, options) {
             </div>
             `;
             let details = {
+                tag: attribute === 'href' ? 'a' : 'iframe',
+                attribute,
                 oldUrl,
                 newUrl
             };
@@ -60,12 +73,12 @@ function fix(canvasItem, issueItem, options) {
             var $ = cheerio.load(canvasItem.getHtml());
             issueItem.issues.forEach(issue => {
                 if (issue.status === 'approved') {
-                    let link = $(`a[href="${issue.details.oldUrl}"]`).first();
+                    let link = $(`${issue.details.tag}[${issue.details.attribute}="${issue.details.oldUrl}"]`).first();
                     if (link) {
-                        let newUrl = $(link).attr('href');
+                        let newUrl = $(link).attr(issue.details.attribute);
                         newUrl = newUrl.replace(/\/file\//i, '/integ/gen/');
                         newUrl = newUrl.replace(/\/\d+\//i, '/0/');
-                        $(link).attr('href', newUrl);
+                        $(link).attr(attribute, newUrl);
                     }
                     issue.status = 'fixed';
                 }
