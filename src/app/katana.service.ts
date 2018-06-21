@@ -19,6 +19,8 @@ export class KatanaService {
         private router: Router,
         private toastService: ToastService) { }
 
+    sockets: WebSocket[] = [];
+
     /*****************************************************************
      * Retrieves the list of tools from the server.
      * Process:
@@ -75,6 +77,7 @@ export class KatanaService {
             var completed = 0;
 
             const socket = new WebSocket('ws://localhost:8000/tool/discover');
+            this.sockets.push(socket);
 
             socket.addEventListener('open', (event) => {
                 this.courseService.courses.forEach(course => {
@@ -92,7 +95,7 @@ export class KatanaService {
 
                 let course = JSON.parse(event.data);
                 if (course.error) {
-                    console.error(course.error);
+                    console.error(`${course.course_code} (${course.id}): ${course.error}`);
                 }
                 this.courseService.coursesObj[`c${course.id}`] = course;
                 course.processing = false;
@@ -146,6 +149,7 @@ export class KatanaService {
             var completed = 0;
 
             const socket = new WebSocket('ws://localhost:8000/tool/fix');
+            this.sockets.push(socket);
 
             socket.addEventListener('open', (event) => {
                 fixables.forEach(course => {
@@ -162,7 +166,7 @@ export class KatanaService {
             socket.addEventListener('message', (event) => {
                 let course = JSON.parse(event.data);
                 if (course.error) {
-                    console.error(course.error);
+                    console.error(`${course.course_code} (${course.id}): ${course.error}`);
                 }
                 this.courseService.coursesObj[`c${course.id}`] = course;
                 course.processing = false;

@@ -30,7 +30,6 @@ function discoverIssues(tool_id, course, options) {
             logMe('START', 'DISCOVER', tool_id, course.course_name, course.id);
 
             // Build the canvas-api-wrapper course and get all the needed items
-            console.log(options.categories);
             let canvasCourse = canvas.getCourse(course.id);
             for (var i = 0; i < options.categories.length; i++) {
                 if (['pages', 'quizzes', 'modules'].includes(options.categories[i])) {

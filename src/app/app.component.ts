@@ -40,6 +40,10 @@ export class AppComponent {
                 document.documentElement.style.setProperty(`--course-sidebar-width`, '112px');
                 document.documentElement.style.setProperty(`--course-chip-width`, '92px');
 
+                // Clear out the web sockets in case any are still running
+                katanaService.sockets.forEach(socket => socket.close());
+                katanaService.sockets = [];
+
             } else if (event instanceof NavigationEnd &&
                 event.urlAfterRedirects.includes('/issues')) {
 

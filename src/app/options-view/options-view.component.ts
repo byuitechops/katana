@@ -64,7 +64,6 @@ export class OptionsViewComponent {
                 options.categories.push(category.id);
             }
         });
-        console.log(options);
 
         // Send request
         this.toolService.selectedDiscoverOptions = options;
