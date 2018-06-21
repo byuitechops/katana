@@ -35,3 +35,8 @@
     color: var(--primary-3);
     margin: 0;
 }
+
+/* Frosted blur effect for course selection overlay */
+.frost {
+    filter: blur(5px);
+}

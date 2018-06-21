@@ -1,4 +1,4 @@
-<div class="categories">
+<div [class.frost]="this.courseService.courseSelectionOpen || this.courseService.courseEditOpen" class="categories">
     <div *ngFor="let category of toolService.categories" (click)="setSelectedCategory(category)" [routerLink]="['tools']" [queryParams]="{category: category.categoryId}"
         class="categoryIcon card">
         <div>

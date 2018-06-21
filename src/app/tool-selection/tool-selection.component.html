@@ -1,4 +1,4 @@
-<div class="tools">
+<div [class.frost]="this.courseService.courseSelectionOpen || this.courseService.courseEditOpen" class="tools">
     <div *ngFor="let tool of this.toolService.toolList" (click)="this.toolService.selectedTool = tool" [routerLink]="[tool.id, 'options']"
         style="display: block" class="toolIcon card" [style.display]="tool.toolCategory === this.toolService.selectedCategory.toolCategory ? 'block' : 'none'">
         <i class="material-icons blue-text text-accent-3">{{tool.icon}}</i>
