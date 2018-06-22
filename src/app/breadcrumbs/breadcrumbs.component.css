@@ -33,5 +33,16 @@
 
 .feedback-button {
     cursor: pointer;
-    margin-top: 8px;
+    /* margin-top: 8px; */
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.feedback-button::before {
+    content: "Feedback";
+    font-size: 18px;
+    margin-right: 5px;
+    /* top: 0; */
+    /* height: 24px; */
 }
