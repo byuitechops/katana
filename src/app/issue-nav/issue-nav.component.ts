@@ -99,5 +99,6 @@ export class IssueNavComponent {
     selectIssueItem(course, issue) {
         this.courseService.selectedCourse = course;
         this.courseService.selectedIssueItem = course.issueItems.find(issueItem => issueItem.issues.includes(issue));
+        this.closeModal();
     }
 }
