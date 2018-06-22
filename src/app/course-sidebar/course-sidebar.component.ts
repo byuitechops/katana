@@ -44,11 +44,4 @@ export class CourseSidebarComponent {
     removeAll() {
         this.courseService.courses.forEach(c => this.courseService.removeCourse(c));
     }
-
-    goBack() {
-        if (this.router.url !== '/categories') {
-            this._location.back();
-        }
-    }
-
 }

@@ -11,10 +11,6 @@
                 [class.enabled]="courseService.courseSelectionOpen" (click)="courseOverlay()" materialize="tooltip" data-position="right"
                 data-tooltip="Add Courses">{{courseService.courseSelectionOpen ? 'close' : 'add'}}</i>
         </div>
-        <div class="courseSidebar__actionItem">
-            <i class="blue accent-3 darken-3 z-depth-2 material-icons no-select" materialize="tooltip" 
-            data-position="right" data-tooltip="Back" (click)="goBack()">arrow_back</i>
-        </div>
     </div>
 </div>
 <app-course-selection></app-course-selection>
