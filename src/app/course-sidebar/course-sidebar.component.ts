@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CourseService, Course } from '../course.service';
 import { ToolService } from '../tool.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-course-sidebar',
@@ -12,7 +13,8 @@ export class CourseSidebarComponent {
 
     constructor(public courseService: CourseService,
         private toolService: ToolService,
-    private _location: Location) { }
+        private _location: Location,
+        private router: Router) { }
 
     courseOverlay() {
         // cast the returned Element object to an HTMLElement object
@@ -44,7 +46,9 @@ export class CourseSidebarComponent {
     }
 
     goBack() {
-        this._location.back();
+        if (this.router.url !== '/categories') {
+            this._location.back();
+        }
     }
 
 }
