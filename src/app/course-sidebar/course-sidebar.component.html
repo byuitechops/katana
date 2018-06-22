@@ -13,7 +13,7 @@
         </div>
         <div class="courseSidebar__actionItem">
             <i [class.enabled]="courseService.courseSelectionOpen" class="blue accent-3 darken-3 z-depth-2 material-icons no-select" materialize="tooltip" 
-            data-position="right" data-tooltip="Back">arrow_back</i>
+            data-position="right" data-tooltip="Back" (click)="goBack()">arrow_back</i>
         </div>
     </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CourseService, Course } from '../course.service';
 import { ToolService } from '../tool.service';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-course-sidebar',
@@ -10,7 +11,8 @@ import { ToolService } from '../tool.service';
 export class CourseSidebarComponent {
 
     constructor(public courseService: CourseService,
-        private toolService: ToolService) { }
+        private toolService: ToolService,
+    private _location: Location) { }
 
     courseOverlay() {
         // cast the returned Element object to an HTMLElement object
@@ -39,6 +41,10 @@ export class CourseSidebarComponent {
 
     removeAll() {
         this.courseService.courses.forEach(c => this.courseService.removeCourse(c));
+    }
+
+    goBack() {
+        this._location.back();
     }
 
 }
