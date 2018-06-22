@@ -1,7 +1,7 @@
 <div class="courseSidebar blue-grey darken-3">
     <div class="courseSidebar__title">Courses</div>
     <div class="courseSidebar__courseChip__container" [class.toolView]="toolService.toolViewOpen">
-        <button *ngIf="courseService.courseEditOpen" class="waves-effect blue-grey darken-4 btn removeAll" (click)="removeAll()">Remove All</button>
+        <button *ngIf="courseService.courseSelectionOpen" class="waves-effect blue-grey darken-4 btn removeAll" (click)="removeAll()">Remove All</button>
         <app-course-chip *ngFor="let course of courseService.courses" [course]="course" (click)="this.courseService.selectedCourse = course"></app-course-chip>
     </div>
 
@@ -9,11 +9,11 @@
         <div class="courseSidebar__actionItem">
             <i class="blue accent-3 z-depth-2 material-icons addButton no-select" [class.pulse]="courseService.courses.length === 0 && !courseService.courseSelectionOpen"
                 [class.enabled]="courseService.courseSelectionOpen" (click)="courseOverlay()" materialize="tooltip" data-position="right"
-                data-tooltip="Add Courses">{{courseService.courseSelectionOpen ? 'arrow_back' : 'add'}}</i>
+                data-tooltip="Add Courses">{{courseService.courseSelectionOpen ? 'close' : 'add'}}</i>
         </div>
         <div class="courseSidebar__actionItem">
-            <i [class.enabled]="courseService.courseEditOpen" class="blue accent-3 darken-3 z-depth-2 material-icons no-select" (click)="toggleEditWindow()"
-                materialize="tooltip" data-position="right" data-tooltip="Edit Courses">edit</i>
+            <i [class.enabled]="courseService.courseSelectionOpen" class="blue accent-3 darken-3 z-depth-2 material-icons no-select" materialize="tooltip" 
+            data-position="right" data-tooltip="Back">arrow_back</i>
         </div>
     </div>
 </div>

@@ -26,10 +26,10 @@
         <div *ngIf="course.processing" class="loading-dancer">.</div>
     </div>
 
-    <i class=" material-icons smooth-width " *ngIf="courseService.courseEditOpen " (click)="courseService.removeCourse(course) ">
+    <i class=" material-icons smooth-width " *ngIf="courseService.courseSelectionOpen " (click)="courseService.removeCourse(course) ">
         clear
     </i>
-    <i class="material-icons smooth-width " *ngIf="courseService.courseEditOpen " (click)="openCourse() ">
+    <i class="material-icons smooth-width " *ngIf="courseService.courseSelectionOpen " (click)="openCourse() ">
         open_in_new
     </i>
 </div>

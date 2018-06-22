@@ -19,20 +19,16 @@ export class CourseSidebarComponent {
         // toggle add the 'open' class to the app-course-selection component
         if (overlay.className === 'open') {
             overlay.className = 'close';
-
         } else if (overlay.className === 'close') {
             overlay.className = 'open';
-
         } else {
             overlay.style.display = 'block';
-            overlay.className = 'open'
-        }
-
-        if (this.courseService.courseEditOpen) {
-            this.toggleEditWindow();
+            overlay.className = 'open';
         }
 
         this.courseService.courseSelectionOpen = !this.courseService.courseSelectionOpen;
+        let newWidth = this.courseService.courseSelectionOpen ? '207px' : '112px';
+        document.documentElement.style.setProperty(`--course-sidebar-width`, newWidth);
     }
 
     setSelectedCourse(course: Course) {
@@ -43,15 +39,6 @@ export class CourseSidebarComponent {
 
     removeAll() {
         this.courseService.courses.forEach(c => this.courseService.removeCourse(c));
-    }
-
-    toggleEditWindow() {
-        if (this.courseService.courseSelectionOpen) {
-            this.courseOverlay();
-        }
-        this.courseService.courseEditOpen = !this.courseService.courseEditOpen;
-        let newWidth = this.courseService.courseEditOpen ? '207px' : '112px';
-        document.documentElement.style.setProperty(`--course-sidebar-width`, newWidth);
     }
 
 }

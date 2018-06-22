@@ -12,7 +12,7 @@
   position: fixed;
   top: 0;
   width: calc(100vw - var(--course-sidebar-width));
-  color: white; 
+  color: white;
 }
 
 .courseSearch__courseSelection {
@@ -32,7 +32,7 @@
   display: flex;
   flex-flow: row nowrap;
   padding-top: 10px;
-  width: calc(100vw - var(--course-sidebar-width) - 45px);
+  width: calc(100vw - var(--course-sidebar-width) - 100px);
 }
 
 select {
@@ -41,12 +41,18 @@ select {
   color: black;
   cursor: pointer;
   display: block;
-  margin-right: 15px;
-  width: 9vw;
+  margin-right: auto;
+  width: 90%;
   /* This height matches the height of the input */
   height: 47px;
   /* The selected option will be size 20px */
   font-size: 20px;
+}
+
+label {
+  font-size: 20px;
+  color: white;
+  width: 13%;
 }
 
 select>option[disabled] {
@@ -57,13 +63,7 @@ option {
   font-size: 16px;
 }
 
-.courseSearch__options input {
-  background-color: white;
-  border: 1px solid var(--primary-3);
-  font-size: 20px;
-  padding-left: 10px;
-  width: 49.3vw;
-}
+
 /***************************************
 * Course Search Search Bar and Headers
 ****************************************/
@@ -71,16 +71,24 @@ option {
 .courseSearch__search {
   display: block;
   flex-flow: column nowrap;
+  /* Subract 100px for the 50px padding on each side of the container */
+  width: calc(100vw - var(--course-sidebar-width) - 100px);
 }
 
-label {
+.courseSearch__options input {
+  background-color: white;
+  border: 1px solid var(--primary-3);
   font-size: 20px;
-  color: white;
+  margin: 0;
+  padding-left: 10px;
+  /* Subtract the padding + border from the width */
+  width: calc(100% - 11px);
 }
 
 .courseSearch__input {
   display: flex;
   flex-flow: column nowrap;
+  width: 100%;
 }
 
 /***************************************
@@ -92,7 +100,8 @@ label {
   border: 1px solid var(--primary-3);
   display: flex;
   flex-flow: column nowrap;
-  width: 89vw;
+  /* Subract 100px for the 50px padding on each side of the container */
+  width: calc(100vw - var(--course-sidebar-width) - 100px);
   max-height: 655px;
 }
 
@@ -107,9 +116,10 @@ label {
   border-bottom: 1px solid var(--primary-3);
   height: 52px;
   position: fixed;
-  /* The width of the table (89vw) minus the 1px border width
-  minus 1px so the white background doesn't overlap the table border */
-  width: calc(89vw - 2px);
+  /* The width of the table minus the 1px border width on each side
+  so the white background doesn't overlap the table border */
+  width: calc(100vw - var(--course-sidebar-width) - 102px);
+
 }
 
 .courseSearch__search>table>tbody {
@@ -125,7 +135,8 @@ label {
   flex-flow: column nowrap;
 }
 
-tbody>tr, tr>th {
+tbody>tr,
+tr>th {
   cursor: pointer;
 }
 
@@ -133,7 +144,8 @@ tr>th:hover {
   background-color: #ebebeb;
 }
 
-tr>th, tr>td {
+tr>th,
+tr>td {
   padding-left: 10px;
 }
 
