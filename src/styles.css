@@ -83,14 +83,16 @@ ul {
   padding: 20px;
 }
 
-<<<<<<< HEAD
 .flex-container {
     display: flex;
 }
 
+.overview-statBadge .statBadge {
+    margin-right: 5px;
+    width: 225px;
+    cursor: pointer;
+}
 
-=======
->>>>>>> 55d4e7b176cecd03c9085d9cbba423e7cbb57471
 /* Overwrite Materialize Card Margins */
 
 .card {

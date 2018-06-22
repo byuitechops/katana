@@ -7,9 +7,13 @@ const node_tools = require('./node_tools.js');
 const course_retrieval = require('./course_retrieval.js');
 const app = express();
 const serverPort = 8000;
+const expressWd = require('express-ws')(app);
 
-// TESTING
-var expressWd = require('express-ws')(app);
+// REMOVE later on after we don't need it
+if (!process.env.canvas_api_token) {
+    console.log(chalk.redBright('CANVAS API TOKEN not set. Exiting.'));
+    return;
+}
 
 // This logs every request made to the server to the console
 app.use(morgan(`${chalk.greenBright(':method')} ${chalk.yellowBright(':url')} :status :res[content-length] - :response-time ms`));

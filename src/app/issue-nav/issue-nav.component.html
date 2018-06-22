@@ -17,13 +17,35 @@
     <div class="modal-content">
         <h4>Issues</h4>
 
-        <div *ngFor="let course of courseService.courses" style="margin-bottom:5px">
-            <app-stat-badge style="margin-right:5px" [statTitle]="course.course_code" [statCount]="getIssueItems(course).length" [side]="'left'"></app-stat-badge>
-            <i *ngFor="let issue of getIssueItems(course)" class="material-icons issueIcon" [style.color]="getIconColor(issue.status)"
-                (click)="selectIssueItem(course, issue)">
-                {{getStatusIcon(issue.status)}}
-            </i>
-        </div>
+        <table class="striped">
+            <tbody>
+                <tr *ngFor="let course of courseService.courses" class="flex-container" style="width:100%">
+                    <td>
+                        <app-stat-badge class="overview-statBadge" (click)="closeModal();courseService.selectedCourse = course" [statTitle]="course.course_code"
+                            [statCount]="getIssueItems(course).length" [side]="'left'"></app-stat-badge>
+                    </td>
+                    <td style="flex-grow:1;display:flex;flex-wrap:wrap;">
+                        <i *ngFor="let issue of getIssueItems(course)" class="material-icons issueIcon" [style.color]="getIconColor(issue.status)"
+                            (click)="selectIssueItem(course, issue)">
+                            {{getStatusIcon(issue.status)}}
+                        </i>
+                        <i *ngFor="let issue of getIssueItems(course)" class="material-icons issueIcon" [style.color]="getIconColor(issue.status)"
+                            (click)="selectIssueItem(course, issue)">
+                            {{getStatusIcon(issue.status)}}
+                        </i>
+                        <i *ngFor="let issue of getIssueItems(course)" class="material-icons issueIcon" [style.color]="getIconColor(issue.status)"
+                            (click)="selectIssueItem(course, issue)">
+                            {{getStatusIcon(issue.status)}}
+                        </i>
+                    </td>
+                    <td>
+                        <a class="waves-effect btn blue accent-3 right" (click)="setApproved('approved')">Fix</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
 
     </div>
     <div class="modal-footer">

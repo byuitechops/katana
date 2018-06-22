@@ -10,8 +10,6 @@ export class StatBadgeComponent {
     @Input('statCount') statCount: number;
     @Input('side') side: string = 'right';
 
-    constructor() {
-        console.log(this.side);
-    }
+    constructor() { }
 
 }
