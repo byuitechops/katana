@@ -27,7 +27,6 @@ export class OptionsViewComponent {
         private courseService: CourseService,
         private router: Router) {
 
-        console.log(this.toolService.selectedTool);
         this.options = this.toolService.selectedTool.discoverOptions;
         this.optionModel = new OptionModel(this.options);
         this.formGroup = this.optionModel.toGroup();

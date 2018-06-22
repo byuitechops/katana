@@ -58,4 +58,46 @@ export class IssueNavComponent {
             });
         });
     }
+
+    getIssueItems(course) {
+        if (!course.issueItems) return [];
+        return course.issueItems.reduce((acc, issueItem) => {
+            if (!issueItem.issues) return acc;
+            return [...acc, ...issueItem.issues];
+        }, []);
+    }
+
+    /***********************************************************************
+     * This is used to determine the icon shown at the left of an issue on
+     * a card. It is determined by the status of the icon. (i.e. "fixed")
+     **********************************************************************/
+    getStatusIcon(status) {
+        let statusIcons = {
+            'fixed': 'check_circle',
+            'approved': 'check_circle_outline',
+            'skipped': 'call_missed_outgoing',
+            'untouched': 'panorama_fish_eye'
+        }
+        return statusIcons[status];
+    }
+
+    /***********************************************************************
+     * This is used to determine the icon color for the status icon of an
+     * individual issue, as shown on an IssueItem card.
+     **********************************************************************/
+    getIconColor(status) {
+        let doc = getComputedStyle(document.body);
+        let statusColors = {
+            'fixed': doc.getPropertyValue('--accent-1'),
+            'approved': '#00c853',
+            'skipped': '#e53935',
+            'untouched': '#ccc'
+        }
+        return statusColors[status];
+    }
+
+    selectIssueItem(course, issue) {
+        this.courseService.selectedCourse = course;
+        this.courseService.selectedIssueItem = course.issueItems.find(issueItem => issueItem.issues.includes(issue));
+    }
 }

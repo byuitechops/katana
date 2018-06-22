@@ -3,7 +3,7 @@
         (click)="courseService.selectedCourse = course">
 
         <span class="courseChip__courseDetails">
-            {{course.course_code.split(':')[0]}}
+            {{course.course_code}}
             <div class="courseChip__instructorName">
                 {{buildInstructorName()}}
             </div>

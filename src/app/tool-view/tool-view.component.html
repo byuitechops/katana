@@ -1,7 +1,7 @@
 <div class="statContainer">
-    <app-stat-badge [statTitle]="'Courses'" [statCount]="courseService.courses.length"></app-stat-badge>
-    <app-stat-badge [statTitle]="'Items'" [statCount]="getIssueItemCount()"></app-stat-badge>
-    <app-stat-badge [statTitle]="'Issues'" [statCount]="getIssueCount()"></app-stat-badge>
+    <app-stat-badge style="margin-left: 15px;" [statTitle]="'Courses'" [statCount]="courseService.courses.length"></app-stat-badge>
+    <app-stat-badge style="margin-left: 15px;" [statTitle]="'Items'" [statCount]="getIssueItemCount()"></app-stat-badge>
+    <app-stat-badge style="margin-left: 15px;" [statTitle]="'Issues'" [statCount]="getIssueCount()"></app-stat-badge>
 </div>
 
 <div style="margin-top: 300px" *ngIf="courseService.selectedCourse.processing">
