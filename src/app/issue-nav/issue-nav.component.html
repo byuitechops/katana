@@ -25,21 +25,13 @@
                             [statCount]="getIssueItems(course).length" [side]="'left'"></app-stat-badge>
                     </td>
                     <td style="flex-grow:1;display:flex;flex-wrap:wrap;">
-                        <i *ngFor="let issue of getIssueItems(course)" class="material-icons issueIcon" [style.color]="getIconColor(issue.status)"
+                        <i *ngFor="let issue of getIssueItems(course)" class="material-icons issueIcon" [ngClass]="courseService.getTextColorClasses(issue.status)"
                             (click)="selectIssueItem(course, issue)">
-                            {{getStatusIcon(issue.status)}}
-                        </i>
-                        <i *ngFor="let issue of getIssueItems(course)" class="material-icons issueIcon" [style.color]="getIconColor(issue.status)"
-                            (click)="selectIssueItem(course, issue)">
-                            {{getStatusIcon(issue.status)}}
-                        </i>
-                        <i *ngFor="let issue of getIssueItems(course)" class="material-icons issueIcon" [style.color]="getIconColor(issue.status)"
-                            (click)="selectIssueItem(course, issue)">
-                            {{getStatusIcon(issue.status)}}
+                            {{courseService.getStatusIcon(issue.status)}}
                         </i>
                     </td>
                     <td>
-                        <a class="waves-effect btn blue accent-3 right" (click)="setApproved('approved')">Fix</a>
+                        <a class="waves-effect btn blue accent-3 right" (click)="katanaService.fixIssues([course])">Fix</a>
                     </td>
                 </tr>
             </tbody>
@@ -50,7 +42,7 @@
     </div>
     <div class="modal-footer">
         <a class="modal-action modal-close waves-effect btn-flat blue-grey-text text-darken-3 left" (click)="closeModal()">Cancel</a>
-        <a class="modal-action modal-close waves-effect btn-flat blue-text text-accent-3" (click)="setApproved('approved')">Fix All Approved Issues</a>
+        <a class="modal-action modal-close waves-effect btn-flat blue-text text-accent-3" (click)="katanaService.fixIssues(courseService.courses)">Fix All Approved Issues</a>
     </div>
 
 </div>

@@ -80,7 +80,9 @@ function fixIssues(tool_id, course, options) {
                         }
                         resolve();
                     } catch (e) {
-                        reject(e);
+                        // Record ERRORS here when logging is implemented
+                        // Do not reject here - this will cause the course to stop short if one item has an error
+                        resolve();
                     }
                 });
             });

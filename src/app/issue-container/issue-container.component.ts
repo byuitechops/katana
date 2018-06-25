@@ -36,17 +36,19 @@ export class IssueContainerComponent implements OnInit {
             classes += ' text-lighten-4';
         } else if (desiredStatus === 'approved') {
             classes += ' text-accent-4';
+        } else if (desiredStatus === 'skipped') {
+            classes += ' text-darken-2'
         }
         return classes;
     }
 
     getBorderColor() {
-        let doc = getComputedStyle(document.body);
         let borderColors = {
-            'fixed': doc.getPropertyValue('--accent-1'),
+            'fixed': '#2979ff',
             'approved': '#00c853',
-            'skipped': '#e53935',
-            'untouched': doc.getPropertyValue('--primary-6')
+            'skipped': '#455a64',
+            'untouched': '#eceff1',
+            'failed': '#d50000'
         }
         return `solid 5px ${borderColors[this.issue.status]}`;
     }

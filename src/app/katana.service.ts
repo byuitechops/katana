@@ -69,7 +69,7 @@ export class KatanaService {
      * 4. When successful, sets the course service's courses to the new course objects with issueItems
      * 5. When unsuccessful, rejects the promise with the given error
      ****************************************************************/
-    discoverIssues() {
+    discoverIssues(courses) {
         return new Promise((resolve, reject) => {
             this.courseService.courseEditOpen = false;
             this.toolService.processingMessage = 'Searching for Issues...';
@@ -80,7 +80,7 @@ export class KatanaService {
             this.sockets.push(socket);
 
             socket.addEventListener('open', (event) => {
-                this.courseService.courses.forEach(course => {
+                courses.forEach(course => {
                     course.processing = true;
                     let data = JSON.stringify({
                         tool_id: this.toolService.selectedTool.id,
@@ -108,7 +108,7 @@ export class KatanaService {
                 }
 
                 // If this was the last course, then close the socket
-                if (completed === this.courseService.courses.length) {
+                if (completed === courses.length) {
                     this.toolService.processing = false;
                     socket.close();
                 }
@@ -134,13 +134,13 @@ export class KatanaService {
      * 4. When successful, sets the courses property on the course service to the received courses
      * 5. When unsuccessful, rejects the promise with the given error
      ****************************************************************/
-    fixIssues() {
+    fixIssues(courses) {
         return new Promise((resolve, reject) => {
             this.courseService.courseEditOpen = false;
             this.toolService.processingMessage = 'Fixing Issues...';
             this.toolService.processing = true;
 
-            var fixables = this.courseService.courses.filter(course => {
+            var fixables = courses.filter(course => {
                 return course.issueItems && course.issueItems.some(issueItems => {
                     if (issueItems.issues.some(issue => issue.status === 'approved')) {
                         course.processed = false;
@@ -185,7 +185,7 @@ export class KatanaService {
                 }
 
                 // If this was the last course, then close the socket
-                if (completed === this.courseService.courses.length) {
+                if (completed === fixables.length) {
                     this.toolService.processing = false;
                     socket.close();
                 }

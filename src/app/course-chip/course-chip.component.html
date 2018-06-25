@@ -11,16 +11,44 @@
 
         <div *ngIf="toolService.toolViewOpen" style="display: flex" class="smooth-width badgeContainer">
             <div *ngIf="!course.processing" class="blue-grey darken-2 white-text courseChip__issueCount" [class.error]="course.error !== undefined">
-                {{getIssueCount()}}
+                <i class="material-icons countBadge__icon courseChip__issueCount__hidden" [ngClass]="courseService.getTextColorClasses('untouched')">
+                    {{courseService.getStatusIcon('untouched')}}
+                </i>
+                <span class="white-text countBadge__count">
+                    {{getIssueCount('untouched')}}
+                </span>
             </div>
-            <div *ngIf="!course.processing && !course.error" class="blue-grey darken-2 green-text text-accent-3 courseChip__issueCount courseChip__issueCount__hidden">
-                {{getIssueCount('approved')}}
+            <div *ngIf="!course.processing && !course.error" class="courseChip__issueCount courseChip__issueCount__hidden">
+                <i class="material-icons countBadge__icon" [ngClass]="courseService.getTextColorClasses('approved')">
+                    {{courseService.getStatusIcon('approved')}}
+                </i>
+                <span class="white-text countBadge__count">
+                    {{getIssueCount('approved')}}
+                </span>
             </div>
-            <div *ngIf="!course.processing && !course.error" class="blue-grey darken-2 red-text text-accent-3 courseChip__issueCount courseChip__issueCount__hidden">
-                {{getIssueCount('skipped')}}
+            <div *ngIf="!course.processing && !course.error" class="blue-grey-text text-lighten-1 courseChip__issueCount courseChip__issueCount__hidden">
+                <i class="material-icons blue-grey-text text-lighten-1 countBadge__icon">
+                    {{courseService.getStatusIcon('skipped')}}
+                </i>
+                <span class="white-text countBadge__count">
+                    {{getIssueCount('skipped')}}
+                </span>
             </div>
-            <div *ngIf="!course.processing && !course.error" class="blue-grey darken-2 light-blue-text text-accent-3 courseChip__issueCount courseChip__issueCount__hidden">
-                {{getIssueCount('fixed')}}
+            <div *ngIf="!course.processing && !course.error" class="courseChip__issueCount courseChip__issueCount__hidden">
+                <i class="material-icons countBadge__icon" [ngClass]="courseService.getTextColorClasses('failed')">
+                    {{courseService.getStatusIcon('failed')}}
+                </i>
+                <span class="white-text countBadge__count">
+                    {{getIssueCount('failed')}}
+                </span>
+            </div>
+            <div *ngIf="!course.processing && !course.error" class="courseChip__issueCount courseChip__issueCount__hidden">
+                <i class="material-icons countBadge__icon" [ngClass]="courseService.getTextColorClasses('fixed')">
+                    {{courseService.getStatusIcon('fixed')}}
+                </i>
+                <span class="white-text countBadge__count">
+                    {{getIssueCount('fixed')}}
+                </span>
             </div>
         </div>
         <div *ngIf="course.processing" class="loading-dancer">.</div>
