@@ -71,7 +71,7 @@ app.ws('/tool/discover', (ws, req) => {
             let endDate = new Date();
             
             // Push the data to the log
-            logActions.tempLogs.push ({
+            logActions.serverLogs.push ({
                 date: `${startDate.getDate()}/${startDate.getMonth()}/${startDate.getFullYear()}`,
                 startTime: `${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}.${startDate.getMilliseconds()}`,
                 endTime: `${endDate.getHours()}:${endDate.getMinutes()}:${endDate.getSeconds()}.${endDate.getMilliseconds()}`,
@@ -100,7 +100,7 @@ app.ws('/tool/discover', (ws, req) => {
 
     ws.on('close', () => {
         // Log here
-        logActions.logSaved();
+        logActions.logServer();
         console.error('Web Socket closed by client.');
     });
 });
@@ -118,7 +118,7 @@ app.ws('/tool/fix', (ws, req) => {
             let endDate = new Date();
             
             // Push the data to the log
-            logActions.tempLogs.push ({
+            logActions.serverLogs.push ({
                 date: `${startDate.getDate()}/${startDate.getMonth()}/${startDate.getFullYear()}`,
                 startTime: `${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}.${startDate.getMilliseconds()}`,
                 endTime: `${endDate.getHours()}:${endDate.getMinutes()}:${endDate.getSeconds()}.${endDate.getMilliseconds()}`,
@@ -146,7 +146,7 @@ app.ws('/tool/fix', (ws, req) => {
 
     ws.on('close', () => {
         // Log here
-        logActions.logSaved();
+        logActions.logServer();
         console.error('Web Socket closed by client.');
     })
 });

@@ -2,11 +2,7 @@
 const canvas = require('canvas-api-wrapper');
 const chalk = require('chalk');
 const IssueItem = require('./issue_item.js');
-const d3 = require('d3-dsv');
-const fs = require('fs');
-var Logger = require('logger');
-var logger = new Logger(`Temp Title`);
-
+const logActions = require('./logging.js');
 
 /* Course Search */
 const courseSearch = require('./course_search/course_search.js');
@@ -54,6 +50,10 @@ function discoverIssues(tool_id, course, options) {
                 return issueItem.issues.length > 0 ? acc.concat(issueItem) : acc;
             }, []);
 
+            // Log the issue items
+            logActions.toolLogs = course.issueItems;
+            logActions.logTool();
+            
             // Resolve the promise
             logMe('COMPLETE', 'DISCOVER', tool_id, course.course_name, course.id);
             resolve();
