@@ -7,7 +7,7 @@
 
     <div class="card-action">
 
-        <a *ngIf="issue.status !== 'fixed'" (click)="setIssueStatus('approved')" [ngClass]="getButtonClasses('approved', 'button')"
+        <a *ngIf="issue.status !== 'fixed' && issue.status !== 'failed'" (click)="setIssueStatus('approved')" [ngClass]="getButtonClasses('approved', 'button')"
             class="green-text">
             <i [ngClass]="getButtonClasses('approved', 'icon')" class="green-text material-icons left">
                 {{issue.status !== 'approved' ? 'check' : 'check_circle_outline'}}
@@ -15,17 +15,20 @@
             {{issue.status !== 'approved' ? (issue.status !== 'fixed' ? 'approve' : 'fixed') : 'approved'}}
         </a>
 
-        <a *ngIf="issue.status !== 'fixed'" (click)="setIssueStatus('skipped')" [ngClass]="getButtonClasses('skipped', 'button')"
-            class="red-text">
-            <i [ngClass]="getButtonClasses('skipped', 'icon')" class="red-text material-icons left">
+        <a *ngIf="issue.status !== 'fixed' && issue.status !== 'failed'" (click)="setIssueStatus('skipped')" [ngClass]="getButtonClasses('skipped', 'button')"
+            class="blue-grey-text">
+            <i [ngClass]="getButtonClasses('skipped', 'icon')" class="blue-grey-text material-icons left">
                 {{issue.status !== 'skipped' ? 'remove' : 'call_missed_outgoing'}}
             </i>
 
             {{issue.status !== 'skipped' ? 'skip' : 'skipped'}}
         </a>
 
-        <div *ngIf="issue.status === 'fixed'" class="blue-text">
+        <div *ngIf="issue.status === 'fixed'" class="blue-text text-accent-3">
             FIXED
+        </div>
+        <div *ngIf="issue.status === 'failed'" class="red-text text-accent-4">
+            FAILED - Please contact a Katana developer with the course ID, item name, and issue title.
         </div>
 
     </div>

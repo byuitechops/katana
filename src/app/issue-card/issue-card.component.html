@@ -16,8 +16,8 @@
     </div>
     <ul>
         <li *ngFor="let issue of issueItem.issues" class="issueCard_issue ">
-            <i class="material-icons issueCard_tag" [style.color]="getIconColor(issue.status)">
-                {{getStatusIcon(issue.status)}}
+            <i class="material-icons issueCard_tag" [ngClass]="courseService.getTextColorClasses(issue.status)">
+                {{courseService.getStatusIcon(issue.status)}}
             </i>{{issue.title}}
         </li>
     </ul>

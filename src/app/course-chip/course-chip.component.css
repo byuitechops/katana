@@ -17,18 +17,18 @@
     position: relative;
 }
 
-.courseChip__container i {
+.courseChip__container>i {
     line-height: 43px;
     margin: 3px 0;
     height: 43px;
     width: 43px;
-    border-radius: 50%;
+    border-radius: 43px;
     text-align: center;
     cursor: pointer;
     color: white;
 }
 
-.courseChip__container i:hover {
+.courseChip__container>i:hover {
     background-color: #dddddd54;
 }
 
@@ -53,10 +53,13 @@
     min-width: 25px;
     line-height: 25px;
     text-align: center;
-    border-radius: 50%;
+    border-radius: 43px;
     cursor: pointer;
     font-weight: bold;
-    margin: 4px 2px;
+    margin: 4px 0;
+    padding: 0 2px;
+    display: flex;
+    justify-content: center;
 }
 
 .courseChip__courseDetails {
@@ -69,11 +72,22 @@
 
 .courseChip.selected .courseChip__issueCount__hidden, 
 .courseChip:hover .courseChip__issueCount__hidden {
-    display: inline-block;
+    display: flex;
 }
 
 .badgeContainer {
     padding: 0 5px;
+}
+
+.countBadge__count {
+    line-height: 26px;
+    font-size: 14px;
+}
+
+.countBadge__icon {
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0 5px;
 }
 
 .error {

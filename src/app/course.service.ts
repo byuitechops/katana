@@ -122,4 +122,34 @@ export class CourseService {
             return acc + this.getCourseIssueCount(status);
         }, 0);
     }
+
+    /***********************************************************************
+     * This is used to determine the icon shown at the left of an issue on
+     * a card. It is determined by the status of the icon. (i.e. "fixed")
+     **********************************************************************/
+    getStatusIcon(status) {
+        let statusIcons = {
+            'fixed': 'check_circle',
+            'approved': 'check_circle_outline',
+            'skipped': 'call_missed_outgoing',
+            'untouched': 'panorama_fish_eye',
+            'failed': 'warning'
+        }
+        return statusIcons[status];
+    }
+
+    /***********************************************************************
+     * This is used to determine the icon color for the status icon of an
+     * individual issue, as shown on an IssueItem card.
+     **********************************************************************/
+    getTextColorClasses(status) {
+        let statusColors = {
+            'fixed': 'blue-text text-accent-3',
+            'approved': 'green-text text-accent-4',
+            'skipped': 'blue-grey-text text-darken-2',
+            'untouched': 'blue-grey-text text-lighten-5',
+            'failed': 'red-text'
+        }
+        return statusColors[status];
+    }
 }

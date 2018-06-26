@@ -136,7 +136,7 @@ app.ws('/tool/fix', (ws, req) => {
         } catch (e) {
             console.error(e);
             let data = JSON.parse(dataString);
-            data.course.error = 'Internal server error while processing course - please contact a Katana developer';
+            data.course.error = 'Internal server error while processing course. Please contact a Katana developer with the course ID and tool name.';
 
             if (ws.readyState !== 2 && ws.readyState !== 3) {
                 ws.send(JSON.stringify(data.course));

@@ -13,7 +13,7 @@ function discover(canvasItem, issueItem, options) {
     var aLinks = $('a').get();
     var iframeLinks = $('iframe').get();
     var imgLinks = $('img').get();
-    
+
     var links = [
         ...aLinks,
         ...iframeLinks,
@@ -36,7 +36,7 @@ function discover(canvasItem, issueItem, options) {
         }
         /* Check if the link has an href, and if it is already the correct href */
         if ($(link).attr(attribute).includes('content.byui.edu/file/') &&
-            !$(link).attr(attribute).includes('content.byui.edu/integ/gen/') && 
+            !$(link).attr(attribute).includes('content.byui.edu/integ/gen/') &&
             !$(link).attr(attribute).includes('syllabus') &&
             !$(link).attr(attribute).includes('Syllabus')) {
             var newUrl = $(link).attr(attribute);
@@ -80,7 +80,7 @@ function fix(canvasItem, issueItem, options) {
                         let newUrl = $(link).attr(issue.details.attribute);
                         newUrl = newUrl.replace(/\/file\//i, '/integ/gen/');
                         newUrl = newUrl.replace(/\/\d+\//i, '/0/');
-                        $(link).attr(attribute, newUrl);
+                        $(link).attr(issue.details.attribute, newUrl);
                     }
                     issue.status = 'fixed';
                 }
@@ -89,7 +89,7 @@ function fix(canvasItem, issueItem, options) {
             await canvasItem.update();
             resolve();
         } catch (e) {
-            issueItem.issues[0].status = 'untouched';
+            issueItem.issues[0].status = 'failed';
             reject(e);
         }
     });

@@ -72,7 +72,7 @@ export class OptionsViewComponent {
 
         // Send request
         this.toolService.selectedDiscoverOptions = options;
-        this.katanaService.discoverIssues()
+        this.katanaService.discoverIssues(this.courseService.courses)
             .catch(console.error);
         this.router.navigate([`categories/tools/${this.toolService.selectedTool.id}/issues`]);
     }
