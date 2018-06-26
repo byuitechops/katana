@@ -5,3 +5,103 @@ START,DISCOVER,equella_links,FHGEN 112 (Katana Use Case),16586
 COMPLETE,DISCOVER,equella_links,FHGEN 130 (Katana Use Case),16585
 COMPLETE,DISCOVER,equella_links,FHGEN 112 (Katana Use Case),16586
 COMPLETE,DISCOVER,equella_links,MATH 221B (Katana Use Case),16584
+START,DISCOVER,equella_links,MATH 221B (Katana Use Case),16584
+START,DISCOVER,equella_links,FHGEN 130 (Katana Use Case),16585
+START,DISCOVER,equella_links,FHGEN 112 (Katana Use Case),16586
+COMPLETE,DISCOVER,equella_links,MATH 221B (Katana Use Case),16584
+COMPLETE,DISCOVER,equella_links,FHGEN 112 (Katana Use Case),16586
+COMPLETE,DISCOVER,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,MATH 221B (Katana Use Case),16584
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,FHGEN 112 (Katana Use Case),16586
+status,type,tool_id,course_name,course_id
+COMPLETE,DISCOVER,equella_links,FHGEN 112 (Katana Use Case),16586
+status,type,tool_id,course_name,course_id
+COMPLETE,DISCOVER,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+COMPLETE,DISCOVER,equella_links,MATH 221B (Katana Use Case),16584
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,MATH 221B (Katana Use Case),16584
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,FHGEN 112 (Katana Use Case),16586
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,MATH 221B (Katana Use Case),16584
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,FHGEN 112 (Katana Use Case),16586
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,MATH 221B (Katana Use Case),16584
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,FHGEN 112 (Katana Use Case),16586
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,MATH 221B (Katana Use Case),16584
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,FHGEN 112 (Katana Use Case),16586
+status,type,tool_id,course_name,course_id
+COMPLETE,DISCOVER,equella_links,FHGEN 112 (Katana Use Case),16586
+status,type,tool_id,course_name,course_id
+COMPLETE,DISCOVER,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+COMPLETE,DISCOVER,equella_links,MATH 221B (Katana Use Case),16584
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,MATH 221B (Katana Use Case),16584
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,FHGEN 112 (Katana Use Case),16586
+status,type,tool_id,course_name,course_id
+COMPLETE,DISCOVER,equella_links,FHGEN 112 (Katana Use Case),16586
+status,type,tool_id,course_name,course_id
+COMPLETE,DISCOVER,equella_links,MATH 221B (Katana Use Case),16584
+status,type,tool_id,course_name,course_id
+COMPLETE,DISCOVER,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+START,FIX,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+COMPLETE,FIX,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+START,FIX,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+COMPLETE,FIX,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+START,FIX,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+COMPLETE,FIX,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+START,FIX,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+COMPLETE,FIX,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+START,FIX,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+COMPLETE,FIX,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,MATH 221B (Katana Use Case),16584
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+START,DISCOVER,equella_links,FHGEN 112 (Katana Use Case),16586
+status,type,tool_id,course_name,course_id
+COMPLETE,DISCOVER,equella_links,FHGEN 112 (Katana Use Case),16586
+status,type,tool_id,course_name,course_id
+COMPLETE,DISCOVER,equella_links,FHGEN 130 (Katana Use Case),16585
+status,type,tool_id,course_name,course_id
+COMPLETE,DISCOVER,equella_links,MATH 221B (Katana Use Case),16584
+status,type,tool_id,course_name,course_id
+START,FIX,equella_links,MATH 221B (Katana Use Case),16584
+status,type,tool_id,course_name,course_id
+COMPLETE,FIX,equella_links,MATH 221B (Katana Use Case),16584
+status,type,tool_id,course_name,course_id
+START,FIX,equella_links,MATH 221B (Katana Use Case),16584
+status,type,tool_id,course_name,course_id
+COMPLETE,FIX,equella_links,MATH 221B (Katana Use Case),16584

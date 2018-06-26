@@ -81,7 +81,10 @@ export class KatanaService {
 
             socket.addEventListener('open', (event) => {
                 courses.forEach(course => {
+                    // Set the course processing
                     course.processing = true;
+                    // Remove any pre-existing error
+                    delete course.error;
                     let data = JSON.stringify({
                         tool_id: this.toolService.selectedTool.id,
                         course: course,
@@ -143,10 +146,10 @@ export class KatanaService {
             var fixables = courses.filter(course => {
                 return course.issueItems && course.issueItems.some(issueItems => {
                     if (issueItems.issues.some(issue => issue.status === 'approved')) {
-                        course.processed = false;
+                        course.processing = true;
                         return true;
                     } else {
-                        course.processed = true;
+                        course.processing = false;
                         return false;
                     }
                 });

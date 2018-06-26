@@ -148,7 +148,7 @@ export class CourseService {
             'approved': 'green-text text-accent-4',
             'skipped': 'blue-grey-text text-darken-2',
             'untouched': 'blue-grey-text text-lighten-5',
-            'failed': 'red-text text-accent-3'
+            'failed': 'red-text'
         }
         return statusColors[status];
     }

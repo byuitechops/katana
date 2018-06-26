@@ -87,10 +87,8 @@ function fix(canvasItem, issueItem, options) {
             });
             canvasItem.setHtml($.html());
             await canvasItem.update();
-            issueItem.issues[0].status = 'failed';
             resolve();
         } catch (e) {
-            console.log('FAILURE');
             issueItem.issues[0].status = 'failed';
             reject(e);
         }
