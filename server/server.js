@@ -8,6 +8,7 @@ const course_retrieval = require('./course_retrieval.js');
 const app = express();
 const serverPort = 8000;
 const expressWd = require('express-ws')(app);
+const logActions = require('./logging.js');
 
 // REMOVE later on after we don't need it
 if (!process.env.canvas_api_token) {
@@ -65,7 +66,22 @@ app.ws('/tool/discover', (ws, req) => {
     ws.on('message', async (dataString) => {
         try {
             let data = JSON.parse(dataString);
+            let startDate = new Date();
             await node_tools.discoverIssues(data.tool_id, data.course, data.options);
+            let endDate = new Date();
+            
+            // Push the data to the log
+            logActions.tempLogs.push ({
+                date: `${startDate.getDate()}/${startDate.getMonth()}/${startDate.getFullYear()}`,
+                startTime: `${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}.${startDate.getMilliseconds()}`,
+                endTime: `${endDate.getHours()}:${endDate.getMinutes()}:${endDate.getSeconds()}.${endDate.getMilliseconds()}`,
+                action: 'node_tool',
+                details: {
+                    tool: data.tool_id,
+                    mode: 'discover',
+                    courseId: data.course.id
+                }
+            });
 
             if (ws.readyState !== 2 && ws.readyState !== 3) {
                 ws.send(JSON.stringify(data.course));
@@ -83,8 +99,10 @@ app.ws('/tool/discover', (ws, req) => {
     });
 
     ws.on('close', () => {
+        // Log here
+        logActions.logSaved();
         console.error('Web Socket closed by client.');
-    })
+    });
 });
 
 /*************************************************************************
@@ -95,7 +113,22 @@ app.ws('/tool/fix', (ws, req) => {
     ws.on('message', async (dataString) => {
         try {
             let data = JSON.parse(dataString);
+            let startDate = new Date();
             await node_tools.fixIssues(data.tool_id, data.course, data.options);
+            let endDate = new Date();
+            
+            // Push the data to the log
+            logActions.tempLogs.push ({
+                date: `${startDate.getDate()}/${startDate.getMonth()}/${startDate.getFullYear()}`,
+                startTime: `${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}.${startDate.getMilliseconds()}`,
+                endTime: `${endDate.getHours()}:${endDate.getMinutes()}:${endDate.getSeconds()}.${endDate.getMilliseconds()}`,
+                action: 'node_tool',
+                details: {
+                    tool: data.tool_id,
+                    mode: 'fix',
+                    courseId: data.course.id
+                }
+            });
 
             if (ws.readyState !== 2 && ws.readyState !== 3) {
                 ws.send(JSON.stringify(data.course));
@@ -112,6 +145,8 @@ app.ws('/tool/fix', (ws, req) => {
     });
 
     ws.on('close', () => {
+        // Log here
+        logActions.logSaved();
         console.error('Web Socket closed by client.');
     })
 });

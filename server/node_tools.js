@@ -20,22 +20,6 @@ const toolList = {
 /* Used to log start/stop of different tools */
 function logMe(status, type, tool_id, course_name, course_id) {
     console.log(`${chalk.whiteBright(status)}: ${chalk.cyanBright(type)} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(tool_id)} | ${chalk.whiteBright('COURSES:')} ${chalk.greenBright(course_name)} | ${chalk.whiteBright('ID:')} ${chalk.greenBright(course_id)}`);
-    var csvReport = d3.csvFormatRows([[
-        status,
-        type, 
-        tool_id, 
-        course_name, 
-        course_id
-    ]]) + '\n';
-    if (!fs.existsSync('C:\\Users\\sethchilders92\\Documents\\katana\\tools_logs.csv')) {
-        fs.appendFile(`tools_logs.csv`, `status,type,tool_id,course_name,course_id\n${csvReport}`, (err) => {
-            if (err) console.error(err);
-        });
-    } else {
-        fs.appendFile(`tools_logs.csv`, csvReport, (err) => {
-            if (err) console.error(err);
-        });
-    }
 }
 
 /*****************************************************************
