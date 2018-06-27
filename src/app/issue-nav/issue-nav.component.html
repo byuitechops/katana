@@ -9,6 +9,23 @@
             </a>
         </div>
     </div>
+    <!-- The dropdown menu from the kebob menu -->
+    <ul id="dropdown1" class="blue-grey dropdown-content">
+        <li>
+            <a (click)="downloadIssues()" id="download">
+                <i class="material-icons left">cloud_download</i>
+                Download CSV
+            </a>
+        </li>
+    </ul>
+
+    <!-- The Kebob menu at the far right of the bottom bar -->
+    <div>
+        <a materialize="dropdown" [materializeParams]="[{constrain_width: false, alignment: 'left'}]" class="dropdown-button issueApproval_moreButton"
+            data-activates="dropdown1">
+            <i class="material-icons blue-grey-text text-lighten-3">more_vert</i>
+        </a>
+    </div>
 </div>
 
 <!-- Modal - Must stay beneath the main container -->

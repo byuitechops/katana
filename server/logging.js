@@ -72,7 +72,7 @@ function toolLogger(logs) {
                     log.link,
                     ...flatIssues,
                 ];
-            }))) + '\n';
+            })));
         } else {
             // Make the log without the header
             csvLog = d3.csvFormatRows(logs.map(log => {

@@ -48,7 +48,17 @@ td {
 
 .dropdown-content {
     width: 200px !important;
-    transform: translate(0, -70px);
+    transform: translate(0, -87px);
+}
+
+.dropdown-content>li>a {
+    transition: none;
+    color: white;
+}
+
+.dropdown-content>li>a:hover {
+    transition: none;
+    color: #00695c;
 }
 
 .modal-footer {
