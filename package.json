@@ -22,6 +22,7 @@
     "@angular/platform-browser": "^6.0.0",
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/router": "^6.0.0",
+    "@types/d3-dsv": "^1.0.33",
     "angular2-crumbs": "^1.2.1",
     "angular2-materialize": "^15.1.10",
     "body-parser": "^1.18.3",

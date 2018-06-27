@@ -5,6 +5,7 @@ import { KatanaService } from '../katana.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { EventEmitter } from '@angular/core';
 import { ToolService } from '../tool.service';
+import { csvFormatRows } from 'd3-dsv';
 
 @Component({
     selector: 'app-issue-nav',
@@ -71,5 +72,55 @@ export class IssueNavComponent {
         this.courseService.selectedCourse = course;
         this.courseService.selectedIssueItem = course.issueItems.find(issueItem => issueItem.issues.includes(issue));
         this.closeModal();
+    }
+
+    downloadIssues() {
+        console.log(`downloadIssues`);
+        let csvReport = '';
+        this.courseService.courses.forEach((course, i) => {
+            if (i < 1) {
+                csvReport = csvFormatRows([[
+                    "Title",
+                    "Course ID",
+                    "Item ID",
+                    "Category",
+                    "Link",
+                    "Issues",
+                ]].concat(course.issueItems.map(issueItem => {
+                    let flatIssues = issueItem.issues.reduce((acc, issue) => acc.concat(JSON.stringify(issue)), []);
+                    console.log(`flatIssues: `, flatIssues);
+                    return [
+                        issueItem.title,
+                        issueItem.course_id,
+                        issueItem.item_id,
+                        issueItem.category,
+                        issueItem.link,
+                        ...flatIssues,
+                    ];
+                })));
+            } else {
+                // Make the log without the header
+                csvReport += csvFormatRows(course.issueItems.map(issueItem => {
+                    let flatIssues = issueItem.issues.reduce((acc, issue) => acc.concat(JSON.stringify(issue)), []);
+                    console.log(`flatIssues: `, flatIssues);
+                    return [
+                        issueItem.title,
+                        issueItem.course_id,
+                        issueItem.item_id,
+                        issueItem.category,
+                        issueItem.link,
+                        ...flatIssues,
+                    ];
+                })) + '\n';
+            }
+        });
+        console.log(`csvReport: `, csvReport);
+        let fileName = 'csvReport.csv';
+        let a = <HTMLAnchorElement> document.getElementById("download");
+        var blob = new Blob([csvReport], { type: "octet/stream" });
+        var url = window.URL.createObjectURL(blob);
+
+        a.href = url;
+        a.download = fileName;
     }
 }
