@@ -30,7 +30,7 @@ app.use(bodyParser.json());
  * Sends the homepage to the user.
  * @returns {page} - Homepage
  ************************************************************************/
-app.get(['/', '/categories', '/categories/*', '/categories/*/*'], (req, res) => {
+app.get(['/', '/categories', '/categories/*', '/categories/*/*', '/home', '/home/*', '/home/*/*'], (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/katana/index.html'))
 });
 
@@ -69,9 +69,9 @@ app.ws('/tool/discover', (ws, req) => {
             let startDate = new Date();
             await node_tools.discoverIssues(data.tool_id, data.course, data.options);
             let endDate = new Date();
-            
+
             // Push the data to the log
-            logActions.serverLogs.push ({
+            logActions.serverLogs.push({
                 date: `${startDate.getDate()}/${startDate.getMonth()}/${startDate.getFullYear()}`,
                 startTime: `${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}.${startDate.getMilliseconds()}`,
                 endTime: `${endDate.getHours()}:${endDate.getMinutes()}:${endDate.getSeconds()}.${endDate.getMilliseconds()}`,
@@ -116,9 +116,9 @@ app.ws('/tool/fix', (ws, req) => {
             let startDate = new Date();
             await node_tools.fixIssues(data.tool_id, data.course, data.options);
             let endDate = new Date();
-            
+
             // Push the data to the log
-            logActions.serverLogs.push ({
+            logActions.serverLogs.push({
                 date: `${startDate.getDate()}/${startDate.getMonth()}/${startDate.getFullYear()}`,
                 startTime: `${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}.${startDate.getMilliseconds()}`,
                 endTime: `${endDate.getHours()}:${endDate.getMinutes()}:${endDate.getSeconds()}.${endDate.getMilliseconds()}`,

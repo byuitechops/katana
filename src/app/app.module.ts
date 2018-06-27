@@ -27,40 +27,30 @@ import { StatBadgeComponent } from './stat-badge/stat-badge.component';
 
 export const appRoutes: Routes = [
     {
-        path: '',
-        redirectTo: 'categories',
-        pathMatch: 'full',
-        data: {
-            breadcrumb: 'Home'
-        }
-    },
-    {
         path: 'categories',
-        component: CategoriesComponent,
-        data: {
-            breadcrumb: 'Categories'
-        }
+        redirectTo: 'home',
+        pathMatch: 'full'
     },
     {
-        path: 'categories/tools',
-        component: ToolSelectionComponent,
-        data: {
-            breadcrumb: 'Tool Selection'
-        }
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
     },
     {
-        path: 'categories/tools/:tool_id/options',
-        component: OptionsViewComponent,
-        data: {
-            breadcrumb: 'Options'
-        }
+        path: 'home',
+        component: CategoriesComponent
     },
     {
-        path: 'categories/tools/:tool_id/issues',
-        component: ToolViewComponent,
-        data: {
-            breadcrumb: 'Issues'
-        }
+        path: 'home/tools',
+        component: ToolSelectionComponent
+    },
+    {
+        path: 'home/tools/:tool_id/options',
+        component: OptionsViewComponent
+    },
+    {
+        path: 'home/tools/:tool_id/issues',
+        component: ToolViewComponent
     }
 ];
 
