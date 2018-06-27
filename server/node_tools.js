@@ -2,11 +2,7 @@
 const canvas = require('canvas-api-wrapper');
 const chalk = require('chalk');
 const IssueItem = require('./issue_item.js');
-const d3 = require('d3-dsv');
-const fs = require('fs');
-var Logger = require('logger');
-var logger = new Logger(`Temp Title`);
-
+const logActions = require('./logging.js');
 
 /* Course Search */
 const courseSearch = require('./course_search/course_search.js');
@@ -20,22 +16,6 @@ const toolList = {
 /* Used to log start/stop of different tools */
 function logMe(status, type, tool_id, course_name, course_id) {
     console.log(`${chalk.whiteBright(status)}: ${chalk.cyanBright(type)} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(tool_id)} | ${chalk.whiteBright('COURSES:')} ${chalk.greenBright(course_name)} | ${chalk.whiteBright('ID:')} ${chalk.greenBright(course_id)}`);
-    var csvReport = d3.csvFormatRows([[
-        status,
-        type, 
-        tool_id, 
-        course_name, 
-        course_id
-    ]]) + '\n';
-    if (!fs.existsSync('C:\\Users\\sethchilders92\\Documents\\katana\\tools_logs.csv')) {
-        fs.appendFile(`tools_logs.csv`, `status,type,tool_id,course_name,course_id\n${csvReport}`, (err) => {
-            if (err) console.error(err);
-        });
-    } else {
-        fs.appendFile(`tools_logs.csv`, csvReport, (err) => {
-            if (err) console.error(err);
-        });
-    }
 }
 
 /*****************************************************************
@@ -70,6 +50,10 @@ function discoverIssues(tool_id, course, options) {
                 return issueItem.issues.length > 0 ? acc.concat(issueItem) : acc;
             }, []);
 
+            // Log the issue items
+            logActions.toolLogs = course.issueItems;
+            logActions.logTool();
+            
             // Resolve the promise
             logMe('COMPLETE', 'DISCOVER', tool_id, course.course_name, course.id);
             resolve();
