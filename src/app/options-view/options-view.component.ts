@@ -74,7 +74,7 @@ export class OptionsViewComponent {
         this.toolService.selectedDiscoverOptions = options;
         this.katanaService.discoverIssues(this.courseService.courses)
             .catch(console.error);
-        this.router.navigate([`categories/tools/${this.toolService.selectedTool.id}/issues`]);
+        this.router.navigate([`home/tools/${this.toolService.selectedTool.id}/issues`]);
     }
 
     /******************************************************************************
