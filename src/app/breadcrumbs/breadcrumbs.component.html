@@ -2,9 +2,8 @@
     <div class="nav-wrapper">
         <div id="breadcrumb-links" class="col s12">
             <a class="breadcrumb blue-text text-accent-3" href="/">Home</a>
-            <a class="breadcrumb blue-text text-accent-3" *ngIf="toolService.selectedCategory" [routerLink]="['categories', 'tools']"
-                [queryParams]="{category: toolService.selectedCategory.type}">{{toolService.selectedCategory.title}}</a>
-            <a class="breadcrumb blue-text text-accent-3" *ngIf="toolService.selectedTool" [routerLink]="['categories', 'tools', toolService.selectedTool.id, 'options']">{{toolService.selectedTool.title}}</a>
+            <a class="breadcrumb blue-text text-accent-3" *ngIf="toolService.selectedCategory" [routerLink]="['home', 'tools']" [queryParams]="{category: toolService.selectedCategory.type}">{{toolService.selectedCategory.title}}</a>
+            <a class="breadcrumb blue-text text-accent-3" *ngIf="toolService.selectedTool" [routerLink]="['home', 'tools', toolService.selectedTool.id, 'options']">{{toolService.selectedTool.title}}</a>
 
             <a class="feedback-button modal-trigger right" (click)="openModal()">
                 <i class="material-icons blue-text text-accent-3">

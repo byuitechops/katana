@@ -106,7 +106,8 @@ module.exports = {
         'pages',
         'assignments',
         'discussions',
-        'quizzes'
+        'quizzes',
+        'quizQuestions'
     ],
     toolCategory: 'html',
     discoverOptions: [{

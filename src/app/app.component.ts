@@ -34,6 +34,7 @@ export class AppComponent {
                 courseService.selectedIssueItem = null;
                 courseService.selectedCourse = null;
                 toolService.toolViewOpen = false
+                toolService.selectedDiscoverOptions = false;
                 courseService.courses.forEach(course => {
                     course.issueItems = [];
                     course.processing = false
@@ -48,6 +49,11 @@ export class AppComponent {
 
             } else if (event instanceof NavigationEnd &&
                 event.urlAfterRedirects.includes('/issues')) {
+
+                if (toolService.selectedDiscoverOptions === false) {
+                    router.navigate([`home/tools/${this.toolService.selectedTool.id}/options`]);
+                    toastService.toast('You\'ll need to run the tool again to go back to the Issues page.');
+                }
 
                 // Select the first course and adjust the bar width
                 if (courseService.courses.length > 0) {

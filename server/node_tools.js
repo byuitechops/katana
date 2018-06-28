@@ -10,6 +10,7 @@ const courseSearch = require('./course_search/course_search.js');
 /* Node Tools | (Key) Tool ID: (Value) require(pathToTool) */
 const toolList = {
     'rename_pages': require('./node_tools/rename_pages.js'),
+    'alt_attributes': require('./node_tools/alt_attributes.js'),
     'equella_links': require('./node_tools/equella_links.js')
 }
 
@@ -32,16 +33,29 @@ function discoverIssues(tool_id, course, options) {
 
             // Build the canvas-api-wrapper course and get all the needed items
             let canvasCourse = canvas.getCourse(course.id);
+            let subItems = [];
             for (var i = 0; i < options.categories.length; i++) {
                 if (['pages', 'quizzes', 'modules'].includes(options.categories[i])) {
                     await canvasCourse[options.categories[i]].getComplete();
+                } else if (['quizQuestions', 'moduleItems'].includes(options.categories[i])) {
+                    if (options.categories[i] === 'quizQuestions') {
+                        if (!canvasCourse.quizzes) {
+                            await canvasCourse.quizzes.getComplete();
+                        }
+                        subItems.concat(canvasCourse.quizzes.reduce((acc, quiz) => [...acc, ...quiz.questions], []));
+                    } else {
+                        if (!canvasCourse.modules) {
+                            await canvasCourse.modules.getComplete();
+                        }
+                        subItems.concat(canvasCourse.modules.reduce((acc, module) => [...acc, ...module.items]));
+                    }
                 } else {
                     await canvasCourse[options.categories[i]].get();
                 }
             }
 
             // Put all of the items into a single array
-            let allItems = canvasCourse.getSubs().reduce((acc, sub) => acc.concat(sub));
+            let allItems = canvasCourse.getSubs().reduce((acc, sub) => acc.concat(sub), []).concat(subItems);
 
             // Run each item through the discover function of the selected tool
             course.issueItems = allItems.reduce((acc, item) => {
@@ -53,7 +67,7 @@ function discoverIssues(tool_id, course, options) {
             // Log the issue items
             logActions.toolLogs = course.issueItems;
             logActions.logTool();
-            
+
             // Resolve the promise
             logMe('COMPLETE', 'DISCOVER', tool_id, course.course_name, course.id);
             resolve();

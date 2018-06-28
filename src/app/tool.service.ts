@@ -12,6 +12,16 @@ export interface DiscoverOption {
     required: boolean
 }
 
+export interface FixOption {
+    title: string,
+    key: string,
+    description: string,
+    type: string,
+    choices: object[],
+    defaultText?: string,
+    required: boolean
+}
+
 export interface Tool {
     id: string,
     title: string,
