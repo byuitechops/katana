@@ -1,8 +1,8 @@
 <div class="issueDetails">
-    <div class="issueDetails__header">
+    <h1 style="display:inline-block">
         Issues
-        <span class="issueDetails__itemTitle header_thin">{{this.courseService.selectedIssueItem ? this.courseService.selectedIssueItem.title : ''}}</span>
-    </div>
+    </h1>
+    <span class="issueDetails__itemTitle">{{this.courseService.selectedIssueItem ? this.courseService.selectedIssueItem.title : ''}}</span>
     <div *ngIf="courseService.selectedIssueItem" class="issueDetails__issueBox">
         <app-issue-container *ngFor="let issue of courseService.selectedIssueItem.issues" [issue]="issue"></app-issue-container>
     </div>

@@ -2,7 +2,6 @@
 
 .issueCard {
     cursor: pointer;
-    margin: 0 0 15px;
     padding: 15px;
     position: relative;
     width: calc(100%);
@@ -78,20 +77,4 @@
     user-select: none;
     vertical-align: center;
     width: 26px;
-}
-
-/* A selected card */
-
-.issueCard::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background-color: white;
-    width: 5px;
-}
-
-.issueCard.selectedCard::before {
-    background-color: var(--accent-1);
 }

@@ -1,21 +1,27 @@
 <div [class.frosted]="this.courseService.courseSelectionOpen || this.courseService.courseEditOpen" class="optionsView">
     <div class="optionsView__container card">
         <div class="optionsView__title header_1">
-            <span class="header_bold">Options</span>
-            <span class="optionsView__toolTitle header_thin right">
+            <span class="header_bold">
                 {{toolService.selectedTool.title}}
             </span>
+            <span class="header_thin right">Options</span>
         </div>
 
         <form materialize (ngSubmit)="onSubmit()" [formGroup]="formGroup" #optionsForm="ngForm">
             <div class="card-content">
-                <div>{{toolService.selectedTool.description}}</div>
 
-                <div class="header_2">Categories</div>
-                <div style="display:flex">
-                    <div class="categories-container" *ngFor="let category of toolService.selectedTool.categories">
-                        <input [id]="category" type="checkbox" class="filled-in blue accent-3 canvas-category" checked="checked">
-                        <label [for]="category">{{category}}</label>
+                <div>
+                    <div class="header_2">Description</div>
+                    <div>{{toolService.selectedTool.description}}</div>
+                </div>
+
+                <div>
+                    <div class="header_2">Categories</div>
+                    <div style="display:flex">
+                        <div class="categories-container" *ngFor="let category of toolService.selectedTool.categories">
+                            <input [id]="category" type="checkbox" class="filled-in blue accent-3 canvas-category" checked="checked">
+                            <label [for]="category">{{category}}</label>
+                        </div>
                     </div>
                 </div>
 
@@ -28,12 +34,12 @@
                         </div>
                         <div *ngSwitchCase="'dropdown'">
                             <select style="display: block" [formControlName]="option.key">
-                                <option *ngFor="let choice of option.choices">{{choice.text}}</option>
+                                <option *ngFor="let choice of option.choices">{{choice}}</option>
                             </select>
                         </div>
                         <div *ngSwitchCase="'multiselect'">
                             <select style="display: block" [formControlName]="option.key" multiple>
-                                <option *ngFor="let choice of option.choices">{{choice.text}}</option>
+                                <option *ngFor="let choice of option.choices">{{choice}}</option>
                             </select>
                         </div>
                     </div>

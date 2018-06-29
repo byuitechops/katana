@@ -3,6 +3,9 @@
 # Ignore log files
 server/logs/*
 
+# Ignore cert
+cert.pem
+
 # compiled output
 /dist
 /tmp

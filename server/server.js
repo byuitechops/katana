@@ -1,5 +1,7 @@
 const path = require('path');
 const express = require('express');
+const https = require('https');
+const fs = require('fs');
 const morgan = require('morgan');
 const chalk = require('chalk');
 const bodyParser = require('body-parser');
@@ -15,6 +17,16 @@ if (!process.env.canvas_api_token) {
     console.log(chalk.redBright('CANVAS API TOKEN not set. Exiting.'));
     return;
 }
+
+// TEST - this is to allow LTI iframe for testing
+var allowCrossDomain = function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With, Authorization');
+    if (req.method === "OPTIONS") res.send(200);
+    else next();
+}
+app.use(allowCrossDomain);
 
 // This logs every request made to the server to the console
 app.use(morgan(`${chalk.greenBright(':method')} ${chalk.yellowBright(':url')} :status :res[content-length] - :response-time ms`));
@@ -150,6 +162,19 @@ app.ws('/tool/fix', (ws, req) => {
         console.error('Web Socket closed by client.');
     })
 });
+
+// TEST for LTI
+app.post('/lti-test', (req, res) => {
+    console.log(req.body);
+    res.send('Potato');
+});
+
+// let options = {
+//     key: fs.readFileSync('server/key.pem'),
+//     cert: fs.readFileSync('server/cert.pem')
+// }
+
+// let server = https.createServer(options, app);
 
 /* Starts the server */
 app.listen(serverPort, () => {

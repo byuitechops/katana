@@ -1,19 +1,19 @@
 /* Container for the issue-list element */
 
 .issueList {
-    height: calc(100vh - (var(--breadcrumbs-height) + 60px));
+    max-height: calc(100vh - var(--breadcrumbs-height));
+    background-color: var(--cobalt);
     width: var(--issueList-width);
     box-sizing: border-box;
+    padding: 0 15px;
+    overflow-y: scroll;
 }
 
 /* The box all issue-cards go into */
 
 .issueList__list {
-    min-height: calc(100vh - (var(--breadcrumbs-height) + 70px));
-    max-height: calc(100vh - (var(--breadcrumbs-height) + 70px));
     overflow: auto;
     overflow-x: hidden;
-    padding: 0 10px 0 20px;
 }
 
 /* The title for the issue list */

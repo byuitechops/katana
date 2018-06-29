@@ -34,19 +34,16 @@ function discoverIssues(tool_id, course, options) {
             // Build the canvas-api-wrapper course and get all the needed items
             let canvasCourse = canvas.getCourse(course.id);
             let subItems = [];
+
             for (var i = 0; i < options.categories.length; i++) {
                 if (['pages', 'quizzes', 'modules'].includes(options.categories[i])) {
                     await canvasCourse[options.categories[i]].getComplete();
                 } else if (['quizQuestions', 'moduleItems'].includes(options.categories[i])) {
                     if (options.categories[i] === 'quizQuestions') {
-                        if (!canvasCourse.quizzes) {
-                            await canvasCourse.quizzes.getComplete();
-                        }
+                        if (!canvasCourse.quizzes) await canvasCourse.quizzes.getComplete();
                         subItems.concat(canvasCourse.quizzes.reduce((acc, quiz) => [...acc, ...quiz.questions], []));
                     } else {
-                        if (!canvasCourse.modules) {
-                            await canvasCourse.modules.getComplete();
-                        }
+                        if (!canvasCourse.modules) await canvasCourse.modules.getComplete();
                         subItems.concat(canvasCourse.modules.reduce((acc, module) => [...acc, ...module.items]));
                     }
                 } else {

@@ -2,21 +2,13 @@
 
 .issueContainer {
     background-color: white;
-    border-bottom: solid 1px var(--primary-4);
     box-sizing: border-box;
-    margin: 0 0 15px;
 }
 
 /* Overwrites the card class from materialize */
 
 .issueContainer.card {
     border-radius: 0;
-}
-
-/* The issue description on an issue container */
-
-.issueContainer__issueDetails {
-    color: var(--primary-5);
 }
 
 /* Overwrites the card content class from materialize */
@@ -33,6 +25,8 @@
     border-radius: 0;
 }
 
-.issueContainer.card .card-action a:hover {
-    /* border-bottom: solid 1px var(--primary-4); */
+/* Overwrites materialize button focus so it doesn't show up on the issue cards */
+
+.btn-flat:focus {
+    background-color: none !important;
 }

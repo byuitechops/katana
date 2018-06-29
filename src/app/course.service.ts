@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
+import { OptionModel } from './options.service';
+import { FormGroup } from '@angular/forms';
 
 export interface Issue {
     title: string,
     status: string,
     display: string,
-    details: object
+    details: object,
+    optionModel?: OptionModel,
+    formGroup?: FormGroup,
+    optionValues?: any
 }
 
 export interface IssueItem {
@@ -147,8 +152,22 @@ export class CourseService {
             'fixed': 'blue-text text-accent-3',
             'approved': 'green-text text-accent-4',
             'skipped': 'blue-grey-text text-darken-2',
-            'untouched': 'blue-grey-text text-lighten-5',
+            'untouched': 'blue-grey-text text-lighten-4',
             'failed': 'red-text'
+        }
+        return statusColors[status];
+    }
+
+    /***********************************************************************
+     * This is used to determine the background color for an issue card.
+     **********************************************************************/
+    getBackgroundColorClasses(status) {
+        let statusColors = {
+            'fixed': 'blue lighten-4',
+            'approved': 'green lighten-5',
+            'skipped': 'blue-grey lighten-5',
+            'untouched': 'white',
+            'failed': 'red lighten-5'
         }
         return statusColors[status];
     }

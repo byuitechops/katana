@@ -1,21 +1,18 @@
 .courseSidebar {
   position: fixed;
-  top: 0;
+  top: var(--breadcrumbs-height);
+  padding: 0 15px;
   left: 0;
-  height: 100vh;
+  height: calc(100vh - var(--breadcrumbs-height));
   width: var(--course-sidebar-width);
-  background-color: var(--background-dark);
+  background-color: var(--navy);
   z-index: 5;
 }
 
 .courseSidebar__title {
   width: 100%;
-  box-sizing: border-box;
-  font-size: 20px;
-  color: var(--background-light);
-  text-align: center;
-  height: calc(var(--breadcrumbs-height) - 2px);
-  line-height: calc(var(--breadcrumbs-height) - 2px);
+  color: white;
+  text-align: left;
 }
 
 .courseSidebar__courseChip__container {

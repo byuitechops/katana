@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { Issue } from '../course.service';
+import { Issue, CourseService } from '../course.service';
+import { OptionModel } from '../options.service';
+import { ToolService } from '../tool.service';
 
 @Component({
     selector: 'app-issue-container',
@@ -11,10 +13,15 @@ export class IssueContainerComponent implements OnInit {
     issue: Issue;
     @ViewChild('issueDetails') issueDetails: ElementRef;
 
-    constructor() { }
+    constructor(private toolService: ToolService,
+        private courseService: CourseService) {
+    }
 
     ngOnInit() {
         this.issueDetails.nativeElement.innerHTML = this.issue.display;
+        this.issue.optionModel = new OptionModel(this.toolService.selectedTool.fixOptions);
+        this.issue.formGroup = this.issue.optionModel.toGroup();
+        console.log(this.issue);
     }
 
     setIssueStatus(newStatus) {
@@ -27,6 +34,7 @@ export class IssueContainerComponent implements OnInit {
         }
     }
 
+    // TODO Switch this to use the methods from course service 
     getButtonClasses(desiredStatus: string, elType: string) {
         let classes = '';
         if (elType === 'button') {
@@ -42,14 +50,9 @@ export class IssueContainerComponent implements OnInit {
         return classes;
     }
 
-    getBorderColor() {
-        let borderColors = {
-            'fixed': '#2979ff',
-            'approved': '#00c853',
-            'skipped': '#455a64',
-            'untouched': '#eceff1',
-            'failed': '#d50000'
+    setStatusUntouched() {
+        if (this.issue.status !== 'untouched') {
+            this.issue.status = 'untouched';
         }
-        return `solid 5px ${borderColors[this.issue.status]}`;
     }
 }

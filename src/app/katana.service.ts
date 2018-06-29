@@ -32,6 +32,7 @@ export class KatanaService {
         return new Promise((resolve, reject) => {
             this.http.get('/tool-list').subscribe((toolList: any): any => {
                 this.toolService.toolList = toolList;
+                console.log(toolList);
                 resolve();
             }, reject);
         });
@@ -163,6 +164,16 @@ export class KatanaService {
             socket.addEventListener('open', (event) => {
                 fixables.forEach(course => {
                     course.processing = true;
+                    // Save the option values for each issue, but remove the formGroup and questionModel
+                    course.issueItems.forEach(issueItem => {
+                        issueItem.issues.forEach(issue => {
+                            if (issue.formGroup) {
+                                issue.optionValues = issue.formGroup.value;
+                                delete issue.formGroup;
+                                delete issue.questionModel;
+                            }
+                        });
+                    });
                     let data = JSON.stringify({
                         tool_id: this.toolService.selectedTool.id,
                         course: course,

@@ -2,7 +2,10 @@
 
 .issueDetails {
     width: calc(100vw - (var(--course-sidebar-width) + var(--issueList-width)));
-    height: calc(100vh - (20px + var(--breadcrumbs-height)));
+    height: calc(100vh - var(--breadcrumbs-height));
+    background-color: var(--background-light);
+    padding: 0 15px;
+    overflow-y: scroll;
 }
 
 /* The header for issue-details */
@@ -19,13 +22,13 @@
 
 .issueDetails__itemTitle {
     margin-left: 15px;
+    font-size: 20px;
     font-weight: 300;
 }
 
 /* The box that holds all of the issue-container elements */
 
 .issueDetails__issueBox {
-    padding: 0 20px 20px 10px;
     box-sizing: border-box;
     overflow-x: hidden;
     overflow: auto;

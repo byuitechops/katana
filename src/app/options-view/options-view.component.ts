@@ -1,6 +1,6 @@
 import { Component, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { OptionModel } from '../options.service';
 import { ToolService, DiscoverOption } from '../tool.service';
 import { CourseService } from '../course.service';
 import { KatanaService } from '../katana.service';
@@ -27,8 +27,7 @@ export class OptionsViewComponent {
         private courseService: CourseService,
         private router: Router) {
 
-        this.options = this.toolService.selectedTool.discoverOptions;
-        this.optionModel = new OptionModel(this.options);
+        this.optionModel = new OptionModel(this.toolService.selectedTool.discoverOptions);
         this.formGroup = this.optionModel.toGroup();
     }
 
@@ -77,58 +76,4 @@ export class OptionsViewComponent {
         this.router.navigate([`home/tools/${this.toolService.selectedTool.id}/issues`]);
     }
 
-    /******************************************************************************
-     * Creates an option on the options page based on the options provided by the
-     * currently selected tool.
-     * @param {DiscoverOption} option - The options object passed in by the tool
-     * @returns {string} - The HTML to be inserted into the DOM
-     *****************************************************************************/
-    createOption(option) {
-        var choices = option.choices.reduce((acc, choice) => {
-            return acc += `<option value="${choice.key}" ${option.defaults.includes(choice.key) ? 'selected' : ''}>${choice.text}</option>`
-        }, '');
-
-        let builders = {
-            'text': `
-          <h4>${option.title}</h4>
-          <label for="option.title">${option.description}</label>
-          <input type="text" name="${option.title}" ${option.required ? 'required' : ''}>
-        `,
-            'dropdown': `
-          <h4>${option.title}</h4>
-          <label for="option.title">${option.description}</label>
-          <select name="${option.title}" style="display: block" ${option.required ? 'required' : ''}>
-            ${choices}
-          </select>
-        `,
-            'multiselect': `
-          <h4>${option.title}</h4>
-          <label for="option.title">${option.description}</label>
-          <select name="${option.title}" style="display: block" multiple ${option.required ? 'required' : ''}>
-            ${choices}
-          </select>
-        `
-        }
-        return builders[option.type];
-    }
-}
-
-class OptionModel {
-    options = [];
-
-    constructor(options) {
-        this.options = options;
-    }
-    toGroup() {
-        let group: any = {};
-        this.options.forEach((option) => {
-            if (option.required) {
-                group[option.key] = new FormControl('', Validators.required);
-            }
-            else {
-                group[option.key] = new FormControl('');
-            }
-        });
-        return new FormGroup(group);
-    }
 }

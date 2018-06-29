@@ -1,28 +1,59 @@
-<div [style.borderLeft]="getBorderColor()" class="issueContainer card">
+<div [ngClass]="courseService.getBackgroundColorClasses(issue.status)" class="issueContainer card">
 
     <div class="card-content">
         <div class="card-title">{{issue.title}}</div>
         <div class="issueContainer__issueDetails" #issueDetails></div>
+
+        <form materialize (ngSubmit)="onSubmit()" [formGroup]="issue.formGroup" #optionsForm="ngForm">
+            <div *ngFor="let option of issue.optionModel.options" class="form-row">
+                <div class="card-title">{{option.title}}</div>
+                <div class="option__description">{{option.description}}</div>
+                <div [ngSwitch]="option.type" class="option__container" [class.multiselect]="option.type === 'multiselect'" [class.required]="!issue.formGroup.controls[option.key].valid">
+
+                    <div *ngSwitchCase="'text'">
+                        <input type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key" (input)="setStatusUntouched()" autofocus>
+                    </div>
+
+                    <div *ngSwitchCase="'dropdown'">
+                        <select style="display: block" [formControlName]="option.key" (input)="setStatusUntouched()">
+                            <option *ngFor="let choice of option.choices">{{choice.text}}</option>
+                        </select>
+                    </div>
+
+                    <div *ngSwitchCase="'multiselect'">
+                        <select style="display: block" [formControlName]="option.key" (input)="setStatusUntouched()" multiple>
+                            <option *ngFor="let choice of option.choices">{{choice.text}}</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+
     </div>
 
     <div class="card-action">
 
-        <a *ngIf="issue.status !== 'fixed' && issue.status !== 'failed'" (click)="setIssueStatus('approved')" [ngClass]="getButtonClasses('approved', 'button')"
-            class="green-text">
-            <i [ngClass]="getButtonClasses('approved', 'icon')" class="green-text material-icons left">
+        <button *ngIf="issue.status !== 'fixed' && issue.status !== 'failed'" (click)="setIssueStatus('approved')" [ngClass]="getButtonClasses('approved', 'button')"
+            class="green-text" [disabled]="issue.formGroup && !issue.formGroup.valid">
+            <i *ngIf="!issue.formGroup || issue.formGroup.valid" [ngClass]="getButtonClasses('approved', 'icon')" class="green-text material-icons left">
                 {{issue.status !== 'approved' ? 'check' : 'check_circle_outline'}}
             </i>
+            <i *ngIf="issue.formGroup && !issue.formGroup.valid" class="material-icons left">
+                block
+            </i>
             {{issue.status !== 'approved' ? (issue.status !== 'fixed' ? 'approve' : 'fixed') : 'approved'}}
-        </a>
+        </button>
 
-        <a *ngIf="issue.status !== 'fixed' && issue.status !== 'failed'" (click)="setIssueStatus('skipped')" [ngClass]="getButtonClasses('skipped', 'button')"
+        <button *ngIf="issue.status !== 'fixed' && issue.status !== 'failed'" (click)="setIssueStatus('skipped')" [ngClass]="getButtonClasses('skipped', 'button')"
             class="blue-grey-text">
             <i [ngClass]="getButtonClasses('skipped', 'icon')" class="blue-grey-text material-icons left">
                 {{issue.status !== 'skipped' ? 'remove' : 'call_missed_outgoing'}}
             </i>
 
             {{issue.status !== 'skipped' ? 'skip' : 'skipped'}}
-        </a>
+        </button>
 
         <div *ngIf="issue.status === 'fixed'" class="blue-text text-accent-3">
             FIXED

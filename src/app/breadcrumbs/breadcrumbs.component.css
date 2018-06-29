@@ -1,12 +1,13 @@
 .breadcrumbs {
     height: var(--breadcrumbs-height);
-    left: var(--course-sidebar-width);
+    left: 0;
     line-height: var(--breadcrumbs-height);
     padding: 0 20px;
     position: fixed;
     top: 0;
-    width: calc(100vw - var(--course-sidebar-width));
+    width: 100vw;
     border-bottom: solid 1px var(--primary-2);
+    background-color: var(--background-light);
 }
 
 .breadcrumb {
