@@ -21,7 +21,16 @@ export class IssueContainerComponent implements OnInit {
         this.issueDetails.nativeElement.innerHTML = this.issue.display;
         this.issue.optionModel = new OptionModel(this.toolService.selectedTool.fixOptions);
         this.issue.formGroup = this.issue.optionModel.toGroup();
-        console.log(this.issue);
+        console.log(this.issue.formGroup);
+
+        // Update option values if there are values saved for any options
+        if (this.issue.tempValues) {
+            Object.keys(this.issue.tempValues).forEach(optionKey => {
+                let control = this.issue.formGroup.get(optionKey);
+                control.setValue(this.issue.tempValues[optionKey], { onlySelf: true });
+                control.updateValueAndValidity();
+            });
+        }
     }
 
     setIssueStatus(newStatus) {
@@ -50,9 +59,13 @@ export class IssueContainerComponent implements OnInit {
         return classes;
     }
 
-    setStatusUntouched() {
+    onChange(optionKey) {
         if (this.issue.status !== 'untouched') {
             this.issue.status = 'untouched';
         }
+        if (!this.issue.tempValues) {
+            this.issue.tempValues = {};
+        }
+        this.issue.tempValues[optionKey] = this.issue.formGroup.value[optionKey];
     }
 }

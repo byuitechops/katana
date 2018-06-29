@@ -2,7 +2,7 @@
 
 .issueDetails {
     width: calc(100vw - (var(--course-sidebar-width) + var(--issueList-width)));
-    height: calc(100vh - var(--breadcrumbs-height));
+    height: calc(100vh - var(--breadcrumbs-height) - 10px);
     background-color: white;
     padding: 0 15px;
     overflow-y: scroll;

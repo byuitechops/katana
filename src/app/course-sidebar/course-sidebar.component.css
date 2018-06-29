@@ -1,7 +1,7 @@
 .courseSidebar {
   position: fixed;
   top: var(--breadcrumbs-height);
-  padding: 0 15px;
+  padding: 0 10px;
   left: 0;
   height: calc(100vh - var(--breadcrumbs-height));
   width: var(--course-sidebar-width);

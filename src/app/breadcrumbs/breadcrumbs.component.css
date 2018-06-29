@@ -11,14 +11,18 @@
 }
 
 .breadcrumb {
-    color: var(--accent-1);
+    color: var(--charcoal);
+}
+
+.breadcrumb:hover {
+    text-decoration: underline;
 }
 
 .breadcrumb::before {
     color: var(--primary-3);
 }
 
-/* frosteded blur effect for course selection overlay */
+/* frosted blur effect for course selection overlay */
 .frosted {
     filter: blur(5px);
 }

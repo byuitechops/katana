@@ -19,12 +19,10 @@
 /* The title for the issue list */
 
 .issueList__title {
-    width: 100%;
-    height: var(--toolView-titleBar-height);
-    line-height: var(--toolView-titleBar-height);
-    box-sizing: border-box;
-    padding-left: 20px;
-    font-size: 20px;
+    position: sticky;
+    top: 0;
+    background-color: var(--cobalt);
+    z-index: 2;
 }
 
 /* The message that appears if no issue items are avaiable */

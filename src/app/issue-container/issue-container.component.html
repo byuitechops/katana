@@ -6,22 +6,22 @@
 
         <form materialize (ngSubmit)="onSubmit()" [formGroup]="issue.formGroup" #optionsForm="ngForm">
             <div *ngFor="let option of issue.optionModel.options" class="form-row">
-                <div class="card-title">{{option.title}}</div>
+                <h3>{{option.title}}</h3>
                 <div class="option__description">{{option.description}}</div>
                 <div [ngSwitch]="option.type" class="option__container" [class.multiselect]="option.type === 'multiselect'" [class.required]="!issue.formGroup.controls[option.key].valid">
 
                     <div *ngSwitchCase="'text'">
-                        <input type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key" (input)="setStatusUntouched()" autofocus>
+                        <input type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key" (input)="onChange(option.key)" autofocus>
                     </div>
 
                     <div *ngSwitchCase="'dropdown'">
-                        <select style="display: block" [formControlName]="option.key" (input)="setStatusUntouched()">
+                        <select style="display: block" [formControlName]="option.key" (input)="onChange(option.key)">
                             <option *ngFor="let choice of option.choices">{{choice.text}}</option>
                         </select>
                     </div>
 
                     <div *ngSwitchCase="'multiselect'">
-                        <select style="display: block" [formControlName]="option.key" (input)="setStatusUntouched()" multiple>
+                        <select style="display: block" [formControlName]="option.key" (input)="onChange(option.key)" multiple>
                             <option *ngFor="let choice of option.choices">{{choice.text}}</option>
                         </select>
                     </div>

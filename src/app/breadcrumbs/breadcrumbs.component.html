@@ -1,9 +1,9 @@
 <div materialize [class.frosted]="this.courseService.courseSelectionOpen || this.courseService.courseEditOpen" class="breadcrumbs">
     <div class="nav-wrapper">
         <div id="breadcrumb-links" class="col s12">
-            <a class="breadcrumb blue-text text-accent-3" href="/">Home</a>
-            <a class="breadcrumb blue-text text-accent-3" *ngIf="toolService.selectedCategory" [routerLink]="['home', 'tools']" [queryParams]="{category: toolService.selectedCategory.type}">{{toolService.selectedCategory.title}}</a>
-            <a class="breadcrumb blue-text text-accent-3" *ngIf="toolService.selectedTool" [routerLink]="['home', 'tools', toolService.selectedTool.id, 'options']">{{toolService.selectedTool.title}}</a>
+            <a class="breadcrumb" href="/">Home</a>
+            <a class="breadcrumb" *ngIf="toolService.selectedCategory" [routerLink]="['home', 'tools']" [queryParams]="{category: toolService.selectedCategory.type}">{{toolService.selectedCategory.title}}</a>
+            <a class="breadcrumb" *ngIf="toolService.selectedTool" [routerLink]="['home', 'tools', toolService.selectedTool.id, 'options']">{{toolService.selectedTool.title}}</a>
 
             <a class="feedback-button modal-trigger right" (click)="openModal()">
                 <i class="material-icons blue-text text-accent-3">

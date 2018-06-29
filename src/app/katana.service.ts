@@ -32,7 +32,6 @@ export class KatanaService {
         return new Promise((resolve, reject) => {
             this.http.get('/tool-list').subscribe((toolList: any): any => {
                 this.toolService.toolList = toolList;
-                console.log(toolList);
                 resolve();
             }, reject);
         });

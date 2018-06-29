@@ -9,7 +9,8 @@ export interface Issue {
     details: object,
     optionModel?: OptionModel,
     formGroup?: FormGroup,
-    optionValues?: any
+    optionValues?: any,
+    tempValues?: any
 }
 
 export interface IssueItem {
