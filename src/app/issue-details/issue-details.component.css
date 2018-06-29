@@ -3,7 +3,7 @@
 .issueDetails {
     width: calc(100vw - (var(--course-sidebar-width) + var(--issueList-width)));
     height: calc(100vh - var(--breadcrumbs-height));
-    background-color: var(--background-light);
+    background-color: white;
     padding: 0 15px;
     overflow-y: scroll;
 }
@@ -23,7 +23,6 @@
 .issueDetails__itemTitle {
     margin-left: 15px;
     font-size: 20px;
-    font-weight: 300;
 }
 
 /* The box that holds all of the issue-container elements */

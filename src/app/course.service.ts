@@ -164,8 +164,8 @@ export class CourseService {
     getBackgroundColorClasses(status) {
         let statusColors = {
             'fixed': 'blue lighten-4',
-            'approved': 'green lighten-5',
-            'skipped': 'blue-grey lighten-5',
+            'approved': 'mint',
+            'skipped': 'blue-grey lighten-4',
             'untouched': 'white',
             'failed': 'red lighten-5'
         }

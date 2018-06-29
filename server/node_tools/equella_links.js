@@ -45,12 +45,15 @@ function discover(canvasItem, issueItem, options) {
 
             let title = 'Static Equella Link in HTML';
             let display = `
-            <div style="margin-bottom: 10px">This item contains an equella link that points to a specific version. This will update it so it always uses the latest version.</div>
-            <div class="pad-10">
-                <p><div style="display:inline-block;min-width:100px;"><strong>Original URL:</strong></div> ${oldUrl}</p>
-                <p><div style="display:inline-block;min-width:100px;"><strong>Updated URL:</strong></div> ${newUrl}</p>
+            <div>This item contains an equella link that points to a specific version. This will update it so it always uses the latest version.</div>
+            <div class="pad-15">
+                <h3>Original URL</h3>
+                ${oldUrl}
+                <h3>New URL</h3>
+                ${newUrl}
             </div>
             `;
+
             let details = {
                 tag: link.tagName,
                 attribute,

@@ -38,7 +38,7 @@ export class IssueContainerComponent implements OnInit {
     getButtonClasses(desiredStatus: string, elType: string) {
         let classes = '';
         if (elType === 'button') {
-            classes += 'waves-effect waves btn-flat';
+            classes += 'waves-effect waves btn white';
         }
         if (this.issue.status !== 'untouched' && this.issue.status !== desiredStatus) {
             classes += ' text-lighten-4';

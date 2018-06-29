@@ -1,8 +1,9 @@
 /* A container for a single issue */
 
 .issueContainer {
-    background-color: white;
     box-sizing: border-box;
+    border: solid 1px var(--background-light);
+    border-bottom: none;
 }
 
 /* Overwrites the card class from materialize */
@@ -29,4 +30,18 @@
 
 .btn-flat:focus {
     background-color: none !important;
+}
+
+.card .card-action {
+    background-color: transparent !important;
+    border-top: none;
+}
+
+.issueContainer.card .card-content>h2:first-of-type {
+    padding-top: 0;
+}
+
+.card .card-action>button {
+    width: 175px;
+    margin-right: 15px;
 }

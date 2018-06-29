@@ -1,7 +1,7 @@
 <div [ngClass]="courseService.getBackgroundColorClasses(issue.status)" class="issueContainer card">
 
     <div class="card-content">
-        <div class="card-title">{{issue.title}}</div>
+        <h2 class="cobalt-text">{{issue.title}}</h2>
         <div class="issueContainer__issueDetails" #issueDetails></div>
 
         <form materialize (ngSubmit)="onSubmit()" [formGroup]="issue.formGroup" #optionsForm="ngForm">
