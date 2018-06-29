@@ -2,7 +2,7 @@
     <div *ngFor="let category of toolService.categories" (click)="setSelectedCategory(category)" [routerLink]="['tools']" [queryParams]="{category: category.categoryId}"
         class="categoryIcon card">
         <div>
-            <i class="material-icons blue-text text-accent-3">{{category.icon}}</i>
+            <i class="material-icons charcoal-text">{{category.icon}}</i>
             <p class="blue-grey-text text-darken-2">{{category.title}}</p>
         </div>
     </div>

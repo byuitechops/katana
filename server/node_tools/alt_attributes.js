@@ -17,7 +17,7 @@ function discover(canvasItem, issueItem, options) {
         var alt = image.attr('alt');
 
         // If the option to get ALL alt attributes is selected, move forward, else check alt it is empty/missing
-        if (options.altCondition.includes('All alt') || !alt || alt === '') {
+        if (options.altCondition.includes('All image alt') || !alt || alt === '') {
 
             let title = 'Existing Alt Attribute';
             let description = 'The alt text on this image should be a good description of the image.';
