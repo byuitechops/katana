@@ -33,25 +33,6 @@ a {
   font-size: 12px;
 }
 
-.courseSidebar__actionItem {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    width: 112px;
-    padding-top: 10px;
-    margin-bottom: 8px;
-}
-
-.courseSidebar__actionItem i {
-    line-height: 45px;
-    text-align: center;
-    border-radius: 90px;
-    padding: 0;
-    font-size: 25px;
-    width: 45px;
-    height: 45px;
-}
-
 /* Action buttons at the bottom of the sidebar */
 
 .courseSidebar__actionItem i.addButton {
@@ -75,12 +56,31 @@ a {
 /************************************
  * Course Selection Button
  ************************************/
+ .courseSidebar__actionItem {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.courseSidebar__actionItem i {
+  line-height: 45px;
+  text-align: center;
+  border-radius: 90px;
+  padding: 0;
+  font-size: 25px;
+  width: 45px;
+  height: 45px;
+}
 
 .courseSidebar__expandSidebar {
   position: absolute;
-  bottom: 20px;
-  text-align: center;
-  width: 100%;
+  bottom: 10px;
+  width: 45px;
+  /* Sidebar has 10px padding on each side, and the icon is 45px wide,
+  so 45px + 10px + 10px = 65px and divide by two to split the margin on each side */
+  margin: calc((var(--course-sidebar-width) - 65px) / 2);
 }
 
 .courseSidebar__expandSidebar>* {

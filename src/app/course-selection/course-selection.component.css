@@ -3,7 +3,7 @@
   position: fixed;
   width: calc(100vw - var(--course-sidebar-width));
   z-index: 4;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   top: var(--breadcrumbs-height);
 }
 
