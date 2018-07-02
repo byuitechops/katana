@@ -17,7 +17,7 @@ function discover(canvasItem, issueItem, options) {
         var alt = image.attr('alt');
 
         // If the option to get ALL alt attributes is selected, move forward, else check alt it is empty/missing
-        if (options.altCondition.includes('All alt') || !alt || alt === '') {
+        if (options.altCondition.includes('All image alt') || !alt || alt === '') {
 
             let title = 'Existing Alt Attribute';
             let description = 'The alt text on this image should be a good description of the image.';
@@ -31,14 +31,17 @@ function discover(canvasItem, issueItem, options) {
             }
 
             let display = `
-                <div style="margin-bottom:10px">${description}</div>
-                <img class="card" style="max-width:100%" src="${image.attr('src')}">
+                <div>${description}</div>
+                <h3>Image</h3>
+                <div class="charcoal" style="max-width:100%;padding:10px;border-radius:5px;display:inline-block">
+                    <img style="max-width:100%" src="${image.attr('src')}">
+                </div>
             `;
 
             if (alt) {
                 display += `
                     <h3>Current Alt Text</h3>
-                    ${alt}
+                    <div class="code-block">${alt}</div>
                 `;
             }
 
@@ -63,23 +66,31 @@ function discover(canvasItem, issueItem, options) {
 function fix(canvasItem, issueItem, options) {
     return new Promise(async (resolve, reject) => {
         try {
-            var $ = cheerio.load(canvasItem.getHtml());
+            if (canvasItem.getHtml()) {
+                var $ = cheerio.load(canvasItem.getHtml());
 
+                issueItem.issues.forEach(issue => {
+                    if (issue.status === 'approved') {
+
+                        let image = $(`img[src="${issue.details.image}"]`).first();
+                        if (image && issue.optionValues.newAltText) {
+                            $(image).attr('alt', issue.optionValues.newAltText);
+                            issue.status = 'fixed';
+                        }
+
+                    }
+                });
+
+                canvasItem.setHtml($.html());
+                await canvasItem.update();
+                resolve();
+            }
+        } catch (e) {
             issueItem.issues.forEach(issue => {
                 if (issue.status === 'approved') {
-                    let image = $(`img[src="${issue.details.image}"]`).first();
-                    if (image && issue.optionValues.newAltText) {
-                        $(image).attr('alt', issue.optionValues.newAltText);
-                        issue.status = 'fixed';
-                    }
+                    issue.status = 'failed';
                 }
             });
-
-            canvasItem.setHtml($.html());
-            await canvasItem.update();
-            resolve();
-        } catch (e) {
-            issueItem.issues[0].status = 'failed';
             reject(e);
         }
     });
@@ -90,7 +101,8 @@ module.exports = {
     fix,
     id: 'alt_attributes',
     title: 'Alt Attributes',
-    description: 'This will discover images that have missing or empty Alt Text attributes. The user can then provide new alt text for the image. If chosen, the tool can provide all images in the course. Courses will a high number of images may cause delays when navigating through issues. \nYou will NOT be able to see any of the images if you are not signed into Canvas.',
+    description: 'This tool allows you to edit image alt attributes. It can provide all images in the course, or just images that have empty or missing alt attributes. Courses with a high number of images may cause delays when navigating through issues. You will NOT be able to see any of the images if you are not signed into Canvas.',
+    fixedMessage: 'The new alt attribute has been inserted',
     icon: 'text_rotation_none',
     categories: [
         'pages',

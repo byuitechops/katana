@@ -62,12 +62,6 @@ export class KatanaService {
      * @param {string} toolId - The ID of the tool to be run
      * @param {object} options - An object containing the option values specific to the tool
      * @returns {object[]} - Array of issue items discovered by the tool on the server
-     * Process:
-     * 1. Returns a promise
-     * 2. Builds the request object using the provided parameters
-     * 3. Sends the request to the discovery URI
-     * 4. When successful, sets the course service's courses to the new course objects with issueItems
-     * 5. When unsuccessful, rejects the promise with the given error
      ****************************************************************/
     discoverIssues(courses) {
         return new Promise((resolve, reject) => {
@@ -130,12 +124,6 @@ export class KatanaService {
      * @param {string} toolId - The ID of the tool to be run
      * @param {object} options - An object containing the option values specific to the tool
      * @returns {object[]} - Array of issue items fixed by the tool on the server
-     * Process:
-     * 1. Returns a promise
-     * 2. Builds the request object using the provided parameters
-     * 3. Sends the request to the fix tool URI
-     * 4. When successful, sets the courses property on the course service to the received courses
-     * 5. When unsuccessful, rejects the promise with the given error
      ****************************************************************/
     fixIssues(courses) {
         return new Promise((resolve, reject) => {

@@ -21,7 +21,6 @@ export class IssueContainerComponent implements OnInit {
         this.issueDetails.nativeElement.innerHTML = this.issue.display;
         this.issue.optionModel = new OptionModel(this.toolService.selectedTool.fixOptions);
         this.issue.formGroup = this.issue.optionModel.toGroup();
-        console.log(this.issue.formGroup);
 
         // Update option values if there are values saved for any options
         if (this.issue.tempValues) {
@@ -60,12 +59,16 @@ export class IssueContainerComponent implements OnInit {
     }
 
     onChange(optionKey) {
-        if (this.issue.status !== 'untouched') {
+        if (['untouched', 'fixed', 'failed'].includes(this.issue.status)) {
             this.issue.status = 'untouched';
         }
         if (!this.issue.tempValues) {
             this.issue.tempValues = {};
         }
         this.issue.tempValues[optionKey] = this.issue.formGroup.value[optionKey];
+    }
+
+    isFixed() {
+        return this.issue.status === 'fixed' || this.issue.status === 'failed';
     }
 }

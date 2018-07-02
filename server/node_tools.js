@@ -48,6 +48,11 @@ function discoverIssues(tool_id, course, options) {
                     }
                 } else {
                     await canvasCourse[options.categories[i]].get();
+                } if (canvasCourse.assignments.length > 0) {
+                    // FIXME This isn't working for some reason
+                    canvasCourse.assignments = canvasCourse.assignments.filter(assignment => {
+                        return !assignment.quiz_id && !assignment.discussion_topic;
+                    });
                 }
             }
 
@@ -98,6 +103,7 @@ function fixIssues(tool_id, course, options) {
                     } catch (e) {
                         // Record ERRORS here when logging is implemented
                         // Do not reject here - this will cause the course to stop short if one item has an error
+                        // console.error(e);
                         resolve();
                     }
                 });

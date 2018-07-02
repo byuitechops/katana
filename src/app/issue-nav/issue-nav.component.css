@@ -7,7 +7,6 @@ td {
 }
 
 .issueApproval {
-    background-color: var(--primary-4);
     bottom: 20px;
     display: flex;
     height: 70px;

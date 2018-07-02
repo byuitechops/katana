@@ -31,6 +31,7 @@ export interface Tool {
     toolCategory: string,
     discoverOptions: DiscoverOption[],
     fixOptions: object[],
+    fixMessage?: string
 };
 
 export interface Category {

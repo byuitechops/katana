@@ -33,6 +33,7 @@
     "d3-dsv": "^1.0.8",
     "express": "^4.16.3",
     "express-ws": "^4.0.0",
+    "firebase": "^5.0.2",
     "logger": "github:byuitechops/logger",
     "materialize-css": "^0.100.2",
     "morgan": "^1.9.0",

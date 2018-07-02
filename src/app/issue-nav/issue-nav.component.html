@@ -1,9 +1,9 @@
-<div materialize class="issueApproval blue-grey darken-3" *ngIf="courseService.selectedCourse.error === undefined">
+<div materialize class="issueApproval charcoal" *ngIf="courseService.selectedCourse.error === undefined">
     <!-- Container to hold the fix approved and kebob menu buttons -->
     <div class="issueApproval__buttonContainer">
         <!-- Fix Approved Button -->
         <div class="issueApproval__button">
-            <a href="#fixModal" class="modal-trigger waves-effect light-blue-text waves btn-flat" (click)="openModal('fixApproved')">
+            <a href="#fixModal" class="modal-trigger waves-effect white-text waves btn-flat" (click)="openModal('fixApproved')">
                 <i class="material-icons left">build</i>
                 Fix Approved Issues
             </a>

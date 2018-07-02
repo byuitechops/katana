@@ -10,18 +10,21 @@
                 <div class="option__description">{{option.description}}</div>
                 <div [ngSwitch]="option.type" class="option__container" [class.multiselect]="option.type === 'multiselect'" [class.required]="!issue.formGroup.controls[option.key].valid">
 
+                    <!-- Silly, but [attr.disabled] was the only way I could get it to be disabled -->
                     <div *ngSwitchCase="'text'">
-                        <input type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key" (input)="onChange(option.key)" autofocus>
+                        <input [attr.disabled]="isFixed() ? 'disabled' : null" type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key"
+                            (input)="onChange(option.key)" autofocus>
                     </div>
 
                     <div *ngSwitchCase="'dropdown'">
-                        <select style="display: block" [formControlName]="option.key" (input)="onChange(option.key)">
+                        <select [attr.disabled]="isFixed() ? 'disabled' : null" style="display: block" [formControlName]="option.key" (input)="onChange(option.key)">
                             <option *ngFor="let choice of option.choices">{{choice.text}}</option>
                         </select>
                     </div>
 
                     <div *ngSwitchCase="'multiselect'">
-                        <select style="display: block" [formControlName]="option.key" (input)="onChange(option.key)" multiple>
+                        <select [attr.disabled]="isFixed() ? 'disabled' : null" style="display: block" [formControlName]="option.key" (input)="onChange(option.key)"
+                            multiple>
                             <option *ngFor="let choice of option.choices">{{choice.text}}</option>
                         </select>
                     </div>
@@ -56,7 +59,7 @@
         </button>
 
         <div *ngIf="issue.status === 'fixed'" class="blue-text text-accent-3">
-            FIXED
+            FIXED {{toolService.selectedTool.fixedMessage ? ' - ' + toolService.selectedTool.fixedMessage : ''}}
         </div>
         <div *ngIf="issue.status === 'failed'" class="red-text text-accent-4">
             FAILED - Please contact a Katana developer with the course ID, item name, and issue title.

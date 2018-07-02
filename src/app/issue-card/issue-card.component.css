@@ -7,6 +7,10 @@
     width: calc(100%);
 }
 
+.issueCard:hover {
+    background-color: var(--ashen);
+}
+
 /* The line containing the item title and link to Canvas */
 
 .issueCard_titleLine {
@@ -77,4 +81,12 @@
     user-select: none;
     vertical-align: center;
     width: 26px;
+}
+
+.selectedCard {
+    background-color: var(--ashen);
+}
+
+.selectedCard .issueCard_title {
+    color: var(--cobalt);
 }
