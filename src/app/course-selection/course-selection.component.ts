@@ -17,17 +17,7 @@ export class CourseSelectionComponent implements AfterViewInit {
     searching: boolean = false;
     lastSortedBy: string;
 
-    courseResults: Course[] = [{
-        id: 1318,
-        course_name: 'Example Course 123',
-        course_code: 'E123',
-        instructor: 'Katana Jones',
-        issueItems: [],
-        account: '3',
-        term: 'Fall 2018',
-        url: 'www.google.com',
-        blueprint: false
-    }];
+    courseResults: Course[] = [];
 
     constructor(private katanaService: KatanaService,
         public courseService: CourseService) { }

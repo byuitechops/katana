@@ -40,6 +40,11 @@ function serverLogger(logs) {
             ];
         })) + '\n';
     }
+    // var filename = '';
+    // if (fs.statSync(filename).size >= 1500000000) {
+    //     var date = new Date();
+    //     filename = `./server/logs/${date}_server_log.csv`;
+    // }
     // Append the newly logged items to the existing file
     fs.appendFileSync(`./server/logs/server_log.csv`, csvLog);
 }
@@ -63,8 +68,6 @@ function toolLogger(logs) {
                 "Link",
                 "Details",
             ]].concat(log.issues.map(issue => {
-                // var flatIssueDetails = Object.values(issue.details).reduce((acc, detail) => acc.concat(detail), []);
-
                 var flatIssueDetails = Object.entries(issue.details).reduce((acc, pair) => {
                     var detail = `${pair[0]}: ${pair[1]}`;
                     return acc.concat(detail);
@@ -85,8 +88,6 @@ function toolLogger(logs) {
         } else {
             // Make the log without the header
             csvLog = d3.csvFormatRows(log.issues.map(issue => {
-                // var flatIssueDetails = Object.values(issue.details).reduce((acc, detail) => acc.concat(detail), []);
-                
                 var flatIssueDetails = Object.entries(issue.details).reduce((acc, pair) => {
                     var detail = `${pair[0]}: ${pair[1]}`;
                     return acc.concat(detail);
