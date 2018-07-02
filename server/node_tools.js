@@ -111,6 +111,10 @@ function fixIssues(tool_id, course, options) {
 
             Promise.all(fixPromises)
                 .then(() => {
+                    // Log the issue items
+                    logActions.toolLogs = course.issueItems;
+                    logActions.logTool();
+                    
                     // ADD TO COURSE MAINTENANCE LOG HERE
                     logMe('COMPLETE', 'FIX', tool_id, course.course_name, course.id);
                     resolve();
