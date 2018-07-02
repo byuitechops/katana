@@ -75,48 +75,64 @@ export class IssueNavComponent {
     }
 
     downloadIssues() {
-        console.log(`downloadIssues`);
         let csvReport = '';
         this.courseService.courses.forEach((course, i) => {
-            if (i < 1) {
-                csvReport = csvFormatRows([[
-                    "Title",
-                    "Course ID",
-                    "Item ID",
-                    "Category",
-                    "Link",
-                    "Issues",
-                ]].concat(course.issueItems.map(issueItem => {
-                    let flatIssues = issueItem.issues.reduce((acc, issue) => acc.concat(JSON.stringify(issue)), []);
-                    console.log(`flatIssues: `, flatIssues);
-                    return [
-                        issueItem.title,
-                        issueItem.course_id,
-                        issueItem.item_id,
-                        issueItem.category,
-                        issueItem.link,
-                        ...flatIssues,
-                    ];
-                })));
-            } else {
-                // Make the log without the header
-                csvReport += csvFormatRows(course.issueItems.map(issueItem => {
-                    let flatIssues = issueItem.issues.reduce((acc, issue) => acc.concat(JSON.stringify(issue)), []);
-                    console.log(`flatIssues: `, flatIssues);
-                    return [
-                        issueItem.title,
-                        issueItem.course_id,
-                        issueItem.item_id,
-                        issueItem.category,
-                        issueItem.link,
-                        ...flatIssues,
-                    ];
-                })) + '\n';
-            }
+            course.issueItems.forEach((issueItem, j) => {
+                if (i < 1 && j < 1) {
+                    csvReport = csvFormatRows([[
+                        "Issue Title",
+                        "Status",
+                        "Option Values",
+                        "Item Title",
+                        "Item ID",
+                        "Course ID",
+                        "Category",
+                        "Link",
+                        "Details",
+                    ]].concat(issueItem.issues.map(issue => {
+                        var flatIssueDetails = Object.entries(issue.details).reduce((acc, pair) => {
+                            var detail = `${pair[0]}: ${pair[1]}`;
+                            return acc.concat(detail);
+                        }, []);
+
+                        return [
+                            issue.title,
+                            issue.status,
+                            issue.optionValues ? issue.optionValues : '',
+                            issueItem.title,
+                            issueItem.item_id,
+                            issueItem.course_id,
+                            issueItem.category,
+                            issueItem.link,
+                            ...flatIssueDetails
+                        ];
+                    }))) + '\n';
+                } else {
+                    // Make the log without the header
+                    csvReport += csvFormatRows(issueItem.issues.map(issue => {
+                        var flatIssueDetails = Object.entries(issue.details).reduce((acc, pair) => {
+                            var detail = `${pair[0]}: ${pair[1]}`;
+                            return acc.concat(detail);
+                        }, []);
+                        return [
+                            issue.title,
+                            issue.status,
+                            issue.optionValues ? issue.optionValues : '',
+                            issueItem.title,
+                            issueItem.item_id,
+                            issueItem.course_id,
+                            issueItem.category,
+                            issueItem.link,
+                            ...flatIssueDetails
+                        ];
+                    })) + '\n';
+                }
+            });
         });
-        console.log(`csvReport: `, csvReport);
+
+        // Setup the link to download the csv report
         let fileName = 'csvReport.csv';
-        let a = <HTMLAnchorElement> document.getElementById("download");
+        let a = <HTMLAnchorElement>document.getElementById("download");
         var blob = new Blob([csvReport], { type: "octet/stream" });
         var url = window.URL.createObjectURL(blob);
 

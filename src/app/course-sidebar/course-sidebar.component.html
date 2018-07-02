@@ -1,7 +1,7 @@
 <div class="courseSidebar">
     <h1 class="courseSidebar__title">Courses</h1>
     <div class="courseSidebar__courseChip__container" [class.toolView]="toolService.toolViewOpen">
-        <button *ngIf="courseService.courseSelectionOpen" class="waves-effect blue-grey darken-4 btn removeAll" (click)="removeAll()">Remove All</button>
+        <button *ngIf="courseService.courseSelectionOpen" class="waves-effect red lighten-1 btn removeAll" (click)="removeAll()">Remove All</button>
         <app-course-chip *ngFor="let course of courseService.courses" [course]="course" (click)="this.courseService.selectedCourse = course"></app-course-chip>
     </div>
 

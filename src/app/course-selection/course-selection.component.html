@@ -56,46 +56,49 @@
             <th>Open in Canvas</th>
           </tr>
         </thead>
-        <tbody *ngIf="!searching">
-          <tr *ngFor="let course of courseResults" [ngClass]="isAdded(course) ? 'grey lighten-2' : ''" class="table-element-{{course.id}}">
-            <td (click)="courseService.addCourse(course)">
-              <i class="material-icons">{{isAdded(course) ? 'remove_circle' : 'add_circle'}}</i>
-            </td>
-            <td (click)="courseService.addCourse(course)">{{course.course_name}}</td>
-            <td (click)="courseService.addCourse(course)">{{course.course_code}}</td>
-            <td (click)="courseService.addCourse(course)">{{course.instructor}}</td>
-            <td (click)="courseService.addCourse(course)">{{course.account}}</td>
-            <td (click)="courseService.addCourse(course)">{{course.term}}</td>
-            <td (click)="courseService.addCourse(course)">{{course.blueprint}}</td>
-            <td (click)="courseService.addCourse(course)">{{course.id}}</td>
-            <td>
-              <a href="{{course.url}}" target="_blank">
-                <i class="material-icons">open_in_new</i>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div *ngIf="searching">
-        <div class="loader" style="margin: 50px 0 0 -50px">
-          <div class="preloader-wrapper big active">
-            <div class="spinner-layer spinner-blue-only">
-              <div class="circle-clipper left">
-                <div class="circle"></div>
-              </div>
-              <div class="gap-patch">
-                <div class="circle"></div>
-              </div>
-              <div class="circle-clipper right">
-                <div class="circle"></div>
+        <tbody>
+          <ng-container *ngIf="!searching">
+            <tr *ngFor="let course of courseResults" [ngClass]="isAdded(course) ? 'grey lighten-2' : ''" class="table-element-{{course.id}}">
+              <td (click)="courseService.addCourse(course)">
+                <i class="material-icons">{{isAdded(course) ? 'remove_circle' : 'add_circle'}}</i>
+              </td>
+              <td (click)="courseService.addCourse(course)">{{course.course_name}}</td>
+              <td (click)="courseService.addCourse(course)">{{course.course_code}}</td>
+              <td (click)="courseService.addCourse(course)">{{course.instructor}}</td>
+              <td (click)="courseService.addCourse(course)">{{course.account}}</td>
+              <td (click)="courseService.addCourse(course)">{{course.term}}</td>
+              <td (click)="courseService.addCourse(course)">{{course.blueprint}}</td>
+              <td (click)="courseService.addCourse(course)">{{course.id}}</td>
+              <td>
+                <a href="{{course.url}}" target="_blank">
+                  <i class="material-icons">open_in_new</i>
+                </a>
+              </td>
+            </tr>
+          </ng-container>
+          <!-- Put the loader in the body if loading -->
+          <div *ngIf="searching">
+            <div class="loader">
+              <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
               </div>
             </div>
+            <div class="loader">
+              Searching ...
+            </div>
           </div>
-        </div>
-        <div class="loader" style="margin: 50px 0 0 -50px">
-          Searching ...
-        </div>
-      </div>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

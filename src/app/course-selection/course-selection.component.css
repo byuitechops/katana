@@ -1,16 +1,17 @@
 .courseSearch {
-  height: 100vh;
+  height: calc(100vh - var(--breadcrumbs-height));
   position: fixed;
   width: calc(100vw - var(--course-sidebar-width));
   z-index: 4;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
+  top: var(--breadcrumbs-height);
 }
 
 .courseSearch__title {
   font-size: 60px;
-  padding: 15px 0 0 45px;
+  padding: 5px 0 0 45px;
   position: fixed;
-  top: 0;
+  top: var(--breadcrumbs-height);
   width: calc(100vw - var(--course-sidebar-width));
   color: white;
 }
@@ -20,7 +21,7 @@
   height: 100%;
   position: fixed;
   padding: 0 50px;
-  top: 95px;
+  top: calc(var(--breadcrumbs-height) + 75px);
   width: calc(100vw - var(--course-sidebar-width));
 }
 
@@ -195,4 +196,13 @@ thead th:nth-of-type(9),
 tbody td:nth-of-type(9) {
   width: 150px;
   text-align: center;
+}
+
+/***************************************
+* The Loader
+****************************************/
+.loader {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
 }
