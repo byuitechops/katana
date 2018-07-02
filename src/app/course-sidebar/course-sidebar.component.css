@@ -78,9 +78,9 @@ a {
   position: absolute;
   bottom: 10px;
   width: 45px;
-  /* Sidebar has 10px padding on each side, and the icon is 45px wide,
-  so 45px + 10px + 10px = 65px and divide by two to split the margin on each side */
-  margin: calc((var(--course-sidebar-width) - 65px) / 2);
+  /* Sidebar is 112px - 10px left padding - 10px right padding - 45px icon width = 47px */
+  /* 47px / 2 = 23.5px on each side of the icon */
+  margin: 23.5px;
 }
 
 .courseSidebar__expandSidebar>* {
@@ -118,7 +118,7 @@ app-course-selection.close {
 
 .removeAll {
     width: calc(100% - 20px);
-    margin: 10px;
+    margin: 10px 0;
 }
 
 .dark-overlay {
