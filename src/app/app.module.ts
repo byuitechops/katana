@@ -1,11 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import 'materialize-css';
 import { MaterializeModule } from 'angular2-materialize';
 import 'rxjs';
+
+/* Firebase */
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from './auth/firebase.auth';
+import { AuthGuardService } from './auth/authguard';
 
 /* Katana Components */
 import { AppComponent } from './app.component';
@@ -29,16 +37,17 @@ export const appRoutes: Routes = [
     {
         path: 'categories',
         redirectTo: 'home',
-        pathMatch: 'full'
+        pathMatch: 'full',
     },
     {
         path: '',
         redirectTo: 'home',
-        pathMatch: 'full'
+        pathMatch: 'full',
     },
     {
         path: 'home',
-        component: CategoriesComponent
+        component: CategoriesComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path: 'home/tools',
@@ -80,14 +89,20 @@ export const appRoutes: Routes = [
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
+        HttpModule,
         HttpClientModule,
         MaterializeModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
+        AngularFireAuthModule
     ],
     exports: [
         FormsModule,
         ReactiveFormsModule
     ],
-    providers: [],
+    providers: [
+        AuthGuardService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

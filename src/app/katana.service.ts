@@ -6,6 +6,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { ToastService } from './toast.service';
 import { Router } from '@angular/router';
+import { auth } from 'firebase';
 
 @Injectable({
     providedIn: 'root'
@@ -21,13 +22,9 @@ export class KatanaService {
 
     sockets: WebSocket[] = [];
 
-    /*****************************************************************
+    /** ***************************************************************
      * Retrieves the list of tools from the server.
-     * Process:
-     * 1. Returns a promise
-     * 2. Sends a GET request to the server for the tool list
-     * 3. On success, sets the toolList property on the tools service to the response data
-     ****************************************************************/
+     *****************************************************************/
     getToolList() {
         return new Promise((resolve, reject) => {
             this.http.get('/tool-list').subscribe((toolList: any): any => {
@@ -37,11 +34,9 @@ export class KatanaService {
         });
     }
 
-    /*****************************************************************
-     * Retrieves...
-     * Process:
-     * 1. 
-     ****************************************************************/
+    /** ***************************************************************
+     * Retrieves a list of courses from Canvas.
+     *****************************************************************/
     getCourses(body) {
         return new Promise((resolve, reject) => {
             let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -82,7 +77,8 @@ export class KatanaService {
                     let data = JSON.stringify({
                         tool_id: this.toolService.selectedTool.id,
                         course: course,
-                        options: this.toolService.selectedDiscoverOptions
+                        options: this.toolService.selectedDiscoverOptions,
+                        userEmail: auth().currentUser.email
                     });
                     socket.send(data);
                 });
@@ -164,7 +160,8 @@ export class KatanaService {
                     let data = JSON.stringify({
                         tool_id: this.toolService.selectedTool.id,
                         course: course,
-                        options: this.toolService.selectedDiscoverOptions
+                        options: this.toolService.selectedDiscoverOptions,
+                        userEmail: auth().currentUser.email
                     });
                     socket.send(data);
                 });

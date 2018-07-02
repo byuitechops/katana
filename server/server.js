@@ -18,34 +18,6 @@ if (!process.env.canvas_api_token) {
     return;
 }
 
-// FIREBASE SETUP
-var firebase = require('firebase');
-require('firebase/auth');
-require('firebase/database');
-
-var config = {
-    apiKey: process.env.apiKey,
-    authDomain: process.env.authDomain,
-    databaseURL: process.env.databaseURL,
-    storageBucket: process.env.storageBucket,
-    messagingSenderId: process.env.messagingSenderId
-};
-
-firebase.initializeApp(config);
-
-const authenticate = (req, res, next) => {
-    var user = firebase.auth().currentUser;
-    if (user !== null) {
-        req.user = user;
-        next();
-    } else {
-        res.redirect('/login');
-    }
-};
-
-// Set up Firebase auth as middleware
-app.use(authenticate);
-
 // This logs every request made to the server to the console
 app.use(morgan(`${chalk.greenBright(':method')} ${chalk.yellowBright(':url')} :status :res[content-length] - :response-time ms`));
 
