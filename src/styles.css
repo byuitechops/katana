@@ -111,7 +111,7 @@ h3 {
 }
 
 .code-block {
-    padding: 15px;
+    padding: 10px 15px;
     color: var(--navy);
     background-color: var(--ashen);
     border-radius: 5px;
@@ -254,12 +254,6 @@ div.loading-dancer::before {
 }
 
 div.loading-dancer {
-    /* height: 7px;
-    width: 7px;
-    border-radius: 7px;
-    padding-top: 6px;
-    transform-origin: 0 -2px;
-    animation: loadingDancer .5s linear infinite; */
     line-height: 15px;
     padding-right: 6px;
     font-size: 30px;

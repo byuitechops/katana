@@ -13,7 +13,7 @@
                     <!-- Silly, but [attr.disabled] was the only way I could get it to be disabled -->
                     <div *ngSwitchCase="'text'">
                         <input [attr.disabled]="isFixed() ? 'disabled' : null" type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key"
-                            (input)="onChange(option.key)" autofocus>
+                            (input)="onChange(option.key)" autocomplete="off" autofocus>
                     </div>
 
                     <div *ngSwitchCase="'dropdown'">

@@ -33,7 +33,7 @@ function discover(canvasItem, issueItem, options) {
             let display = `
                 <div>${description}</div>
                 <h3>Image</h3>
-                <div class="charcoal" style="max-width:100%;padding:10px;border-radius:5px;display:inline-block">
+                <div class="navy z-depth-1" style="max-width:100%;border-radius:3px;padding:10px 10px 4px 10px;display:inline-block">
                     <img style="max-width:100%" src="${image.attr('src')}">
                 </div>
             `;

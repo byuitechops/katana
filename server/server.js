@@ -157,6 +157,5 @@ app.ws('/tool/fix', (ws, req) => {
 /* Starts the server */
 // May need to add this as second parameter: '10.5.188.168'
 let server = app.listen(serverPort, () => {
-    console.log(server.address().address);
-    console.log('Katana Server has launched:', server.address().address);
+    console.log('Katana Server has launched.');
 });

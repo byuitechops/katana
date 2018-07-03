@@ -23,7 +23,7 @@
 .arrowIndicator {
     display: flex;
     position: absolute;
-    bottom: 86px;
+    bottom: 34px;
     left: 86px;
     color: white;
     z-index: 2000;
