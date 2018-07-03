@@ -36,8 +36,11 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
             let subItems = [];
 
             for (var i = 0; i < options.categories.length; i++) {
+                // If pages, quizzes, or modules, get ALL values for them
                 if (['pages', 'quizzes', 'modules'].includes(options.categories[i])) {
                     await canvasCourse[options.categories[i]].getComplete();
+
+                    // If looking for quiz questions or module items, flatten them here
                 } else if (['quizQuestions', 'moduleItems'].includes(options.categories[i])) {
                     if (options.categories[i] === 'quizQuestions') {
                         if (!canvasCourse.quizzes) await canvasCourse.quizzes.getComplete();
@@ -46,13 +49,10 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
                         if (!canvasCourse.modules) await canvasCourse.modules.getComplete();
                         subItems.concat(canvasCourse.modules.reduce((acc, module) => [...acc, ...module.items]));
                     }
+
+                    // Otherwise, just get the category's items
                 } else {
                     await canvasCourse[options.categories[i]].get();
-                } if (canvasCourse.assignments.length > 0) {
-                    // FIXME This isn't working for some reason
-                    canvasCourse.assignments = canvasCourse.assignments.filter(assignment => {
-                        return !assignment.quiz_id && !assignment.discussion_topic;
-                    });
                 }
             }
 
@@ -118,7 +118,7 @@ function fixIssues(tool_id, course, options, employeeEmail) {
                     // Log the issue items
                     logActions.toolLogs = course.issueItems;
                     logActions.logTool();
-                    
+
                     // ADD TO COURSE MAINTENANCE LOG HERE
                     logMe('COMPLETE', 'FIX', tool_id, course.course_name, course.id);
                     resolve();
