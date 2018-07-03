@@ -48,7 +48,7 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
                         subItems.concat(canvasCourse.quizzes.reduce((acc, quiz) => [...acc, ...quiz.questions], []));
                     } else {
                         if (!canvasCourse.modules) await canvasCourse.modules.getComplete();
-                        subItems.concat(canvasCourse.modules.reduce((acc, module) => [...acc, ...module.items]));
+                        subItems.concat(canvasCourse.modules.reduce((acc, module) => [...acc, ...module.items], []));
                     }
 
                     // Otherwise, just get the category's items

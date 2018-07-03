@@ -8,10 +8,10 @@ const cheerio = require('cheerio');
  * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
-    if (canvasItem.getHtml() === null || !canvasItem.getHtml().includes(options.searchPhrase)) return;
+    if (!canvasItem.getHtml() || !canvasItem.getHtml().includes(options.searchPhrase)) return;
     var $ = cheerio.load(canvasItem.getHtml());
 
-    console.log(`Matched`, canvasItem.title);
+    console.log(`Matched`, canvasItem.getTitle());
 
     let title = 'Search Phrase Matched';
     let description = 'The search came back with a match on this item';
