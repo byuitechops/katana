@@ -12,13 +12,6 @@ export class ToolViewComponent {
     constructor(public courseService: CourseService,
         public toolService: ToolService) { }
 
-    getIssueItemCount() {
-        return this.courseService.courses.reduce((acc, course) => {
-            if (!course.issueItems) return acc;
-            return acc += course.issueItems.length;
-        }, 0);
-    }
-
     getIssueCount() {
         return this.courseService.courses.reduce((acc, course) => {
             if (!course.issueItems) return acc;

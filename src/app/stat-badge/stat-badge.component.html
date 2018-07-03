@@ -1,7 +1,7 @@
-<div [ngSwitch]="side" class="statBadge blue-grey darken-3">
+<div [ngSwitch]="side" class="statBadge blue-grey darken-3 z-depth-2">
 
     <div *ngSwitchCase="'right'">
-        <div class="statBadge__title right-side">
+        <div class="statBadge__title right-side" [style.color]="titleColor">
             {{statTitle}}
         </div>
         <div class="statBadge__count z-depth-1 blue-text text-accent-3">
@@ -13,7 +13,7 @@
         <div class="statBadge__count z-depth-1 blue-text text-accent-3 ">
             {{statCount || '--'}}
         </div>
-        <div class="statBadge__title left-side">
+        <div class="statBadge__title left-side" [style.color]="titleColor">
             {{statTitle}}
         </div>
     </div>

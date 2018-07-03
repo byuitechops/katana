@@ -3,6 +3,7 @@
     line-height: 36px;
     border-radius: 36px;
     display: inline-flex;
+    margin: 5px 0;
 }
 
 .statBadge>div {
@@ -11,7 +12,6 @@
 
 .statBadge__title {
     font-size: 16px;
-    color: #eee;
 }
 
 .left-side {

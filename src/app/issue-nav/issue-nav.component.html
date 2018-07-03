@@ -1,4 +1,5 @@
 <div materialize class="issueApproval charcoal" *ngIf="courseService.selectedCourse.error === undefined">
+
     <!-- Container to hold the fix approved and kebob menu buttons -->
     <div class="issueApproval__buttonContainer">
         <!-- Fix Approved Button -->
@@ -9,6 +10,7 @@
             </a>
         </div>
     </div>
+
     <!-- The dropdown menu from the kebob menu -->
     <ul id="dropdown1" class="blue-grey dropdown-content">
         <li>
@@ -41,20 +43,18 @@
                         <app-stat-badge class="overview-statBadge" (click)="closeModal();courseService.selectedCourse = course" [statTitle]="course.course_code"
                             [statCount]="getIssueItems(course).length" [side]="'left'"></app-stat-badge>
                     </td>
-                    <td style="flex-grow:1;display:flex;flex-wrap:wrap;">
+                    <td style="flex-grow:1;display:flex;flex-wrap:wrap;margin-left: 10px">
                         <i *ngFor="let issue of getIssueItems(course)" class="material-icons issueIcon" [ngClass]="courseService.getTextColorClasses(issue.status)"
                             (click)="selectIssueItem(course, issue)">
                             {{courseService.getStatusIcon(issue.status)}}
                         </i>
                     </td>
-                    <td>
+                    <!-- <td>
                         <a class="waves-effect btn-flat blue-text text-accent-3 right" (click)="katanaService.fixIssues([course])">Fix</a>
-                    </td>
+                    </td> -->
                 </tr>
             </tbody>
         </table>
-
-
 
     </div>
     <div class="modal-footer">

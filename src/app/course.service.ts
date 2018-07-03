@@ -123,7 +123,7 @@ export class CourseService {
      * @param {string} status - The status desired
      * @returns {number} - The number of issues with the specified status
      ****************************************************************/
-    getTotalIssuecount(status) {
+    getTotalIssueCount(status) {
         return this.courses.reduce((acc, course) => {
             return acc + this.getCourseIssueCount(status);
         }, 0);

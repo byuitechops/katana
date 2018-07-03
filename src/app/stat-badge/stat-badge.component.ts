@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class StatBadgeComponent {
     @Input('statTitle') statTitle: string;
     @Input('statCount') statCount: number;
+    @Input('titleColor') titleColor: string = 'white';
     @Input('side') side: string = 'right';
 
     constructor() { }

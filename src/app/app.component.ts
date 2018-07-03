@@ -28,6 +28,14 @@ export class AppComponent {
             if (event instanceof NavigationEnd &&
                 !event.urlAfterRedirects.includes('/issues')) {
 
+                // // If we are not on options or issues page, removed the
+                // if (!event.urlAfterRedirects.includes('/options')) {
+                //     toolService.selectedTool = null;
+                //     if (!event.urlAfterRedirects.includes('/tools')) {
+                //         toolService.selectedCategory = null;
+                //     }
+                // }
+
                 // RESET all properties not used outside of tool view
 
                 courseService.selectedIssueItem = null;

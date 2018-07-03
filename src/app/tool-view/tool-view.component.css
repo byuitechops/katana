@@ -1,5 +1,15 @@
 .statContainer {
     position: absolute;
-    top: calc(var(--breadcrumbs-height) + 12px);
-    right: 20px;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    padding: 20px;
+}
+
+.statContainer>div {
+    width: 50%;
+}
+
+app-stat-badge>div {
+    margin: 5px 0;
 }
