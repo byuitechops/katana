@@ -8,9 +8,11 @@ const bodyParser = require('body-parser');
 const node_tools = require('./node_tools.js');
 const course_retrieval = require('./course_retrieval.js');
 const app = express();
-const serverPort = 8000;
 const expressWd = require('express-ws')(app);
 const logActions = require('./logging.js');
+
+// Express Info
+const serverPort = 8000;
 
 // REMOVE later on after we don't need it
 if (!process.env.canvas_api_token) {
@@ -108,8 +110,8 @@ app.ws('/tool/discover', (ws, req) => {
 });
 
 /*************************************************************************
- * Handles the "issue fix" sequence for Node Tools
- * @returns {Course} - The course provided in the message
+ * Handles the "issue fix" sequence for Node Tools.
+ * @returns {Course} - The course the tool ran on. Includes fixed IssueItems.
  ************************************************************************/
 app.ws('/tool/fix', (ws, req) => {
     ws.on('message', async (dataString) => {
@@ -147,26 +149,14 @@ app.ws('/tool/fix', (ws, req) => {
     });
 
     ws.on('close', () => {
-        // Log here
         logActions.logServer();
         console.error('Web Socket closed by client.');
     })
 });
 
-// TEST for LTI
-app.post('/lti-test', (req, res) => {
-    console.log(req.body);
-    res.send('Potato');
-});
-
-// let options = {
-//     key: fs.readFileSync('server/key.pem'),
-//     cert: fs.readFileSync('server/cert.pem')
-// }
-
-// let server = https.createServer(options, app);
-
 /* Starts the server */
-app.listen(serverPort, () => {
-    console.log('Katana Server has launched on port:', serverPort);
+// May need to add this as second parameter: '10.5.188.168'
+let server = app.listen(serverPort, () => {
+    console.log(server.address().address);
+    console.log('Katana Server has launched:', server.address().address);
 });

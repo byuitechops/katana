@@ -4,3 +4,5 @@
 <app-breadcrumbs></app-breadcrumbs>
 <!-- Router: Controls page content -->
 <router-outlet></router-outlet>
+<!-- Loading message while verifying user is logged in correctly -->
+<div *ngIf="!authGuardService.canActivate()" class="ashen-text">Loading Tools...</div>

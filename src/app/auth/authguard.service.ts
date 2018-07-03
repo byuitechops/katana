@@ -27,9 +27,17 @@ export class AuthGuardService implements CanActivate {
         })
 
         auth().onAuthStateChanged((user) => {
-            if (!user || !user.email.includes('@byui.edu')) {
-                // LOG USER OUT IF NOT BYUI ACCOUNT
+            // If there isn't a user signed in, redirect to login
+            if (!user) {
                 this.doGoogleLogin();
+
+                // If there is a user signed in, but it isn't a BYUI address, same thing
+            } else if (!user.email.includes('@byui.edu')) {
+                window.alert('You must use a BYU-I google account!');
+                this.signOut()
+                    .then(this.doGoogleLogin)
+
+                // Set the current user to who is signed in
             } else {
                 auth().updateCurrentUser(user);
             }
@@ -38,7 +46,7 @@ export class AuthGuardService implements CanActivate {
     }
 
     canActivate(): boolean {
-        if (this.userDetails !== null) {
+        if (this.userDetails !== null && this.userDetails.email.includes('@byui.edu')) {
             return true;
         } else {
             return false;
@@ -59,5 +67,11 @@ export class AuthGuardService implements CanActivate {
                         });
                 })
         });
+    }
+
+    signOut() {
+        return auth().signOut()
+            .then(this.doGoogleLogin)
+            .catch(console.error);
     }
 }

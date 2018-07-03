@@ -5,11 +5,27 @@
             <a class="breadcrumb" *ngIf="toolService.selectedCategory" [routerLink]="['home', 'tools']" [queryParams]="{category: toolService.selectedCategory.type}">{{toolService.selectedCategory.title}}</a>
             <a class="breadcrumb" *ngIf="toolService.selectedTool" [routerLink]="['home', 'tools', toolService.selectedTool.id, 'options']">{{toolService.selectedTool.title}}</a>
 
+            <div *ngIf="authGuardService.userDetails" class="user-info right">
+                <div>
+                    {{authGuardService.userDetails.displayName}}
+                </div>
+                <a class="dropdown-trigger" materialize="dropdown" [materializeParams]="[{constrain_width: false, alignment: 'left', coverTrigger: false}]"
+                    data-activates="user-dropdown">
+                    <img [src]="authGuardService.userDetails.photoURL">
+                </a>
+                <ul id='user-dropdown' class='dropdown-content'>
+                    <li>
+                        <a class="blue-grey-text" (click)="authGuardService.signOut()">Sign Out</a>
+                    </li>
+                </ul>
+            </div>
+
             <a class="feedback-button modal-trigger right" (click)="openModal()">
                 <i class="material-icons blue-text text-accent-3">
                     feedback
                 </i>
             </a>
+
         </div>
     </div>
 </div>

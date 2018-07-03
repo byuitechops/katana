@@ -13,7 +13,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from './auth/firebase.auth';
-import { AuthGuardService } from './auth/authguard';
+import { AuthGuardService } from './auth/authguard.service';
 
 /* Katana Components */
 import { AppComponent } from './app.component';

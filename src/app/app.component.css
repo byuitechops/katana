@@ -5,3 +5,8 @@ input:valid {
 input:invalid {
     border: solid 1px red;
 }
+
+div {
+    margin: 100px;
+    font-size: 30px;
+}

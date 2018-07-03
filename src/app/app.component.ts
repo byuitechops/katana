@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router, Event, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { CourseService, IssueItem } from './course.service';
-import { toast } from 'angular2-materialize';
 import { KatanaService } from './katana.service';
 import { ToastService } from './toast.service';
 import { ToolService } from './tool.service';
+import { AuthGuardService } from './auth/authguard.service';
 
 @Component({
     selector: 'app-root',
@@ -14,23 +14,22 @@ import { ToolService } from './tool.service';
 export class AppComponent {
 
     /***************************************************************************************
-     * Constructor for the AppComponent class. Listens for the "NavigationEnd" event
-     * on the Router, and then clears the selectedItem and selectedCourse values
-     * from the Issues service if the user is not on a tool view page.
-     * @param router
-     * @param courseService
+     * Constructor for the AppComponent class. Sets up listeners to handle route changes,
+     * clearing out data to prevent issues between routes.
      ***************************************************************************************/
     constructor(private router: Router,
         private courseService: CourseService,
         private katanaService: KatanaService,
         private toolService: ToolService,
-        private toastService: ToastService) {
+        private toastService: ToastService,
+        private authGuardService: AuthGuardService) {
 
         router.events.subscribe((event: Event) => {
             if (event instanceof NavigationEnd &&
                 !event.urlAfterRedirects.includes('/issues')) {
 
                 // RESET all properties not used outside of tool view
+
                 courseService.selectedIssueItem = null;
                 courseService.selectedCourse = null;
                 toolService.toolViewOpen = false
@@ -49,6 +48,11 @@ export class AppComponent {
 
             } else if (event instanceof NavigationEnd &&
                 event.urlAfterRedirects.includes('/issues')) {
+
+                if (!toolService.selectedTool) {
+                    router.navigate(['/']);
+                    return;
+                }
 
                 if (toolService.selectedDiscoverOptions === false) {
                     router.navigate([`home/tools/${this.toolService.selectedTool.id}/options`]);

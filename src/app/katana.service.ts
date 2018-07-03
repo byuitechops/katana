@@ -14,6 +14,8 @@ import { auth } from 'firebase';
 
 export class KatanaService {
 
+    serverDomain = window.location.hostname.replace(/www./, '') + (window.location.port ? ':' + window.location.port : '');
+
     constructor(private http: HttpClient,
         private toolService: ToolService,
         private courseService: CourseService,
@@ -65,7 +67,7 @@ export class KatanaService {
             this.toolService.processing = true;
             var completed = 0;
 
-            const socket = new WebSocket('ws://localhost:8000/tool/discover');
+            const socket = new WebSocket(`ws://${this.serverDomain}/tool/discover`);
             this.sockets.push(socket);
 
             socket.addEventListener('open', (event) => {
@@ -141,7 +143,7 @@ export class KatanaService {
 
             var completed = 0;
 
-            const socket = new WebSocket('ws://localhost:8000/tool/fix');
+            const socket = new WebSocket(`ws://${this.serverDomain}/tool/fix`);
             this.sockets.push(socket);
 
             socket.addEventListener('open', (event) => {

@@ -55,6 +55,9 @@ body {
 .charcoal {
     background-color: var(--charcoal);
 }
+.ashen {
+    background-color: var(--ashen);
+}
 
 .cobalt-text {
     color: var(--cobalt);
@@ -70,6 +73,9 @@ body {
 }
 .charcoal-text {
     color: var(--charcoal);
+}
+.ashen-text {
+    color: var(--ashen);
 }
 
 h1, h2, h3 {
@@ -106,7 +112,7 @@ h3 {
 
 .code-block {
     padding: 15px;
-    color: white;
+    color: var(--navy);
     background-color: var(--ashen);
     border-radius: 5px;
     display: inline-block;
