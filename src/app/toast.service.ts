@@ -18,9 +18,16 @@ export class ToastService {
                 </button>
             `;
         }
-        var text = e.message;
-        if (e.message === 'Http failure response for http://localhost:4200/course-retrieval: 404 Not Found') {
-            text = 'The server is not available. Please check with a Katana Admin.';
+        // If just text is sent in
+        let text = e;
+
+        // Classic Error
+        if (e instanceof Error) {
+            text = e.message;
+
+            // If a web socket goes down unexpectedly
+        } else if (e instanceof Event && e.target instanceof WebSocket && (e.target.readyState === 3 || e.target.readyState === 2)) {
+            text = 'Websocket unexpectedly closed. Server may be down.';
         }
         toast(buildHTML(text));
         setTimeout(() => {

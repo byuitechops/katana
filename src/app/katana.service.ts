@@ -110,6 +110,10 @@ export class KatanaService {
             });
 
             socket.onerror = (err) => {
+                courses.forEach(course => {
+                    course.processing = false;
+                    course.error = new Error('Socket unexpectedly closed.');
+                });
                 this.toastService.toastError(err);
                 this.toolService.processing = false;
                 console.error(err);
@@ -192,6 +196,10 @@ export class KatanaService {
             });
 
             socket.onerror = (err) => {
+                courses.forEach(course => {
+                    course.processing = false;
+                    course.error = new Error('Socket unexpectedly closed.');
+                });
                 this.toastService.toastError(err);
                 this.toolService.processing = false;
                 console.error(err);
