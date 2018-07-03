@@ -26,7 +26,7 @@ function logMe(status, type, tool_id, course_name, course_id) {
  * @param {object} options - An object containing the option values specific to the tool
  * @returns {object[]} - Array of issue items discovered by the tool
  ****************************************************************/
-function discoverIssues(tool_id, course, options) {
+function discoverIssues(tool_id, course, options, employeeEmail) {
     return new Promise(async (resolve, reject) => {
         try {
             logMe('START', 'DISCOVER', tool_id, course.course_name, course.id);
@@ -67,6 +67,10 @@ function discoverIssues(tool_id, course, options) {
             }, []);
 
             // Log the issue items
+            course.issueItems.forEach(issueItem => issueItem.issues.forEach(issue => {
+                issue.details.employeeEmail = employeeEmail;
+                issue.tool_id = tool_id;
+            }));
             logActions.toolLogs = course.issueItems;
             logActions.logTool();
 
@@ -86,7 +90,7 @@ function discoverIssues(tool_id, course, options) {
  * @param {object} options - An object containing the option values specific to the tool
  * @returns {Course[]} - Array of courses, which include their updated IssueItems
  ****************************************************************/
-function fixIssues(tool_id, course, options) {
+function fixIssues(tool_id, course, options, employeeEmail) {
     return new Promise(async (resolve, reject) => {
         try {
             logMe('START', 'FIX', tool_id, course.course_name, course.id);
