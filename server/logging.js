@@ -14,7 +14,8 @@ function serverLogger(logs) {
             "Action",
             "Tool",
             "Mode",
-            "Course ID"
+            "Course ID",
+            "Employee Email"
         ]].concat(logs.map(log => {
             return [
                 log.date,
@@ -23,7 +24,8 @@ function serverLogger(logs) {
                 log.action,
                 log.details.tool,
                 log.details.mode,
-                log.details.courseId
+                log.details.courseId,
+                log.details.employeeEmail
             ];
         }))) + '\n';
     } else {
@@ -36,7 +38,8 @@ function serverLogger(logs) {
                 log.action,
                 log.details.tool,
                 log.details.mode,
-                log.details.courseId
+                log.details.courseId,
+                log.details.employeeEmail
             ];
         })) + '\n';
     }
@@ -58,6 +61,7 @@ function toolLogger(logs) {
         if (!fs.existsSync('./server/logs/tools_log.csv')) {
             // Make the log with the header
             csvLog = d3.csvFormatRows([[
+                "Tool",
                 "Issue Title",
                 "Status",
                 "Option Values",
@@ -74,6 +78,7 @@ function toolLogger(logs) {
                 }, []);
 
                 return [
+                    issue.tool_id,
                     issue.title,
                     issue.status,
                     issue.optionValues ? issue.optionValues : '',
@@ -94,6 +99,7 @@ function toolLogger(logs) {
                 }, []);
 
                 return [
+                    issue.tool_id,
                     issue.title,
                     issue.status,
                     issue.optionValues ? issue.optionValues : '',

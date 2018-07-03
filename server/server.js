@@ -71,7 +71,7 @@ app.ws('/tool/discover', (ws, req) => {
         try {
             let data = JSON.parse(dataString);
             let startDate = new Date();
-            await node_tools.discoverIssues(data.tool_id, data.course, data.options);
+            await node_tools.discoverIssues(data.tool_id, data.course, data.options, data.userEmail);
             let endDate = new Date();
 
             // Push the data to the log
@@ -83,7 +83,8 @@ app.ws('/tool/discover', (ws, req) => {
                 details: {
                     tool: data.tool_id,
                     mode: 'discover',
-                    courseId: data.course.id
+                    courseId: data.course.id,
+                    employeeEmail: data.userEmail
                 }
             });
 
@@ -118,7 +119,7 @@ app.ws('/tool/fix', (ws, req) => {
         try {
             let data = JSON.parse(dataString);
             let startDate = new Date();
-            await node_tools.fixIssues(data.tool_id, data.course, data.options);
+            await node_tools.fixIssues(data.tool_id, data.course, data.options, data.userEmail);
             let endDate = new Date();
 
             // Push the data to the log
@@ -130,7 +131,8 @@ app.ws('/tool/fix', (ws, req) => {
                 details: {
                     tool: data.tool_id,
                     mode: 'fix',
-                    courseId: data.course.id
+                    courseId: data.course.id,
+                    employeeEmail: data.userEmail
                 }
             });
 
