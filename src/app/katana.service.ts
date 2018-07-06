@@ -91,6 +91,7 @@ export class KatanaService {
                     course.processing = true;
                     // Remove any pre-existing error
                     delete course.error;
+
                     let data = JSON.stringify({
                         tool_id: this.toolService.selectedTool.id,
                         course: course,
@@ -102,12 +103,10 @@ export class KatanaService {
             });
 
             socket.addEventListener('message', (event) => {
-
                 let course = JSON.parse(event.data);
                 if (course.error) {
                     console.error(`${course.course_code} (${course.id}): ${course.error}`);
                 }
-
                 this.courseService.coursesObj[`c${course.id}`] = course;
                 course.processing = false;
                 completed++;
@@ -178,6 +177,7 @@ export class KatanaService {
                             }
                         });
                     });
+
                     let data = JSON.stringify({
                         tool_id: this.toolService.selectedTool.id,
                         course: course,

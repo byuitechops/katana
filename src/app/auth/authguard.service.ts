@@ -39,24 +39,18 @@ export class AuthGuardService implements CanActivate {
 
         this.user.subscribe(user => {
             if (user) {
-
+                auth().updateCurrentUser(user);
                 this.userDetails = user;
-            } else {
-                this.userDetails = null;
+                this.katanaService.logUserStatus(this.userDetails.email, 'Logged In');
+            } else if (!user) {
+                if (this.userDetails) {
+                    this.katanaService.logUserStatus(this.userDetails.email, 'Logged Out');
+                    this.userDetails = null;
+                }
+                this.doGoogleLogin();
             }
             this.router.navigate(['/']);
-        })
-
-        auth().onAuthStateChanged((user) => {
-            // If there isn't a user signed in, redirect to login
-            if (!user) {
-                this.doGoogleLogin();
-            } else {
-                this.katanaService.logUserStatus(this.userDetails.email, 'Logged In');
-                auth().updateCurrentUser(user);
-            }
         });
-
     }
 
     /** *********************************************************************************
