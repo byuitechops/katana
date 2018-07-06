@@ -63,6 +63,15 @@ app.get('/tool-list', (req, res) => {
 });
 
 /*************************************************************************
+ * Sends the list of courses searched for to the user.
+ * @returns {courses[]} - List of courses that match the search criteria
+ ************************************************************************/
+app.post('/user-status', (req, res) => {
+    // FIXME - LOG THE USER TO SERVER LOGS WHO LOGGED IN
+    console.log(`${req.body.message} | ${req.body.userEmail}`);
+});
+
+/*************************************************************************
  * Handles the "issue discovery" sequence for Node Tools
  * @returns {Course} - The course provided in the message
  ************************************************************************/

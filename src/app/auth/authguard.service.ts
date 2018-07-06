@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from 'firebase';
 import { auth } from 'firebase';
 import { Observable } from 'rxjs';
+import { KatanaService } from '../katana.service';
 
 /**
  * Verifies the user is correctly logged in with a valid
@@ -28,7 +29,9 @@ export class AuthGuardService implements CanActivate {
      * @param afAuth angularfire2 - https://github.com/angular/angularfire2
      * @param router Used to verify location and navigate the user to new pages as needed
      ***********************************************************************************/
-    constructor(public afAuth: AngularFireAuth, public router: Router) {
+    constructor(public afAuth: AngularFireAuth,
+        public router: Router,
+        private katanaService: KatanaService) {
         this.user = afAuth.authState;
 
         auth().getRedirectResult()
@@ -36,6 +39,7 @@ export class AuthGuardService implements CanActivate {
 
         this.user.subscribe(user => {
             if (user) {
+
                 this.userDetails = user;
             } else {
                 this.userDetails = null;
@@ -48,6 +52,7 @@ export class AuthGuardService implements CanActivate {
             if (!user) {
                 this.doGoogleLogin();
             } else {
+                this.katanaService.logUserStatus(this.userDetails.email, 'Logged In');
                 auth().updateCurrentUser(user);
             }
         });

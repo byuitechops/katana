@@ -54,6 +54,21 @@ export class KatanaService {
         });
     }
 
+    /**
+     * Has the server log when a user's auth status changes (log in, log out, etc.)
+     */
+    logUserStatus(userEmail: string, message: string) {
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        headers.append('Content-Type', 'application/json');
+
+        this.http.post('/user-status', { userEmail, message }, { headers: headers }).subscribe(
+            null,
+            (err) => {
+                this.toastService.toastError(err);
+                console.error(err);
+            });
+    }
+
     /*****************************************************************
      * Runs a tool on the server in discovery mode, then returns the issue items discovered.
      * @param {string} toolId - The ID of the tool to be run
