@@ -6,7 +6,12 @@ input:invalid {
     border: solid 1px red;
 }
 
-div {
-    margin: 100px;
+.large-text {
+    margin: 100px 100px 20px;
     font-size: 30px;
+}
+
+.small-text {
+    margin: 20px 100px;
+    font-size: 18px;
 }

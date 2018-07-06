@@ -5,4 +5,6 @@
 <!-- Router: Controls page content -->
 <router-outlet></router-outlet>
 <!-- Loading message while verifying user is logged in correctly -->
-<div *ngIf="!authGuardService.canActivate()" class="ashen-text">Loading Tools...</div>
+<div class="large-text ashen-text" *ngIf="!authGuardService.canActivate()">Logging you in...</div>
+<div class="small-text ashen-text" *ngIf="!authGuardService.canActivate()">You must log in with a BYUI Google account.</div>
+<div class="small-text ashen-text" *ngIf="!authGuardService.canActivate()">If this is your first time, speak with an Admin to get your account enabled.</div>
