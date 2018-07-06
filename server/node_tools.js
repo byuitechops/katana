@@ -16,8 +16,8 @@ const toolList = {
 }
 
 /* Used to log start/stop of different tools */
-function logMe(status, type, tool_id, course_name, course_id) {
-    console.log(`${chalk.whiteBright(status)}: ${chalk.cyanBright(type)} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(tool_id)} | ${chalk.whiteBright('COURSES:')} ${chalk.greenBright(course_name)} | ${chalk.whiteBright('ID:')} ${chalk.greenBright(course_id)}`);
+function logMe(status, type, tool_id, course_name, course_id, userEmail) {
+    console.log(`${chalk.whiteBright(status)}: ${chalk.cyanBright(type)} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(tool_id)} | ${chalk.whiteBright('COURSES:')} ${chalk.greenBright(course_name)} | ${chalk.whiteBright('ID:')} ${chalk.greenBright(course_id)} | ${chalk.whiteBright('USER:')} ${userEmail}`);
 }
 
 /*****************************************************************
@@ -30,7 +30,7 @@ function logMe(status, type, tool_id, course_name, course_id) {
 function discoverIssues(tool_id, course, options, employeeEmail) {
     return new Promise(async (resolve, reject) => {
         try {
-            logMe('START', 'DISCOVER', tool_id, course.course_name, course.id);
+            logMe('START', 'DISCOVER', tool_id, course.course_name, course.id, employeeEmail);
 
             // Build the canvas-api-wrapper course and get all the needed items
             let canvasCourse = canvas.getCourse(course.id);
@@ -76,7 +76,7 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
             logActions.logTool();
 
             // Resolve the promise
-            logMe('COMPLETE', 'DISCOVER', tool_id, course.course_name, course.id);
+            logMe('COMPLETE', 'DISCOVER', tool_id, course.course_name, course.id, employeeEmail);
             resolve();
         } catch (e) {
             reject(e);
@@ -94,7 +94,7 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
 function fixIssues(tool_id, course, options, employeeEmail) {
     return new Promise(async (resolve, reject) => {
         try {
-            logMe('START', 'FIX', tool_id, course.course_name, course.id);
+            logMe('START', 'FIX', tool_id, course.course_name, course.id, employeeEmail);
 
             let fixPromises = course.issueItems.map(issueItem => {
                 return new Promise(async (resolve, reject) => {
@@ -121,7 +121,7 @@ function fixIssues(tool_id, course, options, employeeEmail) {
                     logActions.logTool();
 
                     // ADD TO COURSE MAINTENANCE LOG HERE
-                    logMe('COMPLETE', 'FIX', tool_id, course.course_name, course.id);
+                    logMe('COMPLETE', 'FIX', tool_id, course.course_name, course.id, employeeEmail);
                     resolve();
                 })
                 .catch(console.error);
