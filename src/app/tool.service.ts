@@ -50,30 +50,6 @@ export class ToolService {
         icon: 'code',
         title: 'HTML',
         toolCategory: 'html'
-    }, {
-        icon: 'title',
-        title: 'Titles',
-        toolCategory: 'titles'
-    }, {
-        icon: 'create',
-        title: 'Create',
-        toolCategory: 'create'
-    }, {
-        icon: 'delete_outline',
-        title: 'Remove',
-        toolCategory: 'remove'
-    }, {
-        icon: 'language',
-        title: 'Course Settings',
-        toolCategory: 'courseSettings'
-    }, {
-        icon: 'settings',
-        title: 'Item Settings',
-        toolCategory: 'itemSettings'
-    }, {
-        icon: 'explore',
-        title: 'Syllabus',
-        toolCategory: 'syllabus'
     }];
 
     processing: boolean = false;
