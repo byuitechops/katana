@@ -12,7 +12,7 @@ function initializeFirebase() {
     }
     firebaseAdmin.initializeApp({
         credential: firebaseAdmin.credential.cert(serviceAccount),
-        databaseURL: "https://katana-24a36.firebaseio.com"
+        databaseURL: 'https://katana-24a36.firebaseio.com'
     });
     db = firebaseAdmin.firestore();
     return db;
@@ -49,4 +49,4 @@ module.exports = {
     toolLog,
     userLog,
     db
-}
+};
