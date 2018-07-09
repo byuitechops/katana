@@ -17,9 +17,6 @@ const firebaseWrapper = require('./firebase-wrapper.js');
 const db = firebaseWrapper.initializeFirebase();
 
 
-firebaseWrapper.serverLog({potato: 'potato', num: 1});
-
-
 // REMOVE later on after we don't need it
 if (!process.env.canvas_api_token) {
     console.log(chalk.redBright('CANVAS API TOKEN not set. Exiting.'));

@@ -18,7 +18,7 @@ function initializeFirebase() {
     return db;
 }
 
-function log(collectionTitle, data) {
+function _log(collectionTitle, data) {
     data.timestamp = new Date();
 
     if (!process.argv.includes('--mute')) {
@@ -32,15 +32,15 @@ function log(collectionTitle, data) {
 }
 
 function serverLog(data) {
-    log('server_logs', data);
+    _log('server_logs', data);
 }
 
 function toolLog(data) {
-    log('tool_logs', data);
+    _log('tool_logs', data);
 }
 
 function userLog(data) {
-    log('user_logs', data);
+    _log('user_logs', data);
 }
 
 module.exports = {

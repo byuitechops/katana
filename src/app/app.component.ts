@@ -6,6 +6,11 @@ import { ToastService } from './toast.service';
 import { ToolService } from './tool.service';
 import { AuthGuardService } from './auth/authguard.service';
 
+/**
+ * This is the main component for the entire application.
+ * It holds the primary pieces that allow the user to 
+ * navigate from the top down.
+ */
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -13,10 +18,22 @@ import { AuthGuardService } from './auth/authguard.service';
 })
 export class AppComponent {
 
-    /***************************************************************************************
-     * Constructor for the AppComponent class. Sets up listeners to handle route changes,
-     * clearing out data to prevent issues between routes.
-     ***************************************************************************************/
+    /**
+     * Constructor. This creates subscriptions to routes changes to adjust values
+     * as needed. For example, if the user navigates to the tool view (i.e. they ran
+     * a tool), then many values in various services are removed or reset to prevent
+     * conflicting values between services.
+     * 
+     * This will also retrieve the list of tools from the Katana service when it is
+     * created. 
+     * 
+     * @param router Used to navigate the user as needed.
+     * @param courseService Provides information and management for selected courses.
+     * @param katanaService Provides functionality for making API calls to the Katana server.
+     * @param toolService Provides information and management for available tools.
+     * @param toastService Provides toast notification functionality.
+     * @param authGuardService Provides Firebase authentication functionality.
+     */
     constructor(private router: Router,
         private courseService: CourseService,
         private katanaService: KatanaService,
@@ -68,7 +85,6 @@ export class AppComponent {
 
                 // Set the toolView tracking prop to true, all others off
                 toolService.toolViewOpen = true;
-                courseService.courseEditOpen = false;
                 courseService.courseSelectionOpen = false;
 
             }
@@ -77,8 +93,7 @@ export class AppComponent {
         // Retrieve the tool list on start
         this.katanaService.getToolList()
             .catch((e) => {
-                this.toastService.devMode = true;
-                this.toastService.toast('You are in development mode.');
+                this.toastService.toast('You are in development mode. Courses were not retrieved.');
                 console.error(e);
             });
 
@@ -90,6 +105,4 @@ export class AppComponent {
             }
         });
     }
-
-    title = 'app';
 }

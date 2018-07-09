@@ -5,23 +5,45 @@ import { ToolService, DiscoverOption } from '../tool.service';
 import { CourseService } from '../course.service';
 import { KatanaService } from '../katana.service';
 import { MaterializeAction } from 'angular2-materialize';
+import { FormGroup } from '@angular/forms';
 
+/**
+ * Container for the options page. Holds all related
+ * options components.
+ */
 @Component({
     selector: 'app-options-view',
     templateUrl: './options-view.component.html',
     styleUrls: ['./options-view.component.css']
 })
-
 export class OptionsViewComponent {
 
+    /**
+     * The options to display on the page.
+     */
     options: DiscoverOption[];
+    /**
+     * The {@link OptionModel} to use for the form.
+     */
     optionModel: OptionModel;
-    formGroup;
+    /**
+     * The {@link formGroup} to use for the form.
+     */
+    formGroup: FormGroup;
 
-    // This allows the modal to open and close
-    modalActions = new EventEmitter<string | MaterializeAction>();
-    modalOpen: boolean = false;
+    /**
+     * From [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize},
+     * which allows the modal to open and close.
+     */
+    modalActions: EventEmitter<string | MaterializeAction> = new EventEmitter<string | MaterializeAction>();
 
+    /**
+     * Constructor
+     * @param {ToolService} toolService Provides information and management for available courses.
+     * @param {KatanaService} katanaService Provides functionality to make API calls to the Katana server.
+     * @param {CourseService} courseService Provides information and management for selected courses.
+     * @param {Router} router Used to navigate the user as needed.
+     */
     constructor(public toolService: ToolService,
         public katanaService: KatanaService,
         private courseService: CourseService,
@@ -31,27 +53,34 @@ export class OptionsViewComponent {
         this.formGroup = this.optionModel.toGroup();
     }
 
-    /*****************************************************************
-     * Opens and closes the modal. Populates the modal based on the input.
-     * @param {string} contentKey - Should match one of the keys of the modalContents property on this component
-     * Process:
-     * 1. Sets the contents of the modal based on the provided contentKey
-     * 2. Emits the "open" event for the modal (or close, for the close method)
-     ****************************************************************/
-    openModal() {
-        this.modalOpen = true;
+    /**
+     * Opens the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
+     */
+    openModal(): void {
         this.modalActions.emit({ action: "modal", params: ['open'] });
     }
-    closeModal() {
-        this.modalOpen = false;
+
+    /**
+     * Closes the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
+     */
+    closeModal(): void {
         this.modalActions.emit({ action: "modal", params: ['close'] });
     }
 
-    modalIsOpen() {
+    /**
+     * Determines the open/close status of the modal.
+     * @returns {boolean} Whether or not the modal is currently open.
+     */
+    modalIsOpen(): boolean {
         return !!document.querySelector('.modal-overlay');
     }
 
-    onSubmit() {
+    /**
+     * Actions taken when the user clicks the "Run Tool" button.
+     * Gathers up the answers on the options form, then submits
+     * them to the Katana Service to run the tool in discovery mode.
+     */
+    onSubmit(): void {
         if (this.courseService.courses.length === 0) {
             this.openModal();
             return;

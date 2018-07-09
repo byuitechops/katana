@@ -30,7 +30,6 @@ import { CourseChipComponent } from './course-chip/course-chip.component';
 import { IssueContainerComponent } from './issue-container/issue-container.component';
 import { ToolSelectionComponent } from './tool-selection/tool-selection.component';
 import { OptionsViewComponent } from './options-view/options-view.component';
-import { BypassSanitize } from './options-view/bypass-sanitize.pipe';
 import { StatBadgeComponent } from './stat-badge/stat-badge.component';
 
 export const appRoutes: Routes = [
@@ -79,7 +78,6 @@ export const appRoutes: Routes = [
         IssueContainerComponent,
         ToolSelectionComponent,
         OptionsViewComponent,
-        BypassSanitize,
         StatBadgeComponent,
     ],
     imports: [
