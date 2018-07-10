@@ -45,3 +45,7 @@
     width: 175px;
     margin-right: 15px;
 }
+
+.option__text {
+    padding: 0 10px;
+}

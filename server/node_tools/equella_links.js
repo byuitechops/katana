@@ -8,6 +8,7 @@ const cheerio = require('cheerio');
  * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
+    // ADD ability to check module items
     if (canvasItem.getHtml() === null) return;
     var $ = cheerio.load(canvasItem.getHtml());
     var aLinks = $('a').get();
