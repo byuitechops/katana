@@ -7,6 +7,7 @@ const cheerio = require('cheerio');
  * @param {object} options - Options specific to the tool selected by the user
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
+    // ADD ability to check module items
     if (canvasItem.getHtml() === null) return;
     var $ = cheerio.load(canvasItem.getHtml());
     var aLinks = $('a').get();

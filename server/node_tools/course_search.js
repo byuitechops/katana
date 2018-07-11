@@ -8,10 +8,23 @@ const cheerio = require('cheerio');
  * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
-    if (!canvasItem.getHtml() || !canvasItem.getHtml().includes(options.searchPhrase)) return;
-    var $ = cheerio.load(canvasItem.getHtml());
+    console.log(canvasItem.constructor.name, options.inputType);
+    if (options.inputType === 'Search Text Only') {
+        console.log(`Text`, canvasItem.getTitle(), options.searchPhrase);
+        if ((canvasItem.constructor.name === 'Module' || canvasItem.constructor.name === 'ModuleItem') && canvasItem.getTitle().toLowerCase().includes(options.searchPhrase)) {
+        }
+    } else if (options.inputType === 'Search HTML') {
+        if (!canvasItem.getHtml() || !canvasItem.getHtml().toLowerCase().includes(options.searchPhrase)) return;
+        let $ = cheerio.load(canvasItem.getHtml());
+        console.log(`HTML`, options.searchPhrase);
+    } else if (options.inputType === 'Search Using Regex' && canvasItem.getHtml() !== undefined) {
+        let regex = new RegExp(options.searchPhrase, 'ig');
+        let found =  regex.test(canvasItem.getHtml());
+        console.log(`Regex`, found, options.searchPhrase);
+    }
 
-    console.log('Matched', canvasItem.getTitle());
+
+    // console.log(`Matched`, canvasItem.getTitle());
 
     let title = 'Search Phrase Matched';
     let description = 'The search came back with a match on this item';
@@ -133,6 +146,13 @@ module.exports = {
     ],
     toolCategory: 'html',
     discoverOptions: [{
+        title: 'Input Type',
+        key: 'inputType',
+        description: 'How would you like to search?',
+        type: 'dropdown',
+        choices: ['', 'Search Text Only', 'Search HTML', 'Search Using Regex'],
+        required: true
+    }, {
         title: 'Search Phrase',
         key: 'searchPhrase',
         description: 'What search phrase would you like to look for?',

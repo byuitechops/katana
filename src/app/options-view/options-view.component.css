@@ -50,3 +50,7 @@
     border-color: #2979FF !important;
     background-color: #2979FF !important;
 }
+
+div.option__text {
+    padding: 0 10px !important;
+}
