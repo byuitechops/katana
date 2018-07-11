@@ -1,3 +1,6 @@
+/**
+ * Used to connect the client to firebase for authentication.
+ */
 export const environment = {
     firebase: {
         apiKey: "AIzaSyBN6dkjkGHs5W2YXTkLUu8mCurFXkip3Dc",

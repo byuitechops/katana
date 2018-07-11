@@ -166,7 +166,7 @@ select[multiple] {
 }
 
 input[type="text"], input:focus {
-    padding-left: 10px !important;
+    /* padding: 0 10px !important; */
     margin: 0 !important;
     border-bottom: none !important;
     box-shadow: none !important;

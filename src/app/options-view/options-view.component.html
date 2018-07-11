@@ -27,7 +27,7 @@
                     <h3>{{option.title}}</h3>
                     <div class="option__description">{{option.description}}</div>
                     <div [ngSwitch]="option.type" class="option__container" [class.multiselect]="option.type === 'multiselect'" [class.required]="!formGroup.controls[option.key].valid">
-                        <div *ngSwitchCase="'text'">
+                        <div class="option__text" *ngSwitchCase="'text'">
                             <input type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key" autofocus>
                         </div>
                         <div *ngSwitchCase="'dropdown'">
@@ -59,7 +59,7 @@
         <p>You must select at least one course before continuing.</p>
     </div>
     <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn blue" (click)="setApproved('approved')">Got it!</a>
+        <a class="modal-action modal-close waves-effect btn blue">Got it!</a>
     </div>
 </div>
 <div *ngIf="modalIsOpen()" class="arrowIndicator">

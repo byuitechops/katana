@@ -1,18 +1,28 @@
 import { Injectable } from '@angular/core';
 import { toast } from 'angular2-materialize';
 
+/**
+ * Provides methods to notify the user of errors and various message
+ * via toast notification.
+ */
 @Injectable({
     providedIn: 'root'
 })
 export class ToastService {
 
-    devMode: boolean = false;
+    /**
+     * Constructor
+     */
     constructor() { }
 
+    /**
+     * Displays an error to the user via toast notification.
+     * @param {Error} e Error to display
+     */
     toastError(e) {
         function buildHTML(message) {
             return `
-                <span style="color:red !important">${message}</span>
+                <span style="color:red !important">${JSON.stringify(message)}</span>
                 <button onclick="document.querySelector('.toast').remove()" class="btn-flat toast-action">
                     Dismiss
                 </button>
@@ -35,10 +45,14 @@ export class ToastService {
         }, 15000);
     }
 
+    /**
+     * Displays a message to the user via toast notification.
+     * @param {string} text Message to display
+     */
     toast(text) {
         function buildHTML(message) {
             return `
-                <span>${message}</span>
+                <span>${JSON.stringify(message)}</span>
                 <button onclick="document.querySelector('.toast').remove()" class="btn-flat toast-action">
                     Dismiss
                 </button>
