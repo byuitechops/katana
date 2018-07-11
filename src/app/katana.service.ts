@@ -75,12 +75,7 @@ export class KatanaService {
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         headers.append('Content-Type', 'application/json');
 
-        this.http.post('/user-status', { userEmail, message }, { headers: headers }).subscribe(
-            null,
-            (err) => {
-                this.toastService.toastError(err);
-                console.error(err);
-            });
+        this.http.post('/user-status', { userEmail, message }, { headers: headers });
     }
 
     /**

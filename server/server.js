@@ -70,7 +70,7 @@ app.get('/tool-list', (req, res) => {
  * @returns {courses[]} - List of courses that match the search criteria
  ************************************************************************/
 app.post('/user-status', (req, res) => {
-    console.log(`${req.body.message} | ${req.body.userEmail}`);
+    console.log(`${req.body.message} | ${req.body.userEmail} | ${new Date()}`);
     firebaseWrapper.userLog({email: req.body.userEmail, action: req.body.message})
 });
 

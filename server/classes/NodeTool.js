@@ -18,20 +18,18 @@ module.exports = class NodeTool {
     }
 
     discover(canvasItem, options) {
+        // Create the IssueItem for this canvas item
+        let issueItem = new IssueItem(canvasItem);
         try {
             this.lastRan = new Date();
-
-            // Create the IssueItem for this canvas item
-            let issueItem = new IssueItem(canvasItem);
 
             // Run the item through the discover function
             this._discover(canvasItem, issueItem, options);
 
-            // log the item here?
-
             return issueItem;
         } catch (e) {
-            return e;
+            console.error(e);
+            return issueItem;
         }
     }
 
@@ -48,9 +46,6 @@ module.exports = class NodeTool {
 
                 // Updates the item in Canvas
                 await canvasItem.update();
-
-                // log the item here?
-
                 resolve();
             } catch (e) {
                 reject(e);

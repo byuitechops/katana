@@ -4,6 +4,7 @@
     box-sizing: border-box;
     border: solid 1px var(--background-light);
     border-bottom: none;
+    animation: 0.5s fadeIn;
 }
 
 /* Overwrites the card class from materialize */
