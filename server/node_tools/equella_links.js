@@ -5,7 +5,6 @@ const cheerio = require('cheerio');
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
  * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
- * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
     if (canvasItem.getHtml() === null) return;
@@ -89,7 +88,6 @@ function fix(canvasItem, issueItem, options) {
                 }
             });
             canvasItem.setHtml($.html());
-            await canvasItem.update();
             resolve();
         } catch (e) {
             issueItem.issues[0].status = 'failed';

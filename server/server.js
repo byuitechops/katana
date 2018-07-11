@@ -10,9 +10,12 @@ const course_retrieval = require('./course_retrieval.js');
 const app = express();
 const expressWd = require('express-ws')(app);
 const logActions = require('./logging.js');
-
-// Express Info
 const serverPort = 8000;
+
+/* Firebase Magic */
+const firebaseWrapper = require('./firebase-wrapper.js');
+const db = firebaseWrapper.initializeFirebase();
+
 
 // REMOVE later on after we don't need it
 if (!process.env.canvas_api_token) {
@@ -67,8 +70,8 @@ app.get('/tool-list', (req, res) => {
  * @returns {courses[]} - List of courses that match the search criteria
  ************************************************************************/
 app.post('/user-status', (req, res) => {
-    // FIXME - LOG THE USER TO SERVER LOGS WHO LOGGED IN
-    console.log(`${req.body.message} | ${req.body.userEmail}`);
+    console.log(`${req.body.message} | ${req.body.userEmail} | ${new Date()}`);
+    firebaseWrapper.userLog({email: req.body.userEmail, action: req.body.message})
 });
 
 /*************************************************************************

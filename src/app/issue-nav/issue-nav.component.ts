@@ -7,6 +7,10 @@ import { EventEmitter } from '@angular/core';
 import { ToolService } from '../tool.service';
 import { csvFormatRows } from 'd3-dsv';
 
+/**
+ * Container for managing various actions on the tool view page,
+ * such as the "Fix All Approved" button.
+ */
 @Component({
     selector: 'app-issue-nav',
     templateUrl: './issue-nav.component.html',
@@ -14,52 +18,44 @@ import { csvFormatRows } from 'd3-dsv';
 })
 export class IssueNavComponent {
 
-    selectedModal: string = 'approveAll';
+    /**
+     * From [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize},
+     * which allows the modal to open and close.
+     */
+    modalActions: EventEmitter<string | MaterializeAction> = new EventEmitter<string | MaterializeAction>();
 
-    // This allows the modal to open and close
-    modalActions = new EventEmitter<string | MaterializeAction>();
-
+    /**
+     * Constructor
+     * @param courseService Provides information and management for selected courses.
+     * @param toolService Provides information and management for available tools.
+     * @param katanaService Provides functionality to make API calls to the Katana server.
+     * @param router Used to navigate the user as needed.
+     */
     constructor(public courseService: CourseService,
         public toolService: ToolService,
         public katanaService: KatanaService,
         private router: Router) { }
 
-    getModal() {
-        return this.selectedModal;
-    }
 
-    /*****************************************************************
-     * Opens and closes the modal. Populates the modal based on the input.
-     * @param {string} contentKey - Should match one of the keys of the modalContents property on this component
-     ****************************************************************/
-    openModal(modalName) {
-        this.selectedModal = modalName;
+    /**
+     * Opens the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
+     */
+    openModal() {
         this.modalActions.emit({ action: "modal", params: ['open'] });
     }
+
+    /**
+     * Closes the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
+     */
     closeModal() {
         this.modalActions.emit({ action: "modal", params: ['close'] });
     }
 
-    /*****************************************************************
-     * Approves all issues for the course to be fixed if possible, ignoring skipped and fixed items.
-     * @param {string} newStatus - Either 'approved' or 'unapproved', determines the new status
-     * Process:
-     * 1. For each issue items, get its issues
-     * 2. For each issue on the issue item, see if it is skipped or fixed
-     * 3. If not, set it's status to approved
-     ****************************************************************/
-    setApproved(newStatus: string) {
-        this.courseService.selectedCourse.issueItems.forEach(issueItem => {
-            issueItem.issues.forEach(issue => {
-                if (newStatus === 'approved' && issue.status === 'untouched') {
-                    issue.status = newStatus;
-                } else if (newStatus === 'untouched' && issue.status === 'approved') {
-                    issue.status = newStatus;
-                }
-            });
-        });
-    }
-
+    /**
+     * Returns the user the {@link IssueItem}s belonging to the provided course.
+     * @param course The course to retrieve the IssueItems from.
+     * @returns {IssueItem[]} The IssueItems belonging to the provided course.
+     */
     getIssueItems(course) {
         if (!course.issueItems) return [];
         return course.issueItems.reduce((acc, issueItem) => {
@@ -68,12 +64,21 @@ export class IssueNavComponent {
         }, []);
     }
 
+    /**
+     * Sets the currently selected course and currently selected {@link IssueItem}.
+     * @param course The course to set as the currently selected course.
+     * @param issue The issue to use to set the currently selected IssueItem.
+     */
     selectIssueItem(course, issue) {
         this.courseService.selectedCourse = course;
         this.courseService.selectedIssueItem = course.issueItems.find(issueItem => issueItem.issues.includes(issue));
         this.closeModal();
     }
 
+    /**
+     * Downloads a CSV to the user's computer containing all of the
+     * currently displayed issues.
+     */
     downloadIssues() {
         let csvReport = '';
         this.courseService.courses.forEach((course, i) => {

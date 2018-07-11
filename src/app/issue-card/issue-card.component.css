@@ -5,6 +5,7 @@
     padding: 15px;
     position: relative;
     width: calc(100%);
+    animation: .5s fadeIn;
 }
 
 .issueCard:hover {

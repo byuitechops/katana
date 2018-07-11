@@ -2,26 +2,40 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CourseService, IssueItem, Course } from './course.service';
 import { ToolService, Tool } from './tool.service';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import { ToastService } from './toast.service';
 import { Router } from '@angular/router';
 import { auth } from 'firebase';
 
+/**
+ * Provides access to make calls to the Katana server.
+ */
 @Injectable({
     providedIn: 'root'
 })
-
 export class KatanaService {
 
+    /**
+     * Handles formatting the correct URL for the web sockets.
+     */
     serverDomain = window.location.hostname.replace(/www./, '') + (window.location.port ? ':' + window.location.port : '');
 
+    /**
+     * Constructor
+     * @param http - Currently used to retrieve basic data from the server.
+     * @param toolService - Provides information about available tools on the server.
+     * @param courseService  - Provides information and management for the currently selected courses.
+     * @param router - Used to navigate the user as needed.
+     * @param toastService - Provides toast functionality.
+     */
     constructor(private http: HttpClient,
         private toolService: ToolService,
         private courseService: CourseService,
         private router: Router,
         private toastService: ToastService) { }
 
+    /**
+     * Currently open web sockets.
+     */
     sockets: WebSocket[] = [];
 
     /** ***************************************************************
@@ -61,23 +75,17 @@ export class KatanaService {
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         headers.append('Content-Type', 'application/json');
 
-        this.http.post('/user-status', { userEmail, message }, { headers: headers }).subscribe(
-            null,
-            (err) => {
-                this.toastService.toastError(err);
-                console.error(err);
-            });
+        this.http.post('/user-status', { userEmail, message }, { headers: headers });
     }
 
-    /*****************************************************************
+    /**
      * Runs a tool on the server in discovery mode, then returns the issue items discovered.
      * @param {string} toolId - The ID of the tool to be run
      * @param {object} options - An object containing the option values specific to the tool
      * @returns {object[]} - Array of issue items discovered by the tool on the server
-     ****************************************************************/
+     */
     discoverIssues(courses) {
         return new Promise((resolve, reject) => {
-            this.courseService.courseEditOpen = false;
             this.toolService.processingMessage = 'Searching for Issues...';
             this.toolService.processing = true;
             var completed = 0;
@@ -91,6 +99,7 @@ export class KatanaService {
                     course.processing = true;
                     // Remove any pre-existing error
                     delete course.error;
+
                     let data = JSON.stringify({
                         tool_id: this.toolService.selectedTool.id,
                         course: course,
@@ -102,12 +111,10 @@ export class KatanaService {
             });
 
             socket.addEventListener('message', (event) => {
-
                 let course = JSON.parse(event.data);
                 if (course.error) {
                     console.error(`${course.course_code} (${course.id}): ${course.error}`);
                 }
-
                 this.courseService.coursesObj[`c${course.id}`] = course;
                 course.processing = false;
                 completed++;
@@ -136,15 +143,14 @@ export class KatanaService {
         });
     }
 
-    /*****************************************************************
+    /**
      * Fixes the provided issue items in Canvas by sending them to the specified tool on the server.
      * @param {string} toolId - The ID of the tool to be run
      * @param {object} options - An object containing the option values specific to the tool
      * @returns {object[]} - Array of issue items fixed by the tool on the server
-     ****************************************************************/
+     */
     fixIssues(courses) {
         return new Promise((resolve, reject) => {
-            this.courseService.courseEditOpen = false;
             this.toolService.processingMessage = 'Fixing Issues...';
             this.toolService.processing = true;
 
@@ -178,6 +184,7 @@ export class KatanaService {
                             }
                         });
                     });
+
                     let data = JSON.stringify({
                         tool_id: this.toolService.selectedTool.id,
                         course: course,

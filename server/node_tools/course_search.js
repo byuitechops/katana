@@ -11,7 +11,7 @@ function discover(canvasItem, issueItem, options) {
     if (!canvasItem.getHtml() || !canvasItem.getHtml().includes(options.searchPhrase)) return;
     var $ = cheerio.load(canvasItem.getHtml());
 
-    console.log(`Matched`, canvasItem.getTitle());
+    console.log('Matched', canvasItem.getTitle());
 
     let title = 'Search Phrase Matched';
     let description = 'The search came back with a match on this item';
@@ -118,7 +118,7 @@ module.exports = {
     fix,
     id: 'course_search',
     title: 'Course Search',
-    description: `This tool allows you to search Canvas courses' HTML and item titles for given words and/or phrases.`,
+    description: 'This tool allows you to search Canvas courses\' HTML and item titles for given words and/or phrases.',
     fixedMessage: 'The given search phrase matched',
     icon: 'search',
     categories: [
