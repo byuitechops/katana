@@ -23,9 +23,12 @@ function _log(collectionTitle, data) {
 
     if (!process.argv.includes('--mute')) {
         let str = Object.keys(data).reduce((acc, key) => {
-            return acc += `${chalk.cyanBright(key.toUpperCase())}:${data[key]} `;
+            let dataItem = data[key];
+            if (typeof data[key] === 'string') {
+                dataItem = data[key].length <= 20 ? data[key] : data[key].substr(0, 20) + '...';
+            }
+            return acc += `${chalk.cyanBright(key.toUpperCase())}:${dataItem} `;
         }, `${chalk.greenBright('FIRESTORE')} ${chalk.green(collectionTitle)} | `);
-        console.log(str);
     }
 
     db.collection(collectionTitle).add(data);

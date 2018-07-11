@@ -7,17 +7,18 @@
 }
 
 .categoryIcon {
+    animation: .5s fadeIn;
+    cursor: pointer;
     display: flex;
-    padding: 20px;
     font-size: 25px;
     box-sizing: border-box;
     width: 300px;
     justify-content: center;
     text-align: center;
     margin: 20px;
-    transition: all .1s ease-in-out;
+    padding: 20px;
     position: relative;
-    cursor: pointer;
+    transition: all .1s ease-in-out;
     z-index: 1;
 }
 

@@ -4,6 +4,7 @@
     box-sizing: border-box;
     border: solid 1px var(--background-light);
     border-bottom: none;
+    animation: 0.5s fadeIn;
 }
 
 /* Overwrites the card class from materialize */
@@ -45,7 +46,10 @@
     width: 175px;
     margin-right: 15px;
 }
+<<<<<<< HEAD
 
 .option__text {
     padding: 0 10px;
 }
+=======
+>>>>>>> 93f3496fdccd74594b0767f83d711c7d4d833f00

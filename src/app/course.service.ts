@@ -46,6 +46,8 @@ export interface Course {
     course_name: string,
     /** The code for the course in Canvas */
     course_code: string,
+    /** The platform it belongs to (online, campus, pathway) */
+    platform: string,
     /** The current instructor for the course */
     instructor: string,
     /** The {@link IssueItem}s for this course */
