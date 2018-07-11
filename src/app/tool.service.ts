@@ -102,6 +102,10 @@ export class ToolService {
         icon: 'code',
         title: 'HTML',
         toolCategory: 'html'
+    }, {
+        icon: 'settings',
+        title: 'Item Settings',
+        toolCategory: 'itemSettings'
     }];
 
     /**
