@@ -6,12 +6,6 @@ const NodeTool = require('./classes/NodeTool.js');
 
 /* Node Tools | (Key) Tool ID: (Value) require(pathToTool) */
 const toolList = {
-<<<<<<< HEAD
-    //'rename_pages': require('./node_tools/rename_pages.js'),
-    'alt_attributes': require('./node_tools/alt_attributes.js'),
-    'equella_links': require('./node_tools/equella_links.js'),
-    //'course_search': require('./node_tools/course_search.js')
-=======
     'rename_pages': new NodeTool(require('./node_tools/rename_pages.js')),
     'alt_attributes': new NodeTool(require('./node_tools/alt_attributes.js')),
     'equella_links': new NodeTool(require('./node_tools/equella_links.js')),
@@ -29,7 +23,6 @@ const toolList = {
  */
 function logMe(status, type, tool_id, course_name, course_id, userEmail) {
     console.log(`${chalk.whiteBright(status)}: ${chalk.cyanBright(type)} | ${chalk.whiteBright('TOOL:')} ${chalk.greenBright(tool_id)} | ${chalk.whiteBright('COURSES:')} ${chalk.greenBright(course_name)} | ${chalk.whiteBright('ID:')} ${chalk.greenBright(course_id)} | ${chalk.whiteBright('USER:')} ${userEmail} |  ${chalk.whiteBright('TIME:')} ${new Date()}`);
->>>>>>> f36b8d08975fd7215dce8920d777087cee4c0634
 }
 
 /**
