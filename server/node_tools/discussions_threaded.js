@@ -1,5 +1,3 @@
-const cheerio = require('cheerio');
-
 /*****************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper

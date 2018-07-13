@@ -28,13 +28,12 @@
                             <option *ngFor="let choice of option.choices">{{choice.text}}</option>
                         </select>
                     </div>
-
                 </div>
             </div>
         </form>
-
-
     </div>
+
+    <app-code-editor *ngIf="issue.details.updatedHtml" [tabs]="editorTabs"></app-code-editor>
 
     <div class="card-action">
 

@@ -18,9 +18,19 @@ export class IssueContainerComponent implements OnInit {
     @Input('issue') issue: Issue;
 
     /**
+     * The index the issue is in within the item's issues array
+     */
+    @Input('index') index: number;
+
+    /**
      * The element containing details about the issue.
      */
     @ViewChild('issueDetails') issueDetails: ElementRef;
+
+    /**
+     * Tabs for the code editor
+     */
+    editorTabs: any[];
 
     /**
      * Constructor
@@ -28,8 +38,7 @@ export class IssueContainerComponent implements OnInit {
      * @param courseService Provides information and management for selected courses.
      */
     constructor(private toolService: ToolService,
-        private courseService: CourseService) {
-    }
+        private courseService: CourseService) { }
 
     /**
      * Fired when the component is intialized, this manages the item's display.
@@ -39,6 +48,16 @@ export class IssueContainerComponent implements OnInit {
         this.issueDetails.nativeElement.innerHTML = this.issue.display;
         this.issue.optionModel = new OptionModel(this.toolService.selectedTool.fixOptions);
         this.issue.formGroup = this.issue.optionModel.toGroup();
+
+        this.editorTabs = [{
+            title: 'Current HTML',
+            code: this.issue.details['currentHtml'],
+            readOnly: true
+        }, {
+            title: 'Updated HTML',
+            code: this.issue.details['updatedHtml'],
+            readOnly: false
+        }];
 
         // Update option values if there are values saved for any options
         if (this.issue.tempValues) {

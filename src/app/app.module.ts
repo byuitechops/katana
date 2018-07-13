@@ -31,6 +31,7 @@ import { IssueContainerComponent } from './issue-container/issue-container.compo
 import { ToolSelectionComponent } from './tool-selection/tool-selection.component';
 import { OptionsViewComponent } from './options-view/options-view.component';
 import { StatBadgeComponent } from './stat-badge/stat-badge.component';
+import { CodeEditorComponent } from './code-editor/code-editor.component';
 
 export const appRoutes: Routes = [
     {
@@ -79,6 +80,7 @@ export const appRoutes: Routes = [
         ToolSelectionComponent,
         OptionsViewComponent,
         StatBadgeComponent,
+        CodeEditorComponent,
     ],
     imports: [
         RouterModule.forRoot(

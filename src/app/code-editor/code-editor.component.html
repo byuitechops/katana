@@ -1,0 +1,12 @@
+<div class="editor-container">
+    <div class="html-bar">
+        <button *ngFor="let tab of tabs" class="btn-flat waves" (click)="setEditorSession(tab)" [class.activeTab]="activeTab === tab">
+            {{tab.title}}
+        </button>
+
+        <button class="btn-flat waves right edit-button" (click)="toggleEditMode()">
+            <i class="material-icons">code</i>
+        </button>
+    </div>
+    <div class="editor" #editor></div>
+</div>
