@@ -12,7 +12,8 @@ const toolList = {
     'equella_links': new NodeTool(require('./node_tools/equella_links.js')),
     'byui_style_classes': new NodeTool(require('./node_tools/byui_style_classes.js')),
     'discussions_threaded': new NodeTool(require('./node_tools/discussions_threaded.js')),
-    'course_search': new NodeTool(require('./node_tools/course_search.js'))
+    'course_search': new NodeTool(require('./node_tools/course_search.js')),
+    'broken_images': new NodeTool(require('./node_tools/broken_images.js')),
 };
 
 /**
@@ -37,31 +38,33 @@ function logMe(status, type, tool_id, course_name, course_id, userEmail) {
 async function getCanvasItems(course, options) {
     // Build the canvas-api-wrapper course and get all the needed items
     let canvasCourse = canvas.getCourse(course.id);
-    let subItems = [];
+    let items = [];
 
     for (var i = 0; i < options.categories.length; i++) {
         if (['pages', 'quizzes', 'modules'].includes(options.categories[i])) {
             // If pages, quizzes, or modules, get ALL values for them
-            await canvasCourse[options.categories[i]].getComplete();
-
+            items = items.concat(await canvasCourse[options.categories[i]].getComplete());
+            
         } else if (['quizQuestions', 'moduleItems'].includes(options.categories[i])) {
             // If looking for quiz questions or module items, flatten them here
             if (options.categories[i] === 'quizQuestions') {
-                if (!canvasCourse.quizzes) await canvasCourse.quizzes.getComplete();
-                subItems.concat(canvasCourse.quizzes.reduce((acc, quiz) => [...acc, ...quiz.questions], []));
+                if (canvasCourse.quizzes.length === 0) await canvasCourse.quizzes.getComplete();
+                items = items.concat(canvasCourse.quizzes.reduce((acc, quiz) => [...acc, ...quiz.questions], []));
             } else {
-                if (!canvasCourse.modules) await canvasCourse.modules.getComplete();
-                subItems.concat(canvasCourse.modules.reduce((acc, module) => [...acc, ...module.items], []));
+                if (canvasCourse.modules.length === 0) await canvasCourse.modules.getComplete();
+                items = items.concat(canvasCourse.modules.reduce((acc, module) => {
+                    return [...acc, ...module.moduleItems.map(moduleItem => moduleItem)];
+                }, []));
             }
 
         } else {
             // Otherwise, just get the category's items
-            await canvasCourse[options.categories[i]].get();
+            items = items.concat(await canvasCourse[options.categories[i]].get());
         }
     }
 
     // Put all of the items into a single array
-    return canvasCourse.getSubs().reduce((acc, sub) => acc.concat(sub), []).concat(subItems);
+    return items;
 }
 
 /**

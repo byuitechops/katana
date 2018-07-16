@@ -26,7 +26,6 @@ module.exports = (body) => {
                     url: `https://byui.instructure.com/accounts/1/courses/${course.id}`
                 }
             });
-            //   console.log(`formattedCourses: `, typeof formattedCourses, formattedCourses);
             resolve(formattedCourses);
         });
     });
