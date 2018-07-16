@@ -90,13 +90,6 @@ export class AppComponent {
             }
         });
 
-        // Retrieve the tool list on start
-        this.katanaService.getToolList()
-            .catch((e) => {
-                this.toastService.toast('You are in development mode. Courses were not retrieved.');
-                console.error(e);
-            });
-
         // Set the saved courses they had last selected as the currently selected courses
         Object.keys(sessionStorage).forEach(key => {
             if (key.includes('katana_course')) {

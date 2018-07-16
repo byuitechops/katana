@@ -33,9 +33,9 @@
         </form>
     </div>
 
-    <app-code-editor *ngIf="issue.details.updatedHtml" [tabs]="editorTabs"></app-code-editor>
+    <app-code-editor *ngIf="issue.html" [tabs]="buildEditorTabs()" [searchPhrase]="issue.html.searchPhrase"></app-code-editor>
 
-    <div class="card-action">
+    <div class="card-action" *ngIf="toolService.selectedTool.toolType === 'fix'">
 
         <button *ngIf="issue.status !== 'fixed' && issue.status !== 'failed'" (click)="setIssueStatus('approved')" [ngClass]="getButtonClasses('approved', 'button')"
             class="green-text" [disabled]="issue.formGroup && !issue.formGroup.valid">

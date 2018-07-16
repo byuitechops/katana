@@ -51,15 +51,18 @@ export const appRoutes: Routes = [
     },
     {
         path: 'home/tools',
-        component: ToolSelectionComponent
+        component: ToolSelectionComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path: 'home/tools/:tool_id/options',
-        component: OptionsViewComponent
+        component: OptionsViewComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path: 'home/tools/:tool_id/issues',
-        component: ToolViewComponent
+        component: ToolViewComponent,
+        canActivate: [AuthGuardService]
     }
 ];
 

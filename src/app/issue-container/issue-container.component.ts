@@ -28,11 +28,6 @@ export class IssueContainerComponent implements OnInit {
     @ViewChild('issueDetails') issueDetails: ElementRef;
 
     /**
-     * Tabs for the code editor
-     */
-    editorTabs: any[];
-
-    /**
      * Constructor
      * @param toolService Provides information and management for available tools.
      * @param courseService Provides information and management for selected courses.
@@ -49,16 +44,6 @@ export class IssueContainerComponent implements OnInit {
         this.issue.optionModel = new OptionModel(this.toolService.selectedTool.fixOptions);
         this.issue.formGroup = this.issue.optionModel.toGroup();
 
-        this.editorTabs = [{
-            title: 'Current HTML',
-            code: this.issue.details['currentHtml'],
-            readOnly: true
-        }, {
-            title: 'Updated HTML',
-            code: this.issue.details['updatedHtml'],
-            readOnly: false
-        }];
-
         // Update option values if there are values saved for any options
         if (this.issue.tempValues) {
             Object.keys(this.issue.tempValues).forEach(optionKey => {
@@ -67,6 +52,20 @@ export class IssueContainerComponent implements OnInit {
                 control.updateValueAndValidity();
             });
         }
+    }
+
+    /**
+     * Builds editor tabs to insert into the editor
+     */
+    buildEditorTabs() {
+        if (!this.toolService.selectedTool.editorTabs) return;
+        return this.toolService.selectedTool.editorTabs.map(editorTab => {
+            return {
+                title: editorTab.title,
+                htmlString: this.issue.html[editorTab.htmlKey],
+                readOnly: editorTab.readOnly
+            }
+        });
     }
 
     /**

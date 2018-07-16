@@ -10,10 +10,13 @@ module.exports = class NodeTool {
         this.title = details.title;
         this.description = details.description;
         this.icon = details.icon;
-        this.categories = details.categories;
+        this.toolType = details.toolType;
         this.toolCategory = details.toolCategory;
+        this.fixMessage = details.fixMessage;
+        this.categories = details.categories;
         this.discoverOptions = details.discoverOptions;
         this.fixOptions = details.fixOptions;
+        this.editorTabs = details.editorTabs;
         this.lastRan = null;
     }
 

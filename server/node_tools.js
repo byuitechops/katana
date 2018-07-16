@@ -7,13 +7,12 @@ const firebaseWrapper = require('./firebase-wrapper.js');
 
 /* Node Tools | (Key) Tool ID: (Value) require(pathToTool) */
 const toolList = {
-    'rename_pages': new NodeTool(require('./node_tools/rename_pages.js')),
     'alt_attributes': new NodeTool(require('./node_tools/alt_attributes.js')),
     'equella_links': new NodeTool(require('./node_tools/equella_links.js')),
     'byui_style_classes': new NodeTool(require('./node_tools/byui_style_classes.js')),
     'discussions_threaded': new NodeTool(require('./node_tools/discussions_threaded.js')),
     'course_search': new NodeTool(require('./node_tools/course_search.js')),
-    'broken_images': new NodeTool(require('./node_tools/broken_images.js')),
+    // 'broken_images': new NodeTool(require('./node_tools/broken_images.js')),
 };
 
 /**
@@ -44,7 +43,7 @@ async function getCanvasItems(course, options) {
         if (['pages', 'quizzes', 'modules'].includes(options.categories[i])) {
             // If pages, quizzes, or modules, get ALL values for them
             items = items.concat(await canvasCourse[options.categories[i]].getComplete());
-            
+
         } else if (['quizQuestions', 'moduleItems'].includes(options.categories[i])) {
             // If looking for quiz questions or module items, flatten them here
             if (options.categories[i] === 'quizQuestions') {

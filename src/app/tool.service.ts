@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { KatanaService } from './katana.service';
 import { Router } from '@angular/router';
+import { AuthGuardService } from './auth/authguard.service';
 
 /**
  * Interface for an option used for a tool's discovery mode.
@@ -45,6 +46,18 @@ export interface FixOption {
 }
 
 /**
+ * Interface for a tab to be generated on the HTML editor
+ */
+interface EditorTab {
+    /** The title of the tab */
+    title: string,
+    /** The key to use to grab the html string off the issue */
+    htmlKey: string,
+    /** Determines if the user can edit the code */
+    readOnly: boolean
+}
+
+/**
  * Interface for a tool available from the server.
  */
 export interface Tool {
@@ -54,6 +67,8 @@ export interface Tool {
     title: string,
     /** Description of the tool's uses */
     description: string,
+    /** The tool's type - Determines some of the actions available to the user */
+    toolType: string,
     /** MCIcon used to represent the tool in the {@link ToolSelectionComponent} */
     icon: string,
     /** Categories this tool will affect in Canvas (Pages, Discussions, Quizzes, etc.)*/
@@ -65,7 +80,9 @@ export interface Tool {
     /** {@link FixOption}s for this tool, used to generate the options on each {@link IssueContainerComponent} */
     fixOptions: FixOption[],
     /** The message to display at the bottom of each {@link IssueContainerComponent} when the issue has been fixed */
-    fixMessage?: string
+    fixMessage?: string,
+    /** The tabs to go into the HTML editor on the issue, if needed */
+    editorTabs?: EditorTab[]
 };
 
 /**
@@ -180,6 +197,7 @@ export class ToolService {
      * @param router Used to navigate the user as needed.
      */
     constructor(private router: Router) {
+
         let loc = window.location.href;
 
         if (loc.includes('options') && !this._selectedTool && sessionStorage.selectedTool) {

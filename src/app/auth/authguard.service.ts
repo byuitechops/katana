@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from 'firebase';
 import { auth } from 'firebase';
 import { Observable } from 'rxjs';
-import { KatanaService } from '../katana.service';
 
 /**
  * Verifies the user is correctly logged in with a valid
@@ -25,14 +24,19 @@ export class AuthGuardService implements CanActivate {
      *******************************/
     private userDetails: User = null;
 
+    /** 
+     * Event emitted when auth status changes
+     */
+    @Output() authState = new EventEmitter<boolean>();
+
     /** *********************************************************************************
      * @param afAuth angularfire2 - https://github.com/angular/angularfire2
      * @param router Used to verify location and navigate the user to new pages as needed
      ***********************************************************************************/
     constructor(public afAuth: AngularFireAuth,
-        public router: Router,
-        private katanaService: KatanaService) {
+        public router: Router) {
         this.user = afAuth.authState;
+        this.authState.emit(false);
 
         auth().getRedirectResult()
             .catch(console.error);
@@ -41,14 +45,13 @@ export class AuthGuardService implements CanActivate {
             if (user) {
                 auth().updateCurrentUser(user);
                 this.userDetails = user;
-                this.katanaService.logUserStatus(this.userDetails.email, 'Logged In');
             } else if (!user) {
                 if (this.userDetails) {
-                    this.katanaService.logUserStatus(this.userDetails.email, 'Logged Out');
                     this.userDetails = null;
                 }
                 this.doGoogleLogin();
             }
+            this.authState.emit(this.canActivate());
             this.router.navigate(['/']);
         });
     }
@@ -58,11 +61,7 @@ export class AuthGuardService implements CanActivate {
      * are not logged in with a valid google (byui) account.
      ***********************************************************************************/
     canActivate(): boolean {
-        if (this.userDetails !== null && this.userDetails.email.includes('@byui.edu')) {
-            return true;
-        } else {
-            return false;
-        }
+        return (this.userDetails !== null && this.userDetails.email.includes('@byui.edu'));
     }
 
     /** *********************************************************************************
