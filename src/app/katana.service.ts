@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CourseService, IssueItem, Course } from './course.service';
-import { ToolService, Tool } from './tool.service';
+import { CourseService } from './course.service';
+import { ToolService } from './tool.service';
 import { ToastService } from './toast.service';
 import { Router } from '@angular/router';
 import { auth } from 'firebase';
+import { AuthGuardService } from './authguard.service';
 
 /**
  * Provides access to make calls to the Katana server.
@@ -31,7 +32,21 @@ export class KatanaService {
         private toolService: ToolService,
         private courseService: CourseService,
         private router: Router,
-        private toastService: ToastService) { }
+        private authGuardService: AuthGuardService,
+        private toastService: ToastService) {
+
+        // Listens to changes in the auth state, and if the user is valid,
+        // it retrieves the list of tools from the server
+        authGuardService.authState.subscribe(state => {
+            if (state) {
+                this.getToolList()
+                    .catch(console.error);
+            } else {
+                toolService.toolList = [];
+            }
+        });
+
+    }
 
     /**
      * Currently open web sockets.
@@ -43,6 +58,9 @@ export class KatanaService {
      *****************************************************************/
     getToolList() {
         return new Promise((resolve, reject) => {
+            if (!this.authGuardService.canActivate()) {
+                return reject(new Error('ToolList: User is not authenticated.'));
+            }
             this.http.get('/tool-list').subscribe((toolList: any): any => {
                 this.toolService.toolList = toolList;
                 resolve();
@@ -55,6 +73,9 @@ export class KatanaService {
      *****************************************************************/
     getCourses(body) {
         return new Promise((resolve, reject) => {
+            if (!this.authGuardService.canActivate()) {
+                return reject(new Error('Course Search: User is not authenticated.'));
+            }
             let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             headers.append('Content-Type', 'application/json');
             this.http.post('/course-retrieval', body, { headers: headers }).subscribe(
@@ -86,6 +107,10 @@ export class KatanaService {
      */
     discoverIssues(courses) {
         return new Promise((resolve, reject) => {
+            if (!this.authGuardService.canActivate()) {
+                return reject(new Error('Discover: User is not authenticated.'));
+            }
+
             this.toolService.processingMessage = 'Searching for Issues...';
             this.toolService.processing = true;
             var completed = 0;
@@ -151,6 +176,10 @@ export class KatanaService {
      */
     fixIssues(courses) {
         return new Promise((resolve, reject) => {
+            if (!this.authGuardService.canActivate()) {
+                return reject(new Error('Fix: User is not authenticated.'));
+            }
+
             this.toolService.processingMessage = 'Fixing Issues...';
             this.toolService.processing = true;
 

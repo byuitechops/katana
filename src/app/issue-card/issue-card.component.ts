@@ -1,5 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { CourseService, IssueItem } from '../course.service';
+import { CourseService } from '../course.service';
+import { IssueItem } from '../interfaces';
 
 /**
  * Manages the display for a single {@link IssueItem}.

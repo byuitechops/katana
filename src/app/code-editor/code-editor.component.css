@@ -10,7 +10,6 @@
 .html-bar {
     border-top: solid 1px var(--ashen);
     display: flex;
-    padding: 0 20px;
     width: 100%;
 }
 

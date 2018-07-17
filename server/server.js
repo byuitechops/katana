@@ -13,8 +13,8 @@ const logActions = require('./logging.js');
 const serverPort = 8000;
 
 /* Firebase Magic */
-const firebaseWrapper = require('./firebase-wrapper.js');
-const db = firebaseWrapper.initializeFirebase();
+const firestoreWrapper = require('./firestore-wrapper.js');
+const db = firestoreWrapper.initializeFirebase();
 
 
 // REMOVE later on after we don't need it

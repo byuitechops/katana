@@ -10,63 +10,61 @@ const cheerio = require('cheerio');
 function discover(canvasItem, issueItem, options) {
     // console.log(canvasItem.constructor.name, options.inputType);
     let title = '';
-    let description = 'The search came back with a match on this item';
+    let description = `The search came back with a match for "<strong style="font-weight: 500">${options.searchPhrase}</strong>"`;
     let display = `
         <div>${description}</div>
-        <h3>Search Phrase</h3>
-        <div>
-            ${options.searchPhrase}
-        </div>
-    `;    
+    `;
     let details = {
         searchPhrase: options.searchPhrase,
         description
+    };
+    let html = {
+        currentHtml: canvasItem.getHtml().replace(/((<link rel)|(<script src))=".*amazonaws.*((.css")|(script))>/g, ''),
+        searchPhrase: options.searchPhrase
     };
 
     if (options.inputType === 'Text') {
         // search all $.text() in the course, and titles
         // currently searching some discussions, quizzes, and module items more 
         // than once due to multiple occurances of the same item throughout the course
-        // console.log(`Title: ${canvasItem.getTitle()}`);
-        // console.log(`Type: ${canvasItem.constructor.name}`);
-        
+
         if (canvasItem.constructor.name !== 'Module' && canvasItem.constructor.name !== 'ModuleItem') {
-            var $ = cheerio.load(canvasItem.getHtml());
-            var text = $('*').text();
-            if (canvasItem.getHtml().toLowerCase().includes(options.searchPhrase.toLowerCase())) {
+            if (html.currentHtml.toLowerCase().includes(options.searchPhrase.toLowerCase())) {
                 var regex = new RegExp(options.searchPhrase, 'gi');
-                var matches = canvasItem.getHtml().toLowerCase().match(regex)
-                console.log(`matches:`, matches)
-                console.log(`matches length:`, matches.length, '\n');
-            
-                title = `${options.inputType} Matched`;
+                var matches = html.currentHtml.toLowerCase().match(regex);
+                display += `
+                <h3>Number of results</h3>
+                <div>
+                    ${matches.length}
+                </div>`;
+                title = `${options.inputType} Search Results`;
                 details.title = title;
-                issueItem.newIssue(title, display, details);
+                issueItem.newIssue(title, display, details, html);
             }
-        } else {     
-            var included = canvasItem.getTitle().toLowerCase().includes(options.searchPhrase.toLowerCase()); 
+        } else {
+            var included = canvasItem.getTitle().toLowerCase().includes(options.searchPhrase.toLowerCase());
             if (included) {
                 title = `${options.inputType} Matched`;
                 details.title = title;
-                issueItem.newIssue(title, display, details);
-            } 
+                issueItem.newIssue(title, display, details, html);
+            }
             return;
-        } 
+        }
     } else if (options.inputType === 'HTML') {
         // search all $.html() in the course, and maybe titles?
-        if (!canvasItem.getHtml() || !canvasItem.getHtml().toLowerCase().includes(options.searchPhrase)) return;
-        let $ = cheerio.load(canvasItem.getHtml());
-        console.log(`HTML`, options.searchPhrase);
-        
+        if (!html.currentHtml || !html.currentHtml.toLowerCase().includes(options.searchPhrase)) return;
+        // let $ = cheerio.load(canvasItem.getHtml());
+        // console.log(`HTML`, options.searchPhrase);
+
         details.title = title;
         title = `${options.inputType} Matched`;
         issueItem.newIssue(title, display, details);
-    } else if (options.inputType === 'Regex' && canvasItem.getHtml() !== undefined) {
+    } else if (options.inputType === 'Regex' && html.currentHtml !== undefined) {
         // search all $.html(), $.text(), and titles?
         let regex = new RegExp(options.searchPhrase, 'ig');
-        let found =  regex.test(canvasItem.getHtml());
-        console.log(`Regex`, found, options.searchPhrase);
-        
+        let found = regex.test(html.currentHtml);
+        // console.log(`Regex`, found, options.searchPhrase);
+
         details.title = title;
         title = `${options.inputType} Matched`;
         issueItem.newIssue(title, display, details);
@@ -91,8 +89,9 @@ module.exports = {
     id: 'course_search',
     title: 'Course Search',
     description: 'This tool allows you to search Canvas courses\' HTML and item titles for given words and/or phrases. The tool will only search up-to all text within the html, the html itself, and/or the titles of the various items throughout the course',
-    fixedMessage: 'The given search phrase matched',
     icon: 'search',
+    toolType: 'search',
+    toolCategory: 'html',
     categories: [
         'assignments',
         'discussions',
@@ -103,13 +102,12 @@ module.exports = {
         'quizzes',
         'quizQuestions'
     ],
-    toolCategory: 'html',
     discoverOptions: [{
         title: 'Input Type',
         key: 'inputType',
         description: 'How would you like to search?',
         type: 'dropdown',
-        choices: ['', 'Text', 'HTML', 'Regex'],
+        choices: ['', 'Text'],
         required: true
     }, {
         title: 'Search Phrase',
@@ -120,4 +118,9 @@ module.exports = {
         required: true
     }],
     fixOptions: [],
+    editorTabs: [{
+        title: 'HTML',
+        htmlKey: 'currentHtml',
+        readOnly: true
+    }]
 };

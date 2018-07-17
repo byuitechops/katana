@@ -60,11 +60,14 @@ function discover(canvasItem, issueItem, options) {
         let details = {
             currentClasses: '',
             updatedClasses: `byui ${styleClass}`,
+        };
+
+        let html = {
             currentHtml,
             updatedHtml
         };
 
-        issueItem.newIssue(title, display, details);
+        issueItem.newIssue(title, display, details, html);
     }
 }
 
@@ -109,6 +112,9 @@ module.exports = {
     title: 'BYUI Style Classes',
     description: 'Courses require two style classes on every segment of HTML in a course in order to apply CSS specific to the course. This tool identifies any items in each course that are missing or have the incorrect style classes.',
     icon: 'style',
+    toolCategory: 'html',
+    toolType: 'fix',
+    fixMessage: 'The style classes have been updated on this item',
     categories: [
         'pages',
         'assignments',
@@ -116,7 +122,15 @@ module.exports = {
         'quizzes',
         'quizQuestions'
     ],
-    toolCategory: 'html',
     discoverOptions: [],
     fixOptions: [],
+    editorTabs: [{
+        title: 'Current HTML',
+        htmlKey: 'currentHtml',
+        readOnly: true
+    }, {
+        title: 'Updated HTML',
+        htmlKey: 'updatedHtml',
+        readOnly: true
+    }]
 };

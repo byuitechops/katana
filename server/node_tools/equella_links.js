@@ -104,6 +104,8 @@ module.exports = {
     title: 'Update Equella Links',
     description: 'This tool will identify Equella links that are statically set to use a single version of the Equella item. With approval, it will change these links to use the dynamic format.',
     icon: 'link',
+    toolCategory: 'html',
+    toolType: 'fix',
     categories: [
         'pages',
         'assignments',
@@ -111,7 +113,6 @@ module.exports = {
         'quizzes',
         'quizQuestions'
     ],
-    toolCategory: 'html',
     discoverOptions: [{
         title: 'Exclusions',
         key: 'excludeKeywords',

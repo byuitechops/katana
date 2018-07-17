@@ -2,7 +2,7 @@ import { Component, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToolService } from '../tool.service';
 import { auth } from 'firebase';
-import { AuthGuardService } from '../auth/authguard.service';
+import { AuthGuardService } from '../authguard.service';
 import { MaterializeAction } from 'angular2-materialize';
 
 /** ******************************************************************

@@ -33,9 +33,11 @@
         </form>
     </div>
 
-    <app-code-editor *ngIf="issue.details.updatedHtml" [tabs]="editorTabs"></app-code-editor>
+    <!-- Code Editor - Will only show up if the issue has contents in its "html" property -->
+    <app-code-editor *ngIf="issue.html !== {} && issue.html !== undefined" [tabs]="buildEditorTabs()" [searchPhrase]="issue.html.searchPhrase"></app-code-editor>
 
-    <div class="card-action">
+    <!-- Card Actions - this section contains the "approve" and "skip" buttons, as well as the fix message container -->
+    <div class="card-action" *ngIf="toolService.selectedTool.toolType === 'fix'">
 
         <button *ngIf="issue.status !== 'fixed' && issue.status !== 'failed'" (click)="setIssueStatus('approved')" [ngClass]="getButtonClasses('approved', 'button')"
             class="green-text" [disabled]="issue.formGroup && !issue.formGroup.valid">

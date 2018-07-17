@@ -39,6 +39,7 @@
     "logger": "github:byuitechops/logger",
     "materialize-css": "^0.100.2",
     "morgan": "^1.9.0",
+    "object-sizeof": "^1.2.0",
     "rxjs": "^6.2.0",
     "rxjs-compat": "^6.2.1",
     "ws": "^5.2.1",

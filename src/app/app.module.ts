@@ -12,8 +12,8 @@ import 'rxjs';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { environment } from './auth/firebase.auth';
-import { AuthGuardService } from './auth/authguard.service';
+import { environment } from './firebase.auth';
+import { AuthGuardService } from './authguard.service';
 
 /* Katana Components */
 import { AppComponent } from './app.component';
@@ -51,15 +51,18 @@ export const appRoutes: Routes = [
     },
     {
         path: 'home/tools',
-        component: ToolSelectionComponent
+        component: ToolSelectionComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path: 'home/tools/:tool_id/options',
-        component: OptionsViewComponent
+        component: OptionsViewComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path: 'home/tools/:tool_id/issues',
-        component: ToolViewComponent
+        component: ToolViewComponent,
+        canActivate: [AuthGuardService]
     }
 ];
 
