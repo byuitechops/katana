@@ -29,6 +29,15 @@ module.exports = class NodeTool {
             // Run the item through the discover function
             this._discover(canvasItem, issueItem, options);
 
+            // Strip off Canvas's script and link tags
+            issueItem.issues.forEach(issue => {
+                if (issue.html !== {}) {
+                    Object.keys(issue.html).forEach(key => {
+                        issue.html[key] = issue.html[key].replace(/((<link rel)|(<script src))=".*amazonaws.*((.css")|(script))>/g, '');
+                    });
+                }
+            })
+
             return issueItem;
         } catch (e) {
             console.error(e);
