@@ -13,7 +13,7 @@ function initializeFirebase() {
     }
     firebaseAdmin.initializeApp({
         credential: firebaseAdmin.credential.cert(serviceAccount),
-        databaseURL: "https://katana-24a36.firebaseio.com"
+        databaseURL: 'https://katana-24a36.firebaseio.com'
     });
     db = firebaseAdmin.firestore();
     return db;
@@ -30,6 +30,7 @@ function _log(collectionTitle, data) {
             }
             return acc += `${chalk.cyanBright(key.toUpperCase())}:${dataItem} `;
         }, `${chalk.greenBright('FIRESTORE')} ${chalk.green(collectionTitle)} | `);
+        console.log(str);
     }
 
     // Check to see if string is larger than 1 MB
@@ -72,4 +73,4 @@ module.exports = {
     toolLog,
     userLog,
     db
-}
+};

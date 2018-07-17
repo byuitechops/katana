@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CourseService, IssueItem, Course } from './course.service';
-import { ToolService, Tool } from './tool.service';
+import { CourseService } from './course.service';
+import { ToolService } from './tool.service';
 import { ToastService } from './toast.service';
 import { Router } from '@angular/router';
 import { auth } from 'firebase';

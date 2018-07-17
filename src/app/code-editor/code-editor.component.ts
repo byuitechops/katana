@@ -58,6 +58,9 @@ export class CodeEditorComponent implements OnInit {
      */
     _tabs: any[] = [];
 
+    /**
+     * Constructor
+     */
     constructor() { }
 
     /**
@@ -66,19 +69,25 @@ export class CodeEditorComponent implements OnInit {
      * inserts their code, and then sets the settings and options for the editor.
      */
     ngOnInit() {
+        // The EditSession class is used to spawn new sessions in the editor
         let EditSession = window['ace'].require('ace/edit_session').EditSession;
+        // Allows Ctrl+F Search functionality (keep, even though it says the var is unused)
         let searchBox = window['ace'].require('ace/searchbox');
 
+        // Save a correct reference to the tab objects that is safe to use
         this._tabs = this.tabs;
 
+        // Create and add an editor session to each tab, beautify its code, and insert it
         this._tabs.forEach(tab => {
-            let code = window['html_beautify'](tab['htmlString'] || ' ');
+            let code = window['html_beautify'](tab['htmlString'] || ' '); // Beautifies the code
             tab.session = new EditSession(code);
             tab.session.setMode('ace/mode/html');
             tab.session.setUseWrapMode(true);
-            tab.session.setTabSize(4);
+            tab.session.setUseWorker(false); // Disables the linter/syntax checker
+            tab.session.setTabSize(4); // Sets the tab size to 4 spaces
         });
 
+        // Create the editor, set the options, and set the first session
         this.editor = window['ace'].edit(this.editorEl.nativeElement);
         this.editor.setOption("minLines", 10);
         this.editor.setOption("maxLines", 10);
@@ -90,7 +99,8 @@ export class CodeEditorComponent implements OnInit {
 
     /**
      * Sets the editor's session to the selected tab's session
-     * @param tab The tab (and it's related info) to set as the editor's current session
+     * @param tab The tab (and it's related info) to set as the
+     * editor's current session
      */
     setEditorSession(tab) {
         if (!tab.session) return;
@@ -98,16 +108,18 @@ export class CodeEditorComponent implements OnInit {
         this.editor.setSession(tab.session);
         this.activeTab = tab;
 
+        // Converts the provided search phrase to a RegExp
         let reg = new RegExp(this.searchPhrase, 'gi');
+        // Finds and highlights all matches to the RegExp
         this.editor.findAll(reg, {
-            needle: this.searchPhrase,
+            needle: reg,
             wrap: true,
             regExp: true
         });
     }
 
     /**
-     * Toggles the height of the editor window.
+     * Toggles the height of the editor window using Ace's "maxLines" editor setting.
      */
     expandView() {
         this.viewExpanded = !this.viewExpanded;

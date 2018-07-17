@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, Event, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { CourseService, IssueItem } from './course.service';
+import { CourseService } from './course.service';
 import { KatanaService } from './katana.service';
 import { ToastService } from './toast.service';
 import { ToolService } from './tool.service';

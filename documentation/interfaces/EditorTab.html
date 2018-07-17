@@ -565,7 +565,7 @@
 
 <ol class="breadcrumb">
   <li>Interfaces</li>
-  <li>Issue</li>
+  <li>EditorTab</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -590,7 +590,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Represents a single issue in an <a href="../interfaces/IssueItem.html">IssueItem</a>. </p>
+                <p>Interface for a tab to be generated on the HTML editor</p>
 
             </p>
 
@@ -608,32 +608,10 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#details">details</a>
+                                        <a href="#htmlKey">htmlKey</a>
                                 </li>
                                 <li>
-                                        <a href="#display">display</a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#formGroup">formGroup</a>
-                                </li>
-                                <li>
-                                        <a href="#html">html</a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#optionModel">optionModel</a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#optionValues">optionValues</a>
-                                </li>
-                                <li>
-                                        <a href="#status">status</a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#tempValues">tempValues</a>
+                                        <a href="#readOnly">readOnly</a>
                                 </li>
                                 <li>
                                         <a href="#title">title</a>
@@ -653,48 +631,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="details"></a>
-                                        <span class="name"><b>details</b><a href="#details"><span class="fa fa-link"></span></a></span>
+                                        <a name="htmlKey"></a>
+                                        <span class="name"><b>htmlKey</b><a href="#htmlKey"><span class="fa fa-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>details:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>An object containing issue-specific details </p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="display"></a>
-                                        <span class="name"><b>display</b><a href="#display"><span class="fa fa-link"></span></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>display:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>htmlKey:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -713,7 +656,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The HTML string used to display the contents of the issue in its <a href="../components/IssueContainerComponent.html">IssueContainerComponent</a> </p>
+                                    <div class="io-description"><p>The key to use to grab the html string off the issue </p>
 </div>
                                 </td>
                             </tr>
@@ -723,13 +666,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="formGroup"></a>
-                                        <span class="name"><b>formGroup</b><a href="#formGroup"><span class="fa fa-link"></span></a></span>
+                                        <a name="readOnly"></a>
+                                        <span class="name"><b>readOnly</b><a href="#readOnly"><span class="fa fa-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>formGroup:     <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                                        <code>readOnly:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -737,47 +680,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The {@link FormGroup} generated for the issue&#39;s {@link FixOption}s </p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="html"></a>
-                                        <span class="name"><b>html</b><a href="#html"><span class="fa fa-link"></span></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>html:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                                         </td>
                                     </tr>
@@ -788,162 +691,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>If included, this is the HTML for the issue </p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="optionModel"></a>
-                                        <span class="name"><b>optionModel</b><a href="#optionModel"><span class="fa fa-link"></span></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>optionModel:     <code><a href="../classes/OptionModel.html" target="_self" >OptionModel</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code><a href="../classes/OptionModel.html" target="_self" >OptionModel</a></code>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The <a href="../classes/OptionModel.html">OptionModel</a> used to generated any <a href="../interfaces/FixOption.html">FixOption</a>s used by the tool </p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="optionValues"></a>
-                                        <span class="name"><b>optionValues</b><a href="#optionValues"><span class="fa fa-link"></span></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>optionValues:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The results of form generated by the above <a href="../classes/OptionModel.html">OptionModel</a> </p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="status"></a>
-                                        <span class="name"><b>status</b><a href="#status"><span class="fa fa-link"></span></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>status:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The status of the issue (untouched, approved, skipped, fixed, failed) </p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="tempValues"></a>
-                                        <span class="name"><b>tempValues</b><a href="#tempValues"><span class="fa fa-link"></span></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>tempValues:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>Used to store the current state of the form to restore it on page reload </p>
+                                    <div class="io-description"><p>Determines if the user can edit the code </p>
 </div>
                                 </td>
                             </tr>
@@ -978,7 +726,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The title of the issue </p>
+                                    <div class="io-description"><p>The title of the tab </p>
 </div>
                                 </td>
                             </tr>
@@ -1187,7 +935,7 @@ export interface Course {
         <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'Issue.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'EditorTab.html';
         </script>
 
        <script src="../js/search/search.js"></script>

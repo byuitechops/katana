@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { CourseService, Course } from '../course.service';
+import { CourseService } from '../course.service';
 import { ToolService } from '../tool.service';
+import { Course } from '../interfaces';
 
 /**
  * Represents a {@link Course} to be acted on. Generated based on the list of 
