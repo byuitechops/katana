@@ -3,7 +3,6 @@
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
  * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
- * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
 
@@ -45,10 +44,12 @@ module.exports = {
     title: 'Rename Pages',
     description: '',
     icon: 'code',
+    toolType: 'fix',
+    toolCategory: 'html',
+    fixMessage: 'Describe the result of an item being fixed here',
     categories: [
         'pages',
     ],
-    toolCategory: 'html',
     discoverOptions: [{
         title: 'Current Page Title',
         key: 'currentTitle',

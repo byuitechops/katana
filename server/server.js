@@ -13,8 +13,8 @@ const logActions = require('./logging.js');
 const serverPort = 8000;
 
 /* Firebase Magic */
-const firebaseWrapper = require('./firebase-wrapper.js');
-const db = firebaseWrapper.initializeFirebase();
+const firestoreWrapper = require('./firestore-wrapper.js');
+const db = firestoreWrapper.initializeFirebase();
 
 
 // REMOVE later on after we don't need it
@@ -70,7 +70,7 @@ app.get('/tool-list', (req, res) => {
  * @returns {courses[]} - List of courses that match the search criteria
  ************************************************************************/
 app.post('/user-status', (req, res) => {
-    console.log(`${req.body.message} | ${req.body.userEmail}`);
+    console.log(`${req.body.message} | ${req.body.userEmail} | ${new Date()}`);
     firebaseWrapper.userLog({email: req.body.userEmail, action: req.body.message})
 });
 

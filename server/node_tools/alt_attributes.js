@@ -5,7 +5,6 @@ const cheerio = require('cheerio');
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
  * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
- * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
     if (canvasItem.getHtml() === null) return;
@@ -102,8 +101,10 @@ module.exports = {
     id: 'alt_attributes',
     title: 'Alt Attributes',
     description: 'This tool allows you to edit image alt attributes. It can provide all images in the course, or just images that have empty or missing alt attributes. Courses with a high number of images may cause delays when navigating through issues. You will NOT be able to see any of the images if you are not signed into Canvas.',
-    fixedMessage: 'The new alt attribute has been inserted',
     icon: 'text_rotation_none',
+    toolType: 'fix',
+    toolCategory: 'html',
+    fixedMessage: 'The new alt attribute has been inserted',
     categories: [
         'pages',
         'assignments',
@@ -111,7 +112,6 @@ module.exports = {
         'quizzes',
         'quizQuestions'
     ],
-    toolCategory: 'html',
     discoverOptions: [{
         title: 'Conditions',
         key: 'altCondition',

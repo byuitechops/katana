@@ -5,9 +5,9 @@ const cheerio = require('cheerio');
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
  * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
- * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
+    // ADD ability to check module items
     if (canvasItem.getHtml() === null) return;
     var $ = cheerio.load(canvasItem.getHtml());
     var aLinks = $('a').get();
@@ -89,7 +89,6 @@ function fix(canvasItem, issueItem, options) {
                 }
             });
             canvasItem.setHtml($.html());
-            await canvasItem.update();
             resolve();
         } catch (e) {
             issueItem.issues[0].status = 'failed';
@@ -105,6 +104,8 @@ module.exports = {
     title: 'Update Equella Links',
     description: 'This tool will identify Equella links that are statically set to use a single version of the Equella item. With approval, it will change these links to use the dynamic format.',
     icon: 'link',
+    toolCategory: 'html',
+    toolType: 'fix',
     categories: [
         'pages',
         'assignments',
@@ -112,7 +113,6 @@ module.exports = {
         'quizzes',
         'quizQuestions'
     ],
-    toolCategory: 'html',
     discoverOptions: [{
         title: 'Exclusions',
         key: 'excludeKeywords',

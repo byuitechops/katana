@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { Issue, CourseService } from '../course.service';
-import { OptionModel } from '../options.service';
+import { CourseService } from '../course.service';
 import { ToolService } from '../tool.service';
+import { Issue } from '../interfaces';
+import { OptionModel } from '../classes';
 
 /**
  * Container for the display of a single {@link Issue}.
@@ -18,7 +19,12 @@ export class IssueContainerComponent implements OnInit {
     @Input('issue') issue: Issue;
 
     /**
-     * The element containing details about the issue.
+     * The index of the item's issues array the issue is at.
+     */
+    @Input('index') index: number;
+
+    /**
+     * Element reference to the card containing details about the issue.
      */
     @ViewChild('issueDetails') issueDetails: ElementRef;
 
@@ -28,14 +34,14 @@ export class IssueContainerComponent implements OnInit {
      * @param courseService Provides information and management for selected courses.
      */
     constructor(private toolService: ToolService,
-        private courseService: CourseService) {
-    }
+        private courseService: CourseService) { }
 
     /**
      * Fired when the component is intialized, this manages the item's display.
      * It inserts the form for the {@link Issue}'s {@link FixOption}s if available.
      */
     ngOnInit() {
+        console.log(this.issue.html);
         this.issueDetails.nativeElement.innerHTML = this.issue.display;
         this.issue.optionModel = new OptionModel(this.toolService.selectedTool.fixOptions);
         this.issue.formGroup = this.issue.optionModel.toGroup();
@@ -48,6 +54,22 @@ export class IssueContainerComponent implements OnInit {
                 control.updateValueAndValidity();
             });
         }
+    }
+
+    /**
+     * Using the {@link Tab}s provided by the Node Tool, builds
+     * useable tab objects for each issue.
+     * @returns {Object[]} The tabs to use to build the editor instance.
+     */
+    buildEditorTabs() {
+        if (!this.toolService.selectedTool.editorTabs) return;
+        return this.toolService.selectedTool.editorTabs.map(editorTab => {
+            return {
+                title: editorTab.title,
+                htmlString: this.issue.html[editorTab.htmlKey],
+                readOnly: editorTab.readOnly
+            }
+        });
     }
 
     /**

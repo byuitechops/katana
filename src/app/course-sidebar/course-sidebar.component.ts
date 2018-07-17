@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { CourseService, Course } from '../course.service';
+import { CourseService } from '../course.service';
 import { ToolService } from '../tool.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { Course } from '../interfaces';
 
 /**
  * The sidebar containing selected course management and the

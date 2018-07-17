@@ -1,19 +1,4 @@
-import { Injectable } from '@angular/core';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
-
-/**
- * This service will be replaced with just the OptionModel class. The
- * service is pointless.
- */
-@Injectable({
-    providedIn: 'root'
-})
-export class OptionsService {
-    /**
-     * @ignore
-     */
-    constructor() { }
-}
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 /**
  * Helper for building a reactive form. Used to create the

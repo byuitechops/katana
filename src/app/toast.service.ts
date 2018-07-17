@@ -21,8 +21,12 @@ export class ToastService {
      */
     toastError(e) {
         function buildHTML(message) {
+            console.log(typeof message, message);
+            if (typeof message === 'object') {
+                message = JSON.stringify(message);
+            }
             return `
-                <span style="color:red !important">${message}</span>
+                <span style="color:red !important">${JSON.stringify(message)}</span>
                 <button onclick="document.querySelector('.toast').remove()" class="btn-flat toast-action">
                     Dismiss
                 </button>
@@ -52,7 +56,7 @@ export class ToastService {
     toast(text) {
         function buildHTML(message) {
             return `
-                <span>${message}</span>
+                <span>${JSON.stringify(message)}</span>
                 <button onclick="document.querySelector('.toast').remove()" class="btn-flat toast-action">
                     Dismiss
                 </button>

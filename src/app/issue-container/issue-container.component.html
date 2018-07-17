@@ -11,7 +11,7 @@
                 <div [ngSwitch]="option.type" class="option__container" [class.multiselect]="option.type === 'multiselect'" [class.required]="!issue.formGroup.controls[option.key].valid">
 
                     <!-- Silly, but [attr.disabled] was the only way I could get it to be disabled -->
-                    <div *ngSwitchCase="'text'">
+                    <div *ngSwitchCase="'text'" class="option__text">
                         <input [attr.disabled]="isFixed() ? 'disabled' : null" type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key"
                             (input)="onChange(option.key)" autocomplete="off" autofocus>
                     </div>
@@ -28,15 +28,16 @@
                             <option *ngFor="let choice of option.choices">{{choice.text}}</option>
                         </select>
                     </div>
-
                 </div>
             </div>
         </form>
-
-
     </div>
 
-    <div class="card-action">
+    <!-- Code Editor - Will only show up if the issue has contents in its "html" property -->
+    <app-code-editor *ngIf="issue.html !== {} && issue.html !== undefined" [tabs]="buildEditorTabs()" [searchPhrase]="issue.html.searchPhrase"></app-code-editor>
+
+    <!-- Card Actions - this section contains the "approve" and "skip" buttons, as well as the fix message container -->
+    <div class="card-action" *ngIf="toolService.selectedTool.toolType === 'fix'">
 
         <button *ngIf="issue.status !== 'fixed' && issue.status !== 'failed'" (click)="setIssueStatus('approved')" [ngClass]="getButtonClasses('approved', 'button')"
             class="green-text" [disabled]="issue.formGroup && !issue.formGroup.valid">

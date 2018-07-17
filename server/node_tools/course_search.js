@@ -8,69 +8,67 @@ const cheerio = require('cheerio');
  * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
-    if (!canvasItem.getHtml() || !canvasItem.getHtml().includes(options.searchPhrase)) return;
-    var $ = cheerio.load(canvasItem.getHtml());
-
-    console.log(`Matched`, canvasItem.getTitle());
-
-    let title = 'Search Phrase Matched';
-    let description = 'The search came back with a match on this item';
+    // console.log(canvasItem.constructor.name, options.inputType);
+    let title = '';
+    let description = `The search came back with a match for "<strong style="font-weight: 500">${options.searchPhrase}</strong>"`;
     let display = `
         <div>${description}</div>
-        <h3>Matched Text</h3>
-        <div>
-            ${options.searchPhrase}
-        </div>
     `;
     let details = {
         searchPhrase: options.searchPhrase,
-        title,
         description
     };
+    let html = {
+        currentHtml: canvasItem.getHtml().replace(/((<link rel)|(<script src))=".*amazonaws.*((.css")|(script))>/g, ''),
+        searchPhrase: options.searchPhrase
+    };
 
-    issueItem.newIssue(title, display, details);
-    // images.each((i, image) => {
-    //     image = $(image);
-    //     var alt = image.attr('alt');
+    if (options.inputType === 'Text') {
+        // search all $.text() in the course, and titles
+        // currently searching some discussions, quizzes, and module items more 
+        // than once due to multiple occurances of the same item throughout the course
 
-    //     // If the option to get ALL alt attributes is selected, move forward, else check alt it is empty/missing
-    //     if (options.altCondition.includes('All image alt') || !alt || alt === '') {
+        if (canvasItem.constructor.name !== 'Module' && canvasItem.constructor.name !== 'ModuleItem') {
+            if (html.currentHtml.toLowerCase().includes(options.searchPhrase.toLowerCase())) {
+                var regex = new RegExp(options.searchPhrase, 'gi');
+                var matches = html.currentHtml.toLowerCase().match(regex);
+                display += `
+                <h3>Number of results</h3>
+                <div>
+                    ${matches.length}
+                </div>`;
+                title = `${options.inputType} Search Results`;
+                details.title = title;
+                issueItem.newIssue(title, display, details, html);
+            }
+        } else {
+            var included = canvasItem.getTitle().toLowerCase().includes(options.searchPhrase.toLowerCase());
+            if (included) {
+                title = `${options.inputType} Matched`;
+                details.title = title;
+                issueItem.newIssue(title, display, details, html);
+            }
+            return;
+        }
+    } else if (options.inputType === 'HTML') {
+        // search all $.html() in the course, and maybe titles?
+        if (!html.currentHtml || !html.currentHtml.toLowerCase().includes(options.searchPhrase)) return;
+        // let $ = cheerio.load(canvasItem.getHtml());
+        // console.log(`HTML`, options.searchPhrase);
 
-    //         let title = 'Existing Alt Attribute';
-    //         let description = 'The alt text on this image should be a good description of the image.';
+        details.title = title;
+        title = `${options.inputType} Matched`;
+        issueItem.newIssue(title, display, details);
+    } else if (options.inputType === 'Regex' && html.currentHtml !== undefined) {
+        // search all $.html(), $.text(), and titles?
+        let regex = new RegExp(options.searchPhrase, 'ig');
+        let found = regex.test(html.currentHtml);
+        // console.log(`Regex`, found, options.searchPhrase);
 
-    //         if (alt === '') {
-    //             title = 'Empty Alt Attribute';
-    //             description = 'The alt text on this image is empty.';
-    //         } else if (!alt) {
-    //             title = 'Missing Alt Attribute';
-    //             description = 'The alt text on this image is missing.';
-    //         }
-
-    //         let display = `
-    //             <div>${description}</div>
-    //             <h3>Image</h3>
-    //             <div class="navy z-depth-1" style="max-width:100%;border-radius:3px;padding:10px 10px 4px 10px;display:inline-block">
-    //                 <img style="max-width:100%" src="${image.attr('src')}">
-    //             </div>
-    //         `;
-
-    //         if (alt) {
-    //             display += `
-    //                 <h3>Current Alt Text</h3>
-    //                 <div class="code-block">${alt}</div>
-    //             `;
-    //         }
-
-    //         let details = {
-    //             image: image.attr('src'),
-    //             title,
-    //             description
-    //         };
-
-    //         issueItem.newIssue(title, display, details);
-    //     }
-    // });
+        details.title = title;
+        title = `${options.inputType} Matched`;
+        issueItem.newIssue(title, display, details);
+    }
 }
 
 /*****************************************************************
@@ -82,34 +80,6 @@ function discover(canvasItem, issueItem, options) {
  *****************************************************************/
 function fix(canvasItem, issueItem, options) {
     return new Promise(async (resolve, reject) => {
-        try {
-            if (canvasItem.getHtml()) {
-                var $ = cheerio.load(canvasItem.getHtml());
-
-                issueItem.issues.forEach(issue => {
-                    if (issue.status === 'approved') {
-
-                        let image = $(`img[src="${issue.details.image}"]`).first();
-                        if (image && issue.optionValues.newAltText) {
-                            $(image).attr('alt', issue.optionValues.newAltText);
-                            issue.status = 'fixed';
-                        }
-
-                    }
-                });
-
-                canvasItem.setHtml($.html());
-                await canvasItem.update();
-                resolve();
-            }
-        } catch (e) {
-            issueItem.issues.forEach(issue => {
-                if (issue.status === 'approved') {
-                    issue.status = 'failed';
-                }
-            });
-            reject(e);
-        }
     });
 }
 
@@ -118,9 +88,10 @@ module.exports = {
     fix,
     id: 'course_search',
     title: 'Course Search',
-    description: `This tool allows you to search Canvas courses' HTML and item titles for given words and/or phrases.`,
-    fixedMessage: 'The given search phrase matched',
+    description: 'This tool allows you to search Canvas courses\' HTML and item titles for given words and/or phrases. The tool will only search up-to all text within the html, the html itself, and/or the titles of the various items throughout the course',
     icon: 'search',
+    toolType: 'search',
+    toolCategory: 'html',
     categories: [
         'assignments',
         'discussions',
@@ -131,14 +102,25 @@ module.exports = {
         'quizzes',
         'quizQuestions'
     ],
-    toolCategory: 'html',
     discoverOptions: [{
+        title: 'Input Type',
+        key: 'inputType',
+        description: 'How would you like to search?',
+        type: 'dropdown',
+        choices: ['', 'Text'],
+        required: true
+    }, {
         title: 'Search Phrase',
         key: 'searchPhrase',
-        description: 'What search phrase would you like to look for?',
+        description: 'What search phrase would you like to look for? If searching by Regex, backslash your special characters',
         type: 'text',
         choices: [],
         required: true
     }],
     fixOptions: [],
+    editorTabs: [{
+        title: 'HTML',
+        htmlKey: 'currentHtml',
+        readOnly: true
+    }]
 };

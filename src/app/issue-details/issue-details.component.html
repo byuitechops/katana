@@ -4,6 +4,6 @@
     </h1>
     <span class="issueDetails__itemTitle navy-text">{{this.courseService.selectedIssueItem ? this.courseService.selectedIssueItem.title : ''}}</span>
     <div *ngIf="courseService.selectedIssueItem" class="issueDetails__issueBox">
-        <app-issue-container *ngFor="let issue of courseService.selectedIssueItem.issues" [issue]="issue"></app-issue-container>
+        <app-issue-container *ngFor="let issue of courseService.selectedIssueItem.issues; let i = index" [index]="i" [issue]="issue"></app-issue-container>
     </div>
 </div>

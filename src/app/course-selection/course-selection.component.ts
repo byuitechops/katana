@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { KatanaService } from '../katana.service';
-import { Course, CourseService } from '../course.service';
+import { CourseService } from '../course.service';
+import { Course } from '../interfaces';
 
 /**
  * Provides the user management for the selected courses, including a course search

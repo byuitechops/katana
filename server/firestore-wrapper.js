@@ -1,5 +1,6 @@
 const fs = require('fs');
 const chalk = require('chalk');
+const sizeOf = require('object-sizeof');
 var db;
 
 function initializeFirebase() {
@@ -23,12 +24,35 @@ function _log(collectionTitle, data) {
 
     if (!process.argv.includes('--mute')) {
         let str = Object.keys(data).reduce((acc, key) => {
-            return acc += `${chalk.cyanBright(key.toUpperCase())}:${data[key]} `;
+            let dataItem = data[key];
+            if (typeof data[key] === 'string') {
+                dataItem = data[key].length <= 20 ? data[key] : data[key].substr(0, 20) + '...';
+            }
+            return acc += `${chalk.cyanBright(key.toUpperCase())}:${dataItem} `;
         }, `${chalk.greenBright('FIRESTORE')} ${chalk.green(collectionTitle)} | `);
         console.log(str);
     }
 
-    db.collection(collectionTitle).add(data);
+    // Check to see if string is larger than 1 MB
+    let size = sizeOf(data);
+    if (sizeOf(data) > 1000000) {
+        let divisor = Math.ceil(size / 1000000);
+        let count = 0;
+        for (let i = 1; i < divisor; i++) {
+            let chunk = 0;
+            let chunkedData = Object.assign({}, data);
+            chunkedData.issueItems = [];
+            while (count < data.issueItems.length && chunk + Buffer.byteLength(data.issueItems[count]) < 1000000) {
+                chunk += Buffer.byteLength(data.issueItems[count]);
+                chunkedData.issueItems.push(data.issueItems[count]);
+                ++count;
+            }
+            db.collection(collectionTitle).add(chunkedData);
+        }
+    } else {
+        db.collection(collectionTitle).add(data);
+    }
+
 }
 
 function serverLog(data) {

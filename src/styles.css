@@ -166,7 +166,7 @@ select[multiple] {
 }
 
 input[type="text"], input:focus {
-    padding-left: 10px !important;
+    /* padding: 0 10px !important; */
     margin: 0 !important;
     border-bottom: none !important;
     box-shadow: none !important;
@@ -276,4 +276,13 @@ div.loading-dancer::after {
     opacity: 0.2;
     transform: scalex(1, 1);
   }
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
