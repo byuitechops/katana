@@ -13,7 +13,7 @@ const toolList = {
     'alt_attributes': require('./node_tools/alt_attributes.js'),
     'equella_links': require('./node_tools/equella_links.js'),
     'course_search': require('./node_tools/course_search.js'),
-    'bullet_points': require('./node_tools/bullet_points.js')
+    'bullet_point_formatter': require('./node_tools/bullet_point_formatter.js')
 };
 
 /* Used to log start/stop of different tools */
