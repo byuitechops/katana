@@ -12,8 +12,8 @@ import 'rxjs';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { environment } from './auth/firebase.auth';
-import { AuthGuardService } from './auth/authguard.service';
+import { environment } from './firebase.auth';
+import { AuthGuardService } from './authguard.service';
 
 /* Katana Components */
 import { AppComponent } from './app.component';
@@ -31,6 +31,7 @@ import { IssueContainerComponent } from './issue-container/issue-container.compo
 import { ToolSelectionComponent } from './tool-selection/tool-selection.component';
 import { OptionsViewComponent } from './options-view/options-view.component';
 import { StatBadgeComponent } from './stat-badge/stat-badge.component';
+import { CodeEditorComponent } from './code-editor/code-editor.component';
 
 export const appRoutes: Routes = [
     {
@@ -50,15 +51,18 @@ export const appRoutes: Routes = [
     },
     {
         path: 'home/tools',
-        component: ToolSelectionComponent
+        component: ToolSelectionComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path: 'home/tools/:tool_id/options',
-        component: OptionsViewComponent
+        component: OptionsViewComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path: 'home/tools/:tool_id/issues',
-        component: ToolViewComponent
+        component: ToolViewComponent,
+        canActivate: [AuthGuardService]
     }
 ];
 
@@ -79,6 +83,7 @@ export const appRoutes: Routes = [
         ToolSelectionComponent,
         OptionsViewComponent,
         StatBadgeComponent,
+        CodeEditorComponent,
     ],
     imports: [
         RouterModule.forRoot(

@@ -4,7 +4,7 @@ import { CourseService, IssueItem } from './course.service';
 import { KatanaService } from './katana.service';
 import { ToastService } from './toast.service';
 import { ToolService } from './tool.service';
-import { AuthGuardService } from './auth/authguard.service';
+import { AuthGuardService } from './authguard.service';
 
 /**
  * This is the main component for the entire application.
@@ -89,13 +89,6 @@ export class AppComponent {
 
             }
         });
-
-        // Retrieve the tool list on start
-        this.katanaService.getToolList()
-            .catch((e) => {
-                this.toastService.toast('You are in development mode. Courses were not retrieved.');
-                console.error(e);
-            });
 
         // Set the saved courses they had last selected as the currently selected courses
         Object.keys(sessionStorage).forEach(key => {

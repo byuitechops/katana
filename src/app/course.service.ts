@@ -12,6 +12,8 @@ export interface Issue {
     display: string,
     /** An object containing issue-specific details */
     details: object,
+    /** If included, this is the HTML for the issue */
+    html: object,
     /** The {@link OptionModel} used to generated any {@link FixOption}s used by the tool */
     optionModel?: OptionModel,
     /** The {@link FormGroup} generated for the issue's {@link FixOption}s */

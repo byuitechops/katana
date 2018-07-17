@@ -20,10 +20,11 @@ module.exports = class IssueItem {
         this.issues = [];
     }
 
-    newIssue(title, display, details = {}) {
+    newIssue(title, display, details = {}, html = {}) {
         this.issues.push({
             title,
             details,
+            html,
             display,
             status: 'untouched'
         });

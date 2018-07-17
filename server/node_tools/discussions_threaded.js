@@ -1,5 +1,3 @@
-const cheerio = require('cheerio');
-
 /*****************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
@@ -47,11 +45,12 @@ module.exports = {
     title: 'Enable Threaded Discussions',
     description: 'Discussion Topics should always have the "Allow threaded replies" setting enabled. This tool discovers discussions that do not have it enabled and will enable it for you.',
     icon: 'question_answer',
+    fixMessage: 'The "Allow threaded replies" setting has been enabled',
+    toolType: 'fix',
+    toolCategory: 'itemSettings',
     categories: [
         'discussions',
     ],
-    toolCategory: 'itemSettings',
     discoverOptions: [],
     fixOptions: [],
-    fixMessage: 'The "Allow threaded replies" setting has been enabled'
 };

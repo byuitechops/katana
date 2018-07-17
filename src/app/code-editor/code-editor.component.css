@@ -1,0 +1,33 @@
+.editor-container {
+    overflow: hidden;
+}
+
+.editor {
+    font-size: 16px;
+    width: 100%;
+}
+
+.html-bar {
+    border-top: solid 1px var(--ashen);
+    display: flex;
+    width: 100%;
+}
+
+.html-bar>h3 {
+    padding-right: 15px;
+}
+
+.html-bar>button {
+    height: 46px;
+    line-height: 46px;
+}
+
+.edit-button {
+    position: absolute;
+    right: 0;
+}
+
+.activeTab {
+    color: var(--cobalt);
+    background-color: var(--ashen);
+}

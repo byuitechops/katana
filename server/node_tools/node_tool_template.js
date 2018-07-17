@@ -44,10 +44,12 @@ module.exports = {
     title: 'Rename Pages',
     description: '',
     icon: 'code',
+    toolType: 'fix',
+    toolCategory: 'html',
+    fixMessage: 'Describe the result of an item being fixed here',
     categories: [
         'pages',
     ],
-    toolCategory: 'html',
     discoverOptions: [{
         title: 'Current Page Title',
         key: 'currentTitle',

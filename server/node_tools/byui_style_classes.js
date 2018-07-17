@@ -21,6 +21,11 @@ function discover(canvasItem, issueItem, options) {
 
         let byuiClass = $('.byui').first();
 
+        // Remove scripts from the html
+        $('script').remove();
+
+        // Cheerio adds an html, head, and body tags, so we just want the contents of the body
+        let currentHtml = $('body').html();
         let title, display, currentClasses = null;
 
         if (byuiClass.length === 0) {
@@ -30,9 +35,9 @@ function discover(canvasItem, issueItem, options) {
             title = 'Invalid Style Classes';
             currentClasses = $(byuiClass).attr('class');
             display = `
-            <div>The standard style classes ("byui [courseCode]") are incorrect on this item.</div>
-            <h3>Current Classes</h3>
-            <div class="code-block">${currentClasses}</div>
+                <div>The standard style classes ("byui [courseCode]") are incorrect on this item.</div>
+                <h3>Current Classes</h3>
+                <div class="code-block">${currentClasses}</div>
             `;
         }
 
@@ -42,12 +47,27 @@ function discover(canvasItem, issueItem, options) {
             <div class="code-block">byui ${styleClass}</div>
         `;
 
+        if (byuiClass.length === 0) {
+            // Wrap all of the HTML with the div with the right classes
+            $('body').html(`<div class="byui ${styleClass}">${$('body').html()}</div>`);
+        } else {
+            // Correct the existing classes
+            $(byuiClass).attr('class', `byui ${styleClass}`);
+        }
+
+        let updatedHtml = $('body').html();
+
         let details = {
             currentClasses: '',
-            updatedClasses: `byui ${styleClass}`
+            updatedClasses: `byui ${styleClass}`,
         };
 
-        issueItem.newIssue(title, display, details);
+        let html = {
+            currentHtml,
+            updatedHtml
+        };
+
+        issueItem.newIssue(title, display, details, html);
     }
 }
 
@@ -92,6 +112,9 @@ module.exports = {
     title: 'BYUI Style Classes',
     description: 'Courses require two style classes on every segment of HTML in a course in order to apply CSS specific to the course. This tool identifies any items in each course that are missing or have the incorrect style classes.',
     icon: 'style',
+    toolCategory: 'html',
+    toolType: 'fix',
+    fixMessage: 'The style classes have been updated on this item',
     categories: [
         'pages',
         'assignments',
@@ -99,7 +122,15 @@ module.exports = {
         'quizzes',
         'quizQuestions'
     ],
-    toolCategory: 'html',
     discoverOptions: [],
     fixOptions: [],
+    editorTabs: [{
+        title: 'Current HTML',
+        htmlKey: 'currentHtml',
+        readOnly: true
+    }, {
+        title: 'Updated HTML',
+        htmlKey: 'updatedHtml',
+        readOnly: true
+    }]
 };

@@ -28,15 +28,14 @@
                             <option *ngFor="let choice of option.choices">{{choice.text}}</option>
                         </select>
                     </div>
-
                 </div>
             </div>
         </form>
-
-
     </div>
 
-    <div class="card-action">
+    <app-code-editor *ngIf="issue.html" [tabs]="buildEditorTabs()" [searchPhrase]="issue.html.searchPhrase"></app-code-editor>
+
+    <div class="card-action" *ngIf="toolService.selectedTool.toolType === 'fix'">
 
         <button *ngIf="issue.status !== 'fixed' && issue.status !== 'failed'" (click)="setIssueStatus('approved')" [ngClass]="getButtonClasses('approved', 'button')"
             class="green-text" [disabled]="issue.formGroup && !issue.formGroup.valid">

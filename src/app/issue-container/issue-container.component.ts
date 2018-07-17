@@ -18,6 +18,11 @@ export class IssueContainerComponent implements OnInit {
     @Input('issue') issue: Issue;
 
     /**
+     * The index the issue is in within the item's issues array
+     */
+    @Input('index') index: number;
+
+    /**
      * The element containing details about the issue.
      */
     @ViewChild('issueDetails') issueDetails: ElementRef;
@@ -28,8 +33,7 @@ export class IssueContainerComponent implements OnInit {
      * @param courseService Provides information and management for selected courses.
      */
     constructor(private toolService: ToolService,
-        private courseService: CourseService) {
-    }
+        private courseService: CourseService) { }
 
     /**
      * Fired when the component is intialized, this manages the item's display.
@@ -48,6 +52,20 @@ export class IssueContainerComponent implements OnInit {
                 control.updateValueAndValidity();
             });
         }
+    }
+
+    /**
+     * Builds editor tabs to insert into the editor
+     */
+    buildEditorTabs() {
+        if (!this.toolService.selectedTool.editorTabs) return;
+        return this.toolService.selectedTool.editorTabs.map(editorTab => {
+            return {
+                title: editorTab.title,
+                htmlString: this.issue.html[editorTab.htmlKey],
+                readOnly: editorTab.readOnly
+            }
+        });
     }
 
     /**
