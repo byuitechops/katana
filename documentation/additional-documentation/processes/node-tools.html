@@ -1,0 +1,1024 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Katana</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
+	      <link rel="stylesheet" href="../../styles/style.css">
+        <link rel="stylesheet" href="../../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../../" class="navbar-brand">Katana</a>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+            <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+            <nav>
+
+    <ul class="list">
+
+        <li class="title">
+            <a href="index.html" data-type="index-link">Katana</a>
+        </li>
+
+        <li class="divider"></li>
+
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="index.html"><span class="fa fa-home"></span>Getting started</a>
+            <ul class="links">
+                    <li class="link">
+                        <a 
+                            
+                             href="overview.html" 
+                             href="overview.html" 
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-th"></span>Overview
+                        </a>
+                    </li>
+                    <li class="link">
+                      <a href="index.html" data-type="chapter-link"><span class="fa fa-file-text-o"></span>README</a>
+                    </li>
+                    <li class="link">
+                        <a href="dependencies.html"
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-list"></span>Dependencies
+                        </a>
+                    </li>
+            </ul>
+        </li>
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#xs-additional-pages"
+                >
+                <span class="fa fa-fw fa-book"></span>
+                <span>Additional documentation</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="xs-additional-pages"
+                >
+                    <li class="link ">
+                        <a href="additional-documentation/architecture.html" data-type="entity-link" data-context-id="additional">Architecture</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/server-endpoints.html" data-type="entity-link" data-context-id="additional">Server Endpoints</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/discover-&amp;-fix-workflow.html" data-type="entity-link" data-context-id="additional">Discover &amp; Fix Workflow</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/data-flow-diagram.html" data-type="entity-link" data-context-id="additional">Data Flow Diagram</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/high-level-overview.html" data-type="entity-link" data-context-id="additional">High Level Overview</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/processes.html" data-type="entity-link" data-context-id="additional">Processes</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/processes/node-tools.html" data-type="entity-link" data-context-id="additional">Node Tools</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/firebase.html" data-type="entity-link" data-context-id="additional">Firebase</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-authentication.html" data-type="entity-link" data-context-id="additional">Firebase Authentication</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/database-structure.html" data-type="entity-link" data-context-id="additional">Database Structure</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firestore-wrapper.html" data-type="entity-link" data-context-id="additional">Firestore Wrapper</a>
+                    </li>
+            </ul>
+        </li>
+
+        <li class="chapter modules">
+            <a data-type="chapter-link" href="modules.html">
+                <div class="menu-toggler linked" data-toggle="collapse"
+                        data-target="#xs-modules-links"
+                >
+                    <span class="fa fa-fw fa-archive"></span>
+                    <span class="link-name">Modules</span>
+                    <span class="fa fa-angle-down"></span>
+                </div>
+            </a>
+            <ul class="links collapse"
+                    id="xs-modules-links"
+                >
+                    <li class="link">
+                        <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
+                                    >
+                                        <li class="link">
+                                            <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-injectables-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
+                                    >
+                                    <span class="fa fa-fw fa-long-arrow-down"></span>
+                                    <span>Injectables</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-injectables-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
+                                    >
+                                        <li class="link">
+                                            <a href="injectables/AuthGuardService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>AuthGuardService</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/HomePageModule.html" data-type="entity-link">HomePageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-HomePageModule-ae3046dcc37cfac9a77fa637bd4c9243"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-HomePageModule-ae3046dcc37cfac9a77fa637bd4c9243"
+                                    >
+                                        <li class="link">
+                                            <a href="components/BreadcrumbsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">BreadcrumbsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CategoriesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CategoriesComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/OptionsViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">OptionsViewComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolSelectionComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/SidebarModule.html" data-type="entity-link">SidebarModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-SidebarModule-04b48f6e6e3461af1476a73ceacfd9a2"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-SidebarModule-04b48f6e6e3461af1476a73ceacfd9a2"
+                                    >
+                                        <li class="link">
+                                            <a href="components/CourseChipComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseChipComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CourseSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSelectionComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CourseSidebarComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSidebarComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/ToolPageModule.html" data-type="entity-link">ToolPageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-ToolPageModule-ee564456ca4ee709f103e5dc56732c7a"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-ToolPageModule-ee564456ca4ee709f103e5dc56732c7a"
+                                    >
+                                        <li class="link">
+                                            <a href="components/CodeEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CodeEditorComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueCardComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueContainerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueContainerComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueDetailsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueDetailsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueListComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueNavComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/StatBadgeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">StatBadgeComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolViewComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+            </ul>
+        </li>
+
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#xs-classes-links"
+                >
+                <span class="fa fa-fw fa-file-code-o"></span>
+                <span>Classes</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="xs-classes-links"
+                >
+                    <li class="link">
+                        <a href="classes/OptionModel.html" data-type="entity-link">OptionModel</a>
+                    </li>
+            </ul>
+        </li>
+
+                <li class="chapter">
+                    <div class="simple menu-toggler" data-toggle="collapse"
+                            data-target="#xs-injectables-links"
+                        >
+                        <span class="fa fa-fw fa-long-arrow-down"></span>
+                        <span>Injectables</span>
+                        <span class="fa fa-angle-down"></span>
+                    </div>
+                    <ul class="links collapse"
+                            id="xs-injectables-links"
+                        >
+                            <li class="link">
+                                <a href="injectables/AuthGuardService.html" data-type="entity-link">AuthGuardService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/CourseService.html" data-type="entity-link">CourseService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/KatanaService.html" data-type="entity-link">KatanaService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/ToastService.html" data-type="entity-link">ToastService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/ToolService.html" data-type="entity-link">ToolService</a>
+                            </li>
+                    </ul>
+                </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#xs-interfaces-links"
+                >
+                <span class="fa fa-fw fa-info"></span>
+                <span>Interfaces</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="xs-interfaces-links"
+                >
+                    <li class="link">
+                        <a href="interfaces/Category.html" data-type="entity-link">Category</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Course.html" data-type="entity-link">Course</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/DiscoverOption.html" data-type="entity-link">DiscoverOption</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/EditorTab.html" data-type="entity-link">EditorTab</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/FixOption.html" data-type="entity-link">FixOption</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Issue.html" data-type="entity-link">Issue</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/IssueItem.html" data-type="entity-link">IssueItem</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Tool.html" data-type="entity-link">Tool</a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#xs-miscellaneous-links"
+                >
+                <span class="fa fa-fw fa-cubes"></span>
+                <span>Miscellaneous</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="xs-miscellaneous-links"
+                >
+                    <li class="link">
+                      <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="coverage.html"><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
+        </li>
+
+
+    </ul>
+
+</nav>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <nav>
+
+    <ul class="list">
+
+        <li class="title">
+            <a href="index.html" data-type="index-link">Katana</a>
+        </li>
+
+        <li class="divider"></li>
+
+            <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="index.html"><span class="fa fa-home"></span>Getting started</a>
+            <ul class="links">
+                    <li class="link">
+                        <a 
+                            
+                             href="overview.html" 
+                             href="overview.html" 
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-th"></span>Overview
+                        </a>
+                    </li>
+                    <li class="link">
+                      <a href="index.html" data-type="chapter-link"><span class="fa fa-file-text-o"></span>README</a>
+                    </li>
+                    <li class="link">
+                        <a href="dependencies.html"
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-list"></span>Dependencies
+                        </a>
+                    </li>
+            </ul>
+        </li>
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#additional-pages"
+>
+                <span class="fa fa-fw fa-book"></span>
+                <span>Additional documentation</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="additional-pages"
+>
+                    <li class="link ">
+                        <a href="additional-documentation/architecture.html" data-type="entity-link" data-context-id="additional">Architecture</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/server-endpoints.html" data-type="entity-link" data-context-id="additional">Server Endpoints</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/discover-&amp;-fix-workflow.html" data-type="entity-link" data-context-id="additional">Discover &amp; Fix Workflow</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/data-flow-diagram.html" data-type="entity-link" data-context-id="additional">Data Flow Diagram</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/high-level-overview.html" data-type="entity-link" data-context-id="additional">High Level Overview</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/processes.html" data-type="entity-link" data-context-id="additional">Processes</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/processes/node-tools.html" data-type="entity-link" data-context-id="additional">Node Tools</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/firebase.html" data-type="entity-link" data-context-id="additional">Firebase</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-authentication.html" data-type="entity-link" data-context-id="additional">Firebase Authentication</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/database-structure.html" data-type="entity-link" data-context-id="additional">Database Structure</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firestore-wrapper.html" data-type="entity-link" data-context-id="additional">Firestore Wrapper</a>
+                    </li>
+            </ul>
+        </li>
+
+        <li class="chapter modules">
+            <a data-type="chapter-link" href="modules.html">
+                <div class="menu-toggler linked" data-toggle="collapse"
+                        data-target="#modules-links"
+                >
+                    <span class="fa fa-fw fa-archive"></span>
+                    <span class="link-name">Modules</span>
+                    <span class="fa fa-angle-down"></span>
+                </div>
+            </a>
+            <ul class="links collapse"
+                    id="modules-links"
+>
+                    <li class="link">
+                        <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
+>
+                                        <li class="link">
+                                            <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#injectables-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
+>
+                                    <span class="fa fa-fw fa-long-arrow-down"></span>
+                                    <span>Injectables</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="injectables-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
+>
+                                        <li class="link">
+                                            <a href="injectables/AuthGuardService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>AuthGuardService</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/HomePageModule.html" data-type="entity-link">HomePageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-HomePageModule-ae3046dcc37cfac9a77fa637bd4c9243"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-HomePageModule-ae3046dcc37cfac9a77fa637bd4c9243"
+>
+                                        <li class="link">
+                                            <a href="components/BreadcrumbsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">BreadcrumbsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CategoriesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CategoriesComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/OptionsViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">OptionsViewComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolSelectionComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/SidebarModule.html" data-type="entity-link">SidebarModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-SidebarModule-04b48f6e6e3461af1476a73ceacfd9a2"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-SidebarModule-04b48f6e6e3461af1476a73ceacfd9a2"
+>
+                                        <li class="link">
+                                            <a href="components/CourseChipComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseChipComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CourseSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSelectionComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CourseSidebarComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSidebarComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/ToolPageModule.html" data-type="entity-link">ToolPageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-ToolPageModule-ee564456ca4ee709f103e5dc56732c7a"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-ToolPageModule-ee564456ca4ee709f103e5dc56732c7a"
+>
+                                        <li class="link">
+                                            <a href="components/CodeEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CodeEditorComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueCardComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueContainerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueContainerComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueDetailsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueDetailsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueListComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueNavComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/StatBadgeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">StatBadgeComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolViewComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+            </ul>
+        </li>
+
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#classes-links"
+>
+                <span class="fa fa-fw fa-file-code-o"></span>
+                <span>Classes</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="classes-links"
+>
+                    <li class="link">
+                        <a href="classes/OptionModel.html" data-type="entity-link">OptionModel</a>
+                    </li>
+            </ul>
+        </li>
+
+                <li class="chapter">
+                    <div class="simple menu-toggler" data-toggle="collapse"
+                            data-target="#injectables-links"
+>
+                        <span class="fa fa-fw fa-long-arrow-down"></span>
+                        <span>Injectables</span>
+                        <span class="fa fa-angle-down"></span>
+                    </div>
+                    <ul class="links collapse"
+                            id="injectables-links"
+>
+                            <li class="link">
+                                <a href="injectables/AuthGuardService.html" data-type="entity-link">AuthGuardService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/CourseService.html" data-type="entity-link">CourseService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/KatanaService.html" data-type="entity-link">KatanaService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/ToastService.html" data-type="entity-link">ToastService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/ToolService.html" data-type="entity-link">ToolService</a>
+                            </li>
+                    </ul>
+                </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#interfaces-links"
+>
+                <span class="fa fa-fw fa-info"></span>
+                <span>Interfaces</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="interfaces-links"
+>
+                    <li class="link">
+                        <a href="interfaces/Category.html" data-type="entity-link">Category</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Course.html" data-type="entity-link">Course</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/DiscoverOption.html" data-type="entity-link">DiscoverOption</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/EditorTab.html" data-type="entity-link">EditorTab</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/FixOption.html" data-type="entity-link">FixOption</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Issue.html" data-type="entity-link">Issue</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/IssueItem.html" data-type="entity-link">IssueItem</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Tool.html" data-type="entity-link">Tool</a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#miscellaneous-links"
+>
+                <span class="fa fa-fw fa-cubes"></span>
+                <span>Miscellaneous</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="miscellaneous-links"
+>
+                    <li class="link">
+                      <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="coverage.html"><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
+        </li>
+
+
+    </ul>
+
+</nav>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content additional-page">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="node-tools">Node Tools</h1>
+<h2 id="overview">Overview</h2>
+<p>Each node tool will follow the same process and have the same settings/ options available. That process is as follows:</p>
+<h2 id="settings-object">Settings Object</h2>
+<div><pre class="line-numbers"><code class="language-none">Insert screenshots to complete this section.</code></pre></div><p>At the bottom of each tool is an object that determines many attributes of the tool. The various keys and options on the object are described below:</p>
+<div><pre class="line-numbers"><code class="language-none">module.exports = {
+    discover, // the discover functionthat will tell the tool what items toget from Canvas and decide how todisplay them
+    fix, // the fix function that willtell the tool what items to fix andhow to do it
+    id: &#39;the_tool_name&#39;,
+    title: &#39;The Tool Name&#39;,
+    description: &#39;A description of thetool&#39;,
+    icon: &#39;A one word icon name fromhttps://material.io/tools/icons/style=baseline&#39;,
+    toolType: &#39;fix/search &lt;-- pick onedepending on if you are fixinganything or just searching&#39;,
+    toolCategory: &#39;html/itemSettings &lt;--which category the tool will show upunder on the home page&#39;,
+    fixMessage: &#39;Describe the result of anitem being fixed here&#39;,
+    categories: [
+        // an array of the Canvas itemtypes to be searched/fixed in thetool
+        &#39;assignments&#39;,
+        &#39;discussions&#39;,
+        &#39;files&#39;,
+        &#39;moduleItems&#39;,
+        &#39;modules&#39;,
+        &#39;pages&#39;,
+        &#39;quizzes&#39;,
+        &#39;quizQuestions&#39;
+    ],
+    discoverOptions: [{
+        // an object array that describesthe available discover/searchoptions that will appear on the&#39;Options&#39; page before the tool isrun
+        title: &#39;The option heading&#39;,
+        key: &#39;The object key to referencethe option parameters in the`options` object in the tool&#39;,
+        description: &#39;The description ofthe option&#39;,
+        type: &#39;text/multiselect/dropdown&lt;-- choose the input type for theoption&#39;,
+        choices: [&#39;Choice 1&#39;, &#39;Choice 2&#39;,&#39;Choice 3&#39; &lt;-- not applicable fortype=&quot;text&quot;],
+        required: true/false
+    }],
+    fixOptions: [{
+        // an object array that describesthe available fix options thatwill appear on each issue cardafter the tool is run
+        title: &#39;The option heading&#39;,
+        key: &#39;The object key to referencethe option parameters in the`options` object in the tool&#39;,
+        description: &#39;The description ofthe option&#39;,
+        type: &#39;text/multiselect/dropdown&#39;,
+        choices: [&#39;Choice 1&#39;, &#39;Choice 2&#39;,&#39;Choice 3&#39; &lt;-- not applicable fortype=&quot;text&quot;],
+        required: true/false
+    }],
+};</code></pre></div><h2 id="discover">Discover</h2>
+<p>The purpose of the discover function is to:</p>
+<ol>
+<li>Determine which items are to be retrieved from Canvas</li>
+<li>Decide how those items are to be displayed on each issue card in the &#39;Tool View&#39; on the client side</li>
+<li>Gather any details that need to be passed to the fix function</li>
+</ol>
+<p>The majority of the logic behind the tool should be in this function, and the fix function should simply be to make the change in Canvas.</p>
+<p>The discover function in each node tool has a template layout as follows:</p>
+<div><pre class="line-numbers"><code class="language-none">/*****************************************************************
+ * Discovers issues in the item provided.
+ * &#64;param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
+ * &#64;param {IssueItem} issueItem - The IssueItem for the item, without any issues
+ * &#64;param {object} options - Options specific to the tool selected by the user
+ *****************************************************************/
+function discover(canvasItem, issueItem, options) {
+    let title = ``;         // the title of the card on the discovered issue
+    let description = &#39;&#39;;   // a description of the discover type that will be displayed on the issue card
+    let display = ``;       // the html that will be displayed on the issue card
+    let details = {};       // an object containing anything needing to be referenced in the fix function 
+
+    if (/*meets condition */true) {
+
+        // Add new issues as needed
+        issueItem.newIssue(title, display, details);
+    }
+}</code></pre></div><h2 id="fix">Fix</h2>
+<p>The purpose of the fix function is to:</p>
+<ol>
+<li>Check if the canvasItem should be changed based on the issue status and based on any other conditions</li>
+<li>Update the status of the issues if changes are made or if otherwise needed</li>
+<li>Update the item in Canvas</li>
+</ol>
+<p>The logic in the fix function should be as minimal as possible and should be abstracted to the discover function if possible.</p>
+<p>The fix function in each node tool has a template layout as follows:</p>
+<div><pre class="line-numbers"><code class="language-none">/*****************************************************************
+ * Fixes issues in the item provided.
+ * &#64;param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
+ * &#64;param {IssueItem} issueItem - The IssueItem for the item, including its issues
+ * &#64;param {object} options - Options specific to the tool selected by the user
+ * &#64;returns {array} fixedIssues - All issues discovered.
+ *****************************************************************/
+function fix(canvasItem, issueItem, options) {
+    return new Promise(async (resolve, reject) =&gt; {
+        try {
+            if (/*meets condition */true) {
+                issueItem.issues.forEach(issue =&gt; {
+                    if(issue.status === &#39;approved&#39;) {
+                        // make the changes here
+
+                        // set the issue status to &#39;fixed&#39;
+                        issue.status = &#39;fixed&#39;;
+                    }
+                });
+                // after making the change, update the item in Canvas
+                await canvasItem.update();
+                resolve();
+            }
+        } catch (e) {
+            issueItem.issues.forEach(issue =&gt; {
+                if (issue.status === &#39;approved&#39;) {
+                    issue.status = &#39;failed&#39;;
+                }
+            });
+            reject(e);
+        }
+    });
+}</code></pre></div><h2 id="example-alt-attributes-tool-">Example (Alt Attributes Tool)</h2>
+<p>Here is an example of a node tool that replaces Alt attributes on image html tags:</p>
+<div><pre class="line-numbers"><code class="language-none">const cheerio = require(&#39;cheerio&#39;);
+
+/*****************************************************************
+ * Discovers issues in the item provided.
+ * &#64;param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
+ * &#64;param {IssueItem} issueItem - The IssueItem for the item, without any issues
+ * &#64;param {object} options - Options specific to the tool selected by the user
+ *****************************************************************/
+function discover(canvasItem, issueItem, options) {
+    if (canvasItem.getHtml() === null) return;
+    var $ = cheerio.load(canvasItem.getHtml());
+    var images = $(&#39;img&#39;);
+
+    images.each((i, image) =&gt; {
+        image = $(image);
+        var alt = image.attr(&#39;alt&#39;);
+
+        // If the option to get ALL alt attributes is selected, move forward, else check alt it is empty/missing
+        if (options.altCondition.includes(&#39;All image alt&#39;) || !alt || alt === &#39;&#39;) {
+
+            let title = &#39;Existing Alt Attribute&#39;;
+            let description = &#39;The alt text on this image should be a good description of the image.&#39;;
+
+            if (alt === &#39;&#39;) {
+                title = &#39;Empty Alt Attribute&#39;;
+                description = &#39;The alt text on this image is empty.&#39;;
+            } else if (!alt) {
+                title = &#39;Missing Alt Attribute&#39;;
+                description = &#39;The alt text on this image is missing.&#39;;
+            }
+
+            let display = `
+                &lt;div&gt;${description}&lt;/div&gt;
+                &lt;h3&gt;Image&lt;/h3&gt;
+                &lt;div class=&quot;navy z-depth-1&quot; style=&quot;max-width:100%;border-radius:3px;padding:10px 10px 4px 10px;display:inline-block&quot;&gt;
+                    &lt;img style=&quot;max-width:100%&quot; src=&quot;${image.attr(&#39;src&#39;)}&quot;&gt;
+                &lt;/div&gt;
+            `;
+
+            if (alt) {
+                display += `
+                    &lt;h3&gt;Current Alt Text&lt;/h3&gt;
+                    &lt;div class=&quot;code-block&quot;&gt;${alt}&lt;/div&gt;
+                `;
+            }
+
+            let details = {
+                image: image.attr(&#39;src&#39;),
+                title,
+                description
+            };
+
+            issueItem.newIssue(title, display, details);
+        }
+    });
+}
+
+/*****************************************************************
+ * Fixes issues in the item provided.
+ * &#64;param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
+ * &#64;param {IssueItem} issueItem - The IssueItem for the item, including its issues
+ * &#64;param {object} options - Options specific to the tool selected by the user
+ * &#64;returns {array} fixedIssues - All issues discovered.
+ *****************************************************************/
+function fix(canvasItem, issueItem, options) {
+    return new Promise(async (resolve, reject) =&gt; {
+        try {
+            if (canvasItem.getHtml()) {
+                var $ = cheerio.load(canvasItem.getHtml());
+
+                issueItem.issues.forEach(issue =&gt; {
+                    if (issue.status === &#39;approved&#39;) {
+
+                        let image = $(`img[src=&quot;${issue.details.image}&quot;]`).first();
+                        if (image &amp;&amp; issue.optionValues.newAltText) {
+                            $(image).attr(&#39;alt&#39;, issue.optionValues.newAltText);
+                            issue.status = &#39;fixed&#39;;
+                        }
+
+                    }
+                });
+
+                canvasItem.setHtml($.html());
+                await canvasItem.update();
+                resolve();
+            }
+        } catch (e) {
+            issueItem.issues.forEach(issue =&gt; {
+                if (issue.status === &#39;approved&#39;) {
+                    issue.status = &#39;failed&#39;;
+                }
+            });
+            reject(e);
+        }
+    });
+}
+
+module.exports = {
+    discover,
+    fix,
+    id: &#39;alt_attributes&#39;,
+    title: &#39;Alt Attributes&#39;,
+    description: &#39;This tool allows you to edit image alt attributes. It can provide all images in the course, or just images that have empty or missing alt attributes. Courses with a high number of images may cause delays when navigating through issues. You will NOT be able to see any of the images if you are not signed into Canvas.&#39;,
+    icon: &#39;text_rotation_none&#39;,
+    toolType: &#39;fix&#39;,
+    toolCategory: &#39;html&#39;,
+    fixedMessage: &#39;The new alt attribute has been inserted&#39;,
+    categories: [
+        &#39;pages&#39;,
+        &#39;assignments&#39;,
+        &#39;discussions&#39;,
+        &#39;quizzes&#39;,
+        &#39;quizQuestions&#39;
+    ],
+    discoverOptions: [{
+        title: &#39;Conditions&#39;,
+        key: &#39;altCondition&#39;,
+        description: &#39;Do you want to include all image alt attributes or just empty and missing alt attributes?&#39;,
+        type: &#39;dropdown&#39;,
+        choices: [&#39;&#39;, &#39;All image alt attributes&#39;, &#39;Only empty and missing&#39;],
+        required: true
+    }],
+    fixOptions: [{
+        title: &#39;New Alt Text&#39;,
+        key: &#39;newAltText&#39;,
+        description: &#39;Please enter the new alt text for this image.&#39;,
+        type: &#39;text&#39;,
+        choices: [],
+        required: true
+    }],
+};</code></pre></div><h2 id="creating-a-tool">Creating a Tool</h2>
+<p>The process to make a new tool is fairly simple and straightforward:</p>
+<ol>
+<li>Under <code>./katana/server/node_tools/</code> copy the contents of <code>node_tool_template.js</code> into a new file under the same directory</li>
+<li>After you have created your new tool file with the template, get started on the logic of the tool by filling out the <code>settings</code></li>
+</ol>
+<p>(This will cover the structure of a basic node tool, how to write one, add it to the server, and deploy it)</p>
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script src="../../js/libs/bootstrap-native.js"></script>
+
+       <script src="../../js/libs/es6-shim.min.js"></script>
+       <script src="../../js/libs/EventDispatcher.js"></script>
+       <script src="../../js/libs/promise.min.js"></script>
+       <script src="../../js/libs/zepto.min.js"></script>
+
+       <script src="../../js/compodoc.js"></script>
+
+        <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 2;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'additional-page';
+            var COMPODOC_CURRENT_PAGE_URL = 'node-tools.html';
+        </script>
+
+       <script src="../../js/search/search.js"></script>
+       <script src="../../js/search/lunr.min.js"></script>
+       <script src="../../js/search/search-lunr.js"></script>
+
+       <script src="../../js/tabs.js"></script>
+       <script src="../../js/menu.js"></script>
+       <script src="../../js/libs/prism.js"></script>
+       <script src="../../js/sourceCode.js"></script>
+       <script src="../../js/search/search_index.js"></script>
+
+
+    </body>
+</html>

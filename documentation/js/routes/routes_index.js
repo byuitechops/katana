@@ -1,1 +1,1 @@
-var ROUTES_INDEX = {"name":"<root>","kind":"module","className":"AppModule","children":[{"kind":"component","component":"CategoriesComponent","path":"home"},{"kind":"component","component":"ToolSelectionComponent","path":"home/tools"},{"kind":"component","component":"OptionsViewComponent","path":"home/tools/:tool_id/options"},{"kind":"component","component":"ToolViewComponent","path":"home/tools/:tool_id/issues"}]}
+var ROUTES_INDEX = {"name":"<root>","kind":"module","className":"AppModule","children":[]}

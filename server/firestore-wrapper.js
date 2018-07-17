@@ -22,7 +22,7 @@ function initializeFirebase() {
 function _log(collectionTitle, data) {
     data.timestamp = new Date();
 
-    if (!process.argv.includes('--mute')) {
+    if (process.argv.includes('--db')) {
         let str = Object.keys(data).reduce((acc, key) => {
             let dataItem = data[key];
             if (typeof data[key] === 'string') {

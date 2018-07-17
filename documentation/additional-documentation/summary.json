@@ -1,0 +1,52 @@
+[
+    {
+        "title": "Architecture",
+        "file": "architecture.md",
+        "children": [
+            {
+                "title": "Server Endpoints",
+                "file": "architecture/server_endpoints.md"
+            },
+            {
+                "title": "Discover & Fix Workflow",
+                "file": "architecture/discover_&_fix_workflow.md"
+            },
+            {
+                "title": "Data Flow Diagram",
+                "file": "architecture/data_flow_diagram.md"
+            },
+            {
+                "title": "High Level Overview",
+                "file": "architecture/high_level_overview.md"
+            }
+        ]
+    },
+    {
+        "title": "Processes",
+        "file": "processes.md",
+        "children": [
+            {
+                "title": "Node Tools",
+                "file": "processes/node_tools.md"
+            }
+        ]
+    },
+    {
+        "title": "Firebase",
+        "file": "firebase.md",
+        "children": [
+            {
+                "title": "Firebase Authentication",
+                "file": "firebase/firebase_authentication.md"
+            },
+            {
+                "title": "Database Structure",
+                "file": "firebase/database_structure.md"
+            },
+            {
+                "title": "Firestore Wrapper",
+                "file": "firebase/firestore_wrapper.md"
+            }
+        ]
+    }
+]

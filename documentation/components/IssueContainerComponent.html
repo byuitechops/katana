@@ -27,32 +27,29 @@
     <ul class="list">
 
         <li class="title">
-            <a href="./index.html" data-type="index-link">Katana</a>
+            <a href="index.html" data-type="index-link">Katana</a>
         </li>
 
         <li class="divider"></li>
 
-            <div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search">
-</div>
 
         <li class="chapter">
-            <a data-type="chapter-link" href="./index.html"><span class="fa fa-home"></span>Getting started</a>
+            <a data-type="chapter-link" href="index.html"><span class="fa fa-home"></span>Getting started</a>
             <ul class="links">
                     <li class="link">
                         <a 
                             
-                             href="./overview.html" 
-                             href="./overview.html" 
+                             href="overview.html" 
+                             href="overview.html" 
                             data-type="chapter-link">
                             <span class="fa fa-fw fa-th"></span>Overview
                         </a>
                     </li>
                     <li class="link">
-                      <a href="./index.html" data-type="chapter-link"><span class="fa fa-file-text-o"></span>README</a>
+                      <a href="index.html" data-type="chapter-link"><span class="fa fa-file-text-o"></span>README</a>
                     </li>
                     <li class="link">
-                        <a href="./dependencies.html"
+                        <a href="dependencies.html"
                             data-type="chapter-link">
                             <span class="fa fa-fw fa-list"></span>Dependencies
                         </a>
@@ -60,11 +57,57 @@
             </ul>
         </li>
 
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#xs-additional-pages"
+                >
+                <span class="fa fa-fw fa-book"></span>
+                <span>Additional documentation</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="xs-additional-pages"
+                >
+                    <li class="link ">
+                        <a href="additional-documentation/architecture.html" data-type="entity-link" data-context-id="additional">Architecture</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/server-endpoints.html" data-type="entity-link" data-context-id="additional">Server Endpoints</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/discover-&amp;-fix-workflow.html" data-type="entity-link" data-context-id="additional">Discover &amp; Fix Workflow</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/data-flow-diagram.html" data-type="entity-link" data-context-id="additional">Data Flow Diagram</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/high-level-overview.html" data-type="entity-link" data-context-id="additional">High Level Overview</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/processes.html" data-type="entity-link" data-context-id="additional">Processes</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/processes/node-tools.html" data-type="entity-link" data-context-id="additional">Node Tools</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/firebase.html" data-type="entity-link" data-context-id="additional">Firebase</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-authentication.html" data-type="entity-link" data-context-id="additional">Firebase Authentication</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/database-structure.html" data-type="entity-link" data-context-id="additional">Database Structure</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firestore-wrapper.html" data-type="entity-link" data-context-id="additional">Firestore Wrapper</a>
+                    </li>
+            </ul>
+        </li>
 
         <li class="chapter modules">
-            <a data-type="chapter-link" href="./modules.html">
+            <a data-type="chapter-link" href="modules.html">
                 <div class="menu-toggler linked" data-toggle="collapse"
-                        data-target="#modules-links"
+                        data-target="#xs-modules-links"
                 >
                     <span class="fa fa-fw fa-archive"></span>
                     <span class="link-name">Modules</span>
@@ -72,84 +115,132 @@
                 </div>
             </a>
             <ul class="links collapse"
-                    id="modules-links"
->
+                    id="xs-modules-links"
+                >
                     <li class="link">
-                        <a href="./modules/AppModule.html" data-type="entity-link">AppModule</a>
+                        <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#components-links-module-AppModule-85cd2b114546f551de64dbf4b5236894"
->
+                                        data-target="#xs-components-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
+                                    >
                                     <span class="fa fa-fw fa-cogs"></span>
                                     <span>Components</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="components-links-module-AppModule-85cd2b114546f551de64dbf4b5236894"
->
+                                        id="xs-components-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
+                                    >
                                         <li class="link">
-                                            <a href="./components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/BreadcrumbsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">BreadcrumbsComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/CategoriesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CategoriesComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/CodeEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CodeEditorComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/CourseChipComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseChipComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/CourseSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSelectionComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/CourseSidebarComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSidebarComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/IssueCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueCardComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/IssueContainerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueContainerComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/IssueDetailsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueDetailsComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/IssueListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueListComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/IssueNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueNavComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/OptionsViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">OptionsViewComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/StatBadgeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">StatBadgeComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/ToolSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolSelectionComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/ToolViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolViewComponent</a>
+                                            <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
                                         </li>
                                 </ul>
                             </li>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#injectables-links-module-AppModule-85cd2b114546f551de64dbf4b5236894"
->
+                                        data-target="#xs-injectables-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
+                                    >
                                     <span class="fa fa-fw fa-long-arrow-down"></span>
                                     <span>Injectables</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="injectables-links-module-AppModule-85cd2b114546f551de64dbf4b5236894"
->
+                                        id="xs-injectables-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
+                                    >
                                         <li class="link">
-                                            <a href="./injectables/AuthGuardService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>AuthGuardService</a>
+                                            <a href="injectables/AuthGuardService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>AuthGuardService</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/HomePageModule.html" data-type="entity-link">HomePageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-HomePageModule-ae3046dcc37cfac9a77fa637bd4c9243"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-HomePageModule-ae3046dcc37cfac9a77fa637bd4c9243"
+                                    >
+                                        <li class="link">
+                                            <a href="components/BreadcrumbsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">BreadcrumbsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CategoriesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CategoriesComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/OptionsViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">OptionsViewComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolSelectionComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/SidebarModule.html" data-type="entity-link">SidebarModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-SidebarModule-04b48f6e6e3461af1476a73ceacfd9a2"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-SidebarModule-04b48f6e6e3461af1476a73ceacfd9a2"
+                                    >
+                                        <li class="link">
+                                            <a href="components/CourseChipComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseChipComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CourseSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSelectionComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CourseSidebarComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSidebarComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/ToolPageModule.html" data-type="entity-link">ToolPageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-ToolPageModule-ee564456ca4ee709f103e5dc56732c7a"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-ToolPageModule-ee564456ca4ee709f103e5dc56732c7a"
+                                    >
+                                        <li class="link">
+                                            <a href="components/CodeEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CodeEditorComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueCardComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueContainerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueContainerComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueDetailsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueDetailsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueListComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueNavComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/StatBadgeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">StatBadgeComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolViewComponent</a>
                                         </li>
                                 </ul>
                             </li>
@@ -161,46 +252,46 @@
 
         <li class="chapter">
             <div class="simple menu-toggler" data-toggle="collapse"
-                    data-target="#classes-links"
->
+                    data-target="#xs-classes-links"
+                >
                 <span class="fa fa-fw fa-file-code-o"></span>
                 <span>Classes</span>
                 <span class="fa fa-angle-down"></span>
             </div>
             <ul class="links collapse"
-                    id="classes-links"
->
+                    id="xs-classes-links"
+                >
                     <li class="link">
-                        <a href="./classes/OptionModel.html" data-type="entity-link">OptionModel</a>
+                        <a href="classes/OptionModel.html" data-type="entity-link">OptionModel</a>
                     </li>
             </ul>
         </li>
 
                 <li class="chapter">
                     <div class="simple menu-toggler" data-toggle="collapse"
-                            data-target="#injectables-links"
->
+                            data-target="#xs-injectables-links"
+                        >
                         <span class="fa fa-fw fa-long-arrow-down"></span>
                         <span>Injectables</span>
                         <span class="fa fa-angle-down"></span>
                     </div>
                     <ul class="links collapse"
-                            id="injectables-links"
->
+                            id="xs-injectables-links"
+                        >
                             <li class="link">
-                                <a href="./injectables/AuthGuardService.html" data-type="entity-link">AuthGuardService</a>
+                                <a href="injectables/AuthGuardService.html" data-type="entity-link">AuthGuardService</a>
                             </li>
                             <li class="link">
-                                <a href="./injectables/CourseService.html" data-type="entity-link">CourseService</a>
+                                <a href="injectables/CourseService.html" data-type="entity-link">CourseService</a>
                             </li>
                             <li class="link">
-                                <a href="./injectables/KatanaService.html" data-type="entity-link">KatanaService</a>
+                                <a href="injectables/KatanaService.html" data-type="entity-link">KatanaService</a>
                             </li>
                             <li class="link">
-                                <a href="./injectables/ToastService.html" data-type="entity-link">ToastService</a>
+                                <a href="injectables/ToastService.html" data-type="entity-link">ToastService</a>
                             </li>
                             <li class="link">
-                                <a href="./injectables/ToolService.html" data-type="entity-link">ToolService</a>
+                                <a href="injectables/ToolService.html" data-type="entity-link">ToolService</a>
                             </li>
                     </ul>
                 </li>
@@ -208,47 +299,38 @@
 
         <li class="chapter">
             <div class="simple menu-toggler" data-toggle="collapse"
-                    data-target="#interfaces-links"
->
+                    data-target="#xs-interfaces-links"
+                >
                 <span class="fa fa-fw fa-info"></span>
                 <span>Interfaces</span>
                 <span class="fa fa-angle-down"></span>
             </div>
             <ul class="links collapse"
-                    id="interfaces-links"
->
+                    id="xs-interfaces-links"
+                >
                     <li class="link">
-                        <a href="./interfaces/Category.html" data-type="entity-link">Category</a>
+                        <a href="interfaces/Category.html" data-type="entity-link">Category</a>
                     </li>
                     <li class="link">
-                        <a href="./interfaces/Course.html" data-type="entity-link">Course</a>
+                        <a href="interfaces/Course.html" data-type="entity-link">Course</a>
                     </li>
                     <li class="link">
-                        <a href="./interfaces/Course.html" data-type="entity-link">Course</a>
+                        <a href="interfaces/DiscoverOption.html" data-type="entity-link">DiscoverOption</a>
                     </li>
                     <li class="link">
-                        <a href="./interfaces/DiscoverOption.html" data-type="entity-link">DiscoverOption</a>
+                        <a href="interfaces/EditorTab.html" data-type="entity-link">EditorTab</a>
                     </li>
                     <li class="link">
-                        <a href="./interfaces/EditorTab.html" data-type="entity-link">EditorTab</a>
+                        <a href="interfaces/FixOption.html" data-type="entity-link">FixOption</a>
                     </li>
                     <li class="link">
-                        <a href="./interfaces/FixOption.html" data-type="entity-link">FixOption</a>
+                        <a href="interfaces/Issue.html" data-type="entity-link">Issue</a>
                     </li>
                     <li class="link">
-                        <a href="./interfaces/Issue.html" data-type="entity-link">Issue</a>
+                        <a href="interfaces/IssueItem.html" data-type="entity-link">IssueItem</a>
                     </li>
                     <li class="link">
-                        <a href="./interfaces/Issue.html" data-type="entity-link">Issue</a>
-                    </li>
-                    <li class="link">
-                        <a href="./interfaces/IssueItem.html" data-type="entity-link">IssueItem</a>
-                    </li>
-                    <li class="link">
-                        <a href="./interfaces/IssueItem.html" data-type="entity-link">IssueItem</a>
-                    </li>
-                    <li class="link">
-                        <a href="./interfaces/Tool.html" data-type="entity-link">Tool</a>
+                        <a href="interfaces/Tool.html" data-type="entity-link">Tool</a>
                     </li>
             </ul>
         </li>
@@ -256,27 +338,24 @@
 
         <li class="chapter">
             <div class="simple menu-toggler" data-toggle="collapse"
-                    data-target="#miscellaneous-links"
->
+                    data-target="#xs-miscellaneous-links"
+                >
                 <span class="fa fa-fw fa-cubes"></span>
                 <span>Miscellaneous</span>
                 <span class="fa fa-angle-down"></span>
             </div>
             <ul class="links collapse"
-                    id="miscellaneous-links"
->
+                    id="xs-miscellaneous-links"
+                >
                     <li class="link">
-                      <a href="./miscellaneous/variables.html" data-type="entity-link">Variables</a>
+                      <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
                     </li>
             </ul>
         </li>
 
-            <li class="chapter">
-                <a data-type="chapter-link" href="./routes.html"><span class="fa fa-fw fa-code-fork"></span>Routes</a>
-            </li>
 
         <li class="chapter">
-            <a data-type="chapter-link" href="./coverage.html"><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
+            <a data-type="chapter-link" href="coverage.html"><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
         </li>
 
 
@@ -293,7 +372,7 @@
     <ul class="list">
 
         <li class="title">
-            <a href="./index.html" data-type="index-link">Katana</a>
+            <a href="index.html" data-type="index-link">Katana</a>
         </li>
 
         <li class="divider"></li>
@@ -303,22 +382,22 @@
 </div>
 
         <li class="chapter">
-            <a data-type="chapter-link" href="./index.html"><span class="fa fa-home"></span>Getting started</a>
+            <a data-type="chapter-link" href="index.html"><span class="fa fa-home"></span>Getting started</a>
             <ul class="links">
                     <li class="link">
                         <a 
                             
-                             href="./overview.html" 
-                             href="./overview.html" 
+                             href="overview.html" 
+                             href="overview.html" 
                             data-type="chapter-link">
                             <span class="fa fa-fw fa-th"></span>Overview
                         </a>
                     </li>
                     <li class="link">
-                      <a href="./index.html" data-type="chapter-link"><span class="fa fa-file-text-o"></span>README</a>
+                      <a href="index.html" data-type="chapter-link"><span class="fa fa-file-text-o"></span>README</a>
                     </li>
                     <li class="link">
-                        <a href="./dependencies.html"
+                        <a href="dependencies.html"
                             data-type="chapter-link">
                             <span class="fa fa-fw fa-list"></span>Dependencies
                         </a>
@@ -326,9 +405,55 @@
             </ul>
         </li>
 
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#additional-pages"
+>
+                <span class="fa fa-fw fa-book"></span>
+                <span>Additional documentation</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="additional-pages"
+>
+                    <li class="link ">
+                        <a href="additional-documentation/architecture.html" data-type="entity-link" data-context-id="additional">Architecture</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/server-endpoints.html" data-type="entity-link" data-context-id="additional">Server Endpoints</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/discover-&amp;-fix-workflow.html" data-type="entity-link" data-context-id="additional">Discover &amp; Fix Workflow</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/data-flow-diagram.html" data-type="entity-link" data-context-id="additional">Data Flow Diagram</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/architecture/high-level-overview.html" data-type="entity-link" data-context-id="additional">High Level Overview</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/processes.html" data-type="entity-link" data-context-id="additional">Processes</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/processes/node-tools.html" data-type="entity-link" data-context-id="additional">Node Tools</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/firebase.html" data-type="entity-link" data-context-id="additional">Firebase</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-authentication.html" data-type="entity-link" data-context-id="additional">Firebase Authentication</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/database-structure.html" data-type="entity-link" data-context-id="additional">Database Structure</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firestore-wrapper.html" data-type="entity-link" data-context-id="additional">Firestore Wrapper</a>
+                    </li>
+            </ul>
+        </li>
 
         <li class="chapter modules">
-            <a data-type="chapter-link" href="./modules.html">
+            <a data-type="chapter-link" href="modules.html">
                 <div class="menu-toggler linked" data-toggle="collapse"
                         data-target="#modules-links"
                 >
@@ -341,81 +466,129 @@
                     id="modules-links"
 >
                     <li class="link">
-                        <a href="./modules/AppModule.html" data-type="entity-link">AppModule</a>
+                        <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#components-links-module-AppModule-85cd2b114546f551de64dbf4b5236894"
+                                        data-target="#components-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
 >
                                     <span class="fa fa-fw fa-cogs"></span>
                                     <span>Components</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="components-links-module-AppModule-85cd2b114546f551de64dbf4b5236894"
+                                        id="components-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
 >
                                         <li class="link">
-                                            <a href="./components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/BreadcrumbsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">BreadcrumbsComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/CategoriesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CategoriesComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/CodeEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CodeEditorComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/CourseChipComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseChipComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/CourseSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSelectionComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/CourseSidebarComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSidebarComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/IssueCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueCardComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/IssueContainerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueContainerComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/IssueDetailsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueDetailsComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/IssueListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueListComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/IssueNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueNavComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/OptionsViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">OptionsViewComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/StatBadgeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">StatBadgeComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/ToolSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolSelectionComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="./components/ToolViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolViewComponent</a>
+                                            <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
                                         </li>
                                 </ul>
                             </li>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#injectables-links-module-AppModule-85cd2b114546f551de64dbf4b5236894"
+                                        data-target="#injectables-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
 >
                                     <span class="fa fa-fw fa-long-arrow-down"></span>
                                     <span>Injectables</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="injectables-links-module-AppModule-85cd2b114546f551de64dbf4b5236894"
+                                        id="injectables-links-module-AppModule-f26d2b3c3a4576b859c3f0090950b3ea"
 >
                                         <li class="link">
-                                            <a href="./injectables/AuthGuardService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>AuthGuardService</a>
+                                            <a href="injectables/AuthGuardService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>AuthGuardService</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/HomePageModule.html" data-type="entity-link">HomePageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-HomePageModule-ae3046dcc37cfac9a77fa637bd4c9243"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-HomePageModule-ae3046dcc37cfac9a77fa637bd4c9243"
+>
+                                        <li class="link">
+                                            <a href="components/BreadcrumbsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">BreadcrumbsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CategoriesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CategoriesComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/OptionsViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">OptionsViewComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolSelectionComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/SidebarModule.html" data-type="entity-link">SidebarModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-SidebarModule-04b48f6e6e3461af1476a73ceacfd9a2"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-SidebarModule-04b48f6e6e3461af1476a73ceacfd9a2"
+>
+                                        <li class="link">
+                                            <a href="components/CourseChipComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseChipComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CourseSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSelectionComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CourseSidebarComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSidebarComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/ToolPageModule.html" data-type="entity-link">ToolPageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-ToolPageModule-ee564456ca4ee709f103e5dc56732c7a"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-ToolPageModule-ee564456ca4ee709f103e5dc56732c7a"
+>
+                                        <li class="link">
+                                            <a href="components/CodeEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CodeEditorComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueCardComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueContainerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueContainerComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueDetailsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueDetailsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueListComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueNavComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/StatBadgeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">StatBadgeComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolViewComponent</a>
                                         </li>
                                 </ul>
                             </li>
@@ -437,7 +610,7 @@
                     id="classes-links"
 >
                     <li class="link">
-                        <a href="./classes/OptionModel.html" data-type="entity-link">OptionModel</a>
+                        <a href="classes/OptionModel.html" data-type="entity-link">OptionModel</a>
                     </li>
             </ul>
         </li>
@@ -454,19 +627,19 @@
                             id="injectables-links"
 >
                             <li class="link">
-                                <a href="./injectables/AuthGuardService.html" data-type="entity-link">AuthGuardService</a>
+                                <a href="injectables/AuthGuardService.html" data-type="entity-link">AuthGuardService</a>
                             </li>
                             <li class="link">
-                                <a href="./injectables/CourseService.html" data-type="entity-link">CourseService</a>
+                                <a href="injectables/CourseService.html" data-type="entity-link">CourseService</a>
                             </li>
                             <li class="link">
-                                <a href="./injectables/KatanaService.html" data-type="entity-link">KatanaService</a>
+                                <a href="injectables/KatanaService.html" data-type="entity-link">KatanaService</a>
                             </li>
                             <li class="link">
-                                <a href="./injectables/ToastService.html" data-type="entity-link">ToastService</a>
+                                <a href="injectables/ToastService.html" data-type="entity-link">ToastService</a>
                             </li>
                             <li class="link">
-                                <a href="./injectables/ToolService.html" data-type="entity-link">ToolService</a>
+                                <a href="injectables/ToolService.html" data-type="entity-link">ToolService</a>
                             </li>
                     </ul>
                 </li>
@@ -484,37 +657,28 @@
                     id="interfaces-links"
 >
                     <li class="link">
-                        <a href="./interfaces/Category.html" data-type="entity-link">Category</a>
+                        <a href="interfaces/Category.html" data-type="entity-link">Category</a>
                     </li>
                     <li class="link">
-                        <a href="./interfaces/Course.html" data-type="entity-link">Course</a>
+                        <a href="interfaces/Course.html" data-type="entity-link">Course</a>
                     </li>
                     <li class="link">
-                        <a href="./interfaces/Course.html" data-type="entity-link">Course</a>
+                        <a href="interfaces/DiscoverOption.html" data-type="entity-link">DiscoverOption</a>
                     </li>
                     <li class="link">
-                        <a href="./interfaces/DiscoverOption.html" data-type="entity-link">DiscoverOption</a>
+                        <a href="interfaces/EditorTab.html" data-type="entity-link">EditorTab</a>
                     </li>
                     <li class="link">
-                        <a href="./interfaces/EditorTab.html" data-type="entity-link">EditorTab</a>
+                        <a href="interfaces/FixOption.html" data-type="entity-link">FixOption</a>
                     </li>
                     <li class="link">
-                        <a href="./interfaces/FixOption.html" data-type="entity-link">FixOption</a>
+                        <a href="interfaces/Issue.html" data-type="entity-link">Issue</a>
                     </li>
                     <li class="link">
-                        <a href="./interfaces/Issue.html" data-type="entity-link">Issue</a>
+                        <a href="interfaces/IssueItem.html" data-type="entity-link">IssueItem</a>
                     </li>
                     <li class="link">
-                        <a href="./interfaces/Issue.html" data-type="entity-link">Issue</a>
-                    </li>
-                    <li class="link">
-                        <a href="./interfaces/IssueItem.html" data-type="entity-link">IssueItem</a>
-                    </li>
-                    <li class="link">
-                        <a href="./interfaces/IssueItem.html" data-type="entity-link">IssueItem</a>
-                    </li>
-                    <li class="link">
-                        <a href="./interfaces/Tool.html" data-type="entity-link">Tool</a>
+                        <a href="interfaces/Tool.html" data-type="entity-link">Tool</a>
                     </li>
             </ul>
         </li>
@@ -532,17 +696,14 @@
                     id="miscellaneous-links"
 >
                     <li class="link">
-                      <a href="./miscellaneous/variables.html" data-type="entity-link">Variables</a>
+                      <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
                     </li>
             </ul>
         </li>
 
-            <li class="chapter">
-                <a data-type="chapter-link" href="./routes.html"><span class="fa fa-fw fa-code-fork"></span>Routes</a>
-            </li>
 
         <li class="chapter">
-            <a data-type="chapter-link" href="./coverage.html"><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
+            <a data-type="chapter-link" href="coverage.html"><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
         </li>
 
 
@@ -582,7 +743,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/issue-container/issue-container.component.ts</code>
+    <code>src/app/tool-page/issue-container/issue-container.component.ts</code>
 </p>
 
     <p class="comment">
@@ -724,7 +885,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/issue-container/issue-container.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/tool-page/issue-container/issue-container.component.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -795,7 +956,7 @@
                         <code>index</code>
                     </td>
                     <td class="col-md-10">
-                        <div><p>The index the issue is in within the item&#39;s issues array</p>
+                        <div><p>The index of the item&#39;s issues array the issue is at.</p>
 </div>
                             <p>
                             <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
@@ -805,7 +966,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/issue-container/issue-container.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/tool-page/issue-container/issue-container.component.ts:24</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -828,7 +989,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/issue-container/issue-container.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/tool-page/issue-container/issue-container.component.ts:19</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -864,20 +1025,27 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/issue-container/issue-container.component.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/tool-page/issue-container/issue-container.component.ts:64</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Builds editor tabs to insert into the editor</p>
+                            <div class="io-description"><p>Using the {@link Tab}s provided by the Node Tool, builds
+useable tab objects for each issue.</p>
 </div>
 
+                            <div>
+                            </div>
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                             </div>
+                                <div class="io-description">
+                                    <p>The tabs to use to build the editor instance.</p>
+
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -904,7 +1072,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/issue-container/issue-container.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/tool-page/issue-container/issue-container.component.ts:96</a></div>
                             </td>
                         </tr>
 
@@ -998,7 +1166,7 @@ current status of the issue they belong to.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/issue-container/issue-container.component.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/tool-page/issue-container/issue-container.component.ts:129</a></div>
                             </td>
                         </tr>
 
@@ -1044,7 +1212,7 @@ current status of the issue they belong to.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/issue-container/issue-container.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/tool-page/issue-container/issue-container.component.ts:43</a></div>
                             </td>
                         </tr>
 
@@ -1085,7 +1253,7 @@ It inserts the form for the <a href="../interfaces/Issue.html">Issue</a>&#39;s <
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/issue-container/issue-container.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/tool-page/issue-container/issue-container.component.ts:115</a></div>
                             </td>
                         </tr>
 
@@ -1157,7 +1325,7 @@ It inserts the form for the <a href="../interfaces/Issue.html">Issue</a>&#39;s <
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/issue-container/issue-container.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/tool-page/issue-container/issue-container.component.ts:79</a></div>
                             </td>
                         </tr>
 
@@ -1246,13 +1414,13 @@ It inserts the form for the <a href="../interfaces/Issue.html">Issue</a>&#39;s <
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/issue-container/issue-container.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/tool-page/issue-container/issue-container.component.ts:29</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>The element containing details about the issue.</p>
+                        <div class="io-description"><p>Element reference to the card containing details about the issue.</p>
 </div>
                     </td>
                 </tr>
@@ -1266,9 +1434,10 @@ It inserts the form for the <a href="../interfaces/Issue.html">Issue</a>&#39;s <
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input, ViewChild, ElementRef } from &#x27;@angular/core&#x27;;
-import { Issue, CourseService } from &#x27;../course.service&#x27;;
-import { OptionModel } from &#x27;../options.service&#x27;;
-import { ToolService } from &#x27;../tool.service&#x27;;
+import { CourseService } from &#x27;../../course.service&#x27;;
+import { ToolService } from &#x27;../../tool.service&#x27;;
+import { Issue } from &#x27;../../interfaces&#x27;;
+import { OptionModel } from &#x27;../../classes&#x27;;
 
 /**
  * Container for the display of a single {@link Issue}.
@@ -1285,12 +1454,12 @@ export class IssueContainerComponent implements OnInit {
     @Input(&#x27;issue&#x27;) issue: Issue;
 
     /**
-     * The index the issue is in within the item&#x27;s issues array
+     * The index of the item&#x27;s issues array the issue is at.
      */
     @Input(&#x27;index&#x27;) index: number;
 
     /**
-     * The element containing details about the issue.
+     * Element reference to the card containing details about the issue.
      */
     @ViewChild(&#x27;issueDetails&#x27;) issueDetails: ElementRef;
 
@@ -1307,6 +1476,7 @@ export class IssueContainerComponent implements OnInit {
      * It inserts the form for the {@link Issue}&#x27;s {@link FixOption}s if available.
      */
     ngOnInit() {
+        console.log(this.issue.html);
         this.issueDetails.nativeElement.innerHTML &#x3D; this.issue.display;
         this.issue.optionModel &#x3D; new OptionModel(this.toolService.selectedTool.fixOptions);
         this.issue.formGroup &#x3D; this.issue.optionModel.toGroup();
@@ -1322,7 +1492,9 @@ export class IssueContainerComponent implements OnInit {
     }
 
     /**
-     * Builds editor tabs to insert into the editor
+     * Using the {@link Tab}s provided by the Node Tool, builds
+     * useable tab objects for each issue.
+     * @returns {Object[]} The tabs to use to build the editor instance.
      */
     buildEditorTabs() {
         if (!this.toolService.selectedTool.editorTabs) return;
@@ -1432,8 +1604,10 @@ export class IssueContainerComponent implements OnInit {
         &lt;/form&gt;
     &lt;/div&gt;
 
-    &lt;app-code-editor *ngIf&#x3D;&quot;issue.html&quot; [tabs]&#x3D;&quot;buildEditorTabs()&quot; [searchPhrase]&#x3D;&quot;issue.html.searchPhrase&quot;&gt;&lt;/app-code-editor&gt;
+    &lt;!-- Code Editor - Will only show up if the issue has contents in its &quot;html&quot; property --&gt;
+    &lt;app-code-editor *ngIf&#x3D;&quot;issue.html !&#x3D;&#x3D; {} &amp;&amp; issue.html !&#x3D;&#x3D; undefined&quot; [tabs]&#x3D;&quot;buildEditorTabs()&quot; [searchPhrase]&#x3D;&quot;issue.html.searchPhrase&quot;&gt;&lt;/app-code-editor&gt;
 
+    &lt;!-- Card Actions - this section contains the &quot;approve&quot; and &quot;skip&quot; buttons, as well as the fix message container --&gt;
     &lt;div class&#x3D;&quot;card-action&quot; *ngIf&#x3D;&quot;toolService.selectedTool.toolType &#x3D;&#x3D;&#x3D; &#x27;fix&#x27;&quot;&gt;
 
         &lt;button *ngIf&#x3D;&quot;issue.status !&#x3D;&#x3D; &#x27;fixed&#x27; &amp;&amp; issue.status !&#x3D;&#x3D; &#x27;failed&#x27;&quot; (click)&#x3D;&quot;setIssueStatus(&#x27;approved&#x27;)&quot; [ngClass]&#x3D;&quot;getButtonClasses(&#x27;approved&#x27;, &#x27;button&#x27;)&quot;
@@ -1494,7 +1668,7 @@ export class IssueContainerComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div [ngClass]="courseService.getBackgroundColorClasses(issue.status)" class="issueContainer card">    <div class="card-content">        <h2 class="cobalt-text">{{issue.title}}</h2>        <div class="issueContainer__issueDetails" #issueDetails></div>        <form materialize (ngSubmit)="onSubmit()" [formGroup]="issue.formGroup" #optionsForm="ngForm">            <div *ngFor="let option of issue.optionModel.options" class="form-row">                <h3>{{option.title}}</h3>                <div class="option__description">{{option.description}}</div>                <div [ngSwitch]="option.type" class="option__container" [class.multiselect]="option.type === \'multiselect\'" [class.required]="!issue.formGroup.controls[option.key].valid">                    <!-- Silly, but [attr.disabled] was the only way I could get it to be disabled -->                    <div *ngSwitchCase="\'text\'" class="option__text">                        <input [attr.disabled]="isFixed() ? \'disabled\' : null" type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key"                            (input)="onChange(option.key)" autocomplete="off" autofocus>                    </div>                    <div *ngSwitchCase="\'dropdown\'">                        <select [attr.disabled]="isFixed() ? \'disabled\' : null" style="display: block" [formControlName]="option.key" (input)="onChange(option.key)">                            <option *ngFor="let choice of option.choices">{{choice.text}}</option>                        </select>                    </div>                    <div *ngSwitchCase="\'multiselect\'">                        <select [attr.disabled]="isFixed() ? \'disabled\' : null" style="display: block" [formControlName]="option.key" (input)="onChange(option.key)"                            multiple>                            <option *ngFor="let choice of option.choices">{{choice.text}}</option>                        </select>                    </div>                </div>            </div>        </form>    </div>    <app-code-editor *ngIf="issue.html" [tabs]="buildEditorTabs()" [searchPhrase]="issue.html.searchPhrase"></app-code-editor>    <div class="card-action" *ngIf="toolService.selectedTool.toolType === \'fix\'">        <button *ngIf="issue.status !== \'fixed\' && issue.status !== \'failed\'" (click)="setIssueStatus(\'approved\')" [ngClass]="getButtonClasses(\'approved\', \'button\')"            class="green-text" [disabled]="issue.formGroup && !issue.formGroup.valid">            <i *ngIf="!issue.formGroup || issue.formGroup.valid" [ngClass]="getButtonClasses(\'approved\', \'icon\')" class="green-text material-icons left">                {{issue.status !== \'approved\' ? \'check\' : \'check_circle_outline\'}}            </i>            <i *ngIf="issue.formGroup && !issue.formGroup.valid" class="material-icons left">                block            </i>            {{issue.status !== \'approved\' ? (issue.status !== \'fixed\' ? \'approve\' : \'fixed\') : \'approved\'}}        </button>        <button *ngIf="issue.status !== \'fixed\' && issue.status !== \'failed\'" (click)="setIssueStatus(\'skipped\')" [ngClass]="getButtonClasses(\'skipped\', \'button\')"            class="blue-grey-text">            <i [ngClass]="getButtonClasses(\'skipped\', \'icon\')" class="blue-grey-text material-icons left">                {{issue.status !== \'skipped\' ? \'remove\' : \'call_missed_outgoing\'}}            </i>            {{issue.status !== \'skipped\' ? \'skip\' : \'skipped\'}}        </button>        <div *ngIf="issue.status === \'fixed\'" class="blue-text text-accent-3">            FIXED {{toolService.selectedTool.fixedMessage ? \' - \' + toolService.selectedTool.fixedMessage : \'\'}}        </div>        <div *ngIf="issue.status === \'failed\'" class="red-text text-accent-4">            FAILED - Please contact a Katana developer with the course ID, item name, and issue title.        </div>    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div [ngClass]="courseService.getBackgroundColorClasses(issue.status)" class="issueContainer card">    <div class="card-content">        <h2 class="cobalt-text">{{issue.title}}</h2>        <div class="issueContainer__issueDetails" #issueDetails></div>        <form materialize (ngSubmit)="onSubmit()" [formGroup]="issue.formGroup" #optionsForm="ngForm">            <div *ngFor="let option of issue.optionModel.options" class="form-row">                <h3>{{option.title}}</h3>                <div class="option__description">{{option.description}}</div>                <div [ngSwitch]="option.type" class="option__container" [class.multiselect]="option.type === \'multiselect\'" [class.required]="!issue.formGroup.controls[option.key].valid">                    <!-- Silly, but [attr.disabled] was the only way I could get it to be disabled -->                    <div *ngSwitchCase="\'text\'" class="option__text">                        <input [attr.disabled]="isFixed() ? \'disabled\' : null" type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key"                            (input)="onChange(option.key)" autocomplete="off" autofocus>                    </div>                    <div *ngSwitchCase="\'dropdown\'">                        <select [attr.disabled]="isFixed() ? \'disabled\' : null" style="display: block" [formControlName]="option.key" (input)="onChange(option.key)">                            <option *ngFor="let choice of option.choices">{{choice.text}}</option>                        </select>                    </div>                    <div *ngSwitchCase="\'multiselect\'">                        <select [attr.disabled]="isFixed() ? \'disabled\' : null" style="display: block" [formControlName]="option.key" (input)="onChange(option.key)"                            multiple>                            <option *ngFor="let choice of option.choices">{{choice.text}}</option>                        </select>                    </div>                </div>            </div>        </form>    </div>    <!-- Code Editor - Will only show up if the issue has contents in its "html" property -->    <app-code-editor *ngIf="issue.html !== {} && issue.html !== undefined" [tabs]="buildEditorTabs()" [searchPhrase]="issue.html.searchPhrase"></app-code-editor>    <!-- Card Actions - this section contains the "approve" and "skip" buttons, as well as the fix message container -->    <div class="card-action" *ngIf="toolService.selectedTool.toolType === \'fix\'">        <button *ngIf="issue.status !== \'fixed\' && issue.status !== \'failed\'" (click)="setIssueStatus(\'approved\')" [ngClass]="getButtonClasses(\'approved\', \'button\')"            class="green-text" [disabled]="issue.formGroup && !issue.formGroup.valid">            <i *ngIf="!issue.formGroup || issue.formGroup.valid" [ngClass]="getButtonClasses(\'approved\', \'icon\')" class="green-text material-icons left">                {{issue.status !== \'approved\' ? \'check\' : \'check_circle_outline\'}}            </i>            <i *ngIf="issue.formGroup && !issue.formGroup.valid" class="material-icons left">                block            </i>            {{issue.status !== \'approved\' ? (issue.status !== \'fixed\' ? \'approve\' : \'fixed\') : \'approved\'}}        </button>        <button *ngIf="issue.status !== \'fixed\' && issue.status !== \'failed\'" (click)="setIssueStatus(\'skipped\')" [ngClass]="getButtonClasses(\'skipped\', \'button\')"            class="blue-grey-text">            <i [ngClass]="getButtonClasses(\'skipped\', \'icon\')" class="blue-grey-text material-icons left">                {{issue.status !== \'skipped\' ? \'remove\' : \'call_missed_outgoing\'}}            </i>            {{issue.status !== \'skipped\' ? \'skip\' : \'skipped\'}}        </button>        <div *ngIf="issue.status === \'fixed\'" class="blue-text text-accent-3">            FIXED {{toolService.selectedTool.fixedMessage ? \' - \' + toolService.selectedTool.fixedMessage : \'\'}}        </div>        <div *ngIf="issue.status === \'failed\'" class="red-text text-accent-4">            FAILED - Please contact a Katana developer with the course ID, item name, and issue title.        </div>    </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CategoriesComponent', 'selector': 'app-categories'},{'name': 'CodeEditorComponent', 'selector': 'app-code-editor'},{'name': 'CourseChipComponent', 'selector': 'app-course-chip'},{'name': 'CourseSelectionComponent', 'selector': 'app-course-selection'},{'name': 'CourseSidebarComponent', 'selector': 'app-course-sidebar'},{'name': 'IssueCardComponent', 'selector': 'app-issue-card'},{'name': 'IssueContainerComponent', 'selector': 'app-issue-container'},{'name': 'IssueDetailsComponent', 'selector': 'app-issue-details'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueNavComponent', 'selector': 'app-issue-nav'},{'name': 'OptionsViewComponent', 'selector': 'app-options-view'},{'name': 'StatBadgeComponent', 'selector': 'app-stat-badge'},{'name': 'ToolSelectionComponent', 'selector': 'app-tool-selection'},{'name': 'ToolViewComponent', 'selector': 'app-tool-view'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'IssueContainerComponent'};
