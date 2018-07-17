@@ -19,7 +19,7 @@ function discover(canvasItem, issueItem, options) {
         description
     };
     let html = {
-        currentHtml: canvasItem.getHtml().replace(/((<link rel)|(<script src))=".*amazonaws.*((.css")|(script))>/g, ''),
+        currentHtml: canvasItem.getHtml(),
         searchPhrase: options.searchPhrase
     };
 
