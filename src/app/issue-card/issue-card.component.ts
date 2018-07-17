@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { CourseService, IssueItem } from '../course.service';
 
 /**
