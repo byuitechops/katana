@@ -266,7 +266,15 @@ module.exports = {
 ## Creating a Tool
 The process to make a new tool is fairly simple and straightforward:
 1. Under `./katana/server/node_tools/` copy the contents of `node_tool_template.js` into a new file under the same directory
-2. After you have created your new tool file with the template, get started on the logic of the tool by filling out the `settings`
-
+2. After you have created your new tool file with the template, get started on the logic of the tool by filling out the `settings object` at the bottom of the file, as discussed earlier in this document
+3. Open `./katana/server/node_tools.js` where you will see a list of all the currently available tools in the `toolList` object:
+```
+const toolList = {
+    'course_search': new NodeTool(require('./node_tools/course_search.js')),
+    'alt_attributes': new NodeTool(require('./node_tools/alt_attributes.js')),
+}
+```
+4. Add your tool to the list in the format `'tool_id': new NodeTool(require(./node_tools/tool_file.js))`
+5. Save everything and run Katana and you should see it!
 
 (This will cover the structure of a basic node tool, how to write one, add it to the server, and deploy it)
