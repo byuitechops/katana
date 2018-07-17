@@ -35,9 +35,13 @@ It can then be accessed via `localhost:8000` (or whichever port you specify in `
 You can gain a better understanding of how each part of Katan works through these docs:
 
 [Firebase Authentication]("./docs/Firebase%20Authentication%20Process.md")
+
 [Firestore Wrapper]("./docs/Firestore%20Wrapper.md")
+
 [Discover & Fix Workflow]("./docs/Discover%20&%20Fix%20Workflow.md.md")
+
 [Node Tools]("./docs/Node%20Tools.md")
+
 [Server Endpoints]("./docs/Server%20Endpoints.md")
 
 **Flags**
