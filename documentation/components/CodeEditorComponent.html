@@ -987,7 +987,7 @@ the HTML will be changed by the tool.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/tool-page/code-editor/code-editor.component.ts:124</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/tool-page/code-editor/code-editor.component.ts:127</a></div>
                             </td>
                         </tr>
 
@@ -1465,14 +1465,17 @@ export class CodeEditorComponent implements OnInit {
         this.editor.setSession(tab.session);
         this.activeTab &#x3D; tab;
 
-        // Converts the provided search phrase to a RegExp
-        let reg &#x3D; new RegExp(this.searchPhrase, &#x27;gi&#x27;);
-        // Finds and highlights all matches to the RegExp
-        this.editor.findAll(reg, {
-            needle: reg,
-            wrap: true,
-            regExp: true
-        });
+        console.log(this.searchPhrase);
+        if (this.searchPhrase) {
+            // Converts the provided search phrase to a RegExp
+            let reg &#x3D; new RegExp(this.searchPhrase, &#x27;gi&#x27;);
+            // Finds and highlights all matches to the RegExp
+            this.editor.findAll(reg, {
+                needle: reg,
+                wrap: true,
+                regExp: true
+            });
+        }
     }
 
     /**

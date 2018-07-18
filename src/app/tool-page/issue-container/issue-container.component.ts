@@ -41,7 +41,6 @@ export class IssueContainerComponent implements OnInit {
      * It inserts the form for the {@link Issue}'s {@link FixOption}s if available.
      */
     ngOnInit() {
-        console.log(this.issue.html);
         this.issueDetails.nativeElement.innerHTML = this.issue.display;
         this.issue.optionModel = new OptionModel(this.toolService.selectedTool.fixOptions);
         this.issue.formGroup = this.issue.optionModel.toGroup();
@@ -128,5 +127,15 @@ export class IssueContainerComponent implements OnInit {
      */
     isFixed() {
         return this.issue.status === 'fixed' || this.issue.status === 'failed';
+    }
+
+    /**
+     * Since Object.keys does not work in angular templating, this is
+     * a workaround. It checks if the issue has any HTML to display in
+     * the editor. Used by the app-code-editor tag to determine if it
+     * should display.
+     */
+    showEditor() {
+        return Object.keys(this.issue.html).length > 0;
     }
 }
