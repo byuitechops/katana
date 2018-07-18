@@ -1,7 +1,7 @@
 {
     "console": {
         "requests": true,
-        "database-actions": true,
+        "database-actions": false,
         "user-traffic": true
     },
     "firebase": {

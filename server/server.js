@@ -8,7 +8,6 @@ if (!process.env.canvas_api_token) {
 const path = require('path');
 const express = require('express');
 const fs = require('fs');
-const morgan = require('morgan');
 const chalk = require('chalk');
 const bodyParser = require('body-parser');
 const app = express();
@@ -17,8 +16,11 @@ const expressWd = require('express-ws')(app);
 // Settings File
 const settings = require('./settings.json');
 
-// This logs every request made to the server to the console
-app.use(morgan(`${chalk.greenBright(':method')} ${chalk.yellowBright(':url')} :status :res[content-length] - :response-time ms`));
+// This logs every request made to the server to the console (if set to true in settings file)
+if (settings.console.requests === true) {
+    const morgan = require('morgan');
+    app.use(morgan(`${chalk.greenBright(':method')} ${chalk.yellowBright(':url')} :status :res[content-length] - :response-time ms`));
+}
 
 // This serves the entire dist folder, allowing the angular files to talk to each other
 app.use(express.static('dist/katana'));
