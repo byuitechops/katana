@@ -76,7 +76,7 @@ export interface Tool {
     /** {@link DiscoverOption}s for this tool, used to generate the options page */
     discoverOptions: DiscoverOption[],
     /** {@link FixOption}s for this tool, used to generate the options on each {@link IssueContainerComponent} */
-    fixOptions: FixOption[],
+    fixOptions?: FixOption[],
     /** The message to display at the bottom of each {@link IssueContainerComponent} when the issue has been fixed */
     fixMessage?: string,
     /** The tabs to go into the HTML editor on the issue, if needed */

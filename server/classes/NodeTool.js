@@ -5,7 +5,7 @@ module.exports = class NodeTool {
 
     constructor(details) {
         this._discover = details.discover;
-        this._fix = details.fix;
+        this._fix = details.fix || null;
         this.id = details.id;
         this.title = details.title;
         this.description = details.description;
@@ -49,6 +49,11 @@ module.exports = class NodeTool {
         this.lastRan = new Date();
         return new Promise(async (resolve, reject) => {
             try {
+                // Checks to see if the fix function was included in the module.exports in the tool
+                if (this._fix === null) {
+                    console.log('This tool has no fix method included in the exported settings object')
+                    return resolve();
+                }
                 // Retrieves the item in Canvas
                 let canvasCourse = canvas.getCourse(issueItem.course_id);
                 let canvasItem = await canvasCourse[issueItem.category].getOne(issueItem.item_id);
