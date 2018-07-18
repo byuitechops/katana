@@ -1,8 +1,8 @@
 # Firestore Wrapper
 
-The Firestore Wrapper, which is built specifically for Katana, is a small, easy wrapper use to log actions to Firestore. It does nothing more.
+The Firestore Wrapper, which is built specifically for Katana, is a small, easy wrapper used to log actions to Firestore. It does nothing more.
 
-*<a target="_blank" href="(https://github.com/byuitechops/katana/blob/master/server/firestore-wrapper.js)">View firestore-wrapper.js on Github</a>**
+**<a target="_blank" href="(https://github.com/byuitechops/katana/blob/master/server/firestore-wrapper.js)">View firestore-wrapper.js on Github</a>**
 
 ## Setup
 

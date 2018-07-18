@@ -34,7 +34,9 @@
     </div>
 
     <!-- Code Editor - Will only show up if the issue has contents in its "html" property -->
-    <app-code-editor *ngIf="issue.html !== {} && issue.html !== undefined" [tabs]="buildEditorTabs()" [searchPhrase]="issue.html.searchPhrase"></app-code-editor>
+    <div *ngIf="showEditor()">
+        <app-code-editor [tabs]="buildEditorTabs()" [searchPhrase]="issue.html.searchPhrase"></app-code-editor>
+    </div>
 
     <!-- Card Actions - this section contains the "approve" and "skip" buttons, as well as the fix message container -->
     <div class="card-action" *ngIf="toolService.selectedTool.toolType === 'fix'">
