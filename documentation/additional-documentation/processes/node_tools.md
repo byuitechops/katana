@@ -9,48 +9,57 @@ Insert screenshots to complete this section.
 ```
 
 At the bottom of each tool is an object that determines many attributes of the tool. The various keys and options on the object are described below:
-```
-module.exports = {
-    discover, // the discover functionthat will tell the tool what items toget from Canvas and decide how todisplay them
-    fix, // the fix function that willtell the tool what items to fix andhow to do it
-    id: 'the_tool_name',
-    title: 'The Tool Name',
-    description: 'A description of thetool',
-    icon: 'A one word icon name fromhttps://material.io/tools/icons/style=baseline',
-    toolType: 'fix/search <-- pick onedepending on if you are fixinganything or just searching',
-    toolCategory: 'html/itemSettings <--which category the tool will show upunder on the home page',
-    fixMessage: 'Describe the result of anitem being fixed here',
-    categories: [
-        // an array of the Canvas itemtypes to be searched/fixed in thetool
-        'assignments',
-        'discussions',
-        'files',
-        'moduleItems',
-        'modules',
-        'pages',
-        'quizzes',
-        'quizQuestions'
-    ],
-    discoverOptions: [{
-        // an object array that describesthe available discover/searchoptions that will appear on the'Options' page before the tool isrun
-        title: 'The option heading',
-        key: 'The object key to referencethe option parameters in the`options` object in the tool',
-        description: 'The description ofthe option',
-        type: 'text/multiselect/dropdown<-- choose the input type for theoption',
-        choices: ['Choice 1', 'Choice 2','Choice 3' <-- not applicable fortype="text"],
-        required: true/false
-    }],
-    fixOptions: [{
-        // an object array that describesthe available fix options thatwill appear on each issue cardafter the tool is run
-        title: 'The option heading',
-        key: 'The object key to referencethe option parameters in the`options` object in the tool',
-        description: 'The description ofthe option',
-        type: 'text/multiselect/dropdown',
-        choices: ['Choice 1', 'Choice 2','Choice 3' <-- not applicable fortype="text"],
-        required: true/false
-    }],
-};
-```
+|Object Key|Type|Options|Description|Example|
+|----------|----|-------|-----------|-------|
+|discover|function||The discover function that will tell the tool what items to get from Canvas and decide how to display them|discover|
+|fix|function||The fix function that will tell the tool what items to fix and how to do it|fix|
+|id|string||The tool name in all lowercase letters and using underscores for spaces. The tool filename, id, and title should all essecially be the same|'the_tool_name'|
+|title|string||The tool name capitalizing each word and using spaces. The tool filename, id, and title should all essecially be the same|'The Tool Name'|
+|description|string||A description of the tool that will be displayed on the options page|'This tool allows you to...'|
+|icon|string||Any icon name found on [Material Design Icons](https://material.io/tools/icons/?style=baseline)|'text_rotation_none'|
+|toolType|string|fix/search|This determines if the tool will use both the discover and fix functions for `fix`, or if it will only utilize the discover function and disable the ability to approve fixes and make changes to content for `search`|'fix'|
+|toolCategory|string|html , itemSettings|This will determine which category the tool will show up under on the home page|'html'|
+|fixMessage|string||This message will appear on each issue after the issue status has changed to 'fixed'|'The alt attribute for this item has been updated'|
+|categories|string array|assignments, discussions, files, moduleItems, modules, pages, quizzes, quizQuestions|An array of the Canvas item types to be searched for/ fixed in the tool|['assignments', 'discussions', 'pages']|
+|discoverOptions|object array||An object array that describes the available discover/search options that will appear on the options page before the tool is run|See below for details|
+|fixOptions|object array||An object array that describes the available fix options that will appear on each issue card after the tool is run|See below for details|
+|editorTabs|object array||An object array that determines the setup of the code editors to be seen on each issue card|See below for details|
+
+The following are also object keys, but are object arrays:
+
+### discoverOptions
+|Object Key|Type|Options|Description|Example|
+|----------|----|-------|-----------|-------|
+|title|string||The title of the option that will be displayed on the options page|'Color'|
+|description|string||A description of the option that will be displayed on the options page|'Select which color you would like to search for throughout the course's html'|
+|key|string||The object key to reference the option's parameters in the `options` object in the tool|'currentColor'|
+|type|string|text, multiselect, dropdown|This option will determine the input type you would like to use for the option|'multiselect'|
+|choices|string array||An array of options that the user may select from if the `type` is multiselect or dropdown, otherwise an empty array|['Blue', 'Red', 'Yellow']|
+|required|boolean|true, false|An option to make the input type required or not|true|
+
+Note: This is an array of objects, meaning you can have more than one discover option.
+
+### fixOptions
+|Object Key|Type|Options|Description|Example|
+|----------|----|-------|-----------|-------|
+|title|string||The title of the option that will be displayed on each issue card|'Color'|
+|description|string||A description of the option that will be displayed on the options page|'What is the hex code of the new color you'd like to replace the current color with?'|
+|key|string||The object key to reference the option's parameters in the `options` object in the tool|'newColor'|
+|type|string|text, multiselect, dropdown|This option will determine the input type you would like to use for the option|'text'|
+|choices|string array|An array of options that the user may select from if the `type` is multiselect or dropdown, otherwise an empty array|||
+|required|boolean|true, false|An option to make the input type required or not|true|
+
+Note: This is an array of objects, meaning you can have more than one fix option.
+
+### editorTabs
+|Object Key|Type|Options|Description|Example|
+|----------|----|-------|-----------|-------|
+|title|string||The title that will appear on the clickable tab of the editor. It is best to keep this title short an no more than a few  words|'Current HTML'|
+|htmlKey|string||The object key where the html for the tab must be assigned to within the tool|'currentHtml'|
+|readOnly|boolean|true, false|An option to make the editor read-only or not|true|
+
+Note: It is good practice to have two tabs, one that is read-only for the current html and one that is not read-only but editable for the updated html, if applicable.
+
 
 ## Discover
 The purpose of the discover function is to:
@@ -73,11 +82,14 @@ function discover(canvasItem, issueItem, options) {
     let description = '';   // a description of the discover type that will be displayed on the issue card
     let display = ``;       // the html that will be displayed on the issue card
     let details = {};       // an object containing anything needing to be referenced in the fix function 
+    let html = {
+        currentHtml: canvasItem.getHtml()   // set the html for the editorTab
+    };
 
     if (/*meets condition */true) {
 
         // Add new issues as needed
-        issueItem.newIssue(title, display, details);
+        issueItem.newIssue(title, display, details, html);
     }
 }
 ```
