@@ -3,7 +3,7 @@ const canvas = require('canvas-api-wrapper');
 const chalk = require('chalk');
 const logActions = require('./logging.js');
 const NodeTool = require('./classes/NodeTool.js');
-const firestoreWrapper = require('./firestore-wrapper.js');
+const firebaseWrapper = require('./firebase_wrapper.js');
 
 /* Node Tools | (Key) Tool ID: (Value) require(pathToTool) */
 const toolList = {
@@ -107,7 +107,7 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
 
             // Log all discovered issues to Firestore
             if (!process.argv.includes('-d')) {
-                firestoreWrapper.toolLog({course_id: course.id, tool_id, issueItems: course.issueItems.map(issueItem => JSON.stringify(issueItem))});
+                firebaseWrapper.toolLog({course_id: course.id, tool_id, issueItems: course.issueItems.map(issueItem => JSON.stringify(issueItem))});
             }
 
             // Resolve the promise

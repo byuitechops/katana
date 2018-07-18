@@ -1,25 +1,15 @@
 {
-    // This determines what will show up in the console logs
     "console": {
-        // All API requests that come through the server
         "requests": true,
-        // Any database actions
         "database-actions": true,
-        // Users logging in and out
         "user-traffic": true
     },
-    // Firebase settings and auth info
     "firebase": {
-        // The path to the firebase auth file
         "auth": "./auth.json"
     },
-    // Server-specific information
     "server": {
-        // The port the server will listen to
         "port": 8000,
-        // The IP address to host the server on (can be left blank for development)
         "address": "",
-        // Determines if API calls are run with the "as_user" query parameter
         "run-as-user": true
     }
 }

@@ -93,4 +93,13 @@ export class AuthGuardService implements CanActivate {
             .then(this.doGoogleLogin)
             .catch(console.error);
     }
+
+    /** *********************************************************************************
+     * Retrieves the user's idToken for Firebase, so requests can be validated on the
+     * server.
+     ***********************************************************************************/
+    retrieveToken() {
+        return auth().currentUser.getIdToken(true)
+            .catch(console.error);
+    }
 }

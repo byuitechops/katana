@@ -1,28 +1,30 @@
 const fs = require('fs');
 const chalk = require('chalk');
 const sizeOf = require('object-sizeof');
+const admin = require('firebase-admin');
+const settings = require('./settings.json');
 var db;
 
 function initializeFirebase() {
-    const firebaseAdmin = require('firebase-admin');
     try {
         fs.accessSync('./server/auth.json', fs.constants.F_OK);
         var serviceAccount = require('./auth.json');
     } catch (e) {
         throw new Error('FIREBASE AUTH FILE DOES NOT EXIST. EXITING.');
     }
-    firebaseAdmin.initializeApp({
-        credential: firebaseAdmin.credential.cert(serviceAccount),
+    admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
         databaseURL: 'https://katana-24a36.firebaseio.com'
     });
-    db = firebaseAdmin.firestore();
+    db = admin.firestore();
     return db;
 }
 
 function _log(collectionTitle, data) {
     data.timestamp = new Date();
 
-    if (process.argv.includes('--db')) {
+    // Based on settings, console logs what's being logged in the database
+    if (settings.console['database-actions'] === true) {
         let str = Object.keys(data).reduce((acc, key) => {
             let dataItem = data[key];
             if (typeof data[key] === 'string') {
@@ -72,5 +74,6 @@ module.exports = {
     serverLog,
     toolLog,
     userLog,
-    db
+    db,
+    admin
 };
