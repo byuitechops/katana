@@ -8,6 +8,7 @@ import { ToolSelectionComponent } from './tool-selection/tool-selection.componen
 import { OptionsViewComponent } from './options-view/options-view.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
     imports: [
@@ -20,13 +21,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     exports: [
         BreadcrumbsComponent,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        ErrorPageComponent
     ],
     declarations: [
         BreadcrumbsComponent,
         CategoriesComponent,
         ToolSelectionComponent,
-        OptionsViewComponent
+        OptionsViewComponent,
+        ErrorPageComponent
     ]
 })
 export class HomePageModule { }
