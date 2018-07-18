@@ -741,6 +741,25 @@
 
 
 
+<h2 id="firebase-functions">Firebase Functions</h2>
+<p>Firebase provides a service called <strong><a href="https://firebase.google.com/docs/functions/">Firebase Functions</a></strong> that allows functions to be written that run on key events fired on the database. This is used to control if an account is valid or not when a user signs up. Currently, only one function is deployed to the BYUI instance of Katana.</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Function</th>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>verifyNewUsers()</td>
+<td>functions.auth.user().onCreate(...)</td>
+<td>Checks whether or not the user is a BYUI Google account, and if they are not, removes their account immediately. If they are, it disables their account and revokes their refresh tokens (to disable their current session).</td>
+</tr>
+</tbody>
+</table>
+<p>You must be an admin or owner on your firebase instance to deploy Firebase Functions.</p>
 
                    </div><div class="search-results">
     <div class="has-results">
@@ -768,7 +787,7 @@
         <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 2;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'additional-page';
-            var COMPODOC_CURRENT_PAGE_URL = 'high-level-overview.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'firebase-functions.html';
         </script>
 
        <script src="../../js/search/search.js"></script>

@@ -30,21 +30,30 @@ For development, use this command to build the angular front-end and launch the 
 
 It can then be accessed via `localhost:8000` (or whichever port you specify in `server/settings.json`).
 
-## Architecture
-
-You can gain a better understanding of how each part of Katana works through these docs:
-
-[Firebase Authentication]("./docs/Firebase%20Authentication%20Process.md")<br />
-[Firestore Wrapper]("./docs/Firestore%20Wrapper.md")<br />
-[Discover & Fix Workflow]("./docs/Discover%20&%20Fix%20Workflow.md.md")<br />
-[Node Tools]("./docs/Node%20Tools.md")<br />
-[Server Endpoints]("./docs/Server%20Endpoints.md")<br />
-
 **Flags**
 
-| Flag      | Use                                                       |
+| Flag      | Purpose                                                   |
 |-----------|-----------------------------------------------------------|
 | --mute    | Prevents database logging from appearing in the console   |
+
+
+# Documentation
+
+## Client (Angular)
+<!-- This will need to point to Compodocs when it is set up -->
+[LinkName](link) 
+
+## Architecture
+[LinkName](link)<br />
+
+## How To...
+[LinkName](link)<br />
+
+## Firebase Integration
+[LinkName](link)<br />
+
+
+
 
 
 

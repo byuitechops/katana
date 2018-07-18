@@ -2,7 +2,7 @@
 
 The structure of the database is simple. It's sole purpose is to store logs.
 
-The current Katana structure uses [Firestore](https://firebase.google.com/docs/firestore/), a product produced by Firebase. It is a cloud-hosted, NoSQL database that tracks datatypes much easier than Firebase database.
+The current Katana structure uses [Firestore](https://firebase.google.com/docs/firestore/), a product produced by Firebase. It is a cloud-hosted, NoSQL database that handles datatypes easier than Firebase database.
 
 Katana uses its own [Firestore Wrapper](./firestore-wrapper.html) to handle sending information to the database. Refer to that if you are currently developing in Katana and would like to learn more about interfacing with Firestore.
 
