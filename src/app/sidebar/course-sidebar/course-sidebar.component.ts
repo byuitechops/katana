@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { CourseService } from '../../course.service';
-import { ToolService } from '../../tool.service';
-import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { ToolService } from '../../tool.service'; // Being used in course-sidebar.component.html (i.e. DO NOT DELETE)
 import { Course } from '../../interfaces';
 
 /**
@@ -20,13 +18,10 @@ export class CourseSidebarComponent {
      * Constructor
      * @param courseService Provides information and management for selected courses.
      * @param toolService Provides information and management for available tools.
-     * @param _location The current URL location of the user in Katana.
-     * @param router Used to navigate the user as needed.
+     * Being used in course-sidebar.component.html (i.e. DO NOT DELETE)
      */
     constructor(public courseService: CourseService,
-        private toolService: ToolService,
-        private _location: Location,
-        private router: Router) { }
+        private toolService: ToolService) { }
 
     /**
      * Toggles the {@link CourseSelectionComponent} overlay open and closed.

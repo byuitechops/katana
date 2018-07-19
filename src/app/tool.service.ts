@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { KatanaService } from './katana.service';
 import { Router } from '@angular/router';
-import { AuthGuardService } from './authguard.service';
 import { Tool, Category } from './interfaces';
 
 /**
