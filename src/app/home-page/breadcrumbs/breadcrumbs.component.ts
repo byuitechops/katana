@@ -1,8 +1,7 @@
 import { Component, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToolService } from '../../tool.service';
-import { auth } from 'firebase';
-import { AuthGuardService } from '../../authguard.service';
+import { AuthGuardService } from '../../authguard.service'; // Being used in breadcrumbs.component.html (i.e. DO NOT DELETE)
 import { MaterializeAction } from 'angular2-materialize';
 
 /** ******************************************************************
@@ -25,7 +24,8 @@ export class BreadcrumbsComponent {
      * Constructor
      * @param router Used to verify current location and navigate user to new page.
      * @param toolService Used to verify currently selected tool.
-     * @param authGuardService Enables Sign Out button.
+     * @param authGuardService Enables Sign Out button. Being used in 
+     * breadcrumbs.component.html (i.e. DO NOT DELETE)
      ********************************************************************/
     constructor(private router: Router,
         public toolService: ToolService,

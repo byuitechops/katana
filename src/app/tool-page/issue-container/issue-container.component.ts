@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { CourseService } from '../../course.service';
+import { CourseService } from '../../course.service'; // Being used in issue-container.component.html (i.e. DO NOT DELETE)
 import { ToolService } from '../../tool.service';
 import { Issue } from '../../interfaces';
 import { OptionModel } from '../../classes';
@@ -32,6 +32,7 @@ export class IssueContainerComponent implements OnInit {
      * Constructor
      * @param toolService Provides information and management for available tools.
      * @param courseService Provides information and management for selected courses.
+     * Being used in issue-container.component.html (i.e. DO NOT DELETE)
      */
     constructor(private toolService: ToolService,
         private courseService: CourseService) { }

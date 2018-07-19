@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ToolService } from '../../tool.service';
-import { CourseService } from '../../course.service';
+import { CourseService } from '../../course.service'; // Being used in categories.component.html (i.e. DO NOT DELETE)
 
 /** **********************************************************
  * Container for all available tool categories. Each {@link Category} is generated
@@ -16,7 +16,9 @@ export class CategoriesComponent {
     /** **********************************************************
      * Constructor
      * @param toolService Used to generate each available category
-     * @param courseService Verifies if course selection is open, so styling can be applied
+     * @param courseService Verifies if course selection is open, 
+     * so styling can be applied. Being used in 
+     * categories.component.html (i.e. DO NOT DELETE)
      ************************************************************/
     constructor(public toolService: ToolService,
         private courseService: CourseService) { }

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CourseService } from '../../course.service';
-import { ToolService } from '../../tool.service';
+import { ToolService } from '../../tool.service'; // Being used in course-chip.component.html (i.e. DO NOT DELETE)
 import { Course } from '../../interfaces';
 
 /**
@@ -22,7 +22,8 @@ export class CourseChipComponent {
     /**
      * Constructor
      * @param courseService Allows this component to identify the currently selected course
-     * @param toolService Allows this component to identify if the tool view is open
+     * @param toolService Allows this component to identify if the tool view is open.
+     * Being used in course-chip.component.html (i.e. DO NOT DELETE)
      */
     constructor(public courseService: CourseService,
         private toolService: ToolService) { }

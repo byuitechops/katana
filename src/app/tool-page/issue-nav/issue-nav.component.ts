@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; // Used by the component's template, don't remove
 import { CourseService } from '../../course.service';
 import { KatanaService } from '../../katana.service';
 import { MaterializeAction } from 'angular2-materialize';
@@ -29,12 +28,10 @@ export class IssueNavComponent {
      * @param courseService Provides information and management for selected courses.
      * @param toolService Provides information and management for available tools.
      * @param katanaService Provides functionality to make API calls to the Katana server.
-     * @param router Used to navigate the user as needed.
      */
     constructor(public courseService: CourseService,
         public toolService: ToolService,
-        public katanaService: KatanaService,
-        private router: Router) { }
+        public katanaService: KatanaService) { }
 
 
     /**

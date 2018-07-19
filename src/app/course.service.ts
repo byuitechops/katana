@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Course, IssueItem } from './interfaces';
-
 
 /**
  * Provides information and management for a variety of things, but mainly the
@@ -111,7 +109,7 @@ export class CourseService {
      * @returns {number} - The number of issues with the specified status
      */
     getTotalIssueCount(status): number {
-        return this.courses.reduce((acc, course) => {
+        return this.courses.reduce(acc => {
             return acc + this.getCourseIssueCount(status);
         }, 0);
     }
