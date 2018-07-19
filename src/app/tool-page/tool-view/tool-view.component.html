@@ -23,20 +23,8 @@
 </div>
 
 <div style="margin-top: 300px" *ngIf="courseService.selectedCourse.processing">
-    <div class="loader">
-        <div class="preloader-wrapper big active">
-            <div class="spinner-layer spinner-yellow-only">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div>
-                <div class="gap-patch">
-                    <div class="circle"></div>
-                </div>
-                <div class="circle-clipper right">
-                    <div class="circle"></div>
-                </div>
-            </div>
-        </div>
+    <div class="progress">
+        <div class="determinate" style="width: 70%"></div>
     </div>
     <div class="loader white-text">
         {{toolService.processingMessage}}

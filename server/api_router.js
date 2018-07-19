@@ -1,6 +1,7 @@
 /* Express Modules */
 const express = require('express');
 const apiRouter = express.Router();
+const authGuard = require('./auth_guard.js');
 
 /* Katana modules */
 const firebaseWrapper = require('./firebase_wrapper.js');
@@ -11,11 +12,14 @@ const course_retrieval = require('./course_retrieval.js');
 /* Initializes the firebase */
 firebaseWrapper.initializeFirebase();
 
+/* Set the apiRouter to use Auth Guard */
+apiRouter.use(authGuard);
+
 /*************************************************************************
  * Sends the list of courses searched for to the user.
  * @returns {courses[]} - List of courses that match the search criteria
  ************************************************************************/
-apiRouter.post('/course-retrieval', (req, res) => {
+apiRouter.get('/course-retrieval', (req, res) => {
     course_retrieval(req.body)
         .then(courses => {
             res.status(200).send(courses);
@@ -30,7 +34,8 @@ apiRouter.post('/course-retrieval', (req, res) => {
  * Sends the list of tools to the client.
  * @returns {Tool[]} - List of tools available from the server
  ************************************************************************/
-apiRouter.post('/tool-list', (req, res) => {
+apiRouter.get('/tool-list', (req, res) => {
+    console.log('sending tool list');
     let toolArray = Object.keys(node_tools.toolList).map(key => node_tools.toolList[key]);
     res.send(toolArray);
 });
@@ -44,12 +49,21 @@ apiRouter.post('/user-status', (req, res) => {
     firebaseWrapper.userLog({email: req.body.userEmail, action: req.body.message});
 });
 
+// TEST
+apiRouter.ws('/', (ws, req) => {
+    ws.on('message', (message) => {
+        console.log(message);
+    });
+});
+
 /*************************************************************************
  * Handles the "issue discovery" sequence for Node Tools
  * @returns {Course} - The course provided in the message
  ************************************************************************/
-apiRouter.ws('/tool/discover', (ws, req) => {
+apiRouter.ws('/tool/discover', authGuard, (ws, req) => {
+    console.log('connection opened');
     ws.on('message', async (dataString) => {
+        console.log('potato');
         try {
             let data = JSON.parse(dataString);
             let startDate = new Date();
