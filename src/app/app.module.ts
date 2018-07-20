@@ -47,11 +47,6 @@ export const appRoutes: Routes = [
         component: ErrorPageComponent
     },
     {
-        path: 'home/tools',
-        component: ToolSelectionComponent,
-        canActivate: [AuthGuardService]
-    },
-    {
         path: 'home/tools/:tool_id/options',
         component: OptionsViewComponent,
         canActivate: [AuthGuardService]

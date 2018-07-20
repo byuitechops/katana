@@ -166,7 +166,8 @@ export class KatanaService {
                         let data = JSON.stringify({
                             tool_id: this.toolService.selectedTool.id,
                             course: course,
-                            options: this.toolService.selectedDiscoverOptions
+                            options: this.toolService.selectedDiscoverOptions,
+                            userEmail: auth().currentUser.email
                         });
                         socket.send(data);
                     });
@@ -212,7 +213,7 @@ export class KatanaService {
      * @returns {object[]} - Array of issue items fixed by the tool on the server
      */
     fixIssues(courses) {
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             if (!this.authGuardService.canActivate()) {
                 return reject(new Error('Fix: User is not authenticated.'));
             }
@@ -232,9 +233,16 @@ export class KatanaService {
                 });
             });
 
+            var userIdToken;
+            try {
+                userIdToken = await this.authGuardService.retrieveToken();
+            } catch (err) {
+                this.errorHandler(err);
+            }
+
             var completed = 0;
 
-            const socket = new WebSocket(`ws://${this.serverDomain}/api/tool/fix`);
+            const socket = new WebSocket(`ws://${this.serverDomain}/api/tool/fix?userIdToken=${userIdToken}`);
             this.sockets.push(socket);
 
             socket.addEventListener('message', (event) => {
@@ -256,7 +264,8 @@ export class KatanaService {
                         let data = JSON.stringify({
                             tool_id: this.toolService.selectedTool.id,
                             course: course,
-                            options: this.toolService.selectedDiscoverOptions
+                            options: this.toolService.selectedDiscoverOptions,
+                            userEmail: auth().currentUser.email
                         });
                         socket.send(data);
                     });

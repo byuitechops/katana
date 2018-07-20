@@ -1,38 +1,43 @@
 .categories {
+    margin: auto;
+    padding: 25px 50px;
+    max-height: calc(100vh - var(--course-sidebar-height));
+}
+
+.tools {
     display: flex;
     flex-flow: row wrap;
     margin: auto;
-    padding: 25px 50px;
     height: calc(100vh - var(--course-sidebar-height));
 }
 
-.categoryIcon {
-    animation: .5s fadeIn;
-    cursor: pointer;
+.toolIcon {
     display: flex;
+    padding: 20px;
     font-size: 25px;
     box-sizing: border-box;
     width: 300px;
     justify-content: center;
     text-align: center;
     margin: 20px;
-    padding: 20px;
-    position: relative;
     transition: all .1s ease-in-out;
-    z-index: 1;
+    position: relative;
+    cursor: pointer;
+    animation: .5s fadeIn;
 }
 
-.categoryIcon i {
+.toolIcon i {
     font-size: 90px;
     padding: 30px;
     border-radius: calc(((100vw - var(--course-sidebar-width)) / 4) - 30px);
     transition: all .1s ease-in-out;
 }
 
-.categoryIcon:hover {
+.toolIcon:hover {
     background-color: var(--primary-4);
 }
 
-.categoryIcon p {
+.toolIcon p {
+    color: var(--primary-3);
     margin: 0;
 }

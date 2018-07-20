@@ -57,8 +57,8 @@ export class AppComponent {
                     course.processing = false
                 });
 
-                document.documentElement.style.setProperty(`--course-sidebar-width`, '112px');
-                document.documentElement.style.setProperty(`--course-chip-width`, '92px');
+                // document.documentElement.style.setProperty(`--course-sidebar-width`, '112px');
+                // document.documentElement.style.setProperty(`--course-chip-width`, '92px');
 
                 // Clear out the web sockets in case any are still running
                 katanaService.sockets.forEach(socket => socket.close());
@@ -80,8 +80,8 @@ export class AppComponent {
                 // Select the first course and adjust the bar width
                 if (courseService.courses.length > 0) {
                     courseService.selectedCourse = courseService.courses[0];
-                    document.documentElement.style.setProperty(`--course-sidebar-width`, '340px');
-                    document.documentElement.style.setProperty(`--course-chip-width`, '330px');
+                    // document.documentElement.style.setProperty(`--course-sidebar-width`, '340px');
+                    // document.documentElement.style.setProperty(`--course-chip-width`, '330px');
                 }
 
                 // Set the toolView tracking prop to true, all others off

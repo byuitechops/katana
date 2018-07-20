@@ -41,8 +41,8 @@ export class CourseSidebarComponent {
         }
 
         this.courseService.courseSelectionOpen = !this.courseService.courseSelectionOpen;
-        let newWidth = this.courseService.courseSelectionOpen ? '207px' : '112px';
-        document.documentElement.style.setProperty(`--course-sidebar-width`, newWidth);
+        // let newWidth = this.courseService.courseSelectionOpen ? '207px' : '112px';
+        // document.documentElement.style.setProperty(`--course-sidebar-width`, newWidth);
     }
 
     /**
