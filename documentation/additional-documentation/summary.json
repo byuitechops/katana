@@ -22,16 +22,24 @@
         ]
     },
     {
-        "title": "Processes",
-        "file": "processes.md",
+        "title": "Setup",
+        "file": "setup.md",
         "children": [
             {
+                "title": "Setting Up Firebase",
+                "file": "setup/node_tools.md"
+            },
+            {
+                "title": "Development Environment",
+                "file": "setup/node_tools.md"
+            },
+            {
                 "title": "Node Tools",
-                "file": "processes/node_tools.md"
+                "file": "setup/node_tools.md"
             },
             {
                 "title": "Enabling Accounts on Firebase",
-                "file": "processes/firebase_enabling_accounts.md"
+                "file": "setup/firebase_enabling_accounts.md"
             }
         ]
     },

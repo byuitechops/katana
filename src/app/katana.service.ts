@@ -4,7 +4,7 @@ import { CourseService } from './course.service';
 import { ToolService } from './tool.service';
 import { ToastService } from './toast.service';
 import { Router } from '@angular/router';
-import { auth } from 'firebase';
+import { auth, database } from 'firebase';
 import { AuthGuardService } from './authguard.service';
 
 /**
@@ -68,9 +68,7 @@ export class KatanaService {
             }
             this.authGuardService.retrieveToken()
                 .then(userIdToken => {
-                    this.http.post(`/api/tool-list`, {
-                        userIdToken
-                    }).subscribe(
+                    this.http.get(`/api/tool-list?userIdToken=${userIdToken}`).subscribe(
                         (toolList: any): any => {
                             this.toolService.toolList = toolList;
                             resolve();
@@ -98,8 +96,7 @@ export class KatanaService {
 
             this.authGuardService.retrieveToken()
                 .then(userIdToken => {
-                    body.userIdToken = userIdToken;
-                    this.http.post('/api/course-retrieval', body, { headers: headers }).subscribe(
+                    this.http.post(`/api/course-retrieval?userIdToken=${userIdToken}`, body, { headers: headers }).subscribe(
                         (data) => {
                             resolve(data);
                         },
@@ -141,52 +138,59 @@ export class KatanaService {
             this.toolService.processing = true;
             var completed = 0;
 
-            const userIdToken = null;
+            var userIdToken;
             try {
-                const userIdToken = await this.authGuardService.retrieveToken();
+                userIdToken = await this.authGuardService.retrieveToken();
             } catch (err) {
                 this.errorHandler(err);
             }
 
-            const socket = new WebSocket(`ws://${this.serverDomain}/api/tool/discover`);
+            const socket = new WebSocket(`ws://${this.serverDomain}/api/tool/discover?userIdToken=${userIdToken}`);
             this.sockets.push(socket);
 
-            socket.addEventListener('open', (event) => {
-                courses.forEach(course => {
-                    // Set the course processing
-                    course.processing = true;
-                    // Remove any pre-existing error
-                    delete course.error;
-
-                    let data = JSON.stringify({
-                        tool_id: this.toolService.selectedTool.id,
-                        course: course,
-                        options: this.toolService.selectedDiscoverOptions,
-                        userEmail: auth().currentUser.email,
-                        userIdToken
-                    });
-                    socket.send(data);
-                });
-            });
-
+            /* Normally, you would just listen for the 'open' event and start sending messages
+            to the server. However, the auth middleware on the server causes a delay that
+            prevents the event listeners for each particular web socket from being set up. The 
+            messages sent immediately when the web socket are opened are received, but never
+            handled. Instead, it is set up here to wait for the server to tell the client that
+            it is good to go before it starts sending messages. */
             socket.addEventListener('message', (event) => {
-                let course = JSON.parse(event.data);
-                if (course.error) {
-                    console.error(`${course.course_code} (${course.id}): ${course.error}`);
-                }
-                this.courseService.coursesObj[`c${course.id}`] = course;
-                course.processing = false;
-                completed++;
+                let data = JSON.parse(event.data);
+                if (data.state === 'READY') {
+                    courses.forEach(course => {
+                        // Set the course processing
+                        course.processing = true;
+                        // Remove any pre-existing error
+                        delete course.error;
 
-                // Update the currently selected course, if this is the currently selected course
-                if (course.id === this.courseService.selectedCourse.id) {
-                    this.courseService.selectedCourse = this.courseService.coursesObj[`c${course.id}`];
-                }
+                        let data = JSON.stringify({
+                            tool_id: this.toolService.selectedTool.id,
+                            course: course,
+                            options: this.toolService.selectedDiscoverOptions
+                        });
+                        socket.send(data);
+                    });
+                } else {
+                    let course = data;
 
-                // If this was the last course, then close the socket
-                if (completed === courses.length) {
-                    this.toolService.processing = false;
-                    socket.close();
+                    if (course.error) {
+                        console.error(`${course.course_code} (${course.id}): ${course.error}`);
+                    }
+
+                    this.courseService.coursesObj[`c${course.id}`] = course;
+                    course.processing = false;
+                    completed++;
+
+                    // Update the currently selected course, if this is the currently selected course
+                    if (course.id === this.courseService.selectedCourse.id) {
+                        this.courseService.selectedCourse = this.courseService.coursesObj[`c${course.id}`];
+                    }
+
+                    // If this was the last course, then close the socket
+                    if (completed === courses.length) {
+                        this.toolService.processing = false;
+                        socket.close();
+                    }
                 }
             });
 
@@ -233,50 +237,51 @@ export class KatanaService {
             const socket = new WebSocket(`ws://${this.serverDomain}/api/tool/fix`);
             this.sockets.push(socket);
 
-            socket.addEventListener('open', (event) => {
-                fixables.forEach(course => {
-                    course.processing = true;
-                    // Save the option values for each issue, but remove the formGroup and questionModel
-                    course.issueItems.forEach(issueItem => {
-                        issueItem.issues.forEach(issue => {
-                            if (issue.formGroup) {
-                                issue.optionValues = issue.formGroup.value;
-                                delete issue.formGroup;
-                                delete issue.questionModel;
-                            }
-                        });
-                    });
-
-                    let data = JSON.stringify({
-                        tool_id: this.toolService.selectedTool.id,
-                        course: course,
-                        options: this.toolService.selectedDiscoverOptions,
-                        userEmail: auth().currentUser.email
-                    });
-                    socket.send(data);
-                });
-            });
-
             socket.addEventListener('message', (event) => {
-                let course = JSON.parse(event.data);
-                if (course.error) {
-                    console.error(`${course.course_code} (${course.id}): ${course.error}`);
+                let data = JSON.parse(event.data);
+                if (data.state === 'READY') {
+                    fixables.forEach(course => {
+                        course.processing = true;
+                        // Save the option values for each issue, but remove the formGroup and questionModel
+                        course.issueItems.forEach(issueItem => {
+                            issueItem.issues.forEach(issue => {
+                                if (issue.formGroup) {
+                                    issue.optionValues = issue.formGroup.value;
+                                    delete issue.formGroup;
+                                    delete issue.questionModel;
+                                }
+                            });
+                        });
+
+                        let data = JSON.stringify({
+                            tool_id: this.toolService.selectedTool.id,
+                            course: course,
+                            options: this.toolService.selectedDiscoverOptions
+                        });
+                        socket.send(data);
+                    });
+                } else {
+                    let course = data;
+                    if (course.error) {
+                        console.error(`${course.course_code} (${course.id}): ${course.error}`);
+                    }
+
+                    this.courseService.coursesObj[`c${course.id}`] = course;
+                    course.processing = false;
+                    completed++;
+
+                    // Update the currently selected course, if this is the currently selected course
+                    if (course.id === this.courseService.selectedCourse.id) {
+                        this.courseService.selectedCourse = this.courseService.coursesObj[`c${course.id}`];
+                    }
+
+                    // If this was the last course, then close the socket
+                    if (completed === fixables.length) {
+                        this.toolService.processing = false;
+                        socket.close();
+                    }
                 }
 
-                this.courseService.coursesObj[`c${course.id}`] = course;
-                course.processing = false;
-                completed++;
-
-                // Update the currently selected course, if this is the currently selected course
-                if (course.id === this.courseService.selectedCourse.id) {
-                    this.courseService.selectedCourse = this.courseService.coursesObj[`c${course.id}`];
-                }
-
-                // If this was the last course, then close the socket
-                if (completed === fixables.length) {
-                    this.toolService.processing = false;
-                    socket.close();
-                }
             });
 
             socket.onerror = (err) => {
