@@ -14,6 +14,7 @@ const toolList = {
     'byui_style_classes': new NodeTool(require('./node_tools/byui_style_classes.js')),
     'discussions_threaded': new NodeTool(require('./node_tools/discussions_threaded.js')),
     'course_search': new NodeTool(require('./node_tools/course_search.js')),
+    'html_general_editor': new NodeTool(require('./node_tools/html_general_editor.js')),
     // 'broken_images': new NodeTool(require('./node_tools/broken_images.js')),
 };
 

@@ -5,11 +5,15 @@ const cheerio = require('cheerio');
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
  * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
+ * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
     if (canvasItem.getHtml() === null) return;
     var $ = cheerio.load(canvasItem.getHtml());
-    var images = $('img');
+    var allDivChildren = $('.byui').children();
+    var headerHTML = '';
+    var courseBanner = $('img').first();
+    var hr = $('hr').first();
 
     images.each((i, image) => {
         image = $(image);
@@ -98,34 +102,22 @@ function fix(canvasItem, issueItem, options) {
 module.exports = {
     discover,
     fix,
-    id: 'alt_attributes',
-    title: 'Alt Attributes',
-    description: 'This tool allows you to edit image alt attributes. It can provide all images in the course, or just images that have empty or missing alt attributes. Courses with a high number of images may cause delays when navigating through issues. You will NOT be able to see any of the images if you are not signed into Canvas.',
-    icon: 'text_rotation_none',
-    toolType: 'fix',
-    toolCategory: 'html',
-    fixedMessage: 'The new alt attribute has been inserted',
+    id: 'remove_headers',
+    title: 'Remove Headers',
+    description: 'This tool allows you to remove the unused headers in Canvas items, namely the course banner image, the old item title, the `hr` tag, and potentially anything else in the header that comes before the `hr` tag.',
+    fixedMessage: 'The item header has been removed',
+    icon: 'face',
     categories: [
-        'pages',
         'assignments',
         'discussions',
+        // 'files',
+        'moduleItems',
+        'modules',
+        'pages',
         'quizzes',
         'quizQuestions'
     ],
-    discoverOptions: [{
-        title: 'Conditions',
-        key: 'altCondition',
-        description: 'Do you want to include all image alt attributes or just empty and missing alt attributes?',
-        type: 'dropdown',
-        choices: ['', 'All image alt attributes', 'Only empty and missing'],
-        required: true
-    }],
-    fixOptions: [{
-        title: 'New Alt Text',
-        key: 'newAltText',
-        description: 'Please enter the new alt text for this image.',
-        type: 'text',
-        choices: [],
-        required: true
-    }],
+    toolCategory: 'html',
+    discoverOptions: [],
+    fixOptions: [],
 };
