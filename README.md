@@ -14,7 +14,7 @@ To set up your own instance of Katana, follow these steps:
 
 4. (TEMP: Set up CANVAS_API_TOKEN environment variable | Will become canvas developer key)
 
-5. Deploy Firebase using the steps described in this document](./documentation/additional-documentation/setup/setting-up-firebase.html)
+5. Deploy Firebase using the steps described in [this document](./documentation/additional-documentation/setup/setting-up-firebase.html)
 
 8. Build production files with `ng build --prod`
 
