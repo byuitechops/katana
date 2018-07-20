@@ -24,7 +24,7 @@ export class AuthGuardService implements CanActivate {
      *******************************/
     private userDetails: User = null;
 
-    /** 
+    /**
      * Event emitted when auth status changes
      */
     @Output() authState = new EventEmitter<boolean>();
@@ -70,7 +70,7 @@ export class AuthGuardService implements CanActivate {
      ***********************************************************************************/
     doGoogleLogin() {
         return new Promise<any>((resolve, reject) => {
-            let provider = new auth.GoogleAuthProvider();
+            const provider = new auth.GoogleAuthProvider();
             provider.addScope('profile');
             provider.addScope('email');
             auth().setPersistence(auth.Auth.Persistence.SESSION)
@@ -80,7 +80,7 @@ export class AuthGuardService implements CanActivate {
                         .catch(function (error) {
                             console.error(error);
                         });
-                })
+                });
         });
     }
 

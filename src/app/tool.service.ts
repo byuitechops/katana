@@ -81,7 +81,7 @@ export class ToolService {
      */
     constructor(private router: Router) {
 
-        let loc = window.location.href;
+        const loc = window.location.href;
 
         if (loc.includes('options') && !this._selectedTool && sessionStorage.selectedTool) {
             this._selectedTool = this.toolList.find(tool => tool.id === sessionStorage.selectedTool);
