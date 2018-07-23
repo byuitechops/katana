@@ -6,11 +6,11 @@ import { auth } from 'firebase';
 import { Observable } from 'rxjs';
 
 /**
- * Verifies the user is correctly logged in with a valid
- * Google BYUI account. Redirects the user to the Google
- * login page as needed. Provides validation for the user
- * to access various routes.
- */
+* Verifies the user is correctly logged in with a valid
+* Google BYUI account. Redirects the user to the Google
+* login page as needed. Provides validation for the user
+* to access various routes.
+*/
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
@@ -24,7 +24,7 @@ export class AuthGuardService implements CanActivate {
      *******************************/
     private userDetails: User = null;
 
-    /** 
+    /**
      * Event emitted when auth status changes
      */
     @Output() authState = new EventEmitter<boolean>();

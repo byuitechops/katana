@@ -18,9 +18,6 @@ function discover(canvasItem, issueItem, options) {
         1: 'a',
         2: 'i'
     };
-    let html = {
-        currentHtml: canvasItem.getHtml()
-    };
 
     function getChildren(ol, olsToFix, oldTypes, newTypes, i) {
         if (i > 2) i = 0;
@@ -59,9 +56,11 @@ function discover(canvasItem, issueItem, options) {
             let olsToFix = [];
             let oldTypes = [];
             let newTypes = [];
-            let oldOl = String($(ol).html());
+            let oldOl = new String($(ol).html());
+            let html = {
+                currentHtml: canvasItem.getHtml()
+            };
             let newOl;
-
 
             //Get the parents Children
 
@@ -69,7 +68,7 @@ function discover(canvasItem, issueItem, options) {
 
             // Check if the OL has an ordered list(s) as a child, if it does add an issue item, else do not.
             if (olsToFix.length > 1) {
-                newOl = getNewOl(olsToFix, newTypes);
+                newOl = new String($(getNewOl(olsToFix, newTypes)).html());
                 let title = 'Ordered List Type Incorrect';
                 let display = `
                 <div>This ordered list doesn't contain the correct type. This will update it so it has the correct type.</div>
@@ -79,12 +78,13 @@ function discover(canvasItem, issueItem, options) {
                     </div>
                 <h3>updated ordered list</h3>
                     <div class="code-block">
-                    <ol type="1">${$(newOl).html()}</ol>
+                    <ol type="1">${newOl}</ol>
                     </div>
                 `;
 
-                //html.updatedHtml = `<ol type="1">${$(newOl).html()}</ol>`;
-                html.updatedHtml = `${$.html()}`;
+                html.currentOl = `<ol>${oldOl}</ol>`;
+                html.updatedOl = `<ol type="1">${newOl}</ol>`;
+                html.updatedHTML = new String($.html());
                 let details = {
                     tag: ol.tagName,
                     attribute,
@@ -106,9 +106,18 @@ function discover(canvasItem, issueItem, options) {
  *****************************************************************/
 function fix(canvasItem, issueItem, options) {
     return new Promise(async (resolve, reject) => {
-
-        console.log(issueItem.html.updatedHtml);
-        resolve();
+        try {
+            issueItem.issues.forEach(issue => {
+                if (issue.status === 'approved') {
+                    console.log(issueItem.issues[0].html);
+                }
+            });
+            resolve();
+        } catch (e) {
+            issueItem.issues[0].status = 'failed';
+            reject(e);
+        }
+    });
     // try {
     //     let $ = cheerio.load(canvasItem.getHtml());
     //     issueItem.issues.forEach(issue => {
@@ -130,7 +139,7 @@ function fix(canvasItem, issueItem, options) {
     //     issueItem.issues[0].status = 'failed';
     //     reject(e);
     // }
-    });
+
 }
 
 module.exports = {
@@ -154,11 +163,15 @@ module.exports = {
     fixOptions: [],
     editorTabs: [{
         title: 'Current Ordered List',
-        htmlKey: 'currentHtml',
+        htmlKey: 'currentOl',
         readOnly: true
     }, {
         title: 'Updated Ordered List',
-        htmlKey: 'updatedHtml',
+        htmlKey: 'updatedOl',
+        readOnly: true
+    }, {
+        title: 'Updated HTML',
+        htmlKey: 'updatedHTML',
         readOnly: true
     }]
 };
