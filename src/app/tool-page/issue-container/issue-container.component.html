@@ -35,7 +35,7 @@
 
     <!-- Code Editor - Will only show up if the issue has contents in its "html" property -->
     <div *ngIf="showEditor()">
-        <app-code-editor [tabs]="buildEditorTabs()" [searchPhrase]="issue.html.searchPhrase"></app-code-editor>
+        <app-code-editor (sessionValues)="handleEditorSessionValues($event)" [tabs]="buildEditorTabs()" [searchPhrase]="issue.html.searchPhrase" ></app-code-editor>
     </div>
 
     <!-- Card Actions - this section contains the "approve" and "skip" buttons, as well as the fix message container -->
