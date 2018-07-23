@@ -1,7 +1,8 @@
 .courseSearch {
+  position: absolute;
   height: calc(100vh - var(--breadcrumbs-height));
   width: calc(100vw - var(--course-sidebar-width));
-  margin-top: var(--breadcrumbs-height);
+  /* margin-top: var(--breadcrumbs-height); */
   z-index: 4;
   background-color: rgba(0, 0, 0, 0.4);
   top: var(--breadcrumbs-height);
