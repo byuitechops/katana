@@ -1,6 +1,6 @@
 const cheerio = require('cheerio');
 
-/*****************************************************************
+/** ***************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
  * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
@@ -55,7 +55,7 @@ function discover(canvasItem, issueItem, options) {
     });
 }
 
-/*****************************************************************
+/** ***************************************************************
  * Fixes issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
  * @param {IssueItem} issueItem - The IssueItem for the item, including its issues

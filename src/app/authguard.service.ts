@@ -70,7 +70,7 @@ export class AuthGuardService implements CanActivate {
      ***********************************************************************************/
     doGoogleLogin() {
         return new Promise<any>((resolve, reject) => {
-            let provider = new auth.GoogleAuthProvider();
+            const provider = new auth.GoogleAuthProvider();
             provider.addScope('profile');
             provider.addScope('email');
             auth().setPersistence(auth.Auth.Persistence.SESSION)
@@ -80,7 +80,7 @@ export class AuthGuardService implements CanActivate {
                         .catch(function (error) {
                             console.error(error);
                         });
-                })
+                });
         });
     }
 
@@ -91,6 +91,15 @@ export class AuthGuardService implements CanActivate {
     signOut() {
         return auth().signOut()
             .then(this.doGoogleLogin)
+            .catch(console.error);
+    }
+
+    /** *********************************************************************************
+     * Retrieves the user's idToken for Firebase, so requests can be validated on the
+     * server.
+     ***********************************************************************************/
+    retrieveToken() {
+        return auth().currentUser.getIdToken(true)
             .catch(console.error);
     }
 }

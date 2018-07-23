@@ -1,0 +1,11 @@
+#errorPage {
+    background-color:white;
+    margin:80px 20px;
+    padding:20px;
+    overflow: scroll;
+    width: calc(100vw - var(--course-sidebar-width) - 40px);
+}
+
+h1 {
+    color: red;
+}

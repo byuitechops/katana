@@ -108,14 +108,18 @@ export class CodeEditorComponent implements OnInit {
         this.editor.setSession(tab.session);
         this.activeTab = tab;
 
-        // Converts the provided search phrase to a RegExp
-        let reg = new RegExp(this.searchPhrase, 'gi');
-        // Finds and highlights all matches to the RegExp
-        this.editor.findAll(reg, {
-            needle: reg,
-            wrap: true,
-            regExp: true
-        });
+        // This "if" prevents it from searching with an empty search phrase,
+        // which finds pretty much every empty character...
+        if (this.searchPhrase) {
+            // Converts the provided search phrase to a RegExp
+            let reg = new RegExp(this.searchPhrase, 'gi');
+            // Finds and highlights all matches to the RegExp
+            this.editor.findAll(reg, {
+                needle: reg,
+                wrap: true,
+                regExp: true
+            });
+        }
     }
 
     /**

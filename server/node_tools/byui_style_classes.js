@@ -1,6 +1,6 @@
 const cheerio = require('cheerio');
 
-/*****************************************************************
+/** ***************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
  * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
@@ -25,7 +25,7 @@ function discover(canvasItem, issueItem, options) {
         $('script').remove();
 
         // Cheerio adds an html, head, and body tags, so we just want the contents of the body
-        let currentHtml = $('body').html();
+        let currentHtml = canvasItem.getHtml();
         let title, display, currentClasses = null;
 
         if (byuiClass.length === 0) {
@@ -71,7 +71,7 @@ function discover(canvasItem, issueItem, options) {
     }
 }
 
-/*****************************************************************
+/** ***************************************************************
  * Fixes issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
  * @param {IssueItem} issueItem - The IssueItem for the item, including its issues

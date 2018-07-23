@@ -1,9 +1,14 @@
-<div [class.frosted]="this.courseService.courseSelectionOpen || this.courseService.courseEditOpen" class="categories">
-    <div *ngFor="let category of toolService.categories" (click)="setSelectedCategory(category)" [routerLink]="['tools']" [queryParams]="{category: category.categoryId}"
-        class="categoryIcon card">
-        <div>
-            <i class="material-icons charcoal-text">{{category.icon}}</i>
-            <p class="blue-grey-text text-darken-2">{{category.title}}</p>
+<div class="categories" [class.frosted]="this.courseService.courseSelectionOpen || this.courseService.courseEditOpen">
+    <div *ngFor="let category of toolService.categories" (click)="setSelectedCategory(category)">
+        <h1 class="white-text">{{category.title}}</h1>
+        <div class="tools">
+            <div *ngFor="let tool of this.toolService.toolList">
+                <div (click)="this.toolService.selectedTool = tool" [routerLink]="['tools', tool.id, 'options']" class="toolIcon card" style="display: block"
+                    [style.display]="tool.toolCategory === category.toolCategory ? 'block' : 'none'">
+                    <i class="material-icons charcoal-text">{{tool.icon}}</i>
+                    <p>{{tool.title}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

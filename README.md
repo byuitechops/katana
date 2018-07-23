@@ -6,21 +6,23 @@ This tool is built to interface with Canvas, a Learning Management System built 
 
 To set up your own instance of Katana, follow these steps:
 
-1. Install and [use git](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) to clone the repository
+1. Install Git and [use it to clone the repository](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository)
 
 2. [Install NodeJS](https://nodejs.org/en/download/) if is not installed
 
 3. In the terminal, run: `npm install`
 
-4. After step 3 is complete...
+4. (TEMP: Set up CANVAS_API_TOKEN environment variable | Will become canvas developer key)
 
-5. (Firestore auth file)
+5. Deploy Firebase using the steps described in [this document](./documentation/additional-documentation/setup/setting-up-firebase.html)
 
-6. (Canvas developer key)
+8. Build production files with `ng build --prod`
 
-7. Run `ng build --prod` to build the production files
+9. Copy the `server` directory and the contents of the `/dist` folder into the directory you will be deploying from
 
-8. Retrieve the production files from `/dist` and deploy them from a server however you would like
+10. Use `npm start` to spin up Katana
+
+11. Follow any [additional setup processes](http://localhost:8080/additional-documentation/setup.html) you need
 
 ## Development
 
@@ -30,21 +32,30 @@ For development, use this command to build the angular front-end and launch the 
 
 It can then be accessed via `localhost:8000` (or whichever port you specify in `server/settings.json`).
 
-## Architecture
-
-You can gain a better understanding of how each part of Katana works through these docs:
-
-[Firebase Authentication]("./docs/Firebase%20Authentication%20Process.md")<br />
-[Firestore Wrapper]("./docs/Firestore%20Wrapper.md")<br />
-[Discover & Fix Workflow]("./docs/Discover%20&%20Fix%20Workflow.md.md")<br />
-[Node Tools]("./docs/Node%20Tools.md")<br />
-[Server Endpoints]("./docs/Server%20Endpoints.md")<br />
-
 **Flags**
 
-| Flag      | Use                                                       |
+| Flag      | Purpose                                                   |
 |-----------|-----------------------------------------------------------|
 | --mute    | Prevents database logging from appearing in the console   |
+
+
+# Documentation
+
+## Client (Angular)
+<!-- This will need to point to Compodocs when it is set up -->
+[LinkName](link) 
+
+## Architecture
+[LinkName](link)<br />
+
+## How To...
+[LinkName](link)<br />
+
+## Firebase Integration
+[LinkName](link)<br />
+
+
+
 
 
 

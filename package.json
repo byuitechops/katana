@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server/server.js",
+    "docs": "compodoc -p src/tsconfig.app.json -s --theme material --hideGenerator -w --name Katana --toggleMenuItems [] --includes ./documentation/additional-documentation",
     "fullbuild": "ng build && node server/server.js",
     "build": "ng build",
     "test": "ng test",
@@ -42,6 +43,7 @@
     "object-sizeof": "^1.2.0",
     "rxjs": "^6.2.0",
     "rxjs-compat": "^6.2.1",
+    "socket.io": "^2.1.1",
     "ws": "^5.2.1",
     "zone.js": "^0.8.26"
   },

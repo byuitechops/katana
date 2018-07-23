@@ -4,7 +4,7 @@ import { CourseService } from './course.service';
 import { ToolService } from './tool.service';
 import { ToastService } from './toast.service';
 import { Router } from '@angular/router';
-import { auth } from 'firebase';
+import { auth, database } from 'firebase';
 import { AuthGuardService } from './authguard.service';
 
 /**
@@ -19,6 +19,11 @@ export class KatanaService {
      * Handles formatting the correct URL for the web sockets.
      */
     serverDomain = window.location.hostname.replace(/www./, '') + (window.location.port ? ':' + window.location.port : '');
+
+    /**
+     * If an error is returned by the server, it is stored here for public access.
+     */
+    error: Error;
 
     /**
      * Constructor
@@ -57,14 +62,24 @@ export class KatanaService {
      * Retrieves the list of tools from the server.
      *****************************************************************/
     getToolList() {
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             if (!this.authGuardService.canActivate()) {
                 return reject(new Error('ToolList: User is not authenticated.'));
             }
-            this.http.get('/tool-list').subscribe((toolList: any): any => {
-                this.toolService.toolList = toolList;
-                resolve();
-            }, reject);
+            this.authGuardService.retrieveToken()
+                .then(userIdToken => {
+                    this.http.get(`/api/tool-list?userIdToken=${userIdToken}`).subscribe(
+                        (toolList: any): any => {
+                            this.toolService.toolList = toolList;
+                            resolve();
+                        },
+                        (err) => {
+                            this.errorHandler(err);
+                            reject();
+                        });
+                })
+                .catch(this.errorHandler);
+
         });
     }
 
@@ -76,27 +91,35 @@ export class KatanaService {
             if (!this.authGuardService.canActivate()) {
                 return reject(new Error('Course Search: User is not authenticated.'));
             }
-            let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+            const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             headers.append('Content-Type', 'application/json');
-            this.http.post('/course-retrieval', body, { headers: headers }).subscribe(
-                (data) => {
-                    resolve(data);
-                },
-                (err) => {
-                    this.toastService.toastError(err);
-                    console.error(err);
-                });
+
+            this.authGuardService.retrieveToken()
+                .then(userIdToken => {
+                    this.http.post(`/api/course-retrieval?userIdToken=${userIdToken}`, body, { headers: headers }).subscribe(
+                        (data) => {
+                            resolve(data);
+                        },
+                        (err) => {
+                            this.errorHandler(err);
+                            reject();
+                        });
+                })
+                .catch(this.errorHandler);
         });
     }
 
     /**
      * Has the server log when a user's auth status changes (log in, log out, etc.)
+     * DEPRECATED
      */
     logUserStatus(userEmail: string, message: string) {
-        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         headers.append('Content-Type', 'application/json');
 
-        this.http.post('/user-status', { userEmail, message }, { headers: headers });
+        this.http.post('/api/user-status', { userEmail, message }, { headers: headers }).subscribe(
+            () => { },
+            this.errorHandler);
     }
 
     /**
@@ -106,53 +129,69 @@ export class KatanaService {
      * @returns {object[]} - Array of issue items discovered by the tool on the server
      */
     discoverIssues(courses) {
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             if (!this.authGuardService.canActivate()) {
                 return reject(new Error('Discover: User is not authenticated.'));
             }
 
             this.toolService.processingMessage = 'Searching for Issues...';
             this.toolService.processing = true;
-            var completed = 0;
+            let completed = 0;
 
-            const socket = new WebSocket(`ws://${this.serverDomain}/tool/discover`);
+            let userIdToken;
+            try {
+                userIdToken = await this.authGuardService.retrieveToken();
+            } catch (err) {
+                this.errorHandler(err);
+            }
+
+            const socket = new WebSocket(`ws://${this.serverDomain}/api/tool/discover?userIdToken=${userIdToken}`);
             this.sockets.push(socket);
 
-            socket.addEventListener('open', (event) => {
-                courses.forEach(course => {
-                    // Set the course processing
-                    course.processing = true;
-                    // Remove any pre-existing error
-                    delete course.error;
-
-                    let data = JSON.stringify({
-                        tool_id: this.toolService.selectedTool.id,
-                        course: course,
-                        options: this.toolService.selectedDiscoverOptions,
-                        userEmail: auth().currentUser.email
-                    });
-                    socket.send(data);
-                });
-            });
-
+            /* Normally, you would just listen for the 'open' event and start sending messages
+            to the server. However, the auth middleware on the server causes a delay that
+            prevents the event listeners for each particular web socket from being set up. The
+            messages sent immediately when the web socket are opened are received, but never
+            handled. Instead, it is set up here to wait for the server to tell the client that
+            it is good to go before it starts sending messages. */
             socket.addEventListener('message', (event) => {
-                let course = JSON.parse(event.data);
-                if (course.error) {
-                    console.error(`${course.course_code} (${course.id}): ${course.error}`);
-                }
-                this.courseService.coursesObj[`c${course.id}`] = course;
-                course.processing = false;
-                completed++;
+                const data = JSON.parse(event.data);
+                if (data.state === 'READY') {
+                    courses.forEach(course => {
+                        // Set the course processing
+                        course.processing = true;
+                        // Remove any pre-existing error
+                        delete course.error;
 
-                // Update the currently selected course, if this is the currently selected course
-                if (course.id === this.courseService.selectedCourse.id) {
-                    this.courseService.selectedCourse = this.courseService.coursesObj[`c${course.id}`];
-                }
+                        let data = JSON.stringify({
+                            tool_id: this.toolService.selectedTool.id,
+                            course: course,
+                            options: this.toolService.selectedDiscoverOptions,
+                            userEmail: auth().currentUser.email
+                        });
+                        socket.send(data);
+                    });
+                } else {
+                    const course = data;
 
-                // If this was the last course, then close the socket
-                if (completed === courses.length) {
-                    this.toolService.processing = false;
-                    socket.close();
+                    if (course.error) {
+                        console.error(`${course.course_code} (${course.id}): ${course.error}`);
+                    }
+
+                    this.courseService.coursesObj[`c${course.id}`] = course;
+                    course.processing = false;
+                    completed++;
+
+                    // Update the currently selected course, if this is the currently selected course
+                    if (course.id === this.courseService.selectedCourse.id) {
+                        this.courseService.selectedCourse = this.courseService.coursesObj[`c${course.id}`];
+                    }
+
+                    // If this was the last course, then close the socket
+                    if (completed === courses.length) {
+                        this.toolService.processing = false;
+                        socket.close();
+                    }
                 }
             });
 
@@ -161,9 +200,8 @@ export class KatanaService {
                     course.processing = false;
                     course.error = new Error('Socket unexpectedly closed.');
                 });
-                this.toastService.toastError(err);
                 this.toolService.processing = false;
-                console.error(err);
+                this.errorHandler(err);
             };
         });
     }
@@ -175,7 +213,7 @@ export class KatanaService {
      * @returns {object[]} - Array of issue items fixed by the tool on the server
      */
     fixIssues(courses) {
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             if (!this.authGuardService.canActivate()) {
                 return reject(new Error('Fix: User is not authenticated.'));
             }
@@ -183,7 +221,7 @@ export class KatanaService {
             this.toolService.processingMessage = 'Fixing Issues...';
             this.toolService.processing = true;
 
-            var fixables = courses.filter(course => {
+            const fixables = courses.filter(course => {
                 return course.issueItems && course.issueItems.some(issueItems => {
                     if (issueItems.issues.some(issue => issue.status === 'approved')) {
                         course.processing = true;
@@ -195,55 +233,64 @@ export class KatanaService {
                 });
             });
 
-            var completed = 0;
+            let userIdToken;
+            try {
+                userIdToken = await this.authGuardService.retrieveToken();
+            } catch (err) {
+                this.errorHandler(err);
+            }
 
-            const socket = new WebSocket(`ws://${this.serverDomain}/tool/fix`);
+            let completed = 0;
+
+            const socket = new WebSocket(`ws://${this.serverDomain}/api/tool/fix?userIdToken=${userIdToken}`);
             this.sockets.push(socket);
 
-            socket.addEventListener('open', (event) => {
-                fixables.forEach(course => {
-                    course.processing = true;
-                    // Save the option values for each issue, but remove the formGroup and questionModel
-                    course.issueItems.forEach(issueItem => {
-                        issueItem.issues.forEach(issue => {
-                            if (issue.formGroup) {
-                                issue.optionValues = issue.formGroup.value;
-                                delete issue.formGroup;
-                                delete issue.questionModel;
-                            }
-                        });
-                    });
-
-                    let data = JSON.stringify({
-                        tool_id: this.toolService.selectedTool.id,
-                        course: course,
-                        options: this.toolService.selectedDiscoverOptions,
-                        userEmail: auth().currentUser.email
-                    });
-                    socket.send(data);
-                });
-            });
-
             socket.addEventListener('message', (event) => {
-                let course = JSON.parse(event.data);
-                if (course.error) {
-                    console.error(`${course.course_code} (${course.id}): ${course.error}`);
+                const data = JSON.parse(event.data);
+                if (data.state === 'READY') {
+                    fixables.forEach(course => {
+                        course.processing = true;
+                        // Save the option values for each issue, but remove the formGroup and questionModel
+                        course.issueItems.forEach(issueItem => {
+                            issueItem.issues.forEach(issue => {
+                                if (issue.formGroup) {
+                                    issue.optionValues = issue.formGroup.value;
+                                    delete issue.formGroup;
+                                    delete issue.questionModel;
+                                }
+                            });
+                        });
+
+                        let data = JSON.stringify({
+                            tool_id: this.toolService.selectedTool.id,
+                            course: course,
+                            options: this.toolService.selectedDiscoverOptions,
+                            userEmail: auth().currentUser.email
+                        });
+                        socket.send(data);
+                    });
+                } else {
+                    const course = data;
+                    if (course.error) {
+                        console.error(`${course.course_code} (${course.id}): ${course.error}`);
+                    }
+
+                    this.courseService.coursesObj[`c${course.id}`] = course;
+                    course.processing = false;
+                    completed++;
+
+                    // Update the currently selected course, if this is the currently selected course
+                    if (course.id === this.courseService.selectedCourse.id) {
+                        this.courseService.selectedCourse = this.courseService.coursesObj[`c${course.id}`];
+                    }
+
+                    // If this was the last course, then close the socket
+                    if (completed === fixables.length) {
+                        this.toolService.processing = false;
+                        socket.close();
+                    }
                 }
 
-                this.courseService.coursesObj[`c${course.id}`] = course;
-                course.processing = false;
-                completed++;
-
-                // Update the currently selected course, if this is the currently selected course
-                if (course.id === this.courseService.selectedCourse.id) {
-                    this.courseService.selectedCourse = this.courseService.coursesObj[`c${course.id}`];
-                }
-
-                // If this was the last course, then close the socket
-                if (completed === fixables.length) {
-                    this.toolService.processing = false;
-                    socket.close();
-                }
             });
 
             socket.onerror = (err) => {
@@ -253,8 +300,14 @@ export class KatanaService {
                 });
                 this.toastService.toastError(err);
                 this.toolService.processing = false;
-                console.error(err);
+                this.errorHandler(err);
             };
         });
+    }
+
+    errorHandler(e) {
+        console.error(e);
+        this.error = e;
+        this.router.navigate(['home', 'error']);
     }
 }

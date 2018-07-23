@@ -1,27 +1,25 @@
 .courseSearch {
+  position: absolute;
   height: calc(100vh - var(--breadcrumbs-height));
-  position: fixed;
   width: calc(100vw - var(--course-sidebar-width));
+  /* margin-top: var(--breadcrumbs-height); */
   z-index: 4;
   background-color: rgba(0, 0, 0, 0.4);
   top: var(--breadcrumbs-height);
+  min-width: 700px;
+  overflow: scroll;
 }
 
 .courseSearch__title {
   font-size: 60px;
   padding: 5px 0 0 45px;
-  position: fixed;
-  top: var(--breadcrumbs-height);
   width: calc(100vw - var(--course-sidebar-width));
   color: white;
 }
 
 .courseSearch__courseSelection {
   display: flex;
-  height: 100%;
-  position: fixed;
   padding: 0 50px;
-  top: calc(var(--breadcrumbs-height) + 75px);
   width: calc(100vw - var(--course-sidebar-width));
 }
 
@@ -31,9 +29,11 @@
 
 .courseSearch__options {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
+  justify-content: space-between;
   padding-top: 10px;
   width: calc(100vw - var(--course-sidebar-width) - 100px);
+  min-width: 600px;
 }
 
 select {
@@ -42,8 +42,8 @@ select {
   color: black;
   cursor: pointer;
   display: block;
-  margin-right: auto;
-  width: 90%;
+  /* margin-right: auto; */
+  /* width: 90%; */
   /* This height matches the height of the input */
   height: 47px;
   /* The selected option will be size 20px */
@@ -53,7 +53,7 @@ select {
 label {
   font-size: 20px;
   color: white;
-  width: 13%;
+  width: calc((100% / 4) - 20px);
 }
 
 select>option[disabled] {
@@ -74,6 +74,7 @@ option {
   flex-flow: column nowrap;
   /* Subract 100px for the 50px padding on each side of the container */
   width: calc(100vw - var(--course-sidebar-width) - 100px);
+  margin-bottom: 30px;
 }
 
 .courseSearch__options input {
@@ -86,9 +87,14 @@ option {
   width: calc(100% - 11px);
 }
 
+.courseSearch__options>label{
+  min-width: 120px;
+}
+
 .courseSearch__input {
   display: flex;
   flex-flow: column nowrap;
+  /* width: 650px; */
   width: 100%;
 }
 
@@ -104,6 +110,10 @@ option {
   /* Subract 100px for the 50px padding on each side of the container */
   width: calc(100vw - var(--course-sidebar-width) - 100px);
   max-height: 655px;
+  min-width: 600px;
+    /* The width of the table minus the 1px border width on each side
+  so the white background doesn't overlap the table border */
+  width: calc(100vw - var(--course-sidebar-width) - 102px);
 }
 
 .courseSearch__search>table>tbody::-webkit-scrollbar {
@@ -115,12 +125,6 @@ option {
 .courseSearch__search>table>thead {
   background-color: white;
   border-bottom: 1px solid var(--primary-3);
-  height: 52px;
-  position: fixed;
-  /* The width of the table minus the 1px border width on each side
-  so the white background doesn't overlap the table border */
-  width: calc(100vw - var(--course-sidebar-width) - 102px);
-
 }
 
 .courseSearch__search>table>tbody {
@@ -128,7 +132,6 @@ option {
   position: relative;
   /* The same as the padding-top for the Scrollbar, one pixel 
   less than the thead height to account for the thead border */
-  margin-top: 44px;
 }
 
 .courseSearch__courseResults>* {
@@ -148,6 +151,7 @@ tr>th:hover {
 tr>th,
 tr>td {
   padding-left: 10px;
+  box-sizing: content-box;
 }
 
 thead th:nth-of-type(1),
@@ -196,6 +200,7 @@ thead th:nth-of-type(9),
 tbody td:nth-of-type(9) {
   width: 150px;
   text-align: center;
+  min-width: 91px;
 }
 
 /***************************************
@@ -206,3 +211,9 @@ tbody td:nth-of-type(9) {
   max-height: 100%;
   margin: auto;
 }
+
+/***************************************
+* Daniel Testing responsive design
+***************************************/
+
+
