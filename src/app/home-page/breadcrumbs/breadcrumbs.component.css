@@ -8,6 +8,7 @@
     width: 100vw;
     border-bottom: solid 1px var(--primary-2);
     background-color: var(--background-light);
+    z-index: 5;
 }
 
 .breadcrumb {

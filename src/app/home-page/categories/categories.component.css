@@ -4,6 +4,11 @@
     max-height: calc(100vh - var(--course-sidebar-height));
 }
 
+.categories.frosted {
+    overflow: hidden;
+    height: calc(100vh - var(--breadcrumbs-height));
+}
+
 .tools {
     display: flex;
     flex-flow: row wrap;
