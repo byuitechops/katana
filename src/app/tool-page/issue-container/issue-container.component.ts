@@ -144,18 +144,17 @@ export class IssueContainerComponent implements OnInit {
 
     handleEditorSessionValues(event) {
         // attach the value to issues as needed here. Think about attaching it to the html property on the issue object.
-        console.log(event);
+        console.log(`eventttt:`, event);
         this.courseService.courses.forEach(course => {
             course.issueItems.forEach(issueItem => {
-                issueItem.issues.forEach(issue => {
-                    if (this.toolService.selectedTool.editorTabs) {
-                        this.toolService.selectedTool.editorTabs.forEach(editorTab => {
-                            if (editorTab.readOnly === false) {
-                                issue.html.updatedHtml = event;
-                            }
-                        });
-                    }
-                });
+                if (this.toolService.selectedTool.editorTabs) {
+                    this.toolService.selectedTool.editorTabs.forEach(editorTab => {
+                        if (editorTab.readOnly === false) {
+                            console.log(`lol`);
+                            issueItem.issues[0].html.updatedHtml = event;
+                        }
+                    });
+                }
             });
         });
     }

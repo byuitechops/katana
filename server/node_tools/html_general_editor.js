@@ -57,9 +57,9 @@ function discover(canvasItem, issueItem, options) {
 
     let html = {
         currentHtml,
-        // updatedHtml: currentHtml
+        updatedHtml: currentHtml
     };
-
+// console.log(html)
     let details = {};
 
     issueItem.newIssue(title, display, details, html);
@@ -78,7 +78,7 @@ function fix(canvasItem, issueItem, options) {
             if (canvasItem.getHtml() === null || issueItem.issues[0].status !== 'approved') return;
             if (issueItem.issues[0].html.updatedHtml === issueItem.issues[0].html.currentHtml) return;
             console.log(`updated: `, issueItem.issues[0].html.updatedHtml);
-            // canvasItem.setHtml(issueItem.html.updatedHtml);
+            canvasItem.setHtml(issueItem.issues[0].html.updatedHtml);
             await canvasItem.update();
             issueItem.issues[0].status = 'fixed';
             resolve();
