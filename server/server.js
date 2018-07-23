@@ -48,7 +48,7 @@ apiRouter.use(authGuard);
  * Sends the list of courses searched for to the user.
  * @returns {courses[]} - List of courses that match the search criteria
  ************************************************************************/
-apiRouter.get('/course-retrieval', (req, res) => {
+apiRouter.post('/course-retrieval', (req, res) => {
     course_retrieval(req.body)
         .then(courses => {
             res.status(200).send(courses);

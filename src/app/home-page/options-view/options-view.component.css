@@ -2,12 +2,13 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 40px 0;
+    padding: 55px;
 }
 
 .optionsView__container {
     color: black;
-    width: 60%;
+    width: 100%;
+    animation: .5s fadeIn;
 }
 
 .optionsView__title {

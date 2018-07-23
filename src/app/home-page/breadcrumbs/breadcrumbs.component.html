@@ -3,8 +3,6 @@
         <div id="breadcrumb-links" class="col s12">
 
             <a class="breadcrumb" href="/">Home</a>
-            <a class="breadcrumb" *ngIf="toolService.selectedCategory && router.url.includes('/tools')" [routerLink]="['home', 'tools']"
-                [queryParams]="{category: toolService.selectedCategory.type}">{{toolService.selectedCategory.title}}</a>
             <a class="breadcrumb" *ngIf="toolService.selectedTool && router.url.includes('tools/')" [routerLink]="['home', 'tools', toolService.selectedTool.id, 'options']">{{toolService.selectedTool.title}}</a>
 
             <div *ngIf="authGuardService.userDetails" class="user-info right">

@@ -22,11 +22,11 @@
     </div>
 </div>
 
-<div style="margin-top: 300px" *ngIf="courseService.selectedCourse.processing">
+<div *ngIf="courseService.selectedCourse.processing">
     <div class="progress">
-        <div class="determinate" style="width: 70%"></div>
+        <div class="indeterminate"></div>
     </div>
-    <div class="loader white-text">
+    <div class="ashen-text">
         {{toolService.processingMessage}}
     </div>
 </div>

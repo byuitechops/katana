@@ -8,7 +8,7 @@ import { AuthGuardService } from './authguard.service'; // Being used in app.com
 
 /**
  * This is the main component for the entire application.
- * It holds the primary pieces that allow the user to 
+ * It holds the primary pieces that allow the user to
  * navigate from the top down.
  */
 @Component({
@@ -23,10 +23,10 @@ export class AppComponent {
      * as needed. For example, if the user navigates to the tool view (i.e. they ran
      * a tool), then many values in various services are removed or reset to prevent
      * conflicting values between services.
-     * 
+     *
      * This will also retrieve the list of tools from the Katana service when it is
-     * created. 
-     * 
+     * created.
+     *
      * @param router Used to navigate the user as needed.
      * @param courseService Provides information and management for selected courses.
      * @param katanaService Provides functionality for making API calls to the Katana server.
@@ -50,15 +50,15 @@ export class AppComponent {
 
                 courseService.selectedIssueItem = null;
                 courseService.selectedCourse = null;
-                toolService.toolViewOpen = false
+                toolService.toolViewOpen = false;
                 toolService.selectedDiscoverOptions = false;
                 courseService.courses.forEach(course => {
                     course.issueItems = [];
-                    course.processing = false
+                    course.processing = false;
                 });
 
-                document.documentElement.style.setProperty(`--course-sidebar-width`, '112px');
-                document.documentElement.style.setProperty(`--course-chip-width`, '92px');
+                // document.documentElement.style.setProperty(`--course-sidebar-width`, '112px');
+                // document.documentElement.style.setProperty(`--course-chip-width`, '92px');
 
                 // Clear out the web sockets in case any are still running
                 katanaService.sockets.forEach(socket => socket.close());
@@ -80,8 +80,8 @@ export class AppComponent {
                 // Select the first course and adjust the bar width
                 if (courseService.courses.length > 0) {
                     courseService.selectedCourse = courseService.courses[0];
-                    document.documentElement.style.setProperty(`--course-sidebar-width`, '340px');
-                    document.documentElement.style.setProperty(`--course-chip-width`, '330px');
+                    // document.documentElement.style.setProperty(`--course-sidebar-width`, '340px');
+                    // document.documentElement.style.setProperty(`--course-chip-width`, '330px');
                 }
 
                 // Set the toolView tracking prop to true, all others off
@@ -94,7 +94,7 @@ export class AppComponent {
         // Set the saved courses they had last selected as the currently selected courses
         Object.keys(sessionStorage).forEach(key => {
             if (key.includes('katana_course')) {
-                let course = JSON.parse(sessionStorage[key]);
+                const course = JSON.parse(sessionStorage[key]);
                 this.courseService.addCourse(course);
             }
         });

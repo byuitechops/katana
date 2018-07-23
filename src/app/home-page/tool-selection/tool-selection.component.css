@@ -1,13 +1,11 @@
 .tools {
     display: flex;
     flex-flow: row wrap;
-    margin: auto;
-    padding: 25px 50px;
+    padding: 25px 0;
     height: calc(100vh - var(--course-sidebar-height));
 }
 
 .toolIcon {
-    display: flex;
     padding: 20px;
     font-size: 25px;
     box-sizing: border-box;

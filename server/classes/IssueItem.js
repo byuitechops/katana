@@ -8,7 +8,7 @@ var categories = {
     'Discussion': 'discussions',
     'File': 'files',
     'Folder': 'folders'
-}
+};
 
 module.exports = class IssueItem {
     constructor(item) {

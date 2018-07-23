@@ -1,6 +1,6 @@
 {
     "console": {
-        "requests": true,
+        "requests": false,
         "database-actions": false,
         "user-traffic": true
     },

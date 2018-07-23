@@ -91,7 +91,7 @@ export class KatanaService {
             if (!this.authGuardService.canActivate()) {
                 return reject(new Error('Course Search: User is not authenticated.'));
             }
-            let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+            const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             headers.append('Content-Type', 'application/json');
 
             this.authGuardService.retrieveToken()
@@ -114,12 +114,12 @@ export class KatanaService {
      * DEPRECATED
      */
     logUserStatus(userEmail: string, message: string) {
-        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         headers.append('Content-Type', 'application/json');
 
         this.http.post('/api/user-status', { userEmail, message }, { headers: headers }).subscribe(
             () => { },
-            this.errorHandler)
+            this.errorHandler);
     }
 
     /**
@@ -136,9 +136,9 @@ export class KatanaService {
 
             this.toolService.processingMessage = 'Searching for Issues...';
             this.toolService.processing = true;
-            var completed = 0;
+            let completed = 0;
 
-            var userIdToken;
+            let userIdToken;
             try {
                 userIdToken = await this.authGuardService.retrieveToken();
             } catch (err) {
@@ -150,12 +150,12 @@ export class KatanaService {
 
             /* Normally, you would just listen for the 'open' event and start sending messages
             to the server. However, the auth middleware on the server causes a delay that
-            prevents the event listeners for each particular web socket from being set up. The 
+            prevents the event listeners for each particular web socket from being set up. The
             messages sent immediately when the web socket are opened are received, but never
             handled. Instead, it is set up here to wait for the server to tell the client that
             it is good to go before it starts sending messages. */
             socket.addEventListener('message', (event) => {
-                let data = JSON.parse(event.data);
+                const data = JSON.parse(event.data);
                 if (data.state === 'READY') {
                     courses.forEach(course => {
                         // Set the course processing
@@ -166,12 +166,13 @@ export class KatanaService {
                         let data = JSON.stringify({
                             tool_id: this.toolService.selectedTool.id,
                             course: course,
-                            options: this.toolService.selectedDiscoverOptions
+                            options: this.toolService.selectedDiscoverOptions,
+                            userEmail: auth().currentUser.email
                         });
                         socket.send(data);
                     });
                 } else {
-                    let course = data;
+                    const course = data;
 
                     if (course.error) {
                         console.error(`${course.course_code} (${course.id}): ${course.error}`);
@@ -212,7 +213,7 @@ export class KatanaService {
      * @returns {object[]} - Array of issue items fixed by the tool on the server
      */
     fixIssues(courses) {
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             if (!this.authGuardService.canActivate()) {
                 return reject(new Error('Fix: User is not authenticated.'));
             }
@@ -220,7 +221,7 @@ export class KatanaService {
             this.toolService.processingMessage = 'Fixing Issues...';
             this.toolService.processing = true;
 
-            var fixables = courses.filter(course => {
+            const fixables = courses.filter(course => {
                 return course.issueItems && course.issueItems.some(issueItems => {
                     if (issueItems.issues.some(issue => issue.status === 'approved')) {
                         course.processing = true;
@@ -232,13 +233,20 @@ export class KatanaService {
                 });
             });
 
-            var completed = 0;
+            let userIdToken;
+            try {
+                userIdToken = await this.authGuardService.retrieveToken();
+            } catch (err) {
+                this.errorHandler(err);
+            }
 
-            const socket = new WebSocket(`ws://${this.serverDomain}/api/tool/fix`);
+            let completed = 0;
+
+            const socket = new WebSocket(`ws://${this.serverDomain}/api/tool/fix?userIdToken=${userIdToken}`);
             this.sockets.push(socket);
 
             socket.addEventListener('message', (event) => {
-                let data = JSON.parse(event.data);
+                const data = JSON.parse(event.data);
                 if (data.state === 'READY') {
                     fixables.forEach(course => {
                         course.processing = true;
@@ -256,12 +264,13 @@ export class KatanaService {
                         let data = JSON.stringify({
                             tool_id: this.toolService.selectedTool.id,
                             course: course,
-                            options: this.toolService.selectedDiscoverOptions
+                            options: this.toolService.selectedDiscoverOptions,
+                            userEmail: auth().currentUser.email
                         });
                         socket.send(data);
                     });
                 } else {
-                    let course = data;
+                    const course = data;
                     if (course.error) {
                         console.error(`${course.course_code} (${course.id}): ${course.error}`);
                     }
