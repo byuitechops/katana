@@ -47,7 +47,7 @@ export class CodeEditorComponent implements OnInit {
      * it is expanded, currently. Whether or not it can be edited is
      * determined by the tab's "readOnly" property.
      */
-    viewExpanded: boolean = false;
+    viewExpanded = false;
 
     /**
      * Stores the tab objects passed in to the "tabs" input. For whatever reason,
@@ -72,15 +72,15 @@ export class CodeEditorComponent implements OnInit {
      */
     ngOnInit() {
         // The EditSession class is used to spawn new sessions in the editor
-        let EditSession = window['ace'].require('ace/edit_session').EditSession;
+        const EditSession = window['ace'].require('ace/edit_session').EditSession;
         // Allows Ctrl+F Search functionality (keep, even though it says the var is unused)
-        let searchBox = window['ace'].require('ace/searchbox');
+        const searchBox = window['ace'].require('ace/searchbox');
         // Save a correct reference to the tab objects that is safe to use
         this._tabs = this.tabs;
 
         // Create and add an editor session to each tab, beautify its code, and insert it
         this._tabs.forEach(tab => {
-            let code = window['html_beautify'](tab['htmlString'] || ' '); // Beautifies the code
+            const code = window['html_beautify'](tab['htmlString'] || ' '); // Beautifies the code
             tab.session = new EditSession(code);
             tab.session.setMode('ace/mode/html');
             tab.session.setUseWrapMode(true);
@@ -111,6 +111,10 @@ export class CodeEditorComponent implements OnInit {
         this.editor.setReadOnly(tab.readOnly);
         this.editor.setSession(tab.session);
         this.activeTab = tab;
+
+        this.editor.on('change', () => {
+            this.sessionValues.emit(this.editor.getSession().getValue());
+        });
 
         // This "if" prevents it from searching with an empty search phrase,
         // which finds pretty much every empty character...

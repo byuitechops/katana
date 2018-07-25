@@ -46,7 +46,7 @@ function discover(canvasItem, issueItem, options) {
         // if tagsFound is empty, then the tag wasn't found
         if (tagsFound.length === 0) return;
 
-        // add the 
+        // add the tags that were searched for and found to the display
         display += `
             <h2>Tags Searched For</h2>
             <div>${options.searchTags.join(' ')}</div>
@@ -59,7 +59,7 @@ function discover(canvasItem, issueItem, options) {
         currentHtml,
         updatedHtml: currentHtml
     };
-// console.log(html)
+
     let details = {};
 
     issueItem.newIssue(title, display, details, html);
