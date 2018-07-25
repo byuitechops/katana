@@ -21,20 +21,20 @@ Properties that are object arrays (an array of objects) are explained in detail 
 |----------|----|-------|-----------|-------|--------|
 |categories|string array|assignments, discussions, files, moduleItems, modules, pages, quizzes, quizQuestions|An array of the Canvas item types to be searched for/fixed in the tool|['assignments', 'discussions', 'pages']|true|
 |description|string||The description of the tool that will be displayed on the options page|'This tool allows you to...'|true|
-|discover|function||The function that will tell the tool what items to get from Canvas and decide how to display them|discover|true|
-|discoverOptions|object array||An object array that describes the available discover/search options that will appear on the options page before the tool is run|See below for details|true|
+|discover|function||The function that will tell the tool what items to get from Canvas and decide how to display them|[See below for details](#discover)|true|
+|discoverOptions|object array||An object array that describes the available discover/search options that will appear on the options page before the tool is run|[See below for details](#discoverOptions)|true|
 |editorTabs|object array||An object array that determines the setup of the code editors to be seen on each issue card|[See below for details](#editorTabs)|false|
-|fix|function||The function that will tell the tool what items to fix and how to do it|See below for details|true|
+|fix|function||The function that will tell the tool what items to fix and how to do it|[See below for details](#fix)|true|
 |icon|string||Any icon name found on [Material Design Icons](https://material.io/tools/icons/?style=baseline)|'text_rotation_none'|true|
 |id|string||The tool name in all lowercase letters and using underscores for spaces. The tool filename, id, and title should be the same text with different formats|'the_tool_name'|true|
 |fixMessage|string||The message that appears on each issue after the issue status has changed to 'fixed'|'The alt attribute for this item has been updated'|false|
-|fixOptions|object array||An object array that describes the available fix options that will appear on each issue card after the tool has run|See below for details|false|
+|fixOptions|object array||An object array that describes the available fix options that will appear on each issue card after the tool has run|[See below for details](#fixOptions)|false|
 |title|string||The tool name formatted by capitalizing each word and using spaces. The tool filename, id, and title should be the same text with different formats|'The Tool Name'|true|
 |toolCategory|string|html , itemSettings|This determines which category the tool will show up under on the home page|'html'|true|
 |toolType|string|fix/search|`Fix` enables both the discover and fix functions. `Search` only enables the discover function. Users cannot approve fixes or change content when this value is set to search |'fix'|true|
 
 
-### discoverOptions &lt;Object Array&gt;
+### discoverOptions &lt;Object Array&gt; <a id="discoverOptions"></a>
 This section details the properties found on a single object within the discoverOptions array.
 
 ![alt text](../images/settings_keys_options_page.png "Options page with object key descriptions")
@@ -50,7 +50,7 @@ This section details the properties found on a single object within the discover
 |type|string|text, multiselect, dropdown|This option will determine the input type you would like to use for the option|'multiselect'|true|
 
 
-### fixOptions &lt;Object Array&gt;
+### fixOptions &lt;Object Array&gt; <a id="fixOptions"></a>
 
 This section details the properties found on a single object within the fixOptions array.
 
@@ -82,7 +82,7 @@ This section details the properties found on a single object within the editorTa
 Note: It is good practice to have two tabs, one that is read-only for the current html and one that is not read-only but editable for the updated html, if applicable.
 
 
-## Discover &lt;function&gt;
+## Discover &lt;function&gt; <a id="discover"></a>
 The purpose of the discover function is to:
 1. Determine which items are to be retrieved from Canvas
 2. Decide how those items are to be displayed on each issue card in the 'Tool View' on the client side
@@ -115,7 +115,7 @@ function discover(canvasItem, issueItem, options) {
 }
 ```
 
-## Fix &lt;function&gt;
+## Fix &lt;function&gt; <a id="fix"></a>
 The purpose of the fix function is to:
 1. Check if the `canvasItem` should be changed based on the status of the issue (`issue.status`)
 2. Update the issue status as appropriate

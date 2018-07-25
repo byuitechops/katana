@@ -4,6 +4,7 @@ const chalk = require('chalk');
 const logActions = require('./logging.js');
 const firebaseWrapper = require('./firebase_wrapper.js');
 const toolList = require('./tool_list.js');
+const settings = require('./settings.json');
 
 /**
  * Logs to the console the beginning and end of a tool being ran
@@ -97,6 +98,14 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
                 firebaseWrapper.toolLog({course_id: course.id, tool_id, issueItems: course.issueItems.map(issueItem => JSON.stringify(issueItem))});
             }
 
+            // Add fixed count to firestore stats
+            if (settings.firebase.statistics) {
+                let totalDiscovered = course.issueItems.reduce((acc, issueItem) => acc += issueItem.issues.length, 0);
+                if (totalDiscovered > 0) {
+                    firebaseWrapper.incrementCounts('Discovered', 'total', totalDiscovered);
+                }
+            }
+
             // Resolve the promise
             logMe('COMPLETE', 'DISCOVER', tool_id, course.course_name, course.id, employeeEmail);
             resolve();
@@ -125,6 +134,14 @@ function fixIssues(tool_id, course, options, employeeEmail) {
                 instructorName: course.instructorName
             };
 
+            // Keep track of which issueItems's issues are already fixed (for stats)
+            let alreadyFixed = course.issueItems.reduce((acc, issueItem) => {
+                issueItem.issues.forEach(issue => {
+                    if (issue.status === 'fixed') acc.push(issue);
+                });
+                return acc;
+            }, []);
+
             let fixPromises = course.issueItems.map(issueItem => toolList[tool_id].fix(issueItem, options));
 
             Promise.all(fixPromises)
@@ -132,6 +149,17 @@ function fixIssues(tool_id, course, options, employeeEmail) {
                     // Log the issue items
                     logActions.toolLogs = course.issueItems;
                     logActions.logTool();
+
+                    // Add fixed count to firestore stats
+                    if (settings.firebase.statistics) {
+                        let totalFixes = course.issueItems.reduce((acc, issueItem) => {
+                            let fixedCount = issueItem.issues.filter(issue => issue.status === 'fixed' && !alreadyFixed.includes(issue)).length;
+                            return acc += fixedCount;
+                        }, 0);
+                        if (totalFixes > 0) {
+                            firebaseWrapper.incrementCounts('Fixes', 'total', totalFixes);
+                        }
+                    }
 
                     // ADD TO COURSE MAINTENANCE LOG HERE
                     logMe('COMPLETE', 'FIX', tool_id, course.course_name, course.id, employeeEmail);
