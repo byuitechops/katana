@@ -43,7 +43,7 @@ function discover(canvasItem, issueItem, options) {
                 issueItem.newIssue(title, display, details, html);
             }
         } 
-        if (options.title === 'Yes') {
+        if (options.titles === 'Yes') {
             includeTitle();
         }
     } else if (options.inputType === 'HTML') {
@@ -61,7 +61,7 @@ function discover(canvasItem, issueItem, options) {
                 details.title = title;
                 issueItem.newIssue(title, display, details, html);
             }
-        } else if (options.title === 'Yes') {        
+        } else if (options.titles === 'Yes') {        
             includeTitle();
         }
     } else if (options.inputType === 'Regex' && html.currentHtml !== undefined) {
@@ -95,21 +95,8 @@ function discover(canvasItem, issueItem, options) {
     }
 }
 
-/** ***************************************************************
- * Fixes issues in the item provided.
- * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, including its issues
- * @param {object} options - Options specific to the tool selected by the user
- * @returns {array} fixedIssues - All issues discovered.
- *****************************************************************/
-function fix(canvasItem, issueItem, options) {
-    return new Promise(async (resolve, reject) => {
-    });
-}
-
 module.exports = {
     discover,
-    fix,
     id: 'course_search',
     title: 'Course Search',
     description: 'This tool allows you to search Canvas courses\' HTML and item titles for given words and/or phrases. The tool will only search up-to all text within the html, the html itself, and/or the titles of the various items throughout the course',
@@ -145,8 +132,8 @@ module.exports = {
         key: 'titles',
         description: 'Would you like to search the titles for your Search Phrase as well?',
         type: 'dropdown',
-        choices: ['Yes', 'No'],
-        required: false
+        choices: ['', 'Yes', 'No'],
+        required: true
     }],
     fixOptions: [],
     editorTabs: [{

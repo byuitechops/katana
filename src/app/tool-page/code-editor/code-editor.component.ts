@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, ViewChild, ElementRef, EventEmitter } from '@angular/core';
+import { Issue } from '../../interfaces';
 
 /**
  * Integrates Ace code editor to allow viewing and editing HTML from an issue's canvas item
@@ -25,6 +26,8 @@ export class CodeEditorComponent implements OnInit {
      * can also be passed in.
      */
     @Input('highlight') highlight: string;
+
+    @Input('issue') issue: Issue;
 
     /**
      * Element reference to the editor div itself so we can
@@ -58,8 +61,6 @@ export class CodeEditorComponent implements OnInit {
      */
     _tabs: any[] = [];
 
-    @Output() sessionValues = new EventEmitter<string>();
-
     /**
      * Constructor
      */
@@ -91,14 +92,11 @@ export class CodeEditorComponent implements OnInit {
         // Create the editor, set the options, and set the first session
         this.editor = window['ace'].edit(this.editorEl.nativeElement);
         this.editor.setOption('minLines', 10);
-        this.editor.setOption('maxLines', 10);
+        this.editor.setOption('maxLines', 30);
         this.editor.setTheme('ace/theme/terminal');
         this.editor.setReadOnly(true);
         this.editor.setHighlightActiveLine(true);
         this.setEditorSession(this._tabs[0]);
-
-        // send the value of the current tab to the code editor in issue-container.component.ts
-        this.sessionValues.emit(this._tabs[0].session.getValue());
     }
 
     /**
@@ -113,14 +111,17 @@ export class CodeEditorComponent implements OnInit {
         this.activeTab = tab;
 
         this.editor.on('change', () => {
-            this.sessionValues.emit(this.editor.getSession().getValue());
+            if (this.issue.status === 'approved') {
+                this.issue.status = 'untouched';
+            }
+            this.issue.html['updatedHtml'] = this.editor.getSession().getValue();
         });
 
         // This "if" prevents it from searching with an empty search phrase,
         // which finds pretty much every empty character...
         if (this.highlight) {
             // Converts the provided search phrase to a RegExp
-            let reg = new RegExp(this.highlight, 'gi');
+            const reg = new RegExp(this.highlight, 'gi');
             // Finds and highlights all matches to the RegExp
             this.editor.findAll(reg, {
                 needle: reg,
@@ -135,7 +136,7 @@ export class CodeEditorComponent implements OnInit {
      */
     expandView() {
         this.viewExpanded = !this.viewExpanded;
-        this.editor.setOption('maxLines', this.viewExpanded ? 25 : 10);
+        this.editor.setOption('maxLines', this.viewExpanded ? 30 : 10);
     }
 
 }

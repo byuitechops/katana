@@ -1,4 +1,4 @@
-# Katana Tool Data Flow
+# Tool Data Flow
 The purpose of this document is to describe the general data flow of a typical Katana tool.
 
 ## Login
