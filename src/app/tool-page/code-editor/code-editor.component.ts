@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 
 /**
  * Integrates Ace code editor to allow viewing and editing HTML from an issue's canvas item
@@ -10,7 +10,7 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 })
 export class CodeEditorComponent implements OnInit {
 
-    /** 
+    /**
      * The tabs to add to the code editor. This may include tabs
      * like "Current HTML" and "Updated HTML" to show the user how
      * the HTML will be changed by the tool.
@@ -21,13 +21,13 @@ export class CodeEditorComponent implements OnInit {
      * If certain key words should be highlighted by the editor's
      * search functionality, this should be passed as an input as
      * a string. It will be converted into a regex no matter, so
-     * a regex string (to be passed into the RegExp constructor) 
+     * a regex string (to be passed into the RegExp constructor)
      * can also be passed in.
      */
     @Input('searchPhrase') searchPhrase: string;
 
     /**
-     * Element reference to the editor div itself so we can 
+     * Element reference to the editor div itself so we can
      * initiate the Ace editor instance.
      */
     @ViewChild('editor') editorEl: ElementRef;
@@ -44,10 +44,10 @@ export class CodeEditorComponent implements OnInit {
 
     /**
      * Whether or not the editor is in "edit" mode. This just means that
-     * it is expanded, currently. Whether or not it can be edited is 
+     * it is expanded, currently. Whether or not it can be edited is
      * determined by the tab's "readOnly" property.
      */
-    viewExpanded: boolean = false;
+    viewExpanded = false;
 
     /**
      * Stores the tab objects passed in to the "tabs" input. For whatever reason,
@@ -57,6 +57,8 @@ export class CodeEditorComponent implements OnInit {
      * method.
      */
     _tabs: any[] = [];
+
+    @Output() sessionValues = new EventEmitter<string>();
 
     /**
      * Constructor
@@ -70,16 +72,15 @@ export class CodeEditorComponent implements OnInit {
      */
     ngOnInit() {
         // The EditSession class is used to spawn new sessions in the editor
-        let EditSession = window['ace'].require('ace/edit_session').EditSession;
+        const EditSession = window['ace'].require('ace/edit_session').EditSession;
         // Allows Ctrl+F Search functionality (keep, even though it says the var is unused)
-        let searchBox = window['ace'].require('ace/searchbox');
-
+        const searchBox = window['ace'].require('ace/searchbox');
         // Save a correct reference to the tab objects that is safe to use
         this._tabs = this.tabs;
 
         // Create and add an editor session to each tab, beautify its code, and insert it
         this._tabs.forEach(tab => {
-            let code = window['html_beautify'](tab['htmlString'] || ' '); // Beautifies the code
+            const code = window['html_beautify'](tab['htmlString'] || ' '); // Beautifies the code
             tab.session = new EditSession(code);
             tab.session.setMode('ace/mode/html');
             tab.session.setUseWrapMode(true);
@@ -89,12 +90,15 @@ export class CodeEditorComponent implements OnInit {
 
         // Create the editor, set the options, and set the first session
         this.editor = window['ace'].edit(this.editorEl.nativeElement);
-        this.editor.setOption("minLines", 10);
-        this.editor.setOption("maxLines", 10);
+        this.editor.setOption('minLines', 10);
+        this.editor.setOption('maxLines', 10);
         this.editor.setTheme('ace/theme/terminal');
         this.editor.setReadOnly(true);
         this.editor.setHighlightActiveLine(true);
         this.setEditorSession(this._tabs[0]);
+
+        // send the value of the current tab to the code editor in issue-container.component.ts
+        this.sessionValues.emit(this._tabs[0].session.getValue());
     }
 
     /**
@@ -107,6 +111,10 @@ export class CodeEditorComponent implements OnInit {
         this.editor.setReadOnly(tab.readOnly);
         this.editor.setSession(tab.session);
         this.activeTab = tab;
+
+        this.editor.on('change', () => {
+            this.sessionValues.emit(this.editor.getSession().getValue());
+        });
 
         // This "if" prevents it from searching with an empty search phrase,
         // which finds pretty much every empty character...
@@ -127,7 +135,7 @@ export class CodeEditorComponent implements OnInit {
      */
     expandView() {
         this.viewExpanded = !this.viewExpanded;
-        this.editor.setOption("maxLines", this.viewExpanded ? 25 : 10);
+        this.editor.setOption('maxLines', this.viewExpanded ? 25 : 10);
     }
 
 }

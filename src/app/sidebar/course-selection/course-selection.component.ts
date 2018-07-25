@@ -51,8 +51,8 @@ export class CourseSelectionComponent {
         // Canvas makes you have an input of at least three characters to use the search_term in the API
         if (this.searchText.nativeElement.value.length > 2) {
 
-            // Replace any whitespaces with '%20' for the query parameter
-            var searchText = this.searchText.nativeElement.value.replace(/\s/g, '%20');
+            // Replace any whitespaces with '%20' for the query parameter and make everything lowercase
+            const searchText = this.searchText.nativeElement.value.toLowerCase().replace(/\s/g, '%20');
 
             // Set the loading circle to display before retrieving the courses
             this.searching = true;
