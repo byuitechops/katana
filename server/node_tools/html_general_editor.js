@@ -46,7 +46,7 @@ function discover(canvasItem, issueItem, options) {
         // if tagsFound is empty, then the tag wasn't found
         if (tagsFound.length === 0) return;
 
-        // add the 
+        // add the tags that were searched for and found to the display
         display += `
             <h2>Tags Searched For</h2>
             <div>${options.searchTags.join(' ')}</div>
@@ -77,7 +77,8 @@ function fix(canvasItem, issueItem, options) {
         try {
             if (canvasItem.getHtml() === null || issueItem.issues[0].status !== 'approved') return;
             if (issueItem.issues[0].html.updatedHtml === issueItem.issues[0].html.currentHtml) return;
-            canvasItem.setHtml(issueItem.html.updatedHtml);
+            console.log(`updated: `, issueItem.issues[0].html.updatedHtml);
+            canvasItem.setHtml(issueItem.issues[0].html.updatedHtml);
             await canvasItem.update();
             issueItem.issues[0].status = 'fixed';
             resolve();

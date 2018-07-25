@@ -1,6 +1,6 @@
 # Enabling an account (Firebase Admins Only)
 
-New, valid account added to Firebase are disabled automatically by the [Firebase Functions](../firebase/firebase-functions.html) (if set up on your firebase instance).
+New, valid accounts added to Firebase are disabled automatically by the [Firebase Functions](../firebase/firebase-functions.html) (if set up on your firebase instance).
 
 To enable an account:
 
