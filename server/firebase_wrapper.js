@@ -16,7 +16,13 @@ function initializeFirebase() {
         credential: admin.credential.cert(serviceAccount),
         databaseURL: 'https://katana-24a36.firebaseio.com'
     });
+
+    // The instance of firestore database
     db = admin.firestore();
+
+    // Backwards compatability with Firestore's new timestamp storage rules
+    admin.firestore().settings({timestampsInSnapshots: true});
+
     return db;
 }
 
@@ -54,7 +60,6 @@ function _log(collectionTitle, data) {
     } else {
         db.collection(collectionTitle).add(data);
     }
-
 }
 
 function serverLog(data) {
@@ -69,11 +74,26 @@ function userLog(data) {
     _log('user_logs', data);
 }
 
+function incrementCounts(category, statistic, count) {
+    // get the current count
+    let docRef = db.collection('statistics').doc(category);
+    docRef.get()
+        .then(doc => {
+            if (doc) {
+                // up the current count
+                let newStat = {[statistic]: doc.data()[statistic] + count};
+                docRef.update(newStat);
+            }
+        })
+        .catch(console.error);
+}
+
 module.exports = {
     initializeFirebase,
     serverLog,
     toolLog,
     userLog,
+    incrementCounts,
     db,
     admin
 };
