@@ -12,6 +12,11 @@ function discover(canvasItem, issueItem, options) {
     let $ = cheerio.load(canvasItem.getHtml());
     let currentHtml = canvasItem.getHtml();
     let currentText = $('*').text();
+    let html = {
+        currentHtml,
+        updatedHtml: currentHtml,
+        highlight: options.searchPhrase
+    };
     
     let title = 'HTML Edit'
     let description = `Edit the HTML of the page in the 'UPDATED HTML' tab below and click 'Approve' button to update the HTML in Canvas.`;
@@ -55,10 +60,6 @@ function discover(canvasItem, issueItem, options) {
         `;
     }
 
-    let html = {
-        currentHtml,
-        updatedHtml: currentHtml
-    };
 
     let details = {};
 
@@ -77,9 +78,7 @@ function fix(canvasItem, issueItem, options) {
         try {
             if (canvasItem.getHtml() === null || issueItem.issues[0].status !== 'approved') return;
             if (issueItem.issues[0].html.updatedHtml === issueItem.issues[0].html.currentHtml) return;
-            console.log(`updated: `, issueItem.issues[0].html.updatedHtml);
             canvasItem.setHtml(issueItem.issues[0].html.updatedHtml);
-            await canvasItem.update();
             issueItem.issues[0].status = 'fixed';
             resolve();
         } catch (e) {

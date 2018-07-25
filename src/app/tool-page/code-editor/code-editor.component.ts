@@ -24,7 +24,7 @@ export class CodeEditorComponent implements OnInit {
      * a regex string (to be passed into the RegExp constructor)
      * can also be passed in.
      */
-    @Input('searchPhrase') searchPhrase: string;
+    @Input('highlight') highlight: string;
 
     /**
      * Element reference to the editor div itself so we can
@@ -118,9 +118,9 @@ export class CodeEditorComponent implements OnInit {
 
         // This "if" prevents it from searching with an empty search phrase,
         // which finds pretty much every empty character...
-        if (this.searchPhrase) {
+        if (this.highlight) {
             // Converts the provided search phrase to a RegExp
-            let reg = new RegExp(this.searchPhrase, 'gi');
+            let reg = new RegExp(this.highlight, 'gi');
             // Finds and highlights all matches to the RegExp
             this.editor.findAll(reg, {
                 needle: reg,

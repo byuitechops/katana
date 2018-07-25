@@ -70,7 +70,7 @@ export class IssueContainerComponent implements OnInit {
                 title: editorTab.title,
                 htmlString: this.issue.html[editorTab.htmlKey],
                 readOnly: editorTab.readOnly
-            }
+            };
         });
     }
 
@@ -144,7 +144,6 @@ export class IssueContainerComponent implements OnInit {
 
     handleEditorSessionValues(event) {
         // attach the value to issues as needed here. Think about attaching it to the html property on the issue object.
-        console.log('eventttt:', event);
         if (this.issue.status === 'approved') {
             this.issue.status = 'untouched';
         }
