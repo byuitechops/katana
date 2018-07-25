@@ -70,8 +70,7 @@ export class CourseService {
                 course.issueItems = [];
             }
             this.coursesObj[`c${course.id}`] = course;
-        }
-        else {
+        } else {
             this.removeCourse(course);
         }
     }
@@ -99,7 +98,7 @@ export class CourseService {
                 if (!status) {
                     return acc + issueItem.issues.length;
                 }
-                let issues = issueItem.issues.filter(issue => issue.status === status);
+                const issues = issueItem.issues.filter(issue => issue.status === status);
                 return acc + issues.length;
             }, 0);
         }
@@ -124,13 +123,13 @@ export class CourseService {
      * @returns {string} The text used to display the icon.
      */
     getStatusIcon(status): string {
-        let statusIcons = {
+        const statusIcons = {
             'fixed': 'check_circle',
             'approved': 'check_circle_outline',
             'skipped': 'call_missed_outgoing',
             'untouched': 'panorama_fish_eye',
             'failed': 'warning'
-        }
+        };
         return statusIcons[status];
     }
 
@@ -141,13 +140,13 @@ export class CourseService {
      * @returns {string} The classes to apply to the element.
      */
     getTextColorClasses(status): string {
-        let statusColors = {
+        const statusColors = {
             'fixed': 'blue-text text-accent-3',
             'approved': 'green-text text-accent-4',
             'skipped': 'blue-grey-text text-darken-2',
             'untouched': 'blue-grey-text text-lighten-4',
             'failed': 'red-text'
-        }
+        };
         return statusColors[status];
     }
 
@@ -157,13 +156,13 @@ export class CourseService {
      * @returns {string} The classes to apply to the element.
      */
     getBackgroundColorClasses(status): string {
-        let statusColors = {
+        const statusColors = {
             'fixed': 'blue lighten-4',
             'approved': 'mint',
             'skipped': 'blue-grey lighten-4',
             'untouched': 'white',
             'failed': 'red lighten-5'
-        }
+        };
         return statusColors[status];
     }
 }

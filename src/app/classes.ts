@@ -25,7 +25,7 @@ export class OptionModel {
      * Takes the provided options and puts them into a new {@link FormGroup}.
      */
     toGroup() {
-        let group: any = {};
+        const group: any = {};
         this.options.forEach((option) => {
             if (option.required) {
                 group[option.key] = new FormControl('', Validators.required);

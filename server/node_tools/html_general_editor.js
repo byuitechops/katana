@@ -93,7 +93,7 @@ module.exports = {
     fix,
     id: 'html_general_editor',
     title: 'HTML General Editor',
-    description: `This tool allows for searching for a specific search phrase or item type and edit the html of the returned items. 
+    description: `This tool allows for searching for a specific search phrase or item type and edit the html of the returned items.
     This will search both the standalone text of the selected items, and the HTML of the selected items. So if the search phrase were 'byui', 
     and an item contained the HTML '< div class="byui">This tool was built for < span >BYUI</ span ></ div >' then the tool would search the 
     HTML and find 'class="byui"' and it would also search and find it in the text 'This tool was built for BYUI'.`,
