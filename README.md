@@ -46,13 +46,13 @@ It can then be accessed via `localhost:8000` (or whichever port you specify in `
 [LinkName](link) 
 
 ## Architecture
-[LinkName](link)<br />
+[LinkName](./documentation/additional-documentation/architecture.html)<br />
 
 ## How To...
 [LinkName](link)<br />
 
 ## Firebase Integration
-[LinkName](link)<br />
+[LinkName](documentation/additional-documentation/firebase.html)<br />
 
 
 
