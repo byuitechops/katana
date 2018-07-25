@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { CourseService } from '../../course.service';
-import { ToolService } from '../../tool.service'; // Being used in course-chip.component.html (i.e. DO NOT DELETE)
+import { ToolService } from '../../tool.service'; // Used in course-chip.component.html (i.e. DO NOT DELETE)
 import { Course } from '../../interfaces';
 
 /**
- * Represents a {@link Course} to be acted on. Generated based on the list of 
- * {@link Course}s stored in {@link CourseService}.
+ * Represents a {@link Course} to be acted on. Generated based on the array of Courses stored in {@link CourseService}.
  */
 @Component({
     selector: 'app-course-chip',
@@ -21,9 +20,9 @@ export class CourseChipComponent {
 
     /**
      * Constructor
-     * @param courseService Allows this component to identify the currently selected course
+     * @param courseService Allows this component to identify the currently selected course.
      * @param toolService Allows this component to identify if the tool view is open.
-     * Being used in course-chip.component.html (i.e. DO NOT DELETE)
+     * Used in course-chip.component.html (i.e. DO NOT DELETE).
      */
     constructor(public courseService: CourseService,
         private toolService: ToolService) { }
@@ -37,7 +36,7 @@ export class CourseChipComponent {
 
     /**
      * Formats the instructor's name to fit on the chip appropriately.
-     * @returns {string} The formatted instructor name
+     * @returns {string} The formatted instructor name.
      */
     buildInstructorName(): string {
         let names = this.course.instructor.replace(/,/, '').split(' ');
@@ -52,7 +51,7 @@ export class CourseChipComponent {
 
     /**
      * Opens the course in Canvas in a new tab.
-     * @param {string} status - Issue status to match
+     * @param {string} status Issue status to match
      * @returns {number} The total number of issues matching the provided status.
      */
     getIssueCount(status): number | string {

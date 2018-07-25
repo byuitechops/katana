@@ -6,7 +6,7 @@ import { auth } from 'firebase';
 import { Observable } from 'rxjs';
 
 /**
-* Verifies the user is correctly logged in with a valid
+* Verifies that the user is correctly logged in with a valid
 * Google BYUI account. Redirects the user to the Google
 * login page as needed. Provides validation for the user
 * to access various routes.
@@ -29,10 +29,10 @@ export class AuthGuardService implements CanActivate {
      */
     @Output() authState = new EventEmitter<boolean>();
 
-    /** *********************************************************************************
+    /** ***********************************************************************************
      * @param afAuth angularfire2 - https://github.com/angular/angularfire2
-     * @param router Used to verify location and navigate the user to new pages as needed
-     ***********************************************************************************/
+     * @param router Used to verify location and navigate the user to new pages as needed.
+     */
     constructor(public afAuth: AngularFireAuth,
         public router: Router) {
         this.user = afAuth.authState;

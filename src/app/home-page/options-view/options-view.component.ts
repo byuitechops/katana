@@ -28,7 +28,7 @@ export class OptionsViewComponent {
      */
     optionModel: OptionModel;
     /**
-     * The {@link formGroup} to use for the form.
+     * The FormGroup to use for the form.
      */
     formGroup: FormGroup;
 

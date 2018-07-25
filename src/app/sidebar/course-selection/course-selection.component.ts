@@ -4,7 +4,7 @@ import { CourseService } from '../../course.service';
 import { Course } from '../../interfaces';
 
 /**
- * Provides the user management for the selected courses, including a course search
+ * Provides the user management for the selected courses, including a course search.
  * overlay to add/remove courses.
  */
 @Component({
@@ -13,24 +13,24 @@ import { Course } from '../../interfaces';
     styleUrls: ['./course-selection.component.css']
 })
 export class CourseSelectionComponent {
-    /** Element reference to the sub-account filter input */
+    /** Element reference to the sub-account filter input. */
     @ViewChild('subAccount') private subAccount: ElementRef;
-    /** Element reference to the term filter input */
+    /** Element reference to the term filter input. */
     @ViewChild('term') private term: ElementRef;
-    /** Element reference to the blueprint filter input */
+    /** Element reference to the blueprint filter input. */
     @ViewChild('blueprint') private blueprint: ElementRef;
-    /** Element reference to the search-by filter input */
+    /** Element reference to the search-by filter input. */
     @ViewChild('searchBy') private searchBy: ElementRef;
-    /** Element reference to the search text input */
+    /** Element reference to the search text input. */
     @ViewChild('searchText') private searchText: ElementRef;
 
-    /** Whether or not a search is currently processing */
+    /** Whether or not a search is currently processing. */
     searching: boolean = false;
 
-    /** Holds what the last search was sorted by */
+    /** Holds what the last search was sorted by. */
     lastSortedBy: string;
 
-    /** Results of a search */
+    /** Results of a search. */
     courseResults: Course[] = [];
 
     /**
@@ -78,11 +78,11 @@ export class CourseSelectionComponent {
     }
 
     /**
-     * Sorts the courseResults array according to the course attribute defined by 'param'
-     * @param {string} param The object key to be sorted
-     * @returns {number} The new position of the object in the array
+     * Sorts the courseResults array according to the course attribute defined by 'param'.
+     * @param {string} param The object key to be sorted.
+     * @returns {void}
      */
-    sortBy(param) {
+    sortBy(param: any) {
         // If they click on the same category more than once, it will reverse the order of the results
         if (this.lastSortedBy === param) {
             this.courseResults = this.courseResults.reverse();
@@ -115,10 +115,10 @@ export class CourseSelectionComponent {
     /**
      * Checks to see if the selected course from courseResults
      * is already in the courses array in courseService.
-     * @param {object} course The course that is being checked
-     * @returns {boolean} Whether the course is already added
+     * @param {object} course The course that is being checked.
+     * @returns {boolean} Whether the course is already added.
      */
-    isAdded(course) {
+    isAdded(course: any) {
         return this.courseService.courses.find(c => c.id === course.id) !== undefined;
     }
 }

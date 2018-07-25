@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CourseService } from '../../course.service';
-import { ToolService } from '../../tool.service'; // Being used in course-sidebar.component.html (i.e. DO NOT DELETE)
+import { ToolService } from '../../tool.service'; // Used in course-sidebar.component.html (i.e. DO NOT DELETE)
 import { Course } from '../../interfaces';
 
 /**
@@ -18,7 +18,7 @@ export class CourseSidebarComponent {
      * Constructor
      * @param courseService Provides information and management for selected courses.
      * @param toolService Provides information and management for available tools.
-     * Being used in course-sidebar.component.html (i.e. DO NOT DELETE)
+     * Used in course-sidebar.component.html (i.e. DO NOT DELETE).
      */
     constructor(public courseService: CourseService,
         private toolService: ToolService) { }
@@ -41,13 +41,11 @@ export class CourseSidebarComponent {
         }
 
         this.courseService.courseSelectionOpen = !this.courseService.courseSelectionOpen;
-        // let newWidth = this.courseService.courseSelectionOpen ? '207px' : '112px';
-        // document.documentElement.style.setProperty(`--course-sidebar-width`, newWidth);
     }
 
     /**
      * Sets the currently selected course to the one provided.
-     * @param {Course} course The course to set as the currently selected course.
+     * @param {Course} course The course to be set as the currently selected course.
      */
     setSelectedCourse(course: Course) {
         if (window.location.href.includes('tool-view')) {

@@ -23,9 +23,9 @@ export class BreadcrumbsComponent {
     /** ******************************************************************
      * Constructor
      * @param router Used to verify current location and navigate user to new page.
-     * @param toolService Used to verify currently selected tool.
-     * @param authGuardService Enables Sign Out button. Being used in 
-     * breadcrumbs.component.html (i.e. DO NOT DELETE)
+     * @param toolService Used to verify the currently selected tool.
+     * @param authGuardService Enables the Sign Out button. Used in 
+     * breadcrumbs.component.html (i.e. DO NOT DELETE).
      ********************************************************************/
     constructor(private router: Router,
         public toolService: ToolService,
@@ -47,10 +47,10 @@ export class BreadcrumbsComponent {
 
     /** ******************************************************************
      * Builds a URL, then navigates the router to it.
-     * @param pathPieces - Array of each piece of the path to navigate to.
-     * @returns boolean - Returns false to prevent full page reload.
+     * @param pathPieces Array of each piece of the path to navigate to.
+     * @returns Returns false to prevent full page reload.
      ********************************************************************/
-    buildRouterLink(pathPieces) {
+    buildRouterLink(pathPieces: String[]) {
         this.router.navigate(pathPieces);
         return false;
     }
