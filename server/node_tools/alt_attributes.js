@@ -69,14 +69,10 @@ function fix(canvasItem, issueItem, options) {
                 var $ = cheerio.load(canvasItem.getHtml());
 
                 issueItem.issues.forEach(issue => {
-                    if (issue.status === 'approved') {
-
-                        let image = $(`img[src="${issue.details.image}"]`).first();
-                        if (image && issue.optionValues.newAltText) {
-                            $(image).attr('alt', issue.optionValues.newAltText);
-                            issue.status = 'fixed';
-                        }
-
+                    let image = $(`img[src="${issue.details.image}"]`).first();
+                    if (image && issue.optionValues.newAltText) {
+                        $(image).attr('alt', issue.optionValues.newAltText);
+                        issue.status = 'fixed';
                     }
                 });
 

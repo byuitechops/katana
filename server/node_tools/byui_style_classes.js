@@ -125,12 +125,12 @@ module.exports = {
     discoverOptions: [],
     fixOptions: [],
     editorTabs: [{
-        title: 'Current HTML',
-        htmlKey: 'currentHtml',
-        readOnly: true
-    }, {
         title: 'Updated HTML',
         htmlKey: 'updatedHtml',
+        readOnly: true
+    }, {
+        title: 'Current HTML',
+        htmlKey: 'currentHtml',
         readOnly: true
     }]
 };

@@ -10,7 +10,7 @@ const express = require('express');
 const chalk = require('chalk');
 const bodyParser = require('body-parser');
 const app = express();
-const expressWd = require('express-ws')(app);
+const expressWd = require('express-ws')(app); // It says the variable is unused, but it is setting up needed methods
 const settings = require('./settings.json');
 
 // This logs every request made to the server to the console (if set to true in settings file)
@@ -19,10 +19,10 @@ if (settings.console.requests === true) {
     app.use(morgan(`${chalk.greenBright(':method')} ${chalk.yellowBright(':url')} :status :res[content-length] - :response-time ms`));
 }
 
-// This serves the entire dist folder, allowing the angular files to talk to each other
 app.use(express.static('dist/katana'));
 app.use(bodyParser.json());
 
+/* Serves the homepage */
 app.get(['/', '/home*', '/categories*'], (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/katana/index.html'))
 });
@@ -180,6 +180,6 @@ apiRouter.ws('/tool/fix', (ws, req) => {
 app.use('/api', apiRouter);
 
 // Starts the server
-let server = app.listen(settings.server.port, () => {
+app.listen(settings.server.port, () => {
     console.log('Katana Server has launched.');
 });

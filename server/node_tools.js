@@ -4,6 +4,7 @@ const chalk = require('chalk');
 const logActions = require('./logging.js');
 const firebaseWrapper = require('./firebase_wrapper.js');
 const toolList = require('./tool_list.js');
+const settings = require('./settings.json');
 
 /**
  * Logs to the console the beginning and end of a tool being ran
@@ -32,23 +33,21 @@ async function getCanvasItems(course, options) {
     for (var i = 0; i < options.categories.length; i++) {
         if (['pages', 'quizzes', 'modules'].includes(options.categories[i])) {
             // If pages, quizzes, or modules, get ALL values for them
-            items = items.concat(await canvasCourse[options.categories[i]].getComplete());
+            items = items.concat(...(await canvasCourse[options.categories[i]].getComplete()));
 
         } else if (['quizQuestions', 'moduleItems'].includes(options.categories[i])) {
             // If looking for quiz questions or module items, flatten them here
             if (options.categories[i] === 'quizQuestions') {
                 if (canvasCourse.quizzes.length === 0) await canvasCourse.quizzes.getComplete();
-                items = items.concat(canvasCourse.quizzes.reduce((acc, quiz) => [...acc, ...quiz.questions], []));
+                items = items.concat(canvasCourse.quizzes.getFlattened());
             } else {
                 if (canvasCourse.modules.length === 0) await canvasCourse.modules.getComplete();
-                items = items.concat(canvasCourse.modules.reduce((acc, module) => {
-                    return [...acc, ...module.moduleItems.map(moduleItem => moduleItem)];
-                }, []));
+                items = items.concat(canvasCourse.modules.getFlattened());
             }
 
         } else {
             // Otherwise, just get the category's items
-            items = items.concat(await canvasCourse[options.categories[i]].get());
+            items = items.concat(...(await canvasCourse[options.categories[i]].get()));
         }
     }
 
@@ -71,6 +70,7 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
             // Put all of the items into a single array
             let allItems = await getCanvasItems(course, options);
 
+
             // Add the course name, code, and instructor to the options
             options.courseInfo = {
                 course_id: course.id,
@@ -79,7 +79,7 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
             };
 
             // Run each item through the discover function of the selected tool
-            course.issueItems = allItems.reduce((acc, item) => {
+            course.issueItems = allItems.reduce((acc, item, index, arr) => {
                 let issueItem = toolList[tool_id].discover(item, options);
                 return issueItem.issues.length > 0 ? acc.concat(issueItem) : acc;
             }, []);
@@ -100,6 +100,14 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
                     tool_id,
                     issueItems: course.issueItems.map(issueItem => JSON.stringify(issueItem))
                 });
+            }
+
+            // Add fixed count to firestore stats
+            if (settings.firebase.statistics) {
+                let totalDiscovered = course.issueItems.reduce((acc, issueItem) => acc += issueItem.issues.length, 0);
+                if (totalDiscovered > 0) {
+                    firebaseWrapper.incrementCounts('Discovered', 'total', totalDiscovered);
+                }
             }
 
             // Resolve the promise
@@ -130,6 +138,14 @@ function fixIssues(tool_id, course, options, employeeEmail) {
                 instructorName: course.instructorName
             };
 
+            // Keep track of which issueItems's issues are already fixed (for stats)
+            let alreadyFixed = course.issueItems.reduce((acc, issueItem) => {
+                issueItem.issues.forEach(issue => {
+                    if (issue.status === 'fixed') acc.push(issue);
+                });
+                return acc;
+            }, []);
+
             let fixPromises = course.issueItems.map(issueItem => toolList[tool_id].fix(issueItem, options));
 
             Promise.all(fixPromises)
@@ -137,6 +153,17 @@ function fixIssues(tool_id, course, options, employeeEmail) {
                     // Log the issue items
                     logActions.toolLogs = course.issueItems;
                     logActions.logTool();
+
+                    // Add fixed count to firestore stats
+                    if (settings.firebase.statistics) {
+                        let totalFixes = course.issueItems.reduce((acc, issueItem) => {
+                            let fixedCount = issueItem.issues.filter(issue => issue.status === 'fixed' && !alreadyFixed.includes(issue)).length;
+                            return acc += fixedCount;
+                        }, 0);
+                        if (totalFixes > 0) {
+                            firebaseWrapper.incrementCounts('Fixes', 'total', totalFixes);
+                        }
+                    }
 
                     // ADD TO COURSE MAINTENANCE LOG HERE
                     logMe('COMPLETE', 'FIX', tool_id, course.course_name, course.id, employeeEmail);

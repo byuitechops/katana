@@ -15,20 +15,22 @@ app-stat-badge>div {
 }
 
 .progress {
-    background-color: var(--ashen);
+    background-color: var(--cobalt);
     position: absolute;
     bottom: 0;
     left: var(--course-sidebar-width);
     width: 100vw;
-    height: 6px;
+    height: 5px;
     margin: 0;
     z-index: 9999;
 }
 
 .progress + div {
+    font-size: 24px;
     padding: 50px;
+    text-align: center;
 }
 
 .indeterminate {
-    background-color: var(--cobalt);
+    background-color: var(--ashen);
 }

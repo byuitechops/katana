@@ -5,7 +5,8 @@
         "user-traffic": true
     },
     "firebase": {
-        "auth": "./auth.json"
+        "auth": "./auth.json",
+        "statistics": false
     },
     "server": {
         "port": 8000,

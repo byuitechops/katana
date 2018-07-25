@@ -8,19 +8,18 @@ const cheerio = require('cheerio');
  * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
-    // console.log(canvasItem.constructor.name, options.inputType);
+    /* TODO: Add a display section if the results return a title that matches */
     let title = '';
     let description = `The search came back with a match for "<strong style="font-weight: 500">${options.searchPhrase}</strong>"`;
     let display = `
         <div>${description}</div>
     `;
     let details = {
-        searchPhrase: options.searchPhrase,
         description
     };
     let html = {
         currentHtml: canvasItem.getHtml(),
-        searchPhrase: options.searchPhrase
+        highlight: options.searchPhrase
     };
 
     if (options.inputType === 'Text') {
@@ -29,6 +28,27 @@ function discover(canvasItem, issueItem, options) {
         // than once due to multiple occurances of the same item throughout the course
 
         if (canvasItem.constructor.name !== 'Module' && canvasItem.constructor.name !== 'ModuleItem') {
+            let $ = cheerio.load(canvasItem.getHtml());
+            let text = $('*').text();
+            if (text.toLowerCase().includes(options.searchPhrase.toLowerCase())) {
+                var regex = new RegExp(options.searchPhrase, 'gi');
+                var matches = text.toLowerCase().match(regex);
+                display += `
+                <h3>Number of results</h3>
+                <div>
+                    ${matches.length}
+                </div>`;
+                title = `${options.inputType} Search Results`;
+                details.title = title;
+                issueItem.newIssue(title, display, details, html);
+            }
+        } 
+        if (options.title === 'Yes') {
+            includeTitle();
+        }
+    } else if (options.inputType === 'HTML') {
+        if (canvasItem.constructor.name !== 'Module' && canvasItem.constructor.name !== 'ModuleItem') {
+            let $ = cheerio.load(canvasItem.getHtml());
             if (html.currentHtml.toLowerCase().includes(options.searchPhrase.toLowerCase())) {
                 var regex = new RegExp(options.searchPhrase, 'gi');
                 var matches = html.currentHtml.toLowerCase().match(regex);
@@ -41,24 +61,9 @@ function discover(canvasItem, issueItem, options) {
                 details.title = title;
                 issueItem.newIssue(title, display, details, html);
             }
-        } else {
-            var included = canvasItem.getTitle().toLowerCase().includes(options.searchPhrase.toLowerCase());
-            if (included) {
-                title = `${options.inputType} Matched`;
-                details.title = title;
-                issueItem.newIssue(title, display, details, html);
-            }
-            return;
+        } else if (options.title === 'Yes') {        
+            includeTitle();
         }
-    } else if (options.inputType === 'HTML') {
-        // search all $.html() in the course, and maybe titles?
-        if (!html.currentHtml || !html.currentHtml.toLowerCase().includes(options.searchPhrase)) return;
-        // let $ = cheerio.load(canvasItem.getHtml());
-        // console.log(`HTML`, options.searchPhrase);
-
-        details.title = title;
-        title = `${options.inputType} Matched`;
-        issueItem.newIssue(title, display, details);
     } else if (options.inputType === 'Regex' && html.currentHtml !== undefined) {
         // search all $.html(), $.text(), and titles?
         let regex = new RegExp(options.searchPhrase, 'ig');
@@ -68,6 +73,25 @@ function discover(canvasItem, issueItem, options) {
         details.title = title;
         title = `${options.inputType} Matched`;
         issueItem.newIssue(title, display, details);
+    }
+
+    /** *************************************************************
+     * If the canvasItem type is a module or moduleItem and the user 
+     * wants to search titles as well, then search the titles here
+     ***************************************************************/
+    function includeTitle() {
+        var title = canvasItem.getTitle();
+        var included = title.toLowerCase().includes(options.searchPhrase.toLowerCase());
+        if (included) {
+            display += `
+            <h3>Title Matched</h3>
+            <div>
+                ${title}
+            </div>`;
+            details.title = title;
+            issueItem.newIssue(title, display, details, html);
+        }
+        return;
     }
 }
 
@@ -107,7 +131,7 @@ module.exports = {
         key: 'inputType',
         description: 'How would you like to search?',
         type: 'dropdown',
-        choices: ['', 'Text'],
+        choices: ['', 'Text', 'HTML'],
         required: true
     }, {
         title: 'Search Phrase',
@@ -116,6 +140,13 @@ module.exports = {
         type: 'text',
         choices: [],
         required: true
+    }, {
+        title: 'Include Titles',
+        key: 'titles',
+        description: 'Would you like to search the titles for your Search Phrase as well?',
+        type: 'dropdown',
+        choices: ['Yes', 'No'],
+        required: false
     }],
     fixOptions: [],
     editorTabs: [{

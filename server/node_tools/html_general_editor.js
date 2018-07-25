@@ -12,6 +12,11 @@ function discover(canvasItem, issueItem, options) {
     let $ = cheerio.load(canvasItem.getHtml());
     let currentHtml = canvasItem.getHtml();
     let currentText = $('*').text();
+    let html = {
+        currentHtml,
+        updatedHtml: currentHtml,
+        highlight: options.searchPhrase
+    };
     
     let title = 'HTML Edit'
     let description = `Edit the HTML of the page in the 'UPDATED HTML' tab below and click 'Approve' button to update the HTML in Canvas.`;
@@ -46,7 +51,7 @@ function discover(canvasItem, issueItem, options) {
         // if tagsFound is empty, then the tag wasn't found
         if (tagsFound.length === 0) return;
 
-        // add the 
+        // add the tags that were searched for and found to the display
         display += `
             <h2>Tags Searched For</h2>
             <div>${options.searchTags.join(' ')}</div>
@@ -55,10 +60,6 @@ function discover(canvasItem, issueItem, options) {
         `;
     }
 
-    let html = {
-        currentHtml,
-        updatedHtml: currentHtml
-    };
 
     let details = {};
 
@@ -77,8 +78,7 @@ function fix(canvasItem, issueItem, options) {
         try {
             if (canvasItem.getHtml() === null || issueItem.issues[0].status !== 'approved') return;
             if (issueItem.issues[0].html.updatedHtml === issueItem.issues[0].html.currentHtml) return;
-            canvasItem.setHtml(issueItem.html.updatedHtml);
-            await canvasItem.update();
+            canvasItem.setHtml(issueItem.issues[0].html.updatedHtml);
             issueItem.issues[0].status = 'fixed';
             resolve();
         } catch (e) {

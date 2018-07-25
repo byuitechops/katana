@@ -2,7 +2,7 @@ var categories = {
     'Assignment': 'assignments',
     'Page': 'pages',
     'Quiz': 'quizzes',
-    'QuizQuestion': 'quizQuestions',
+    'Question': 'quizQuestions',
     'Module': 'modules',
     'ModuleItem': 'moduleItems',
     'Discussion': 'discussions',
@@ -13,8 +13,10 @@ var categories = {
 module.exports = class IssueItem {
     constructor(item) {
         this.title = item.getTitle();
-        this.course_id = item._course;
+        this.course_id = item.getParentIds()[0];
+        this.parent_id = item.getParentIds().slice(-1)[0];
         this.item_id = item.getId();
+        this.item_path = item.getPath();
         this.category = categories[item.constructor.name];
         this.link = item.getUrl();
         this.issues = [];
@@ -29,4 +31,4 @@ module.exports = class IssueItem {
             status: 'untouched'
         });
     }
-}
+};

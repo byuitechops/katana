@@ -28,6 +28,8 @@ export class IssueContainerComponent implements OnInit {
      */
     @ViewChild('issueDetails') issueDetails: ElementRef;
 
+    @ViewChild('codeEditor') codeEditor: ElementRef;
+
     /**
      * Constructor
      * @param toolService Provides information and management for available tools.
@@ -38,7 +40,7 @@ export class IssueContainerComponent implements OnInit {
         private courseService: CourseService) { }
 
     /**
-     * Fired when the component is intialized, this manages the item's display.
+     * Fired when the component is initialized, this manages the item's display.
      * It inserts the form for the {@link Issue}'s {@link FixOption}s if available.
      */
     ngOnInit() {
@@ -49,7 +51,7 @@ export class IssueContainerComponent implements OnInit {
         // Update option values if there are values saved for any options
         if (this.issue.tempValues) {
             Object.keys(this.issue.tempValues).forEach(optionKey => {
-                let control = this.issue.formGroup.get(optionKey);
+                const control = this.issue.formGroup.get(optionKey);
                 control.setValue(this.issue.tempValues[optionKey], { onlySelf: true });
                 control.updateValueAndValidity();
             });
@@ -68,7 +70,7 @@ export class IssueContainerComponent implements OnInit {
                 title: editorTab.title,
                 htmlString: this.issue.html[editorTab.htmlKey],
                 readOnly: editorTab.readOnly
-            }
+            };
         });
     }
 
@@ -103,7 +105,7 @@ export class IssueContainerComponent implements OnInit {
         } else if (desiredStatus === 'approved') {
             classes += ' text-accent-4';
         } else if (desiredStatus === 'skipped') {
-            classes += ' text-darken-2'
+            classes += ' text-darken-2';
         }
         return classes;
     }
@@ -138,5 +140,23 @@ export class IssueContainerComponent implements OnInit {
      */
     showEditor() {
         return Object.keys(this.issue.html).length > 0;
+    }
+
+    handleEditorSessionValues(event) {
+        // attach the value to issues as needed here. Think about attaching it to the html property on the issue object.
+        if (this.issue.status === 'approved') {
+            this.issue.status = 'untouched';
+        }
+        this.courseService.courses.forEach(course => {
+            course.issueItems.forEach(issueItem => {
+                if (this.toolService.selectedTool.editorTabs) {
+                    this.toolService.selectedTool.editorTabs.forEach(editorTab => {
+                        if (editorTab.readOnly === false) {
+                            issueItem.issues[0].html.updatedHtml = event;
+                        }
+                    });
+                }
+            });
+        });
     }
 }
