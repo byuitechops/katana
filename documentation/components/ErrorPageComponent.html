@@ -133,14 +133,14 @@
                         <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#xs-components-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        data-target="#xs-components-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
                                     >
                                     <span class="fa fa-fw fa-cogs"></span>
                                     <span>Components</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="xs-components-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        id="xs-components-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
                                     >
                                         <li class="link">
                                             <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
@@ -149,14 +149,14 @@
                             </li>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#xs-injectables-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        data-target="#xs-injectables-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
                                     >
                                     <span class="fa fa-fw fa-long-arrow-down"></span>
                                     <span>Injectables</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="xs-injectables-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        id="xs-injectables-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
                                     >
                                         <li class="link">
                                             <a href="injectables/AuthGuardService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>AuthGuardService</a>
@@ -496,14 +496,14 @@
                         <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#components-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        data-target="#components-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
 >
                                     <span class="fa fa-fw fa-cogs"></span>
                                     <span>Components</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="components-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        id="components-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
 >
                                         <li class="link">
                                             <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
@@ -512,14 +512,14 @@
                             </li>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#injectables-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        data-target="#injectables-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
 >
                                     <span class="fa fa-fw fa-long-arrow-down"></span>
                                     <span>Injectables</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="injectables-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        id="injectables-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
 >
                                         <li class="link">
                                             <a href="injectables/AuthGuardService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>AuthGuardService</a>
@@ -835,6 +835,9 @@
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><hr>
+<p>Constructor</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -843,6 +846,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -857,6 +861,13 @@
                                                             no
                                                     </td>
                                                     
+                                                        <td>
+                                                                <code><p>Collects errors in Katana and allows
+them to be read and displayed to the user. Being used in 
+error-page.component.html (i.e. DO NOT DELETE)</p>
+<hr>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -878,7 +889,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
-import { KatanaService } from &#x27;../../katana.service&#x27;;
+import { KatanaService } from &#x27;../../katana.service&#x27;; // Being used in error-page.component.html (i.e. DO NOT DELETE)
 
 @Component({
     selector: &#x27;app-error-page&#x27;,
@@ -886,7 +897,13 @@ import { KatanaService } from &#x27;../../katana.service&#x27;;
     styleUrls: [&#x27;./error-page.component.css&#x27;]
 })
 export class ErrorPageComponent {
-
+    
+    /** **********************************************************
+     * Constructor
+     * @param katanaService Collects errors in Katana and allows
+     * them to be read and displayed to the user. Being used in 
+     * error-page.component.html (i.e. DO NOT DELETE)
+     ************************************************************/
     constructor(private katanaService: KatanaService) { }
 
 }

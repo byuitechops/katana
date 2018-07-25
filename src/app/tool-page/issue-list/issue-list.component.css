@@ -9,13 +9,6 @@
     overflow-y: scroll;
 }
 
-/* The box all issue-cards go into */
-
-.issueList__list {
-    overflow: auto;
-    overflow-x: hidden;
-}
-
 /* The title for the issue list */
 
 .issueList__title {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Course, IssueItem } from './interfaces';
 
 /**
@@ -31,6 +31,8 @@ export class CourseService {
      */
     courseSelectionOpen: boolean = false;
 
+    courseChange = new EventEmitter<Course>();
+
     get selectedCourse() {
         return this._selectedCourse;
     }
@@ -39,9 +41,10 @@ export class CourseService {
         if (course === this._selectedCourse || !course) return;
         // Set the selected course to a reference, so we don't have issues when updating the course objects
         this._selectedCourse = course;
-        sessionStorage.selectedCourse = course.id;
+        this.courseChange.emit(this._selectedCourse);
         this.selectedIssueItem = this._selectedCourse.issueItems ? this._selectedCourse.issueItems.find(issueItem => issueItem.course_id === course.id) : null;
     }
+
     get courses() {
         return Object.keys(this.coursesObj).reduce((acc, key) => [...acc, this.coursesObj[key]], []);
     }

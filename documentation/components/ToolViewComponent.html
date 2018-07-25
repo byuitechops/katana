@@ -133,14 +133,14 @@
                         <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#xs-components-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        data-target="#xs-components-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
                                     >
                                     <span class="fa fa-fw fa-cogs"></span>
                                     <span>Components</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="xs-components-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        id="xs-components-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
                                     >
                                         <li class="link">
                                             <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
@@ -149,14 +149,14 @@
                             </li>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#xs-injectables-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        data-target="#xs-injectables-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
                                     >
                                     <span class="fa fa-fw fa-long-arrow-down"></span>
                                     <span>Injectables</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="xs-injectables-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        id="xs-injectables-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
                                     >
                                         <li class="link">
                                             <a href="injectables/AuthGuardService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>AuthGuardService</a>
@@ -496,14 +496,14 @@
                         <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#components-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        data-target="#components-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
 >
                                     <span class="fa fa-fw fa-cogs"></span>
                                     <span>Components</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="components-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        id="components-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
 >
                                         <li class="link">
                                             <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
@@ -512,14 +512,14 @@
                             </li>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#injectables-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        data-target="#injectables-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
 >
                                     <span class="fa fa-fw fa-long-arrow-down"></span>
                                     <span>Injectables</span>
                                     <span class="fa fa-angle-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                        id="injectables-links-module-AppModule-9179909d6198f97accb70e00ea5fc997"
+                                        id="injectables-links-module-AppModule-fd52a3f444b9cc38a98942453bf8bc9a"
 >
                                         <li class="link">
                                             <a href="injectables/AuthGuardService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>AuthGuardService</a>
@@ -1152,23 +1152,11 @@ export class ToolViewComponent {
     &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div style&#x3D;&quot;margin-top: 300px&quot; *ngIf&#x3D;&quot;courseService.selectedCourse.processing&quot;&gt;
-    &lt;div class&#x3D;&quot;loader&quot;&gt;
-        &lt;div class&#x3D;&quot;preloader-wrapper big active&quot;&gt;
-            &lt;div class&#x3D;&quot;spinner-layer spinner-yellow-only&quot;&gt;
-                &lt;div class&#x3D;&quot;circle-clipper left&quot;&gt;
-                    &lt;div class&#x3D;&quot;circle&quot;&gt;&lt;/div&gt;
-                &lt;/div&gt;
-                &lt;div class&#x3D;&quot;gap-patch&quot;&gt;
-                    &lt;div class&#x3D;&quot;circle&quot;&gt;&lt;/div&gt;
-                &lt;/div&gt;
-                &lt;div class&#x3D;&quot;circle-clipper right&quot;&gt;
-                    &lt;div class&#x3D;&quot;circle&quot;&gt;&lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
+&lt;div *ngIf&#x3D;&quot;courseService.selectedCourse.processing&quot;&gt;
+    &lt;div class&#x3D;&quot;progress&quot;&gt;
+        &lt;div class&#x3D;&quot;indeterminate&quot;&gt;&lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class&#x3D;&quot;loader white-text&quot;&gt;
+    &lt;div class&#x3D;&quot;ashen-text&quot;&gt;
         {{toolService.processingMessage}}
     &lt;/div&gt;
 &lt;/div&gt;
@@ -1208,7 +1196,7 @@ export class ToolViewComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="statContainer">    <div>        <app-stat-badge [statTitle]="\'Items\'" [side]="\'left\'" [statCount]="courseService.selectedCourse.issueItems.length"></app-stat-badge>    </div>    <div>        <app-stat-badge [statTitle]="\'Issues\'" [side]="\'left\'" [statCount]="courseService.getCourseIssueCount()"></app-stat-badge>    </div>    <div>        <app-stat-badge [titleColor]="\'#eceff1\'" [statTitle]="\'Untouched\'" [side]="\'left\'" [statCount]="courseService.getCourseIssueCount(\'untouched\')"></app-stat-badge>    </div>    <div>        <app-stat-badge [titleColor]="\'#5EBD8F\'" [statTitle]="\'Approved\'" [side]="\'left\'" [statCount]="courseService.getCourseIssueCount(\'approved\')"></app-stat-badge>    </div>    <div>        <app-stat-badge [titleColor]="\'#65727D\'" [statTitle]="\'Skipped\'" [side]="\'left\'" [statCount]="courseService.getCourseIssueCount(\'skipped\')"></app-stat-badge>    </div>    <div>        <app-stat-badge [titleColor]="\'#e53935\'" [statTitle]="\'Failed\'" [side]="\'left\'" [statCount]="courseService.getCourseIssueCount(\'failed\')"></app-stat-badge>    </div>    <div>        <app-stat-badge [titleColor]="\'#2879B5\'" [statTitle]="\'Fixed\'" [side]="\'left\'" [statCount]="courseService.getCourseIssueCount(\'fixed\')"></app-stat-badge>    </div></div><div style="margin-top: 300px" *ngIf="courseService.selectedCourse.processing">    <div class="loader">        <div class="preloader-wrapper big active">            <div class="spinner-layer spinner-yellow-only">                <div class="circle-clipper left">                    <div class="circle"></div>                </div>                <div class="gap-patch">                    <div class="circle"></div>                </div>                <div class="circle-clipper right">                    <div class="circle"></div>                </div>            </div>        </div>    </div>    <div class="loader white-text">        {{toolService.processingMessage}}    </div></div><div style="display: flex;" *ngIf="!courseService.selectedCourse.processing">    <app-issue-list></app-issue-list>    <div>        <app-issue-details></app-issue-details>        <app-issue-nav></app-issue-nav>    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="statContainer">    <div>        <app-stat-badge [statTitle]="\'Items\'" [side]="\'left\'" [statCount]="courseService.selectedCourse.issueItems.length"></app-stat-badge>    </div>    <div>        <app-stat-badge [statTitle]="\'Issues\'" [side]="\'left\'" [statCount]="courseService.getCourseIssueCount()"></app-stat-badge>    </div>    <div>        <app-stat-badge [titleColor]="\'#eceff1\'" [statTitle]="\'Untouched\'" [side]="\'left\'" [statCount]="courseService.getCourseIssueCount(\'untouched\')"></app-stat-badge>    </div>    <div>        <app-stat-badge [titleColor]="\'#5EBD8F\'" [statTitle]="\'Approved\'" [side]="\'left\'" [statCount]="courseService.getCourseIssueCount(\'approved\')"></app-stat-badge>    </div>    <div>        <app-stat-badge [titleColor]="\'#65727D\'" [statTitle]="\'Skipped\'" [side]="\'left\'" [statCount]="courseService.getCourseIssueCount(\'skipped\')"></app-stat-badge>    </div>    <div>        <app-stat-badge [titleColor]="\'#e53935\'" [statTitle]="\'Failed\'" [side]="\'left\'" [statCount]="courseService.getCourseIssueCount(\'failed\')"></app-stat-badge>    </div>    <div>        <app-stat-badge [titleColor]="\'#2879B5\'" [statTitle]="\'Fixed\'" [side]="\'left\'" [statCount]="courseService.getCourseIssueCount(\'fixed\')"></app-stat-badge>    </div></div><div *ngIf="courseService.selectedCourse.processing">    <div class="progress">        <div class="indeterminate"></div>    </div>    <div class="ashen-text">        {{toolService.processingMessage}}    </div></div><div style="display: flex;" *ngIf="!courseService.selectedCourse.processing">    <app-issue-list></app-issue-list>    <div>        <app-issue-details></app-issue-details>        <app-issue-nav></app-issue-nav>    </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CategoriesComponent', 'selector': 'app-categories'},{'name': 'CodeEditorComponent', 'selector': 'app-code-editor'},{'name': 'CourseChipComponent', 'selector': 'app-course-chip'},{'name': 'CourseSelectionComponent', 'selector': 'app-course-selection'},{'name': 'CourseSidebarComponent', 'selector': 'app-course-sidebar'},{'name': 'ErrorPageComponent', 'selector': 'app-error-page'},{'name': 'IssueCardComponent', 'selector': 'app-issue-card'},{'name': 'IssueContainerComponent', 'selector': 'app-issue-container'},{'name': 'IssueDetailsComponent', 'selector': 'app-issue-details'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueNavComponent', 'selector': 'app-issue-nav'},{'name': 'OptionsViewComponent', 'selector': 'app-options-view'},{'name': 'StatBadgeComponent', 'selector': 'app-stat-badge'},{'name': 'ToolSelectionComponent', 'selector': 'app-tool-selection'},{'name': 'ToolViewComponent', 'selector': 'app-tool-view'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ToolViewComponent'};
