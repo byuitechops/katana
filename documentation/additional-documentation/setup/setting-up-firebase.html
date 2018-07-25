@@ -805,7 +805,7 @@ Properties that are object arrays (an array of objects) are explained in detail 
 <td>function</td>
 <td></td>
 <td>The function that will tell the tool what items to get from Canvas and decide how to display them</td>
-<td>discover</td>
+<td><a href="#discover">See below for details</a></td>
 <td>true</td>
 </tr>
 <tr>
@@ -813,7 +813,7 @@ Properties that are object arrays (an array of objects) are explained in detail 
 <td>object array</td>
 <td></td>
 <td>An object array that describes the available discover/search options that will appear on the options page before the tool is run</td>
-<td>See below for details</td>
+<td><a href="#discoverOptions">See below for details</a></td>
 <td>true</td>
 </tr>
 <tr>
@@ -829,7 +829,7 @@ Properties that are object arrays (an array of objects) are explained in detail 
 <td>function</td>
 <td></td>
 <td>The function that will tell the tool what items to fix and how to do it</td>
-<td>See below for details</td>
+<td><a href="#fix">See below for details</a></td>
 <td>true</td>
 </tr>
 <tr>
@@ -861,7 +861,7 @@ Properties that are object arrays (an array of objects) are explained in detail 
 <td>object array</td>
 <td></td>
 <td>An object array that describes the available fix options that will appear on each issue card after the tool has run</td>
-<td>See below for details</td>
+<td><a href="#fixOptions">See below for details</a></td>
 <td>false</td>
 </tr>
 <tr>
@@ -890,7 +890,7 @@ Properties that are object arrays (an array of objects) are explained in detail 
 </tr>
 </tbody>
 </table>
-<h3 id="discoveroptions-object-array">discoverOptions &lt;Object Array&gt;</h3>
+<h3 id="discoveroptions-object-array-a-id-discoveroptions-a-">discoverOptions &lt;Object Array&gt; <a id="discoverOptions"></a></h3>
 <p>This section details the properties found on a single object within the discoverOptions array.</p>
 <p><img src="../images/settings_keys_options_page.png" alt="alt text" class="img-responsive" title="Options page with object key descriptions"></p>
 <table class="table table-bordered compodoc-table">
@@ -963,7 +963,7 @@ Properties that are object arrays (an array of objects) are explained in detail 
 </tr>
 </tbody>
 </table>
-<h3 id="fixoptions-object-array">fixOptions &lt;Object Array&gt;</h3>
+<h3 id="fixoptions-object-array-a-id-fixoptions-a-">fixOptions &lt;Object Array&gt; <a id="fixOptions"></a></h3>
 <p>This section details the properties found on a single object within the fixOptions array.</p>
 <p><img src="../images/settings_keys_issue_card.png" alt="alt text" class="img-responsive" title="Issue card with object key descriptions"></p>
 <table class="table table-bordered compodoc-table">
@@ -1078,7 +1078,7 @@ Properties that are object arrays (an array of objects) are explained in detail 
 </tbody>
 </table>
 <p>Note: It is good practice to have two tabs, one that is read-only for the current html and one that is not read-only but editable for the updated html, if applicable.</p>
-<h2 id="discover-function">Discover &lt;function&gt;</h2>
+<h2 id="discover-function-a-id-discover-a-">Discover &lt;function&gt; <a id="discover"></a></h2>
 <p>The purpose of the discover function is to:</p>
 <ol>
 <li>Determine which items are to be retrieved from Canvas</li>
@@ -1107,7 +1107,7 @@ function discover(canvasItem, issueItem, options) {
         // Add new issues as needed
         issueItem.newIssue(title, display, details, html);
     }
-}</code></pre></div><h2 id="fix-function">Fix &lt;function&gt;</h2>
+}</code></pre></div><h2 id="fix-function-a-id-fix-a-">Fix &lt;function&gt; <a id="fix"></a></h2>
 <p>The purpose of the fix function is to:</p>
 <ol>
 <li>Check if the <code>canvasItem</code> should be changed based on the status of the issue (<code>issue.status</code>)</li>
