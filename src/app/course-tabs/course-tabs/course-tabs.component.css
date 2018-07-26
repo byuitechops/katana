@@ -36,3 +36,19 @@
 .addButton>i:hover {
     background-color: var(--navy-light);
 }
+
+.pulseypulse>a {
+    animation: pulseypulse 2s infinite ease-in-out;
+}
+
+@keyframes pulseypulse {
+	0% {
+        color: var(--ashen);
+    }
+    75% {
+        color: var(--cobalt);
+    }
+    100% {
+        color: var(--ashen);
+	}
+}

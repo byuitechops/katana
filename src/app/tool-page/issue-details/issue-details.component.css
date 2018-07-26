@@ -20,6 +20,7 @@
 /* The currently selected item's title */
 
 .issueDetails__itemTitle {
+    background-color: var(--cobalt);
     margin-left: 15px;
     font-size: 20px;
 }

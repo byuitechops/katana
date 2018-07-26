@@ -42,19 +42,6 @@ export class AppComponent {
         private toastService: ToastService,
         private authGuardService: AuthGuardService) {
 
-        window['toggleKatanaTheme'] = () => {
-            var charcoalTheme = !window['katanaTheme'] || window['katanaTheme'] !== 'charcoal';
-            document.body.style.backgroundColor = charcoalTheme ? 'var(--charcoal)' : 'var(--cobalt)';
-            window['katanaTheme'] = charcoalTheme ? 'charcoal' : 'cobalt';
-            window.localStorage['katanaTheme'] = charcoalTheme ? 'charcoal' : 'cobalt';
-        }
-
-        if (window.localStorage['katanaTheme']) {
-            if (window.localStorage['katanaTheme'] && window.localStorage['katanaTheme'] === 'charcoal') {
-                document.body.style.backgroundColor = 'var(--charcoal)';
-            }
-        }
-
         router.events.subscribe((event: Event) => {
             if (event instanceof NavigationEnd &&
                 !event.urlAfterRedirects.includes('/issues')) {
