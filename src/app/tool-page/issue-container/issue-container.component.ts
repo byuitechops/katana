@@ -70,7 +70,7 @@ export class IssueContainerComponent implements OnInit {
                 title: editorTab.title,
                 htmlString: this.issue.html[editorTab.htmlKey],
                 readOnly: editorTab.readOnly
-            }
+            };
         });
     }
 
@@ -140,24 +140,5 @@ export class IssueContainerComponent implements OnInit {
      */
     showEditor() {
         return Object.keys(this.issue.html).length > 0;
-    }
-
-    handleEditorSessionValues(event) {
-        // attach the value to issues as needed here. Think about attaching it to the html property on the issue object.
-        console.log('eventttt:', event);
-        if (this.issue.status === 'approved') {
-            this.issue.status = 'untouched';
-        }
-        this.courseService.courses.forEach(course => {
-            course.issueItems.forEach(issueItem => {
-                if (this.toolService.selectedTool.editorTabs) {
-                    this.toolService.selectedTool.editorTabs.forEach(editorTab => {
-                        if (editorTab.readOnly === false) {
-                            issueItem.issues[0].html.updatedHtml = event;
-                        }
-                    });
-                }
-            });
-        });
     }
 }
