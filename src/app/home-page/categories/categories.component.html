@@ -1,4 +1,4 @@
-<div class="categories" [class.frosted]="this.courseService.courseSelectionOpen || this.courseService.courseEditOpen">
+<div class="categories" [class.frosted]="this.courseService.courseSelectionOpen">
     <div *ngFor="let category of toolService.categories" (click)="setSelectedCategory(category)">
         <h1 class="white-text">{{category.title}}</h1>
         <div class="tools">

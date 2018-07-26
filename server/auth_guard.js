@@ -24,7 +24,6 @@ module.exports = (req, res, next) => {
                     'body': JSON.stringify(req.body)
                 });
                 console.error(error);
-                next();
             });
     }
 

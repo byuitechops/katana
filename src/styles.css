@@ -12,20 +12,18 @@
   --primary-6: #f0f0f0;
   --accent-1: #2196f3;
   --accent-2: #e53935;
-  --background-dark: #546e7a;
-  --background-light: #eceff1;
-  /* --course-sidebar-width: 112px;  STANDARD - SAVED FOR TESTING*/
   --course-sidebar-width: 350px;
   --breadcrumbs-height: 50px;
+  --header-height: calc(var(--breadcrumbs-height) * 2);
   --issueList-width: 350px;
   --toolView-titleBar-height: 60px;
   --course-chip-width: 100%;
 
   --cobalt: #2879B5;
   --navy: #183A54;
-  --navy-dark: #133147;
+  --navy-light: #2D4B63;
   --black: #000000;
-  --mint: #5EBD8F;
+  --mint: #c3ffe3;
   --charcoal: #65727D;
   --ashen: #eceff1;
   --mint-muted: rgba(101, 184, 144, 0.5);
@@ -36,16 +34,20 @@
 }
 
 body {
-    margin: var(--breadcrumbs-height) 0 0 var(--course-sidebar-width);
+    margin-top: var(--breadcrumbs-height);
     font-size: 14px;
     font-family: "Roboto", sans-serif;
     background-color: var(--cobalt);
+    overflow-x: hidden;
 }
 
 .cobalt {
     background-color: var(--cobalt);
 }
 .navy {
+    background-color: var(--navy);
+}
+.navy-light {
     background-color: var(--navy);
 }
 .black {
@@ -62,22 +64,22 @@ body {
 }
 
 .cobalt-text {
-    color: var(--cobalt);
+    color: var(--cobalt) ;
 }
 .navy-text {
-    color: var(--navy);
+    color: var(--navy) ;
 }
 .black-text {
-    color: var(--black);
+    color: var(--black) ;
 }
 .mint-text {
-    color: var(--mint);
+    color: var(--mint) ;
 }
 .charcoal-text {
-    color: var(--charcoal);
+    color: var(--charcoal) ;
 }
 .ashen-text {
-    color: var(--ashen);
+    color: var(--ashen) !important;
 }
 
 h1, h2, h3 {

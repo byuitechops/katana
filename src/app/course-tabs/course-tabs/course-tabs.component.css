@@ -1,0 +1,54 @@
+.tabs {
+    height: var(--breadcrumbs-height) !important;
+}
+
+.tabs .tab {
+    transition: all .1s ease-in-out;
+    line-height: var(--breadcrumbs-height);
+    height: var(--breadcrumbs-height);
+}
+
+.tabs .tab:hover {
+    background-color: var(--navy-light) !important;
+}
+
+.tabs .indicator {
+    display: none !important;
+}
+
+.tabs .active {
+    background-color: var(--navy-light) !important;
+}
+
+.addButton {
+    float: right;
+    background-color: var(--navy);
+    height: calc(var(--breadcrumbs-height) + 1px);
+    cursor: pointer;
+}
+
+.addButton>i {
+    line-height: var(--breadcrumbs-height);
+    padding: 0 20px;
+    transition: all .1s ease-in-out;
+}
+
+.addButton>i:hover {
+    background-color: var(--navy-light);
+}
+
+.pulseypulse>a {
+    animation: pulseypulse 2s infinite ease-in-out;
+}
+
+@keyframes pulseypulse {
+	0% {
+        color: var(--ashen);
+    }
+    75% {
+        color: var(--cobalt);
+    }
+    100% {
+        color: var(--ashen);
+	}
+}

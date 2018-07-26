@@ -1,8 +1,7 @@
 /* Container for the issue-list element */
 
 .issueList {
-    max-height: calc(100vh - var(--breadcrumbs-height));
-    background-color: var(--cobalt);
+    max-height: calc(100vh - var(--header-height));
     width: var(--issueList-width);
     box-sizing: border-box;
     padding: 0 15px;
@@ -14,7 +13,6 @@
 .issueList__title {
     position: sticky;
     top: 0;
-    background-color: var(--cobalt);
     z-index: 2;
 }
 
@@ -22,7 +20,7 @@
 
 .noIssuesMessage {
     position: absolute;
-    width: calc(100vw - (var(--course-sidebar-width) + 40px));
+    width: 100vw;
     padding-top: 200px;
     z-index: 100;
     font-size: 30px;

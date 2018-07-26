@@ -1,10 +1,9 @@
 /* The container for all issue-container elements */
 
 .issueDetails {
-    width: calc(100vw - (var(--course-sidebar-width) + var(--issueList-width)));
-    height: calc(100vh - var(--breadcrumbs-height));
-    background-color: white;
-    padding: 0 15px;
+    width: calc(100vw - var(--issueList-width));
+    max-height: calc(100vh - var(--header-height));
+    padding: 0 15px 0 0;
     overflow-y: scroll;
 }
 
@@ -21,6 +20,7 @@
 /* The currently selected item's title */
 
 .issueDetails__itemTitle {
+    background-color: var(--cobalt);
     margin-left: 15px;
     font-size: 20px;
 }
