@@ -2,7 +2,7 @@ import { Component, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToolService } from '../../tool.service';
 import { CourseService } from '../../course.service';
-import { KatanaService } from '../../katana.service';
+import { KatanaService } from '../../server.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { FormGroup } from '@angular/forms';
 import { DiscoverOption } from '../../interfaces';
