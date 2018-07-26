@@ -1,19 +1,19 @@
 /* Container for the issue-list element */
 
 .issueList {
-    max-height: calc(100vh - var(--header-height));
+    /* 52px is height of .issueList__title which sits above .issueList */
+    max-height: calc(100vh - var(--header-height) - 52px);
     width: var(--issueList-width);
     box-sizing: border-box;
-    padding: 0 15px;
+    padding: 0 7px 0 15px;
     overflow-y: scroll;
 }
 
 /* The title for the issue list */
 
 .issueList__title {
-    position: sticky;
-    top: 0;
-    z-index: 2;
+    position: relative;
+    padding-left: 15px;
 }
 
 /* The message that appears if no issue items are avaiable */

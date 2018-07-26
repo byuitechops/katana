@@ -2,9 +2,8 @@
 
 .issueDetails {
     width: calc(100vw - var(--issueList-width));
-    max-height: calc(100vh - var(--header-height));
-    padding: 0 15px 0 0;
-    overflow-y: scroll;
+    height: calc(100vh - var(--header-height));
+    padding: 0 15px;
 }
 
 /* The header for issue-details */
@@ -32,4 +31,5 @@
     overflow-x: hidden;
     overflow: auto;
     max-height: calc(100% - var(--toolView-titleBar-height) + 8px);
+    padding-right: 7px;
 }
