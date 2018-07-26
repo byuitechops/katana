@@ -87,12 +87,12 @@ export class OptionsViewComponent {
             return;
         }
 
-        var options = { categories: [] };
+        const options = { categories: [] };
         Object.keys(this.formGroup.controls).forEach(key => {
             options[key] = this.formGroup.controls[key].value;
         });
 
-        let categoryInputs = Array.from(document.querySelectorAll('.canvas-category')) as HTMLInputElement[];
+        const categoryInputs = Array.from(document.querySelectorAll('.canvas-category')) as HTMLInputElement[];
         categoryInputs.forEach(category => {
             if (category.checked) {
                 options.categories.push(category.id);

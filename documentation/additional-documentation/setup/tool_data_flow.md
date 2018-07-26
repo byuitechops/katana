@@ -1,4 +1,4 @@
-# Katana Tool Data Flow
+# Tool Data Flow
 The purpose of this document is to describe the general data flow of a typical Katana tool.
 
 ## Login
@@ -14,7 +14,7 @@ Stuff here
 ## Options Page
 1. The Options Page is created with the information on 'selectedTool'. (Angular)
 2. The user fills out the generated form and clicks 'Run Tool'. (Angular)
-3. The form results are stored on the 'toolService'. NEED TO SAY WHERE THEY ARE STORED (Angular)
+3. The form results are stored on in 'options-view.component.ts' as 'options' in the 'onSubmit()' function, which is then assigned to 'selectedDiscoverOptions' on the 'toolService'. (Angular)
 
 ## Tool View Discover
 1. For each selected course, the tool ID, results from the form, and the course info, are sent to the server. (Angular -> Server)
