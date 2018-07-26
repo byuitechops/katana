@@ -58,14 +58,14 @@ export class OptionsViewComponent {
      * Opens the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
      */
     openModal(): void {
-        this.modalActions.emit({ action: "modal", params: ['open'] });
+        this.modalActions.emit({ action: 'modal', params: ['open'] });
     }
 
     /**
      * Closes the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
      */
     closeModal(): void {
-        this.modalActions.emit({ action: "modal", params: ['close'] });
+        this.modalActions.emit({ action: 'modal', params: ['close'] });
     }
 
     /**

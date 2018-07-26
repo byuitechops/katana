@@ -31,15 +31,15 @@ export class ToolService {
     /**
      * Whether or not a tool is currently doing it's magic.
      */
-    processing: boolean = false;
+    processing = false;
     /**
      * The message to display on the screen while a tool is processing.
      */
-    processingMessage: string = '';
+    processingMessage = '';
     /**
      * Whether or not the user is currently looking at the tool view.
      */
-    toolViewOpen: boolean = false;
+    toolViewOpen = false;
 
     /**
      * The list of available tools, as retrieved from the server.

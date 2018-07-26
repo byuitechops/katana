@@ -5,16 +5,16 @@ The purpose of this document is to describe the general data flow of a typical K
 Stuff here
 
 ## Home Page
-1. The Angular Service, 'toolService', makes a call to the server, which returns a list of tools that are available to the user. (Angular -> Server -> Angular)
-2. The Home Page is populated using the returned list of tools and the 'categories' object array on 'toolService'. (Angular)
+1. The Angular Service, 'tool.service.ts', makes a call to the server, which returns a list of tools that are available to the user. (Angular -> Server -> Angular)
+2. The Home Page is populated using the returned list of tools and the 'categories' object array on 'tool.service.ts'. (Angular)
 3. The user selects a tool. (Angular)
-4. The selected tool's settings object is exported and is then made accessible through the 'toolService' as 'selectedTool'. (Angular)
+4. The selected tool's settings object is exported and is then made accessible through the 'tool.service.ts' as 'selectedTool'. (Angular)
 5. The Options Page is then loaded. (Angular)
 
 ## Options Page
 1. The Options Page is created with the information on 'selectedTool'. (Angular)
 2. The user fills out the generated form and clicks 'Run Tool'. (Angular)
-3. The form results are stored on in 'options-view.component.ts' as 'options' in the 'onSubmit()' function, which is then assigned to 'selectedDiscoverOptions' on the 'toolService'. (Angular)
+3. The form results are stored on in 'options-view.component.ts' as 'options' in the 'onSubmit()' function, which is then assigned to 'selectedDiscoverOptions' on the 'tool.service.ts'. (Angular)
 
 ## Tool View Discover
 1. For each selected course, the tool ID, results from the form, and the course info, are sent to the server. (Angular -> Server)
@@ -27,7 +27,7 @@ Stuff here
 
 ## Tool View Fix 
 This section is only applicable if 'toolType' === 'fix' on the tool's exported settings object.
-1. In the Tool View, the user filles out any options on the issue cards, and sets the status of the issues, typically to 'approved' or 'skipped'. NEED TO SAY WHERE THE ISSUES ARE BEING STORED/UPDATED ON THE ANGULAR SIDE (Angular)
+1. In the Tool View, the user filles out any options on the issue cards, and sets the status of the issues, typically to 'approved' or 'skipped'. These issues are stored in 'course.service.ts' on the courses themselves, which are accessible through the 'courses' property in 'course.service.ts'. The 'courses' property is made accessible through a getter that uses the coursesObj property in 'course.service.ts'. (Angular)
 2. The user clicks 'Fix Approved Issues' and continues through the modal. (Angular)
 3. For each course, the tool ID, course info, and the issueItems with their option values, are sent to the server. (Angular -> Server)
 4. The server uses the tool ID to send the info to the correct tool in node_tools.js. (Server)
