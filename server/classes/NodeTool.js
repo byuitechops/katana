@@ -31,9 +31,11 @@ module.exports = class NodeTool {
 
             // Strip off Canvas's script and link tags
             issueItem.issues.forEach(issue => {
-                if (issue.html !== {}) {
+                if (issue.html && Object.keys(issue.html).length > 0) {
                     Object.keys(issue.html).forEach(key => {
-                        issue.html[key] = issue.html[key].replace(/((<link rel)|(<script src))=".*amazonaws.*((.css")|(script))>/g, '');
+                        if (issue.html[key] !== undefined) {
+                            issue.html[key] = issue.html[key].replace(/((<link rel)|(<script src))=".*amazonaws.*((.css")|(script))>/g, '');
+                        }
                     });
                 }
             });
@@ -72,16 +74,18 @@ module.exports = class NodeTool {
                 // if question or moduleitem treat it special, like dinner or something
                 let canvasItem;
                 let parent;
-                if (['Question', 'ModuleItem'].includes(issueItem.category)) {
-                    if (issueItem.category === 'Question') {
+                if (['quizQuestions', 'moduleItems'].includes(issueItem.category)) {
+                    if (issueItem.category === 'quizQuestions') {
                         parent = await canvasCourse.quizzes.getOne(issueItem.parent_id);
+                        canvasItem = await parent.questions.getOne(issueItem.item_id);
                     } else {
                         parent = await canvasCourse.modules.getOne(issueItem.parent_id);
+                        canvasItem = await parent.moduleItems.getOne(issueItem.item_id);
                     }
                 } else {
                     parent = canvasCourse[issueItem.category];
+                    canvasItem = await parent.getOne(issueItem.item_id);
                 }
-                canvasItem = await parent.getOne(issueItem.item_id);
 
                 // Create new array of all issues
                 let allIssues = issueItem.issues.slice();
