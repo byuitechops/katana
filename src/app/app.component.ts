@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, Event, NavigationEnd } from '@angular/router';
 import { CourseService } from './course.service';
-import { KatanaService } from './katana.service';
+import { KatanaService } from './server.service';
 import { ToastService } from './toast.service';
 import { ToolService } from './tool.service';
 import { AuthGuardService } from './authguard.service'; // Being used in app.component.html (i.e. DO NOT DELETE)
