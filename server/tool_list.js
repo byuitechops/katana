@@ -10,5 +10,6 @@ module.exports = {
     'course_search': new NodeTool(require('./node_tools/course_search.js')),
     'html_general_editor': new NodeTool(require('./node_tools/html_general_editor.js')),
     // 'broken_images': new NodeTool(require('./node_tools/broken_images.js')),
-    'bullet_point_formatter': new NodeTool(require('./node_tools/bullet_point_formatter.js'))
+    //'bullet_point_formatter': new NodeTool(require('./node_tools/bullet_point_formatter.js')),
+    'code_blocks': new NodeTool(require('./node_tools/code_blocks.js'))
 };
