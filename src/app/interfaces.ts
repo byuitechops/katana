@@ -127,9 +127,9 @@ export interface IssueItem {
     /** The course ID the item belongs to in Canvas */
     course_id: number;
     /** The content ID of the item in Canvas */
-    item_id: number,
+    item_id: number;
     /** The API path to the item in Canvas */
-    item_path: string,
+    item_path: string;
     /** The category the item belongs to (pages, quizzes, moduleItems, etc.) */
     category: string;
     /** Link to view the item in Canvas */
