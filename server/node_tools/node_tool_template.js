@@ -10,7 +10,8 @@ function discover(canvasItem, issueItem, options) {
     let display = ``;       // the html that will be displayed on the issue card
     let details = {};       // an object containing anything needing to be referenced in the fix function 
     let html = {
-        currentHtml: canvasItem.getHtml()   // set the html for the editorTab, if applicable
+        currentHtml: canvasItem.getHtml(),   // set the html for the editorTab, if applicable
+        highlight: options.highlight // if you are going to highlight something in the editor, assign the string here (i.e. search results)
     };
 
     if (/*meets condition */true) {
@@ -32,9 +33,6 @@ function fix(canvasItem, issueItem, options) {
         try {
             // Loop through each issue and then...
             // Set the issue to fixed...
-
-            // Update the item
-            await canvasItem.update()
             // Resolve the promise
             resolve();
         } catch (e) {

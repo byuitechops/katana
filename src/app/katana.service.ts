@@ -163,7 +163,7 @@ export class KatanaService {
                         // Remove any pre-existing error
                         delete course.error;
 
-                        let data = JSON.stringify({
+                        const data = JSON.stringify({
                             tool_id: this.toolService.selectedTool.id,
                             course: course,
                             options: this.toolService.selectedDiscoverOptions,
