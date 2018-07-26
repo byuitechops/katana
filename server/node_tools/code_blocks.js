@@ -7,54 +7,67 @@ const cheerio = require('cheerio');
  * @param {object} options - Options specific to the tool selected by the user
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
+    // If the Canvas Item's HTML returns null, return
     if (canvasItem.getHtml() === null) return;
-    var $ = cheerio.load(canvasItem.getHtml());
-    var codeBlocks = $('code');
+    // Load the Canvas item into Cheerio
+    let $ = cheerio.load(canvasItem.getHtml());
+    // Get all the code blocks in the Canvas item
+    let codeBlocks = $('code');
 
+    // Loop through each code block, run checks on each one
     codeBlocks.each((i, codeBlock) => {
-        var langClass = $(codeBlock).attr('class');
+        let langClass = $(codeBlock).attr('class');
 
-        // If the option to get ALL langClass attributes is selected, move forward, else check langClass it is empty/missing
-        if (options.langClassCondition.includes('All code block language classes') || !langClass || langClass === '') {
+        // If the option to get ALL language classes is selected, move forward, otherwise check if langClass is empty, incorrect, or missing
+        if (options.langClassCondition.includes('All code block language classes') || !langClass || langClass === '' || !langClass.includes('language-')) {
 
+            // Set the default title, description, and html
             let title = 'Existing Language Class';
             let description = 'The language class on this code block should be the correct language.';
+            let html = {
+                currentCodeBlock: '',
+                currentHtml: canvasItem.getHtml(),
+            };
 
+            // Perform checks on langClass
             if (langClass === '') {
                 title = 'Empty Language Class';
-                description = 'The language class text on this code block is empty.';
+                description = 'The language class on this code block is empty.';
+                html.currentCodeBlock = `<code class="">${$(codeBlock).html()}</code>`;
             } else if (!langClass) {
                 title = 'Missing Language Class';
-                description = 'The language class text on this code block is missing.';
+                description = 'The language class on this code block is missing.';
+                html.currentCodeBlock = `<code>${$(codeBlock).html()}</code>`;
             } else if (!langClass.includes('language-')) {
                 title = 'Incorrect Language Class';
+                description = 'The language class on this code block is incorrect.';
+                html.currentCodeBlock = `<code class="${langClass}">${$(codeBlock).html()}</code>`;
+            } else {
+                html.currentCodeBlock = `<code class="${langClass}">${$(codeBlock).html()}</code>`;
             }
 
+            // Create the display for the issue card
             let display = `
                 <div>${description}</div>
             `;
 
-            if (langClass) {
+            // Add a code-block if langClass is truthy or empty
+            if (langClass || langClass === '') {
                 display += `
                     <h3>Current Language Class</h3>
                     <div class="code-block">class="${langClass}"</div>
                 `;
             }
 
-            display += `
-                <h3>Code Block</h3>
-                <div class="code-block">
-                    ${$(codeBlock).html()}
-                </div>
-            `;
-
+            // Set the details to be passed on
             let details = {
                 i,
                 title,
                 description
             };
 
-            issueItem.newIssue(title, display, details);
+            // Create the issueItem
+            issueItem.newIssue(title, display, details, html);
         }
     });
 }
@@ -69,17 +82,25 @@ function discover(canvasItem, issueItem, options) {
 function fix(canvasItem, issueItem, options) {
     return new Promise(async (resolve, reject) => {
         try {
+            //Check if the Canvas item is empty, if so return
             if (canvasItem.getHtml()) {
+                // Load the Canvas item
                 let $ = cheerio.load(canvasItem.getHtml());
+                // Get all of the code blocks
                 let codeBlocks = $('code');
+
+                // Loop through each issue item
                 issueItem.issues.forEach(issue => {
+                    // Get the correct code block for this item. i is the index to the correct code block to edit
                     let codeBlock = $(codeBlocks[issue.details.i]);
+                    // Check if codeBlock and newLangText are truthy, if so change the language class and set the status to fixed
                     if (codeBlock && issue.optionValues.newLangText) {
                         $(codeBlock).attr('class', `language-${issue.optionValues.newLangText}`);
                         issue.status = 'fixed';
                     }
                 });
 
+                // Update the HTML in Canvas
                 canvasItem.setHtml($.html());
                 resolve();
             }
@@ -97,7 +118,7 @@ module.exports = {
     fix,
     id: 'code_blocks',
     title: 'Code Blocks',
-    description: 'This tool allows you to choose which programming language a code block is uses.',
+    description: 'This tool allows you to choose which programming language a code block uses.',
     icon: 'aspect_ratio',
     toolType: 'fix',
     toolCategory: 'html',
@@ -112,9 +133,9 @@ module.exports = {
     discoverOptions: [{
         title: 'Conditions',
         key: 'langClassCondition',
-        description: 'Do you want to include all code block language classes or just empty and missing languages classes?',
+        description: 'Do you want to include all code block language classes or just empty, incorrect, and missing languages classes?',
         type: 'dropdown',
-        choices: ['', 'All code block language classes', 'Only empty and missing'],
+        choices: ['', 'All code block language classes', 'Only empty, incorrect, and missing language classes'],
         required: true
     }],
     fixOptions: [{
@@ -148,4 +169,13 @@ module.exports = {
         ],
         required: true
     }],
+    editorTabs: [{
+        title: 'Current Code Block',
+        htmlKey: 'currentCodeBlock',
+        readOnly: true
+    }, {
+        title: 'Current HTML',
+        htmlKey: 'currentHtml',
+        readOnly: true
+    }]
 };
