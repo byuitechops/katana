@@ -18,7 +18,7 @@ app-stat-badge>div {
     background-color: var(--cobalt);
     position: absolute;
     bottom: 0;
-    left: var(--course-sidebar-width);
+    left: 0;
     width: 100vw;
     height: 5px;
     margin: 0;

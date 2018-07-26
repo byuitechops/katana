@@ -1,4 +1,5 @@
 .courseSidebar {
+  display: none;  
   position: fixed;
   top: var(--breadcrumbs-height);
   padding: 0 15px;
