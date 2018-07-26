@@ -1,0 +1,12 @@
+<ul materialize class="tabs navy">
+    <li *ngFor="let course of courseService.courses" class="tab">
+        <a href="#test1" class="ashen-text">{{course.course_code}}</a>
+    </li>
+    <li class="indicator"></li>
+    <li class="tab addButton">
+        <i class="ashen-text material-icons no-select" [class.pulse]="courseService.courses.length === 0 && !courseService.courseSelectionOpen"
+            (click)="courseOverlay()" materialize="tooltip" data-position="left" data-tooltip="Edit Courses">edit</i>
+    </li>
+</ul>
+
+<app-course-selection></app-course-selection>
