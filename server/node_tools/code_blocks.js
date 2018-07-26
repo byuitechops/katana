@@ -12,8 +12,7 @@ function discover(canvasItem, issueItem, options) {
     var codeBlocks = $('code');
 
     codeBlocks.each((i, codeBlock) => {
-        codeBlock = $(codeBlock);
-        var langClass = codeBlock.attr('class');
+        var langClass = $(codeBlock).attr('class');
 
         // If the option to get ALL langClass attributes is selected, move forward, else check langClass it is empty/missing
         if (options.langClassCondition.includes('All code block language classes') || !langClass || langClass === '') {
@@ -38,19 +37,19 @@ function discover(canvasItem, issueItem, options) {
             if (langClass) {
                 display += `
                     <h3>Current Language Class</h3>
-                    <div class="code-block">${langClass}</div>
+                    <div class="code-block">class="${langClass}"</div>
                 `;
             }
 
             display += `
                 <h3>Code Block</h3>
                 <div class="code-block">
-                    ${$(codeBlocks).html()}
+                    ${$(codeBlock).html()}
                 </div>
             `;
 
             let details = {
-                langClass,
+                i,
                 title,
                 description
             };
@@ -69,33 +68,27 @@ function discover(canvasItem, issueItem, options) {
  *****************************************************************/
 function fix(canvasItem, issueItem, options) {
     return new Promise(async (resolve, reject) => {
+        try {
+            if (canvasItem.getHtml()) {
+                let $ = cheerio.load(canvasItem.getHtml());
+                let codeBlocks = $('code');
+                issueItem.issues.forEach(issue => {
+                    let codeBlock = $(codeBlocks[issue.details.i]);
+                    if (codeBlock && issue.optionValues.newLangText) {
+                        $(codeBlock).attr('class', `language-${issue.optionValues.newLangText}`);
+                        issue.status = 'fixed';
+                    }
+                });
 
-        console.log(options);
-        resolve();
-    // try {
-    //     if (canvasItem.getHtml()) {
-    //         var $ = cheerio.load(canvasItem.getHtml());
-
-    //         issueItem.issues.forEach(issue => {
-    //             let codeBlock = $(`img[src="${issue.details.codeBlock}"]`).first();
-    //             if (codeBlock && issue.optionValues.newLangText) {
-    //                 $(codeBlock).attr('langClass', issue.optionValues.newLangText);
-    //                 issue.status = 'fixed';
-    //             }
-    //         });
-
-    //         canvasItem.setHtml($.html());
-    //         await canvasItem.update();
-    //         resolve();
-    //     }
-    // } catch (e) {
-    //     issueItem.issues.forEach(issue => {
-    //         if (issue.status === 'approved') {
-    //             issue.status = 'failed';
-    //         }
-    //     });
-    //     reject(e);
-    // }
+                canvasItem.setHtml($.html());
+                resolve();
+            }
+        } catch (e) {
+            issueItem.issues.forEach(issue => {
+                issue.status = 'failed';
+            });
+            reject(e);
+        }
     });
 }
 
