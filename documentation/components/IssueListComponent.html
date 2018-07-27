@@ -416,7 +416,13 @@
                             id="components-links"
 >
                             <li class="link">
+                                <a href="../../components/CourseChipComponent.html" data-type="entity-link">CourseChipComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="../../components/CourseSelectionComponent.html" data-type="entity-link">CourseSelectionComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="../../components/CourseTabsComponent.html" data-type="entity-link">CourseTabsComponent</a>
                             </li>
                             <li class="link">
                                 <a href="../../components/ErrorPageComponent.html" data-type="entity-link">ErrorPageComponent</a>
@@ -939,7 +945,13 @@
                             id="components-links"
 >
                             <li class="link">
+                                <a href="../../components/CourseChipComponent.html" data-type="entity-link">CourseChipComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="../../components/CourseSelectionComponent.html" data-type="entity-link">CourseSelectionComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="../../components/CourseTabsComponent.html" data-type="entity-link">CourseTabsComponent</a>
                             </li>
                             <li class="link">
                                 <a href="../../components/ErrorPageComponent.html" data-type="entity-link">ErrorPageComponent</a>
@@ -1520,13 +1532,13 @@ export class IssueListComponent {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;issueList&quot; (scroll)&#x3D;&quot;onScroll()&quot; #issueList&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;issueList&quot;&gt;
     &lt;h1 class&#x3D;&quot;issueList__title white-text&quot;&gt;
         Items
         &lt;span class&#x3D;&quot;header_thin&quot;&gt;({{courseService.selectedCourse &amp;&amp; courseService.selectedCourse.issueItems ? courseService.selectedCourse.issueItems.length
             : 0}})&lt;/span&gt;
     &lt;/h1&gt;
-    &lt;div class&#x3D;&quot;issueList__list&quot;&gt;
+    &lt;div class&#x3D;&quot;issueList__list&quot; (scroll)&#x3D;&quot;onScroll()&quot; #issueList&gt;
         &lt;app-issue-card *ngFor&#x3D;&quot;let issueItem of getIssueItems(); let i &#x3D; index&quot; [position]&#x3D;&quot;i&quot; [issueItem]&#x3D;&quot;issueItem&quot; (click)&#x3D;&quot;courseService.selectedIssueItem &#x3D; issueItem&quot;&gt;
         &lt;/app-issue-card&gt;
         &lt;div class&#x3D;&quot;noIssuesMessage&quot; *ngIf&#x3D;&quot;courseService.selectedCourse &amp;&amp; courseService.selectedCourse.issueItems &amp;&amp; courseService.selectedCourse.issueItems.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; !courseService.selectedCourse.error&quot;&gt;
@@ -1572,7 +1584,7 @@ export class IssueListComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="issueList" (scroll)="onScroll()" #issueList>    <h1 class="issueList__title white-text">        Items        <span class="header_thin">({{courseService.selectedCourse && courseService.selectedCourse.issueItems ? courseService.selectedCourse.issueItems.length            : 0}})</span>    </h1>    <div class="issueList__list">        <app-issue-card *ngFor="let issueItem of getIssueItems(); let i = index" [position]="i" [issueItem]="issueItem" (click)="courseService.selectedIssueItem = issueItem">        </app-issue-card>        <div class="noIssuesMessage" *ngIf="courseService.selectedCourse && courseService.selectedCourse.issueItems && courseService.selectedCourse.issueItems.length === 0 && !courseService.selectedCourse.error">            No issues were discovered in this course.            <div>                <i class="material-icons">tag_faces</i>            </div>        </div>        <div class="noIssuesMessage" *ngIf="courseService.selectedCourse && courseService.selectedCourse.issueItems && courseService.selectedCourse.error">            <p>This course failed to process.</p>            Please contact a Katana developer with the tool name and course ID.            <div>                <i class="material-icons">sentiment_very_dissatisfied</i>            </div>        </div>    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="issueList">    <h1 class="issueList__title white-text">        Items        <span class="header_thin">({{courseService.selectedCourse && courseService.selectedCourse.issueItems ? courseService.selectedCourse.issueItems.length            : 0}})</span>    </h1>    <div class="issueList__list" (scroll)="onScroll()" #issueList>        <app-issue-card *ngFor="let issueItem of getIssueItems(); let i = index" [position]="i" [issueItem]="issueItem" (click)="courseService.selectedIssueItem = issueItem">        </app-issue-card>        <div class="noIssuesMessage" *ngIf="courseService.selectedCourse && courseService.selectedCourse.issueItems && courseService.selectedCourse.issueItems.length === 0 && !courseService.selectedCourse.error">            No issues were discovered in this course.            <div>                <i class="material-icons">tag_faces</i>            </div>        </div>        <div class="noIssuesMessage" *ngIf="courseService.selectedCourse && courseService.selectedCourse.issueItems && courseService.selectedCourse.error">            <p>This course failed to process.</p>            Please contact a Katana developer with the tool name and course ID.            <div>                <i class="material-icons">sentiment_very_dissatisfied</i>            </div>        </div>    </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CategoriesComponent', 'selector': 'app-categories'},{'name': 'CodeEditorComponent', 'selector': 'app-code-editor'},{'name': 'CourseChipComponent', 'selector': 'app-course-chip'},{'name': 'CourseSelectionComponent', 'selector': 'app-course-selection'},{'name': 'CourseSidebarComponent', 'selector': 'app-course-sidebar'},{'name': 'CourseTabsComponent', 'selector': 'app-course-tabs'},{'name': 'ErrorPageComponent', 'selector': 'app-error-page'},{'name': 'IssueCardComponent', 'selector': 'app-issue-card'},{'name': 'IssueContainerComponent', 'selector': 'app-issue-container'},{'name': 'IssueDetailsComponent', 'selector': 'app-issue-details'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueNavComponent', 'selector': 'app-issue-nav'},{'name': 'OptionsViewComponent', 'selector': 'app-options-view'},{'name': 'StatBadgeComponent', 'selector': 'app-stat-badge'},{'name': 'ToolSelectionComponent', 'selector': 'app-tool-selection'},{'name': 'ToolViewComponent', 'selector': 'app-tool-view'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'IssueListComponent'};

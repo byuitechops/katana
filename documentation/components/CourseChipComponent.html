@@ -416,7 +416,13 @@
                             id="components-links"
 >
                             <li class="link">
+                                <a href="../../components/CourseChipComponent.html" data-type="entity-link">CourseChipComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="../../components/CourseSelectionComponent.html" data-type="entity-link">CourseSelectionComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="../../components/CourseTabsComponent.html" data-type="entity-link">CourseTabsComponent</a>
                             </li>
                             <li class="link">
                                 <a href="../../components/ErrorPageComponent.html" data-type="entity-link">ErrorPageComponent</a>
@@ -939,7 +945,13 @@
                             id="components-links"
 >
                             <li class="link">
+                                <a href="../../components/CourseChipComponent.html" data-type="entity-link">CourseChipComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="../../components/CourseSelectionComponent.html" data-type="entity-link">CourseSelectionComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="../../components/CourseTabsComponent.html" data-type="entity-link">CourseTabsComponent</a>
                             </li>
                             <li class="link">
                                 <a href="../../components/ErrorPageComponent.html" data-type="entity-link">ErrorPageComponent</a>
@@ -1570,8 +1582,8 @@ export class CourseChipComponent {
      * @returns {string} The formatted instructor name.
      */
     buildInstructorName(): string {
-        let names &#x3D; this.course.instructor.replace(/,/, &#x27;&#x27;).split(&#x27; &#x27;);
-        var instructorName &#x3D; this.course.instructor &#x3D;&#x3D;&#x3D; &#x27;none&#x27; ? &#x27;No Instructor&#x27; : this.course.instructor;
+        const names &#x3D; this.course.instructor.replace(/,/, &#x27;&#x27;).split(&#x27; &#x27;);
+        let instructorName &#x3D; this.course.instructor &#x3D;&#x3D;&#x3D; &#x27;none&#x27; ? &#x27;No Instructor&#x27; : this.course.instructor;
         if (names.length &gt; 1 &amp;&amp; this.course.instructor.includes(&#x27;,&#x27;)) {
             instructorName &#x3D; &#x60;${names[1][0]}. ${names[0]}&#x60;;
         } else if (names.length &gt; 1) {
