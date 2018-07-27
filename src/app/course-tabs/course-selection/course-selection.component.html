@@ -1,4 +1,4 @@
-<div class="courseSearch">
+<div class="courseSearch" [class.visible]="courseService.courseSelectionOpen">
     <div class="courseSearch__title">Course Selection</div>
     <div class="courseSearch__courseSelection">
       <div class="courseSearch__search">
@@ -7,10 +7,9 @@
             <select (change)="getCourses()" #subAccount>
               <option value=""></option>
               <option value="13">Development</option>
-              <option value="5">Online</option>
-              <option value="7">Campus</option>
+              <!-- <option value="5">Online</option>
               <option value="8">Sandbox</option>
-              <option value="24">Pathway</option>
+              <option value="24">Pathway</option> -->
               <option value="41">EnglishConnect</option>
               <option value="1" selected>All</option>
             </select>

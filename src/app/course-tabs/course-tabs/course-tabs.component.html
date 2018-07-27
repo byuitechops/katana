@@ -14,8 +14,8 @@
         </li>
     <li class="indicator"></li>
     <li class="tab addButton" *ngIf="!toolService.toolViewOpen">
-        <i class="ashen-text material-icons no-select" [class.pulse]="courseService.courses.length === 0 && !courseService.courseSelectionOpen"
-            (click)="courseOverlay()" materialize="tooltip" data-position="left" data-tooltip="Edit Courses">edit</i>
+        <i class="ashen-text material-icons no-select" (click)="courseOverlay()" materialize="tooltip" 
+        data-position="left" data-tooltip="Edit Courses">edit</i>
         </li>
     </ul>
 </div>
