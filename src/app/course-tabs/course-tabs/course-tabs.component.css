@@ -1,3 +1,5 @@
+/* Overrides Materialize tab CSS */
+
 .tabs-container ::-webkit-scrollbar {
     height: 5px;
 }
@@ -34,6 +36,8 @@
     background-color: var(--navy-light) !important;
 }
 
+/* Close/open in Canvas buttons on the tabs in edit mode */
+
 .course-action-container {
     margin-left: -10px;
 }
@@ -54,6 +58,7 @@
 }
 
 .addButton>i {
+    cursor: pointer;
     line-height: var(--breadcrumbs-height);
     padding: 0 20px;
     transition: all .1s ease-in-out;
