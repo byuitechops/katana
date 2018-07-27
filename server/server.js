@@ -24,7 +24,12 @@ app.use(bodyParser.json());
 
 /* Serves the homepage */
 app.get(['/', '/home*', '/categories*'], (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/katana/index.html'))
+    res.sendFile(path.join(__dirname, '../dist/katana/index.html'));
+});
+
+/* Serves the release notes */
+app.get('/release-notes', (req, res) => {
+    res.sendFile(path.join(__dirname, './release_notes.html'));
 });
 
 /********************************************************** API ROUTES ***********************************************************/
