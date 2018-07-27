@@ -3,9 +3,10 @@
 }
 
 .tabs .tab {
-    transition: all .1s ease-in-out;
-    line-height: var(--breadcrumbs-height);
+    display: inline-flex;
     height: var(--breadcrumbs-height);
+    line-height: var(--breadcrumbs-height);
+    transition: all .1s ease-in-out;
 }
 
 .tabs .tab:hover {
@@ -20,11 +21,27 @@
     background-color: var(--navy-light) !important;
 }
 
-.addButton {
-    float: right;
-    background-color: var(--navy);
-    height: calc(var(--breadcrumbs-height) + 1px);
+.course-action-container {
+    margin-left: -10px;
+}
+
+.course-action {
+    color: var(--cobalt);
     cursor: pointer;
+    line-height: var(--breadcrumbs-height) !important;
+    padding: 0 2px;
+    text-align: center;
+}
+
+.course-action:hover {
+    background-color: #dddddd54;
+}
+
+.addButton {
+    background-color: var(--navy);
+    cursor: pointer;
+    float: right;
+    height: calc(var(--breadcrumbs-height) + 1px);
 }
 
 .addButton>i {

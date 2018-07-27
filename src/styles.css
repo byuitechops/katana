@@ -25,6 +25,7 @@
   --mint: #c3ffe3;
   --charcoal: #65727D;
   --ashen: #eceff1;
+  --danger: #e53935;
   --mint-muted: rgba(101, 184, 144, 0.5);
 }
 
@@ -68,6 +69,10 @@ body {
   background-color: var(--ashen);
 }
 
+.danger {
+  background-color: var(--danger);
+}
+
 .cobalt-text {
   color: var(--cobalt);
 }
@@ -90,6 +95,10 @@ body {
 
 .ashen-text {
   color: var(--ashen) !important;
+}
+
+.danger-text {
+  color: var(--danger) !important;
 }
 
 h1,

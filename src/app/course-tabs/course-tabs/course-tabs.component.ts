@@ -15,4 +15,11 @@ export class CourseTabsComponent {
         this.courseService.courseSelectionOpen = !this.courseService.courseSelectionOpen;
     }
 
+    /**
+     * Opens the course in Canvas in a new tab.
+     */
+    openCourse(courseId): void {
+        window.open('https://byui.instructure.com/courses/' + courseId, '_blank');
+    }
+
 }
