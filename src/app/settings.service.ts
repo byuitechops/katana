@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class SettingsService {
 
+    /** @ignore */
     processingVerbs = [
         'Diagnosing',
         'Encapsulating',
@@ -45,6 +46,7 @@ export class SettingsService {
         'Pranking'
     ];
 
+    /** @ignore */
     processingNouns = [
         'ninjas',
         'processors',
@@ -96,6 +98,7 @@ export class SettingsService {
         'katanas'
     ];
 
+    /** @ignore */
     processingAdjectives = [
         'palpatating',
         'undulating',
@@ -147,6 +150,9 @@ export class SettingsService {
         'practical',
     ];
 
+    /** 
+     * The themes that can be set. Set by using the `setTheme()` method on this service.
+     */
     themes = {
         classic: {
             'cobalt': '#2879B5',
@@ -182,6 +188,7 @@ export class SettingsService {
         }
     }
 
+    /** Constructor */
     constructor() { }
 
     /**

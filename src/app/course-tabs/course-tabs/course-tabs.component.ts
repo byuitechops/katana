@@ -4,6 +4,7 @@ import { ToolService } from '../../tool.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { SettingsService } from '../../settings.service';
 
+/** The Course Tabs bar, along with the action buttons (settings, feedback, etc.). */
 @Component({
     selector: 'app-course-tabs',
     templateUrl: './course-tabs.component.html',
@@ -48,8 +49,9 @@ export class CourseTabsComponent {
 
     /**
      * Opens the course in Canvas in a new tab.
+     * @param {number} courseId The Canvas ID of the course
      */
-    openCourse(courseId): void {
+    openCourse(courseId: number): void {
         window.open('https://byui.instructure.com/courses/' + courseId, '_blank');
     }
 

@@ -17,6 +17,7 @@ export class ToolViewComponent {
      * Constructor
      * @param courseService Provides information and management for the currently selected courses.
      * @param toolService Provides information and management for available tools.
+     * @param settingsService Provides this component with access to user settings.
      */
     constructor(public courseService: CourseService,
         public toolService: ToolService,
