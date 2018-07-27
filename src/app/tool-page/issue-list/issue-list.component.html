@@ -1,10 +1,10 @@
-<div class="issueList" (scroll)="onScroll()" #issueList>
+<div class="issueList">
     <h1 class="issueList__title white-text">
         Items
         <span class="header_thin">({{courseService.selectedCourse && courseService.selectedCourse.issueItems ? courseService.selectedCourse.issueItems.length
             : 0}})</span>
     </h1>
-    <div class="issueList__list">
+    <div class="issueList__list" (scroll)="onScroll()" #issueList>
         <app-issue-card *ngFor="let issueItem of getIssueItems(); let i = index" [position]="i" [issueItem]="issueItem" (click)="courseService.selectedIssueItem = issueItem">
         </app-issue-card>
         <div class="noIssuesMessage" *ngIf="courseService.selectedCourse && courseService.selectedCourse.issueItems && courseService.selectedCourse.issueItems.length === 0 && !courseService.selectedCourse.error">

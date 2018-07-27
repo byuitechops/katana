@@ -6,9 +6,12 @@
     position: fixed;
     top: 0;
     width: 100vw;
-    border-bottom: solid 1px var(--primary-2);
-    background-color: var(--background-light);
+    background-color: var(--ashen);
     z-index: 5;
+}
+
+.breadcrumb-links {
+    height: var(--breadcrumbs-height);
 }
 
 .breadcrumb {

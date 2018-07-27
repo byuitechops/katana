@@ -1,6 +1,6 @@
 <div class="breadcrumbs">
     <div class="nav-wrapper">
-        <div id="breadcrumb-links" class="col s12">
+        <div id="breadcrumb-links">
 
             <a class="breadcrumb" href="/">Home</a>
             <a class="breadcrumb" *ngIf="toolService.selectedTool && router.url.includes('tools/')" [routerLink]="['home', 'tools', toolService.selectedTool.id, 'options']">{{toolService.selectedTool.title}}</a>
