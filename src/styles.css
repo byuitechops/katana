@@ -27,6 +27,7 @@
   --ashen: #eceff1;
   --danger: #e53935;
   --mint-muted: rgba(101, 184, 144, 0.5);
+  --scrollbar-offset: 7px;
 }
 
 * {
