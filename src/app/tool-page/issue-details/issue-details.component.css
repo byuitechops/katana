@@ -4,7 +4,6 @@
     width: calc(100vw - var(--issueList-width));
     max-height: calc(100vh - var(--header-height));
     padding: 0 15px 0 0;
-    overflow-y: scroll;
 }
 
 /* The header for issue-details */
@@ -31,5 +30,6 @@
     box-sizing: border-box;
     overflow-x: hidden;
     overflow: auto;
-    max-height: calc(100% - var(--toolView-titleBar-height) + 8px);
+    max-height: calc(100vh - (var(--header-height) + 52px));
+    overflow-y: scroll;
 }
