@@ -41,7 +41,7 @@
                     <input type="text" placeholder="Search courses..." (input)="getCourses()" #searchText/>
                 </div>
             </div>
-            <label>Results {{courseResults.length !== 0 ? '(' + courseResults.length + ')': '0'}}</label>
+            <label>Results ({{courseResults.length !== 0 ? '(' + courseResults.length + ')': '0'}})</label>
             <table class="highlight">
                 <thead>
                     <tr>

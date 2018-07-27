@@ -39,7 +39,7 @@
 /* Close/open in Canvas buttons on the tabs in edit mode */
 
 .course-action-container {
-    margin-left: -10px;
+    margin-left: -40px;
 }
 
 .course-action {
@@ -54,6 +54,12 @@
     background-color: var(--navy);
     cursor: pointer;
     height: calc(var(--breadcrumbs-height) + 1px);
+}
+
+/* Action buttons on the course tabs bar */
+
+.action-button-container {
+    display: flex;
     margin-left: auto;
 }
 
@@ -68,7 +74,6 @@
     background-color: var(--navy-light);
 }
 
-<<<<<<< HEAD
 /* Adjusts the size for the feedback modal */
 
 .modal-content iframe {
@@ -95,9 +100,6 @@ ul.dropdown-content {
 /* Animation used by the tabs when processing courses */
 
 .pulseypulse>a {
-=======
-.pulseypulse>div {
->>>>>>> master
     animation: pulseypulse 2s infinite ease-in-out;
 }
 
