@@ -45,7 +45,7 @@ export class AppComponent {
         private authGuardService: AuthGuardService) {
 
         // Set the theme
-        if (localStorage['katanaTheme'] !== null && localStorage['katanaTheme'] !== undefined) {
+        if (localStorage['katanaTheme']) {
             settingsService.setTheme(localStorage['katanaTheme'])
         }
 
