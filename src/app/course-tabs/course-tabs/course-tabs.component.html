@@ -20,7 +20,7 @@
 
             <!-- Edit Courses Button -->
             <div class="addButton" *ngIf="!toolService.toolViewOpen">
-                <i class="ashen-text material-icons no-select" [class.pulse]="courseService.courses.length === 0 && !courseService.courseSelectionOpen"
+                <i class="ashen-text material-icons no-select" [class.pulseypulse]="courseService.courses.length === 0 && !courseService.courseSelectionOpen"
                     (click)="courseOverlay()" materialize="tooltip" data-position="left" data-tooltip="Edit Courses">edit</i>
             </div>
 
