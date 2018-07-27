@@ -18,8 +18,8 @@ function discover(canvasItem, issueItem, options) {
         highlight: options.searchPhrase
     };
     
-    let title = 'HTML Edit'
-    let description = `Edit the HTML of the page in the 'UPDATED HTML' tab below and click 'Approve' button to update the HTML in Canvas.`;
+    let title = 'HTML Edit';
+    let description = 'Edit the HTML of the page in the \'UPDATED HTML\' tab below and click \'Approve\' button to update the HTML in Canvas.';
     let display = `<div>${description}</div>`;
 
     // if they entered a search phrase to search by, check if it is in the html or text
@@ -93,10 +93,7 @@ module.exports = {
     fix,
     id: 'html_general_editor',
     title: 'HTML General Editor',
-    description: `This tool allows for searching for a specific search phrase or item type and edit the html of the returned items.
-    This will search both the standalone text of the selected items, and the HTML of the selected items. So if the search phrase were 'byui', 
-    and an item contained the HTML '< div class="byui">This tool was built for < span >BYUI</ span ></ div >' then the tool would search the 
-    HTML and find 'class="byui"' and it would also search and find it in the text 'This tool was built for BYUI'.`,
+    description: 'This tool searches a course by HTML tag and/or by a given search phrase. Search results are displayed in an HTML editor. Searching by HTML tag and a search phrase ensures that the search phrase and HTML tag appear within the same Canvas item. It DOES NOT ensure that the given HTML element contains the given search phrase.',
     icon: 'code',
     toolCategory: 'html',
     toolType: 'fix',
@@ -111,7 +108,7 @@ module.exports = {
     discoverOptions: [{
         title: 'HTML Tags to Search For',
         key: 'searchTags',
-        description: `Which HTML tags would you like to search for?`,
+        description: 'Which HTML tags would you like to search for?',
         type: 'multiselect',
         choices: [
             'a',

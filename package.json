@@ -1,12 +1,12 @@
 {
   "name": "katana",
   "version": "0.0.0",
-  "main": "server/server.js",
+  "main": "server/router.js",
   "scripts": {
     "ng": "ng",
-    "start": "node server/server.js",
+    "start": "node server/router.js",
     "docs": "compodoc -p src/tsconfig.app.json -s --theme material --hideGenerator -w --name Katana --toggleMenuItems [] --includes ./documentation/additional-documentation",
-    "fullbuild": "ng build && node server/server.js",
+    "fullbuild": "ng build && node server/router.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

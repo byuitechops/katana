@@ -29,7 +29,7 @@ export class CourseService {
     /**
      * Whether or not the {@link CourseSelectionComponent} is open.
      */
-    courseSelectionOpen: boolean = false;
+    courseSelectionOpen = false;
 
     courseChange = new EventEmitter<Course>();
 

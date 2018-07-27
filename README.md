@@ -6,7 +6,7 @@ This tool is built to interface with Canvas, a Learning Management System built 
 
 To set up your own instance of Katana, follow these steps:
 
-1. Install Git and [use it to clone the repository](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository)
+1. Install Git and [use it to clone](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) the [Katana repository](https://github.com/byuitechops/katana)
 
 2. [Install NodeJS](https://nodejs.org/en/download/) if is not installed
 
@@ -16,13 +16,13 @@ To set up your own instance of Katana, follow these steps:
 
 5. Deploy Firebase using the steps described in [this document](./documentation/additional-documentation/setup/setting-up-firebase.html)
 
-8. Build production files with `ng build --prod`
+6. Build production files with `ng build --prod`
 
-9. Copy the `server` directory and the contents of the `/dist` folder into the directory you will be deploying from
+7. Copy the `server` directory and the contents of the `/dist` folder into the directory you will be deploying from
 
-10. Use `npm start` to spin up Katana
+8. Use `npm run fullbuild` to spin up Katana
 
-11. Follow any [additional setup processes](http://localhost:8080/additional-documentation/setup.html) you need
+9. Follow any [additional setup processes](http://localhost:8080/additional-documentation/setup.html) you need
 
 ## Development
 
@@ -49,7 +49,7 @@ It can then be accessed via `localhost:8000` (or whichever port you specify in `
 [LinkName](./documentation/additional-documentation/architecture.html)<br />
 
 ## How To...
-[LinkName](link)<br />
+[Setup a Node Tool](documentation/additional-documentation/setup/node-tools.html)<br />
 
 ## Firebase Integration
 [LinkName](documentation/additional-documentation/firebase.html)<br />

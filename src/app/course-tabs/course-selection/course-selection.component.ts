@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { KatanaService } from '../../katana.service';
+import { KatanaService } from '../../server.service';
 import { CourseService } from '../../course.service';
 import { Course } from '../../interfaces';
 
@@ -24,8 +24,8 @@ export class CourseSelectionComponent {
     /** Element reference to the search text input. */
     @ViewChild('searchText') private searchText: ElementRef;
 
-    /** Whether or not a search is currently processing. */
-    searching: boolean = false;
+    /** Whether or not a search is currently processing */
+    searching = false;
 
     /** Holds what the last search was sorted by. */
     lastSortedBy: string;
@@ -52,8 +52,8 @@ export class CourseSelectionComponent {
         if (this.searchText.nativeElement.value.length > 2) {
 
             // Replace any whitespaces with '%20' for the query parameter and make everything lowercase
-            const searchText = this.searchText.nativeElement.value.toLowerCase().replace(/\s/g, '%20');
-
+            const searchPhrase = this.searchText.nativeElement.value.replace(/\s/g, '%20');
+            console.log(searchPhrase);
             // Set the loading circle to display before retrieving the courses
             this.searching = true;
 
@@ -62,18 +62,24 @@ export class CourseSelectionComponent {
                 subAccount: this.subAccount.nativeElement.value,
                 term: this.term.nativeElement.value,
                 blueprint: this.blueprint.nativeElement.value,
-                searchText: searchText,
+                searchPhrase: searchPhrase,
                 searchBy: this.searchBy.nativeElement.value
             })
-                /* After getting the courses from Canvas, check to make sure what you 
+                /* After getting the courses from Canvas, check to make sure what you
                 got back matches what is currently in the search text input box */
                 .then((courses: Course[]) => {
-                    if (searchText === this.searchText.nativeElement.value.replace(/\s/g, '%20')) {
+                    if (searchPhrase === this.searchText.nativeElement.value.replace(/\s/g, '%20')) {
                         this.searching = false;
                         this.courseResults = courses;
                     }
                 })
                 .catch(console.error);
+        } else {
+            /* If the string in the search box is less than three characters
+            then stop searching and set the returned course results to an empty array
+            instead of leaving the last results in the table */
+            this.searching = false;
+            this.courseResults = [];
         }
     }
 
@@ -91,7 +97,7 @@ export class CourseSelectionComponent {
         }
 
         this.lastSortedBy = param;
-        // Sort numerically 
+        // Sort numerically
         if (param === 'id' || param === 'account' || param === 'blueprint') {
             this.courseResults.sort((a, b) => {
                 return a[param] - b[param];
@@ -99,8 +105,8 @@ export class CourseSelectionComponent {
         } else {
             // Sort alphabetically
             this.courseResults.sort((a, b) => {
-                let name1 = a[param].toUpperCase();
-                let name2 = b[param].toUpperCase();
+                const name1 = a[param].toLowerCase();
+                const name2 = b[param].toLowerCase();
                 if (name1 < name2) {
                     return -1;
                 }
