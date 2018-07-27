@@ -2,7 +2,6 @@ import { Component, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToolService } from '../../tool.service';
 import { AuthGuardService } from '../../authguard.service'; // Being used in breadcrumbs.component.html (i.e. DO NOT DELETE)
-import { MaterializeAction } from 'angular2-materialize';
 
 /**
  * Builds the breadcrumbs for navigation, as well as the feedback and

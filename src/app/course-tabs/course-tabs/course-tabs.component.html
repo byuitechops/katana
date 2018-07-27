@@ -1,24 +1,42 @@
 <ul materialize class="tabs navy">
 
     <!-- Course Tabs -->
-    <li *ngFor="let course of courseService.courses" class="tab" [class.pulseypulse]="course.processing" (click)="courseService.selectedCourse = course">
+    <li *ngFor="let course of courseService.courses" class="tab" [class.pulseypulse]="course.processing" [class.selectedTab]="courseService.selectedCourse === course"
+        (click)="courseService.selectedCourse = course">
         <a href="#test1" class="ashen-text">{{course.course_code}}</a>
     </li>
     <li class="indicator"></li>
 
     <!-- Settings Button -->
-    <li class="tab addButton">
-        <i data-target="settingsDropdown" class="dropdown-trigger ashen-text material-icons no-select" materialize="tooltip" data-position="left"
-            data-tooltip="Settings">settings</i>
-    </li>
+    <div class="addButton">
+        <i materialize="dropdown" class="dropdown-trigger ashen-text material-icons no-select" [materializeParams]="[{constrain_width: false, alignment: 'left', coverTrigger: false}]"
+            data-activates="settingsDropdown">settings</i>
+        <!-- Settings Menu Dropdown -->
+        <ul id='settingsDropdown' class='dropdown-content'>
+            <li>
+                <a (click)="settingsService.setTheme('classic')">
+                    <i class="material-icons">invert_colors</i>
+                    Classic Theme
+                </a>
+                <a (click)="settingsService.setTheme('charcoal')">
+                    <i class="material-icons">invert_colors</i>
+                    Charcoal Theme
+                </a>
+                <a (click)="settingsService.setTheme('navy')">
+                    <i class="material-icons">invert_colors</i>
+                    Navy Theme
+                </a>
+            </li>
+        </ul>
+    </div>
 
     <!-- Feedback Button -->
-    <li class="tab addButton" materialize="tooltip" data-position="left" data-tooltip="Feedback">
+    <li class="addButton" materialize="tooltip" data-position="left" data-tooltip="Feedback">
         <i class="ashen-text material-icons no-select" (click)="openModal()" materialize="dropdown">feedback</i>
     </li>
 
     <!-- Edit Courses Button -->
-    <li class="tab addButton" *ngIf="!toolService.toolViewOpen">
+    <li class="addButton" *ngIf="!toolService.toolViewOpen">
         <i class="ashen-text material-icons no-select" [class.pulse]="courseService.courses.length === 0 && !courseService.courseSelectionOpen"
             (click)="courseOverlay()" materialize="tooltip" data-position="left" data-tooltip="Edit Courses">edit</i>
     </li>
@@ -35,25 +53,3 @@
             frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
     </div>
 </div>
-
-<!-- Settings Menu Dropdown -->
-<ul id='settingsDropdown' class='dropdown-content'>
-    <li>
-        <a href="#!">one</a>
-    </li>
-    <li>
-        <a href="#!">two</a>
-    </li>
-    <li class="divider" tabindex="-1"></li>
-    <li>
-        <a href="#!">three</a>
-    </li>
-    <li>
-        <a href="#!">
-            <i class="material-icons">view_module</i>four</a>
-    </li>
-    <li>
-        <a href="#!">
-            <i class="material-icons">cloud</i>five</a>
-    </li>
-</ul>
