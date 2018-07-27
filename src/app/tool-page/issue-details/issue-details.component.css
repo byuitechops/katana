@@ -30,11 +30,6 @@
     box-sizing: border-box;
     overflow-x: hidden;
     overflow: auto;
-<<<<<<< HEAD
     max-height: calc(100vh - (var(--header-height) + 52px));
     overflow-y: scroll;
-=======
-    max-height: calc(100% - var(--toolView-titleBar-height) + 8px);
-    padding-right: 7px;
->>>>>>> fb2cc7e3a237b0fbbd6ae5bbc3dec992dbb7201a
 }

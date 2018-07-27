@@ -1,12 +1,36 @@
 <ul materialize class="tabs navy">
+
+    <!-- Course Tabs -->
     <li *ngFor="let course of courseService.courses" class="tab" [class.pulseypulse]="course.processing" (click)="courseService.selectedCourse = course">
         <a href="#test1" class="ashen-text">{{course.course_code}}</a>
     </li>
     <li class="indicator"></li>
+
+    <!-- Settings Button -->
+    <li class="tab addButton">
+        <i class="ashen-text material-icons no-select" (click)="settingsMenu()" materialize="tooltip" data-position="left" data-tooltip="Settings">settings</i>
+    </li>
+
+    <!-- Feedback Button -->
+    <li class="tab addButton">
+        <i class="ashen-text material-icons no-select" (click)="openModal()" materialize="tooltip" data-position="left" data-tooltip="Feedback">feedback</i>
+    </li>
+
+    <!-- Edit Courses Button -->
     <li class="tab addButton" *ngIf="!toolService.toolViewOpen">
         <i class="ashen-text material-icons no-select" [class.pulse]="courseService.courses.length === 0 && !courseService.courseSelectionOpen"
             (click)="courseOverlay()" materialize="tooltip" data-position="left" data-tooltip="Edit Courses">edit</i>
     </li>
+
 </ul>
 
+<!-- Course Selection Overlay -->
 <app-course-selection></app-course-selection>
+
+<!-- Feedback Modal - Must stay beneath the main container -->
+<div id="feedbackModal" class="modal" materialize="modal" [materializeActions]="modalActions">
+    <div class="modal-content no-padding">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeMqVujrTfgj056YfvnhtOWEKB3Y1-Ziyp73JB0yqNjx0cwyg/viewform?embedded=true"
+            frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+    </div>
+</div>

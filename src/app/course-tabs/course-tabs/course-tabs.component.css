@@ -20,6 +20,8 @@
     background-color: var(--navy-light) !important;
 }
 
+/* These are the buttons on the right of the course tabs bar (settings, feedback, edit courses) */
+
 .addButton {
     float: right;
     background-color: var(--navy);
@@ -35,6 +37,13 @@
 
 .addButton>i:hover {
     background-color: var(--navy-light);
+}
+
+/* Adjusts the size for the feedback modal */
+
+.modal-content iframe {
+    width: 100%;
+    height: 70vh;
 }
 
 .pulseypulse>a {
