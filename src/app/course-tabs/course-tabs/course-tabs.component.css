@@ -49,8 +49,8 @@
 .addButton {
     background-color: var(--navy);
     cursor: pointer;
-    float: right;
     height: calc(var(--breadcrumbs-height) + 1px);
+    margin-left: auto;
 }
 
 .addButton>i {
