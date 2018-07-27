@@ -9,12 +9,11 @@ td {
 .issueApproval {
     bottom: 20px;
     display: flex;
-    height: 70px;
+    height: 50px;
     justify-content: space-between;
-    border-radius: 50px;
+    border-radius: 4px;
     position: fixed;
-    padding: 0 10px;
-    right: 20px;
+    right: 35px;
     z-index: 2;
 }
 
@@ -29,21 +28,30 @@ td {
 
 .issueApproval__button {
     border-radius: 3px;
-    line-height: 46px;
-    margin: 12px 10px;
+    margin: auto;
 }
 
+.issueApproval__button a {
+    padding: 0 15px;
+    margin: 0 15px;
+}
 /* The kebob menu */
 
 .issueApproval_moreButton>i {
     color: var(--primary-5);
     cursor: pointer;
     font-size: 30px;
-    line-height: 70px;
+    line-height: 50px;
     margin: 0 10px 0 0;
+
 }
 
 /* The kebob menu's dropdown content */
+
+.dropdown-content {
+    /* important has to be here b/c we're overwriting materialize */
+    top: 37px !important;
+}
 
 .dropdown-content {
     width: 200px !important;
@@ -52,12 +60,12 @@ td {
 
 .dropdown-content>li>a {
     transition: none;
-    color: white;
+    color: var(--cobalt);
 }
 
 .dropdown-content>li>a:hover {
     transition: none;
-    color: #00695c;
+    background-color: #eee;
 }
 
 .modal-footer {
