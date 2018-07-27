@@ -8,6 +8,59 @@ import { Injectable } from '@angular/core';
 })
 export class SettingsService {
 
+    processingVerbs = [
+        'Diagnosing',
+        'Encapsulating',
+        'Sketching',
+        'Airating',
+        'Flipping',
+        'Calculating',
+        'Producing',
+        'Kicking',
+        'Slapping',
+        'Prodding',
+        'Aging',
+        'Trimming'
+    ];
+
+    processingNouns = [
+        'ninjas',
+        'processors',
+        'tombs',
+        'desks',
+        'files',
+        'dancers',
+        'people',
+        'wyverns',
+        'frogs',
+        'developers',
+        'pages',
+        'discussions',
+        'choreography',
+        'gas bubbles',
+        'swordfish',
+        'sketchers'
+    ];
+
+    processingAdjectives = [
+        'palpatating',
+        'undulating',
+        'moist',
+        'electrical',
+        'shadowy',
+        'sketchy',
+        'spinning',
+        'freestyling',
+        'gradiating',
+        'radiating',
+        'freaky',
+        'superstitious',
+        'italian',
+        'saucy',
+        'sassy',
+        'productive'
+    ];
+
     themes = {
         classic: {
             'cobalt': '#2879B5',
@@ -32,6 +85,14 @@ export class SettingsService {
             'mint': '#c3ffe3',
             'charcoal': '#65727D',
             'ashen': '#eceff1',
+        },
+        hate: {
+            'cobalt': 'limegreen',
+            'navy': 'yellow',
+            'navy-light': 'magenta',
+            'mint': '#c3ffe3',
+            'charcoal': '#65727D',
+            'ashen': 'red',
         }
     }
 
@@ -45,5 +106,31 @@ export class SettingsService {
         Object.keys(this.themes[newTheme]).forEach(key => {
             document.documentElement.style.setProperty(`--${key}`, this.themes[newTheme][key]);
         });
+    }
+
+    /**
+     * @ignore
+     */
+    buildProcessingMessage() {
+        function getRandom(arr) {
+            let randy = Math.floor(Math.random() * arr.length);
+            return arr[randy];
+        }
+
+        return `${getRandom(this.processingVerbs)} ${getRandom(this.processingAdjectives)} ${getRandom(this.processingNouns)}...`;
+    }
+
+    /**
+     * @ignore
+     */
+    checkLocalStorage(key) {
+        return localStorage[key] === 'true';
+    }
+
+    /**
+     * @ignore
+     */
+    setLocalStorage(key) {
+        localStorage[key] = localStorage[key] === 'true' ? 'false' : 'true';
     }
 }

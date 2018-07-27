@@ -26,6 +26,10 @@
                     <i class="material-icons">invert_colors</i>
                     Navy Theme
                 </a>
+                <a (click)="settingsService.setLocalStorage('goofMessages')">
+                    <i class="material-icons">scatter_plot</i>
+                    Turn Generated Messages {{settingsService.checkLocalStorage('goofMessages') ? 'Off' : 'On'}}
+                </a>
             </li>
         </ul>
     </div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CourseService } from '../../course.service';
 import { ToolService } from '../../tool.service';
+import { SettingsService } from '../../settings.service';
 
 /**
  * Container for the tool view.
@@ -18,7 +19,8 @@ export class ToolViewComponent {
      * @param toolService Provides information and management for available tools.
      */
     constructor(public courseService: CourseService,
-        public toolService: ToolService) { }
+        public toolService: ToolService,
+        public settingsService: SettingsService) { }
 
     /**
      * Determines the current total count of issues from all selected courses
@@ -33,6 +35,4 @@ export class ToolViewComponent {
             }, 0)
         }, 0);
     }
-
-
 }
