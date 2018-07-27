@@ -24,8 +24,8 @@
 .arrowIndicator {
     display: flex;
     position: absolute;
-    bottom: 34px;
-    left: 86px;
+    top: calc(var(--breadcrumbs-height) + 5px);
+    right: 160px;
     color: white;
     z-index: 2000;
     font-size: 20px;

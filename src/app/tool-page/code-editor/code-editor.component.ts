@@ -27,6 +27,9 @@ export class CodeEditorComponent implements OnInit {
      */
     @Input('highlight') highlight: string;
 
+    /**
+     * The issue the code editor is displaying code for.
+     */
     @Input('issue') issue: Issue;
 
     /**
