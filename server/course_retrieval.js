@@ -8,7 +8,7 @@ module.exports = (body) => {
 
         // console.log(`URI`, `/api/v1/accounts/${body.account ? `${body.account}` : '1'}/courses?search_by=course&search_term=${body.searchText}&include[]=term${body.term ? `&enrollment_term_id=${body.term}` : ''}&include[]=teachers${body.blueprint ? `&blueprint=${body.blueprint}` : ''}`);
 
-        canvas.get(`/api/v1/accounts/${body.account ? `${body.account}` : '1'}/courses?search_by=${body.searchBy}&search_term=${body.searchText}&include[]=term${body.term ? `&enrollment_term_id=${body.term}` : ''}&include[]=teachers${body.blueprint ? `&blueprint=${body.blueprint}` : ''}&per_page=50`, (err, courses) => {
+        canvas.get(`/api/v1/accounts/${body.account ? `${body.account}` : '1'}/courses?search_by=${body.searchBy}&search_term=${body.searchPhrase}&include[]=term${body.term ? `&enrollment_term_id=${body.term}` : ''}&include[]=teachers${body.blueprint ? `&blueprint=${body.blueprint}` : ''}&per_page=50`, (err, courses) => {
             if (err) {
                 console.error(err);
                 reject(err);
