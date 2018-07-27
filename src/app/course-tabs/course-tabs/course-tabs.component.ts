@@ -37,14 +37,14 @@ export class CourseTabsComponent {
      * Opens the feedback modal.
      */
     openModal() {
-        this.modalActions.emit({ action: "modal", params: ['open'] });
+        this.modalActions.emit({ action: 'modal', params: ['open'] });
     }
 
     /**
      * Closes the feedback modal.
      */
     closeModal() {
-        this.modalActions.emit({ action: "modal", params: ['close'] });
+        this.modalActions.emit({ action: 'modal', params: ['close'] });
     }
 
     /**
