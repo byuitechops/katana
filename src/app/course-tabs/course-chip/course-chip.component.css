@@ -17,18 +17,13 @@
     position: relative;
 }
 
-.courseChip__container>i {
-    line-height: 43px;
-    margin: 3px 2px;
-    height: 43px;
-    width: 43px;
-    border-radius: 43px;
+.course-action {
     text-align: center;
     cursor: pointer;
     color: white;
 }
 
-.courseChip__container>i:hover {
+.course-action:hover {
     background-color: #dddddd54;
 }
 

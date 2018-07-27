@@ -1,12 +1,11 @@
 .categories {
     margin: auto;
     padding: 25px 50px;
-    max-height: calc(100vh - var(--course-sidebar-height));
+    max-height: calc(100vh - var(--header-height));
 }
 
 .categories.frosted {
     overflow: hidden;
-    height: calc(100vh - var(--breadcrumbs-height));
 }
 
 .tools {

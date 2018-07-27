@@ -12,112 +12,136 @@
   --primary-6: #f0f0f0;
   --accent-1: #2196f3;
   --accent-2: #e53935;
-  --background-dark: #546e7a;
-  --background-light: #eceff1;
-  /* --course-sidebar-width: 112px;  STANDARD - SAVED FOR TESTING*/
   --course-sidebar-width: 350px;
   --breadcrumbs-height: 50px;
+  --header-height: calc(var(--breadcrumbs-height) * 2);
   --issueList-width: 350px;
   --toolView-titleBar-height: 60px;
   --course-chip-width: 100%;
-
   --cobalt: #2879B5;
   --navy: #183A54;
-  --navy-dark: #133147;
+  --navy-light: #2D4B63;
   --black: #000000;
-  --mint: #5EBD8F;
+  --mint: #c3ffe3;
   --charcoal: #65727D;
   --ashen: #eceff1;
+  --danger: #e53935;
   --mint-muted: rgba(101, 184, 144, 0.5);
+  --scrollbar-offset: 7px;
 }
 
 * {
-    transition: all .15s ease-in-out;
+  transition: all .15s ease-in-out;
 }
 
 body {
-    margin: var(--breadcrumbs-height) 0 0 var(--course-sidebar-width);
-    font-size: 14px;
-    font-family: "Roboto", sans-serif;
-    background-color: var(--cobalt);
+  margin-top: var(--breadcrumbs-height);
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  background-color: var(--cobalt);
+  overflow-x: hidden;
 }
 
 .cobalt {
-    background-color: var(--cobalt);
+  background-color: var(--cobalt);
 }
+
 .navy {
-    background-color: var(--navy);
+  background-color: var(--navy);
 }
+
+.navy-light {
+  background-color: var(--navy);
+}
+
 .black {
-    background-color: var(--black);
+  background-color: var(--black);
 }
+
 .mint {
-    background-color: var(--mint-muted);
+    background-color: var(--mint);
 }
+
 .charcoal {
-    background-color: var(--charcoal);
+  background-color: var(--charcoal);
 }
+
 .ashen {
-    background-color: var(--ashen);
+  background-color: var(--ashen);
+}
+
+.danger {
+  background-color: var(--danger);
 }
 
 .cobalt-text {
-    color: var(--cobalt);
-}
-.navy-text {
-    color: var(--navy);
-}
-.black-text {
-    color: var(--black);
-}
-.mint-text {
-    color: var(--mint);
-}
-.charcoal-text {
-    color: var(--charcoal);
-}
-.ashen-text {
-    color: var(--ashen);
+  color: var(--cobalt);
 }
 
-h1, h2, h3 {
-    font-weight: bold;
-    letter-spacing: .5px;
-    margin: 0;
-    padding: 15px 0;
-    text-transform: uppercase;
+.navy-text {
+  color: var(--navy);
+}
+
+.black-text {
+  color: var(--black);
+}
+
+.mint-text {
+  color: var(--mint);
+}
+
+.charcoal-text {
+  color: var(--charcoal);
+}
+
+.ashen-text {
+  color: var(--ashen) !important;
+}
+
+.danger-text {
+  color: var(--danger) !important;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+  letter-spacing: .5px;
+  margin: 0;
+  padding: 15px 0;
+  text-transform: uppercase;
 }
 
 h1 {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 h2 {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 h3 {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .pad-10 {
-    padding: 0 10px;
+  padding: 0 10px;
 }
 
 .pad-15 {
-    padding: 0 15px;
+  padding: 0 15px;
 }
 
 .pad-20 {
-    padding: 0 20px;
+  padding: 0 20px;
 }
 
 .code-block {
-    padding: 10px 15px;
-    color: var(--navy);
-    background-color: var(--ashen);
-    border-radius: 5px;
-    display: inline-block;
+  padding: 10px 15px;
+  color: var(--navy);
+  background-color: var(--ashen);
+  border-radius: 5px;
+  display: inline-block;
 }
 
 ul {
@@ -139,60 +163,61 @@ ul {
 }
 
 .flex-container {
-    display: flex;
+  display: flex;
 }
 
 .overview-statBadge .statBadge {
-    margin-right: 5px;
-    width: 225px;
-    cursor: pointer;
+  margin-right: 5px;
+  width: 225px;
+  cursor: pointer;
 }
 
 .option__container {
-    border: solid 1px var(--primary-2);
-    width: 50%;
-    min-width: 200px;
-    background-color: white;
+  border: solid 1px var(--primary-2);
+  width: 50%;
+  min-width: 200px;
+  background-color: white;
 }
 
 .required {
-    background-color: #ffebeb;
+  background-color: #ffebeb;
 }
 
 .option__description {
-    padding: 0 0 10px;
+  padding: 0 0 10px;
 }
 
 select[multiple] {
-    height: 150px;
+  height: 150px;
 }
 
-input[type="text"], input:focus {
-    /* padding: 0 10px !important; */
-    margin: 0 !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
-    box-sizing: border-box;
+input[type="text"],
+input:focus {
+  /* padding: 0 10px !important; */
+  margin: 0 !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  box-sizing: border-box;
 }
 
 input:focus {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 select {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .multiselect {
-    position: relative;
-    margin-bottom: 10px;
+  position: relative;
+  margin-bottom: 10px;
 }
 
 .multiselect::after {
-    content: "Ctrl + Click to select multiple items";
-    font-size: 10px;
-    padding-left: 7px;
-    color: var(--accent-1);
+  content: "Ctrl + Click to select multiple items";
+  font-size: 10px;
+  padding-left: 7px;
+  color: var(--accent-1);
 }
 
 /* Overwrite Materialize Card Margins */
@@ -216,14 +241,13 @@ tbody>tr>td {
 /* width */
 
 ::-webkit-scrollbar {
-  display: none;
   width: 5px;
 }
 
-::-webkit-scrollbar:hover {
-  display: block;
+/* ::-webkit-scrollbar:hover {
+  visibility: visible;
   width: 5px;
-}
+} */
 
 /* Track */
 
@@ -244,30 +268,31 @@ tbody>tr>td {
 }
 
 /* frosteded blur effect for course selection overlay */
+
 .frosted {
-    filter: blur(7px);
+  filter: blur(7px);
 }
 
 div.loading-dancer::before {
-    content: ".";
-    font-size: 30px;
-    font-weight: 700;
-    animation: loadingDancer 0.75s ease-in-out 0s infinite alternate;
+  content: ".";
+  font-size: 30px;
+  font-weight: 700;
+  animation: loadingDancer 0.75s ease-in-out 0s infinite alternate;
 }
 
 div.loading-dancer {
-    line-height: 15px;
-    padding-right: 6px;
-    font-size: 30px;
-    font-weight: 700;
-    animation: loadingDancer 0.75s ease-in-out 0.25s infinite alternate;
+  line-height: 15px;
+  padding-right: 6px;
+  font-size: 30px;
+  font-weight: 700;
+  animation: loadingDancer 0.75s ease-in-out 0.25s infinite alternate;
 }
 
 div.loading-dancer::after {
-    content: ".";
-    font-size: 30px;
-    font-weight: 700;
-    animation: loadingDancer 0.75s ease-in-out 0.5s infinite alternate;
+  content: ".";
+  font-size: 30px;
+  font-weight: 700;
+  animation: loadingDancer 0.75s ease-in-out 0.5s infinite alternate;
 }
 
 @keyframes loadingDancer {
@@ -281,10 +306,10 @@ div.loading-dancer::after {
 }
 
 @keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
