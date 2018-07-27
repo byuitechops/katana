@@ -19,12 +19,14 @@
   padding: 5px 0 0 45px;
   width: calc(100vw - var(--course-sidebar-width));
   color: white;
+  margin: auto;
 }
 
 .courseSearch__courseSelection {
   display: flex;
   padding: 0 50px;
   width: calc(100vw - var(--course-sidebar-width));
+  margin: auto;
 }
 
 /**************************************

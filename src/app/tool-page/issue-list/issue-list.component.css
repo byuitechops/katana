@@ -1,24 +1,25 @@
 /* Container for the issue-list element */
 
 .issueList {
-    max-height: calc(100vh - var(--header-height));
+    /* 52px is height of .issueList__title which sits above .issueList */
+    max-height: calc(100vh - var(--header-height) - 52px);
     width: var(--issueList-width);
     box-sizing: border-box;
     padding: 0 15px;
-    overflow-y: scroll;
 }
 
-/* The title for the issue list */
+/* The container for all of the issue items */
 
-.issueList__title {
-    position: sticky;
-    top: 0;
-    z-index: 2;
+.issueList__list {
+    max-height: calc(100vh - (var(--header-height) + 52px));
+    overflow-y: scroll;
+    padding-right: var(--scrollbar-offset);
 }
 
 /* The message that appears if no issue items are avaiable */
 
 .noIssuesMessage {
+    color: var(--ashen);
     position: absolute;
     width: 100vw;
     padding-top: 200px;

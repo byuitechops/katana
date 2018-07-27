@@ -1,30 +1,56 @@
+.tabs-container ::-webkit-scrollbar {
+    height: 5px;
+}
+
 .tabs {
     height: var(--breadcrumbs-height) !important;
 }
 
 .tabs .tab {
-    transition: all .1s ease-in-out;
-    line-height: var(--breadcrumbs-height);
+    display: inline-flex;
     height: var(--breadcrumbs-height);
+    line-height: var(--breadcrumbs-height);
+    transition: all .1s ease-in-out;
 }
 
-.tabs .tab:hover {
+.tabs .tab div {
+    padding: 0 24px;
+}
+
+.tabs .tab:not(.selectable):hover {
+    cursor: default;
+}
+
+.tabs .tab.selectable:hover {
     background-color: var(--navy-light) !important;
+    cursor: pointer;
 }
 
 .tabs .indicator {
     display: none !important;
 }
 
-.tabs .active {
+.tabs .selected {
     background-color: var(--navy-light) !important;
 }
 
-.addButton {
-    float: right;
-    background-color: var(--navy);
-    height: calc(var(--breadcrumbs-height) + 1px);
+.course-action-container {
+    margin-left: -10px;
+}
+
+.course-action {
+    color: var(--cobalt);
     cursor: pointer;
+    line-height: var(--breadcrumbs-height) !important;
+    padding: 0 2px;
+    text-align: center;
+}
+
+.addButton {
+    background-color: var(--navy);
+    cursor: pointer;
+    height: calc(var(--breadcrumbs-height) + 1px);
+    margin-left: auto;
 }
 
 .addButton>i {
@@ -37,7 +63,7 @@
     background-color: var(--navy-light);
 }
 
-.pulseypulse>a {
+.pulseypulse>div {
     animation: pulseypulse 2s infinite ease-in-out;
 }
 

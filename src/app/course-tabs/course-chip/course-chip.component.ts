@@ -39,8 +39,8 @@ export class CourseChipComponent {
      * @returns {string} The formatted instructor name.
      */
     buildInstructorName(): string {
-        let names = this.course.instructor.replace(/,/, '').split(' ');
-        var instructorName = this.course.instructor === 'none' ? 'No Instructor' : this.course.instructor;
+        const names = this.course.instructor.replace(/,/, '').split(' ');
+        let instructorName = this.course.instructor === 'none' ? 'No Instructor' : this.course.instructor;
         if (names.length > 1 && this.course.instructor.includes(',')) {
             instructorName = `${names[1][0]}. ${names[0]}`;
         } else if (names.length > 1) {
