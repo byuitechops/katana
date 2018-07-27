@@ -1,3 +1,7 @@
+.tabs-container ::-webkit-scrollbar {
+    height: 5px;
+}
+
 .tabs {
     height: var(--breadcrumbs-height) !important;
 }
