@@ -821,7 +821,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>OptionsViewComponent</li>
+  <li>CourseTabsComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -844,15 +844,14 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/home-page/options-view/options-view.component.ts</code>
+    <code>src/app/course-tabs/course-tabs/course-tabs.component.ts</code>
 </p>
 
     <p class="comment">
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Container for the options page. Holds all related
-options components.</p>
+        <p>The Course Tabs bar, along with the action buttons (settings, feedback, etc.). </p>
 
     </p>
 
@@ -876,19 +875,19 @@ options components.</p>
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-options-view</code></td>
+                <td class="col-md-9"><code>app-course-tabs</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>options-view.component.css</code></td>
+                <td class="col-md-9"><code>course-tabs.component.css</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./options-view.component.html</code></td>
+                <td class="col-md-9"><code>./course-tabs.component.html</code></td>
             </tr>
 
 
@@ -909,24 +908,7 @@ options components.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#formGroup">formGroup</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#katanaService">katanaService</a>
-                            </li>
-                            <li>
                                 <a href="#modalActions">modalActions</a>
-                            </li>
-                            <li>
-                                <a href="#optionModel">optionModel</a>
-                            </li>
-                            <li>
-                                <a href="#options">options</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#toolService">toolService</a>
                             </li>
                         </ul>
                     </td>
@@ -944,10 +926,10 @@ options components.</p>
                                 <a href="#closeModal">closeModal</a>
                             </li>
                             <li>
-                                <a href="#modalIsOpen">modalIsOpen</a>
+                                <a href="#courseOverlay">courseOverlay</a>
                             </li>
                             <li>
-                                <a href="#onSubmit">onSubmit</a>
+                                <a href="#openCourse">openCourse</a>
                             </li>
                             <li>
                                 <a href="#openModal">openModal</a>
@@ -970,12 +952,12 @@ options components.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(toolService: <a href="../injectables/ToolService.html">ToolService</a>, katanaService: <a href="../injectables/KatanaService.html">KatanaService</a>, courseService: <a href="../injectables/CourseService.html">CourseService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(courseService: <a href="../injectables/CourseService.html">CourseService</a>, toolService: <a href="../injectables/ToolService.html">ToolService</a>, settingsService: <a href="../injectables/SettingsService.html">SettingsService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/home-page/options-view/options-view.component.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/course-tabs/course-tabs/course-tabs.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -996,38 +978,6 @@ options components.</p>
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>toolService</td>
-                                                  
-                                                        <td>
-                                                                    <code><a href="../injectables/ToolService.html" target="_self" >ToolService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            no
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <code><p>Provides information and management for available courses.</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>katanaService</td>
-                                                  
-                                                        <td>
-                                                                    <code><a href="../injectables/KatanaService.html" target="_self" >KatanaService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            no
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <code><p>Provides functionality to make API calls to the Katana server.</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                                <tr>
                                                         <td>courseService</td>
                                                   
                                                         <td>
@@ -1039,15 +989,15 @@ options components.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>Provides information and management for selected courses.</p>
+                                                                <code><p>Provides information and functionality for courses selected by the user.</p>
 </code>
                                                         </td>
                                                 </tr>
                                                 <tr>
-                                                        <td>router</td>
+                                                        <td>toolService</td>
                                                   
                                                         <td>
-                                                                    <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                                    <code><a href="../injectables/ToolService.html" target="_self" >ToolService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -1055,8 +1005,22 @@ options components.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>Used to navigate the user as needed.</p>
+                                                                <code><p>Provides information and functionality for tools available on the server.</p>
 </code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>settingsService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/SettingsService.html" target="_self" >SettingsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+                                                        <td>
                                                         </td>
                                                 </tr>
                                         </tbody>
@@ -1099,14 +1063,14 @@ options components.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/home-page/options-view/options-view.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/course-tabs/course-tabs/course-tabs.component.ts:46</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Closes the modal using <a href="https://www.npmjs.com/package/angular2-materialize">angular2-materialize</a>.</p>
+                            <div class="io-description"><p>Closes the feedback modal.</p>
 </div>
 
                             <div class="io-description">
@@ -1121,86 +1085,114 @@ options components.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="modalIsOpen"></a>
+                        <a name="courseOverlay"></a>
                         <span class="name">
                             <b>
-                            modalIsOpen
+                            courseOverlay
                             </b>
-                            <a href="#modalIsOpen"><span class="fa fa-link"></span></a>
+                            <a href="#courseOverlay"><span class="fa fa-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>modalIsOpen()</code>
+<code>courseOverlay()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/home-page/options-view/options-view.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/course-tabs/course-tabs/course-tabs.component.ts:32</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Determines the open/close status of the modal.</p>
+                            <div class="io-description"><p>Toggles the course overlay open and closed.</p>
 </div>
 
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="openCourse"></a>
+                        <span class="name">
+                            <b>
+                            openCourse
+                            </b>
+                            <a href="#openCourse"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>openCourse(courseId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/course-tabs/course-tabs/course-tabs.component.ts:54</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Opens the course in Canvas in a new tab.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>courseId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>The Canvas ID of the course</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                            </div>
-                                <div class="io-description">
-                                    <p>Whether or not the modal is currently open.</p>
-
-                                </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="onSubmit"></a>
-                        <span class="name">
-                            <b>
-                            onSubmit
-                            </b>
-                            <a href="#onSubmit"><span class="fa fa-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>onSubmit()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/home-page/options-view/options-view.component.ts:84</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Actions taken when the user clicks the &quot;Run Tool&quot; button.
-Gathers up the answers on the options form, then submits
-them to the Katana Service to run the tool in discovery mode.</p>
-</div>
-
-                            <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
+                                <div class="io-description">
+                                    
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -1227,14 +1219,14 @@ them to the Katana Service to run the tool in discovery mode.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/home-page/options-view/options-view.component.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/course-tabs/course-tabs/course-tabs.component.ts:39</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Opens the modal using <a href="https://www.npmjs.com/package/angular2-materialize">angular2-materialize</a>.</p>
+                            <div class="io-description"><p>Opens the feedback modal.</p>
 </div>
 
                             <div class="io-description">
@@ -1256,86 +1248,6 @@ them to the Katana Service to run the tool in discovery mode.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="formGroup"></a>
-                        <span class="name">
-                            <b>
-                            formGroup
-                            </b>
-                            <a href="#formGroup"><span class="fa fa-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>formGroup:     <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/home-page/options-view/options-view.component.ts:33</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>The {@link formGroup} to use for the form.</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="katanaService"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            katanaService
-                            </b>
-                            <a href="#katanaService"><span class="fa fa-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <span class="modifier-icon fa fa-reset"></span><code>katanaService:     <code><a href="../injectables/KatanaService.html" target="_self" >KatanaService</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="../injectables/KatanaService.html" target="_self" >KatanaService</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/home-page/options-view/options-view.component.ts:49</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description">Provides functionality to make API calls to the Katana server.</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
                         <a name="modalActions"></a>
                         <span class="name">
                             <b>
@@ -1347,16 +1259,10 @@ them to the Katana Service to run the tool in discovery mode.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>modalActions:     <code>EventEmitter&lt;string | MaterializeAction&gt;</code>
+                        <code>modalActions:     <code></code>
 </code>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>EventEmitter&lt;string | MaterializeAction&gt;</code>
-
-                        </td>
-                    </tr>
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>new EventEmitter&lt;string | MaterializeAction&gt;()</code>
@@ -1364,135 +1270,14 @@ them to the Katana Service to run the tool in discovery mode.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/home-page/options-view/options-view.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/course-tabs/course-tabs/course-tabs.component.ts:18</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>From <a href="https://www.npmjs.com/package/angular2-materialize">angular2-materialize</a>,
-which allows the modal to open and close.</p>
+                        <div class="io-description"><p>Used to open and close the modal for feedback.</p>
 </div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="optionModel"></a>
-                        <span class="name">
-                            <b>
-                            optionModel
-                            </b>
-                            <a href="#optionModel"><span class="fa fa-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>optionModel:     <code><a href="../classes/OptionModel.html" target="_self" >OptionModel</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="../classes/OptionModel.html" target="_self" >OptionModel</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/home-page/options-view/options-view.component.ts:29</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>The <a href="../classes/OptionModel.html">OptionModel</a> to use for the form.</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="options"></a>
-                        <span class="name">
-                            <b>
-                            options
-                            </b>
-                            <a href="#options"><span class="fa fa-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>options:     <code><a href="../interfaces/DiscoverOption.html" target="_self" >DiscoverOption[]</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="../interfaces/DiscoverOption.html" target="_self" >DiscoverOption[]</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/home-page/options-view/options-view.component.ts:25</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>The options to display on the page.</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="toolService"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            toolService
-                            </b>
-                            <a href="#toolService"><span class="fa fa-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <span class="modifier-icon fa fa-reset"></span><code>toolService:     <code><a href="../injectables/ToolService.html" target="_self" >ToolService</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="../injectables/ToolService.html" target="_self" >ToolService</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/home-page/options-view/options-view.component.ts:48</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description">Provides information and management for available courses.</div>
                     </td>
                 </tr>
 
@@ -1505,111 +1290,60 @@ which allows the modal to open and close.</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter } from &#x27;@angular/core&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
-import { ToolService } from &#x27;../../tool.service&#x27;;
 import { CourseService } from &#x27;../../course.service&#x27;;
-import { KatanaService } from &#x27;../../server.service&#x27;;
+import { ToolService } from &#x27;../../tool.service&#x27;;
 import { MaterializeAction } from &#x27;angular2-materialize&#x27;;
-import { FormGroup } from &#x27;@angular/forms&#x27;;
-import { DiscoverOption } from &#x27;../../interfaces&#x27;;
-import { OptionModel } from &#x27;../../classes&#x27;;
+import { SettingsService } from &#x27;../../settings.service&#x27;;
 
-/**
- * Container for the options page. Holds all related
- * options components.
- */
+/** The Course Tabs bar, along with the action buttons (settings, feedback, etc.). */
 @Component({
-    selector: &#x27;app-options-view&#x27;,
-    templateUrl: &#x27;./options-view.component.html&#x27;,
-    styleUrls: [&#x27;./options-view.component.css&#x27;]
+    selector: &#x27;app-course-tabs&#x27;,
+    templateUrl: &#x27;./course-tabs.component.html&#x27;,
+    styleUrls: [&#x27;./course-tabs.component.css&#x27;]
 })
-export class OptionsViewComponent {
+export class CourseTabsComponent {
 
     /**
-     * The options to display on the page.
+     * Used to open and close the modal for feedback.
      */
-    options: DiscoverOption[];
-    /**
-     * The {@link OptionModel} to use for the form.
-     */
-    optionModel: OptionModel;
-    /**
-     * The {@link formGroup} to use for the form.
-     */
-    formGroup: FormGroup;
-
-    /**
-     * From [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize},
-     * which allows the modal to open and close.
-     */
-    modalActions: EventEmitter&lt;string | MaterializeAction&gt; &#x3D; new EventEmitter&lt;string | MaterializeAction&gt;();
+    modalActions &#x3D; new EventEmitter&lt;string | MaterializeAction&gt;();
 
     /**
      * Constructor
-     * @param {ToolService} toolService Provides information and management for available courses.
-     * @param {KatanaService} katanaService Provides functionality to make API calls to the Katana server.
-     * @param {CourseService} courseService Provides information and management for selected courses.
-     * @param {Router} router Used to navigate the user as needed.
+     * @param courseService Provides information and functionality for courses selected by the user.
+     * @param toolService Provides information and functionality for tools available on the server.
      */
-    constructor(public toolService: ToolService,
-        public katanaService: KatanaService,
-        private courseService: CourseService,
-        private router: Router) {
+    constructor(private courseService: CourseService,
+        private toolService: ToolService,
+        private settingsService: SettingsService) { }
 
-        this.optionModel &#x3D; new OptionModel(this.toolService.selectedTool.discoverOptions);
-        this.formGroup &#x3D; this.optionModel.toGroup();
+    /**
+     * Toggles the course overlay open and closed.
+     */
+    courseOverlay() {
+        this.courseService.courseSelectionOpen &#x3D; !this.courseService.courseSelectionOpen;
     }
 
     /**
-     * Opens the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
+     * Opens the feedback modal.
      */
-    openModal(): void {
-        this.modalActions.emit({ action: &#x27;modal&#x27;, params: [&#x27;open&#x27;] });
+    openModal() {
+        this.modalActions.emit({ action: &quot;modal&quot;, params: [&#x27;open&#x27;] });
     }
 
     /**
-     * Closes the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
+     * Closes the feedback modal.
      */
-    closeModal(): void {
-        this.modalActions.emit({ action: &#x27;modal&#x27;, params: [&#x27;close&#x27;] });
+    closeModal() {
+        this.modalActions.emit({ action: &quot;modal&quot;, params: [&#x27;close&#x27;] });
     }
 
     /**
-     * Determines the open/close status of the modal.
-     * @returns {boolean} Whether or not the modal is currently open.
+     * Opens the course in Canvas in a new tab.
+     * @param {number} courseId The Canvas ID of the course
      */
-    modalIsOpen(): boolean {
-        return !!document.querySelector(&#x27;.modal-overlay&#x27;);
-    }
-
-    /**
-     * Actions taken when the user clicks the &quot;Run Tool&quot; button.
-     * Gathers up the answers on the options form, then submits
-     * them to the Katana Service to run the tool in discovery mode.
-     */
-    onSubmit(): void {
-        if (this.courseService.courses.length &#x3D;&#x3D;&#x3D; 0) {
-            this.openModal();
-            return;
-        }
-
-        const options &#x3D; { categories: [] };
-        Object.keys(this.formGroup.controls).forEach(key &#x3D;&gt; {
-            options[key] &#x3D; this.formGroup.controls[key].value;
-        });
-
-        const categoryInputs &#x3D; Array.from(document.querySelectorAll(&#x27;.canvas-category&#x27;)) as HTMLInputElement[];
-        categoryInputs.forEach(category &#x3D;&gt; {
-            if (category.checked) {
-                options.categories.push(category.id);
-            }
-        });
-
-        // Send request
-        this.toolService.selectedDiscoverOptions &#x3D; options;
-        this.katanaService.discoverIssues(this.courseService.courses)
-            .catch(console.error);
-        this.router.navigate([&#x60;home/tools/${this.toolService.selectedTool.id}/issues&#x60;]);
+    openCourse(courseId: number): void {
+        window.open(&#x27;https://byui.instructure.com/courses/&#x27; + courseId, &#x27;_blank&#x27;);
     }
 
 }
@@ -1617,75 +1351,77 @@ export class OptionsViewComponent {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div [class.frosted]&#x3D;&quot;this.courseService.courseSelectionOpen || this.courseService.courseEditOpen&quot; class&#x3D;&quot;optionsView&quot;&gt;
-    &lt;div class&#x3D;&quot;optionsView__container card&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;tabs-container&quot;&gt;
+    &lt;ul materialize class&#x3D;&quot;tabs navy flex-container&quot;&gt;
+        &lt;li *ngFor&#x3D;&quot;let course of courseService.courses&quot; class&#x3D;&quot;tab&quot; [class.pulseypulse]&#x3D;&quot;course.processing&quot; [class.selectable]&#x3D;&quot;toolService.toolViewOpen || courseService.courseSelectionOpen&quot;
+            [class.selected]&#x3D;&quot;courseService.selectedCourse &#x3D;&#x3D;&#x3D; course &amp;&amp; (toolService.toolViewOpen || courseService.courseSelectionOpen)&quot;
+            (click)&#x3D;&quot;courseService.selectedCourse &#x3D; course&quot;&gt;
+            &lt;div class&#x3D;&quot;ashen-text&quot;&gt;{{course.course_code}}&lt;/div&gt;
+            &lt;div class&#x3D;&quot;course-action-container&quot; *ngIf&#x3D;&quot;courseService.courseSelectionOpen&quot;&gt;
+                &lt;i class&#x3D;&quot;course-action material-icons&quot; (click)&#x3D;&quot;openCourse(course.id)&quot;&gt;
+                    open_in_new
+                &lt;/i&gt;
+                &lt;i class&#x3D;&quot;course-action material-icons smooth-width danger-text&quot; (click)&#x3D;&quot;courseService.removeCourse(course)&quot;&gt;
+                    clear
+                &lt;/i&gt;
+            &lt;/div&gt;
+        &lt;/li&gt;
+        &lt;li class&#x3D;&quot;indicator&quot;&gt;&lt;/li&gt;
 
-        &lt;form materialize (ngSubmit)&#x3D;&quot;onSubmit()&quot; [formGroup]&#x3D;&quot;formGroup&quot; #optionsForm&#x3D;&quot;ngForm&quot;&gt;
-            &lt;div class&#x3D;&quot;card-content&quot;&gt;
-                &lt;h1 style&#x3D;&quot;padding:0;font-size:24px&quot;&gt;Options&lt;/h1&gt;
-                &lt;h2 class&#x3D;&quot;cobalt-text&quot;&gt;
-                    {{toolService.selectedTool.title}}
-                &lt;/h2&gt;
+        &lt;!-- Action Buttons --&gt;
+        &lt;div class&#x3D;&quot;action-button-container&quot;&gt;
 
-                &lt;div&gt;
-                    &lt;h3&gt;Description&lt;/h3&gt;
-                    &lt;div&gt;{{toolService.selectedTool.description}}&lt;/div&gt;
-                &lt;/div&gt;
-
-                &lt;div&gt;
-                    &lt;h3&gt;Categories&lt;/h3&gt;
-                    &lt;div style&#x3D;&quot;display:flex&quot;&gt;
-                        &lt;div class&#x3D;&quot;categories-container&quot; *ngFor&#x3D;&quot;let category of toolService.selectedTool.categories&quot;&gt;
-                            &lt;input [id]&#x3D;&quot;category&quot; type&#x3D;&quot;checkbox&quot; class&#x3D;&quot;filled-in blue accent-3 canvas-category&quot; checked&#x3D;&quot;checked&quot;&gt;
-                            &lt;label [for]&#x3D;&quot;category&quot;&gt;{{category}}&lt;/label&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-
-                &lt;div *ngFor&#x3D;&quot;let option of optionModel.options&quot; class&#x3D;&quot;form-row&quot;&gt;
-                    &lt;h3&gt;{{option.title}}&lt;/h3&gt;
-                    &lt;div class&#x3D;&quot;option__description&quot;&gt;{{option.description}}&lt;/div&gt;
-                    &lt;div [ngSwitch]&#x3D;&quot;option.type&quot; class&#x3D;&quot;option__container&quot; [class.multiselect]&#x3D;&quot;option.type &#x3D;&#x3D;&#x3D; &#x27;multiselect&#x27;&quot; [class.required]&#x3D;&quot;!formGroup.controls[option.key].valid&quot;&gt;
-                        &lt;div class&#x3D;&quot;option__text&quot; *ngSwitchCase&#x3D;&quot;&#x27;text&#x27;&quot;&gt;
-                            &lt;input type&#x3D;&quot;{{option.type}}&quot; id&#x3D;&quot;{{option.key}}&quot; [formControlName]&#x3D;&quot;option.key&quot; autofocus&gt;
-                        &lt;/div&gt;
-                        &lt;div *ngSwitchCase&#x3D;&quot;&#x27;dropdown&#x27;&quot;&gt;
-                            &lt;select style&#x3D;&quot;display: block&quot; [formControlName]&#x3D;&quot;option.key&quot;&gt;
-                                &lt;option *ngFor&#x3D;&quot;let choice of option.choices&quot;&gt;{{choice}}&lt;/option&gt;
-                            &lt;/select&gt;
-                        &lt;/div&gt;
-                        &lt;div *ngSwitchCase&#x3D;&quot;&#x27;multiselect&#x27;&quot;&gt;
-                            &lt;select style&#x3D;&quot;display: block&quot; [formControlName]&#x3D;&quot;option.key&quot; multiple&gt;
-                                &lt;option *ngFor&#x3D;&quot;let choice of option.choices&quot;&gt;{{choice}}&lt;/option&gt;
-                            &lt;/select&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
+            &lt;!-- Edit Courses Button --&gt;
+            &lt;div class&#x3D;&quot;addButton&quot; *ngIf&#x3D;&quot;!toolService.toolViewOpen&quot;&gt;
+                &lt;i class&#x3D;&quot;ashen-text material-icons no-select&quot; [class.pulse]&#x3D;&quot;courseService.courses.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; !courseService.courseSelectionOpen&quot;
+                    (click)&#x3D;&quot;courseOverlay()&quot; materialize&#x3D;&quot;tooltip&quot; data-position&#x3D;&quot;left&quot; data-tooltip&#x3D;&quot;Edit Courses&quot;&gt;edit&lt;/i&gt;
             &lt;/div&gt;
 
-            &lt;div class&#x3D;&quot;card-action&quot;&gt;
-                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-flat blue-grey-text text-darken-4&quot; routerLink&#x3D;&quot;/&quot;&gt;Cancel&lt;/button&gt;
-                &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn-flat blue-text text-accent-3&quot; [disabled]&#x3D;&quot;!formGroup.valid&quot;&gt;Run Tool&lt;/button&gt;
+            &lt;!-- Feedback Button --&gt;
+            &lt;div class&#x3D;&quot;addButton&quot; materialize&#x3D;&quot;tooltip&quot; data-position&#x3D;&quot;left&quot; data-tooltip&#x3D;&quot;Feedback&quot;&gt;
+                &lt;i class&#x3D;&quot;ashen-text material-icons no-select&quot; (click)&#x3D;&quot;openModal()&quot; materialize&#x3D;&quot;dropdown&quot;&gt;feedback&lt;/i&gt;
             &lt;/div&gt;
-        &lt;/form&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
 
-&lt;!-- Modal - Must stay beneath the main container --&gt;
-&lt;div id&#x3D;&quot;fixModal&quot; class&#x3D;&quot;modal&quot; materialize&#x3D;&quot;modal&quot; [materializeActions]&#x3D;&quot;modalActions&quot;&gt;
-    &lt;div class&#x3D;&quot;modal-content&quot;&gt;
-        &lt;h4&gt;No Courses Selected&lt;/h4&gt;
-        &lt;p&gt;You must select at least one course before continuing.&lt;/p&gt;
+            &lt;!-- Settings Button --&gt;
+            &lt;div class&#x3D;&quot;addButton&quot;&gt;
+                &lt;i materialize&#x3D;&quot;dropdown&quot; class&#x3D;&quot;dropdown-trigger ashen-text material-icons no-select&quot; [materializeParams]&#x3D;&quot;[{constrain_width: false, alignment: &#x27;left&#x27;, coverTrigger: false}]&quot;
+                    data-activates&#x3D;&quot;settingsDropdown&quot;&gt;settings&lt;/i&gt;
+                &lt;!-- Settings Menu Dropdown --&gt;
+                &lt;ul id&#x3D;&#x27;settingsDropdown&#x27; class&#x3D;&#x27;dropdown-content&#x27;&gt;
+                    &lt;li&gt;
+                        &lt;a (click)&#x3D;&quot;settingsService.setTheme(&#x27;classic&#x27;)&quot;&gt;
+                            &lt;i class&#x3D;&quot;material-icons&quot;&gt;invert_colors&lt;/i&gt;
+                            Classic Theme
+                        &lt;/a&gt;
+                        &lt;a (click)&#x3D;&quot;settingsService.setTheme(&#x27;charcoal&#x27;)&quot;&gt;
+                            &lt;i class&#x3D;&quot;material-icons&quot;&gt;invert_colors&lt;/i&gt;
+                            Charcoal Theme
+                        &lt;/a&gt;
+                        &lt;a (click)&#x3D;&quot;settingsService.setTheme(&#x27;navy&#x27;)&quot;&gt;
+                            &lt;i class&#x3D;&quot;material-icons&quot;&gt;invert_colors&lt;/i&gt;
+                            Navy Theme
+                        &lt;/a&gt;
+                        &lt;a (click)&#x3D;&quot;settingsService.setLocalStorage(&#x27;goofMessages&#x27;)&quot;&gt;
+                            &lt;i class&#x3D;&quot;material-icons&quot;&gt;scatter_plot&lt;/i&gt;
+                            Turn Loading Messages {{settingsService.checkLocalStorage(&#x27;goofMessages&#x27;) ? &#x27;Off&#x27; : &#x27;On&#x27;}}
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+    &lt;/ul&gt;
+
+    &lt;!-- Course Selection Overlay --&gt;
+    &lt;app-course-selection&gt;&lt;/app-course-selection&gt;
+
+    &lt;!-- Feedback Modal - Must stay beneath the main container --&gt;
+    &lt;div id&#x3D;&quot;feedbackModal&quot; class&#x3D;&quot;modal&quot; materialize&#x3D;&quot;modal&quot; [materializeActions]&#x3D;&quot;modalActions&quot;&gt;
+        &lt;div class&#x3D;&quot;modal-content no-padding&quot;&gt;
+            &lt;iframe src&#x3D;&quot;https://docs.google.com/forms/d/e/1FAIpQLSeMqVujrTfgj056YfvnhtOWEKB3Y1-Ziyp73JB0yqNjx0cwyg/viewform?embedded&#x3D;true&quot;
+                frameborder&#x3D;&quot;0&quot; marginheight&#x3D;&quot;0&quot; marginwidth&#x3D;&quot;0&quot;&gt;Loading...&lt;/iframe&gt;
+        &lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class&#x3D;&quot;modal-footer&quot;&gt;
-        &lt;a class&#x3D;&quot;modal-action modal-close waves-effect btn blue&quot;&gt;Got it!&lt;/a&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;div *ngIf&#x3D;&quot;modalIsOpen()&quot; class&#x3D;&quot;arrowIndicator&quot;&gt;
-    &lt;div&gt;
-        Click here to Add Courses
-    &lt;/div&gt;
-    &lt;i style&#x3D;&quot;font-size: 40px;margin-right: 15px;&quot; class&#x3D;&quot;material-icons&quot;&gt;arrow_forward&lt;/i&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -1715,10 +1451,10 @@ export class OptionsViewComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div [class.frosted]="this.courseService.courseSelectionOpen || this.courseService.courseEditOpen" class="optionsView">    <div class="optionsView__container card">        <form materialize (ngSubmit)="onSubmit()" [formGroup]="formGroup" #optionsForm="ngForm">            <div class="card-content">                <h1 style="padding:0;font-size:24px">Options</h1>                <h2 class="cobalt-text">                    {{toolService.selectedTool.title}}                </h2>                <div>                    <h3>Description</h3>                    <div>{{toolService.selectedTool.description}}</div>                </div>                <div>                    <h3>Categories</h3>                    <div style="display:flex">                        <div class="categories-container" *ngFor="let category of toolService.selectedTool.categories">                            <input [id]="category" type="checkbox" class="filled-in blue accent-3 canvas-category" checked="checked">                            <label [for]="category">{{category}}</label>                        </div>                    </div>                </div>                <div *ngFor="let option of optionModel.options" class="form-row">                    <h3>{{option.title}}</h3>                    <div class="option__description">{{option.description}}</div>                    <div [ngSwitch]="option.type" class="option__container" [class.multiselect]="option.type === \'multiselect\'" [class.required]="!formGroup.controls[option.key].valid">                        <div class="option__text" *ngSwitchCase="\'text\'">                            <input type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key" autofocus>                        </div>                        <div *ngSwitchCase="\'dropdown\'">                            <select style="display: block" [formControlName]="option.key">                                <option *ngFor="let choice of option.choices">{{choice}}</option>                            </select>                        </div>                        <div *ngSwitchCase="\'multiselect\'">                            <select style="display: block" [formControlName]="option.key" multiple>                                <option *ngFor="let choice of option.choices">{{choice}}</option>                            </select>                        </div>                    </div>                </div>            </div>            <div class="card-action">                <button type="button" class="btn-flat blue-grey-text text-darken-4" routerLink="/">Cancel</button>                <button type="submit" class="btn-flat blue-text text-accent-3" [disabled]="!formGroup.valid">Run Tool</button>            </div>        </form>    </div></div><!-- Modal - Must stay beneath the main container --><div id="fixModal" class="modal" materialize="modal" [materializeActions]="modalActions">    <div class="modal-content">        <h4>No Courses Selected</h4>        <p>You must select at least one course before continuing.</p>    </div>    <div class="modal-footer">        <a class="modal-action modal-close waves-effect btn blue">Got it!</a>    </div></div><div *ngIf="modalIsOpen()" class="arrowIndicator">    <div>        Click here to Add Courses    </div>    <i style="font-size: 40px;margin-right: 15px;" class="material-icons">arrow_forward</i></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="tabs-container">    <ul materialize class="tabs navy flex-container">        <li *ngFor="let course of courseService.courses" class="tab" [class.pulseypulse]="course.processing" [class.selectable]="toolService.toolViewOpen || courseService.courseSelectionOpen"            [class.selected]="courseService.selectedCourse === course && (toolService.toolViewOpen || courseService.courseSelectionOpen)"            (click)="courseService.selectedCourse = course">            <div class="ashen-text">{{course.course_code}}</div>            <div class="course-action-container" *ngIf="courseService.courseSelectionOpen">                <i class="course-action material-icons" (click)="openCourse(course.id)">                    open_in_new                </i>                <i class="course-action material-icons smooth-width danger-text" (click)="courseService.removeCourse(course)">                    clear                </i>            </div>        </li>        <li class="indicator"></li>        <!-- Action Buttons -->        <div class="action-button-container">            <!-- Edit Courses Button -->            <div class="addButton" *ngIf="!toolService.toolViewOpen">                <i class="ashen-text material-icons no-select" [class.pulse]="courseService.courses.length === 0 && !courseService.courseSelectionOpen"                    (click)="courseOverlay()" materialize="tooltip" data-position="left" data-tooltip="Edit Courses">edit</i>            </div>            <!-- Feedback Button -->            <div class="addButton" materialize="tooltip" data-position="left" data-tooltip="Feedback">                <i class="ashen-text material-icons no-select" (click)="openModal()" materialize="dropdown">feedback</i>            </div>            <!-- Settings Button -->            <div class="addButton">                <i materialize="dropdown" class="dropdown-trigger ashen-text material-icons no-select" [materializeParams]="[{constrain_width: false, alignment: \'left\', coverTrigger: false}]"                    data-activates="settingsDropdown">settings</i>                <!-- Settings Menu Dropdown -->                <ul id=\'settingsDropdown\' class=\'dropdown-content\'>                    <li>                        <a (click)="settingsService.setTheme(\'classic\')">                            <i class="material-icons">invert_colors</i>                            Classic Theme                        </a>                        <a (click)="settingsService.setTheme(\'charcoal\')">                            <i class="material-icons">invert_colors</i>                            Charcoal Theme                        </a>                        <a (click)="settingsService.setTheme(\'navy\')">                            <i class="material-icons">invert_colors</i>                            Navy Theme                        </a>                        <a (click)="settingsService.setLocalStorage(\'goofMessages\')">                            <i class="material-icons">scatter_plot</i>                            Turn Loading Messages {{settingsService.checkLocalStorage(\'goofMessages\') ? \'Off\' : \'On\'}}                        </a>                    </li>                </ul>            </div>        </div>    </ul>    <!-- Course Selection Overlay -->    <app-course-selection></app-course-selection>    <!-- Feedback Modal - Must stay beneath the main container -->    <div id="feedbackModal" class="modal" materialize="modal" [materializeActions]="modalActions">        <div class="modal-content no-padding">            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeMqVujrTfgj056YfvnhtOWEKB3Y1-Ziyp73JB0yqNjx0cwyg/viewform?embedded=true"                frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>        </div>    </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CategoriesComponent', 'selector': 'app-categories'},{'name': 'CodeEditorComponent', 'selector': 'app-code-editor'},{'name': 'CourseSelectionComponent', 'selector': 'app-course-selection'},{'name': 'CourseTabsComponent', 'selector': 'app-course-tabs'},{'name': 'ErrorPageComponent', 'selector': 'app-error-page'},{'name': 'IssueCardComponent', 'selector': 'app-issue-card'},{'name': 'IssueContainerComponent', 'selector': 'app-issue-container'},{'name': 'IssueDetailsComponent', 'selector': 'app-issue-details'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueNavComponent', 'selector': 'app-issue-nav'},{'name': 'OptionsViewComponent', 'selector': 'app-options-view'},{'name': 'StatBadgeComponent', 'selector': 'app-stat-badge'},{'name': 'ToolSelectionComponent', 'selector': 'app-tool-selection'},{'name': 'ToolViewComponent', 'selector': 'app-tool-view'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'OptionsViewComponent'};
+    var ACTUAL_COMPONENT = {'name': 'CourseTabsComponent'};
 </script>
 <script src="../js/tree.js"></script>
 

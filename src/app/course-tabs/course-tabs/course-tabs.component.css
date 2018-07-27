@@ -39,7 +39,7 @@
 /* Close/open in Canvas buttons on the tabs in edit mode */
 
 .course-action-container {
-    margin-left: -10px;
+    margin-left: -40px;
 }
 
 .course-action {
@@ -54,6 +54,12 @@
     background-color: var(--navy);
     cursor: pointer;
     height: calc(var(--breadcrumbs-height) + 1px);
+}
+
+/* Action buttons on the course tabs bar */
+
+.action-button-container {
+    display: flex;
     margin-left: auto;
 }
 
@@ -68,7 +74,32 @@
     background-color: var(--navy-light);
 }
 
-.pulseypulse>div {
+/* Adjusts the size for the feedback modal */
+
+.modal-content iframe {
+    width: 100%;
+    height: 70vh;
+}
+
+/* Fixes some CSS issues with the settings menu */
+
+ul.dropdown-content {
+    background-color: white !important;
+    width: auto !important;
+    position: fixed !important;
+    top: auto !important;
+    left: auto !important;
+    right: 20px !important;
+}
+
+.dropdown-content a {
+    color: var(--cobalt);
+    padding: 14px 16px;
+}
+
+/* Animation used by the tabs when processing courses */
+
+.pulseypulse>a {
     animation: pulseypulse 2s infinite ease-in-out;
 }
 

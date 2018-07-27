@@ -83,9 +83,9 @@ export class KatanaService {
         });
     }
 
-    /** ***************************************************************
+    /**
      * Retrieves a list of courses from Canvas.
-     *****************************************************************/
+     */
     getCourses(body) {
         return new Promise((resolve, reject) => {
             if (!this.authGuardService.canActivate()) {
@@ -107,19 +107,6 @@ export class KatanaService {
                 })
                 .catch(this.errorHandler);
         });
-    }
-
-    /**
-     * Has the server log when a user's auth status changes (log in, log out, etc.)
-     * DEPRECATED
-     */
-    logUserStatus(userEmail: string, message: string) {
-        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        headers.append('Content-Type', 'application/json');
-
-        this.http.post('/api/user-status', { userEmail, message }, { headers: headers }).subscribe(
-            () => { },
-            this.errorHandler);
     }
 
     /**
@@ -305,6 +292,7 @@ export class KatanaService {
         });
     }
 
+    /** Handles errors for this service. */
     errorHandler(e) {
         console.error(e);
         this.error = e;

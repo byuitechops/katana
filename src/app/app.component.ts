@@ -5,6 +5,7 @@ import { KatanaService } from './server.service';
 import { ToastService } from './toast.service';
 import { ToolService } from './tool.service';
 import { AuthGuardService } from './authguard.service'; // Being used in app.component.html (i.e. DO NOT DELETE)
+import { SettingsService } from './settings.service';
 
 /**
  * This is the main component for the entire application.
@@ -40,7 +41,13 @@ export class AppComponent {
         private katanaService: KatanaService,
         private toolService: ToolService,
         private toastService: ToastService,
+        private settingsService: SettingsService,
         private authGuardService: AuthGuardService) {
+
+        // Set the theme
+        if (localStorage['katanaTheme']) {
+            settingsService.setTheme(localStorage['katanaTheme'])
+        }
 
         router.events.subscribe((event: Event) => {
             if (event instanceof NavigationEnd &&
