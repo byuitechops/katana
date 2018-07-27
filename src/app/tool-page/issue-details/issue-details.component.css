@@ -2,13 +2,8 @@
 
 .issueDetails {
     width: calc(100vw - var(--issueList-width));
-<<<<<<< HEAD
     max-height: calc(100vh - var(--header-height));
     padding: 0 15px 0 0;
-=======
-    height: calc(100vh - var(--header-height));
-    padding: 0 15px;
->>>>>>> fb2cc7e3a237b0fbbd6ae5bbc3dec992dbb7201a
 }
 
 /* The header for issue-details */

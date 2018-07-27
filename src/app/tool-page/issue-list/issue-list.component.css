@@ -5,25 +5,14 @@
     max-height: calc(100vh - var(--header-height) - 52px);
     width: var(--issueList-width);
     box-sizing: border-box;
-<<<<<<< HEAD
     padding: 0 15px;
-=======
-    padding: 0 7px 0 15px;
-    overflow-y: scroll;
->>>>>>> fb2cc7e3a237b0fbbd6ae5bbc3dec992dbb7201a
 }
 
 /* The container for all of the issue items */
 
-<<<<<<< HEAD
 .issueList__list {
     max-height: calc(100vh - (var(--header-height) + 52px));
     overflow-y: scroll;
-=======
-.issueList__title {
-    position: relative;
-    padding-left: 15px;
->>>>>>> fb2cc7e3a237b0fbbd6ae5bbc3dec992dbb7201a
 }
 
 /* The message that appears if no issue items are avaiable */
