@@ -8,12 +8,13 @@
 
     <!-- Settings Button -->
     <li class="tab addButton">
-        <i class="ashen-text material-icons no-select" (click)="settingsMenu()" materialize="tooltip" data-position="left" data-tooltip="Settings">settings</i>
+        <i data-target="settingsDropdown" class="dropdown-trigger ashen-text material-icons no-select" materialize="tooltip" data-position="left"
+            data-tooltip="Settings">settings</i>
     </li>
 
     <!-- Feedback Button -->
-    <li class="tab addButton">
-        <i class="ashen-text material-icons no-select" (click)="openModal()" materialize="tooltip" data-position="left" data-tooltip="Feedback">feedback</i>
+    <li class="tab addButton" materialize="tooltip" data-position="left" data-tooltip="Feedback">
+        <i class="ashen-text material-icons no-select" (click)="openModal()" materialize="dropdown">feedback</i>
     </li>
 
     <!-- Edit Courses Button -->
@@ -34,3 +35,25 @@
             frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
     </div>
 </div>
+
+<!-- Settings Menu Dropdown -->
+<ul id='settingsDropdown' class='dropdown-content'>
+    <li>
+        <a href="#!">one</a>
+    </li>
+    <li>
+        <a href="#!">two</a>
+    </li>
+    <li class="divider" tabindex="-1"></li>
+    <li>
+        <a href="#!">three</a>
+    </li>
+    <li>
+        <a href="#!">
+            <i class="material-icons">view_module</i>four</a>
+    </li>
+    <li>
+        <a href="#!">
+            <i class="material-icons">cloud</i>five</a>
+    </li>
+</ul>
