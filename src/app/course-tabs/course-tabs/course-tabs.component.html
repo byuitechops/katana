@@ -1,7 +1,15 @@
 <ul materialize class="tabs navy">
-    <li *ngFor="let course of courseService.courses" class="tab" [class.pulseypulse]="course.processing" [class.selectable]="toolService.toolViewOpen" 
-    [class.selected]="courseService.selectedCourse === course && toolService.toolViewOpen" (click)="courseService.selectedCourse = course">
+    <li *ngFor="let course of courseService.courses" class="tab" [class.pulseypulse]="course.processing" [class.selectable]="toolService.toolViewOpen || courseService.courseSelectionOpen" 
+    [class.selected]="courseService.selectedCourse === course && (toolService.toolViewOpen || courseService.courseSelectionOpen)" (click)="courseService.selectedCourse = course">
         <div class="ashen-text">{{course.course_code}}</div>
+        <div class="course-action-container" *ngIf="courseService.courseSelectionOpen">
+            <i class="course-action material-icons" (click)="openCourse(course.id)">
+                open_in_new
+            </i>
+            <i class="course-action material-icons smooth-width danger-text" (click)="courseService.removeCourse(course)">
+                clear
+            </i>
+        </div>
     </li>
     <li class="indicator"></li>
     <li class="tab addButton" *ngIf="!toolService.toolViewOpen">
