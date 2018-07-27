@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { KatanaService } from '../../katana.service'; // Being used in error-page.component.html (i.e. DO NOT DELETE)
+import { KatanaService } from '../../server.service'; // Being used in error-page.component.html (i.e. DO NOT DELETE)
 
 @Component({
     selector: 'app-error-page',
