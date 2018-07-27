@@ -13,15 +13,24 @@
     transition: all .1s ease-in-out;
 }
 
-.tabs .tab:hover {
+.tabs .tab div {
+    padding: 0 24px;
+}
+
+.tabs .tab:not(.selectable):hover {
+    cursor: default;
+}
+
+.tabs .tab.selectable:hover {
     background-color: var(--navy-light) !important;
+    cursor: pointer;
 }
 
 .tabs .indicator {
     display: none !important;
 }
 
-.tabs .active {
+.tabs .selected {
     background-color: var(--navy-light) !important;
 }
 
@@ -54,7 +63,7 @@
     background-color: var(--navy-light);
 }
 
-.pulseypulse>a {
+.pulseypulse>div {
     animation: pulseypulse 2s infinite ease-in-out;
 }
 
