@@ -1,35 +1,64 @@
+/* Overrides Materialize tab CSS */
+
+.tabs-container ::-webkit-scrollbar {
+    height: 5px;
+}
+
 .tabs {
     height: var(--breadcrumbs-height) !important;
 }
 
 .tabs .tab {
-    transition: all .1s ease-in-out;
-    line-height: var(--breadcrumbs-height);
+    display: inline-flex;
     height: var(--breadcrumbs-height);
+    line-height: var(--breadcrumbs-height);
+    transition: all .1s ease-in-out;
 }
 
-.tabs .tab:hover {
+.tabs .tab div {
+    padding: 0 24px;
+}
+
+.tabs .tab:not(.selectable):hover {
+    cursor: default;
+}
+
+.tabs .tab.selectable:hover {
     background-color: var(--navy-light) !important;
+    cursor: pointer;
 }
 
 .tabs .indicator {
     display: none !important;
 }
 
-.selectedTab {
+.tabs .selected {
     background-color: var(--navy-light) !important;
 }
 
-/* These are the buttons on the right of the course tabs bar (settings, feedback, edit courses) */
+/* Close/open in Canvas buttons on the tabs in edit mode */
+
+.course-action-container {
+    margin-left: -10px;
+}
+
+.course-action {
+    color: var(--cobalt);
+    cursor: pointer;
+    line-height: var(--breadcrumbs-height) !important;
+    padding: 0 2px;
+    text-align: center;
+}
 
 .addButton {
-    float: right;
     background-color: var(--navy);
-    height: calc(var(--breadcrumbs-height) + 1px);
     cursor: pointer;
+    height: calc(var(--breadcrumbs-height) + 1px);
+    margin-left: auto;
 }
 
 .addButton>i {
+    cursor: pointer;
     line-height: var(--breadcrumbs-height);
     padding: 0 20px;
     transition: all .1s ease-in-out;
@@ -39,6 +68,7 @@
     background-color: var(--navy-light);
 }
 
+<<<<<<< HEAD
 /* Adjusts the size for the feedback modal */
 
 .modal-content iframe {
@@ -65,6 +95,9 @@ ul.dropdown-content {
 /* Animation used by the tabs when processing courses */
 
 .pulseypulse>a {
+=======
+.pulseypulse>div {
+>>>>>>> master
     animation: pulseypulse 2s infinite ease-in-out;
 }
 

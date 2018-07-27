@@ -1,59 +1,68 @@
-<ul materialize class="tabs navy">
+<div class="tabs-container">
+    <ul materialize class="tabs navy flex-container">
+        <li *ngFor="let course of courseService.courses" class="tab" [class.pulseypulse]="course.processing" [class.selectable]="toolService.toolViewOpen || courseService.courseSelectionOpen"
+            [class.selected]="courseService.selectedCourse === course && (toolService.toolViewOpen || courseService.courseSelectionOpen)"
+            (click)="courseService.selectedCourse = course">
+            <div class="ashen-text">{{course.course_code}}</div>
+            <div class="course-action-container" *ngIf="courseService.courseSelectionOpen">
+                <i class="course-action material-icons" (click)="openCourse(course.id)">
+                    open_in_new
+                </i>
+                <i class="course-action material-icons smooth-width danger-text" (click)="courseService.removeCourse(course)">
+                    clear
+                </i>
+            </div>
+        </li>
+        <li class="indicator"></li>
 
-    <!-- Course Tabs -->
-    <li *ngFor="let course of courseService.courses" class="tab" [class.pulseypulse]="course.processing" [class.selectedTab]="courseService.selectedCourse === course"
-        (click)="courseService.selectedCourse = course">
-        <a href="#test1" class="ashen-text">{{course.course_code}}</a>
-    </li>
-    <li class="indicator"></li>
+        <!-- Settings Button -->
+        <div class="addButton">
+            <i materialize="dropdown" class="dropdown-trigger ashen-text material-icons no-select" [materializeParams]="[{constrain_width: false, alignment: 'left', coverTrigger: false}]"
+                data-activates="settingsDropdown">settings</i>
+            <!-- Settings Menu Dropdown -->
+            <ul id='settingsDropdown' class='dropdown-content'>
+                <li>
+                    <a (click)="settingsService.setTheme('classic')">
+                        <i class="material-icons">invert_colors</i>
+                        Classic Theme
+                    </a>
+                    <a (click)="settingsService.setTheme('charcoal')">
+                        <i class="material-icons">invert_colors</i>
+                        Charcoal Theme
+                    </a>
+                    <a (click)="settingsService.setTheme('navy')">
+                        <i class="material-icons">invert_colors</i>
+                        Navy Theme
+                    </a>
+                    <a (click)="settingsService.setLocalStorage('goofMessages')">
+                        <i class="material-icons">scatter_plot</i>
+                        Turn Generated Messages {{settingsService.checkLocalStorage('goofMessages') ? 'Off' : 'On'}}
+                    </a>
+                </li>
+            </ul>
+        </div>
 
-    <!-- Settings Button -->
-    <div class="addButton">
-        <i materialize="dropdown" class="dropdown-trigger ashen-text material-icons no-select" [materializeParams]="[{constrain_width: false, alignment: 'left', coverTrigger: false}]"
-            data-activates="settingsDropdown">settings</i>
-        <!-- Settings Menu Dropdown -->
-        <ul id='settingsDropdown' class='dropdown-content'>
-            <li>
-                <a (click)="settingsService.setTheme('classic')">
-                    <i class="material-icons">invert_colors</i>
-                    Classic Theme
-                </a>
-                <a (click)="settingsService.setTheme('charcoal')">
-                    <i class="material-icons">invert_colors</i>
-                    Charcoal Theme
-                </a>
-                <a (click)="settingsService.setTheme('navy')">
-                    <i class="material-icons">invert_colors</i>
-                    Navy Theme
-                </a>
-                <a (click)="settingsService.setLocalStorage('goofMessages')">
-                    <i class="material-icons">scatter_plot</i>
-                    Turn Generated Messages {{settingsService.checkLocalStorage('goofMessages') ? 'Off' : 'On'}}
-                </a>
-            </li>
-        </ul>
-    </div>
+        <!-- Feedback Button -->
+        <li class="addButton" materialize="tooltip" data-position="left" data-tooltip="Feedback">
+            <i class="ashen-text material-icons no-select" (click)="openModal()" materialize="dropdown">feedback</i>
+        </li>
 
-    <!-- Feedback Button -->
-    <li class="addButton" materialize="tooltip" data-position="left" data-tooltip="Feedback">
-        <i class="ashen-text material-icons no-select" (click)="openModal()" materialize="dropdown">feedback</i>
-    </li>
+        <!-- Edit Courses Button -->
+        <li class="addButton" *ngIf="!toolService.toolViewOpen">
+            <i class="ashen-text material-icons no-select" [class.pulse]="courseService.courses.length === 0 && !courseService.courseSelectionOpen"
+                (click)="courseOverlay()" materialize="tooltip" data-position="left" data-tooltip="Edit Courses">edit</i>
+        </li>
 
-    <!-- Edit Courses Button -->
-    <li class="addButton" *ngIf="!toolService.toolViewOpen">
-        <i class="ashen-text material-icons no-select" [class.pulse]="courseService.courses.length === 0 && !courseService.courseSelectionOpen"
-            (click)="courseOverlay()" materialize="tooltip" data-position="left" data-tooltip="Edit Courses">edit</i>
-    </li>
+    </ul>
 
-</ul>
+    <!-- Course Selection Overlay -->
+    <app-course-selection></app-course-selection>
 
-<!-- Course Selection Overlay -->
-<app-course-selection></app-course-selection>
-
-<!-- Feedback Modal - Must stay beneath the main container -->
-<div id="feedbackModal" class="modal" materialize="modal" [materializeActions]="modalActions">
-    <div class="modal-content no-padding">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeMqVujrTfgj056YfvnhtOWEKB3Y1-Ziyp73JB0yqNjx0cwyg/viewform?embedded=true"
-            frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+    <!-- Feedback Modal - Must stay beneath the main container -->
+    <div id="feedbackModal" class="modal" materialize="modal" [materializeActions]="modalActions">
+        <div class="modal-content no-padding">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeMqVujrTfgj056YfvnhtOWEKB3Y1-Ziyp73JB0yqNjx0cwyg/viewform?embedded=true"
+                frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+        </div>
     </div>
 </div>

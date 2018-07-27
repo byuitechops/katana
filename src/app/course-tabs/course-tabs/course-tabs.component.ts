@@ -46,5 +46,11 @@ export class CourseTabsComponent {
         this.modalActions.emit({ action: "modal", params: ['close'] });
     }
 
+    /**
+     * Opens the course in Canvas in a new tab.
+     */
+    openCourse(courseId): void {
+        window.open('https://byui.instructure.com/courses/' + courseId, '_blank');
+    }
 
 }
