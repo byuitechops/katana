@@ -13,21 +13,16 @@ import { OptionModel } from '../../classes';
     styleUrls: ['./issue-container.component.css']
 })
 export class IssueContainerComponent implements OnInit {
-    /**
-     * The issue attached to the display.
-     */
+    /** The issue attached to the display. */
     @Input('issue') issue: Issue;
 
-    /**
-     * The index of the item's issues array the issue is at.
-     */
+    /** The index of the item's issues array the issue is at. */
     @Input('index') index: number;
 
-    /**
-     * Element reference to the card containing details about the issue.
-     */
+    /** Element reference to the card containing details about the issue. */
     @ViewChild('issueDetails') issueDetails: ElementRef;
 
+    /** A reference to the code editor element for the respective issue. */
     @ViewChild('codeEditor') codeEditor: ElementRef;
 
     /**

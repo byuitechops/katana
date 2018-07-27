@@ -3,7 +3,7 @@
         <div class="indeterminate"></div>
     </div>
     <div class="ashen-text">
-        {{toolService.processingMessage}}
+        {{settingsService.checkLocalStorage('goofMessages') ? settingsService.buildProcessingMessage() : toolService.processingMessage}}
     </div>
 </div>
 
