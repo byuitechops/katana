@@ -1,0 +1,89 @@
+<div class="tabs-container">
+    <ul materialize class="tabs navy flex-container">
+        <li *ngFor="let course of courseService.courses" class="tab" [class.selectable]="toolService.toolViewOpen || courseService.courseSelectionOpen"
+            [class.selected]="courseService.selectedCourse === course && (toolService.toolViewOpen || courseService.courseSelectionOpen)"
+            (click)="courseService.selectedCourse = course">
+
+            <div class="ashen-text" [class.pulseypulse]="course.processing">
+                {{course.course_code}}
+                <span *ngIf="course.issueItems.length > 0" class="issue-badge">{{getIssueCount(course, 'untouched')}}</span>
+            </div>
+
+            <div class="course-action-container" *ngIf="courseService.courseSelectionOpen">
+                <i class="course-action material-icons" (click)="openCourse(course.id)">
+                    open_in_new
+                </i>
+                <i class="course-action material-icons smooth-width danger-text" (click)="courseService.removeCourse(course)">
+                    clear
+                </i>
+            </div>
+        </li>
+        <li class="indicator"></li>
+
+        <!-- Action Buttons -->
+        <div class="action-button-container">
+
+            <!-- Edit Courses Button -->
+            <div class="addButton" *ngIf="!toolService.toolViewOpen" materialize="tooltip" data-position="left" data-tooltip="Edit Courses">
+                <i class="ashen-text material-icons no-select" [class.pulseypulse]="courseService.courses.length === 0 && !courseService.courseSelectionOpen"
+                    (click)="courseOverlay()">edit</i>
+            </div>
+
+            <!-- Feedback Button -->
+            <div class="addButton" materialize="tooltip" data-position="left" data-tooltip="Feedback">
+                <i class="ashen-text material-icons no-select" (click)="openModal()" materialize="dropdown">feedback</i>
+            </div>
+
+            <!-- Settings Button -->
+            <div class="addButton">
+                <i materialize="dropdown" class="dropdown-trigger ashen-text material-icons no-select" [materializeParams]="[{constrain_width: false, alignment: 'left', coverTrigger: false}]"
+                    data-activates="settingsDropdown">settings</i>
+                <!-- Settings Menu Dropdown -->
+                <ul id='settingsDropdown' class='dropdown-content'>
+                    <li>
+                        <a (click)="settingsService.setTheme('classic')">
+                            <i class="material-icons">invert_colors</i>
+                            Classic Theme
+                        </a>
+                    </li>
+                    <li>
+                        <a (click)="settingsService.setTheme('charcoal')">
+                            <i class="material-icons">invert_colors</i>
+                            Charcoal Theme
+                        </a>
+                    </li>
+                    <li>
+                        <a (click)="settingsService.setTheme('navy')">
+                            <i class="material-icons">invert_colors</i>
+                            Navy Theme
+                        </a>
+                    </li>
+                    <li class="divider" tabindex="-1"></li>
+                    <li>
+                        <a (click)="settingsService.setLocalStorage('goofMessages')">
+                            <i class="material-icons">scatter_plot</i>
+                            Turn Loading Messages {{settingsService.checkLocalStorage('goofMessages') ? 'Off' : 'On'}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/release-notes" target="_blank">
+                            <i class="material-icons">notes</i>
+                            Release Notes
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </ul>
+
+    <!-- Course Selection Overlay -->
+    <app-course-selection></app-course-selection>
+
+    <!-- Feedback Modal - Must stay beneath the main container -->
+    <div id="feedbackModal" class="modal" materialize="modal" [materializeActions]="modalActions">
+        <div class="modal-content no-padding">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeMqVujrTfgj056YfvnhtOWEKB3Y1-Ziyp73JB0yqNjx0cwyg/viewform?embedded=true"
+                frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+        </div>
+    </div>
+</div>

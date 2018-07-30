@@ -1,0 +1,223 @@
+.courseSearch {
+  position: absolute;
+  height: calc(100vh - (var(--breadcrumbs-height) * 2));
+  width: 100vw;
+  z-index: 4;
+  background-color: rgba(0, 0, 0, 0.65);
+  top: calc((var(--breadcrumbs-height) * 2));
+  min-width: 700px;
+  left: 100vw;
+  overflow-y: scroll;
+}
+
+.visible {
+    left: 0;
+}
+
+.courseSearch__title {
+  font-size: 60px;
+  padding: 5px 0 0 45px;
+  width: calc(100vw - var(--course-sidebar-width));
+  color: white;
+  margin: auto;
+}
+
+.courseSearch__courseSelection {
+  display: flex;
+  padding: 0 50px;
+  width: calc(100vw - var(--course-sidebar-width));
+  margin: auto;
+}
+
+/**************************************
+* Course Search Option Dropdowns
+***************************************/
+
+.courseSearch__options {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  width: calc(100vw - var(--course-sidebar-width) - 100px);
+  min-width: 600px;
+  max-width: 1340px;
+}
+
+select {
+  background-color: white;
+  border: 1px solid var(--primary-3);
+  color: black;
+  cursor: pointer;
+  display: block;
+  /* This height matches the height of the input */
+  height: 47px;
+  /* The selected option will be size 20px */
+  font-size: 20px;
+}
+
+label {
+  font-size: 20px;
+  color: white;
+  width: calc((100% / 4) - 20px);
+  margin-top: 15px;
+}
+
+select>option[disabled] {
+  display: none;
+}
+
+option {
+  font-size: 16px;
+}
+
+
+/***************************************
+* Course Search Search Bar and Headers
+****************************************/
+
+.courseSearch__search {
+  display: block;
+  flex-flow: column nowrap;
+  /* Subract 100px for the 50px padding on each side of the container */
+  width: calc(100vw - var(--course-sidebar-width) - 100px);
+  margin-bottom: 30px;
+}
+
+.courseSearch__options input {
+  background-color: white;
+  border: 1px solid var(--primary-3);
+  font-size: 20px;
+  margin: 0;
+  padding-left: 10px;
+  /* Subtract the padding + border from the width */
+  width: calc(100% - 11px);
+}
+
+.courseSearch__options>label{
+  min-width: 120px;
+}
+
+.courseSearch__input {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/***************************************
+* Course Search Results
+****************************************/
+
+.courseSearch__search>table {
+  background-color: white;
+  border: 1px solid var(--primary-3);
+  display: flex;
+  flex-flow: column nowrap;
+  /* Subract 100px for the 50px padding on each side of the container */
+  width: calc(100vw - var(--course-sidebar-width) - 100px);
+  max-height: 655px;
+  min-width: 600px;
+    /* The width of the table minus the 1px border width on each side
+  so the white background doesn't overlap the table border */
+  width: calc(100vw - var(--course-sidebar-width) - 102px);
+  max-width: 1340px;
+}
+
+.courseSearch__search>table>tbody::-webkit-scrollbar {
+  display: block;
+  width: 5px;
+  padding-top: 44px;
+}
+
+.courseSearch__search>table>thead {
+  background-color: white;
+  border-bottom: 1px solid var(--primary-3);
+}
+
+.courseSearch__search>table>tbody {
+  overflow-y: scroll;
+  position: relative;
+  /* The same as the padding-top for the Scrollbar, one pixel 
+  less than the thead height to account for the thead border */
+}
+
+.courseSearch__courseResults>* {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+tbody>tr,
+tr>th {
+  cursor: pointer;
+}
+
+tr>th:hover {
+  background-color: #ebebeb;
+}
+
+tr>th,
+tr>td {
+  padding-left: 10px;
+  box-sizing: content-box;
+}
+
+thead th:nth-of-type(1),
+tbody td:nth-of-type(1) {
+  width: 50px;
+}
+
+thead th:nth-of-type(2),
+tbody td:nth-of-type(2) {
+  width: 400px;
+}
+
+thead th:nth-of-type(3),
+tbody td:nth-of-type(3) {
+  width: 200px;
+}
+
+thead th:nth-of-type(4),
+tbody td:nth-of-type(4) {
+  width: 275px;
+}
+
+thead th:nth-of-type(5),
+tbody td:nth-of-type(5) {
+  width: 175px;
+}
+
+thead th:nth-of-type(6),
+tbody td:nth-of-type(6) {
+  width: 175px;
+}
+
+thead th:nth-of-type(7),
+tbody td:nth-of-type(7) {
+  width: 175px;
+}
+
+thead th:nth-of-type(8),
+tbody td:nth-of-type(8) {
+  width: 175px;
+}
+
+thead th:nth-of-type(9),
+tbody td:nth-of-type(9) {
+  width: 150px;
+  text-align: center;
+  min-width: 91px;
+}
+
+/***************************************
+* The Loader
+****************************************/
+.loader {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
+
+/***************************************
+* Daniel Testing responsive design
+***************************************/
+
+

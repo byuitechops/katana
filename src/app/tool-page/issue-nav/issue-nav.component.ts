@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CourseService } from '../../course.service';
-import { KatanaService } from '../../katana.service';
+import { KatanaService } from '../../server.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { EventEmitter } from '@angular/core';
 import { ToolService } from '../../tool.service';

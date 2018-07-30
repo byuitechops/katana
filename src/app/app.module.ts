@@ -14,7 +14,7 @@ import { environment } from './firebase.auth';
 import { AuthGuardService } from './authguard.service';
 
 /* Modules */
-import { SidebarModule } from './sidebar/sidebar.module';
+import { CourseTabsModule } from './course-tabs/course-tabs.module';
 import { HomePageModule } from './home-page/home-page.module';
 import { ToolPageModule } from './tool-page/tool-page.module';
 
@@ -22,7 +22,6 @@ import { ToolPageModule } from './tool-page/tool-page.module';
 import { AppComponent } from './app.component';
 import { CategoriesComponent } from './home-page/categories/categories.component';
 import { ToolViewComponent } from './tool-page/tool-view/tool-view.component';
-import { ToolSelectionComponent } from './home-page/tool-selection/tool-selection.component';
 import { OptionsViewComponent } from './home-page/options-view/options-view.component';
 import { ErrorPageComponent } from './home-page/error-page/error-page.component';
 
@@ -67,7 +66,7 @@ export const appRoutes: Routes = [
             appRoutes
         ),
         BrowserModule,
-        SidebarModule,
+        CourseTabsModule,
         HomePageModule,
         ToolPageModule,
         HttpModule,

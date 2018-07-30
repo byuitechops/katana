@@ -95,7 +95,11 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
 
             // Log all discovered issues to Firestore
             if (!process.argv.includes('-d')) {
-                firebaseWrapper.toolLog({course_id: course.id, tool_id, issueItems: course.issueItems.map(issueItem => JSON.stringify(issueItem))});
+                firebaseWrapper.toolLog({
+                    course_id: course.id,
+                    tool_id,
+                    issueItems: course.issueItems.map(issueItem => JSON.stringify(issueItem))
+                });
             }
 
             // Add fixed count to firestore stats

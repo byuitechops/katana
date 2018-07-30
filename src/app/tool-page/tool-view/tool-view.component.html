@@ -1,33 +1,9 @@
-<div class="statContainer">
-    <div>
-        <app-stat-badge [statTitle]="'Items'" [side]="'left'" [statCount]="courseService.selectedCourse.issueItems.length"></app-stat-badge>
-    </div>
-    <div>
-        <app-stat-badge [statTitle]="'Issues'" [side]="'left'" [statCount]="courseService.getCourseIssueCount()"></app-stat-badge>
-    </div>
-    <div>
-        <app-stat-badge [titleColor]="'#eceff1'" [statTitle]="'Untouched'" [side]="'left'" [statCount]="courseService.getCourseIssueCount('untouched')"></app-stat-badge>
-    </div>
-    <div>
-        <app-stat-badge [titleColor]="'#5EBD8F'" [statTitle]="'Approved'" [side]="'left'" [statCount]="courseService.getCourseIssueCount('approved')"></app-stat-badge>
-    </div>
-    <div>
-        <app-stat-badge [titleColor]="'#65727D'" [statTitle]="'Skipped'" [side]="'left'" [statCount]="courseService.getCourseIssueCount('skipped')"></app-stat-badge>
-    </div>
-    <div>
-        <app-stat-badge [titleColor]="'#e53935'" [statTitle]="'Failed'" [side]="'left'" [statCount]="courseService.getCourseIssueCount('failed')"></app-stat-badge>
-    </div>
-    <div>
-        <app-stat-badge [titleColor]="'#2879B5'" [statTitle]="'Fixed'" [side]="'left'" [statCount]="courseService.getCourseIssueCount('fixed')"></app-stat-badge>
-    </div>
-</div>
-
 <div *ngIf="courseService.selectedCourse.processing">
     <div class="progress">
         <div class="indeterminate"></div>
     </div>
     <div class="ashen-text">
-        {{toolService.processingMessage}}
+        {{settingsService.checkLocalStorage('goofMessages') ? settingsService.buildProcessingMessage() : toolService.processingMessage}}
     </div>
 </div>
 

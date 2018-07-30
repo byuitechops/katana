@@ -29,8 +29,11 @@ export class CourseService {
     /**
      * Whether or not the {@link CourseSelectionComponent} is open.
      */
-    courseSelectionOpen: boolean = false;
+    courseSelectionOpen = false;
 
+    /**
+     * Emits when a the selected course has changed. Used by lazy-loading components.
+     */
     courseChange = new EventEmitter<Course>();
 
     get selectedCourse() {
