@@ -1,0 +1,1564 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Katana</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Katana</a>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+            <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+            <nav>
+
+    <ul class="list">
+
+        <li class="title">
+            <a href="index.html" data-type="index-link">Katana</a>
+        </li>
+
+        <li class="divider"></li>
+
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="index.html"><span class="fa fa-home"></span>Getting started</a>
+            <ul class="links">
+                    <li class="link">
+                        <a 
+                            
+                             href="overview.html" 
+                             href="overview.html" 
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-th"></span>Overview
+                        </a>
+                    </li>
+                    <li class="link">
+                      <a href="index.html" data-type="chapter-link"><span class="fa fa-file-text-o"></span>README</a>
+                    </li>
+                    <li class="link">
+                        <a href="dependencies.html"
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-list"></span>Dependencies
+                        </a>
+                    </li>
+            </ul>
+        </li>
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#xs-additional-pages"
+                >
+                <span class="fa fa-fw fa-book"></span>
+                <span>Additional documentation</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="xs-additional-pages"
+                >
+                    <li class="link ">
+                        <a href="additional-documentation/setup.html" data-type="entity-link" data-context-id="additional">Setup</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/setup/setting-up-firebase.html" data-type="entity-link" data-context-id="additional">Setting Up Firebase</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/setup/node-tools.html" data-type="entity-link" data-context-id="additional">Node Tools</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/setup/enabling-accounts-on-firebase.html" data-type="entity-link" data-context-id="additional">Enabling Accounts on Firebase</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/server-architecture.html" data-type="entity-link" data-context-id="additional">Server Architecture</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/server-endpoints.html" data-type="entity-link" data-context-id="additional">Server Endpoints</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/discover-&amp;-fix-workflow.html" data-type="entity-link" data-context-id="additional">Discover &amp; Fix Workflow</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/data-flow-diagram.html" data-type="entity-link" data-context-id="additional">Data Flow Diagram</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/high-level-overview.html" data-type="entity-link" data-context-id="additional">High Level Overview</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/firebase.html" data-type="entity-link" data-context-id="additional">Firebase</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-authentication.html" data-type="entity-link" data-context-id="additional">Firebase Authentication</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/database-structure.html" data-type="entity-link" data-context-id="additional">Database Structure</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-wrapper.html" data-type="entity-link" data-context-id="additional">Firebase Wrapper</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-functions.html" data-type="entity-link" data-context-id="additional">Firebase Functions</a>
+                    </li>
+            </ul>
+        </li>
+
+        <li class="chapter modules">
+            <a data-type="chapter-link" href="modules.html">
+                <div class="menu-toggler linked" data-toggle="collapse"
+                        data-target="#xs-modules-links"
+                >
+                    <span class="fa fa-fw fa-archive"></span>
+                    <span class="link-name">Modules</span>
+                    <span class="fa fa-angle-down"></span>
+                </div>
+            </a>
+            <ul class="links collapse"
+                    id="xs-modules-links"
+                >
+                    <li class="link">
+                        <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+                                    >
+                                        <li class="link">
+                                            <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-injectables-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+                                    >
+                                    <span class="fa fa-fw fa-long-arrow-down"></span>
+                                    <span>Injectables</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-injectables-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+                                    >
+                                        <li class="link">
+                                            <a href="injectables/AuthGuardService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>AuthGuardService</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/CourseTabsModule.html" data-type="entity-link">CourseTabsModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-CourseTabsModule-f04b7bf38543bb0ba5835558357d5aa2"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-CourseTabsModule-f04b7bf38543bb0ba5835558357d5aa2"
+                                    >
+                                        <li class="link">
+                                            <a href="components/CourseSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSelectionComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CourseTabsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseTabsComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/HomePageModule.html" data-type="entity-link">HomePageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-HomePageModule-e069b53025a3e13b5110ed17b9056650"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-HomePageModule-e069b53025a3e13b5110ed17b9056650"
+                                    >
+                                        <li class="link">
+                                            <a href="components/BreadcrumbsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">BreadcrumbsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CategoriesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CategoriesComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ErrorPageComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ErrorPageComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/OptionsViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">OptionsViewComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolSelectionComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/ToolPageModule.html" data-type="entity-link">ToolPageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-ToolPageModule-fac3be8b4bc5d290e972aab09cd32b8a"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-ToolPageModule-fac3be8b4bc5d290e972aab09cd32b8a"
+                                    >
+                                        <li class="link">
+                                            <a href="components/CodeEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CodeEditorComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueCardComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueContainerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueContainerComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueDetailsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueDetailsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueListComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueNavComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/StatBadgeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">StatBadgeComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolViewComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+            </ul>
+        </li>
+
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#xs-classes-links"
+                >
+                <span class="fa fa-fw fa-file-code-o"></span>
+                <span>Classes</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="xs-classes-links"
+                >
+                    <li class="link">
+                        <a href="classes/OptionModel.html" data-type="entity-link">OptionModel</a>
+                    </li>
+            </ul>
+        </li>
+
+                <li class="chapter">
+                    <div class="simple menu-toggler" data-toggle="collapse"
+                            data-target="#xs-injectables-links"
+                        >
+                        <span class="fa fa-fw fa-long-arrow-down"></span>
+                        <span>Injectables</span>
+                        <span class="fa fa-angle-down"></span>
+                    </div>
+                    <ul class="links collapse"
+                            id="xs-injectables-links"
+                        >
+                            <li class="link">
+                                <a href="injectables/AuthGuardService.html" data-type="entity-link">AuthGuardService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/CourseService.html" data-type="entity-link">CourseService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/KatanaService.html" data-type="entity-link">KatanaService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/SettingsService.html" data-type="entity-link">SettingsService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/ToastService.html" data-type="entity-link">ToastService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/ToolService.html" data-type="entity-link">ToolService</a>
+                            </li>
+                    </ul>
+                </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#xs-interfaces-links"
+                >
+                <span class="fa fa-fw fa-info"></span>
+                <span>Interfaces</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="xs-interfaces-links"
+                >
+                    <li class="link">
+                        <a href="interfaces/Category.html" data-type="entity-link">Category</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Course.html" data-type="entity-link">Course</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/DiscoverOption.html" data-type="entity-link">DiscoverOption</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/EditorTab.html" data-type="entity-link">EditorTab</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/FixOption.html" data-type="entity-link">FixOption</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Issue.html" data-type="entity-link">Issue</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/IssueItem.html" data-type="entity-link">IssueItem</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Tool.html" data-type="entity-link">Tool</a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#xs-miscellaneous-links"
+                >
+                <span class="fa fa-fw fa-cubes"></span>
+                <span>Miscellaneous</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="xs-miscellaneous-links"
+                >
+                    <li class="link">
+                      <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="coverage.html"><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
+        </li>
+
+
+    </ul>
+
+</nav>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <nav>
+
+    <ul class="list">
+
+        <li class="title">
+            <a href="index.html" data-type="index-link">Katana</a>
+        </li>
+
+        <li class="divider"></li>
+
+            <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="index.html"><span class="fa fa-home"></span>Getting started</a>
+            <ul class="links">
+                    <li class="link">
+                        <a 
+                            
+                             href="overview.html" 
+                             href="overview.html" 
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-th"></span>Overview
+                        </a>
+                    </li>
+                    <li class="link">
+                      <a href="index.html" data-type="chapter-link"><span class="fa fa-file-text-o"></span>README</a>
+                    </li>
+                    <li class="link">
+                        <a href="dependencies.html"
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-list"></span>Dependencies
+                        </a>
+                    </li>
+            </ul>
+        </li>
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#additional-pages"
+>
+                <span class="fa fa-fw fa-book"></span>
+                <span>Additional documentation</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="additional-pages"
+>
+                    <li class="link ">
+                        <a href="additional-documentation/setup.html" data-type="entity-link" data-context-id="additional">Setup</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/setup/setting-up-firebase.html" data-type="entity-link" data-context-id="additional">Setting Up Firebase</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/setup/node-tools.html" data-type="entity-link" data-context-id="additional">Node Tools</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/setup/enabling-accounts-on-firebase.html" data-type="entity-link" data-context-id="additional">Enabling Accounts on Firebase</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/server-architecture.html" data-type="entity-link" data-context-id="additional">Server Architecture</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/server-endpoints.html" data-type="entity-link" data-context-id="additional">Server Endpoints</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/discover-&amp;-fix-workflow.html" data-type="entity-link" data-context-id="additional">Discover &amp; Fix Workflow</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/data-flow-diagram.html" data-type="entity-link" data-context-id="additional">Data Flow Diagram</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/high-level-overview.html" data-type="entity-link" data-context-id="additional">High Level Overview</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/firebase.html" data-type="entity-link" data-context-id="additional">Firebase</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-authentication.html" data-type="entity-link" data-context-id="additional">Firebase Authentication</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/database-structure.html" data-type="entity-link" data-context-id="additional">Database Structure</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-wrapper.html" data-type="entity-link" data-context-id="additional">Firebase Wrapper</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-functions.html" data-type="entity-link" data-context-id="additional">Firebase Functions</a>
+                    </li>
+            </ul>
+        </li>
+
+        <li class="chapter modules">
+            <a data-type="chapter-link" href="modules.html">
+                <div class="menu-toggler linked" data-toggle="collapse"
+                        data-target="#modules-links"
+                >
+                    <span class="fa fa-fw fa-archive"></span>
+                    <span class="link-name">Modules</span>
+                    <span class="fa fa-angle-down"></span>
+                </div>
+            </a>
+            <ul class="links collapse"
+                    id="modules-links"
+>
+                    <li class="link">
+                        <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+>
+                                        <li class="link">
+                                            <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#injectables-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+>
+                                    <span class="fa fa-fw fa-long-arrow-down"></span>
+                                    <span>Injectables</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="injectables-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+>
+                                        <li class="link">
+                                            <a href="injectables/AuthGuardService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>AuthGuardService</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/CourseTabsModule.html" data-type="entity-link">CourseTabsModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-CourseTabsModule-f04b7bf38543bb0ba5835558357d5aa2"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-CourseTabsModule-f04b7bf38543bb0ba5835558357d5aa2"
+>
+                                        <li class="link">
+                                            <a href="components/CourseSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSelectionComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CourseTabsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseTabsComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/HomePageModule.html" data-type="entity-link">HomePageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-HomePageModule-e069b53025a3e13b5110ed17b9056650"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-HomePageModule-e069b53025a3e13b5110ed17b9056650"
+>
+                                        <li class="link">
+                                            <a href="components/BreadcrumbsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">BreadcrumbsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CategoriesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CategoriesComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ErrorPageComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ErrorPageComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/OptionsViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">OptionsViewComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolSelectionComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/ToolPageModule.html" data-type="entity-link">ToolPageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-ToolPageModule-fac3be8b4bc5d290e972aab09cd32b8a"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-ToolPageModule-fac3be8b4bc5d290e972aab09cd32b8a"
+>
+                                        <li class="link">
+                                            <a href="components/CodeEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CodeEditorComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueCardComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueContainerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueContainerComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueDetailsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueDetailsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueListComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueNavComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/StatBadgeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">StatBadgeComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolViewComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+            </ul>
+        </li>
+
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#classes-links"
+>
+                <span class="fa fa-fw fa-file-code-o"></span>
+                <span>Classes</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="classes-links"
+>
+                    <li class="link">
+                        <a href="classes/OptionModel.html" data-type="entity-link">OptionModel</a>
+                    </li>
+            </ul>
+        </li>
+
+                <li class="chapter">
+                    <div class="simple menu-toggler" data-toggle="collapse"
+                            data-target="#injectables-links"
+>
+                        <span class="fa fa-fw fa-long-arrow-down"></span>
+                        <span>Injectables</span>
+                        <span class="fa fa-angle-down"></span>
+                    </div>
+                    <ul class="links collapse"
+                            id="injectables-links"
+>
+                            <li class="link">
+                                <a href="injectables/AuthGuardService.html" data-type="entity-link">AuthGuardService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/CourseService.html" data-type="entity-link">CourseService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/KatanaService.html" data-type="entity-link">KatanaService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/SettingsService.html" data-type="entity-link">SettingsService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/ToastService.html" data-type="entity-link">ToastService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/ToolService.html" data-type="entity-link">ToolService</a>
+                            </li>
+                    </ul>
+                </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#interfaces-links"
+>
+                <span class="fa fa-fw fa-info"></span>
+                <span>Interfaces</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="interfaces-links"
+>
+                    <li class="link">
+                        <a href="interfaces/Category.html" data-type="entity-link">Category</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Course.html" data-type="entity-link">Course</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/DiscoverOption.html" data-type="entity-link">DiscoverOption</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/EditorTab.html" data-type="entity-link">EditorTab</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/FixOption.html" data-type="entity-link">FixOption</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Issue.html" data-type="entity-link">Issue</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/IssueItem.html" data-type="entity-link">IssueItem</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Tool.html" data-type="entity-link">Tool</a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#miscellaneous-links"
+>
+                <span class="fa fa-fw fa-cubes"></span>
+                <span>Miscellaneous</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="miscellaneous-links"
+>
+                    <li class="link">
+                      <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="coverage.html"><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
+        </li>
+
+
+    </ul>
+
+</nav>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>CourseTabsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/course-tabs/course-tabs/course-tabs.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The Course Tabs bar, along with the action buttons (settings, feedback, etc.). </p>
+
+    </p>
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-course-tabs</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>course-tabs.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./course-tabs.component.html</code></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#modalActions">modalActions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#closeModal">closeModal</a>
+                            </li>
+                            <li>
+                                <a href="#courseOverlay">courseOverlay</a>
+                            </li>
+                            <li>
+                                <a href="#getIssueCount">getIssueCount</a>
+                            </li>
+                            <li>
+                                <a href="#openCourse">openCourse</a>
+                            </li>
+                            <li>
+                                <a href="#openModal">openModal</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(courseService: <a href="../injectables/CourseService.html">CourseService</a>, toolService: <a href="../injectables/ToolService.html">ToolService</a>, settingsService: <a href="../injectables/SettingsService.html">SettingsService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/course-tabs/course-tabs/course-tabs.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>courseService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/CourseService.html" target="_self" >CourseService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Provides information and functionality for courses selected by the user.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>toolService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/ToolService.html" target="_self" >ToolService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Provides information and functionality for tools available on the server.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>settingsService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/SettingsService.html" target="_self" >SettingsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="closeModal"></a>
+                        <span class="name">
+                            <b>
+                            closeModal
+                            </b>
+                            <a href="#closeModal"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>closeModal()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/course-tabs/course-tabs/course-tabs.component.ts:47</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Closes the feedback modal.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="courseOverlay"></a>
+                        <span class="name">
+                            <b>
+                            courseOverlay
+                            </b>
+                            <a href="#courseOverlay"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>courseOverlay()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/course-tabs/course-tabs/course-tabs.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Toggles the course overlay open and closed.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getIssueCount"></a>
+                        <span class="name">
+                            <b>
+                            getIssueCount
+                            </b>
+                            <a href="#getIssueCount"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getIssueCount(course: , status: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/course-tabs/course-tabs/course-tabs.component.ts:65</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Opens the course in Canvas in a new tab.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>course</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>The course to count issues in</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>status</td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><ul>
+<li>Issue status to match</li>
+</ul>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>number | string</code>
+
+                            </div>
+                                <div class="io-description">
+                                    <p>The total number of issues matching the provided status.</p>
+
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="openCourse"></a>
+                        <span class="name">
+                            <b>
+                            openCourse
+                            </b>
+                            <a href="#openCourse"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>openCourse(courseId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/course-tabs/course-tabs/course-tabs.component.ts:55</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Opens the course in Canvas in a new tab.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>courseId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>The Canvas ID of the course</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="openModal"></a>
+                        <span class="name">
+                            <b>
+                            openModal
+                            </b>
+                            <a href="#openModal"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>openModal()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/course-tabs/course-tabs/course-tabs.component.ts:40</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Opens the feedback modal.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="modalActions"></a>
+                        <span class="name">
+                            <b>
+                            modalActions
+                            </b>
+                            <a href="#modalActions"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>modalActions:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new EventEmitter&lt;string | MaterializeAction&gt;()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/course-tabs/course-tabs/course-tabs.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Used to open and close the modal for feedback.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter } from &#x27;@angular/core&#x27;;
+import { CourseService } from &#x27;../../course.service&#x27;;
+import { ToolService } from &#x27;../../tool.service&#x27;;
+import { MaterializeAction } from &#x27;angular2-materialize&#x27;;
+import { SettingsService } from &#x27;../../settings.service&#x27;;
+import { KatanaService } from &#x27;../../server.service&#x27;;
+
+/** The Course Tabs bar, along with the action buttons (settings, feedback, etc.). */
+@Component({
+    selector: &#x27;app-course-tabs&#x27;,
+    templateUrl: &#x27;./course-tabs.component.html&#x27;,
+    styleUrls: [&#x27;./course-tabs.component.css&#x27;]
+})
+export class CourseTabsComponent {
+
+    /**
+     * Used to open and close the modal for feedback.
+     */
+    modalActions &#x3D; new EventEmitter&lt;string | MaterializeAction&gt;();
+
+    /**
+     * Constructor
+     * @param courseService Provides information and functionality for courses selected by the user.
+     * @param toolService Provides information and functionality for tools available on the server.
+     */
+    constructor(private courseService: CourseService,
+        private toolService: ToolService,
+        private settingsService: SettingsService) { }
+
+    /**
+     * Toggles the course overlay open and closed.
+     */
+    courseOverlay() {
+        this.courseService.courseSelectionOpen &#x3D; !this.courseService.courseSelectionOpen;
+    }
+
+    /**
+     * Opens the feedback modal.
+     */
+    openModal() {
+        this.modalActions.emit({ action: &#x27;modal&#x27;, params: [&#x27;open&#x27;] });
+    }
+
+    /**
+     * Closes the feedback modal.
+     */
+    closeModal() {
+        this.modalActions.emit({ action: &#x27;modal&#x27;, params: [&#x27;close&#x27;] });
+    }
+
+    /**
+     * Opens the course in Canvas in a new tab.
+     * @param {number} courseId The Canvas ID of the course
+     */
+    openCourse(courseId: number): void {
+        window.open(&#x27;https://byui.instructure.com/courses/&#x27; + courseId, &#x27;_blank&#x27;);
+    }
+
+    /**
+     * Opens the course in Canvas in a new tab.
+     * @param {Course} course - The course to count issues in
+     * @param {string} status - Issue status to match
+     * @returns {number} The total number of issues matching the provided status.
+     */
+    getIssueCount(course, status): number | string {
+        if (!course.issueItems) return 0;
+        if (course.error) return &#x27;E&#x27;;
+        return course.issueItems.reduce((acc, issueItem) &#x3D;&gt; {
+            let issues &#x3D; issueItem.issues.filter(issue &#x3D;&gt; {
+                if (!status) return true;
+                return issue.status &#x3D;&#x3D;&#x3D; status;
+            });
+            return acc + issues.length;
+        }, 0);
+    }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;tabs-container&quot;&gt;
+    &lt;ul materialize class&#x3D;&quot;tabs navy flex-container&quot;&gt;
+        &lt;li *ngFor&#x3D;&quot;let course of courseService.courses&quot; class&#x3D;&quot;tab&quot; [class.pulseypulse]&#x3D;&quot;course.processing&quot; [class.selectable]&#x3D;&quot;toolService.toolViewOpen || courseService.courseSelectionOpen&quot;
+            [class.selected]&#x3D;&quot;courseService.selectedCourse &#x3D;&#x3D;&#x3D; course &amp;&amp; (toolService.toolViewOpen || courseService.courseSelectionOpen)&quot;
+            (click)&#x3D;&quot;courseService.selectedCourse &#x3D; course&quot;&gt;
+
+            &lt;div class&#x3D;&quot;ashen-text&quot;&gt;
+                {{course.course_code}}
+                &lt;span *ngIf&#x3D;&quot;course.issueItems.length &gt; 0&quot; class&#x3D;&quot;issue-badge&quot;&gt;{{getIssueCount(course, &#x27;untouched&#x27;)}}&lt;/span&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;course-action-container&quot; *ngIf&#x3D;&quot;courseService.courseSelectionOpen&quot;&gt;
+                &lt;i class&#x3D;&quot;course-action material-icons&quot; (click)&#x3D;&quot;openCourse(course.id)&quot;&gt;
+                    open_in_new
+                &lt;/i&gt;
+                &lt;i class&#x3D;&quot;course-action material-icons smooth-width danger-text&quot; (click)&#x3D;&quot;courseService.removeCourse(course)&quot;&gt;
+                    clear
+                &lt;/i&gt;
+            &lt;/div&gt;
+        &lt;/li&gt;
+        &lt;li class&#x3D;&quot;indicator&quot;&gt;&lt;/li&gt;
+
+        &lt;!-- Action Buttons --&gt;
+        &lt;div class&#x3D;&quot;action-button-container&quot;&gt;
+
+            &lt;!-- Edit Courses Button --&gt;
+            &lt;div class&#x3D;&quot;addButton&quot; *ngIf&#x3D;&quot;!toolService.toolViewOpen&quot; materialize&#x3D;&quot;tooltip&quot; data-position&#x3D;&quot;left&quot; data-tooltip&#x3D;&quot;Edit Courses&quot;&gt;
+                &lt;i class&#x3D;&quot;ashen-text material-icons no-select&quot; [class.pulseypulse]&#x3D;&quot;courseService.courses.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; !courseService.courseSelectionOpen&quot;
+                    (click)&#x3D;&quot;courseOverlay()&quot;&gt;edit&lt;/i&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Feedback Button --&gt;
+            &lt;div class&#x3D;&quot;addButton&quot; materialize&#x3D;&quot;tooltip&quot; data-position&#x3D;&quot;left&quot; data-tooltip&#x3D;&quot;Feedback&quot;&gt;
+                &lt;i class&#x3D;&quot;ashen-text material-icons no-select&quot; (click)&#x3D;&quot;openModal()&quot; materialize&#x3D;&quot;dropdown&quot;&gt;feedback&lt;/i&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Settings Button --&gt;
+            &lt;div class&#x3D;&quot;addButton&quot;&gt;
+                &lt;i materialize&#x3D;&quot;dropdown&quot; class&#x3D;&quot;dropdown-trigger ashen-text material-icons no-select&quot; [materializeParams]&#x3D;&quot;[{constrain_width: false, alignment: &#x27;left&#x27;, coverTrigger: false}]&quot;
+                    data-activates&#x3D;&quot;settingsDropdown&quot;&gt;settings&lt;/i&gt;
+                &lt;!-- Settings Menu Dropdown --&gt;
+                &lt;ul id&#x3D;&#x27;settingsDropdown&#x27; class&#x3D;&#x27;dropdown-content&#x27;&gt;
+                    &lt;li&gt;
+                        &lt;a (click)&#x3D;&quot;settingsService.setTheme(&#x27;classic&#x27;)&quot;&gt;
+                            &lt;i class&#x3D;&quot;material-icons&quot;&gt;invert_colors&lt;/i&gt;
+                            Classic Theme
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;a (click)&#x3D;&quot;settingsService.setTheme(&#x27;charcoal&#x27;)&quot;&gt;
+                            &lt;i class&#x3D;&quot;material-icons&quot;&gt;invert_colors&lt;/i&gt;
+                            Charcoal Theme
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;a (click)&#x3D;&quot;settingsService.setTheme(&#x27;navy&#x27;)&quot;&gt;
+                            &lt;i class&#x3D;&quot;material-icons&quot;&gt;invert_colors&lt;/i&gt;
+                            Navy Theme
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class&#x3D;&quot;divider&quot; tabindex&#x3D;&quot;-1&quot;&gt;&lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;a (click)&#x3D;&quot;settingsService.setLocalStorage(&#x27;goofMessages&#x27;)&quot;&gt;
+                            &lt;i class&#x3D;&quot;material-icons&quot;&gt;scatter_plot&lt;/i&gt;
+                            Turn Loading Messages {{settingsService.checkLocalStorage(&#x27;goofMessages&#x27;) ? &#x27;Off&#x27; : &#x27;On&#x27;}}
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;a href&#x3D;&quot;/release-notes&quot; target&#x3D;&quot;_blank&quot;&gt;
+                            &lt;i class&#x3D;&quot;material-icons&quot;&gt;notes&lt;/i&gt;
+                            Release Notes
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/ul&gt;
+
+    &lt;!-- Course Selection Overlay --&gt;
+    &lt;app-course-selection&gt;&lt;/app-course-selection&gt;
+
+    &lt;!-- Feedback Modal - Must stay beneath the main container --&gt;
+    &lt;div id&#x3D;&quot;feedbackModal&quot; class&#x3D;&quot;modal&quot; materialize&#x3D;&quot;modal&quot; [materializeActions]&#x3D;&quot;modalActions&quot;&gt;
+        &lt;div class&#x3D;&quot;modal-content no-padding&quot;&gt;
+            &lt;iframe src&#x3D;&quot;https://docs.google.com/forms/d/e/1FAIpQLSeMqVujrTfgj056YfvnhtOWEKB3Y1-Ziyp73JB0yqNjx0cwyg/viewform?embedded&#x3D;true&quot;
+                frameborder&#x3D;&quot;0&quot; marginheight&#x3D;&quot;0&quot; marginwidth&#x3D;&quot;0&quot;&gt;Loading...&lt;/iframe&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="tabs-container">    <ul materialize class="tabs navy flex-container">        <li *ngFor="let course of courseService.courses" class="tab" [class.pulseypulse]="course.processing" [class.selectable]="toolService.toolViewOpen || courseService.courseSelectionOpen"            [class.selected]="courseService.selectedCourse === course && (toolService.toolViewOpen || courseService.courseSelectionOpen)"            (click)="courseService.selectedCourse = course">            <div class="ashen-text">                {{course.course_code}}                <span *ngIf="course.issueItems.length > 0" class="issue-badge">{{getIssueCount(course, \'untouched\')}}</span>            </div>            <div class="course-action-container" *ngIf="courseService.courseSelectionOpen">                <i class="course-action material-icons" (click)="openCourse(course.id)">                    open_in_new                </i>                <i class="course-action material-icons smooth-width danger-text" (click)="courseService.removeCourse(course)">                    clear                </i>            </div>        </li>        <li class="indicator"></li>        <!-- Action Buttons -->        <div class="action-button-container">            <!-- Edit Courses Button -->            <div class="addButton" *ngIf="!toolService.toolViewOpen" materialize="tooltip" data-position="left" data-tooltip="Edit Courses">                <i class="ashen-text material-icons no-select" [class.pulseypulse]="courseService.courses.length === 0 && !courseService.courseSelectionOpen"                    (click)="courseOverlay()">edit</i>            </div>            <!-- Feedback Button -->            <div class="addButton" materialize="tooltip" data-position="left" data-tooltip="Feedback">                <i class="ashen-text material-icons no-select" (click)="openModal()" materialize="dropdown">feedback</i>            </div>            <!-- Settings Button -->            <div class="addButton">                <i materialize="dropdown" class="dropdown-trigger ashen-text material-icons no-select" [materializeParams]="[{constrain_width: false, alignment: \'left\', coverTrigger: false}]"                    data-activates="settingsDropdown">settings</i>                <!-- Settings Menu Dropdown -->                <ul id=\'settingsDropdown\' class=\'dropdown-content\'>                    <li>                        <a (click)="settingsService.setTheme(\'classic\')">                            <i class="material-icons">invert_colors</i>                            Classic Theme                        </a>                    </li>                    <li>                        <a (click)="settingsService.setTheme(\'charcoal\')">                            <i class="material-icons">invert_colors</i>                            Charcoal Theme                        </a>                    </li>                    <li>                        <a (click)="settingsService.setTheme(\'navy\')">                            <i class="material-icons">invert_colors</i>                            Navy Theme                        </a>                    </li>                    <li class="divider" tabindex="-1"></li>                    <li>                        <a (click)="settingsService.setLocalStorage(\'goofMessages\')">                            <i class="material-icons">scatter_plot</i>                            Turn Loading Messages {{settingsService.checkLocalStorage(\'goofMessages\') ? \'Off\' : \'On\'}}                        </a>                    </li>                    <li>                        <a href="/release-notes" target="_blank">                            <i class="material-icons">notes</i>                            Release Notes                        </a>                    </li>                </ul>            </div>        </div>    </ul>    <!-- Course Selection Overlay -->    <app-course-selection></app-course-selection>    <!-- Feedback Modal - Must stay beneath the main container -->    <div id="feedbackModal" class="modal" materialize="modal" [materializeActions]="modalActions">        <div class="modal-content no-padding">            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeMqVujrTfgj056YfvnhtOWEKB3Y1-Ziyp73JB0yqNjx0cwyg/viewform?embedded=true"                frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>        </div>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CategoriesComponent', 'selector': 'app-categories'},{'name': 'CodeEditorComponent', 'selector': 'app-code-editor'},{'name': 'CourseSelectionComponent', 'selector': 'app-course-selection'},{'name': 'CourseTabsComponent', 'selector': 'app-course-tabs'},{'name': 'ErrorPageComponent', 'selector': 'app-error-page'},{'name': 'IssueCardComponent', 'selector': 'app-issue-card'},{'name': 'IssueContainerComponent', 'selector': 'app-issue-container'},{'name': 'IssueDetailsComponent', 'selector': 'app-issue-details'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueNavComponent', 'selector': 'app-issue-nav'},{'name': 'OptionsViewComponent', 'selector': 'app-options-view'},{'name': 'StatBadgeComponent', 'selector': 'app-stat-badge'},{'name': 'ToolSelectionComponent', 'selector': 'app-tool-selection'},{'name': 'ToolViewComponent', 'selector': 'app-tool-view'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CourseTabsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+        <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CourseTabsComponent.html';
+        </script>
+
+       <script src="../js/search/search.js"></script>
+       <script src="../js/search/lunr.min.js"></script>
+       <script src="../js/search/search-lunr.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+       <script src="../js/search/search_index.js"></script>
+
+
+    </body>
+</html>
