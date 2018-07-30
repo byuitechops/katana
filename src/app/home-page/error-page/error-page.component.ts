@@ -12,7 +12,7 @@ export class ErrorPageComponent {
     /** **********************************************************
      * Constructor
      * @param katanaService Collects errors in Katana and allows
-     * them to be read and displayed to the user. Being used in 
+     * them to be read and displayed to the user. Used in 
      * error-page.component.html (i.e. DO NOT DELETE)
      ************************************************************/
     constructor(private katanaService: KatanaService) { }
