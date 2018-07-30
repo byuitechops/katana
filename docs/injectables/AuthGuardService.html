@@ -1,0 +1,1439 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Katana</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Katana</a>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+            <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+            <nav>
+
+    <ul class="list">
+
+        <li class="title">
+            <a href="index.html" data-type="index-link">Katana</a>
+        </li>
+
+        <li class="divider"></li>
+
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="index.html"><span class="fa fa-home"></span>Getting started</a>
+            <ul class="links">
+                    <li class="link">
+                        <a 
+                            
+                             href="overview.html" 
+                             href="overview.html" 
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-th"></span>Overview
+                        </a>
+                    </li>
+                    <li class="link">
+                      <a href="index.html" data-type="chapter-link"><span class="fa fa-file-text-o"></span>README</a>
+                    </li>
+                    <li class="link">
+                        <a href="dependencies.html"
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-list"></span>Dependencies
+                        </a>
+                    </li>
+            </ul>
+        </li>
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#xs-additional-pages"
+                >
+                <span class="fa fa-fw fa-book"></span>
+                <span>Additional documentation</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="xs-additional-pages"
+                >
+                    <li class="link ">
+                        <a href="additional-documentation/setup.html" data-type="entity-link" data-context-id="additional">Setup</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/setup/setting-up-firebase.html" data-type="entity-link" data-context-id="additional">Setting Up Firebase</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/setup/node-tools.html" data-type="entity-link" data-context-id="additional">Node Tools</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/setup/enabling-accounts-on-firebase.html" data-type="entity-link" data-context-id="additional">Enabling Accounts on Firebase</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/server-architecture.html" data-type="entity-link" data-context-id="additional">Server Architecture</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/server-endpoints.html" data-type="entity-link" data-context-id="additional">Server Endpoints</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/discover-&amp;-fix-workflow.html" data-type="entity-link" data-context-id="additional">Discover &amp; Fix Workflow</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/data-flow-diagram.html" data-type="entity-link" data-context-id="additional">Data Flow Diagram</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/high-level-overview.html" data-type="entity-link" data-context-id="additional">High Level Overview</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/firebase.html" data-type="entity-link" data-context-id="additional">Firebase</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-authentication.html" data-type="entity-link" data-context-id="additional">Firebase Authentication</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/database-structure.html" data-type="entity-link" data-context-id="additional">Database Structure</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-wrapper.html" data-type="entity-link" data-context-id="additional">Firebase Wrapper</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-functions.html" data-type="entity-link" data-context-id="additional">Firebase Functions</a>
+                    </li>
+            </ul>
+        </li>
+
+        <li class="chapter modules">
+            <a data-type="chapter-link" href="modules.html">
+                <div class="menu-toggler linked" data-toggle="collapse"
+                        data-target="#xs-modules-links"
+                >
+                    <span class="fa fa-fw fa-archive"></span>
+                    <span class="link-name">Modules</span>
+                    <span class="fa fa-angle-down"></span>
+                </div>
+            </a>
+            <ul class="links collapse"
+                    id="xs-modules-links"
+                >
+                    <li class="link">
+                        <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+                                    >
+                                        <li class="link">
+                                            <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-injectables-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+                                    >
+                                    <span class="fa fa-fw fa-long-arrow-down"></span>
+                                    <span>Injectables</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-injectables-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+                                    >
+                                        <li class="link">
+                                            <a href="injectables/AuthGuardService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>AuthGuardService</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/CourseTabsModule.html" data-type="entity-link">CourseTabsModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-CourseTabsModule-f04b7bf38543bb0ba5835558357d5aa2"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-CourseTabsModule-f04b7bf38543bb0ba5835558357d5aa2"
+                                    >
+                                        <li class="link">
+                                            <a href="components/CourseSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSelectionComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CourseTabsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseTabsComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/HomePageModule.html" data-type="entity-link">HomePageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-HomePageModule-e069b53025a3e13b5110ed17b9056650"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-HomePageModule-e069b53025a3e13b5110ed17b9056650"
+                                    >
+                                        <li class="link">
+                                            <a href="components/BreadcrumbsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">BreadcrumbsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CategoriesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CategoriesComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ErrorPageComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ErrorPageComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/OptionsViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">OptionsViewComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolSelectionComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/ToolPageModule.html" data-type="entity-link">ToolPageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-ToolPageModule-fac3be8b4bc5d290e972aab09cd32b8a"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-ToolPageModule-fac3be8b4bc5d290e972aab09cd32b8a"
+                                    >
+                                        <li class="link">
+                                            <a href="components/CodeEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CodeEditorComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueCardComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueContainerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueContainerComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueDetailsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueDetailsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueListComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueNavComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/StatBadgeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">StatBadgeComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolViewComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+            </ul>
+        </li>
+
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#xs-classes-links"
+                >
+                <span class="fa fa-fw fa-file-code-o"></span>
+                <span>Classes</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="xs-classes-links"
+                >
+                    <li class="link">
+                        <a href="classes/OptionModel.html" data-type="entity-link">OptionModel</a>
+                    </li>
+            </ul>
+        </li>
+
+                <li class="chapter">
+                    <div class="simple menu-toggler" data-toggle="collapse"
+                            data-target="#xs-injectables-links"
+                        >
+                        <span class="fa fa-fw fa-long-arrow-down"></span>
+                        <span>Injectables</span>
+                        <span class="fa fa-angle-down"></span>
+                    </div>
+                    <ul class="links collapse"
+                            id="xs-injectables-links"
+                        >
+                            <li class="link">
+                                <a href="injectables/AuthGuardService.html" data-type="entity-link">AuthGuardService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/CourseService.html" data-type="entity-link">CourseService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/KatanaService.html" data-type="entity-link">KatanaService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/SettingsService.html" data-type="entity-link">SettingsService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/ToastService.html" data-type="entity-link">ToastService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/ToolService.html" data-type="entity-link">ToolService</a>
+                            </li>
+                    </ul>
+                </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#xs-interfaces-links"
+                >
+                <span class="fa fa-fw fa-info"></span>
+                <span>Interfaces</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="xs-interfaces-links"
+                >
+                    <li class="link">
+                        <a href="interfaces/Category.html" data-type="entity-link">Category</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Course.html" data-type="entity-link">Course</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/DiscoverOption.html" data-type="entity-link">DiscoverOption</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/EditorTab.html" data-type="entity-link">EditorTab</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/FixOption.html" data-type="entity-link">FixOption</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Issue.html" data-type="entity-link">Issue</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/IssueItem.html" data-type="entity-link">IssueItem</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Tool.html" data-type="entity-link">Tool</a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#xs-miscellaneous-links"
+                >
+                <span class="fa fa-fw fa-cubes"></span>
+                <span>Miscellaneous</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="xs-miscellaneous-links"
+                >
+                    <li class="link">
+                      <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="coverage.html"><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
+        </li>
+
+
+    </ul>
+
+</nav>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <nav>
+
+    <ul class="list">
+
+        <li class="title">
+            <a href="index.html" data-type="index-link">Katana</a>
+        </li>
+
+        <li class="divider"></li>
+
+            <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="index.html"><span class="fa fa-home"></span>Getting started</a>
+            <ul class="links">
+                    <li class="link">
+                        <a 
+                            
+                             href="overview.html" 
+                             href="overview.html" 
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-th"></span>Overview
+                        </a>
+                    </li>
+                    <li class="link">
+                      <a href="index.html" data-type="chapter-link"><span class="fa fa-file-text-o"></span>README</a>
+                    </li>
+                    <li class="link">
+                        <a href="dependencies.html"
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-list"></span>Dependencies
+                        </a>
+                    </li>
+            </ul>
+        </li>
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#additional-pages"
+>
+                <span class="fa fa-fw fa-book"></span>
+                <span>Additional documentation</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="additional-pages"
+>
+                    <li class="link ">
+                        <a href="additional-documentation/setup.html" data-type="entity-link" data-context-id="additional">Setup</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/setup/setting-up-firebase.html" data-type="entity-link" data-context-id="additional">Setting Up Firebase</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/setup/node-tools.html" data-type="entity-link" data-context-id="additional">Node Tools</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/setup/enabling-accounts-on-firebase.html" data-type="entity-link" data-context-id="additional">Enabling Accounts on Firebase</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/server-architecture.html" data-type="entity-link" data-context-id="additional">Server Architecture</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/server-endpoints.html" data-type="entity-link" data-context-id="additional">Server Endpoints</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/discover-&amp;-fix-workflow.html" data-type="entity-link" data-context-id="additional">Discover &amp; Fix Workflow</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/data-flow-diagram.html" data-type="entity-link" data-context-id="additional">Data Flow Diagram</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/server-architecture/high-level-overview.html" data-type="entity-link" data-context-id="additional">High Level Overview</a>
+                    </li>
+                    <li class="link ">
+                        <a href="additional-documentation/firebase.html" data-type="entity-link" data-context-id="additional">Firebase</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-authentication.html" data-type="entity-link" data-context-id="additional">Firebase Authentication</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/database-structure.html" data-type="entity-link" data-context-id="additional">Database Structure</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-wrapper.html" data-type="entity-link" data-context-id="additional">Firebase Wrapper</a>
+                    </li>
+                    <li class="link for-chapter2">
+                        <a href="additional-documentation/firebase/firebase-functions.html" data-type="entity-link" data-context-id="additional">Firebase Functions</a>
+                    </li>
+            </ul>
+        </li>
+
+        <li class="chapter modules">
+            <a data-type="chapter-link" href="modules.html">
+                <div class="menu-toggler linked" data-toggle="collapse"
+                        data-target="#modules-links"
+                >
+                    <span class="fa fa-fw fa-archive"></span>
+                    <span class="link-name">Modules</span>
+                    <span class="fa fa-angle-down"></span>
+                </div>
+            </a>
+            <ul class="links collapse"
+                    id="modules-links"
+>
+                    <li class="link">
+                        <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+>
+                                        <li class="link">
+                                            <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#injectables-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+>
+                                    <span class="fa fa-fw fa-long-arrow-down"></span>
+                                    <span>Injectables</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="injectables-links-module-AppModule-1b3fc127df4d19cef67f1255a006f59b"
+>
+                                        <li class="link">
+                                            <a href="injectables/AuthGuardService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>AuthGuardService</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/CourseTabsModule.html" data-type="entity-link">CourseTabsModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-CourseTabsModule-f04b7bf38543bb0ba5835558357d5aa2"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-CourseTabsModule-f04b7bf38543bb0ba5835558357d5aa2"
+>
+                                        <li class="link">
+                                            <a href="components/CourseSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseSelectionComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CourseTabsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CourseTabsComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/HomePageModule.html" data-type="entity-link">HomePageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-HomePageModule-e069b53025a3e13b5110ed17b9056650"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-HomePageModule-e069b53025a3e13b5110ed17b9056650"
+>
+                                        <li class="link">
+                                            <a href="components/BreadcrumbsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">BreadcrumbsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/CategoriesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CategoriesComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ErrorPageComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ErrorPageComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/OptionsViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">OptionsViewComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolSelectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolSelectionComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
+                        <a href="modules/ToolPageModule.html" data-type="entity-link">ToolPageModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-ToolPageModule-fac3be8b4bc5d290e972aab09cd32b8a"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-ToolPageModule-fac3be8b4bc5d290e972aab09cd32b8a"
+>
+                                        <li class="link">
+                                            <a href="components/CodeEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">CodeEditorComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueCardComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueContainerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueContainerComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueDetailsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueDetailsComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueListComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/IssueNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">IssueNavComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/StatBadgeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">StatBadgeComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/ToolViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolViewComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+            </ul>
+        </li>
+
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#classes-links"
+>
+                <span class="fa fa-fw fa-file-code-o"></span>
+                <span>Classes</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="classes-links"
+>
+                    <li class="link">
+                        <a href="classes/OptionModel.html" data-type="entity-link">OptionModel</a>
+                    </li>
+            </ul>
+        </li>
+
+                <li class="chapter">
+                    <div class="simple menu-toggler" data-toggle="collapse"
+                            data-target="#injectables-links"
+>
+                        <span class="fa fa-fw fa-long-arrow-down"></span>
+                        <span>Injectables</span>
+                        <span class="fa fa-angle-down"></span>
+                    </div>
+                    <ul class="links collapse"
+                            id="injectables-links"
+>
+                            <li class="link">
+                                <a href="injectables/AuthGuardService.html" data-type="entity-link">AuthGuardService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/CourseService.html" data-type="entity-link">CourseService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/KatanaService.html" data-type="entity-link">KatanaService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/SettingsService.html" data-type="entity-link">SettingsService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/ToastService.html" data-type="entity-link">ToastService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/ToolService.html" data-type="entity-link">ToolService</a>
+                            </li>
+                    </ul>
+                </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#interfaces-links"
+>
+                <span class="fa fa-fw fa-info"></span>
+                <span>Interfaces</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="interfaces-links"
+>
+                    <li class="link">
+                        <a href="interfaces/Category.html" data-type="entity-link">Category</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Course.html" data-type="entity-link">Course</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/DiscoverOption.html" data-type="entity-link">DiscoverOption</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/EditorTab.html" data-type="entity-link">EditorTab</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/FixOption.html" data-type="entity-link">FixOption</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Issue.html" data-type="entity-link">Issue</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/IssueItem.html" data-type="entity-link">IssueItem</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Tool.html" data-type="entity-link">Tool</a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#miscellaneous-links"
+>
+                <span class="fa fa-fw fa-cubes"></span>
+                <span>Miscellaneous</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="miscellaneous-links"
+>
+                    <li class="link">
+                      <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="coverage.html"><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
+        </li>
+
+
+    </ul>
+
+</nav>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>AuthGuardService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/authguard.service.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Verifies the user is correctly logged in with a valid
+Google BYUI account. Redirects the user to the Google
+login page as needed. Provides validation for the user
+to access various routes.</p>
+
+            </p>
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#afAuth">afAuth</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#router">router</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#user">user</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#userDetails">userDetails</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#canActivate">canActivate</a>
+                            </li>
+                            <li>
+                                <a href="#doGoogleLogin">doGoogleLogin</a>
+                            </li>
+                            <li>
+                                <a href="#retrieveToken">retrieveToken</a>
+                            </li>
+                            <li>
+                                <a href="#signOut">signOut</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(afAuth: AngularFireAuth, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/authguard.service.ts:30</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><hr>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>afAuth</td>
+                                                  
+                                                        <td>
+                                                                    <code>AngularFireAuth</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>angularfire2 - <a href="https://github.com/angular/angularfire2">https://github.com/angular/angularfire2</a></p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            no
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Used to verify location and navigate the user to new pages as needed</p>
+<hr>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="canActivate"></a>
+                        <span class="name">
+                            <b>
+                            canActivate
+                            </b>
+                            <a href="#canActivate"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>canActivate()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/authguard.service.ts:63</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><hr>
+<p>Used to prevent the user from navigating through Katana if they
+are not logged in with a valid google (byui) account.</p>
+<hr>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="doGoogleLogin"></a>
+                        <span class="name">
+                            <b>
+                            doGoogleLogin
+                            </b>
+                            <a href="#doGoogleLogin"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>doGoogleLogin()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/authguard.service.ts:71</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><hr>
+<p>Redirects the user to the google login page, where they sign in,
+and then are returned to Katana to have their credentials processed.</p>
+<hr>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="retrieveToken"></a>
+                        <span class="name">
+                            <b>
+                            retrieveToken
+                            </b>
+                            <a href="#retrieveToken"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>retrieveToken()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/authguard.service.ts:101</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><hr>
+<p>Retrieves the user&#39;s idToken for Firebase, so requests can be validated on the
+server.</p>
+<hr>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="signOut"></a>
+                        <span class="name">
+                            <b>
+                            signOut
+                            </b>
+                            <a href="#signOut"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>signOut()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/authguard.service.ts:91</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><hr>
+<p>Signs the user out of Katana and redirects them to the Google login
+page.</p>
+<hr>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="afAuth"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            afAuth
+                            </b>
+                            <a href="#afAuth"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon fa fa-reset"></span><code>afAuth:     <code>AngularFireAuth</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>AngularFireAuth</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/authguard.service.ts:36</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">angularfire2 - https://github.com/angular/angularfire2</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="router"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            router
+                            </b>
+                            <a href="#router"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon fa fa-reset"></span><code>router:     <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/authguard.service.ts:37</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">Used to verify location and navigate the user to new pages as needed*********************************************************************************</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="user"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            user
+                            </b>
+                            <a href="#user"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon fa fa-reset"></span><code>user:     <code>Observable&lt;User&gt;</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Observable&lt;User&gt;</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/authguard.service.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><hr>
+<p>The currently logged in user</p>
+<hr>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userDetails"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            userDetails
+                            </b>
+                            <a href="#userDetails"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon fa fa-reset"></span><code>userDetails:     <code>User</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>User</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/authguard.service.ts:25</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><hr>
+<p>The currently logged in user</p>
+<hr>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Output, EventEmitter } from &#x27;@angular/core&#x27;;
+import { Router, CanActivate } from &#x27;@angular/router&#x27;;
+import { AngularFireAuth } from &#x27;angularfire2/auth&#x27;;
+import { User } from &#x27;firebase&#x27;;
+import { auth } from &#x27;firebase&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+
+/**
+ * Verifies the user is correctly logged in with a valid
+ * Google BYUI account. Redirects the user to the Google
+ * login page as needed. Provides validation for the user
+ * to access various routes.
+ */
+@Injectable()
+export class AuthGuardService implements CanActivate {
+
+    /** *****************************
+     *  The currently logged in user
+     *******************************/
+    private user: Observable&lt;User&gt;;
+
+    /** *****************************
+     *  The currently logged in user
+     *******************************/
+    private userDetails: User &#x3D; null;
+
+    /**
+     * Event emitted when auth status changes
+     */
+    @Output() authState &#x3D; new EventEmitter&lt;boolean&gt;();
+
+    /** *********************************************************************************
+     * @param afAuth angularfire2 - https://github.com/angular/angularfire2
+     * @param router Used to verify location and navigate the user to new pages as needed
+     ***********************************************************************************/
+    constructor(public afAuth: AngularFireAuth,
+        public router: Router) {
+        this.user &#x3D; afAuth.authState;
+        this.authState.emit(false);
+
+        auth().getRedirectResult()
+            .catch(console.error);
+
+        this.user.subscribe(user &#x3D;&gt; {
+            if (user) {
+                auth().updateCurrentUser(user);
+                this.userDetails &#x3D; user;
+            } else if (!user) {
+                if (this.userDetails) {
+                    this.userDetails &#x3D; null;
+                }
+                this.doGoogleLogin();
+            }
+            this.authState.emit(this.canActivate());
+            this.router.navigate([&#x27;/&#x27;]);
+        });
+    }
+
+    /** *********************************************************************************
+     * Used to prevent the user from navigating through Katana if they
+     * are not logged in with a valid google (byui) account.
+     ***********************************************************************************/
+    canActivate(): boolean {
+        return (this.userDetails !&#x3D;&#x3D; null &amp;&amp; this.userDetails.email.includes(&#x27;@byui.edu&#x27;));
+    }
+
+    /** *********************************************************************************
+     * Redirects the user to the google login page, where they sign in,
+     * and then are returned to Katana to have their credentials processed.
+     ***********************************************************************************/
+    doGoogleLogin() {
+        return new Promise&lt;any&gt;((resolve, reject) &#x3D;&gt; {
+            const provider &#x3D; new auth.GoogleAuthProvider();
+            provider.addScope(&#x27;profile&#x27;);
+            provider.addScope(&#x27;email&#x27;);
+            auth().setPersistence(auth.Auth.Persistence.SESSION)
+                .then(() &#x3D;&gt; {
+                    this.afAuth.auth
+                        .signInWithRedirect(provider)
+                        .catch(function (error) {
+                            console.error(error);
+                        });
+                });
+        });
+    }
+
+    /** *********************************************************************************
+     * Signs the user out of Katana and redirects them to the Google login
+     * page.
+     ***********************************************************************************/
+    signOut() {
+        return auth().signOut()
+            .then(this.doGoogleLogin)
+            .catch(console.error);
+    }
+
+    /** *********************************************************************************
+     * Retrieves the user&#x27;s idToken for Firebase, so requests can be validated on the
+     * server.
+     ***********************************************************************************/
+    retrieveToken() {
+        return auth().currentUser.getIdToken(true)
+            .catch(console.error);
+    }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+        <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'AuthGuardService.html';
+        </script>
+
+       <script src="../js/search/search.js"></script>
+       <script src="../js/search/lunr.min.js"></script>
+       <script src="../js/search/search-lunr.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+       <script src="../js/search/search_index.js"></script>
+
+
+    </body>
+</html>

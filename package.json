@@ -5,7 +5,7 @@
     "scripts": {
         "ng": "ng",
         "start": "node server/server.js",
-        "docs": "compodoc -p src/tsconfig.app.json -s --theme material --hideGenerator -w --name Katana --toggleMenuItems [] --includes ./documentation/additional-documentation",
+        "docs": "compodoc -p src/tsconfig.app.json -s --output ./docs --theme material --hideGenerator -w --name Katana --toggleMenuItems [] --includes ./docs/additional-documentation",
         "fullbuild": "ng build && node server/server.js",
         "build": "ng build",
         "test": "ng test",
