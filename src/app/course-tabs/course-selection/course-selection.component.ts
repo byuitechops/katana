@@ -127,4 +127,9 @@ export class CourseSelectionComponent {
     isAdded(course: any) {
         return this.courseService.courses.find(c => c.id === course.id) !== undefined;
     }
+
+    /** Removes all courses from the sidebar. */
+    removeAll() {
+        this.courseService.courses.forEach(c => this.courseService.removeCourse(c));
+    }
 }
