@@ -11,7 +11,7 @@ function discover(canvasItem, issueItem, options) {
     let $ = cheerio.load(canvasItem.getHtml());
 
     // Use cheerio to get all the elements that have the matching class name
-    let className = options.cssClassName.replace(' ', '.');
+    let className = options.cssClassName.replace(/ /g, '.');
     let matchedElements = $(`.${className}`);
     // Loop through each matched element and create an issue item
     matchedElements.each((i, elem) => {
@@ -56,17 +56,26 @@ function fix(canvasItem, issueItem, options) {
             if (canvasItem.getHtml()) {
                 // Load the Canvas item
                 let $ = cheerio.load(canvasItem.getHtml());
-                let className = options.cssClassName;
+                let className = options.cssClassName.replace(/ /g, '.');
                 let matchedElements = $(`.${className}`);
                 // Loop through each issue and apply each new class
                 issueItem.issues.forEach(issue => {
                     let newClassName = issue.optionValues.newClassName;
                     let element = $(matchedElements[issue.details.i]);
 
-                    $(element).removeClass(className);
-                    $(element).addClass(newClassName);
-                    issue.status = 'fixed';
+                    // Check if the user wants to edit all class names, or just the searched class names
+                    if (issue.optionValues.replaceModify === 'Replace All Classes') {
+                        // Replace the old class name(s) with the new class name(s)
+                        element.attr('class', newClassName);
+                        issue.status = 'fixed';
+                    } else {
+                        // Remove the searched class name(s) and add the new class name(s)
+                        element.removeClass(options.cssClassName);
+                        element.addClass(newClassName);
+                        issue.status = 'fixed';
+                    }
                 });
+                // Update the HTML on the Canvas item
                 canvasItem.setHtml($.html());
                 resolve();
             }
@@ -108,6 +117,13 @@ module.exports = {
         description: 'Please enter the new class name for this element. This will only change the class that matches exactly what you searched for.',
         type: 'text',
         choices: [],
+        required: true
+    }, {
+        title: 'Replace/Modify',
+        key: 'replaceModify',
+        description: 'Please select how you would like to alter the class.',
+        type: 'dropdown',
+        choices: ['', 'Replace All Classes', 'Modify Searched Class(es)'],
         required: true
     }],
     editorTabs: [{
