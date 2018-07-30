@@ -29,7 +29,7 @@ function discover(canvasItem, issueItem, options) {
             classHtml += ` ${attr}="${$(elem)[0].attribs[attr]}"`;
         }
         classHtml += '>';
-        if (!voidElements.find(vElement => vElement === $(elem)[0].name)) {
+        if (!voidElements.includes($(elem)[0].name)) {
             classHtml += `${$(elem).html()}</${$(elem)[0].name}>`;
         }
 
