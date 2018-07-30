@@ -204,13 +204,16 @@ export class SettingsService {
     /**
      * @ignore
      */
-    buildProcessingMessage() {
-        function getRandom(arr) {
-            let randy = Math.floor(Math.random() * arr.length);
-            return arr[randy];
-        }
+    getRandom(arr) {
+        let randy = Math.floor(Math.random() * arr.length);
+        return arr[randy];
+    }
 
-        return `${getRandom(this.processingVerbs)} ${getRandom(this.processingAdjectives)} ${getRandom(this.processingNouns)}...`;
+    /**
+     * @ignore
+     */
+    buildProcessingMessage() {
+        return `${this.getRandom(this.processingVerbs)} ${this.getRandom(this.processingAdjectives)} ${this.getRandom(this.processingNouns)}...`;
     }
 
     /**

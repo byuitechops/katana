@@ -35,6 +35,15 @@
 .tabs .selected {
     background-color: var(--navy-light) !important;
 }
+.issue-badge {
+    padding: 2px 4px;
+    border-radius: 2px;
+    margin-left: 5px;
+    text-align: center;
+    font-size: 12px;
+    color: white;
+    background-color: var(--navy-dark);
+}
 
 /* Close/open in Canvas buttons on the tabs in edit mode */
 
@@ -88,13 +97,22 @@ ul.dropdown-content {
     width: auto !important;
     position: fixed !important;
     top: auto !important;
+    margin-top: 20px;
     left: auto !important;
     right: 20px !important;
+}
+
+ul.dropdown-content:hover {
+    background-color: white !important;
 }
 
 .dropdown-content a {
     color: var(--cobalt);
     padding: 14px 16px;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--ashen);
 }
 
 /* Animation used by the tabs when processing courses */

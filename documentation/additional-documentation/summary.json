@@ -1,6 +1,28 @@
 [
     {
-        "title": "Architecture",
+        "title": "Setup",
+        "file": "setup.md",
+        "children": [
+            {
+                "title": "Setting Up Firebase",
+                "file": "setup/setting_up_firebase.md"
+            },
+            {
+                "title": "Development Environment",
+                "file": "setup/development_environment.md"
+            },
+            {
+                "title": "Node Tools",
+                "file": "setup/node_tools.md"
+            },
+            {
+                "title": "Enabling Accounts on Firebase",
+                "file": "setup/firebase_enabling_accounts.md"
+            }
+        ]
+    },
+    {
+        "title": "Server Architecture",
         "file": "architecture.md",
         "children": [
             {
@@ -18,28 +40,6 @@
             {
                 "title": "High Level Overview",
                 "file": "architecture/high_level_overview.md"
-            }
-        ]
-    },
-    {
-        "title": "Setup",
-        "file": "setup.md",
-        "children": [
-            {
-                "title": "Setting Up Firebase",
-                "file": "setup/node_tools.md"
-            },
-            {
-                "title": "Development Environment",
-                "file": "setup/development_environment.md"
-            },
-            {
-                "title": "Node Tools",
-                "file": "setup/node_tools.md"
-            },
-            {
-                "title": "Enabling Accounts on Firebase",
-                "file": "setup/firebase_enabling_accounts.md"
             }
         ]
     },
