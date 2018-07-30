@@ -12,6 +12,4 @@ module.exports = {
     'css_classes': new NodeTool(require('./node_tools/css_classes.js')),
     'due_dates': new NodeTool(require('./node_tools/due_dates.js')),
     'html_general_editor': new NodeTool(require('./node_tools/html_general_editor.js')),
-    // 'broken_images': new NodeTool(require('./node_tools/broken_images.js')),
-    //'bullet_point_formatter': new NodeTool(require('./node_tools/bullet_point_formatter.js')),
 };

@@ -1,16 +1,17 @@
 {
-  "console": {
-    "requests": false,
-    "database_actions": false,
-    "user_traffic": true
-  },
-  "firebase": {
-    "auth": "./auth.json",
-    "statistics": false
-  },
-  "server": {
-    "port": 8000,
-    "address": "",
-    "run-as-user": true
-  }
+    "console": {
+        "requests": false,
+        "database_actions": false,
+        "user_traffic": true
+    },
+    "firebase": {
+        "auth": "./auth.json",
+        "statistics": false,
+        "log_tools": true
+    },
+    "server": {
+        "port": 8000,
+        "address": "",
+        "run-as-user": true
+    }
 }

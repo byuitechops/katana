@@ -34,6 +34,7 @@ module.exports = class NodeTool {
                 if (issue.html && Object.keys(issue.html).length > 0) {
                     Object.keys(issue.html).forEach(key => {
                         if (issue.html[key] !== undefined) {
+                            // TODO: Strip out <html>, <body>, <head> tags as well, but without Cheerio.js because Cheerio puts those tags back on
                             issue.html[key] = issue.html[key].replace(/((<link rel)|(<script src))=".*amazonaws.*((.css")|(script))>/g, '');
                         }
                     });
