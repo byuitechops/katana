@@ -1,6 +1,8 @@
 # Katana
 
-This tool is built to interface with Canvas, a Learning Management System built by Instructure. It provides the framework for a development team to build and deploy mass-maintenance tools. It *is not* build by Instructure. It was built by Brigham Young University - Idaho, and is maintained by them.
+If you are on Github, it is recommended you view the full documentation [HERE](https://byuitechops.github.io/katana/docs/index.html).
+
+This tool is built to interface with Canvas, a Learning Management System built by Instructure. It provides the framework for a development team to build and deploy mass-maintenance tools. It *is not* built by Instructure. It was built by Brigham Young University - Idaho, and is maintained by them.
 
 ## Setup
 
@@ -35,15 +37,15 @@ It can then be accessed via `localhost:8000` (or whichever port you specify in `
 
 # Documentation
 
-### Setup
+### Additional Setup
 [Set up a Node Tool](additional-documentation/setup/node-tools.html)<br />
-[Set up Firebase](additional-documentation/setup/settings-up-firebase.html)<br />
+[Set up Firebase](additional-documentation/setup/setting-up-firebase.html)<br />
+[Enabling Accounts on Firebase](additional-documentation/setup/enabling-accounts-on-firebase.html)<br />
 
 ### Client Architecture (Angular)
-<!-- This will need to point to Compodocs when it is set up -->
-[LinkName](link) 
+[Angular Structure Documentation](https://byuitechops.github.io/katana/documentation/index.html) 
 
-### Server Architecture
+### Server Architecture (Express)
 [LinkName](./documentation/additional-documentation/architecture.html)<br />
 
 

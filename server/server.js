@@ -4,7 +4,7 @@ if (!process.env.canvas_api_token) {
     return;
 }
 
-/* Dependencies */
+/** Dependencies */
 const path = require('path');
 const express = require('express');
 const chalk = require('chalk');
@@ -22,34 +22,34 @@ if (settings.console.requests === true) {
 app.use(express.static('dist/katana'));
 app.use(bodyParser.json());
 
-/* Serves the homepage */
+/** Serves the homepage */
 app.get(['/', '/home*', '/categories*'], (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/katana/index.html'));
 });
 
-/* Serves the release notes */
+/** Serves the release notes */
 app.get('/release-notes', (req, res) => {
     res.sendFile(path.join(__dirname, './release_notes.html'));
 });
 
 /********************************************************** API ROUTES ***********************************************************/
 
-/* Express Modules */
+/** Express Modules */
 const authGuard = require('./auth_guard.js');
 
-/* Katana modules */
+/** Katana modules */
 const firebaseWrapper = require('./firebase_wrapper.js');
 const logActions = require('./logging.js');
 const node_tools = require('./node_tools.js');
 const course_retrieval = require('./course_retrieval.js');
 
-/* Initializes the firebase */
+/** Initializes the firebase */
 firebaseWrapper.initializeFirebase();
 
 var apiRouter = express.Router();
 apiRouter.use(authGuard);
 
-/*************************************************************************
+/** ***********************************************************************
  * Sends the list of courses searched for to the user.
  * @returns {courses[]} - List of courses that match the search criteria
  ************************************************************************/
@@ -64,7 +64,7 @@ apiRouter.post('/course-retrieval', (req, res) => {
         });
 });
 
-/*************************************************************************
+/** ***********************************************************************
  * Sends the list of tools to the client.
  * @returns {Tool[]} - List of tools available from the server
  ************************************************************************/
@@ -73,7 +73,7 @@ apiRouter.get('/tool-list', (req, res) => {
     res.send(toolArray);
 });
 
-/*************************************************************************
+/** ***********************************************************************
  * Sends the list of courses searched for to the user.
  * @returns {courses[]} - List of courses that match the search criteria
  ************************************************************************/
@@ -82,7 +82,7 @@ apiRouter.post('/user-status', (req, res) => {
     firebaseWrapper.userLog({email: req.body.userEmail, action: req.body.message});
 });
 
-/*************************************************************************
+/** ***********************************************************************
  * Handles the "issue discovery" sequence for Node Tools
  * @returns {Course} - The course provided in the message
  ************************************************************************/
@@ -132,7 +132,7 @@ apiRouter.ws('/tool/discover', (ws, req) => {
     ws.send(JSON.stringify({state: 'READY'}));
 });
 
-/*************************************************************************
+/** ***********************************************************************
  * Handles the "issue fix" sequence for Node Tools.
  * @returns {Course} - The course the tool ran on. Includes fixed IssueItems.
  ************************************************************************/
