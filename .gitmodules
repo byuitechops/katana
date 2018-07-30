@@ -1,0 +1,3 @@
+[submodule "katana-firebase-functions"]
+	path = katana-firebase-functions
+	url = https://github.com/byuitechops/katana-firebase-functions.git

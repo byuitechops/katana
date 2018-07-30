@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, ViewChild, ElementRef, EventEmitter }
 import { Issue } from '../../interfaces';
 
 /**
- * Integrates Ace code editor to allow viewing and editing HTML from an issue's canvas item
+ * Integrates the Ace code editor to allow viewing and editing HTML from an issue's canvas item.
  */
 @Component({
     selector: 'app-code-editor',
@@ -20,13 +20,16 @@ export class CodeEditorComponent implements OnInit {
 
     /**
      * If certain key words should be highlighted by the editor's
-     * search functionality, this should be passed as an input as
-     * a string. It will be converted into a regex no matter, so
-     * a regex string (to be passed into the RegExp constructor)
+     * search functionality, this should be passed as
+     * a string. It will be converted into a regex, so
+     * a regex string (to be passed into the RegExp constructor) 
      * can also be passed in.
      */
     @Input('highlight') highlight: string;
 
+    /**
+     * The issue the code editor is displaying code for.
+     */
     @Input('issue') issue: Issue;
 
     /**
@@ -102,7 +105,7 @@ export class CodeEditorComponent implements OnInit {
     /**
      * Sets the editor's session to the selected tab's session
      * @param tab The tab (and it's related info) to set as the
-     * editor's current session
+     * editor's current session.
      */
     setEditorSession(tab) {
         if (!tab.session) return;

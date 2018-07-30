@@ -5,12 +5,13 @@
     border: solid 1px var(--background-light);
     border-bottom: none;
     animation: 0.5s fadeIn;
+    margin-right: var(--scrollbar-offset);
 }
 
 /* Overwrites the card class from materialize */
 
 .issueContainer.card {
-    border-radius: 0;
+    border-radius: 2px;
 }
 
 /* Overwrites the card content class from materialize */

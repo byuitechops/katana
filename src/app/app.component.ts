@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Router, Event, NavigationEnd } from '@angular/router';
 import { CourseService } from './course.service';
-import { KatanaService } from './katana.service';
+import { KatanaService } from './server.service';
 import { ToastService } from './toast.service';
 import { ToolService } from './tool.service';
 import { AuthGuardService } from './authguard.service'; // Being used in app.component.html (i.e. DO NOT DELETE)
+import { SettingsService } from './settings.service';
 
 /**
  * This is the main component for the entire application.
@@ -19,7 +20,7 @@ import { AuthGuardService } from './authguard.service'; // Being used in app.com
 export class AppComponent {
 
     /**
-     * Constructor. This creates subscriptions to routes changes to adjust values
+     * Constructor. This creates subscriptions to route changes to adjust values
      * as needed. For example, if the user navigates to the tool view (i.e. they ran
      * a tool), then many values in various services are removed or reset to prevent
      * conflicting values between services.
@@ -33,14 +34,20 @@ export class AppComponent {
      * @param toolService Provides information and management for available tools.
      * @param toastService Provides toast notification functionality.
      * @param authGuardService Provides Firebase authentication functionality.
-     * Being used in app.component.html (i.e. DO NOT DELETE)
+     * Used in app.component.html (i.e. DO NOT DELETE).
      */
     constructor(private router: Router,
         private courseService: CourseService,
         private katanaService: KatanaService,
         private toolService: ToolService,
         private toastService: ToastService,
+        private settingsService: SettingsService,
         private authGuardService: AuthGuardService) {
+
+        // Set the theme
+        if (localStorage['katanaTheme']) {
+            settingsService.setTheme(localStorage['katanaTheme'])
+        }
 
         router.events.subscribe((event: Event) => {
             if (event instanceof NavigationEnd &&
@@ -56,9 +63,6 @@ export class AppComponent {
                     course.issueItems = [];
                     course.processing = false;
                 });
-
-                // document.documentElement.style.setProperty(`--course-sidebar-width`, '112px');
-                // document.documentElement.style.setProperty(`--course-chip-width`, '92px');
 
                 // Clear out the web sockets in case any are still running
                 katanaService.sockets.forEach(socket => socket.close());
@@ -80,8 +84,6 @@ export class AppComponent {
                 // Select the first course and adjust the bar width
                 if (courseService.courses.length > 0) {
                     courseService.selectedCourse = courseService.courses[0];
-                    // document.documentElement.style.setProperty(`--course-sidebar-width`, '340px');
-                    // document.documentElement.style.setProperty(`--course-chip-width`, '330px');
                 }
 
                 // Set the toolView tracking prop to true, all others off

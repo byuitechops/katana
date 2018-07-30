@@ -2,7 +2,7 @@ import { Component, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToolService } from '../../tool.service';
 import { CourseService } from '../../course.service';
-import { KatanaService } from '../../katana.service';
+import { KatanaService } from '../../server.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { FormGroup } from '@angular/forms';
 import { DiscoverOption } from '../../interfaces';
@@ -28,7 +28,7 @@ export class OptionsViewComponent {
      */
     optionModel: OptionModel;
     /**
-     * The {@link formGroup} to use for the form.
+     * The FormGroup to use for the form.
      */
     formGroup: FormGroup;
 
@@ -58,14 +58,14 @@ export class OptionsViewComponent {
      * Opens the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
      */
     openModal(): void {
-        this.modalActions.emit({ action: "modal", params: ['open'] });
+        this.modalActions.emit({ action: 'modal', params: ['open'] });
     }
 
     /**
      * Closes the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
      */
     closeModal(): void {
-        this.modalActions.emit({ action: "modal", params: ['close'] });
+        this.modalActions.emit({ action: 'modal', params: ['close'] });
     }
 
     /**

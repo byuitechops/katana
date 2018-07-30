@@ -1,0 +1,134 @@
+/* Overrides Materialize tab CSS */
+
+.tabs-container ::-webkit-scrollbar {
+    height: 5px;
+}
+
+.tabs {
+    height: var(--breadcrumbs-height) !important;
+}
+
+.tabs .tab {
+    display: inline-flex;
+    height: var(--breadcrumbs-height);
+    line-height: var(--breadcrumbs-height);
+    transition: all .1s ease-in-out;
+}
+
+.tabs .tab div {
+    padding: 0 24px;
+}
+
+.tabs .tab:not(.selectable):hover {
+    cursor: default;
+}
+
+.tabs .tab.selectable:hover {
+    background-color: var(--navy-light) !important;
+    cursor: pointer;
+}
+
+.tabs .indicator {
+    display: none !important;
+}
+
+.tabs .selected {
+    background-color: var(--navy-light) !important;
+}
+.issue-badge {
+    padding: 2px 4px;
+    border-radius: 2px;
+    margin-left: 5px;
+    text-align: center;
+    font-size: 12px;
+    color: white;
+    background-color: var(--navy-dark);
+}
+
+/* Close/open in Canvas buttons on the tabs in edit mode */
+
+.course-action-container {
+    margin-left: -40px;
+}
+
+.course-action {
+    color: var(--cobalt);
+    cursor: pointer;
+    line-height: var(--breadcrumbs-height) !important;
+    padding: 0 2px;
+    text-align: center;
+}
+
+.addButton {
+    background-color: var(--navy);
+    cursor: pointer;
+    height: calc(var(--breadcrumbs-height) + 1px);
+}
+
+/* Action buttons on the course tabs bar */
+
+.action-button-container {
+    display: flex;
+    margin-left: auto;
+}
+
+.addButton>i {
+    cursor: pointer;
+    line-height: var(--breadcrumbs-height);
+    padding: 0 20px;
+    transition: all .1s ease-in-out;
+}
+
+.addButton>i:hover {
+    background-color: var(--navy-light);
+}
+
+/* Adjusts the size for the feedback modal */
+
+.modal-content iframe {
+    width: 100%;
+    height: 70vh;
+}
+
+/* Fixes some CSS issues with the settings menu */
+
+ul.dropdown-content {
+    background-color: white !important;
+    width: auto !important;
+    position: fixed !important;
+    top: auto !important;
+    margin-top: 20px;
+    left: auto !important;
+    right: 20px !important;
+}
+
+ul.dropdown-content:hover {
+    background-color: white !important;
+}
+
+.dropdown-content a {
+    color: var(--cobalt);
+    padding: 14px 16px;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--ashen);
+}
+
+/* Animation used by the tabs when processing courses */
+
+.pulseypulse {
+    animation: pulseypulse 2s infinite ease-in-out;
+}
+
+@keyframes pulseypulse {
+	0% {
+        color: var(--ashen);
+    }
+    75% {
+        color: var(--cobalt);
+    }
+    100% {
+        color: var(--ashen);
+	}
+}

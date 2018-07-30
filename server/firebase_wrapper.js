@@ -30,7 +30,7 @@ function _log(collectionTitle, data) {
     data.timestamp = new Date();
 
     // Based on settings, console logs what's being logged in the database
-    if (settings.console['database-actions'] === true) {
+    if (settings.console['database_actions'] === true) {
         let str = Object.keys(data).reduce((acc, key) => {
             let dataItem = data[key];
             if (typeof data[key] === 'string') {
