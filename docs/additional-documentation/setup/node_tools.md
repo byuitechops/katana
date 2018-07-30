@@ -9,12 +9,12 @@ Each Node Tool resides within it's own file, located in the `/server/node_tools`
 Each node tool will follow the same process and have the same settings/options available. 
 These processes, settings, and options are explained below.
 
-## Settings Object
-The settings object determines the tool's basic information such as name, description, icon, tool type, and more. 
+## Tool Object - i.e. Tool Settings
+The tool object determines the tool's basic information such as name, description, icon, tool type, and more. 
 It also determines the tool's behavior such as which items in Canvas should be pulled and altered.
-The settings object should be located at the bottom of each individual tool.
+The tool object should be located at the bottom of each individual tool.
 
-The following table describes the settings object in detail.
+The following table describes the tool object in detail.
 Properties that are object arrays (an array of objects) are explained in detail below the table.
 
 |Object Key|Type|Options|Description|Example|Required|
@@ -298,13 +298,13 @@ module.exports = {
 ## Creating a Tool
 The process to make a new tool is fairly simple and straightforward:
 1. Under `katana/server/node_tools/` copy the contents of `node_tool_template.js` into a new file under the same directory
-2. After you have created your new tool file with the template, get started on the logic of the tool by filling out the `settings object` at the bottom of the file, as discussed earlier in this document
-3. Open `katana/server/node_tools.js` where you will see a list of all the currently available tools in the `toolList` object:
+2. After you have created your new tool file with the template, get started on the logic of the tool by filling out the `tool object` at the bottom of the file, as discussed earlier in this document
+3. Open `katana/server/tool_list.js` where you will see a list of all the currently available tools:
 ```javascript
-const toolList = {
+module.exports = {
     'course_search': new NodeTool(require('./node_tools/course_search.js')),
     'alt_attributes': new NodeTool(require('./node_tools/alt_attributes.js')),
 }
 ```
 4. Add your tool to the list in the format `'tool_id': new NodeTool(require(./node_tools/tool_file.js))`
-5. Save everything, run Katana, and your tool should appear!
+5. Save everything, run Katana, and your tool should appear! It's at this point that you'll need to go into your templated tool file and complete the logic.
