@@ -21,7 +21,7 @@ module.exports = class NodeTool {
     }
 
     discover(canvasItem, options) {
-        // Create the IssueItem for this canvas item
+    // Create the IssueItem for this canvas item
         let issueItem = new IssueItem(canvasItem);
         try {
             this.lastRan = new Date();
