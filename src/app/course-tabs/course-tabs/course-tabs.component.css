@@ -117,7 +117,7 @@ ul.dropdown-content:hover {
 
 /* Animation used by the tabs when processing courses */
 
-.pulseypulse>a {
+.pulseypulse {
     animation: pulseypulse 2s infinite ease-in-out;
 }
 
