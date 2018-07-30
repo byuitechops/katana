@@ -72,6 +72,7 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
 
 
             // Add the course name, code, and instructor to the options
+            // TODO: Add to documentation
             options.courseInfo = {
                 course_id: course.id,
                 course_code: course.course_code,
@@ -79,7 +80,7 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
             };
 
             // Run each item through the discover function of the selected tool
-            course.issueItems = allItems.reduce((acc, item, index, arr) => {
+            course.issueItems = allItems.reduce((acc, item) => {
                 let issueItem = toolList[tool_id].discover(item, options);
                 return issueItem.issues.length > 0 ? acc.concat(issueItem) : acc;
             }, []);
@@ -90,11 +91,12 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
                 issue.tool_id = tool_id;
             }));
 
+            // Log the issue items on our own logs
             logActions.toolLogs = course.issueItems;
             logActions.logTool();
 
             // Log all discovered issues to Firestore
-            if (!process.argv.includes('-d')) {
+            if (settings.firebase.log_tools) {
                 firebaseWrapper.toolLog({course_id: course.id, tool_id, issueItems: course.issueItems.map(issueItem => JSON.stringify(issueItem))});
             }
 
