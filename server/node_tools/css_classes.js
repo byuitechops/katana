@@ -9,6 +9,7 @@ const cheerio = require('cheerio');
 function discover(canvasItem, issueItem, options) {
     if (canvasItem.getHtml() == null) return;
     let $ = cheerio.load(canvasItem.getHtml());
+    let voidElements = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
 
     // Use cheerio to get all the elements that have the matching class name
     let className = options.cssClassName.replace(/ /g, '.');
@@ -28,7 +29,7 @@ function discover(canvasItem, issueItem, options) {
             classHtml += ` ${attr}="${$(elem)[0].attribs[attr]}"`;
         }
         classHtml += '>';
-        if ($(elem)[0].name !== 'img') {
+        if (!voidElements.find(vElement => vElement === $(elem)[0].name)) {
             classHtml += `${$(elem).html()}</${$(elem)[0].name}>`;
         }
 
