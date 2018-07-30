@@ -40,7 +40,7 @@ const authGuard = require('./auth_guard.js');
 /** Katana modules */
 const firebaseWrapper = require('./firebase_wrapper.js');
 const logActions = require('./logging.js');
-const node_tools = require('./node_tools.js');
+const tool_prep = require('./tool_prep.js');
 const course_retrieval = require('./course_retrieval.js');
 
 /** Initializes the firebase */
@@ -69,7 +69,7 @@ apiRouter.post('/course-retrieval', (req, res) => {
  * @returns {Tool[]} - List of tools available from the server
  ************************************************************************/
 apiRouter.get('/tool-list', (req, res) => {
-    let toolArray = Object.keys(node_tools.toolList).map(key => node_tools.toolList[key]);
+    let toolArray = Object.keys(tool_prep.toolList).map(key => tool_prep.toolList[key]);
     res.send(toolArray);
 });
 
@@ -91,7 +91,7 @@ apiRouter.ws('/tool/discover', (ws, req) => {
         try {
             let data = JSON.parse(dataString);
             let startDate = new Date();
-            await node_tools.discoverIssues(data.tool_id, data.course, data.options, data.userEmail);
+            await tool_prep.discoverIssues(data.tool_id, data.course, data.options, data.userEmail);
             let endDate = new Date();
 
             // Push the data to the log
@@ -141,7 +141,7 @@ apiRouter.ws('/tool/fix', (ws, req) => {
         try {
             let data = JSON.parse(dataString);
             let startDate = new Date();
-            await node_tools.fixIssues(data.tool_id, data.course, data.options, data.userEmail);
+            await tool_prep.fixIssues(data.tool_id, data.course, data.options, data.userEmail);
             let endDate = new Date();
 
             // Push the data to the log
