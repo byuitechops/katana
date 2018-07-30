@@ -78,9 +78,6 @@
                         <a href="../../additional-documentation/setup/setting-up-firebase.html" data-type="entity-link" data-context-id="additional">Setting Up Firebase</a>
                     </li>
                     <li class="link for-chapter2">
-                        <a href="../../additional-documentation/setup/development-environment.html" data-type="entity-link" data-context-id="additional">Development Environment</a>
-                    </li>
-                    <li class="link for-chapter2">
                         <a href="../../additional-documentation/setup/node-tools.html" data-type="entity-link" data-context-id="additional">Node Tools</a>
                     </li>
                     <li class="link for-chapter2">
@@ -111,7 +108,7 @@
                         <a href="../../additional-documentation/firebase/database-structure.html" data-type="entity-link" data-context-id="additional">Database Structure</a>
                     </li>
                     <li class="link for-chapter2">
-                        <a href="../../additional-documentation/firebase/firestore-wrapper.html" data-type="entity-link" data-context-id="additional">Firestore Wrapper</a>
+                        <a href="../../additional-documentation/firebase/firebase-wrapper.html" data-type="entity-link" data-context-id="additional">Firebase Wrapper</a>
                     </li>
                     <li class="link for-chapter2">
                         <a href="../../additional-documentation/firebase/firebase-functions.html" data-type="entity-link" data-context-id="additional">Firebase Functions</a>
@@ -441,9 +438,6 @@
                         <a href="../../additional-documentation/setup/setting-up-firebase.html" data-type="entity-link" data-context-id="additional">Setting Up Firebase</a>
                     </li>
                     <li class="link for-chapter2">
-                        <a href="../../additional-documentation/setup/development-environment.html" data-type="entity-link" data-context-id="additional">Development Environment</a>
-                    </li>
-                    <li class="link for-chapter2">
                         <a href="../../additional-documentation/setup/node-tools.html" data-type="entity-link" data-context-id="additional">Node Tools</a>
                     </li>
                     <li class="link for-chapter2">
@@ -474,7 +468,7 @@
                         <a href="../../additional-documentation/firebase/database-structure.html" data-type="entity-link" data-context-id="additional">Database Structure</a>
                     </li>
                     <li class="link for-chapter2">
-                        <a href="../../additional-documentation/firebase/firestore-wrapper.html" data-type="entity-link" data-context-id="additional">Firestore Wrapper</a>
+                        <a href="../../additional-documentation/firebase/firebase-wrapper.html" data-type="entity-link" data-context-id="additional">Firebase Wrapper</a>
                     </li>
                     <li class="link for-chapter2">
                         <a href="../../additional-documentation/firebase/firebase-functions.html" data-type="entity-link" data-context-id="additional">Firebase Functions</a>
@@ -762,8 +756,78 @@
 
 
 
-<h1 id="development-environment">Development Environment</h1>
-<h2 id="overview">Overview</h2>
+<h1 id="firebase-wrapper">Firebase Wrapper</h1>
+<p>The Firebase Wrapper, which is built specifically for Katana, is a small, easy wrapper used to log actions to Firestore. It does nothing more.</p>
+<p><strong><a target="_blank" href="https://github.com/byuitechops/katana/blob/master/server/firebase_wrapper.js">View firebase_wrapper.js on Github</a></strong></p>
+<h2 id="setup">Setup</h2>
+<p>If you use this separately from Katana, which it is not built for, the structure of your database will need to match what is described in <a href="./database-structure.html">Database Structure</a>. It also requires the <a href="https://www.npmjs.com/package/firebase-admin">firebase-admin</a> package to properly run. To implement the wrapper in your code:</p>
+<div><pre class="line-numbers"><code class="language-javascript">const firebaseWrapper = require(&#39;./firebase_wrapper.js&#39;);
+const db = firebaseWrapper.initializeFirebase();</code></pre></div><p><br />
+From there on, <code>db</code> can be used to access all of <a href="https://firebase.google.com/docs/reference/js/firebase.firestore">Firestore&#39;s API</a>.
+<br /></p>
+<h2 id="functions">Functions</h2>
+<p>These public functions are exposed by the wrapper&#39;s export:</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Method</th>
+<th>Parameters</th>
+<th>Returns</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>serverLog(data)</td>
+<td><strong>data</strong> (<em>object</em>)</td>
+<td><em>void</em></td>
+<td>This saves <strong>data</strong> to the <em>server_logs</em> collection in Firestore, such as when a specific API is being tracked.</td>
+</tr>
+<tr>
+<td>toolLog(data)</td>
+<td><strong>data</strong> (<em>object</em>)</td>
+<td><em>void</em></td>
+<td>This saves <strong>data</strong> to the <em>tool_logs</em> collection in Firestore. Typically used for when tools are being ran.</td>
+</tr>
+<tr>
+<td>userLog(data)</td>
+<td><strong>data</strong> (<em>object</em>)</td>
+<td><em>void</em></td>
+<td>This saves <strong>data</strong> to the <em>tool_logs</em> collection in Firestore. Typically logs when users log in and out. <em>Please note that this only logs the user&#39;s email and information pertinent to the action that occurred. No other user information is stored.</em></td>
+</tr>
+<tr>
+<td>initializeFirebase()</td>
+<td><em>none</em></td>
+<td><a href="https://firebase.google.com/docs/reference/js/firebase.firestore">Database Reference</a></td>
+<td>Initializes the app and returns a reference to the database. The database reference is also used internally, so <strong>this function must be called before using any other external functions.</strong> This will also console log any database logging if the <code>--db</code> flag was given at startup. It will log <em>all</em> information provided to log, which can be quite long. It is not recommended that you use this flag. It is available for development purposes.</td>
+</tr>
+<tr>
+<td>incrementCounts(category, statistic, count)</td>
+<td><strong>category</strong> {<em>string</em>} <strong>statistic</strong> {<em>string</em>} <strong>count</strong> {<em>number</em>}</td>
+<td>void</td>
+<td>Used to increment counts saved under <code>statistics</code> in Firestore.</td>
+</tr>
+</tbody>
+</table>
+<p>One private function is used internally:</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Method</th>
+<th>Parameters</th>
+<th>Returns</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_log(collectionTitle, data)</td>
+<td><strong>collectionTitle</strong>(<em>string</em>)<br /><strong>data</strong> (<em>object</em>)</td>
+<td><em>void</em></td>
+<td>Used by the logging functions available externally, this just logs data to Firestore. The other functions are just wrappers for this internal function.</td>
+</tr>
+</tbody>
+</table>
 
                    </div><div class="search-results">
     <div class="has-results">
@@ -791,7 +855,7 @@
         <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 2;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'additional-page';
-            var COMPODOC_CURRENT_PAGE_URL = 'development-environment.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'firebase-wrapper.html';
         </script>
 
        <script src="../../js/search/search.js"></script>

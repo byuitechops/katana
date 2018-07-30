@@ -1,4 +1,4 @@
-# Architecture
+# Server Architecture
 
 These documents will cover points of Katana's architecture not covered by Compodoc.
 

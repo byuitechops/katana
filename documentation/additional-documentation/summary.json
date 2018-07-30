@@ -8,10 +8,6 @@
                 "file": "setup/setting_up_firebase.md"
             },
             {
-                "title": "Development Environment",
-                "file": "setup/development_environment.md"
-            },
-            {
                 "title": "Node Tools",
                 "file": "setup/node_tools.md"
             },
@@ -23,7 +19,7 @@
     },
     {
         "title": "Server Architecture",
-        "file": "architecture.md",
+        "file": "server_architecture.md",
         "children": [
             {
                 "title": "Server Endpoints",
@@ -56,8 +52,8 @@
                 "file": "firebase/database_structure.md"
             },
             {
-                "title": "Firestore Wrapper",
-                "file": "firebase/firestore_wrapper.md"
+                "title": "Firebase Wrapper",
+                "file": "firebase/firebase_wrapper.md"
             },
             {
                 "title": "Firebase Functions",
