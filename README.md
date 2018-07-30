@@ -1,6 +1,6 @@
 # Katana
 
-If you are on Github, it is recommended you view the full documentation [HERE](https://byuitechops.github.io/katana/documentation/index.html).
+If you are on Github, it is recommended you view the full documentation [HERE](https://byuitechops.github.io/katana/docs/index.html).
 
 This tool is built to interface with Canvas, a Learning Management System built by Instructure. It provides the framework for a development team to build and deploy mass-maintenance tools. It *is not* built by Instructure. It was built by Brigham Young University - Idaho, and is maintained by them.
 
