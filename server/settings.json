@@ -1,8 +1,8 @@
 {
     "console": {
         "requests": false,
-        "database-actions": false,
-        "user-traffic": true
+        "database_actions": false,
+        "user_traffic": true
     },
     "firebase": {
         "auth": "./auth.json",

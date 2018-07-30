@@ -14,13 +14,13 @@ To set up your own instance of Katana, follow these steps:
 
 4. (TEMP: Set up CANVAS_API_TOKEN environment variable | Will become canvas developer key)
 
-5. Deploy Firebase using the steps described in [this document](./documentation/additional-documentation/setup/setting-up-firebase.html)
+5. Deploy Firebase using the steps described in [this document](./additional-documentation/setup/setting-up-firebase.html)
 
 6. Build production files with `ng build --prod`
 
 7. Copy the `server` directory and the contents of the `/dist` folder into the directory you will be deploying from
 
-8. Use `npm run fullbuild` to spin up Katana
+8. Run `server.js` with Node however you would like (typically with `npm start`)
 
 9. Follow any [additional setup processes](http://localhost:8080/additional-documentation/setup.html) you need
 
@@ -32,27 +32,20 @@ For development, use this command to build the angular front-end and launch the 
 
 It can then be accessed via `localhost:8000` (or whichever port you specify in `server/settings.json`).
 
-**Flags**
-
-| Flag      | Purpose                                                   |
-|-----------|-----------------------------------------------------------|
-| --mute    | Prevents database logging from appearing in the console   |
-
 
 # Documentation
 
-## Client (Angular)
+### Setup
+[Set up a Node Tool](additional-documentation/setup/node-tools.html)<br />
+[Set up Firebase](additional-documentation/setup/settings-up-firebase.html)<br />
+
+### Client Architecture (Angular)
 <!-- This will need to point to Compodocs when it is set up -->
 [LinkName](link) 
 
-## Architecture
+### Server Architecture
 [LinkName](./documentation/additional-documentation/architecture.html)<br />
 
-## How To...
-[Setup a Node Tool](documentation/additional-documentation/setup/node-tools.html)<br />
-
-## Firebase Integration
-[LinkName](documentation/additional-documentation/firebase.html)<br />
 
 
 
