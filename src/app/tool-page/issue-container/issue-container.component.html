@@ -1,73 +1,74 @@
 <div [ngClass]="courseService.getBackgroundColorClasses(issue.status)" class="issueContainer card">
 
-    <div class="card-content">
-        <h2 class="cobalt-text">{{issue.title}}</h2>
-        <div class="issueContainer__issueDetails" #issueDetails></div>
+  <div class="card-content">
+    <h2 class="cobalt-text">{{issue.title}}</h2>
+    <div class="issueContainer__issueDetails" #issueDetails></div>
 
-        <form materialize (ngSubmit)="onSubmit()" [formGroup]="issue.formGroup" #optionsForm="ngForm">
-            <div *ngFor="let option of issue.optionModel.options" class="form-row">
-                <h3>{{option.title}}</h3>
-                <div class="option__description">{{option.description}}</div>
-                <div [ngSwitch]="option.type" class="option__container" [class.multiselect]="option.type === 'multiselect'" [class.required]="!issue.formGroup.controls[option.key].valid">
+    <form materialize (ngSubmit)="onSubmit()" [formGroup]="issue.formGroup" #optionsForm="ngForm">
+      <div *ngFor="let option of issue.optionModel.options" class="form-row">
+        <h3>{{option.title}}</h3>
+        <div class="option__description">{{option.description}}</div>
+        <div [ngSwitch]="option.type" class="option__container" [class.multiselect]="option.type === 'multiselect'" [class.required]="!issue.formGroup.controls[option.key].valid">
 
-                    <!-- Silly, but [attr.disabled] was the only way I could get it to be disabled -->
-                    <div *ngSwitchCase="'text'" class="option__text">
-                        <input [attr.disabled]="isFixed() ? 'disabled' : null" type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key"
-                            (input)="onChange(option.key)" autocomplete="off" autofocus>
-                    </div>
+          <!-- Silly, but [attr.disabled] was the only way I could get it to be disabled -->
+          <div *ngSwitchCase="'text'" class="option__text">
+            <input [attr.disabled]="isFixed() ? 'disabled' : null" type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key"
+              (input)="onChange(option.key)" autocomplete="off" autofocus>
+          </div>
 
-                    <div *ngSwitchCase="'dropdown'">
-                        <select [attr.disabled]="isFixed() ? 'disabled' : null" style="display: block" [formControlName]="option.key" (input)="onChange(option.key)">
-                            <option *ngFor="let choice of option.choices">{{choice.text}}</option>
-                        </select>
-                    </div>
+          <div *ngSwitchCase="'dropdown'">
+            <select [attr.disabled]="isFixed() ? 'disabled' : null" style="display: block" [formControlName]="option.key" (input)="onChange(option.key)">
+              <option *ngFor="let choice of option.choices">{{choice}}</option>
+            </select>
+          </div>
 
-                    <div *ngSwitchCase="'multiselect'">
-                        <select [attr.disabled]="isFixed() ? 'disabled' : null" style="display: block" [formControlName]="option.key" (input)="onChange(option.key)"
-                            multiple>
-                            <option *ngFor="let choice of option.choices">{{choice.text}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <!-- Code Editor - Will only show up if the issue has contents in its "html" property -->
-    <div *ngIf="showEditor()">
-        <app-code-editor [tabs]="buildEditorTabs()" [issue]="issue" [highlight]="issue.html.highlight" #codeEditor></app-code-editor>
-    </div>
-
-    <!-- Card Actions - this section contains the "approve" and "skip" buttons, as well as the fix message container -->
-    <div class="card-action" *ngIf="toolService.selectedTool.toolType === 'fix'">
-
-        <button *ngIf="issue.status !== 'fixed' && issue.status !== 'failed'" (click)="setIssueStatus('approved')" [ngClass]="getButtonClasses('approved', 'button')"
-            class="green-text" [disabled]="issue.formGroup && !issue.formGroup.valid">
-            <i *ngIf="!issue.formGroup || issue.formGroup.valid" [ngClass]="getButtonClasses('approved', 'icon')" class="green-text material-icons left">
-                {{issue.status !== 'approved' ? 'check' : 'check_circle_outline'}}
-            </i>
-            <i *ngIf="issue.formGroup && !issue.formGroup.valid" class="material-icons left">
-                block
-            </i>
-            {{issue.status !== 'approved' ? (issue.status !== 'fixed' ? 'approve' : 'fixed') : 'approved'}}
-        </button>
-
-        <button *ngIf="issue.status !== 'fixed' && issue.status !== 'failed'" (click)="setIssueStatus('skipped')" [ngClass]="getButtonClasses('skipped', 'button')"
-            class="blue-grey-text">
-            <i [ngClass]="getButtonClasses('skipped', 'icon')" class="blue-grey-text material-icons left">
-                {{issue.status !== 'skipped' ? 'remove' : 'call_missed_outgoing'}}
-            </i>
-
-            {{issue.status !== 'skipped' ? 'skip' : 'skipped'}}
-        </button>
-
-        <div *ngIf="issue.status === 'fixed'" class="blue-text text-accent-3">
-            FIXED {{toolService.selectedTool.fixedMessage ? ' - ' + toolService.selectedTool.fixedMessage : ''}}
+          <div *ngSwitchCase="'multiselect'">
+            <select [attr.disabled]="isFixed() ? 'disabled' : null" style="display: block" [formControlName]="option.key" (input)="onChange(option.key)"
+              multiple>
+              <option *ngFor="let choice of option.choices">{{choice}}</option>
+            </select>
+          </div>
         </div>
-        <div *ngIf="issue.status === 'failed'" class="red-text text-accent-4">
-            FAILED - Please contact a Katana developer with the course ID, item name, and issue title.
-        </div>
+      </div>
+    </form>
+  </div>
 
+  <!-- Code Editor - Will only show up if the issue has contents in its "html" property -->
+  <div *ngIf="showEditor()">
+    <app-code-editor (sessionValues)="handleEditorSessionValues($event)" [tabs]="buildEditorTabs()" [highlight]="issue.html.highlight"
+      #codeEditor></app-code-editor>
+  </div>
+
+  <!-- Card Actions - this section contains the "approve" and "skip" buttons, as well as the fix message container -->
+  <div class="card-action" *ngIf="toolService.selectedTool.toolType === 'fix'">
+
+    <button *ngIf="issue.status !== 'fixed' && issue.status !== 'failed'" (click)="setIssueStatus('approved')" [ngClass]="getButtonClasses('approved', 'button')"
+      class="green-text" [disabled]="issue.formGroup && !issue.formGroup.valid">
+      <i *ngIf="!issue.formGroup || issue.formGroup.valid" [ngClass]="getButtonClasses('approved', 'icon')" class="green-text material-icons left">
+        {{issue.status !== 'approved' ? 'check' : 'check_circle_outline'}}
+      </i>
+      <i *ngIf="issue.formGroup && !issue.formGroup.valid" class="material-icons left">
+        block
+      </i>
+      {{issue.status !== 'approved' ? (issue.status !== 'fixed' ? 'approve' : 'fixed') : 'approved'}}
+    </button>
+
+    <button *ngIf="issue.status !== 'fixed' && issue.status !== 'failed'" (click)="setIssueStatus('skipped')" [ngClass]="getButtonClasses('skipped', 'button')"
+      class="blue-grey-text">
+      <i [ngClass]="getButtonClasses('skipped', 'icon')" class="blue-grey-text material-icons left">
+        {{issue.status !== 'skipped' ? 'remove' : 'call_missed_outgoing'}}
+      </i>
+
+      {{issue.status !== 'skipped' ? 'skip' : 'skipped'}}
+    </button>
+
+    <div *ngIf="issue.status === 'fixed'" class="blue-text text-accent-3">
+      FIXED {{toolService.selectedTool.fixedMessage ? ' - ' + toolService.selectedTool.fixedMessage : ''}}
     </div>
+    <div *ngIf="issue.status === 'failed'" class="red-text text-accent-4">
+      FAILED - Please contact a Katana developer with the course ID, item name, and issue title.
+    </div>
+
+  </div>
 
 </div>

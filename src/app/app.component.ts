@@ -20,7 +20,7 @@ import { SettingsService } from './settings.service';
 export class AppComponent {
 
     /**
-     * Constructor. This creates subscriptions to routes changes to adjust values
+     * Constructor. This creates subscriptions to route changes to adjust values
      * as needed. For example, if the user navigates to the tool view (i.e. they ran
      * a tool), then many values in various services are removed or reset to prevent
      * conflicting values between services.
@@ -34,7 +34,7 @@ export class AppComponent {
      * @param toolService Provides information and management for available tools.
      * @param toastService Provides toast notification functionality.
      * @param authGuardService Provides Firebase authentication functionality.
-     * Being used in app.component.html (i.e. DO NOT DELETE)
+     * Used in app.component.html (i.e. DO NOT DELETE).
      */
     constructor(private router: Router,
         private courseService: CourseService,
@@ -64,9 +64,6 @@ export class AppComponent {
                     course.processing = false;
                 });
 
-                // document.documentElement.style.setProperty(`--course-sidebar-width`, '112px');
-                // document.documentElement.style.setProperty(`--course-chip-width`, '92px');
-
                 // Clear out the web sockets in case any are still running
                 katanaService.sockets.forEach(socket => socket.close());
                 katanaService.sockets = [];
@@ -87,8 +84,6 @@ export class AppComponent {
                 // Select the first course and adjust the bar width
                 if (courseService.courses.length > 0) {
                     courseService.selectedCourse = courseService.courses[0];
-                    // document.documentElement.style.setProperty(`--course-sidebar-width`, '340px');
-                    // document.documentElement.style.setProperty(`--course-chip-width`, '330px');
                 }
 
                 // Set the toolView tracking prop to true, all others off
