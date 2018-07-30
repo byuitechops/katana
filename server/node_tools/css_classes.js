@@ -62,6 +62,7 @@ function fix(canvasItem, issueItem, options) {
                 issueItem.issues.forEach(issue => {
                     let newClassName = issue.optionValues.newClassName;
                     let element = $(matchedElements[issue.details.i]);
+
                     $(element).removeClass(className);
                     $(element).addClass(newClassName);
                     issue.status = 'fixed';
