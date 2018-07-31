@@ -1,3 +1,4 @@
+let fixOptions = [];
 /** ***************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
@@ -5,6 +6,19 @@
  * @param {object} options - Options specific to the tool selected by the user
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
+    console.log(options.selectedSettings);
+    // TODO: Find out which option items selected match with the canvas item's available options
+    // TODO: Dynamically make the fix options appear(Object Array)
+    //
+
+
+    fixOptions.push({
+
+    });
+
+
+
+
     let title = ''; // the title of the card on the discovered issue
     let description = ''; // a description of the discover type that will be displayed on the issue card
     let display = ''; // the html that will be displayed on the issue card
@@ -45,32 +59,25 @@ function fix(canvasItem, issueItem, options) {
 module.exports = {
     discover,
     fix,
-    id: 'manage_rubrics',
-    title: 'Manage Rubrics',
-    description: 'This tool allows you to find/delete unused and duplicated rubrics.',
-    icon: 'format_list_number',
+    id: 'item_settings',
+    title: 'Item Settings',
+    description: 'This tool allows your to edit a Canvas item\'s settings.',
+    icon: 'settings',
     toolType: 'fix',
     toolCategory: 'itemSettings',
-    fixMessage: 'Rubric successfully deleted.',
+    fixMessage: 'Describe the result of an item being fixed here',
     categories: [
-        'assignments'
+        'pages',
     ],
     discoverOptions: [{
         title: 'Conditions',
-        key: 'rubricSettings',
-        description: 'Do you want to include both duplicate and unused rubrics, or just duplicate or unused rubrics?',
-        type: 'dropdown',
-        choices: ['', 'Both', 'Duplicate', 'Unused'],
-        required: true
-    }, {
-        title: 'New Page Title',
-        key: 'newTitle',
-        description: 'What you would like to set the page title to.',
-        type: 'text',
-        choices: [],
+        key: 'selectedSettings',
+        description: 'Select the item properties you would like to modify.',
+        type: 'multiselect',
+        choices: ['title'],
         required: true
     }],
-    fixOptions: [],
+    fixOptions,
     editorTabs: [{
         title: 'HTML',
         htmlKey: 'currentHtml',

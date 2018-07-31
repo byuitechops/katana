@@ -12,5 +12,6 @@ module.exports = {
     'course_search': new NodeTool(require('./node_tools/course_search.js')),
     'css_classes': new NodeTool(require('./node_tools/css_classes.js')),
     'html_general_editor': new NodeTool(require('./node_tools/html_general_editor.js')),
-    'manage_rubrics': new NodeTool(require('./node_tools/manage_rubrics.js'))
+    'item_settings': new NodeTool(require('./node_tools/item_settings.js')),
+    'rubric_finder': new NodeTool(require('./node_tools/rubric_finder.js'))
 };

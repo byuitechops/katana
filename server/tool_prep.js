@@ -33,7 +33,7 @@ async function getCanvasItems(course, options) {
     for (var i = 0; i < options.categories.length; i++) {
         if (['pages', 'quizzes', 'modules'].includes(options.categories[i])) {
             // If pages, quizzes, or modules, get ALL values for them
-            items = items.concat(...(await canvasCourse[options.categories[i]].getComplete()));
+            items = items.concat(...await canvasCourse[options.categories[i]].getComplete());
 
         } else if (['quizQuestions', 'moduleItems'].includes(options.categories[i])) {
             // If looking for quiz questions or module items, flatten them here
@@ -47,7 +47,7 @@ async function getCanvasItems(course, options) {
 
         } else {
             // Otherwise, just get the category's items
-            items = items.concat(...(await canvasCourse[options.categories[i]].get()));
+            items = items.concat(...await canvasCourse[options.categories[i]].get());
         }
     }
 
@@ -97,7 +97,11 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
 
             // Log all discovered issues to Firestore
             if (settings.firebase.log_tools) {
-                firebaseWrapper.toolLog({course_id: course.id, tool_id, issueItems: course.issueItems.map(issueItem => JSON.stringify(issueItem))});
+                firebaseWrapper.toolLog({
+                    course_id: course.id,
+                    tool_id,
+                    issueItems: course.issueItems.map(issueItem => JSON.stringify(issueItem))
+                });
             }
 
             // Add fixed count to firestore stats
