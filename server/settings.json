@@ -6,7 +6,7 @@
   },
   "firebase": {
     "auth": "./auth.json",
-    "statistics": false
+    "statistics": true
   },
   "server": {
     "port": 8000,
