@@ -1,4 +1,6 @@
-/** ***************************************************************
+// const cheerio = require('cheerio');
+
+/******************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
  * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
@@ -6,14 +8,33 @@
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
 
-    if (canvasItem.discussion_type !== 'threaded') {
+    if (issueItem.category === 'moduleItems') {
+        // TODO handle this separately..
+    } else {
+        let selector = 'a';
+        if (issueItem.searchURL != '') selector = `a[href="${issueItem.searchURL}"]`;
 
-        let title = 'Threaded Replies Disabled';
-        let display = '<div>This will enable the "Allow threaded replies" setting on this discussion board.</div>';
-        let details = {};
+        let $ = cheerio.load(canvasItem.getHtml());
+        let links = $(selector);
 
-        issueItem.newIssue(title, display, details);
+        links.each((i, ele) => {
+            let title = 'Matching link found',
+                display = 'I found a link',
+                details = {}; // TODO what does this do?
+
+            let html = {
+                currentHtml: canvasItem.getHtml(),
+                highlight: $(ele).attr('href')
+            };
+
+            issueItem.newIssue(title, display, details, html);
+        });
     }
+
+    // let title = 'Links Found';
+    // let display = '<div> FIX LINKS! </div>';
+    // let details = {};
+    // issueItem.newIssue(title, display, details);
 }
 
 /** ***************************************************************
@@ -64,16 +85,23 @@ module.exports = {
         required: false
     }, {
         title: 'New URL',
-        key: 'newURL',
+        key: 'defaultURL',
         description: 'What you would like to set the new URL to (You will have a chance to review changes before they are finalized). If left blank each URL will have to be set individually.',
         type: 'text',
         choices: [],
-        required: false
+        required: false,
     }],
-    fixOptions: [],
+    fixOptions: [{
+        title: 'New URL',
+        key: 'newURL',
+        description: 'Please enter the new URL for this link.',
+        type: 'text',
+        choices: [],
+        required: false,
+    }],
     editorTabs: [{
-        title: 'HTML',
-        htmlKey: 'currentHtml',
-        readOnly: true
+        readOnly: true,
+        title: 'Current HTML',
+        htmlKey: 'currentHtml'
     }]
 };
