@@ -7,11 +7,30 @@
 function discover(canvasItem, issueItem, options) {
     if (canvasItem.due_at !== undefined) {
         let semesters = {
-            fall2018: Date(),
-            winter2019: Date(),
-            spring2019: Date(),
-            summer2019: Date(),
-            fall2019: Date()
+            fall2018: {
+                start: Date('2018-09-17T00:00:00-07:00'),
+                end: Date('2018-12-19T23:59:59-07:00')
+            },
+            winter2019: {
+                start: Date('2019-01-07T00:00:00-07:00'),
+                end: Date('2019-04-12T23:59:59-07:00')
+            },
+            spring2019: {
+                start: Date('2019-04-22T00:00:00-07:00'),
+                end: Date('2019-07-23T23:59:59-07:00')
+            },
+            summer2019: {
+                start: Date('2019-07-29T00:00:00-07:00'),
+                end: Date('2019-09-13T23:59:59-07:00')
+            },
+            fall2019: {
+                start: Date('2019-07-29T00:00:00-07:00'),
+                end: Date('2019-12-18T23:59:59-07:00')
+            },
+            winter2020: {
+                start: Date('2020-01-08T00:00:00-07:00'),
+                end: Date('2020-04-10T23:59:59-07:00')
+            }
         };
         // TODO: Get the due date for the canvasItem
         // TODO: Check if the due date is in-line with the selected semester or if it's missing
@@ -76,12 +95,19 @@ module.exports = {
         'quizzes'
     ],
     discoverOptions: [{
-        title: 'Conditions',
+        title: 'Semester',
         key: 'dueDate',
         description: 'Select the semester you would like to adjust.',
         type: 'dropdown',
-        choices: ['', 'Fall 2018', 'Winter 2019', 'Spring 2019', 'Summer 2019', 'Fall 2019'],
+        choices: ['', 'Fall 2018', 'Winter 2019', 'Spring 2019', 'Summer 2019', 'Fall 2019', 'Winter 2020'],
         required: true
+    }, {
+        title: 'Offset',
+        key: 'offset',
+        description: 'Number of days to offset all due dates in each course. Positive numbers move the date forward. Negative numbers move the date backward.',
+        type: 'text',
+        choices: [],
+        required: false
     }],
     fixOptions: [],
     editorTabs: [{
