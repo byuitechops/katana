@@ -7,6 +7,7 @@
         "start": "node server/server.js",
         "docs": "compodoc -p src/tsconfig.app.json -s --output ./docs --theme material --hideGenerator -w --name Katana --toggleMenuItems [] --includes ./docs/additional-documentation",
         "fullbuild": "ng build && node server/server.js",
+        "insFullbuild": "ng build && node --inspect-brk server/server.js",
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",

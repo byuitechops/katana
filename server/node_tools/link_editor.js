@@ -1,4 +1,4 @@
-// const cheerio = require('cheerio');
+const cheerio = require('cheerio');
 
 /******************************************************************
  * Discovers issues in the item provided.
@@ -12,7 +12,7 @@ function discover(canvasItem, issueItem, options) {
         // TODO handle this separately..
     } else {
         let selector = 'a';
-        if (issueItem.searchURL != '') selector = `a[href="${issueItem.searchURL}"]`;
+        if (issueItem.searchURL) selector = `a[href="${issueItem.searchURL}"]`;
 
         let $ = cheerio.load(canvasItem.getHtml());
         let links = $(selector);
