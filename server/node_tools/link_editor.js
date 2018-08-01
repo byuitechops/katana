@@ -9,23 +9,67 @@ const cheerio = require('cheerio');
 function discover(canvasItem, issueItem, options) {
 
     if (issueItem.category === 'moduleItems') {
-        // TODO handle this separately..
+    // TODO handle this separately..
     } else {
-        let selector = 'a';
-        if (issueItem.searchURL) selector = `a[href="${issueItem.searchURL}"]`;
-
         let $ = cheerio.load(canvasItem.getHtml());
-        let links = $(selector);
+        let links = $('a').add('iframe');
 
-        links.each((i, ele) => {
+        if (options.searchURL) {
+            links = links.filter((i, link) => {
+                let attribute;
+                if (link.name === 'a') {
+                    attribute = $(link).attr('href');
+                    if (attribute) {
+                        return attribute.includes(options.searchURL);
+                    } else {
+                        return false;
+                    }
+                } else if (link.name === 'iframe') {
+                    attribute = $(link).attr('src');
+                    if (attribute) {
+                        return attribute.includes(options.searchURL);
+                    } else {
+                        return false;
+                    }
+                }
+            });
+        }
+
+        links.each((i, link) => {
             let title = 'Matching link found',
-                display = 'I found a link',
-                details = {}; // TODO what does this do?
+                description = 'This link should be the correct link',
+                display = `<div>${description}</div>`,
+                details = {
+                    i
+                },
+                html;
 
-            let html = {
-                currentHtml: canvasItem.getHtml(),
-                highlight: $(ele).attr('href')
-            };
+            // Construct the HTML to display to the user
+            let linkHtml = `<${$(link)[0].name}`;
+            for (let attr in $(link)[0].attribs) {
+                linkHtml += ` ${attr}="${$(link)[0].attribs[attr]}"`;
+            }
+            linkHtml += `>${$(link).html()}</${$(link)[0].name}>`;
+            display += '<h3>Current Link<h3>';
+            display += linkHtml;
+            //
+            if (link.name === 'a') {
+                html = {
+                    currentLink: linkHtml,
+                    currentHtml: canvasItem.getHtml(),
+                    highlight: $(link).attr('href')
+                };
+            } else if (link.name === 'iframe') {
+                html = {
+                    currentLink: linkHtml,
+                    currentHtml: canvasItem.getHtml(),
+                    highlight: $(link).attr('src')
+                };
+            }
+
+            if (options.searchURL) {
+                html.highlight = options.searchURL;
+            }
 
             issueItem.newIssue(title, display, details, html);
         });
@@ -46,13 +90,54 @@ function discover(canvasItem, issueItem, options) {
  *****************************************************************/
 function fix(canvasItem, issueItem, options) {
     return new Promise(async (resolve, reject) => {
-        if (issueItem.issues[0].status !== 'approved') return;
         try {
-            canvasItem.discussion_type = 'threaded';
-            issueItem.issues[0].status = 'fixed';
+            let $ = cheerio.load(canvasItem.getHtml());
+            // Get all the links on the page
+            let links = $('a').add('iframe');
+            // If the user has specified a search phrase, filter the links.
+            if (options.searchURL) {
+                links = links.filter((i, link) => {
+                    let attribute;
+                    if (link.name === 'a') {
+                        attribute = $(link).attr('href');
+                        if (attribute) {
+                            return attribute.includes(options.searchURL);
+                        } else {
+                            return false;
+                        }
+                    } else if (link.name === 'iframe') {
+                        attribute = $(link).attr('src');
+                        if (attribute) {
+                            return attribute.includes(options.searchURL);
+                        } else {
+                            return false;
+                        }
+                    }
+                });
+            }
+
+            // Make the fix
+            issueItem.issues.forEach(issue => {
+                // Get the correct link on the page
+                let link = links[issue.details.i];
+                if (link.name === 'a') {
+                    $(link).attr('href', issue.optionValues.newURL);
+                    $(link).html(issue.optionValues.newAlias);
+                    issue.status = 'fixed';
+                } else if (link.name === 'iframe') {
+                    $(link).attr('src', issue.optionValues.newURL);
+                    $(link).html(issue.optionValues.newAlias);
+                    issue.status = 'fixed';
+                }
+            });
+            canvasItem.setHtml($.html());
+
+            // Loop through each issue and then...
+            // Set the issue to fixed...
+            // Resolve the promise
             resolve();
         } catch (e) {
-            issueItem.issues[0].status = 'failed';
+            issueItem.issues[0].status = 'untouched';
             reject(e);
         }
     });
@@ -77,29 +162,41 @@ module.exports = {
         'moduleItems',
     ],
     discoverOptions: [{
-        title: 'Search URL',
+        title: 'Search Phrase',
         key: 'searchURL',
-        description: 'The link URL to search for. If left blank, all links will be found',
+        description: 'A phrase or URL to search for. If left blank, all links will be found',
         type: 'text',
         choices: [],
         required: false
-    }, {
-        title: 'New URL',
-        key: 'defaultURL',
-        description: 'What you would like to set the new URL to (You will have a chance to review changes before they are finalized). If left blank each URL will have to be set individually.',
-        type: 'text',
-        choices: [],
-        required: false,
     }],
+    // {
+    //     title: 'New URL',
+    //     key: 'defaultURL',
+    //     description: 'What you would like to set the new URL to (You will have a chance to review changes before they are finalized). If left blank each URL will have to be set individually.',
+    //     type: 'text',
+    //     choices: [],
+    //     required: false,
+    // }
     fixOptions: [{
         title: 'New URL',
         key: 'newURL',
         description: 'Please enter the new URL for this link.',
         type: 'text',
         choices: [],
-        required: false,
+        required: true,
+    }, {
+        title: 'New Alias',
+        key: 'newAlias',
+        description: 'Please enter the new alias for this link.',
+        type: 'text',
+        choices: [],
+        required: true,
     }],
     editorTabs: [{
+        readOnly: true,
+        title: 'Current Link HTML',
+        htmlKey: 'currentLink'
+    }, {
         readOnly: true,
         title: 'Current HTML',
         htmlKey: 'currentHtml'
