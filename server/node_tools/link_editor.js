@@ -7,78 +7,126 @@ const cheerio = require('cheerio');
  * @param {object} options - Options specific to the tool selected by the user
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
+    // Create the necessary variables to create issue items
+    let title = 'Matching link found',
+        description = 'This link should be correct.',
+        display = '',
+        linkHtml = '',
+        details,
+        html;
 
+    // Check if the issue item is a module item
     if (issueItem.category === 'moduleItems') {
-    // TODO handle this separately..
+    // Get the external url
+        let link = canvasItem.external_url;
+        // Check if the link is truthy
+        if (link) {
+            // Check if the user provided a search parameter
+            if (options.searchURL) {
+                // Check if the link contains the search parameter
+                if (link.includes(options.searchURL)) {
+                    // Set the issue item variables
+                    title = 'Matching External URL Found';
+                    description = 'This external URL should be correct.';
+                    display += '<h3>Current External URL</h3>';
+                    display += `<a href="${link}" target="_blank">${link}</a>`;
+                    display += `<div>${description}</div>`;
+                    // Create the issue item
+                    issueItem.newIssue(title, display, details);
+                }
+            } else {
+                // Set the issue item variables
+                title = 'Matching External Link Found';
+                description = 'This external link should be correct.';
+                display += '<h3>Current External Link</h3>';
+                display += `<a href="${link}" target="_blank">${link}</a>`;
+                display += `<div>${description}</div>`;
+                // Create the issue item
+                issueItem.newIssue(title, display, details);
+            }
+        }
     } else {
+    // Load the canvas item's HTML into cheerio
         let $ = cheerio.load(canvasItem.getHtml());
-        let links = $('a').add('iframe');
-
+        // Get all the anchor, iframe, and image tags
+        let links = $('a').add('iframe').add('img');
+        // Check if the user provided a search parameter
         if (options.searchURL) {
+            // Filter the links by the provided search parameter
             links = links.filter((i, link) => {
                 let attribute;
                 if (link.name === 'a') {
                     attribute = $(link).attr('href');
                     if (attribute) {
-                        return attribute.includes(options.searchURL);
+                        return attribute.toLowerCase().includes(options.searchURL.toLowerCase());
                     } else {
                         return false;
                     }
-                } else if (link.name === 'iframe') {
+                } else if (link.name === 'iframe' || link.name === 'img') {
                     attribute = $(link).attr('src');
                     if (attribute) {
-                        return attribute.includes(options.searchURL);
+                        return attribute.toLowerCase().includes(options.searchURL.toLowerCase());
                     } else {
                         return false;
                     }
                 }
             });
         }
-
+        // Loop through each link and create an issue item
         links.each((i, link) => {
-            let title = 'Matching link found',
-                description = 'This link should be the correct link',
-                display = `<div>${description}</div>`,
-                details = {
-                    i
-                },
-                html;
-
             // Construct the HTML to display to the user
-            let linkHtml = `<${$(link)[0].name}`;
+            linkHtml = `<${$(link)[0].name}`;
             for (let attr in $(link)[0].attribs) {
                 linkHtml += ` ${attr}="${$(link)[0].attribs[attr]}"`;
             }
             linkHtml += `>${$(link).html()}</${$(link)[0].name}>`;
-            display += '<h3>Current Link<h3>';
-            display += linkHtml;
-            //
+
+            // Give details the current index. This will be used in fix() to determine which link on a canvas item to fix
+            details = {
+                i
+            };
+
+            // Set the issue item variables for the correct type of html tag (a, iframe, img)
             if (link.name === 'a') {
+                display += '<h3>Current Link</h3>';
+                title = 'Matching Anchor Tag Link Found';
                 html = {
                     currentLink: linkHtml,
                     currentHtml: canvasItem.getHtml(),
                     highlight: $(link).attr('href')
                 };
-            } else if (link.name === 'iframe') {
+            } else
+            if (link.name === 'iframe') {
+                display += '<h3>Current iframe</h3>';
+                title = 'Matching Iframe Source Found';
+                description = 'This iframe should be correct.',
+                html = {
+                    currentLink: linkHtml,
+                    currentHtml: canvasItem.getHtml(),
+                    highlight: $(link).attr('src')
+                };
+            } else if (link.name === 'img') {
+                display += '<h3>Current Image</h3>';
+                title = 'Matching Image Source Found';
+                description = 'This image should be correct.',
                 html = {
                     currentLink: linkHtml,
                     currentHtml: canvasItem.getHtml(),
                     highlight: $(link).attr('src')
                 };
             }
+            display += linkHtml;
+            display += `<div>${description}</div>`;
 
+            // If the user provided a search paramter, highlight what they searched for in the html editor
             if (options.searchURL) {
                 html.highlight = options.searchURL;
             }
 
+            // Create the issue item
             issueItem.newIssue(title, display, details, html);
         });
     }
-
-    // let title = 'Links Found';
-    // let display = '<div> FIX LINKS! </div>';
-    // let details = {};
-    // issueItem.newIssue(title, display, details);
 }
 
 /** ***************************************************************
@@ -91,51 +139,65 @@ function discover(canvasItem, issueItem, options) {
 function fix(canvasItem, issueItem, options) {
     return new Promise(async (resolve, reject) => {
         try {
-            let $ = cheerio.load(canvasItem.getHtml());
-            // Get all the links on the page
-            let links = $('a').add('iframe');
-            // If the user has specified a search phrase, filter the links.
-            if (options.searchURL) {
-                links = links.filter((i, link) => {
-                    let attribute;
+            // Check if the issue item is a module item
+            if (issueItem.category === 'moduleItems') {
+                // Set the external url and title to the user provided values
+                canvasItem.external_url = issueItem.issues[0].optionValues.newURL;
+                canvasItem.setTitle(issueItem.issues[0].optionValues.newAlias);
+                // Set the status to fixed
+                issueItem.issues[0].status = 'fixed';
+                resolve();
+            } else {
+                // Load the canvas item's HTML into cheerio
+                let $ = cheerio.load(canvasItem.getHtml());
+                // Get all the anchor, iframe, and image tags on the page
+                let links = $('a').add('iframe').add('img');
+                // Filter the links if the user provided a search parameter
+                if (options.searchURL) {
+                    // Filter the links by the provided search parameter
+                    links = links.filter((i, link) => {
+                        let attribute;
+                        if (link.name === 'a') {
+                            attribute = $(link).attr('href');
+                            if (attribute) {
+                                return attribute.toLowerCase().includes(options.searchURL.toLowerCase());
+                            } else {
+                                return false;
+                            }
+                        } else if (link.name === 'iframe' || link.name === 'img') {
+                            attribute = $(link).attr('src');
+                            if (attribute) {
+                                return attribute.toLowerCase().includes(options.searchURL.toLowerCase());
+                            } else {
+                                return false;
+                            }
+                        }
+                    });
+                }
+
+                // Make the fixes
+                issueItem.issues.forEach(issue => {
+                    // Using the index we passed in from discover(), get the correct link on the page
+                    let link = links[issue.details.i];
+                    // Change the attributes for the correct tag(a, iframe, img) and set the status to fixed
                     if (link.name === 'a') {
-                        attribute = $(link).attr('href');
-                        if (attribute) {
-                            return attribute.includes(options.searchURL);
-                        } else {
-                            return false;
-                        }
+                        $(link).attr('href', issue.optionValues.newURL);
+                        $(link).html(issue.optionValues.newAlias);
+                        issue.status = 'fixed';
                     } else if (link.name === 'iframe') {
-                        attribute = $(link).attr('src');
-                        if (attribute) {
-                            return attribute.includes(options.searchURL);
-                        } else {
-                            return false;
-                        }
+                        $(link).attr('src', issue.optionValues.newURL);
+                        $(link).html(issue.optionValues.newAlias);
+                        issue.status = 'fixed';
+                    } else if (link.name === 'img') {
+                        $(link).attr('alt', issue.optionValues.newAlias);
+                        issue.status = 'fixed';
                     }
                 });
+                // Set the HTML to the cheerio changed HTML
+                canvasItem.setHtml($.html());
+
+                resolve();
             }
-
-            // Make the fix
-            issueItem.issues.forEach(issue => {
-                // Get the correct link on the page
-                let link = links[issue.details.i];
-                if (link.name === 'a') {
-                    $(link).attr('href', issue.optionValues.newURL);
-                    $(link).html(issue.optionValues.newAlias);
-                    issue.status = 'fixed';
-                } else if (link.name === 'iframe') {
-                    $(link).attr('src', issue.optionValues.newURL);
-                    $(link).html(issue.optionValues.newAlias);
-                    issue.status = 'fixed';
-                }
-            });
-            canvasItem.setHtml($.html());
-
-            // Loop through each issue and then...
-            // Set the issue to fixed...
-            // Resolve the promise
-            resolve();
         } catch (e) {
             issueItem.issues[0].status = 'untouched';
             reject(e);
@@ -180,14 +242,14 @@ module.exports = {
     fixOptions: [{
         title: 'New URL',
         key: 'newURL',
-        description: 'Please enter the new URL for this link.',
+        description: 'Please enter the new URL for this link, iframe, or image.',
         type: 'text',
         choices: [],
         required: true,
     }, {
-        title: 'New Alias',
+        title: 'New Link Alias/Iframe Error Text/Image Alt Text',
         key: 'newAlias',
-        description: 'Please enter the new alias for this link.',
+        description: 'Please enter the new link alias, iframe error text, or image alt text for this issue.',
         type: 'text',
         choices: [],
         required: true,
