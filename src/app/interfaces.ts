@@ -8,10 +8,10 @@ import { OptionModel } from './classes';
 export interface DiscoverOption {
     /** The title of the option */
     title: string;
-    /** The key used to identify the option in the form */
-    key: string;
     /** The description to display to the user for the option */
     description: string;
+    /** The key used to identify the option in the form */
+    key: string;
     /** The input type. Available types are "text", "dropdown", and "multiselect." */
     type: string;
     /** The available choices for the option (not applicable to "text" type) */
@@ -29,10 +29,10 @@ export interface DiscoverOption {
 export interface FixOption {
     /** The title for the option */
     title: string;
-    /** The key used to identify the option in the form */
-    key: string;
     /** The description to display to the user */
     description: string;
+    /** The key used to identify the option in the form */
+    key: string;
     /** The input type. Available types are "text", "dropdown", and "multiselect." */
     type: string;
     /** The available choices for the option (not applicable to "text" type) */
