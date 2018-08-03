@@ -25,7 +25,7 @@ function discover(canvasItem, issueItem, options) {
         $('script').remove();
 
         // Cheerio adds an html, head, and body tags, so we just want the contents of the body
-        let currentHtml = canvasItem.getHtml();
+        let currentHtml = $('body').html();
         let title, display, currentClasses = null;
 
         if (byuiClass.length === 0) {
