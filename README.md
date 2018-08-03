@@ -24,7 +24,7 @@ To set up your own instance of Katana, follow these steps:
 
 8. Run `server.js` with Node however you would like (typically with `npm start`)
 
-9. Follow any [additional setup processes](http://localhost:8080/additional-documentation/setup.html) you need
+9. Follow any [additional setup processes](./additional-documentation/setup.html) you need
 
 ## Development
 
@@ -34,6 +34,7 @@ For development, use this command to build the angular front-end and launch the 
 
 It can then be accessed via `localhost:8000` (or whichever port you specify in `server/settings.json`).
 
+You can also deploy it for others to use by using your IP Address and your port number. So if you were running on `port 8000` and your IP Address was `10.1.182.255` then you could deploy it on your network with the url `10.1.182.255:8000`, though hosting it on a server with a url for your users to access would of course be better.
 
 # Documentation
 
