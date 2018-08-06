@@ -11,4 +11,5 @@ module.exports = {
     'course_search': new NodeTool(require('./node_tools/course_search.js')),
     'css_classes': new NodeTool(require('./node_tools/css_classes.js')),
     'html_general_editor': new NodeTool(require('./node_tools/html_general_editor.js')),
+    'link_editor': new NodeTool(require('./node_tools/link_editor.js')),
 };
