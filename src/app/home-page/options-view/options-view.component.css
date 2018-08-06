@@ -55,3 +55,7 @@
 div.option__text {
     padding: 0 10px !important;
 }
+
+button[type="submit"] {
+    margin-left: 10px;
+}

@@ -26,9 +26,10 @@ app-stat-badge>div {
 }
 
 .progress + div {
-    font-size: 24px;
+    font-size: 28px;
     padding: 50px;
     text-align: center;
+    margin-top: 250px;
 }
 
 .indeterminate {
