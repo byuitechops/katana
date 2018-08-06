@@ -8,7 +8,7 @@ This tool is built to interface with Canvas, a Learning Management System built 
 
 To set up your own instance of Katana, follow these steps:
 
-1. Install Git and [use it to clone](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) the [Katana repository](https://github.com/byuitechops/katana)
+1. Install Git and [use it to clone](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) the repository
 
 2. [Install NodeJS](https://nodejs.org/en/download/) if is not installed
 
