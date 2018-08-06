@@ -1,4 +1,6 @@
 const cheerio = require('cheerio');
+const he = require('he');
+
 
 /******************************************************************
  * Discovers issues in the item provided.
@@ -15,6 +17,9 @@ function discover(canvasItem, issueItem, options) {
         details,
         html;
 
+    // Use he to decode any named and numerical character references in the searched URL. Canvas, by default, has these in their content editor
+    options.searchURL = he.decode(options.searchURL);
+
     // Check if the issue item is a module item
     if (issueItem.category === 'moduleItems') {
     // Get the external url
@@ -30,7 +35,7 @@ function discover(canvasItem, issueItem, options) {
                     display += '<h3>Current External URL</h3>';
                     display += `<a href="${link}" target="_blank">${link}</a>`;
                     display += '<h3>Proposed External Link</h3>';
-                    display += `<a href="${options.defaultURL} target="_blank">${link}</a>`;
+                    display += `<a href="${options.defaultURL} target="_blank">${options.defaultURL}</a>`;
                     // Create the issue item
                     issueItem.newIssue(title, display, details);
                 }
@@ -40,7 +45,7 @@ function discover(canvasItem, issueItem, options) {
                 display += '<h3>Current External Link</h3>';
                 display += `<a href="${link}" target="_blank">${link}</a>`;
                 display += '<h3>Proposed External Link</h3>';
-                display += `<a href="${options.defaultURL} target="_blank">${link}</a>`;
+                display += `<a href="${options.defaultURL} target="_blank">${options.defaultURL}</a>`;
                 // Create the issue item
                 issueItem.newIssue(title, display, details);
             }
@@ -92,14 +97,22 @@ function discover(canvasItem, issueItem, options) {
                 if (attr === 'href' || attr === 'src') {
                     proposedLinkHtml += ` ${attr}="${options.defaultURL}"`;
                 } else if (attr === 'alt') {
-                    proposedLinkHtml += ` ${attr}="${options.newAlias}"`;
+                    if (options.newAlias) {
+                        proposedLinkHtml += `${attr}="${options.newAlias}"`;
+                    } else {
+                        proposedLinkHtml += `${attr}="${$(link)[0].attribs[attr]}"`;
+                    }
                 } else {
-                    proposedLinkHtml += ` ${attr}="${$(link)[0].attribs[attr]}"`;
+                    proposedLinkHtml += `${attr}="${$(link)[0].attribs[attr]}"`;
                 }
             }
             proposedLinkHtml += '>';
             if ($(link)[0].name !== 'img') {
-                proposedLinkHtml += `${options.newAlias}</${$(link)[0].name}>`;
+                if (options.newAlias) {
+                    proposedLinkHtml += `${options.newAlias}</${$(link)[0].name}>`;
+                } else {
+                    proposedLinkHtml += `${$(link).html()}</${$(link)[0].name}>`;
+                }
             }
 
             // Give details the current index. This will be used in fix() to determine which link on a canvas item to fix
@@ -168,6 +181,8 @@ function discover(canvasItem, issueItem, options) {
 function fix(canvasItem, issueItem, options) {
     return new Promise(async (resolve, reject) => {
         try {
+            // Use he to decode any named and numerical character references in the searched URL. Canvas, by default, has these in their content editor
+            options.searchURL = he.decode(options.searchURL);
             // Check if the issue item is a module item
             if (issueItem.category === 'moduleItems') {
                 // Set the external url and title to the user provided values
@@ -211,15 +226,21 @@ function fix(canvasItem, issueItem, options) {
                     // Change the attributes for the correct tag(a, iframe, img) and set the status to fixed
                     if (link.name === 'a') {
                         $(link).attr('href', options.defaultURL);
-                        $(link).html(options.newAlias);
+                        if (options.newAlias) {
+                            $(link).html(options.newAlias);
+                        }
                         issue.status = 'fixed';
                     } else if (link.name === 'iframe') {
                         $(link).attr('src', options.defaultURL);
-                        $(link).html(options.newAlias);
+                        if (options.newAlias) {
+                            $(link).html(options.newAlias);
+                        }
                         issue.status = 'fixed';
                     } else if (link.name === 'img') {
                         $(link).attr('src', options.defaultURL);
-                        $(link).attr('alt', options.newAlias);
+                        if (options.newAlias) {
+                            $(link).attr('alt', options.newAlias);
+                        }
                         issue.status = 'fixed';
                     }
                 });
@@ -256,10 +277,10 @@ module.exports = {
     discoverOptions: [{
         title: 'Search URL',
         key: 'searchURL',
-        description: 'A URL to search for. If left blank all links, iframes, and images will be found.',
+        description: 'A URL to search for. This is required and MUST be correct.',
         type: 'text',
         choices: [],
-        required: false
+        required: true
     },
     {
         title: 'New URL',
@@ -270,31 +291,15 @@ module.exports = {
         required: true,
     },
     {
-        title: 'New Link Alias/Iframe Error Text/Image Alt Text',
+        title: '(Optional) New Link Alias/Iframe Error Text/Image Alt Text',
         key: 'newAlias',
         description: 'Please enter the new link alias, iframe error text, or image alt text for this URL.',
         type: 'text',
         choices: [],
-        required: true,
+        required: false,
     }
     ],
-    fixOptions: [
-    // {
-    //     title: 'New URL',
-    //     key: 'newURL',
-    //     description: 'Please enter the new URL for this link, iframe, or image.',
-    //     type: 'text',
-    //     choices: [],
-    //     required: true,
-    // }, {
-    //     title: 'New Link Alias/Iframe Error Text/Image Alt Text',
-    //     key: 'newAlias',
-    //     description: 'Please enter the new link alias, iframe error text, or image alt text for this issue.',
-    //     type: 'text',
-    //     choices: [],
-    //     required: true,
-    // }
-    ],
+    fixOptions: [],
     editorTabs: [{
         readOnly: true,
         title: 'Current Link HTML',
