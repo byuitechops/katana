@@ -186,5 +186,5 @@ app.use('/api', apiRouter);
 
 // Starts the server
 app.listen(settings.server.port, () => {
-    console.log('Katana Server has launched.');
+    console.log(`Katana Server has launched on port ${settings.server.port}.`);
 });

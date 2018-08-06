@@ -4,7 +4,7 @@ If you are on Github, it is recommended you view the full documentation [HERE](h
 
 This tool is built to interface with Canvas, a Learning Management System built by Instructure. It provides the framework for a development team to build and deploy mass-maintenance tools. It *is not* built by Instructure. It was built by Brigham Young University - Idaho, and is maintained by them.
 
-## Setup
+## Setup - Production
 
 To set up your own instance of Katana, follow these steps:
 
@@ -20,11 +20,11 @@ To set up your own instance of Katana, follow these steps:
 
 6. Build production files with `ng build --prod`
 
-7. Copy the `server` directory and the contents of the `/dist` folder into the directory you will be deploying from
+<!-- 7. Copy the `server` directory and the contents of the `/dist` folder into the directory you will be deploying from -->
 
-8. Run `server.js` with Node however you would like (typically with `npm start`)
+7. In the terminal, run: `npm start` to start `server.js` (which will start Katana on port 8000)
 
-9. Follow any [additional setup processes](https://byuitechops.github.io/katana/docs/additional-documentation/setup.html) you need
+8. Follow any [additional setup processes](https://byuitechops.github.io/katana/docs/additional-documentation/setup.html) you need
 
 ## Development
 
