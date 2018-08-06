@@ -16,7 +16,7 @@ To set up your own instance of Katana, follow these steps:
 
 4. (TEMP: Set up CANVAS_API_TOKEN environment variable | Will become canvas developer key)
 
-5. Deploy Firebase using the steps described in [this document](./additional-documentation/setup/setting-up-firebase.html)
+5. Deploy Firebase using the steps described in [this document](https://byuitechops.github.io/katana/docs/additional-documentation/setup/setting-up-firebase.html)
 
 6. Build production files with `ng build --prod`
 
@@ -38,15 +38,15 @@ It can then be accessed via `localhost:8000` (or whichever port you specify in `
 # Documentation
 
 ### Additional Setup
-[Set up a Node Tool](additional-documentation/setup/node-tools.html)<br />
-[Set up Firebase](additional-documentation/setup/setting-up-firebase.html)<br />
-[Enabling Accounts on Firebase](additional-documentation/setup/enabling-accounts-on-firebase.html)<br />
+[Set up a Node Tool](https://byuitechops.github.io/katana/docs/additional-documentation/setup/node-tools.html)<br />
+[Set up Firebase](https://byuitechops.github.io/katana/docs/additional-documentation/setup/setting-up-firebase.html)<br />
+[Enabling Accounts on Firebase](https://byuitechops.github.io/katana/docs/additional-documentation/setup/enabling-accounts-on-firebase.html)<br />
 
 ### Client Architecture (Angular)
-[Angular Structure Documentation](https://byuitechops.github.io/katana/documentation/index.html) 
+[Angular Structure Documentation](https://byuitechops.github.io/katana/docs/index.html) 
 
 ### Server Architecture (Express)
-[LinkName](./documentation/additional-documentation/architecture.html)<br />
+[LinkName](https://byuitechops.github.io/katana/docs/additional-documentation/architecture.html)<br />
 
 
 
