@@ -9,9 +9,9 @@ const cheerio = require('cheerio');
 function discover(canvasItem, issueItem, options) {
     // Create the necessary variables to create issue items
     let title = 'Matching link found',
-        description = 'This link should be correct.',
         display = '',
         linkHtml = '',
+        proposedLinkHtml = '',
         details,
         html;
 
@@ -23,24 +23,24 @@ function discover(canvasItem, issueItem, options) {
         if (link) {
             // Check if the user provided a search parameter
             if (options.searchURL) {
-                // Check if the link contains the search parameter
-                if (link.includes(options.searchURL)) {
+                // Check if the link is equal to the search parameter
+                if (link === options.searchURL) {
                     // Set the issue item variables
                     title = 'Matching External URL Found';
-                    description = 'This external URL should be correct.';
                     display += '<h3>Current External URL</h3>';
                     display += `<a href="${link}" target="_blank">${link}</a>`;
-                    display += `<div>${description}</div>`;
+                    display += '<h3>Proposed External Link</h3>';
+                    display += `<a href="${options.defaultURL} target="_blank">${link}</a>`;
                     // Create the issue item
                     issueItem.newIssue(title, display, details);
                 }
             } else {
                 // Set the issue item variables
                 title = 'Matching External Link Found';
-                description = 'This external link should be correct.';
                 display += '<h3>Current External Link</h3>';
                 display += `<a href="${link}" target="_blank">${link}</a>`;
-                display += `<div>${description}</div>`;
+                display += '<h3>Proposed External Link</h3>';
+                display += `<a href="${options.defaultURL} target="_blank">${link}</a>`;
                 // Create the issue item
                 issueItem.newIssue(title, display, details);
             }
@@ -58,14 +58,14 @@ function discover(canvasItem, issueItem, options) {
                 if (link.name === 'a') {
                     attribute = $(link).attr('href');
                     if (attribute) {
-                        return attribute.toLowerCase().includes(options.searchURL.toLowerCase());
+                        return attribute === options.searchURL;
                     } else {
                         return false;
                     }
                 } else if (link.name === 'iframe' || link.name === 'img') {
                     attribute = $(link).attr('src');
                     if (attribute) {
-                        return attribute.toLowerCase().includes(options.searchURL.toLowerCase());
+                        return attribute === options.searchURL;
                     } else {
                         return false;
                     }
@@ -74,12 +74,33 @@ function discover(canvasItem, issueItem, options) {
         }
         // Loop through each link and create an issue item
         links.each((i, link) => {
-            // Construct the HTML to display to the user
+            // Reset the display for each issue item
+            display = '';
+            // Construct the current link HTML to display to the user
             linkHtml = `<${$(link)[0].name}`;
             for (let attr in $(link)[0].attribs) {
                 linkHtml += ` ${attr}="${$(link)[0].attribs[attr]}"`;
             }
-            linkHtml += `>${$(link).html()}</${$(link)[0].name}>`;
+            linkHtml += '>';
+            if ($(link)[0].name !== 'img') {
+                linkHtml += `${$(link).html()}</${$(link)[0].name}>`;
+            }
+
+            // Construct the proposed link HTML to display to the user
+            proposedLinkHtml = `<${$(link)[0].name}`;
+            for (let attr in $(link)[0].attribs) {
+                if (attr === 'href' || attr === 'src') {
+                    proposedLinkHtml += ` ${attr}="${options.defaultURL}"`;
+                } else if (attr === 'alt') {
+                    proposedLinkHtml += ` ${attr}="${options.newAlias}"`;
+                } else {
+                    proposedLinkHtml += ` ${attr}="${$(link)[0].attribs[attr]}"`;
+                }
+            }
+            proposedLinkHtml += '>';
+            if ($(link)[0].name !== 'img') {
+                proposedLinkHtml += `${options.newAlias}</${$(link)[0].name}>`;
+            }
 
             // Give details the current index. This will be used in fix() to determine which link on a canvas item to fix
             details = {
@@ -89,34 +110,42 @@ function discover(canvasItem, issueItem, options) {
             // Set the issue item variables for the correct type of html tag (a, iframe, img)
             if (link.name === 'a') {
                 display += '<h3>Current Link</h3>';
+                display += linkHtml;
+                display += '<h3>Proposed Link</h3>';
+                display += proposedLinkHtml;
                 title = 'Matching Anchor Tag Link Found';
                 html = {
                     currentLink: linkHtml,
+                    proposedLink: proposedLinkHtml,
                     currentHtml: canvasItem.getHtml(),
                     highlight: $(link).attr('href')
                 };
             } else
             if (link.name === 'iframe') {
                 display += '<h3>Current iframe</h3>';
+                display += linkHtml;
+                display += '<h3>Proposed Iframe Source</h3>';
+                display += proposedLinkHtml;
                 title = 'Matching Iframe Source Found';
-                description = 'This iframe should be correct.',
                 html = {
                     currentLink: linkHtml,
+                    proposedLink: proposedLinkHtml,
                     currentHtml: canvasItem.getHtml(),
                     highlight: $(link).attr('src')
                 };
             } else if (link.name === 'img') {
                 display += '<h3>Current Image</h3>';
+                display += linkHtml;
+                display += '<h3>Proposed Image Source</h3>';
+                display += proposedLinkHtml;
                 title = 'Matching Image Source Found';
-                description = 'This image should be correct.',
                 html = {
                     currentLink: linkHtml,
+                    proposedLink: proposedLinkHtml,
                     currentHtml: canvasItem.getHtml(),
                     highlight: $(link).attr('src')
                 };
             }
-            display += linkHtml;
-            display += `<div>${description}</div>`;
 
             // If the user provided a search paramter, highlight what they searched for in the html editor
             if (options.searchURL) {
@@ -142,8 +171,8 @@ function fix(canvasItem, issueItem, options) {
             // Check if the issue item is a module item
             if (issueItem.category === 'moduleItems') {
                 // Set the external url and title to the user provided values
-                canvasItem.external_url = issueItem.issues[0].optionValues.newURL;
-                canvasItem.setTitle(issueItem.issues[0].optionValues.newAlias);
+                canvasItem.external_url = options.defaultURL;
+                canvasItem.setTitle(options.newAlias);
                 // Set the status to fixed
                 issueItem.issues[0].status = 'fixed';
                 resolve();
@@ -160,14 +189,14 @@ function fix(canvasItem, issueItem, options) {
                         if (link.name === 'a') {
                             attribute = $(link).attr('href');
                             if (attribute) {
-                                return attribute.toLowerCase().includes(options.searchURL.toLowerCase());
+                                return attribute === options.searchURL;
                             } else {
                                 return false;
                             }
                         } else if (link.name === 'iframe' || link.name === 'img') {
                             attribute = $(link).attr('src');
                             if (attribute) {
-                                return attribute.toLowerCase().includes(options.searchURL.toLowerCase());
+                                return attribute === options.searchURL;
                             } else {
                                 return false;
                             }
@@ -181,15 +210,16 @@ function fix(canvasItem, issueItem, options) {
                     let link = links[issue.details.i];
                     // Change the attributes for the correct tag(a, iframe, img) and set the status to fixed
                     if (link.name === 'a') {
-                        $(link).attr('href', issue.optionValues.newURL);
-                        $(link).html(issue.optionValues.newAlias);
+                        $(link).attr('href', options.defaultURL);
+                        $(link).html(options.newAlias);
                         issue.status = 'fixed';
                     } else if (link.name === 'iframe') {
-                        $(link).attr('src', issue.optionValues.newURL);
-                        $(link).html(issue.optionValues.newAlias);
+                        $(link).attr('src', options.defaultURL);
+                        $(link).html(options.newAlias);
                         issue.status = 'fixed';
                     } else if (link.name === 'img') {
-                        $(link).attr('alt', issue.optionValues.newAlias);
+                        $(link).attr('src', options.defaultURL);
+                        $(link).attr('alt', options.newAlias);
                         issue.status = 'fixed';
                     }
                 });
@@ -224,40 +254,55 @@ module.exports = {
         'moduleItems',
     ],
     discoverOptions: [{
-        title: 'Search Phrase',
+        title: 'Search URL',
         key: 'searchURL',
-        description: 'A phrase or URL to search for. If left blank, all links will be found',
+        description: 'A URL to search for. If left blank all links, iframes, and images will be found.',
         type: 'text',
         choices: [],
         required: false
-    }],
-    // {
-    //     title: 'New URL',
-    //     key: 'defaultURL',
-    //     description: 'What you would like to set the new URL to (You will have a chance to review changes before they are finalized). If left blank each URL will have to be set individually.',
-    //     type: 'text',
-    //     choices: [],
-    //     required: false,
-    // }
-    fixOptions: [{
+    },
+    {
         title: 'New URL',
-        key: 'newURL',
-        description: 'Please enter the new URL for this link, iframe, or image.',
+        key: 'defaultURL',
+        description: 'The new URL to replace the searched URL. This is required and MUST be correct.',
         type: 'text',
         choices: [],
         required: true,
-    }, {
+    },
+    {
         title: 'New Link Alias/Iframe Error Text/Image Alt Text',
         key: 'newAlias',
-        description: 'Please enter the new link alias, iframe error text, or image alt text for this issue.',
+        description: 'Please enter the new link alias, iframe error text, or image alt text for this URL.',
         type: 'text',
         choices: [],
         required: true,
-    }],
+    }
+    ],
+    fixOptions: [
+    // {
+    //     title: 'New URL',
+    //     key: 'newURL',
+    //     description: 'Please enter the new URL for this link, iframe, or image.',
+    //     type: 'text',
+    //     choices: [],
+    //     required: true,
+    // }, {
+    //     title: 'New Link Alias/Iframe Error Text/Image Alt Text',
+    //     key: 'newAlias',
+    //     description: 'Please enter the new link alias, iframe error text, or image alt text for this issue.',
+    //     type: 'text',
+    //     choices: [],
+    //     required: true,
+    // }
+    ],
     editorTabs: [{
         readOnly: true,
         title: 'Current Link HTML',
         htmlKey: 'currentLink'
+    }, {
+        readOnly: true,
+        title: 'Proposed Link HTML',
+        htmlKey: 'proposedLink'
     }, {
         readOnly: true,
         title: 'Current HTML',
