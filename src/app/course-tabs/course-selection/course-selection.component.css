@@ -1,10 +1,10 @@
 .courseSearch {
   position: absolute;
-  height: calc(100vh - (var(--breadcrumbs-height) * 2));
+  height: calc(100vh - var(--header-height));
   width: 100vw;
   z-index: 4;
   background-color: rgba(0, 0, 0, 0.65);
-  top: calc((var(--breadcrumbs-height) * 2));
+  top: calc(var(--breadcrumbs-height));
   min-width: 700px;
   left: 100vw;
   overflow-y: scroll;
