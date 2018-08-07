@@ -15,6 +15,11 @@
     padding: 10px 20px;
 }
 
+.optionsView.frosted {
+    position: relative;
+    z-index: -1;
+}
+
 .categories-container>label {
     margin-right: 20px;
     font-size: 16px;
@@ -54,4 +59,8 @@
 
 div.option__text {
     padding: 0 10px !important;
+}
+
+button[type="submit"] {
+    margin-left: 10px;
 }

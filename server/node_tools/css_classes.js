@@ -107,7 +107,7 @@ module.exports = {
     discoverOptions: [{
         title: 'Conditions',
         key: 'cssClassName',
-        description: 'The name of the CSS class you would like to change.',
+        description: 'The name of the CSS class you would like to change (Case Sensitive).',
         type: 'text',
         choices: [],
         required: true

@@ -127,4 +127,9 @@ export class CourseSelectionComponent {
     isAdded(course: any) {
         return this.courseService.courses.find(c => c.id === course.id) !== undefined;
     }
+
+    /** Deselects all selected courses. */
+    removeAll() {
+        this.courseService.courses.forEach(c => this.courseService.removeCourse(c));
+    }
 }

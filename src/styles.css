@@ -18,6 +18,7 @@
   --issueList-width: 350px;
   --toolView-titleBar-height: 60px;
   --course-chip-width: 100%;
+  --courseSelect-width: 75vw;
   
   --cobalt: #2879B5;
   --navy: #183A54;
@@ -36,8 +37,12 @@
   transition: all .15s ease-in-out;
 }
 
+html {
+  overflow-y: hidden;
+}
+
 body {
-  margin-top: var(--breadcrumbs-height);
+  margin-top: var(--header-height);
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   background-color: var(--cobalt);

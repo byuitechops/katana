@@ -59,7 +59,7 @@ export class IssueContainerComponent implements OnInit {
      * @returns {Object[]} The tabs to use to build the editor instance.
      */
     buildEditorTabs() {
-        if (!this.toolService.selectedTool.editorTabs) return;
+        if (!this.toolService.selectedTool.editorTabs) { return; }
         return this.toolService.selectedTool.editorTabs.map(editorTab => {
             return {
                 title: editorTab.title,
