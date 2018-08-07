@@ -37,8 +37,12 @@
   transition: all .15s ease-in-out;
 }
 
+html {
+  overflow-y: hidden;
+}
+
 body {
-  margin-top: var(--breadcrumbs-height);
+  margin-top: var(--header-height);
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   background-color: var(--cobalt);
