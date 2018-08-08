@@ -7,7 +7,6 @@
   top: calc(var(--breadcrumbs-height));
   min-width: 700px;
   left: 100vw;
-  overflow-y: scroll;
   opacity: 0;
 }
 
@@ -115,7 +114,6 @@ option {
   border: 1px solid var(--primary-3);
   display: flex;
   flex-flow: column nowrap;
-  max-height: 655px;
   min-width: 600px;
   max-width: 1340px;
 }
@@ -134,6 +132,8 @@ option {
 .courseSearch__search>table>tbody {
   overflow-y: scroll;
   position: relative;
+  /* row height * number of results to display */
+  max-height: calc(60px * 7);
 }
 
 .courseSearch__courseResults>* {
