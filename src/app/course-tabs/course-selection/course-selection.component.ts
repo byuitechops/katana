@@ -132,4 +132,16 @@ export class CourseSelectionComponent {
     removeAll() {
         this.courseService.courses.forEach(c => this.courseService.removeCourse(c));
     }
+
+    /** Closes the courseSelect page when the user clicks on the margins of the page */
+    closeCourseSelect() {
+        this.courseService.courseSelectionOpen = false;
+    }
+    
+    /** Stops the courseSelect page from closing when the user interacts with the page (area that is not in the margins) 
+     * @param {object} event The JS onClick event
+     */
+    stopEvent(event) {
+        event.stopPropagation();
+    }
 }

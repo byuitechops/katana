@@ -18,7 +18,7 @@
   --issueList-width: 350px;
   --toolView-titleBar-height: 60px;
   --course-chip-width: 100%;
-  --courseSelect-width: 75vw;
+  --courseSelect-width: 64vw;
   
   --cobalt: #2879B5;
   --navy: #183A54;
@@ -167,6 +167,7 @@ ul {
   text-align: center;
   font-size: 24px;
   font-weight: 500;
+  box-sizing: border-box;
 }
 
 .flex-container {

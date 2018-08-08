@@ -34,6 +34,7 @@
   width: var(--courseSelect-width);
   min-width: 700px;
   margin: auto;
+  box-sizing: content-box;
 }
 
 /**************************************
