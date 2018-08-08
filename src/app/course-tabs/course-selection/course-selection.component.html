@@ -2,7 +2,7 @@
   <div class="courseSearch__courseSelection">
     <div class="courseSearch__header flex-container">
       Course Selection
-      <button *ngIf="courseService.courseSelectionOpen" class="waves-effect red lighten-1 btn removeAll" (click)="removeAll()">Remove All</button>
+      <button *ngIf="courseService.courseSelectionOpen" class="waves-effect red lighten-1 btn removeAll" [class.disabled]="courseService.courses.length == 0"  (click)="removeAll()">Remove All</button>
     </div>
     <label>Sub-Account
       <select (change)="getCourses()" #subAccount>
