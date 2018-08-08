@@ -42,7 +42,7 @@ html {
 }
 
 body {
-  margin-top: var(--header-height);
+  /* margin-top: var(--header-height); */
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   background-color: var(--cobalt);
@@ -245,6 +245,10 @@ tbody>tr>td {
   border-radius: 0;
 }
 
+.card {
+  position: static;
+}
+
 /* width */
 
 ::-webkit-scrollbar {
@@ -274,7 +278,7 @@ tbody>tr>td {
   background: #757575;
 }
 
-/* frosteded blur effect for course selection overlay */
+/* frosted blur effect for course selection overlay */
 
 .frosted {
   filter: blur(7px);

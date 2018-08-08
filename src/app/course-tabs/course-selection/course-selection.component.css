@@ -134,8 +134,6 @@ option {
 .courseSearch__search>table>tbody {
   overflow-y: scroll;
   position: relative;
-  /* The same as the padding-top for the Scrollbar, one pixel 
-  less than the thead height to account for the thead border */
 }
 
 .courseSearch__courseResults>* {
@@ -213,9 +211,5 @@ tbody td:nth-of-type(9) {
   max-height: 100%;
   margin: auto;
 }
-
-/***************************************
-* Daniel Testing responsive design
-***************************************/
 
 

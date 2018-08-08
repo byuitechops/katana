@@ -14,6 +14,11 @@ app-stat-badge>div {
     margin: 5px 0;
 }
 
+.issueContainer {
+    margin-top: var(--header-height);
+    display: flex;
+}
+
 .progress {
     background-color: var(--cobalt);
     position: absolute;
