@@ -1,5 +1,6 @@
 <div class="tabs-container">
     <ul materialize class="tabs navy flex-container">
+        <li class="tab" style="display: none;"><a class="active"></a></li> <!-- make materialize not worry about the active tab -->
         <li *ngFor="let course of courseService.courses" class="tab" [class.selectable]="toolService.toolViewOpen || courseService.courseSelectionOpen"
             [class.selected]="courseService.selectedCourse === course && (toolService.toolViewOpen || courseService.courseSelectionOpen)"
             (click)="courseService.selectedCourse = course">

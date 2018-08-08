@@ -4,6 +4,12 @@
     height: 5px;
 }
 
+.tabs-container {
+    position: fixed;
+    top: var(--breadcrumbs-height);
+    width: 100vw;
+}
+
 .tabs {
     height: var(--breadcrumbs-height) !important;
 }
