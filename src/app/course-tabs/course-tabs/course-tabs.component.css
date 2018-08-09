@@ -8,6 +8,7 @@
     position: fixed;
     top: var(--breadcrumbs-height);
     width: 100vw;
+    z-index: 2;
 }
 
 .tabs {

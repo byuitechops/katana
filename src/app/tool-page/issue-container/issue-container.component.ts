@@ -31,8 +31,8 @@ export class IssueContainerComponent implements OnInit {
      * @param courseService Provides information and management for selected courses.
      * Being used in issue-container.component.html (i.e. DO NOT DELETE)
      */
-    constructor(private toolService: ToolService,
-        private courseService: CourseService) { }
+    constructor(public toolService: ToolService,
+        public courseService: CourseService) { }
 
     /**
      * Fired when the component is initialized, this manages the item's display.

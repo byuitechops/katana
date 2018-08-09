@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { KatanaService } from '../../server.service';
+import { KatanaService } from '../../katana.service';
 import { CourseService } from '../../course.service';
 import { Course } from '../../interfaces';
 

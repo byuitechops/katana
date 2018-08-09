@@ -22,7 +22,7 @@ export class AuthGuardService implements CanActivate {
     /** *****************************
      *  The currently logged in user
      *******************************/
-    private userDetails: User = null;
+    public userDetails: User = null;
 
     /**
      * Event emitted when auth status changes
