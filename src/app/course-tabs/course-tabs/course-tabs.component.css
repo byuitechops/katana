@@ -4,6 +4,12 @@
     height: 5px;
 }
 
+.tabs-container ::-webkit-scrollbar-thumb {
+    background: var(--primary-3);
+    border-top: 1px solid var(--primary-4);
+    border-left: none;
+  }
+
 .tabs-container {
     position: fixed;
     top: var(--breadcrumbs-height);
@@ -13,6 +19,9 @@
 
 .tabs {
     height: var(--breadcrumbs-height) !important;
+    /* 192px is the width of the menu buttons on the right */
+    max-width: calc(100vw - 192px);
+    margin: 0;
 }
 
 .tabs .tab {
@@ -76,7 +85,9 @@
 
 .action-button-container {
     display: flex;
-    margin-left: auto;
+    position: fixed;
+    right: 0;
+    z-index: 5;
 }
 
 .addButton>i {
