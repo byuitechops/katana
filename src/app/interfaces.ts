@@ -166,6 +166,7 @@ export interface Course {
     error?: string;
 }
 
+/** Standard Error object with a status property */
 export interface Error {
     name: string;
     message: string;

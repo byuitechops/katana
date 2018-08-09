@@ -1,124 +1,191 @@
 <!doctype html>
 <html lang="en">
 
-    <head>
-        <meta charset="utf-8">
-        <title>Katana - Canvas Mass Maintenance</title>
-        <base href="/">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
+<head>
+  <meta charset="utf-8">
+  <title>Katana - Canvas Mass Maintenance</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-        <!-- Google Icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <!-- Materialize Compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <!-- Materialize Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
 
-        <!-- Materialize Compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <!-- Materialize Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 
 
-        <style>
-            body {
-                padding: 0 40px;
-            }
+  <style>
+    body {
+      padding: 0 40px;
+    }
 
-            h3 {
-                border: solid 1px #dedede;
-                padding: 15px;
-            }
+    h3 {
+      border: solid 1px #dedede;
+      padding: 15px;
+    }
 
-            .type {
-                width: 180px;
-            }
+    .type {
+      width: 180px;
+    }
 
-            td:nth-child(1) {
-                color: teal;
-            }
+    td:nth-child(1) {
+      color: teal;
+    }
 
-            td {
-                padding: 5px !important;
-            }
+    td {
+      padding: 5px !important;
+    }
 
-        </style>
+  </style>
 
-    </head>
+</head>
 
-    <!-- USE THE FOLLOWING TAGS:
+<!-- USE THE FOLLOWING TAGS:
         FIX         - When a bug is fixed
         UPDATE      - When something is updated to look/work differently, but wasn't broken
         NEW [ITEM]  - When something new is added (i.e. feature, tool, menu item)
+        REMOVED     - When something was removed from a previous version
     -->
 
-    <body>
+<body>
 
-        <h1>Katana Release Notes</h1>
+  <h1>Katana Release Notes</h1>
+  <table>
+    <thead>
+      <tr>
+        <th class="type">August 9, 2018 - 2:24 PM</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>FIX</td>
+        <td>Layering of various pages and popups have been patched and simplified</td>
+      </tr>
+      <tr>
+        <td>FIX</td>
+        <td>Fixed bugs which prevented Katana from successfully compiling a production version</td>
+      </tr>
+      <tr>
+        <td>FIX</td>
+        <td>
+          <strong>BYUI Style Classes</strong> - Occassionally added an extra div when the style classes were found, but formatted incorrectly. These issues have been corrected
+        </td>
+      </tr>
+      <tr>
+        <td>UPDATE</td>
+        <td>Clicking on the background of the course selection page closes the page</td>
+      </tr>
+      <tr>
+        <td>UPDATE</td>
+        <td>Scrollbars have been added in appropriate places</td>
+      </tr>
+      <tr>
+        <td>UPDATE</td>
+        <td>
+          <strong>BYUI Style Classes</strong> - The <em>UPDATED HTML</em> code editor tab is now editable in case the incorrect style classes are inserted, or the user desires to make additional changes
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-        <table>
-            <thead>
-                <tr>
-                    <th class="type">July 27, 2018 - 3:21 PM</th>
-                    <th></th>
-                </tr>
-            </thead>
+  <table>
+    <thead>
+      <tr>
+        <th class="type">August 7, 2018 - 3:25 PM</th>
+        <th></th>
+      </tr>
+    </thead>
 
-            <tbody>
-                <tr>
-                    <td>NEW TOOL</td>
-                    <td>
-                        <strong>HTML General Editor</strong> - Allows the user to edit HTML anywhere in the course. Can search for
-                        specific tags or phrases, or just retrieve all HTML from the course.</li>
-                    </td>
-                </tr>
-                <tr>
-                    <td>NEW TOOL</td>
-                    <td>
-                        <strong>Code Blocks</strong> - This tool identifies code blocks in course HTML that do not have the language
-                        added as a class.</td>
-                </tr>
-                <tr>
-                    <td>NEW TOOL</td>
-                    <td>
-                        <strong>Replace CSS Classes</strong> - Allows the user to find elements with specific CSS classes and replace
-                        them with new ones.</li>
-                    </td>
-                </tr>
-                <tr>
-                    <td>NEW FEATURE</td>
-                    <td>A settings menu has been added.</td>
-                </tr>
-                <tr>
-                    <td>NEW FEATURE</td>
-                    <td>The user can now select from three different themes (WIP). They are under the new settings menu.</td>
-                </tr>
-                <tr>
-                    <td>NEW FEATURE</td>
-                    <td>The "Searching for issues..." message can now be switched to randomly generated phrases. They can be
-                        turned off in the settings menu.</td>
-                </tr>
-                <tr>
-                    <td>UPDATE</td>
-                    <td>The course sidebar has been removed, and replaced with a new "tab" style bar, right underneath the navbar.</td>
-                </tr>
-                <tr>
-                    <td>UPDATE</td>
-                    <td>The "Add Courses" button has been moved to the right of the new course tabs bar, and has been changed
-                        to "Edit Courses."</td>
-                </tr>
-                <tr>
-                    <td>UPDATE</td>
-                    <td>The Issue Item list and the Issue List now have a scroll bar.</td>
-                </tr>
-                <tr>
-                    <td>FIX</td>
-                    <td>Courses with large amounts of items discovered will now load much,
-                        <em>much</em> quicker.</td>
-                </tr>
-                <tr>
-                    <td>REMOVED</td>
-                    <td>The pills showing off issue counts (approved, skipped, etc.) on the tool pages have been removed.</td>
-                </tr>
-            </tbody>
-        </table>
-    </body>
+    <tbody>
+      <tr>
+        <td>FIX</td>
+        <td>The button to expand and collapse the code editor no longer requires two clicks to work the first time, but now functions
+          with one click.</td>
+      </tr>
+      <tr>
+        <td>FIX</td>
+        <td>The HTML Editor would input text incorrectly on occasion, and would backspace incorrectly. This has been resolved.</td>
+      </tr>
+      <tr>
+        <td>FIX</td>
+        <td>
+          <strong>BYUI Style Classes</strong> - Occassionally showed the
+          <em>Current HTML</em> incorrectly. These consistency issues have been resolved.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="type">July 27, 2018 - 3:21 PM</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>NEW TOOL</td>
+        <td>
+          <strong>HTML General Editor</strong> - Allows the user to edit HTML anywhere in the course. Can search for specific tags
+          or phrases, or just retrieve all HTML from the course.</li>
+        </td>
+      </tr>
+      <tr>
+        <td>NEW TOOL</td>
+        <td>
+          <strong>Code Blocks</strong> - This tool identifies code blocks in course HTML that do not have the language added as a
+          class.
+        </td>
+      </tr>
+      <tr>
+        <td>NEW TOOL</td>
+        <td>
+          <strong>Replace CSS Classes</strong> - Allows the user to find elements with specific CSS classes and replace them with
+          new ones.</li>
+        </td>
+      </tr>
+      <tr>
+        <td>NEW FEATURE</td>
+        <td>A settings menu has been added.</td>
+      </tr>
+      <tr>
+        <td>NEW FEATURE</td>
+        <td>The user can now select from three different themes (WIP). They are under the new settings menu.</td>
+      </tr>
+      <tr>
+        <td>NEW FEATURE</td>
+        <td>The "Searching for issues..." message can now be switched to randomly generated phrases. They can be turned off in
+          the settings menu.</td>
+      </tr>
+      <tr>
+        <td>UPDATE</td>
+        <td>The course sidebar has been removed, and replaced with a new "tab" style bar, right underneath the navbar.</td>
+      </tr>
+      <tr>
+        <td>UPDATE</td>
+        <td>The "Add Courses" button has been moved to the right of the new course tabs bar, and has been changed to "Edit Courses."</td>
+      </tr>
+      <tr>
+        <td>UPDATE</td>
+        <td>The Issue Item list and the Issue List now have a scroll bar.</td>
+      </tr>
+      <tr>
+        <td>FIX</td>
+        <td>Courses with large amounts of items discovered will now load much,
+          <em>much</em> quicker.</td>
+      </tr>
+      <tr>
+        <td>REMOVED</td>
+        <td>The pills showing off issue counts (approved, skipped, etc.) on the tool pages have been removed.</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
 </html>

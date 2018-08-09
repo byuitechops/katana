@@ -79,12 +79,12 @@
 
     <!-- Course Selection Overlay -->
     <app-course-selection></app-course-selection>
+</div>
 
-    <!-- Feedback Modal - Must stay beneath the main container -->
-    <div id="feedbackModal" class="modal" materialize="modal" [materializeActions]="modalActions">
-        <div class="modal-content no-padding">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeMqVujrTfgj056YfvnhtOWEKB3Y1-Ziyp73JB0yqNjx0cwyg/viewform?embedded=true"
-                frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
-        </div>
+ <!-- Feedback Modal - Must stay outside of .tabs-container -->
+ <div id="feedbackModal" class="modal" materialize="modal" [materializeActions]="modalActions">
+    <div class="modal-content no-padding">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeMqVujrTfgj056YfvnhtOWEKB3Y1-Ziyp73JB0yqNjx0cwyg/viewform?embedded=true"
+            frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
     </div>
 </div>

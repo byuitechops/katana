@@ -333,6 +333,9 @@
                         <a href="interfaces/EditorTab.html" data-type="entity-link">EditorTab</a>
                     </li>
                     <li class="link">
+                        <a href="interfaces/Error.html" data-type="entity-link">Error</a>
+                    </li>
+                    <li class="link">
                         <a href="interfaces/FixOption.html" data-type="entity-link">FixOption</a>
                     </li>
                     <li class="link">
@@ -693,6 +696,9 @@
                         <a href="interfaces/EditorTab.html" data-type="entity-link">EditorTab</a>
                     </li>
                     <li class="link">
+                        <a href="interfaces/Error.html" data-type="entity-link">Error</a>
+                    </li>
+                    <li class="link">
                         <a href="interfaces/FixOption.html" data-type="entity-link">FixOption</a>
                     </li>
                     <li class="link">
@@ -818,6 +824,34 @@
     </table>
 </section>
 
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#katanaService">katanaService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
 
     <section>
     <h3 id="constructor">Constructor</h3>
@@ -864,7 +898,7 @@
                                                     
                                                         <td>
                                                                 <code><p>Collects errors in Katana and allows
-them to be read and displayed to the user. Being used in 
+them to be read and displayed to the user. Used in 
 error-page.component.html (i.e. DO NOT DELETE)</p>
 <hr>
 </code>
@@ -884,13 +918,59 @@ error-page.component.html (i.e. DO NOT DELETE)</p>
 
 
 
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="katanaService"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            katanaService
+                            </b>
+                            <a href="#katanaService"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon fa fa-reset"></span><code>katanaService:     <code><a href="../injectables/KatanaService.html" target="_self" >KatanaService</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../injectables/KatanaService.html" target="_self" >KatanaService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/home-page/error-page/error-page.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">Collects errors in Katana and allowsthem to be read and displayed to the user. Used in error-page.component.html (i.e. DO NOT DELETE)**********************************************************</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
-import { KatanaService } from &#x27;../../server.service&#x27;; // Being used in error-page.component.html (i.e. DO NOT DELETE)
+import { KatanaService } from &#x27;../../katana.service&#x27;; // Being used in error-page.component.html (i.e. DO NOT DELETE)
 
 /** An error page to display various client-side errors, and errors received from the server. */
 @Component({
@@ -903,10 +983,10 @@ export class ErrorPageComponent {
     /** **********************************************************
      * Constructor
      * @param katanaService Collects errors in Katana and allows
-     * them to be read and displayed to the user. Being used in 
+     * them to be read and displayed to the user. Used in 
      * error-page.component.html (i.e. DO NOT DELETE)
      ************************************************************/
-    constructor(private katanaService: KatanaService) { }
+    constructor(public katanaService: KatanaService) { }
 
 }
 </code></pre>
