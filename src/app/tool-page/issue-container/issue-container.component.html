@@ -4,7 +4,7 @@
     <h2 class="cobalt-text">{{issue.title}}</h2>
     <div class="issueContainer__issueDetails" #issueDetails></div>
 
-    <form materialize (ngSubmit)="onSubmit()" [formGroup]="issue.formGroup" #optionsForm="ngForm">
+    <form materialize [formGroup]="issue.formGroup" #optionsForm="ngForm">
       <div *ngFor="let option of issue.optionModel.options" class="form-row">
         <h3>{{option.title}}</h3>
         <div class="option__description">{{option.description}}</div>

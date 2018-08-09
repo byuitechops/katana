@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { auth, database } from 'firebase';
 import { AuthGuardService } from './authguard.service';
 import { resolve } from 'url';
+import { Error} from './interfaces';
 
 /**
  * Provides access to make calls to the Katana server.

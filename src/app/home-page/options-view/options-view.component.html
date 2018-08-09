@@ -1,4 +1,4 @@
-<div [class.frosted]="this.courseService.courseSelectionOpen || this.courseService.courseEditOpen" class="optionsView">
+<div [class.frosted]="this.courseService.courseSelectionOpen" class="optionsView">
     <div class="optionsView__container card">
 
         <form materialize (ngSubmit)="onSubmit()" [formGroup]="formGroup" #optionsForm="ngForm">
