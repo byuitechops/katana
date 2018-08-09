@@ -1,3 +1,4 @@
+const cheerio = require('cheerio');
 /** ***************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
@@ -5,66 +6,186 @@
  * @param {object} options - Options specific to the tool selected by the user
  *****************************************************************/
 function discover(canvasItem, issueItem, options) {
-    let title = ''; // the title of the card on the discovered issue
-    let description = ''; // a description of the discover type that will be displayed on the issue card
-    let display = ''; // the html that will be displayed on the issue card
-    let details = {}; // an object containing anything needing to be referenced in the fix function 
+    let $ = cheerio.load(canvasItem.getHtml());
+    let title = '';
+    let description = '';
+    let display = '';
+    let details = {};
+    let linkHtml = '';
     let html = {
-        currentHtml: canvasItem.getHtml(), // set the html for the editorTab, if applicable
-        highlight: options.highlight // if you are going to highlight something in the editor, assign the string here (i.e. search results)
+        currentHtml: canvasItem.getHtml()
     };
 
-    if ( /*meets condition */ true) {
+    if (options.transcriptSearch === 'Existing Transcripts') {
+        let transcriptLinks = $('a').filter((i, element) => {
+            let link = $(element).attr('href');
+            let linkHtml = $(element).html();
+            if (link) {
+                if (link.match(/transcript\b/gi)) {
+                    return true;
+                }
+            }
+            if (linkHtml) {
+                if (linkHtml.match(/transcript\b/gi)) {
+                    return true;
+                }
+            }
+            return false;
+        });
 
-    // Add new issues as needed
-        issueItem.newIssue(title, display, details, html);
-    }
-}
+        transcriptLinks.each((i, element) => {
+            linkHtml = `<${$(element)[0].name}`;
+            for (let attr in $(element)[0].attribs) {
+                linkHtml += ` ${attr}="${$(element)[0].attribs[attr]}"`;
+            }
+            linkHtml += '>';
+            if ($(element)[0].name !== 'img') {
+                linkHtml += `${$(element).html()}</${$(element)[0].name}>`;
+            }
 
-/** ***************************************************************
- * Fixes issues in the item provided.
- * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, including its issues
- * @param {object} options - Options specific to the tool selected by the user
- * @returns {array} fixedIssues - All issues discovered.
- *****************************************************************/
-function fix(canvasItem, issueItem, options) {
-    return new Promise(async (resolve, reject) => {
-        try {
-            // Loop through each issue and then...
-            // Set the issue to fixed...
-            // Resolve the promise
-            resolve();
-        } catch (e) {
-            issueItem.issues[0].status = 'untouched';
-            reject(e);
+            title = 'Existing Transcript Found';
+            description = 'This transcript should be correct.';
+            display = '<h3>Current Transcript</h3>';
+            display += linkHtml;
+            display += `<div>${description}</div>`;
+            html.transcriptHtml = linkHtml;
+            html.highlight = $(element).attr('href');
+
+            issueItem.newIssue(title, display, details, html);
+
+        });
+    } else {
+    // The user is searching for Missing Transcripts
+        let media = $('iframe').add('video').add('audio');
+        let transcriptLinks = $('a').filter((i, element) => {
+            let link = $(element).attr('href');
+            let linkHtml = $(element).html();
+            if (link) {
+                if (link.match(/transcript\b/gi)) {
+                    return true;
+                }
+            }
+            if (linkHtml) {
+                if (linkHtml.match(/transcript\b/gi)) {
+                    return true;
+                }
+            }
+            return false;
+        });
+        if (transcriptLinks.length < media.length) {
+            $(media).each((i, element) => {
+                let siblings = $(element).siblings();
+                if (siblings.length > 0) {
+                    siblings = siblings.filter((i, sibling) => {
+                        let siblingLink = '',
+                            siblingHtml = '';
+                        // Check if the current sibling is an anchor tag
+                        if (sibling.name === 'a') {
+                            siblingLink = $(sibling).attr('href');
+                            siblingHtml = $(sibling).html();
+                        } else {
+                            // Check the sibling's children for anchor tags
+                            let children = $(sibling).children('a');
+                            if (children.length > 0) {
+                                children = children.filter((i, child) => {
+                                    let childLink = $(child).attr('href'),
+                                        childHtml = $(child).html();
+                                    if (childLink.match(/transcript\b/gi)) {
+                                        return true;
+                                    }
+                                    if (childHtml.match(/transcript\b/gi)) {
+                                        return true;
+                                    }
+                                    return false;
+                                });
+                                return children.length > 0;
+                            } else {
+                                return false;
+                            }
+                        }
+                        if (siblingLink.match(/transcript\b/gi)) {
+                            return true;
+                        }
+                        if (siblingHtml.match(/transcript\b/gi)) {
+                            return true;
+                        }
+                        return false;
+                    });
+                    if (siblings.length === 0) {
+                        linkHtml = `<${$(element)[0].name}`;
+                        for (let attr in $(element)[0].attribs) {
+                            linkHtml += ` ${attr}="${$(element)[0].attribs[attr]}"`;
+                        }
+                        linkHtml += '>';
+                        if ($(element)[0].name !== 'img') {
+                            linkHtml += `${$(element).html()}</${$(element)[0].name}>`;
+                        }
+
+                        title = 'Possible Missing Transcript Found';
+                        description = 'A transcript might be missing for this media.';
+                        display = '<h3>Current Media</h3>';
+                        display += linkHtml;
+                        display += `<div>${description}</div>`;
+                        html.transcriptHtml = linkHtml;
+                        //html.highlight = $(element).attr('href');
+
+                        issueItem.newIssue(title, display, details, html);
+                    }
+                } else {
+                    linkHtml = `<${$(element)[0].name}`;
+                    for (let attr in $(element)[0].attribs) {
+                        linkHtml += ` ${attr}="${$(element)[0].attribs[attr]}"`;
+                    }
+                    linkHtml += '>';
+                    if ($(element)[0].name !== 'img') {
+                        linkHtml += `${$(element).html()}</${$(element)[0].name}>`;
+                    }
+
+                    title = 'Possible Missing Transcript Found';
+                    description = 'A transcript might be missing for this media.';
+                    display = '<h3>Current Media</h3>';
+                    display += linkHtml;
+                    display += `<div>${description}</div>`;
+                    html.transcriptHtml = linkHtml;
+                    html.highlight = linkHtml;
+
+                    issueItem.newIssue(title, display, details, html);
+                }
+            });
         }
-    });
+    }
 }
 
 module.exports = {
     discover,
-    fix,
     id: 'transcripts',
     title: 'Transcripts',
-    description: '',
+    description: 'This tool allows you to search for existing and missing transcripts.',
     icon: 'find_in_page',
-    toolType: 'fix',
+    toolType: 'search',
     toolCategory: 'html',
     fixMessage: '',
     categories: [
         'pages',
+        'assignments',
+        'discussions',
+        'quizzes',
+        'quizQuestions'
     ],
     discoverOptions: [{
         title: 'Conditions',
         key: 'transcriptSearch',
-        description: 'Do you want to include all transcripts or only missing transcripts?',
+        description: 'Do you want to search for existing transcripts or missing transcripts?',
         type: 'dropdown',
-        choices: ['', 'All Transcripts', 'Only Missing Transcripts'],
+        choices: ['', 'Existing Transcripts', 'Missing Transcripts'],
         required: true
     }],
     fixOptions: [],
     editorTabs: [{
+        title: 'Transcript HTML',
+        htmlKey: 'transcriptHtml',
+        readOnly: true
+    }, {
         title: 'HTML',
         htmlKey: 'currentHtml',
         readOnly: true
