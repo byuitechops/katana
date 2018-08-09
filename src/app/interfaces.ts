@@ -165,3 +165,11 @@ export interface Course {
     /** If an error is returned by a tool, it is attached to the course here */
     error?: string;
 }
+
+/** Standard Error object with a status property */
+export interface Error {
+    name: string;
+    message: string;
+    stack?: string;
+    status: string;
+}

@@ -18,7 +18,7 @@
   --issueList-width: 350px;
   --toolView-titleBar-height: 60px;
   --course-chip-width: 100%;
-  --courseSelect-width: 75vw;
+  --courseSelect-width: 64vw;
   
   --cobalt: #2879B5;
   --navy: #183A54;
@@ -42,7 +42,7 @@ html {
 }
 
 body {
-  margin-top: var(--header-height);
+  /* margin-top: var(--header-height); */
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   background-color: var(--cobalt);
@@ -167,6 +167,7 @@ ul {
   text-align: center;
   font-size: 24px;
   font-weight: 500;
+  box-sizing: border-box;
 }
 
 .flex-container {
@@ -245,6 +246,10 @@ tbody>tr>td {
   border-radius: 0;
 }
 
+.card {
+  position: static;
+}
+
 /* width */
 
 ::-webkit-scrollbar {
@@ -274,7 +279,7 @@ tbody>tr>td {
   background: #757575;
 }
 
-/* frosteded blur effect for course selection overlay */
+/* frosted blur effect for course selection overlay */
 
 .frosted {
   filter: blur(7px);

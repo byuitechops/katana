@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, Event, NavigationEnd } from '@angular/router';
 import { CourseService } from './course.service';
-import { KatanaService } from './server.service';
+import { KatanaService } from './katana.service';
 import { ToastService } from './toast.service';
 import { ToolService } from './tool.service';
 import { AuthGuardService } from './authguard.service'; // Being used in app.component.html (i.e. DO NOT DELETE)
@@ -39,10 +39,10 @@ export class AppComponent {
     constructor(private router: Router,
         private courseService: CourseService,
         private katanaService: KatanaService,
-        private toolService: ToolService,
+        public toolService: ToolService,
         private toastService: ToastService,
         private settingsService: SettingsService,
-        private authGuardService: AuthGuardService) {
+        public authGuardService: AuthGuardService) {
 
         // Set the theme
         if (localStorage['katanaTheme']) {

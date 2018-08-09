@@ -333,6 +333,9 @@
                         <a href="interfaces/EditorTab.html" data-type="entity-link">EditorTab</a>
                     </li>
                     <li class="link">
+                        <a href="interfaces/Error.html" data-type="entity-link">Error</a>
+                    </li>
+                    <li class="link">
                         <a href="interfaces/FixOption.html" data-type="entity-link">FixOption</a>
                     </li>
                     <li class="link">
@@ -691,6 +694,9 @@
                     </li>
                     <li class="link">
                         <a href="interfaces/EditorTab.html" data-type="entity-link">EditorTab</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/Error.html" data-type="entity-link">Error</a>
                     </li>
                     <li class="link">
                         <a href="interfaces/FixOption.html" data-type="entity-link">FixOption</a>
@@ -1158,7 +1164,7 @@ export class SettingsService {
         &#x27;practical&#x27;,
     ];
 
-    /** 
+    /**
      * The themes that can be set. Set by using the &#x60;setTheme()&#x60; method on this service.
      */
     themes &#x3D; {
@@ -1194,7 +1200,7 @@ export class SettingsService {
             &#x27;charcoal&#x27;: &#x27;#65727D&#x27;,
             &#x27;ashen&#x27;: &#x27;red&#x27;,
         }
-    }
+    };
 
     /** Constructor */
     constructor() { }
@@ -1213,7 +1219,7 @@ export class SettingsService {
      * @ignore
      */
     getRandom(arr) {
-        let randy &#x3D; Math.floor(Math.random() * arr.length);
+        const randy &#x3D; Math.floor(Math.random() * arr.length);
         return arr[randy];
     }
 

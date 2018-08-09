@@ -18,5 +18,5 @@ export class ToolSelectionComponent {
      * @param courseService Provides information and management for selected courses.
      * Used in tool-selection.component.html (i.e. DO NOT DELETE).
      */
-    constructor(public toolService: ToolService, private courseService: CourseService) { }
+    constructor(public toolService: ToolService, public courseService: CourseService) { }
 }

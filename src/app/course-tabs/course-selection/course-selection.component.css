@@ -7,7 +7,6 @@
   top: calc(var(--breadcrumbs-height));
   min-width: 700px;
   left: 100vw;
-  overflow-y: scroll;
   opacity: 0;
 }
 
@@ -18,7 +17,7 @@
 
 .courseSearch__header {
   font-size: 60px;
-  padding: 5px 50px 0 50px;
+  padding-top: 5px;
   width: var(--courseSelect-width);
   min-width: 700px;
   color: white;
@@ -28,24 +27,19 @@
 }
 
 .courseSearch__courseSelection {
+  justify-content: space-between;
   display: flex;
+  flex-wrap: wrap;
   padding: 0 50px;
   width: var(--courseSelect-width);
   min-width: 700px;
   margin: auto;
+  box-sizing: content-box;
 }
 
 /**************************************
 * Course Search Option Dropdowns
 ***************************************/
-
-.courseSearch__options {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  min-width: 600px;
-  max-width: 1340px;
-}
 
 select {
   background-color: white;
@@ -61,7 +55,7 @@ select {
 
 label {
   font-size: 20px;
-  color: white;
+  color: white !important;
   width: calc((100% / 4) - 20px);
   margin-top: 15px;
 }
@@ -79,13 +73,8 @@ option {
 * Course Search Search Bar and Headers
 ****************************************/
 
-.courseSearch__search {
-  display: block;
-  flex-flow: column nowrap;
-  margin-bottom: 30px;
-}
-
-.courseSearch__options input {
+/* .courseSearch__options input { */
+.courseSearch__courseSelection input {
   background-color: white;
   border: 1px solid var(--primary-3);
   font-size: 20px;
@@ -95,52 +84,29 @@ option {
   width: calc(100% - 11px);
 }
 
-.courseSearch__options>label{
-  min-width: 120px;
-}
-
-.courseSearch__input {
-  display: flex;
-  flex-flow: column nowrap;
-  width: 100%;
-  margin-bottom: 15px;
-}
-
 /***************************************
 * Course Search Results
 ****************************************/
 
-.courseSearch__search>table {
+.courseSearch__courseSelection>table {
   background-color: white;
   border: 1px solid var(--primary-3);
   display: flex;
   flex-flow: column nowrap;
-  max-height: 655px;
   min-width: 600px;
   max-width: 1340px;
 }
 
-.courseSearch__search>table>tbody::-webkit-scrollbar {
-  display: block;
-  width: 5px;
-  padding-top: 44px;
-}
-
-.courseSearch__search>table>thead {
+.courseSearch__courseSelection>table>thead {
   background-color: white;
   border-bottom: 1px solid var(--primary-3);
 }
 
-.courseSearch__search>table>tbody {
+.courseSearch__courseSelection>table>tbody {
   overflow-y: scroll;
   position: relative;
-  /* The same as the padding-top for the Scrollbar, one pixel 
-  less than the thead height to account for the thead border */
-}
-
-.courseSearch__courseResults>* {
-  display: flex;
-  flex-flow: column nowrap;
+  /* row height * number of results to display */
+  max-height: calc(60px * 7);
 }
 
 tbody>tr,
@@ -213,9 +179,5 @@ tbody td:nth-of-type(9) {
   max-height: 100%;
   margin: auto;
 }
-
-/***************************************
-* Daniel Testing responsive design
-***************************************/
 
 
