@@ -69,11 +69,11 @@ export class OptionsViewComponent {
     }
 
     /**
-     * Determines the open/close status of the modal.
+     * Determines the open/close status of the "no courses selected" modal.
      * @returns {boolean} Whether or not the modal is currently open.
      */
-    modalIsOpen(): boolean {
-        return !!document.querySelector('.modal-overlay');
+    noCourseModalOpen(): boolean {
+        return !!document.querySelector('#fixModal.open');
     }
 
     /**

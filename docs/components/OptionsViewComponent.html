@@ -877,7 +877,7 @@ options components.</p>
                                 <a href="#closeModal">closeModal</a>
                             </li>
                             <li>
-                                <a href="#modalIsOpen">modalIsOpen</a>
+                                <a href="#noCourseModalOpen">noCourseModalOpen</a>
                             </li>
                             <li>
                                 <a href="#onSubmit">onSubmit</a>
@@ -1054,18 +1054,18 @@ options components.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="modalIsOpen"></a>
+                        <a name="noCourseModalOpen"></a>
                         <span class="name">
                             <b>
-                            modalIsOpen
+                            noCourseModalOpen
                             </b>
-                            <a href="#modalIsOpen"><span class="fa fa-link"></span></a>
+                            <a href="#noCourseModalOpen"><span class="fa fa-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>modalIsOpen()</code>
+<code>noCourseModalOpen()</code>
                     </td>
                 </tr>
 
@@ -1079,7 +1079,7 @@ options components.</p>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Determines the open/close status of the modal.</p>
+                            <div class="io-description"><p>Determines the open/close status of the &quot;no courses selected&quot; modal.</p>
 </div>
 
                             <div>
@@ -1548,11 +1548,11 @@ export class OptionsViewComponent {
     }
 
     /**
-     * Determines the open/close status of the modal.
+     * Determines the open/close status of the &quot;no courses selected&quot; modal.
      * @returns {boolean} Whether or not the modal is currently open.
      */
-    modalIsOpen(): boolean {
-        return !!document.querySelector(&#x27;.modal-overlay&#x27;);
+    noCourseModalOpen(): boolean {
+        return !!document.querySelector(&#x27;#fixModal.open&#x27;);
     }
 
     /**
@@ -1654,7 +1654,7 @@ export class OptionsViewComponent {
         &lt;a class&#x3D;&quot;modal-action modal-close waves-effect btn blue&quot;&gt;Got it!&lt;/a&gt;
     &lt;/div&gt;
 &lt;/div&gt;
-&lt;div *ngIf&#x3D;&quot;modalIsOpen()&quot; class&#x3D;&quot;arrowIndicator&quot;&gt;
+&lt;div *ngIf&#x3D;&quot;noCourseModalOpen()&quot; class&#x3D;&quot;arrowIndicator&quot;&gt;
     &lt;div&gt;
         Click here to Add Courses
     &lt;/div&gt;
@@ -1688,7 +1688,7 @@ export class OptionsViewComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div [class.frosted]="this.courseService.courseSelectionOpen" class="optionsView">    <div class="optionsView__container card">        <form materialize (ngSubmit)="onSubmit()" [formGroup]="formGroup" #optionsForm="ngForm">            <div class="card-content">                <h1 style="padding:0;font-size:24px">Options</h1>                <h2 class="cobalt-text">                    {{toolService.selectedTool.title}}                </h2>                <div>                    <h3>Description</h3>                    <div>{{toolService.selectedTool.description}}</div>                </div>                <div>                    <h3>Categories</h3>                    <div style="display:flex">                        <div class="categories-container" *ngFor="let category of toolService.selectedTool.categories">                            <input [id]="category" type="checkbox" class="filled-in blue accent-3 canvas-category" checked="checked">                            <label [for]="category">{{category}}</label>                        </div>                    </div>                </div>                <div *ngFor="let option of optionModel.options" class="form-row">                    <h3>{{option.title}}</h3>                    <div class="option__description">{{option.description}}</div>                    <div [ngSwitch]="option.type" class="option__container" [class.multiselect]="option.type === \'multiselect\'" [class.required]="!formGroup.controls[option.key].valid">                        <div class="option__text" *ngSwitchCase="\'text\'">                            <input type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key" autofocus>                        </div>                        <div *ngSwitchCase="\'dropdown\'">                            <select style="display: block" [formControlName]="option.key">                                <option *ngFor="let choice of option.choices">{{choice}}</option>                            </select>                        </div>                        <div *ngSwitchCase="\'multiselect\'">                            <select style="display: block" [formControlName]="option.key" multiple>                                <option *ngFor="let choice of option.choices">{{choice}}</option>                            </select>                        </div>                    </div>                </div>            </div>            <div class="card-action">                <button type="button" class="btn white blue-grey-text text-darken-4" routerLink="/">Cancel</button>                <button type="submit" class="waves-effect waves btn blue" [disabled]="!formGroup.valid">Run Tool</button>            </div>        </form>    </div></div><!-- Modal - Must stay beneath the main container --><div id="fixModal" class="modal" materialize="modal" [materializeActions]="modalActions">    <div class="modal-content">        <h4>No Courses Selected</h4>        <p>You must select at least one course before continuing.</p>    </div>    <div class="modal-footer">        <a class="modal-action modal-close waves-effect btn blue">Got it!</a>    </div></div><div *ngIf="modalIsOpen()" class="arrowIndicator">    <div>        Click here to Add Courses    </div>    <i style="font-size: 40px;margin-right: 15px;" class="material-icons">arrow_forward</i></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div [class.frosted]="this.courseService.courseSelectionOpen" class="optionsView">    <div class="optionsView__container card">        <form materialize (ngSubmit)="onSubmit()" [formGroup]="formGroup" #optionsForm="ngForm">            <div class="card-content">                <h1 style="padding:0;font-size:24px">Options</h1>                <h2 class="cobalt-text">                    {{toolService.selectedTool.title}}                </h2>                <div>                    <h3>Description</h3>                    <div>{{toolService.selectedTool.description}}</div>                </div>                <div>                    <h3>Categories</h3>                    <div style="display:flex">                        <div class="categories-container" *ngFor="let category of toolService.selectedTool.categories">                            <input [id]="category" type="checkbox" class="filled-in blue accent-3 canvas-category" checked="checked">                            <label [for]="category">{{category}}</label>                        </div>                    </div>                </div>                <div *ngFor="let option of optionModel.options" class="form-row">                    <h3>{{option.title}}</h3>                    <div class="option__description">{{option.description}}</div>                    <div [ngSwitch]="option.type" class="option__container" [class.multiselect]="option.type === \'multiselect\'" [class.required]="!formGroup.controls[option.key].valid">                        <div class="option__text" *ngSwitchCase="\'text\'">                            <input type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key" autofocus>                        </div>                        <div *ngSwitchCase="\'dropdown\'">                            <select style="display: block" [formControlName]="option.key">                                <option *ngFor="let choice of option.choices">{{choice}}</option>                            </select>                        </div>                        <div *ngSwitchCase="\'multiselect\'">                            <select style="display: block" [formControlName]="option.key" multiple>                                <option *ngFor="let choice of option.choices">{{choice}}</option>                            </select>                        </div>                    </div>                </div>            </div>            <div class="card-action">                <button type="button" class="btn white blue-grey-text text-darken-4" routerLink="/">Cancel</button>                <button type="submit" class="waves-effect waves btn blue" [disabled]="!formGroup.valid">Run Tool</button>            </div>        </form>    </div></div><!-- Modal - Must stay beneath the main container --><div id="fixModal" class="modal" materialize="modal" [materializeActions]="modalActions">    <div class="modal-content">        <h4>No Courses Selected</h4>        <p>You must select at least one course before continuing.</p>    </div>    <div class="modal-footer">        <a class="modal-action modal-close waves-effect btn blue">Got it!</a>    </div></div><div *ngIf="noCourseModalOpen()" class="arrowIndicator">    <div>        Click here to Add Courses    </div>    <i style="font-size: 40px;margin-right: 15px;" class="material-icons">arrow_forward</i></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CategoriesComponent', 'selector': 'app-categories'},{'name': 'CodeEditorComponent', 'selector': 'app-code-editor'},{'name': 'CourseSelectionComponent', 'selector': 'app-course-selection'},{'name': 'CourseTabsComponent', 'selector': 'app-course-tabs'},{'name': 'ErrorPageComponent', 'selector': 'app-error-page'},{'name': 'IssueCardComponent', 'selector': 'app-issue-card'},{'name': 'IssueContainerComponent', 'selector': 'app-issue-container'},{'name': 'IssueDetailsComponent', 'selector': 'app-issue-details'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueNavComponent', 'selector': 'app-issue-nav'},{'name': 'OptionsViewComponent', 'selector': 'app-options-view'},{'name': 'StatBadgeComponent', 'selector': 'app-stat-badge'},{'name': 'ToolSelectionComponent', 'selector': 'app-tool-selection'},{'name': 'ToolViewComponent', 'selector': 'app-tool-view'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'OptionsViewComponent'};
