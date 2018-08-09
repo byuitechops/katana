@@ -15,6 +15,15 @@ function discover(canvasItem, issueItem, options) {
     let html = {
         currentHtml: canvasItem.getHtml()
     };
+    let transcriptTypes = {
+        '.rtf': 'Rich Text Format',
+        '.pdf': 'PDF',
+        '.docx': 'Word Document',
+        'docs.google.com': 'Google Drive Document',
+        'byui.instructure.com': 'Canvas File',
+        'amara.org': 'Amara Subtitles',
+        'content.byui.edu': 'Equella File'
+    };
 
     // Check if the user is searching for existing for missing transcripts
     if (options.transcriptSearch === 'Existing Transcripts') {
@@ -50,12 +59,22 @@ function discover(canvasItem, issueItem, options) {
                 linkHtml += `${$(element).html()}</${$(element)[0].name}>`;
             }
 
+            // Determine the file type of the transcript
+            let linkType = $(element).attr('href');
+            linkType = Object.keys(transcriptTypes).filter(type => linkType.includes(type))[0];
+            // Check if the link that was found is of an unknown type
+            if (!linkType) {
+                linkType = 'Unknown Type';
+            }
+
             // Set the necessary variables to create the issue item
             title = 'Existing Transcript Found';
             description = 'This transcript should be correct.';
             display = '<h3>Current Transcript</h3>';
             display += linkHtml;
             display += `<div>${description}</div>`;
+            display += '<h3>Transcript Type</h3>';
+            display += transcriptTypes[linkType];
             html.transcriptHtml = linkHtml;
             html.highlight = $(element).attr('href');
 
