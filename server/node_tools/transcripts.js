@@ -18,6 +18,7 @@ function discover(canvasItem, issueItem, options) {
     let transcriptTypes = {
         '.rtf': 'Rich Text Format',
         '.pdf': 'PDF',
+        '.html': 'HTML File',
         '.docx': 'Word Document',
         'docs.google.com': 'Google Drive Document',
         'byui.instructure.com': 'Canvas File',
