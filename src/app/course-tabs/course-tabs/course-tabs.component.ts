@@ -3,7 +3,7 @@ import { CourseService } from '../../course.service';
 import { ToolService } from '../../tool.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { SettingsService } from '../../settings.service';
-import { KatanaService } from '../../server.service';
+import { KatanaService } from '../../katana.service';
 
 /** The Course Tabs bar, along with the action buttons (settings, feedback, etc.). */
 @Component({
@@ -23,9 +23,9 @@ export class CourseTabsComponent {
      * @param courseService Provides information and functionality for courses selected by the user.
      * @param toolService Provides information and functionality for tools available on the server.
      */
-    constructor(private courseService: CourseService,
-        private toolService: ToolService,
-        private settingsService: SettingsService) { }
+    constructor(public courseService: CourseService,
+        public toolService: ToolService,
+        public settingsService: SettingsService) { }
 
     /**
      * Toggles the course overlay open and closed.

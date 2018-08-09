@@ -31,5 +31,4 @@
     overflow-x: hidden;
     overflow: auto;
     max-height: calc(100vh - (var(--header-height) + 52px));
-    overflow-y: scroll;
 }

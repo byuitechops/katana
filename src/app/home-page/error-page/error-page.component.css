@@ -1,11 +1,11 @@
 #errorPage {
-    background-color:white;
-    margin:80px 20px;
-    padding:20px;
-    overflow: scroll;
-    width: calc(100vw - var(--course-sidebar-width) - 40px);
+  background-color: white;
+  margin: calc(50px + var(--header-height)) auto 0 auto;
+  padding: 20px;
+  overflow: auto;
+  width: var(--courseSelect-width);
 }
 
 h1 {
-    color: red;
+  color: red;
 }

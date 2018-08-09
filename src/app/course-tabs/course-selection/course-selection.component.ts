@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { KatanaService } from '../../server.service';
+import { KatanaService } from '../../katana.service';
 import { CourseService } from '../../course.service';
 import { Course } from '../../interfaces';
 
@@ -131,5 +131,17 @@ export class CourseSelectionComponent {
     /** Deselects all selected courses. */
     removeAll() {
         this.courseService.courses.forEach(c => this.courseService.removeCourse(c));
+    }
+
+    /** Closes the courseSelect page when the user clicks on the margins of the page */
+    closeCourseSelect() {
+        this.courseService.courseSelectionOpen = false;
+    }
+    
+    /** Stops the courseSelect page from closing when the user interacts with the page (area that is not in the margins) 
+     * @param {object} event The JS onClick event
+     */
+    stopEvent(event) {
+        event.stopPropagation();
     }
 }
