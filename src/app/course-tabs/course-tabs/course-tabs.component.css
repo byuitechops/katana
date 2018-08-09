@@ -19,9 +19,6 @@
 
 .tabs {
     height: var(--breadcrumbs-height) !important;
-    /* 192px is the width of the menu buttons on the right */
-    max-width: calc(100vw - 192px);
-    margin: 0;
 }
 
 .tabs .tab {
@@ -85,9 +82,10 @@
 
 .action-button-container {
     display: flex;
-    position: fixed;
+    position: sticky;
     right: 0;
     z-index: 5;
+    margin-left: auto;
 }
 
 .addButton>i {

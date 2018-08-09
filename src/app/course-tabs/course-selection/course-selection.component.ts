@@ -53,7 +53,6 @@ export class CourseSelectionComponent {
 
             // Replace any whitespaces with '%20' for the query parameter and make everything lowercase
             const searchPhrase = this.searchText.nativeElement.value.replace(/\s/g, '%20');
-            console.log(searchPhrase);
             // Set the loading circle to display before retrieving the courses
             this.searching = true;
 

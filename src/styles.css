@@ -16,7 +16,7 @@
   --breadcrumbs-height: 50px;
   --header-height: calc(var(--breadcrumbs-height) * 2);
   --issueList-width: 350px;
-  --toolView-titleBar-height: 60px;
+  --toolView-titleBar-height: 52px;
   --course-chip-width: 100%;
   --courseSelect-width: 64vw;
   --scrollbar-offset: 7px;
