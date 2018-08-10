@@ -1,10 +1,8 @@
 <div class="courseSearch" [class.visible]="courseService.courseSelectionOpen" (click)="closeCourseSelect();">
   <div class="courseSearch__courseSelection" (click)="stopEvent($event);">
-    <div class="courseSearch__header flex-container">
+    <h2 class="courseSearch__header">
       Course Selection
-      <button *ngIf="courseService.courseSelectionOpen" class="waves-effect red lighten-1 btn removeAll" [class.disabled]="courseService.courses.length == 0"
-        (click)="removeAll()">Remove All</button>
-    </div>
+    </h2>
     <label>Sub-Account
       <select (change)="getCourses()" #subAccount>
         <option value=""></option>
@@ -43,18 +41,26 @@
     </label>
     <label>Search Term</label>
     <input type="text" placeholder="Search courses..." (input)="getCourses()" #searchText/>
-    <label>Results {{courseResults.length !== 0 ? '(' + courseResults.length + ')': '0'}}</label>
+
+    <div class="flex-container label-row">
+      <label>Results {{courseResults.length !== 0 ? '(' + courseResults.length + ')': '0'}}</label>
+      <button class="btn green green-accent-4 waves-effect addAll" (click)="addAll()" [class.disabled]="courseResults.length === 0" >Add All Results</button>
+      <button *ngIf="courseService.courseSelectionOpen" class="waves-effect red lighten-1 btn removeAll" [class.disabled]="courseService.courses.length == 0"
+        (click)="removeAll()">Remove All Courses</button>
+    </div>
+
     <table class="highlight">
       <thead>
         <tr>
           <th>+/-</th>
-          <th (click)="sortBy('course_name')">Name</th>
-          <th (click)="sortBy('course_code')">Code</th>
-          <th (click)="sortBy('instructor')">Instructor</th>
-          <th (click)="sortBy('account')">Account</th>
-          <th (click)="sortBy('term')">Term</th>
-          <th (click)="sortBy('blueprint')">Blueprint</th>
-          <th (click)="sortBy('id')">ID</th>
+          <!-- <th></th> -->
+          <th (click)="sortBy($event, 'course_name')">Name</th>
+          <th (click)="sortBy($event, 'course_code')">Code</th>
+          <th (click)="sortBy($event, 'instructor')">Instructor</th>
+          <th (click)="sortBy($event, 'account')">Account</th>
+          <th (click)="sortBy($event, 'term')">Term</th>
+          <th (click)="sortBy($event, 'blueprint')">Blueprint</th>
+          <th (click)="sortBy($event, 'id')">ID</th>
           <th>Open in Canvas</th>
         </tr>
       </thead>
