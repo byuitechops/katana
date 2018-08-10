@@ -111,6 +111,10 @@ option {
   border-bottom: 1px solid var(--primary-3);
 }
 
+.courseSearch__courseSelection>table>thead .column-selected {
+  background-color: #eeeeee;
+}
+
 .courseSearch__courseSelection>table>tbody {
   overflow-y: scroll;
   position: relative;
