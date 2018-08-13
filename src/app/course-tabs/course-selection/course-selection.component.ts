@@ -42,9 +42,9 @@ export class CourseSelectionComponent {
         public courseService: CourseService) { }
 
     /**
-     * This retrieves all courses that match the given parameters from Canvas 
-     * and returns them as an array of course objects that have been modified 
-     * by us. The returned results will populate the 'courseResults' array and 
+     * This retrieves all courses that match the given parameters from Canvas
+     * and returns them as an array of course objects that have been modified
+     * by us. The returned results will populate the 'courseResults' array and
      * will display in the results table in the course-selection html file.
      */
     async getCourses() {
@@ -132,12 +132,21 @@ export class CourseSelectionComponent {
         this.courseService.courses.forEach(c => this.courseService.removeCourse(c));
     }
 
+    /** Selects all courses found in the search */
+    addAll() {
+        this.courseResults.forEach(c => {
+            if (!this.isAdded(c)) {
+                this.courseService.addCourse(c);
+            }
+        });
+    }
+
     /** Closes the courseSelect page when the user clicks on the margins of the page */
     closeCourseSelect() {
         this.courseService.courseSelectionOpen = false;
     }
-    
-    /** Stops the courseSelect page from closing when the user interacts with the page (area that is not in the margins) 
+
+    /** Stops the courseSelect page from closing when the user interacts with the page (area that is not in the margins)
      * @param {object} event The JS onClick event
      */
     stopEvent(event) {

@@ -20,7 +20,6 @@
   --course-chip-width: 100%;
   --courseSelect-width: 64vw;
   --scrollbar-offset: 7px;
-  
   --cobalt: #2879B5;
   --navy: #183A54;
   --navy-light: #2D4B63;
@@ -62,7 +61,7 @@ body {
 }
 
 .mint {
-    background-color: var(--mint);
+  background-color: var(--mint);
 }
 
 .charcoal {
@@ -225,6 +224,7 @@ select {
 }
 
 /* Overwrite Materialize Tabs  */
+
 .tabs {
   margin: 0;
 }
@@ -322,5 +322,12 @@ div.loading-dancer::after {
   }
   to {
     opacity: 1;
+  }
+}
+
+/* overwrite Materialize media query */
+@media only screen and (max-width: 992px) {
+  .tabs .tab {
+    flex-grow: 0;
   }
 }
