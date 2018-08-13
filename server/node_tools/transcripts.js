@@ -184,6 +184,7 @@ function discover(canvasItem, issueItem, options) {
                         issueItem.newIssue(title, display, details, html);
                     }
                 } else {
+                    // The current media has zero siblings
                     html = {
                         currentHtml: canvasItem.getHtml()
                     };
