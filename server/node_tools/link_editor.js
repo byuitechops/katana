@@ -1,7 +1,6 @@
 const cheerio = require('cheerio');
 const he = require('he');
 
-
 /******************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
@@ -25,7 +24,7 @@ function discover(canvasItem, issueItem, options) {
     // Get the external url
         let link = canvasItem.external_url;
         // Check if the link is truthy
-        if (link) {
+        if (link !== undefined) {
             // Check if the user provided a search parameter
             if (options.searchURL) {
                 // Check if the link is equal to the search parameter
@@ -187,7 +186,9 @@ function fix(canvasItem, issueItem, options) {
             if (issueItem.category === 'moduleItems') {
                 // Set the external url and title to the user provided values
                 canvasItem.external_url = options.defaultURL;
-                canvasItem.setTitle(options.newAlias);
+                if (options.newAlias) {
+                    canvasItem.setTitle(options.newAlias);
+                }
                 // Set the status to fixed
                 issueItem.issues[0].status = 'fixed';
                 resolve();

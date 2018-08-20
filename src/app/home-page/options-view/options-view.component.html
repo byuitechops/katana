@@ -28,7 +28,7 @@
                     <div class="option__description">{{option.description}}</div>
                     <div [ngSwitch]="option.type" class="option__container" [class.multiselect]="option.type === 'multiselect'" [class.required]="!formGroup.controls[option.key].valid">
                         <div class="option__text" *ngSwitchCase="'text'">
-                            <input type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key" autofocus>
+                            <input type="{{option.type}}" id="{{option.key}}" [formControlName]="option.key">
                         </div>
                         <div *ngSwitchCase="'dropdown'">
                             <select style="display: block" [formControlName]="option.key">

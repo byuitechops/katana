@@ -79,11 +79,16 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
                 instructorName: course.instructorName
             };
 
+            course.issueItems = [];
+            
             // Run each item through the discover function of the selected tool
-            course.issueItems = allItems.reduce((acc, item) => {
-                let issueItem = toolList[tool_id].discover(item, options);
-                return issueItem.issues.length > 0 ? acc.concat(issueItem) : acc;
-            }, []);
+            // DO THIS FOR FIX AS WELL. CURRENTLY NOT ASYNC FOR FIX
+            for (let i = 0; i < allItems.length; i++) {
+                let issueItem = await toolList[tool_id].discover(allItems[i], options);
+                if (issueItem.issues.length > 0) {
+                    course.issueItems.push(issueItem);
+                }
+            }
 
             // Log the issue items
             course.issueItems.forEach(issueItem => issueItem.issues.forEach(issue => {

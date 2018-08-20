@@ -15,7 +15,7 @@ export interface DiscoverOption {
     /** The input type. Available types are "text", "dropdown", and "multiselect." */
     type: string;
     /** The available choices for the option (not applicable to "text" type) */
-    choices: object[];
+    choices?: object[];
     /** The default text for "text" type options */
     defaultText?: string;
     /** Whether or not it is a required option on the form */
@@ -36,7 +36,7 @@ export interface FixOption {
     /** The input type. Available types are "text", "dropdown", and "multiselect." */
     type: string;
     /** The available choices for the option (not applicable to "text" type) */
-    choices: object[];
+    choices?: object[];
     /** Default text for "text" type options */
     defaultText?: string;
     /** Whether or not the option is required in the form */
