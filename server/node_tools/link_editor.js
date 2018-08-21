@@ -25,25 +25,13 @@ function discover(canvasItem, issueItem, options) {
         let link = canvasItem.external_url;
         // Check if the link is truthy
         if (link !== undefined) {
-            // Check if the user provided a search parameter
-            if (options.searchURL) {
-                // Check if the link is equal to the search parameter
-                if (link === options.searchURL) {
-                    // Set the issue item variables
-                    title = 'Matching External URL Found';
-                    display += '<h3>Current External URL</h3>';
-                    display += `<a href="${link}" target="_blank">${link}</a>`;
-                    display += '<h3>Proposed External Link</h3>';
-                    display += `<a href="${options.defaultURL} target="_blank">${options.defaultURL}</a>`;
-                    // Create the issue item
-                    issueItem.newIssue(title, display, details);
-                }
-            } else {
+            // Check if the link is equal to the search parameter
+            if (link === options.searchURL) {
                 // Set the issue item variables
-                title = 'Matching External Link Found';
-                display += '<h3>Current External Link</h3>';
+                title = 'Matching External URL Found';
+                display += '<h3>Current External URL</h3>';
                 display += `<a href="${link}" target="_blank">${link}</a>`;
-                display += '<h3>Proposed External Link</h3>';
+                display += '<h3>Proposed External URL</h3>';
                 display += `<a href="${options.defaultURL} target="_blank">${options.defaultURL}</a>`;
                 // Create the issue item
                 issueItem.newIssue(title, display, details);
@@ -61,18 +49,10 @@ function discover(canvasItem, issueItem, options) {
                 let attribute;
                 if (link.name === 'a') {
                     attribute = $(link).attr('href');
-                    if (attribute) {
-                        return attribute === options.searchURL;
-                    } else {
-                        return false;
-                    }
+                    return attribute === options.searchURL;
                 } else if (link.name === 'iframe' || link.name === 'img') {
                     attribute = $(link).attr('src');
-                    if (attribute) {
-                        return attribute === options.searchURL;
-                    } else {
-                        return false;
-                    }
+                    return attribute === options.searchURL;
                 }
             });
         }
@@ -204,18 +184,10 @@ function fix(canvasItem, issueItem, options) {
                         let attribute;
                         if (link.name === 'a') {
                             attribute = $(link).attr('href');
-                            if (attribute) {
-                                return attribute === options.searchURL;
-                            } else {
-                                return false;
-                            }
+                            return attribute === options.searchURL;
                         } else if (link.name === 'iframe' || link.name === 'img') {
                             attribute = $(link).attr('src');
-                            if (attribute) {
-                                return attribute === options.searchURL;
-                            } else {
-                                return false;
-                            }
+                            return attribute === options.searchURL;
                         }
                     });
                 }
