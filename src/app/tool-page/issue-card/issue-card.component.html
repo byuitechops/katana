@@ -15,10 +15,12 @@
         </a>
     </div>
     <ul>
-        <li *ngFor="let issue of issueItem.issues" class="issueCard_issue ">
+        <li *ngFor="let issue of issueItem.issues; let i = index;" class="issueCard_issue">
             <i class="material-icons issueCard_tag" [ngClass]="courseService.getTextColorClasses(issue.status)">
                 {{courseService.getStatusIcon(issue.status)}}
-            </i>{{issue.title}}
+            </i>
+            <!-- If a user clicks a title on an issueItem card, it will take the user to that issue card -->
+            <a (click)="viewIssueCard(issueItem.item_id, i)">{{issue.title}}</a>
         </li>
     </ul>
 </div>

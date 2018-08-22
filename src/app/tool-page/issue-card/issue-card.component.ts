@@ -37,8 +37,8 @@ export class IssueCardComponent implements AfterViewInit {
      * data correctly to the type icon.
      */
     ngAfterViewInit() {
-        if (!this.typeIcon) return;
-        let types = {
+        if (!this.typeIcon) { return; }
+        const types = {
             'pages': 'Page',
             'assignments': 'Assignment',
             'discussions': 'Discussion',
@@ -48,7 +48,7 @@ export class IssueCardComponent implements AfterViewInit {
             'quizQuestions': 'Quiz Question',
             'modules': 'Module',
             'moduleItems': 'Module Item',
-        }
+        };
         this.typeIcon.nativeElement.setAttribute('data-tooltip', types[this.issueItem.category]);
     }
 
@@ -59,7 +59,7 @@ export class IssueCardComponent implements AfterViewInit {
      * @returns {string} The icon title to use to display the icon.
      */
     getTypeIcon() {
-        let typeIcons = {
+        const typeIcons = {
             'pages': 'insert_drive_file',
             'assignments': 'assignment',
             'discussions': 'question_answer',
@@ -69,7 +69,17 @@ export class IssueCardComponent implements AfterViewInit {
             'quizQuestions': 'help_outline',
             'modules': 'view_agenda',
             'moduleItems': 'view_list',
-        }
+        };
         return typeIcons[this.issueItem.category];
+    }
+
+    /**
+     * This is used in place of typical anchors. It will look scroll to the issue card selected from the issueItem card
+     * @param issueItemId Provides the issueItem's id that helps form the issue card's id for the anchor tag to work
+     * @param i Provides the index of the issue in IssueItem.issues[] to help form the unique id for the issue card
+     */
+    viewIssueCard(issueItemId, i) {
+        const el = document.getElementById(`${issueItemId}-${i}`);
+        el.scrollIntoView();
     }
 }

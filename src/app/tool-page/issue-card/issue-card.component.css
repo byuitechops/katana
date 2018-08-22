@@ -73,6 +73,12 @@
     line-height: 22px;
 }
 
+/* The issue title's underline */
+
+.issueCard_issue>a:hover {
+    text-decoration: underline #039be5;
+}
+
 /* The issue tag (the icon) */
 
 .issueCard_tag {
