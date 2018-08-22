@@ -135,8 +135,9 @@ export class CourseSelectionComponent {
     /** Selects all courses found in the search */
     addAll() {
         this.courseResults.forEach(c => {
-            if (!this.isAdded(c))
+            if (!this.isAdded(c)) {
                 this.courseService.addCourse(c);
+            }
         });
     }
 
