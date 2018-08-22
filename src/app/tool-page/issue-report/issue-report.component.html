@@ -1,0 +1,14 @@
+<div class="issueList">
+  <h1 class="issueList__title white-text">
+    Look at this cool report
+  </h1>
+  <div class="issueList__list">
+    <table *ngFor="let issueItem of getIssueItems()" class="white">
+      <tr *ngFor="let issue of issueItem.issues">
+        <td>{{issue ? issue.title : ''}}</td>
+        <td id="details" #details></td>
+        <td>{{issue ? issue.html.currentHtml : ''}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
