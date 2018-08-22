@@ -12,4 +12,5 @@ module.exports = {
     'css_classes': new NodeTool(require('./node_tools/css_classes.js')),
     'html_general_editor': new NodeTool(require('./node_tools/html_general_editor.js')),
     'link_editor': new NodeTool(require('./node_tools/link_editor.js')),
+    'transcripts': new NodeTool(require('./node_tools/transcripts.js')),
 };

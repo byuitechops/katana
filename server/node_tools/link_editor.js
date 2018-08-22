@@ -1,7 +1,6 @@
 const cheerio = require('cheerio');
 const he = require('he');
 
-
 /******************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
@@ -25,26 +24,14 @@ function discover(canvasItem, issueItem, options) {
     // Get the external url
         let link = canvasItem.external_url;
         // Check if the link is truthy
-        if (link) {
-            // Check if the user provided a search parameter
-            if (options.searchURL) {
-                // Check if the link is equal to the search parameter
-                if (link === options.searchURL) {
-                    // Set the issue item variables
-                    title = 'Matching External URL Found';
-                    display += '<h3>Current External URL</h3>';
-                    display += `<a href="${link}" target="_blank">${link}</a>`;
-                    display += '<h3>Proposed External Link</h3>';
-                    display += `<a href="${options.defaultURL} target="_blank">${options.defaultURL}</a>`;
-                    // Create the issue item
-                    issueItem.newIssue(title, display, details);
-                }
-            } else {
+        if (link !== undefined) {
+            // Check if the link is equal to the search parameter
+            if (link === options.searchURL) {
                 // Set the issue item variables
-                title = 'Matching External Link Found';
-                display += '<h3>Current External Link</h3>';
+                title = 'Matching External URL Found';
+                display += '<h3>Current External URL</h3>';
                 display += `<a href="${link}" target="_blank">${link}</a>`;
-                display += '<h3>Proposed External Link</h3>';
+                display += '<h3>Proposed External URL</h3>';
                 display += `<a href="${options.defaultURL} target="_blank">${options.defaultURL}</a>`;
                 // Create the issue item
                 issueItem.newIssue(title, display, details);
@@ -62,18 +49,10 @@ function discover(canvasItem, issueItem, options) {
                 let attribute;
                 if (link.name === 'a') {
                     attribute = $(link).attr('href');
-                    if (attribute) {
-                        return attribute === options.searchURL;
-                    } else {
-                        return false;
-                    }
+                    return attribute === options.searchURL;
                 } else if (link.name === 'iframe' || link.name === 'img') {
                     attribute = $(link).attr('src');
-                    if (attribute) {
-                        return attribute === options.searchURL;
-                    } else {
-                        return false;
-                    }
+                    return attribute === options.searchURL;
                 }
             });
         }
@@ -187,7 +166,9 @@ function fix(canvasItem, issueItem, options) {
             if (issueItem.category === 'moduleItems') {
                 // Set the external url and title to the user provided values
                 canvasItem.external_url = options.defaultURL;
-                canvasItem.setTitle(options.newAlias);
+                if (options.newAlias) {
+                    canvasItem.setTitle(options.newAlias);
+                }
                 // Set the status to fixed
                 issueItem.issues[0].status = 'fixed';
                 resolve();
@@ -203,18 +184,10 @@ function fix(canvasItem, issueItem, options) {
                         let attribute;
                         if (link.name === 'a') {
                             attribute = $(link).attr('href');
-                            if (attribute) {
-                                return attribute === options.searchURL;
-                            } else {
-                                return false;
-                            }
+                            return attribute === options.searchURL;
                         } else if (link.name === 'iframe' || link.name === 'img') {
                             attribute = $(link).attr('src');
-                            if (attribute) {
-                                return attribute === options.searchURL;
-                            } else {
-                                return false;
-                            }
+                            return attribute === options.searchURL;
                         }
                     });
                 }

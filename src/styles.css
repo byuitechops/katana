@@ -41,7 +41,6 @@ body {
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   background-color: var(--cobalt);
-  overflow: hidden;
 }
 
 .cobalt {
