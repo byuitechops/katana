@@ -42,6 +42,7 @@ function discover(canvasItem, issueItem, options) {
      * If the canvas item is a module item, search it's external url for the search input
      ***************************************************************/
     function searchModuleItem() {
+        // set the input to lowercase and uniform the whitespaces for comparison
         let included = canvasItem.external_url.toLowerCase().includes(options.searchInput.toLowerCase());
         // if searching by regex then check differently
         if (options.searchType === 'Regex') {
@@ -50,7 +51,7 @@ function discover(canvasItem, issueItem, options) {
             included = regex.test(canvasItem.external_url);
             description = `The search came back with a match for "<strong style="font-weight: 500">${regex}</strong>"`;
         }
-       
+
         if (included) {
             let display = `
             <div>${description}</div>
@@ -74,19 +75,19 @@ function discover(canvasItem, issueItem, options) {
     function getSearchContent() {
         let search = {};
         // get the title if necessary
-        search.title = canvasItem.getTitle().toLowerCase().replace(/\s*/, ' ');
+        search.title = canvasItem.getTitle().toLowerCase().replace(/\s+/gm, ' ');
         // get the html and the text if necessary
         if (html.currentHtml !== null && html.currentHtml !== undefined) {
             let $ = cheerio.load(canvasItem.getHtml() || '');
             if (options.searchThrough === 'HTML and Text') {
-                search.text = $('*').text().toLowerCase().replace(/\s*/, ' ');
-                search.html = $('*').html().toLowerCase().replace(/\s*/, ' ');
+                search.text = $('*').text().toLowerCase().replace(/\s+/gm, ' ');
+                search.html = $('*').html().toLowerCase().replace(/\s+/gm, ' ');
             } else if (options.searchThrough === 'HTML') {
-                search.html = $('*').html().toLowerCase().replace(/\s*/, ' ');
+                search.html = $('*').html().toLowerCase().replace(/\s+/gm, ' ');
             } else if (options.searchThrough === 'Text') {
                 // if searching by text only, then put the text in the html editor for the user to see
-                html.currentHtml = $('*').text();
-                search.text = $('*').text().toLowerCase().replace(/\s*/, ' ');
+                html.currentHtml = $('*').text().replace(/\s+/gm, ' ');
+                search.text = $('*').text().toLowerCase().replace(/\s+/gm, ' ');
             }
         }
         return search;
@@ -153,22 +154,23 @@ function discover(canvasItem, issueItem, options) {
     }
     // Search the text content of the item, found within the html.
     // If the content doesn't include the search phrase then return
-    let includes = false;
-    if (html.currentHtml) {
-        if (options.searchType === 'Text') {
-            includes = searchText();
-        } else if (options.searchType === 'CSS Selector') {
-            includes = searchCss();
-        } else if (options.searchType === 'Regex') {
-            includes = searchRegex();
-            if (includes) {
-                description = `The search came back with a match for "<strong style="font-weight: 500">${includes}</strong>"`;
-            }
-        }
-    } else {
+    if (!html.currentHtml) {
         return;
     }
 
+    let includes = false;
+    if (options.searchType === 'Text') {
+        includes = searchText();
+    } else if (options.searchType === 'CSS Selector') {
+        includes = searchCss();
+    } else if (options.searchType === 'Regex') {
+        includes = searchRegex();
+        if (includes) {
+            description = `The search came back with a match for "<strong style="font-weight: 500">${includes}</strong>"`;
+        }
+    }
+
+    // if the canvas item had a match with the search parameters, make a new issue here
     if (includes) {
         let display = `<div>${description}</div>`;
         let details = { 
@@ -182,8 +184,8 @@ function discover(canvasItem, issueItem, options) {
 module.exports = {
     discover,
     id: 'course_search',
-    title: 'Course Search',
-    description: 'This tool allows you to search Canvas courses\' for given words and/or phrases. The tool will search through the text within the html, the html itself, module items\' external url\'s, and/or the titles of the various items throughout the course.',
+    title: 'Course Search (BETA)',
+    description: 'This tool allows you to search Canvas courses for given words and/or phrases. The tool will search through the text within the html, the html itself, module items\' external urls, and/or the titles of the various items throughout the course.',
     icon: 'search',
     toolType: 'search',
     toolCategory: 'html',
@@ -200,28 +202,28 @@ module.exports = {
     discoverOptions: [{
         title: 'Input Type',
         key: 'searchThrough',
-        description: 'Would you like to search through the HTML or the just the Text?',
+        description: 'Would you like to search through the HTML or the just the Text within the Canvas items?',
         type: 'dropdown',
-        choices: ['', 'HTML', 'Text', 'HTML and Text'],
+        choices: ['', 'HTML and Text', 'HTML', 'Text'],
         required: true
     }, {
         title: 'Search Type',
         key: 'searchType',
-        description: 'What type of input would you like to search by?',
+        description: 'What type of input would you like to search by? (Note: "CSS Selector" will only work if searching through the HTML)',
         type: 'dropdown',
         choices: ['', 'Text', 'CSS Selector', 'Regex'],
         required: true
     }, {
         title: 'Search Titles',
         key: 'searchTitle',
-        description: 'Would you like to search the titles as well? If searching by "CSS Selector" then this option will automatically be disabled and titles will not be searched.',
+        description: 'Would you like to search the titles as well? (Note: Defaults to "No" if nothing is selected. If searching by "CSS Selector" then this option will automatically be disabled, no matter the selection, and titles will not be searched)',
         type: 'dropdown',
         choices: ['', 'Yes', 'No'],
-        required: true
+        required: false
     }, {
         title: 'Search Input',
         key: 'searchInput',
-        description: `Put your search input here. This search is case insensitive when searching by Text (i.e. it will find all upper and lower case instances of your search) but case sensitive when searching by CSS Selector and Regex. If searching by Regex, do not include the openning and closing "\/" and put a space between the regex expression, and the desired flags (ex: "w04\\s*discussion gi" --> "/w04\\s*discussion/gi").`,
+        description: `Put your search input here. This search is case insensitive when searching by Text (i.e. it will find all upper and lower case instances of your search) but case sensitive when searching by CSS Selector and Regex. (Note: If searching by Regex, do not include the openning and closing "\/" and put a space between the regex expression, and the desired flags. For example, typing "w04\\s*discussion gi" as the input would be converted to the Regex object "/w04\\s*discussion/gi")`,
         type: 'text',
         required: true
     }],

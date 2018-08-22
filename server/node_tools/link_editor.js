@@ -233,7 +233,7 @@ module.exports = {
     discover,
     fix,
     id: 'link_editor',
-    title: 'Link Editor',
+    title: 'Link Editor (BETA)',
     description: 'Find and replace links in a course. This includes both links found within the course HTML as well as external links found in module items.',
     icon: 'link',
     toolType: 'fix',

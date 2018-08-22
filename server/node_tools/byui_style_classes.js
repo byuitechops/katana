@@ -70,7 +70,7 @@ function discover(canvasItem, issueItem, options) {
         } else if (incorrectLowerCaseClass.length !== 0) {
             // Correct the existing classes
             $(incorrectLowerCaseClass).attr('class', `byui ${styleClass}`);
-        } else if (incorrectUpperCaseClass !== 0) {
+        } else if (incorrectUpperCaseClass.length !== 0) {
             // Correct the existing classes
             $(incorrectUpperCaseClass).attr('class', `byui ${styleClass}`);
         } else {

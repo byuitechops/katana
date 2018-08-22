@@ -218,7 +218,7 @@ function discover(canvasItem, issueItem, options) {
 module.exports = {
     discover,
     id: 'transcripts',
-    title: 'Transcripts',
+    title: 'Transcripts (BETA)',
     description: 'This tool allows you to search iframe, video, and audio tags for existing or missing transcripts.',
     icon: 'find_in_page',
     toolType: 'search',

@@ -42,7 +42,7 @@ module.exports = {
     discover,
     fix,
     id: 'discussions_threaded',
-    title: 'Enable Threaded Discussions',
+    title: 'Threaded Discussions',
     description: 'Discussion Topics should always have the "Allow threaded replies" setting enabled. This tool discovers discussions that do not have it enabled and will enable it for you.',
     icon: 'question_answer',
     fixMessage: 'The "Allow threaded replies" setting has been enabled',

@@ -28,7 +28,7 @@
     "angular2-materialize": "^15.1.10",
     "angularfire2": "^5.0.0-rc.8.1-next",
     "body-parser": "^1.18.3",
-    "canvas-api-wrapper": "^3.3.1",
+    "canvas-api-wrapper": "^3.3.3",
     "chalk": "^2.4.1",
     "cheerio": "^1.0.0-rc.2",
     "core-js": "^2.5.4",
