@@ -1486,14 +1486,14 @@ export class IssueNavComponent {
      * Opens the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
      */
     openModal() {
-        this.modalActions.emit({ action: &quot;modal&quot;, params: [&#x27;open&#x27;] });
+        this.modalActions.emit({ action: &#x27;modal&#x27;, params: [&#x27;open&#x27;] });
     }
 
     /**
      * Closes the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
      */
     closeModal() {
-        this.modalActions.emit({ action: &quot;modal&quot;, params: [&#x27;close&#x27;] });
+        this.modalActions.emit({ action: &#x27;modal&#x27;, params: [&#x27;close&#x27;] });
     }
 
     /**
@@ -1502,9 +1502,9 @@ export class IssueNavComponent {
      * @returns {IssueItem[]} The IssueItems belonging to the provided course.
      */
     getIssueItems(course) {
-        if (!course.issueItems) return [];
+        if (!course.issueItems) { return []; }
         return course.issueItems.reduce((acc, issueItem) &#x3D;&gt; {
-            if (!issueItem.issues) return acc;
+            if (!issueItem.issues) { return acc; }
             return [...acc, ...issueItem.issues];
         }, []);
     }
@@ -1530,18 +1530,18 @@ export class IssueNavComponent {
             course.issueItems.forEach((issueItem, j) &#x3D;&gt; {
                 if (i &lt; 1 &amp;&amp; j &lt; 1) {
                     csvReport &#x3D; csvFormatRows([[
-                        &quot;Issue Title&quot;,
-                        &quot;Status&quot;,
-                        &quot;Option Values&quot;,
-                        &quot;Item Title&quot;,
-                        &quot;Item ID&quot;,
-                        &quot;Course ID&quot;,
-                        &quot;Category&quot;,
-                        &quot;Link&quot;,
-                        &quot;Details&quot;,
+                        &#x27;Issue Title&#x27;,
+                        &#x27;Status&#x27;,
+                        &#x27;Option Values&#x27;,
+                        &#x27;Item Title&#x27;,
+                        &#x27;Item ID&#x27;,
+                        &#x27;Course ID&#x27;,
+                        &#x27;Category&#x27;,
+                        &#x27;Link&#x27;,
+                        &#x27;Details&#x27;,
                     ]].concat(issueItem.issues.map(issue &#x3D;&gt; {
-                        var flatIssueDetails &#x3D; Object.entries(issue.details).reduce((acc, pair) &#x3D;&gt; {
-                            var detail &#x3D; &#x60;${pair[0]}: ${pair[1]}&#x60;;
+                        const flatIssueDetails &#x3D; Object.entries(issue.details).reduce((acc, pair) &#x3D;&gt; {
+                            const detail &#x3D; &#x60;${pair[0]}: ${pair[1]}&#x60;;
                             return acc.concat(detail);
                         }, []);
 
@@ -1560,8 +1560,8 @@ export class IssueNavComponent {
                 } else {
                     // Make the log without the header
                     csvReport +&#x3D; csvFormatRows(issueItem.issues.map(issue &#x3D;&gt; {
-                        var flatIssueDetails &#x3D; Object.entries(issue.details).reduce((acc, pair) &#x3D;&gt; {
-                            var detail &#x3D; &#x60;${pair[0]}: ${pair[1]}&#x60;;
+                        const flatIssueDetails &#x3D; Object.entries(issue.details).reduce((acc, pair) &#x3D;&gt; {
+                            const detail &#x3D; &#x60;${pair[0]}: ${pair[1]}&#x60;;
                             return acc.concat(detail);
                         }, []);
                         return [
@@ -1581,15 +1581,16 @@ export class IssueNavComponent {
         });
 
         // Setup the link to download the csv report
-        let fileName &#x3D; &#x27;csvReport.csv&#x27;;
-        let a &#x3D; &lt;HTMLAnchorElement&gt;document.getElementById(&quot;download&quot;);
-        var blob &#x3D; new Blob([csvReport], { type: &quot;octet/stream&quot; });
-        var url &#x3D; window.URL.createObjectURL(blob);
+        const fileName &#x3D; &#x27;csvReport.csv&#x27;;
+        const a &#x3D; &lt;HTMLAnchorElement&gt;document.getElementById(&#x27;download&#x27;);
+        const blob &#x3D; new Blob([csvReport], { type: &#x27;octet/stream&#x27; });
+        const url &#x3D; window.URL.createObjectURL(blob);
 
         a.href &#x3D; url;
         a.download &#x3D; fileName;
     }
-}</code></pre>
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">

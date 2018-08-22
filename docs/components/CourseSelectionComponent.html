@@ -1059,7 +1059,7 @@ overlay to add/remove courses.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/course-tabs/course-selection/course-selection.component.ts:144</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/app/course-tabs/course-selection/course-selection.component.ts:145</a></div>
                             </td>
                         </tr>
 
@@ -1108,9 +1108,9 @@ overlay to add/remove courses.</p>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>This retrieves all courses that match the given parameters from Canvas 
-and returns them as an array of course objects that have been modified 
-by us. The returned results will populate the &#39;courseResults&#39; array and 
+                            <div class="io-description"><p>This retrieves all courses that match the given parameters from Canvas
+and returns them as an array of course objects that have been modified
+by us. The returned results will populate the &#39;courseResults&#39; array and
 will display in the results table in the course-selection html file.</p>
 </div>
 
@@ -1338,14 +1338,14 @@ is already in the courses array in courseService.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/app/course-tabs/course-selection/course-selection.component.ts:151</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/app/course-tabs/course-selection/course-selection.component.ts:152</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Stops the courseSelect page from closing when the user interacts with the page (area that is not in the margins) </p>
+                            <div class="io-description"><p>Stops the courseSelect page from closing when the user interacts with the page (area that is not in the margins)</p>
 </div>
 
                             <div class="io-description">
@@ -1839,9 +1839,9 @@ export class CourseSelectionComponent {
         public courseService: CourseService) { }
 
     /**
-     * This retrieves all courses that match the given parameters from Canvas 
-     * and returns them as an array of course objects that have been modified 
-     * by us. The returned results will populate the &#x27;courseResults&#x27; array and 
+     * This retrieves all courses that match the given parameters from Canvas
+     * and returns them as an array of course objects that have been modified
+     * by us. The returned results will populate the &#x27;courseResults&#x27; array and
      * will display in the results table in the course-selection html file.
      */
     async getCourses() {
@@ -1932,8 +1932,9 @@ export class CourseSelectionComponent {
     /** Selects all courses found in the search */
     addAll() {
         this.courseResults.forEach(c &#x3D;&gt; {
-            if (!this.isAdded(c))
+            if (!this.isAdded(c)) {
                 this.courseService.addCourse(c);
+            }
         });
     }
 
@@ -1942,7 +1943,7 @@ export class CourseSelectionComponent {
         this.courseService.courseSelectionOpen &#x3D; false;
     }
 
-    /** Stops the courseSelect page from closing when the user interacts with the page (area that is not in the margins) 
+    /** Stops the courseSelect page from closing when the user interacts with the page (area that is not in the margins)
      * @param {object} event The JS onClick event
      */
     stopEvent(event) {
@@ -1972,9 +1973,9 @@ export class CourseSelectionComponent {
     &lt;label&gt;Term
       &lt;select (change)&#x3D;&quot;getCourses()&quot; #term&gt;
         &lt;option value&#x3D;&quot;&quot;&gt;&lt;/option&gt;
-        &lt;option value&#x3D;&quot;10&quot;&gt;Fall&lt;/option&gt;
-        &lt;option value&#x3D;&quot;4&quot;&gt;Winter&lt;/option&gt;
-        &lt;option value&#x3D;&quot;9&quot;&gt;Spring&lt;/option&gt; --&gt;
+        &lt;option value&#x3D;&quot;10&quot;&gt;Fall 2018&lt;/option&gt;
+        &lt;option value&#x3D;&quot;4&quot;&gt;Winter 2018&lt;/option&gt;
+        &lt;option value&#x3D;&quot;9&quot;&gt;Spring 2018&lt;/option&gt; --&gt;
         &lt;option value&#x3D;&quot;5&quot;&gt;Master Courses&lt;/option&gt;
         &lt;option value&#x3D;&quot;1&quot;&gt;Default Term&lt;/option&gt;
         &lt;option value&#x3D;&quot;&quot; selected&gt;All&lt;/option&gt;
@@ -2008,13 +2009,14 @@ export class CourseSelectionComponent {
       &lt;thead&gt;
         &lt;tr&gt;
           &lt;th&gt;+/-&lt;/th&gt;
-          &lt;th (click)&#x3D;&quot;sortBy(&#x27;course_name&#x27;)&quot;&gt;Name&lt;/th&gt;
-          &lt;th (click)&#x3D;&quot;sortBy(&#x27;course_code&#x27;)&quot;&gt;Code&lt;/th&gt;
-          &lt;th (click)&#x3D;&quot;sortBy(&#x27;instructor&#x27;)&quot;&gt;Instructor&lt;/th&gt;
-          &lt;th (click)&#x3D;&quot;sortBy(&#x27;account&#x27;)&quot;&gt;Account&lt;/th&gt;
-          &lt;th (click)&#x3D;&quot;sortBy(&#x27;term&#x27;)&quot;&gt;Term&lt;/th&gt;
-          &lt;th (click)&#x3D;&quot;sortBy(&#x27;blueprint&#x27;)&quot;&gt;Blueprint&lt;/th&gt;
-          &lt;th (click)&#x3D;&quot;sortBy(&#x27;id&#x27;)&quot;&gt;ID&lt;/th&gt;
+          &lt;!-- &lt;th&gt;&lt;/th&gt; --&gt;
+          &lt;th (click)&#x3D;&quot;sortBy($event, &#x27;course_name&#x27;)&quot;&gt;Name&lt;/th&gt;
+          &lt;th (click)&#x3D;&quot;sortBy($event, &#x27;course_code&#x27;)&quot;&gt;Code&lt;/th&gt;
+          &lt;th (click)&#x3D;&quot;sortBy($event, &#x27;instructor&#x27;)&quot;&gt;Instructor&lt;/th&gt;
+          &lt;th (click)&#x3D;&quot;sortBy($event, &#x27;account&#x27;)&quot;&gt;Account&lt;/th&gt;
+          &lt;th (click)&#x3D;&quot;sortBy($event, &#x27;term&#x27;)&quot;&gt;Term&lt;/th&gt;
+          &lt;th (click)&#x3D;&quot;sortBy($event, &#x27;blueprint&#x27;)&quot;&gt;Blueprint&lt;/th&gt;
+          &lt;th (click)&#x3D;&quot;sortBy($event, &#x27;id&#x27;)&quot;&gt;ID&lt;/th&gt;
           &lt;th&gt;Open in Canvas&lt;/th&gt;
         &lt;/tr&gt;
       &lt;/thead&gt;
@@ -2091,7 +2093,7 @@ export class CourseSelectionComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="courseSearch" [class.visible]="courseService.courseSelectionOpen" (click)="closeCourseSelect();">  <div class="courseSearch__courseSelection" (click)="stopEvent($event);">    <h2 class="courseSearch__header">      Course Selection    </h2>    <label>Sub-Account      <select (change)="getCourses()" #subAccount>        <option value=""></option>        <option value="13">Development</option>        <!-- <option value="5">Online</option>              <option value="8">Sandbox</option>              <option value="24">Pathway</option> -->        <option value="41">EnglishConnect</option>        <option value="1" selected>All</option>      </select>    </label>    <label>Term      <select (change)="getCourses()" #term>        <option value=""></option>        <option value="10">Fall</option>        <option value="4">Winter</option>        <option value="9">Spring</option> -->        <option value="5">Master Courses</option>        <option value="1">Default Term</option>        <option value="" selected>All</option>      </select>    </label>    <label>Blueprint      <select (change)="getCourses()" #blueprint>        <option value=""></option>        <option value="true">True</option>        <option value="false">False</option>        <option value="" selected>All</option>      </select>    </label>    <label>Search By      <select (change)="getCourses()" #searchBy>        <option value="teacher">Instructor</option>        <option value="course" selected>Course</option>      </select>    </label>    <label>Search Term</label>    <input type="text" placeholder="Search courses..." (input)="getCourses()" #searchText/>    <div class="flex-container label-row">      <label>Results {{courseResults.length !== 0 ? \'(\' + courseResults.length + \')\': \'0\'}}</label>      <button class="btn green green-accent-4 waves-effect addAll" (click)="addAll()" [class.disabled]="courseResults.length === 0" >Add All Results</button>      <button *ngIf="courseService.courseSelectionOpen" class="waves-effect red lighten-1 btn removeAll" [class.disabled]="courseService.courses.length == 0"        (click)="removeAll()">Remove All Courses</button>    </div>    <table class="highlight">      <thead>        <tr>          <th>+/-</th>          <th (click)="sortBy(\'course_name\')">Name</th>          <th (click)="sortBy(\'course_code\')">Code</th>          <th (click)="sortBy(\'instructor\')">Instructor</th>          <th (click)="sortBy(\'account\')">Account</th>          <th (click)="sortBy(\'term\')">Term</th>          <th (click)="sortBy(\'blueprint\')">Blueprint</th>          <th (click)="sortBy(\'id\')">ID</th>          <th>Open in Canvas</th>        </tr>      </thead>      <tbody>        <ng-container *ngIf="!searching">          <tr *ngFor="let course of courseResults" [ngClass]="isAdded(course) ? \'grey lighten-2\' : \'\'" class="table-element-{{course.id}}">            <td (click)="courseService.addCourse(course)">              <i class="material-icons">{{isAdded(course) ? \'remove_circle\' : \'add_circle\'}}</i>            </td>            <td (click)="courseService.addCourse(course)">{{course.course_name}}</td>            <td (click)="courseService.addCourse(course)">{{course.course_code}}</td>            <td (click)="courseService.addCourse(course)">{{course.instructor}}</td>            <td (click)="courseService.addCourse(course)">{{course.account}}</td>            <td (click)="courseService.addCourse(course)">{{course.term}}</td>            <td (click)="courseService.addCourse(course)">{{course.blueprint}}</td>            <td (click)="courseService.addCourse(course)">{{course.id}}</td>            <td>              <a href="{{course.url}}" target="_blank">                <i class="material-icons">open_in_new</i>              </a>            </td>          </tr>        </ng-container>        <!-- Put the loader in the body if loading -->        <div *ngIf="searching">          <div class="loader">            <div class="preloader-wrapper big active">              <div class="spinner-layer spinner-blue-only">                <div class="circle-clipper left">                  <div class="circle"></div>                </div>                <div class="gap-patch">                  <div class="circle"></div>                </div>                <div class="circle-clipper right">                  <div class="circle"></div>                </div>              </div>            </div>          </div>          <div class="loader">            Searching ...          </div>        </div>      </tbody>    </table>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="courseSearch" [class.visible]="courseService.courseSelectionOpen" (click)="closeCourseSelect();">  <div class="courseSearch__courseSelection" (click)="stopEvent($event);">    <h2 class="courseSearch__header">      Course Selection    </h2>    <label>Sub-Account      <select (change)="getCourses()" #subAccount>        <option value=""></option>        <option value="13">Development</option>        <!-- <option value="5">Online</option>              <option value="8">Sandbox</option>              <option value="24">Pathway</option> -->        <option value="41">EnglishConnect</option>        <option value="1" selected>All</option>      </select>    </label>    <label>Term      <select (change)="getCourses()" #term>        <option value=""></option>        <option value="10">Fall 2018</option>        <option value="4">Winter 2018</option>        <option value="9">Spring 2018</option> -->        <option value="5">Master Courses</option>        <option value="1">Default Term</option>        <option value="" selected>All</option>      </select>    </label>    <label>Blueprint      <select (change)="getCourses()" #blueprint>        <option value=""></option>        <option value="true">True</option>        <option value="false">False</option>        <option value="" selected>All</option>      </select>    </label>    <label>Search By      <select (change)="getCourses()" #searchBy>        <option value="teacher">Instructor</option>        <option value="course" selected>Course</option>      </select>    </label>    <label>Search Term</label>    <input type="text" placeholder="Search courses..." (input)="getCourses()" #searchText/>    <div class="flex-container label-row">      <label>Results {{courseResults.length !== 0 ? \'(\' + courseResults.length + \')\': \'0\'}}</label>      <button class="btn green green-accent-4 waves-effect addAll" (click)="addAll()" [class.disabled]="courseResults.length === 0" >Add All Results</button>      <button *ngIf="courseService.courseSelectionOpen" class="waves-effect red lighten-1 btn removeAll" [class.disabled]="courseService.courses.length == 0"        (click)="removeAll()">Remove All Courses</button>    </div>    <table class="highlight">      <thead>        <tr>          <th>+/-</th>          <!-- <th></th> -->          <th (click)="sortBy($event, \'course_name\')">Name</th>          <th (click)="sortBy($event, \'course_code\')">Code</th>          <th (click)="sortBy($event, \'instructor\')">Instructor</th>          <th (click)="sortBy($event, \'account\')">Account</th>          <th (click)="sortBy($event, \'term\')">Term</th>          <th (click)="sortBy($event, \'blueprint\')">Blueprint</th>          <th (click)="sortBy($event, \'id\')">ID</th>          <th>Open in Canvas</th>        </tr>      </thead>      <tbody>        <ng-container *ngIf="!searching">          <tr *ngFor="let course of courseResults" [ngClass]="isAdded(course) ? \'grey lighten-2\' : \'\'" class="table-element-{{course.id}}">            <td (click)="courseService.addCourse(course)">              <i class="material-icons">{{isAdded(course) ? \'remove_circle\' : \'add_circle\'}}</i>            </td>            <td (click)="courseService.addCourse(course)">{{course.course_name}}</td>            <td (click)="courseService.addCourse(course)">{{course.course_code}}</td>            <td (click)="courseService.addCourse(course)">{{course.instructor}}</td>            <td (click)="courseService.addCourse(course)">{{course.account}}</td>            <td (click)="courseService.addCourse(course)">{{course.term}}</td>            <td (click)="courseService.addCourse(course)">{{course.blueprint}}</td>            <td (click)="courseService.addCourse(course)">{{course.id}}</td>            <td>              <a href="{{course.url}}" target="_blank">                <i class="material-icons">open_in_new</i>              </a>            </td>          </tr>        </ng-container>        <!-- Put the loader in the body if loading -->        <div *ngIf="searching">          <div class="loader">            <div class="preloader-wrapper big active">              <div class="spinner-layer spinner-blue-only">                <div class="circle-clipper left">                  <div class="circle"></div>                </div>                <div class="gap-patch">                  <div class="circle"></div>                </div>                <div class="circle-clipper right">                  <div class="circle"></div>                </div>              </div>            </div>          </div>          <div class="loader">            Searching ...          </div>        </div>      </tbody>    </table>  </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CategoriesComponent', 'selector': 'app-categories'},{'name': 'CodeEditorComponent', 'selector': 'app-code-editor'},{'name': 'CourseSelectionComponent', 'selector': 'app-course-selection'},{'name': 'CourseTabsComponent', 'selector': 'app-course-tabs'},{'name': 'ErrorPageComponent', 'selector': 'app-error-page'},{'name': 'IssueCardComponent', 'selector': 'app-issue-card'},{'name': 'IssueContainerComponent', 'selector': 'app-issue-container'},{'name': 'IssueDetailsComponent', 'selector': 'app-issue-details'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueNavComponent', 'selector': 'app-issue-nav'},{'name': 'OptionsViewComponent', 'selector': 'app-options-view'},{'name': 'StatBadgeComponent', 'selector': 'app-stat-badge'},{'name': 'ToolSelectionComponent', 'selector': 'app-tool-selection'},{'name': 'ToolViewComponent', 'selector': 'app-tool-view'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CourseSelectionComponent'};
