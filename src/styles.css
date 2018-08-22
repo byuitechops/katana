@@ -16,10 +16,10 @@
   --breadcrumbs-height: 50px;
   --header-height: calc(var(--breadcrumbs-height) * 2);
   --issueList-width: 350px;
-  --toolView-titleBar-height: 60px;
+  --toolView-titleBar-height: 52px;
   --course-chip-width: 100%;
   --courseSelect-width: 64vw;
-  
+  --scrollbar-offset: 7px;
   --cobalt: #2879B5;
   --navy: #183A54;
   --navy-light: #2D4B63;
@@ -30,15 +30,10 @@
   --ashen: #eceff1;
   --danger: #e53935;
   --mint-muted: rgba(101, 184, 144, 0.5);
-  --scrollbar-offset: 7px;
 }
 
 * {
   transition: all .15s ease-in-out;
-}
-
-html {
-  overflow-y: hidden;
 }
 
 body {
@@ -46,7 +41,6 @@ body {
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   background-color: var(--cobalt);
-  overflow-x: hidden;
 }
 
 .cobalt {
@@ -66,7 +60,7 @@ body {
 }
 
 .mint {
-    background-color: var(--mint);
+  background-color: var(--mint);
 }
 
 .charcoal {
@@ -228,10 +222,17 @@ select {
   color: var(--accent-1);
 }
 
+/* Overwrite Materialize Tabs  */
+
+.tabs {
+  margin: 0;
+}
+
 /* Overwrite Materialize Card Margins */
 
 .card {
   margin: 0 0 10px;
+  position: static;
 }
 
 /* Overwrite Materialize flat buttons background color on hover */
@@ -246,14 +247,10 @@ tbody>tr>td {
   border-radius: 0;
 }
 
-.card {
-  position: static;
-}
-
 /* width */
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 7px;
 }
 
 /* ::-webkit-scrollbar:hover {
@@ -271,6 +268,7 @@ tbody>tr>td {
 
 ::-webkit-scrollbar-thumb {
   background: var(--primary-3);
+  border-left: 1px solid var(--primary-4);
 }
 
 /* Handle on hover */
@@ -323,5 +321,12 @@ div.loading-dancer::after {
   }
   to {
     opacity: 1;
+  }
+}
+
+/* overwrite Materialize media query */
+@media only screen and (max-width: 992px) {
+  .tabs .tab {
+    flex-grow: 0;
   }
 }

@@ -9,7 +9,7 @@
 /* The container for all of the issue items */
 
 .issueList__list {
-    max-height: calc(100vh - var(--breadcrumbs-height));
+    max-height: calc(100vh - var(--header-height) - var(--toolView-titleBar-height));
     overflow-y: auto;
     padding-right: var(--scrollbar-offset);
 }

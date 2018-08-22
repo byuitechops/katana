@@ -38,14 +38,14 @@ export class IssueNavComponent {
      * Opens the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
      */
     openModal() {
-        this.modalActions.emit({ action: "modal", params: ['open'] });
+        this.modalActions.emit({ action: 'modal', params: ['open'] });
     }
 
     /**
      * Closes the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
      */
     closeModal() {
-        this.modalActions.emit({ action: "modal", params: ['close'] });
+        this.modalActions.emit({ action: 'modal', params: ['close'] });
     }
 
     /**
@@ -54,9 +54,9 @@ export class IssueNavComponent {
      * @returns {IssueItem[]} The IssueItems belonging to the provided course.
      */
     getIssueItems(course) {
-        if (!course.issueItems) return [];
+        if (!course.issueItems) { return []; }
         return course.issueItems.reduce((acc, issueItem) => {
-            if (!issueItem.issues) return acc;
+            if (!issueItem.issues) { return acc; }
             return [...acc, ...issueItem.issues];
         }, []);
     }
@@ -82,18 +82,18 @@ export class IssueNavComponent {
             course.issueItems.forEach((issueItem, j) => {
                 if (i < 1 && j < 1) {
                     csvReport = csvFormatRows([[
-                        "Issue Title",
-                        "Status",
-                        "Option Values",
-                        "Item Title",
-                        "Item ID",
-                        "Course ID",
-                        "Category",
-                        "Link",
-                        "Details",
+                        'Issue Title',
+                        'Status',
+                        'Option Values',
+                        'Item Title',
+                        'Item ID',
+                        'Course ID',
+                        'Category',
+                        'Link',
+                        'Details',
                     ]].concat(issueItem.issues.map(issue => {
-                        var flatIssueDetails = Object.entries(issue.details).reduce((acc, pair) => {
-                            var detail = `${pair[0]}: ${pair[1]}`;
+                        const flatIssueDetails = Object.entries(issue.details).reduce((acc, pair) => {
+                            const detail = `${pair[0]}: ${pair[1]}`;
                             return acc.concat(detail);
                         }, []);
 
@@ -112,8 +112,8 @@ export class IssueNavComponent {
                 } else {
                     // Make the log without the header
                     csvReport += csvFormatRows(issueItem.issues.map(issue => {
-                        var flatIssueDetails = Object.entries(issue.details).reduce((acc, pair) => {
-                            var detail = `${pair[0]}: ${pair[1]}`;
+                        const flatIssueDetails = Object.entries(issue.details).reduce((acc, pair) => {
+                            const detail = `${pair[0]}: ${pair[1]}`;
                             return acc.concat(detail);
                         }, []);
                         return [
@@ -133,10 +133,10 @@ export class IssueNavComponent {
         });
 
         // Setup the link to download the csv report
-        let fileName = 'csvReport.csv';
-        let a = <HTMLAnchorElement>document.getElementById("download");
-        var blob = new Blob([csvReport], { type: "octet/stream" });
-        var url = window.URL.createObjectURL(blob);
+        const fileName = 'csvReport.csv';
+        const a = <HTMLAnchorElement>document.getElementById('download');
+        const blob = new Blob([csvReport], { type: 'octet/stream' });
+        const url = window.URL.createObjectURL(blob);
 
         a.href = url;
         a.download = fileName;

@@ -17,13 +17,13 @@
 
 .courseSearch__header {
   font-size: 60px;
-  padding-top: 5px;
+  /* padding-top: 5px; */
   width: var(--courseSelect-width);
   min-width: 700px;
   color: white;
   margin: auto;
-  align-items: center;
-  justify-content: space-between;
+  font-weight: 400;
+  text-transform: none;
 }
 
 .courseSearch__courseSelection {
@@ -68,6 +68,15 @@ option {
   font-size: 16px;
 }
 
+.label-row {
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.addAll {
+  margin: 0 15px 0 auto;
+}
 
 /***************************************
 * Course Search Search Bar and Headers
@@ -100,6 +109,10 @@ option {
 .courseSearch__courseSelection>table>thead {
   background-color: white;
   border-bottom: 1px solid var(--primary-3);
+}
+
+.courseSearch__courseSelection>table>thead .column-selected {
+  background-color: #eeeeee;
 }
 
 .courseSearch__courseSelection>table>tbody {

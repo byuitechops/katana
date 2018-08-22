@@ -20,14 +20,14 @@ module.exports = class NodeTool {
         this.lastRan = null;
     }
 
-    discover(canvasItem, options) {
+    async discover(canvasItem, options) {
     // Create the IssueItem for this canvas item
         let issueItem = new IssueItem(canvasItem);
         try {
             this.lastRan = new Date();
 
             // Run the item through the discover function
-            this._discover(canvasItem, issueItem, options);
+            await this._discover(canvasItem, issueItem, options);
 
             // Strip off Canvas's script and link tags
             issueItem.issues.forEach(issue => {
@@ -35,7 +35,7 @@ module.exports = class NodeTool {
                     Object.keys(issue.html).forEach(key => {
                         if (issue.html[key] !== undefined) {
                             // TODO: Strip out <html>, <body>, <head> tags as well, but without Cheerio.js because Cheerio puts those tags back on
-                            issue.html[key] = issue.html[key].replace(/((<link rel)|(<script src))=".*amazonaws.*((.css")|(script))>/g, '');
+                            issue.html[key] = issue.html[key].replace(/<link rel.*amazonaws.*css">|<script src.*amazonaws.*\/script>/g, '');
                         }
                     });
                 }

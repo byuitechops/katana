@@ -883,6 +883,9 @@ overlay to add/remove courses.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#addAll">addAll</a>
+                            </li>
+                            <li>
                                 <a href="#closeCourseSelect">closeCourseSelect</a>
                             </li>
                             <li>
@@ -998,6 +1001,46 @@ overlay to add/remove courses.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="addAll"></a>
+                        <span class="name">
+                            <b>
+                            addAll
+                            </b>
+                            <a href="#addAll"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>addAll()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/course-tabs/course-selection/course-selection.component.ts:136</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Selects all courses found in the search </p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="closeCourseSelect"></a>
                         <span class="name">
                             <b>
@@ -1016,7 +1059,7 @@ overlay to add/remove courses.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/course-tabs/course-selection/course-selection.component.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/course-tabs/course-selection/course-selection.component.ts:144</a></div>
                             </td>
                         </tr>
 
@@ -1101,7 +1144,7 @@ will display in the results table in the course-selection html file.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/course-tabs/course-selection/course-selection.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/app/course-tabs/course-selection/course-selection.component.ts:126</a></div>
                             </td>
                         </tr>
 
@@ -1179,7 +1222,7 @@ is already in the courses array in courseService.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/app/course-tabs/course-selection/course-selection.component.ts:132</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/app/course-tabs/course-selection/course-selection.component.ts:131</a></div>
                             </td>
                         </tr>
 
@@ -1219,7 +1262,7 @@ is already in the courses array in courseService.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/course-tabs/course-selection/course-selection.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/course-tabs/course-selection/course-selection.component.ts:90</a></div>
                             </td>
                         </tr>
 
@@ -1295,7 +1338,7 @@ is already in the courses array in courseService.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/course-tabs/course-selection/course-selection.component.ts:144</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/app/course-tabs/course-selection/course-selection.component.ts:151</a></div>
                             </td>
                         </tr>
 
@@ -1807,7 +1850,6 @@ export class CourseSelectionComponent {
 
             // Replace any whitespaces with &#x27;%20&#x27; for the query parameter and make everything lowercase
             const searchPhrase &#x3D; this.searchText.nativeElement.value.replace(/\s/g, &#x27;%20&#x27;);
-            console.log(searchPhrase);
             // Set the loading circle to display before retrieving the courses
             this.searching &#x3D; true;
 
@@ -1887,11 +1929,19 @@ export class CourseSelectionComponent {
         this.courseService.courses.forEach(c &#x3D;&gt; this.courseService.removeCourse(c));
     }
 
+    /** Selects all courses found in the search */
+    addAll() {
+        this.courseResults.forEach(c &#x3D;&gt; {
+            if (!this.isAdded(c))
+                this.courseService.addCourse(c);
+        });
+    }
+
     /** Closes the courseSelect page when the user clicks on the margins of the page */
     closeCourseSelect() {
         this.courseService.courseSelectionOpen &#x3D; false;
     }
-    
+
     /** Stops the courseSelect page from closing when the user interacts with the page (area that is not in the margins) 
      * @param {object} event The JS onClick event
      */
@@ -1905,11 +1955,9 @@ export class CourseSelectionComponent {
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;courseSearch&quot; [class.visible]&#x3D;&quot;courseService.courseSelectionOpen&quot; (click)&#x3D;&quot;closeCourseSelect();&quot;&gt;
   &lt;div class&#x3D;&quot;courseSearch__courseSelection&quot; (click)&#x3D;&quot;stopEvent($event);&quot;&gt;
-    &lt;div class&#x3D;&quot;courseSearch__header flex-container&quot;&gt;
+    &lt;h2 class&#x3D;&quot;courseSearch__header&quot;&gt;
       Course Selection
-      &lt;button *ngIf&#x3D;&quot;courseService.courseSelectionOpen&quot; class&#x3D;&quot;waves-effect red lighten-1 btn removeAll&quot; [class.disabled]&#x3D;&quot;courseService.courses.length &#x3D;&#x3D; 0&quot;
-        (click)&#x3D;&quot;removeAll()&quot;&gt;Remove All&lt;/button&gt;
-    &lt;/div&gt;
+    &lt;/h2&gt;
     &lt;label&gt;Sub-Account
       &lt;select (change)&#x3D;&quot;getCourses()&quot; #subAccount&gt;
         &lt;option value&#x3D;&quot;&quot;&gt;&lt;/option&gt;
@@ -1948,7 +1996,14 @@ export class CourseSelectionComponent {
     &lt;/label&gt;
     &lt;label&gt;Search Term&lt;/label&gt;
     &lt;input type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Search courses...&quot; (input)&#x3D;&quot;getCourses()&quot; #searchText/&gt;
-    &lt;label&gt;Results {{courseResults.length !&#x3D;&#x3D; 0 ? &#x27;(&#x27; + courseResults.length + &#x27;)&#x27;: &#x27;0&#x27;}}&lt;/label&gt;
+
+    &lt;div class&#x3D;&quot;flex-container label-row&quot;&gt;
+      &lt;label&gt;Results {{courseResults.length !&#x3D;&#x3D; 0 ? &#x27;(&#x27; + courseResults.length + &#x27;)&#x27;: &#x27;0&#x27;}}&lt;/label&gt;
+      &lt;button class&#x3D;&quot;btn green green-accent-4 waves-effect addAll&quot; (click)&#x3D;&quot;addAll()&quot; [class.disabled]&#x3D;&quot;courseResults.length &#x3D;&#x3D;&#x3D; 0&quot; &gt;Add All Results&lt;/button&gt;
+      &lt;button *ngIf&#x3D;&quot;courseService.courseSelectionOpen&quot; class&#x3D;&quot;waves-effect red lighten-1 btn removeAll&quot; [class.disabled]&#x3D;&quot;courseService.courses.length &#x3D;&#x3D; 0&quot;
+        (click)&#x3D;&quot;removeAll()&quot;&gt;Remove All Courses&lt;/button&gt;
+    &lt;/div&gt;
+
     &lt;table class&#x3D;&quot;highlight&quot;&gt;
       &lt;thead&gt;
         &lt;tr&gt;
@@ -2007,7 +2062,8 @@ export class CourseSelectionComponent {
       &lt;/tbody&gt;
     &lt;/table&gt;
   &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -2035,7 +2091,7 @@ export class CourseSelectionComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="courseSearch" [class.visible]="courseService.courseSelectionOpen" (click)="closeCourseSelect();">  <div class="courseSearch__courseSelection" (click)="stopEvent($event);">    <div class="courseSearch__header flex-container">      Course Selection      <button *ngIf="courseService.courseSelectionOpen" class="waves-effect red lighten-1 btn removeAll" [class.disabled]="courseService.courses.length == 0"        (click)="removeAll()">Remove All</button>    </div>    <label>Sub-Account      <select (change)="getCourses()" #subAccount>        <option value=""></option>        <option value="13">Development</option>        <!-- <option value="5">Online</option>              <option value="8">Sandbox</option>              <option value="24">Pathway</option> -->        <option value="41">EnglishConnect</option>        <option value="1" selected>All</option>      </select>    </label>    <label>Term      <select (change)="getCourses()" #term>        <option value=""></option>        <option value="10">Fall</option>        <option value="4">Winter</option>        <option value="9">Spring</option> -->        <option value="5">Master Courses</option>        <option value="1">Default Term</option>        <option value="" selected>All</option>      </select>    </label>    <label>Blueprint      <select (change)="getCourses()" #blueprint>        <option value=""></option>        <option value="true">True</option>        <option value="false">False</option>        <option value="" selected>All</option>      </select>    </label>    <label>Search By      <select (change)="getCourses()" #searchBy>        <option value="teacher">Instructor</option>        <option value="course" selected>Course</option>      </select>    </label>    <label>Search Term</label>    <input type="text" placeholder="Search courses..." (input)="getCourses()" #searchText/>    <label>Results {{courseResults.length !== 0 ? \'(\' + courseResults.length + \')\': \'0\'}}</label>    <table class="highlight">      <thead>        <tr>          <th>+/-</th>          <th (click)="sortBy(\'course_name\')">Name</th>          <th (click)="sortBy(\'course_code\')">Code</th>          <th (click)="sortBy(\'instructor\')">Instructor</th>          <th (click)="sortBy(\'account\')">Account</th>          <th (click)="sortBy(\'term\')">Term</th>          <th (click)="sortBy(\'blueprint\')">Blueprint</th>          <th (click)="sortBy(\'id\')">ID</th>          <th>Open in Canvas</th>        </tr>      </thead>      <tbody>        <ng-container *ngIf="!searching">          <tr *ngFor="let course of courseResults" [ngClass]="isAdded(course) ? \'grey lighten-2\' : \'\'" class="table-element-{{course.id}}">            <td (click)="courseService.addCourse(course)">              <i class="material-icons">{{isAdded(course) ? \'remove_circle\' : \'add_circle\'}}</i>            </td>            <td (click)="courseService.addCourse(course)">{{course.course_name}}</td>            <td (click)="courseService.addCourse(course)">{{course.course_code}}</td>            <td (click)="courseService.addCourse(course)">{{course.instructor}}</td>            <td (click)="courseService.addCourse(course)">{{course.account}}</td>            <td (click)="courseService.addCourse(course)">{{course.term}}</td>            <td (click)="courseService.addCourse(course)">{{course.blueprint}}</td>            <td (click)="courseService.addCourse(course)">{{course.id}}</td>            <td>              <a href="{{course.url}}" target="_blank">                <i class="material-icons">open_in_new</i>              </a>            </td>          </tr>        </ng-container>        <!-- Put the loader in the body if loading -->        <div *ngIf="searching">          <div class="loader">            <div class="preloader-wrapper big active">              <div class="spinner-layer spinner-blue-only">                <div class="circle-clipper left">                  <div class="circle"></div>                </div>                <div class="gap-patch">                  <div class="circle"></div>                </div>                <div class="circle-clipper right">                  <div class="circle"></div>                </div>              </div>            </div>          </div>          <div class="loader">            Searching ...          </div>        </div>      </tbody>    </table>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="courseSearch" [class.visible]="courseService.courseSelectionOpen" (click)="closeCourseSelect();">  <div class="courseSearch__courseSelection" (click)="stopEvent($event);">    <h2 class="courseSearch__header">      Course Selection    </h2>    <label>Sub-Account      <select (change)="getCourses()" #subAccount>        <option value=""></option>        <option value="13">Development</option>        <!-- <option value="5">Online</option>              <option value="8">Sandbox</option>              <option value="24">Pathway</option> -->        <option value="41">EnglishConnect</option>        <option value="1" selected>All</option>      </select>    </label>    <label>Term      <select (change)="getCourses()" #term>        <option value=""></option>        <option value="10">Fall</option>        <option value="4">Winter</option>        <option value="9">Spring</option> -->        <option value="5">Master Courses</option>        <option value="1">Default Term</option>        <option value="" selected>All</option>      </select>    </label>    <label>Blueprint      <select (change)="getCourses()" #blueprint>        <option value=""></option>        <option value="true">True</option>        <option value="false">False</option>        <option value="" selected>All</option>      </select>    </label>    <label>Search By      <select (change)="getCourses()" #searchBy>        <option value="teacher">Instructor</option>        <option value="course" selected>Course</option>      </select>    </label>    <label>Search Term</label>    <input type="text" placeholder="Search courses..." (input)="getCourses()" #searchText/>    <div class="flex-container label-row">      <label>Results {{courseResults.length !== 0 ? \'(\' + courseResults.length + \')\': \'0\'}}</label>      <button class="btn green green-accent-4 waves-effect addAll" (click)="addAll()" [class.disabled]="courseResults.length === 0" >Add All Results</button>      <button *ngIf="courseService.courseSelectionOpen" class="waves-effect red lighten-1 btn removeAll" [class.disabled]="courseService.courses.length == 0"        (click)="removeAll()">Remove All Courses</button>    </div>    <table class="highlight">      <thead>        <tr>          <th>+/-</th>          <th (click)="sortBy(\'course_name\')">Name</th>          <th (click)="sortBy(\'course_code\')">Code</th>          <th (click)="sortBy(\'instructor\')">Instructor</th>          <th (click)="sortBy(\'account\')">Account</th>          <th (click)="sortBy(\'term\')">Term</th>          <th (click)="sortBy(\'blueprint\')">Blueprint</th>          <th (click)="sortBy(\'id\')">ID</th>          <th>Open in Canvas</th>        </tr>      </thead>      <tbody>        <ng-container *ngIf="!searching">          <tr *ngFor="let course of courseResults" [ngClass]="isAdded(course) ? \'grey lighten-2\' : \'\'" class="table-element-{{course.id}}">            <td (click)="courseService.addCourse(course)">              <i class="material-icons">{{isAdded(course) ? \'remove_circle\' : \'add_circle\'}}</i>            </td>            <td (click)="courseService.addCourse(course)">{{course.course_name}}</td>            <td (click)="courseService.addCourse(course)">{{course.course_code}}</td>            <td (click)="courseService.addCourse(course)">{{course.instructor}}</td>            <td (click)="courseService.addCourse(course)">{{course.account}}</td>            <td (click)="courseService.addCourse(course)">{{course.term}}</td>            <td (click)="courseService.addCourse(course)">{{course.blueprint}}</td>            <td (click)="courseService.addCourse(course)">{{course.id}}</td>            <td>              <a href="{{course.url}}" target="_blank">                <i class="material-icons">open_in_new</i>              </a>            </td>          </tr>        </ng-container>        <!-- Put the loader in the body if loading -->        <div *ngIf="searching">          <div class="loader">            <div class="preloader-wrapper big active">              <div class="spinner-layer spinner-blue-only">                <div class="circle-clipper left">                  <div class="circle"></div>                </div>                <div class="gap-patch">                  <div class="circle"></div>                </div>                <div class="circle-clipper right">                  <div class="circle"></div>                </div>              </div>            </div>          </div>          <div class="loader">            Searching ...          </div>        </div>      </tbody>    </table>  </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CategoriesComponent', 'selector': 'app-categories'},{'name': 'CodeEditorComponent', 'selector': 'app-code-editor'},{'name': 'CourseSelectionComponent', 'selector': 'app-course-selection'},{'name': 'CourseTabsComponent', 'selector': 'app-course-tabs'},{'name': 'ErrorPageComponent', 'selector': 'app-error-page'},{'name': 'IssueCardComponent', 'selector': 'app-issue-card'},{'name': 'IssueContainerComponent', 'selector': 'app-issue-container'},{'name': 'IssueDetailsComponent', 'selector': 'app-issue-details'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueNavComponent', 'selector': 'app-issue-nav'},{'name': 'OptionsViewComponent', 'selector': 'app-options-view'},{'name': 'StatBadgeComponent', 'selector': 'app-stat-badge'},{'name': 'ToolSelectionComponent', 'selector': 'app-tool-selection'},{'name': 'ToolViewComponent', 'selector': 'app-tool-view'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CourseSelectionComponent'};
