@@ -13,6 +13,12 @@
 
     <!-- The dropdown menu from the kebob menu -->
     <ul id="dropdown1" class="dropdown-content">
+        <li [class.disabled]="toolService.selectedTool.enableApproveAll !== true">
+            <a href="#approveAllModal" class="modal-trigger waves-effect white-text waves btn-flat" (click)="openModal('approveAllModal')">
+                <i class="green-text material-icons left text-accent-4">check</i>
+                Approve All
+            </a>
+        </li>
         <li>
             <a (click)="downloadIssues()" id="download">
                 <i class="material-icons left">cloud_download</i>
@@ -31,7 +37,7 @@
 </div>
 
 <!-- Modal - Must stay beneath the main container -->
-<div id="fixModal" class="modal modal-fixed-footer" materialize="modal" [materializeActions]="modalActions">
+<div id="fixModal" class="modal modal-fixed-footer" materialize="modal" [materializeActions]="modalAction1">
 
     <div class="modal-content">
         <h4>Issues</h4>
@@ -62,4 +68,17 @@
         <a class="modal-action modal-close waves-effect btn blue accent-3" (click)="katanaService.fixIssues(courseService.courses)">Fix All Approved Issues</a>
     </div>
 
+</div>
+
+<!-- Approve All Modal - Must stay beneath the main container -->
+<div id="approveAllModal" class="modal modal-fixed-footer" materialize="modal" [materializeActions]="modalAction2">
+    <div class="modal-content">
+        <h4>Are You Sure?</h4>
+        <p>Approving all issues will allow you to make many breaking changes to this course. Before you do, consider making a backup of the course and downloading it to your computer.</p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect btn-flat blue-grey-text text-darken-3 left" (click)="closeModal()">Cancel</a>
+        <a id="makeCourseBackup" class="modal-action modal-close waves-effect btn blue accent-3" (click)="makeBackup()">Make Course Backup</a>
+        <a class="modal-action modal-close waves-effect btn green accent-3" (click)="approveAll()">Approve All Issues</a>
+    </div>
 </div>

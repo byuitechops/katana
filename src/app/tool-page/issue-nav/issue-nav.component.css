@@ -50,10 +50,7 @@ td {
 
 .dropdown-content {
     /* important has to be here b/c we're overwriting materialize */
-    top: 37px !important;
-}
-
-.dropdown-content {
+    top: -15px !important;
     width: 200px !important;
     transform: translate(0, -87px);
 }
@@ -76,4 +73,11 @@ td {
     transform: translateY(3px);
     font-size: 18px;
     cursor: pointer;
+}
+
+.disabled, .disabled:hover {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #423f3f;
+    color: gray;
 }
