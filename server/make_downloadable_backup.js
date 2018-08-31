@@ -1,18 +1,19 @@
 const canvas = require('canvas-api-wrapper');
 // canvas.subdomain = 'byui'; not needed currently since the default is 'byui'
 
+/**
+ * Make a backup of the course and send the file's download url back to the client
+ * @param {object} body The object that houses the course's id
+ * @returns {object} The content export object that has the url to download the course's ".imscc" file 
+ */
 module.exports = (body) => {
   return new Promise(async (resolve, reject) => {
-
     try {
-      //   const courseId = '371';
       // start the export
       let contentExport = await canvas.post(`/api/v1/courses/${body.id}/content_exports`, {
         export_type: 'common_cartridge',
         skip_notifications: true
       });
-      console.log(contentExport);
-
 
       let progress = {};
       // check the progress of the export every half-second until it is complete
@@ -24,7 +25,6 @@ module.exports = (body) => {
 
       // download the exported course with the content export
       let downloadedCourse = await canvas(`/api/v1/courses/${body.id}/content_exports/${contentExport.id}`);
-      console.log(downloadedCourse);
 
       // return the downloadable url
       resolve(downloadedCourse.attachment);

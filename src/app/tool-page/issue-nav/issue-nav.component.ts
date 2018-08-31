@@ -37,10 +37,7 @@ export class IssueNavComponent {
      * Opens the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
      */
     openModal() {
-        // only open if the tool is set to allow the :"Approve All" functionality
-        if (this.toolService.selectedTool.enableApproveAll === true) {
-            this.modalActions.emit({ action: 'modal', params: ['open'] });
-        }
+        this.modalActions.emit({ action: 'modal', params: ['open'] });
     }
 
     /**
@@ -86,12 +83,6 @@ export class IssueNavComponent {
                 });
             });
         }
-    }
-
-    async makeBackup() {
-        const downloadCourseLink = <any> await this.katanaService.downloadCourseBackup({ id: this.courseService.selectedCourse.id });
-        console.log('makeBackup says the link is', typeof downloadCourseLink, downloadCourseLink.url);
-        // document.querySelector('#makeCourseBackup').setAttribute('href', downloadCourseLink);
     }
 
     /**
