@@ -33,7 +33,6 @@ export class IssueNavComponent {
         public toolService: ToolService,
         public katanaService: KatanaService) { }
 
-
     /**
      * Opens the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
      */
@@ -70,6 +69,20 @@ export class IssueNavComponent {
         this.courseService.selectedCourse = course;
         this.courseService.selectedIssueItem = course.issueItems.find(issueItem => issueItem.issues.includes(issue));
         this.closeModal();
+    }
+
+    /**
+     * A method to set the status of each issue in the selected course to 'approved'
+     */
+    approveAll() {
+        // only approve the issues if the tool's 'enableApproveAll' attribute is set to true
+        if (this.toolService.selectedTool.enableApproveAll === true) {
+            this.courseService.selectedCourse.issueItems.forEach(issueItem => {
+                issueItem.issues.forEach(issue => {
+                    issue.status = 'approved';
+                });
+            });
+        }
     }
 
     /**

@@ -42,6 +42,7 @@ const firebaseWrapper = require('./firebase_wrapper.js');
 const logActions = require('./logging.js');
 const tool_prep = require('./tool_prep.js');
 const course_retrieval = require('./course_retrieval.js');
+const make_downloadable_backup = require('./make_downloadable_backup.js');
 
 /** Initializes the firebase */
 firebaseWrapper.initializeFirebase();
@@ -57,6 +58,21 @@ apiRouter.post('/course-retrieval', (req, res) => {
     course_retrieval(req.body)
         .then(courses => {
             res.status(200).send(courses);
+        })
+        .catch((e) => {
+            console.error(e);
+            res.status(500).send(new Error('Internal server error'));
+        });
+});
+
+/** ***********************************************************************
+ * Makes a copy of the course and sends the download link back to the user.
+ * @returns {string} - Link to download the course ".imscc" file
+ ************************************************************************/
+apiRouter.post('/course-make-backup', (req, res) => {
+    make_downloadable_backup(req.body)
+        .then(exportedContent => {
+            res.status(200).send(exportedContent);
         })
         .catch((e) => {
             console.error(e);

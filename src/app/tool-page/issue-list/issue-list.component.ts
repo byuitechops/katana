@@ -29,13 +29,13 @@ export class IssueListComponent {
         });
     }
 
-    /** 
+    /**
      * Runs as the user scrolls down the list. If the user reaches near the bottom of the list, it will
      * load more {@link IssueItem}s into the list. This is, essentially, lazy loading. It helps prevent
      * poor load times with massive amounts of IssueItems, but does cause a little bit of stuttering.
      */
     onScroll() {
-        let maxScrollTop = this.issueListEl.nativeElement.scrollHeight - this.issueListEl.nativeElement.clientHeight;
+        const maxScrollTop = this.issueListEl.nativeElement.scrollHeight - this.issueListEl.nativeElement.clientHeight;
         if (maxScrollTop - this.issueListEl.nativeElement.scrollTop < 500) {
             if (this.courseService.selectedCourse.issueItems.length > this.issueItemCount) {
                 this.issueItemCount += 15;
@@ -43,7 +43,7 @@ export class IssueListComponent {
         }
     }
 
-    /** 
+    /**
      * Provides {@link IssueItem}s to load into the list as {@link IssueCard}s, based on the
      * number allowed (issueItemCount).
      */

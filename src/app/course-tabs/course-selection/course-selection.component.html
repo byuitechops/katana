@@ -43,7 +43,7 @@
     <input type="text" placeholder="Search courses..." (input)="getCourses()" #searchText/>
 
     <div class="flex-container label-row">
-      <label>Results {{courseResults.length !== 0 ? '(' + courseResults.length + ')': '0'}}</label>
+      <label>Results {{courseResults.length !== 0 ? '(' + courseResults.length + ')': '(0)'}}</label>
       <button class="btn green green-accent-4 waves-effect addAll" (click)="addAll()" [class.disabled]="courseResults.length === 0" >Add All Results</button>
       <button *ngIf="courseService.courseSelectionOpen" class="waves-effect red lighten-1 btn removeAll" [class.disabled]="courseService.courses.length == 0"
         (click)="removeAll()">Remove All Courses</button>

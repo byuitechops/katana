@@ -1,5 +1,6 @@
 const IssueItem = require('./IssueItem.js');
 const canvas = require('canvas-api-wrapper');
+const cheerio = require('cheerio');
 
 module.exports = class NodeTool {
 
@@ -17,6 +18,7 @@ module.exports = class NodeTool {
         this.discoverOptions = details.discoverOptions || [];
         this.fixOptions = details.fixOptions || [];
         this.editorTabs = details.editorTabs || [];
+        this.enableApproveAll = details.enableApproveAll || null;
         this.lastRan = null;
     }
 
@@ -29,13 +31,20 @@ module.exports = class NodeTool {
             // Run the item through the discover function
             await this._discover(canvasItem, issueItem, options);
 
-            // Strip off Canvas's script and link tags
+            // Strip off Canvas's script and link tags, as well as the html and head tags put on by Cheerio
             issueItem.issues.forEach(issue => {
                 if (issue.html && Object.keys(issue.html).length > 0) {
                     Object.keys(issue.html).forEach(key => {
                         if (issue.html[key] !== undefined) {
-                            // TODO: Strip out <html>, <body>, <head> tags as well, but without Cheerio.js because Cheerio puts those tags back on
-                            issue.html[key] = issue.html[key].replace(/<link rel.*amazonaws.*css">|<script src.*amazonaws.*\/script>/g, '');
+                            let $ = cheerio.load(issue.html[key])
+                            let tags = $('link').add('script');
+                            tags.each((i, tag) => {
+                                // if the src or the href have 'amazonaws' in them, take it out
+                                if (($(tag).attr('src') && $(tag).attr('src').includes('amazonaws')) || ($(tag).attr('href') && $(tag).attr('href').includes('amazonaws'))) {
+                                    $(tag).remove();
+                                }
+                            });
+                            issue.html[key] = $('body').html();
                         }
                     });
                 }

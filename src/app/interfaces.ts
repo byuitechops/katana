@@ -81,6 +81,8 @@ export interface Tool {
     fixMessage?: string;
     /** The tabs to go into the HTML editor on the issue, if needed */
     editorTabs?: EditorTab[];
+    /** Whether or not the 'Approve All' button is available on the tool or not */
+    enableApproveAll?: boolean;
 }
 
 /**

@@ -800,6 +800,7 @@ Displayed on the options page for the tool.</p>
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#choices">choices</a>
                                 </li>
                                 <li>
@@ -855,6 +856,11 @@ Displayed on the options page for the tool.</p>
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -1104,7 +1110,7 @@ export interface DiscoverOption {
     /** The input type. Available types are &quot;text&quot;, &quot;dropdown&quot;, and &quot;multiselect.&quot; */
     type: string;
     /** The available choices for the option (not applicable to &quot;text&quot; type) */
-    choices: object[];
+    choices?: object[];
     /** The default text for &quot;text&quot; type options */
     defaultText?: string;
     /** Whether or not it is a required option on the form */
@@ -1125,7 +1131,7 @@ export interface FixOption {
     /** The input type. Available types are &quot;text&quot;, &quot;dropdown&quot;, and &quot;multiselect.&quot; */
     type: string;
     /** The available choices for the option (not applicable to &quot;text&quot; type) */
-    choices: object[];
+    choices?: object[];
     /** Default text for &quot;text&quot; type options */
     defaultText?: string;
     /** Whether or not the option is required in the form */
@@ -1261,7 +1267,8 @@ export interface Error {
     message: string;
     stack?: string;
     status: string;
-}</code></pre>
+}
+</code></pre>
     </div>
 </div>
 

@@ -74,12 +74,33 @@ export class IssueContainerComponent implements OnInit {
      * @param newStatus The new status to set the issue to.
      */
     setIssueStatus(newStatus) {
+        // if the status is already 'fixed', don't change it or do anything
         if (this.issue.status === 'fixed') {
             return;
         } else if (newStatus === this.issue.status) {
             this.issue.status = 'untouched';
         } else {
             this.issue.status = newStatus;
+        }
+        // check if you need to move to the next issueItem or not
+        this.getNextItem();
+    }
+
+    /**
+     * Checks if all of the issue status's have been set
+     * then it sets the selectedIssueItem to the next one in the list automatically
+     */
+    getNextItem() {
+        // check if there are any issues that are still untouched on the canvas item
+        const untouched = this.courseService.selectedIssueItem.issues.find(issue => issue.status === 'untouched');
+        // if there are no more untouched issues, move to the next canvas item automatically
+        if (!untouched) {
+            // get the index of the selectedIssueItem in the selected course's issueItems array
+            const index = this.courseService.selectedCourse.issueItems.indexOf(this.courseService.selectedIssueItem);
+            // if you are not on the last issueItem, then move to the next one
+            if (index <= this.courseService.selectedCourse.issueItems.length) {
+                this.courseService.selectedIssueItem = this.courseService.selectedCourse.issueItems[index + 1];
+            }
         }
     }
 
