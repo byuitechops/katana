@@ -1,24 +1,10 @@
-<div class="issueList">
-    <h1 class="issueList__title white-text">
-        Items
-        <span class="header_thin">({{courseService.selectedCourse && courseService.selectedCourse.issueItems ? courseService.selectedCourse.issueItems.length
-            : 0}})</span>
+<div class="issueDetails">
+    <h1 style="display:inline-block" class="white-text">
+        Results
     </h1>
-    <div class="issueList__list" (scroll)="onScroll()" #issueList>
-        <app-issue-card *ngFor="let issueItem of getIssueItems(); let i = index" [position]="i" [issueItem]="issueItem" (click)="courseService.selectedIssueItem = issueItem">
-        </app-issue-card>
-        <div class="noIssuesMessage" *ngIf="courseService.selectedCourse && courseService.selectedCourse.issueItems && courseService.selectedCourse.issueItems.length === 0 && !courseService.selectedCourse.error">
-            No issues were discovered in this course.
-            <div>
-                <i class="material-icons">tag_faces</i>
-            </div>
-        </div>
-        <div class="noIssuesMessage" *ngIf="courseService.selectedCourse && courseService.selectedCourse.issueItems && courseService.selectedCourse.error">
-            <p>This course failed to process.</p>
-            Please contact a Katana developer with the tool name and course ID.
-            <div>
-                <i class="material-icons">sentiment_very_dissatisfied</i>
-            </div>
-        </div>
+    <span class="issueDetails__itemTitle ashen-text">{{this.courseService.selectedIssueItem ? this.courseService.selectedIssueItem.title : ''}}</span>
+    <div *ngIf="courseService.selectedIssueItem" class="issueDetails__issueBox">
+        <!-- For each issue in the selected issue item, create an app-issue-container component. The id is consisted of the issueItem's id and the index of the issue itself in the selected issueItem's issue array -->
+        <app-issue-card *ngFor="let issue of courseService.selectedIssueItem.issues; let i = index" [index]="i" [issue]="issue" id="{{courseService.selectedIssueItem.item_id}}-{{i}}"></app-issue-card>
     </div>
 </div>

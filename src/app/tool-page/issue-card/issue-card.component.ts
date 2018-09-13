@@ -1,85 +1,160 @@
-import { Component, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { CourseService } from '../../course.service';
-import { IssueItem } from '../../interfaces';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { CourseService } from '../../course.service'; // Being used in issue-container.component.html (i.e. DO NOT DELETE)
+import { ToolService } from '../../tool.service';
+import { Issue } from '../../interfaces';
+import { OptionModel } from '../../classes';
 
 /**
- * Manages the display for a single {@link IssueItem}.
+ * Container for the display of a single {@link Issue}.
  */
 @Component({
     selector: 'app-issue-card',
     templateUrl: './issue-card.component.html',
     styleUrls: ['./issue-card.component.css']
 })
-export class IssueCardComponent implements AfterViewInit {
-    /**
-     * The {@link IssueItem} used by this component.
-     */
-    @Input('issueItem') issueItem: IssueItem;
-    /**
-     * The position of the component in the {@link IssueListComponent}.
-     */
-    @Input('position') position: number;
-    /**
-     * Reference to the element in the view for this component that
-     * contains it's item type icon (ex. Page, Discussion, Quiz).
-     */
-    @ViewChild('typeIcon') typeIcon: ElementRef;
+export class IssueCardComponent implements OnInit {
+    /** The issue attached to the display. */
+    @Input('issue') issue: Issue;
+
+    /** The index of the item's issues array the issue is at. */
+    @Input('index') index: number;
+
+    /** Element reference to the card containing details about the issue. */
+    @ViewChild('issueDetails') issueDetails: ElementRef;
+
+    /** A reference to the code editor element for the respective issue. */
+    @ViewChild('codeEditor') codeEditor: ElementRef;
 
     /**
      * Constructor
+     * @param toolService Provides information and management for available tools.
      * @param courseService Provides information and management for selected courses.
+     * Being used in issue-container.component.html (i.e. DO NOT DELETE)
      */
-    constructor(public courseService: CourseService) { }
+    constructor(public toolService: ToolService,
+        public courseService: CourseService) { }
 
     /**
-     * This class implements AfterViewInit, which runs after the element
-     * is rendered completely on the page. This is so we can add the tooltip
-     * data correctly to the type icon.
+     * Fired when the component is initialized, this manages the item's display.
+     * It inserts the form for the {@link Issue}'s {@link FixOption}s if available.
      */
-    ngAfterViewInit() {
-        if (!this.typeIcon) { return; }
-        const types = {
-            'pages': 'Page',
-            'assignments': 'Assignment',
-            'discussions': 'Discussion',
-            'files': 'File',
-            'folders': 'Folder',
-            'quizzes': 'Quiz',
-            'quizQuestions': 'Quiz Question',
-            'modules': 'Module',
-            'moduleItems': 'Module Item',
-        };
-        this.typeIcon.nativeElement.setAttribute('data-tooltip', types[this.issueItem.category]);
+    ngOnInit() {
+        this.issueDetails.nativeElement.innerHTML = this.issue.display;
+        this.issue.optionModel = new OptionModel(this.toolService.selectedTool.fixOptions);
+        this.issue.formGroup = this.issue.optionModel.toGroup();
+
+        // Update option values if there are values saved for any options
+        if (this.issue.tempValues) {
+            Object.keys(this.issue.tempValues).forEach(optionKey => {
+                const control = this.issue.formGroup.get(optionKey);
+                control.setValue(this.issue.tempValues[optionKey], { onlySelf: true });
+                control.updateValueAndValidity();
+            });
+        }
     }
 
     /**
-     * This is used to determine the icon shown at the top left of a card.
-     * It is based on the IssueItem's item_type property, or the type of
-     * the item in Canvas. (i.e. Page)
-     * @returns {string} The icon title to use to display the icon.
+     * Using the {@link Tab}s provided by the Node Tool, builds
+     * useable tab objects for each issue.
+     * @returns {Object[]} The tabs to use to build the editor instance.
      */
-    getTypeIcon() {
-        const typeIcons = {
-            'pages': 'insert_drive_file',
-            'assignments': 'assignment',
-            'discussions': 'question_answer',
-            'files': 'attach_file',
-            'folders': 'folder',
-            'quizzes': 'gavel',
-            'quizQuestions': 'help_outline',
-            'modules': 'view_agenda',
-            'moduleItems': 'view_list',
-        };
-        return typeIcons[this.issueItem.category];
+    buildEditorTabs() {
+        if (!this.toolService.selectedTool.editorTabs) { return; }
+        return this.toolService.selectedTool.editorTabs.map(editorTab => {
+            return {
+                title: editorTab.title,
+                htmlString: this.issue.html[editorTab.htmlKey],
+                readOnly: editorTab.readOnly
+            };
+        });
     }
 
     /**
-     * This is used in place of typical anchors. It will look scroll to the issue card selected from the issueItem card
-     * @param issueItemId Provides the issueItem's id that helps form the issue card's id for the anchor tag to work
-     * @param i Provides the index of the issue in IssueItem.issues[] to help form the unique id for the issue card
+     * Sets the status of the issue.
+     * @param newStatus The new status to set the issue to.
      */
-    viewIssueCard(issueItemId, i) {
-        const el = document.getElementById(`${issueItemId}-${i}`);
-        el.scrollIntoView();
+    setIssueStatus(newStatus) {
+        // if the status is already 'fixed', don't change it or do anything
+        if (this.issue.status === 'fixed') {
+            return;
+        } else if (newStatus === this.issue.status) {
+            this.issue.status = 'untouched';
+        } else {
+            this.issue.status = newStatus;
+        }
+        // check if you need to move to the next issueItem or not
+        this.getNextItem();
+    }
+
+    /**
+     * Checks if all of the issue status's have been set
+     * then it sets the selectedIssueItem to the next one in the list automatically
+     */
+    getNextItem() {
+        // check if there are any issues that are still untouched on the canvas item
+        const untouched = this.courseService.selectedIssueItem.issues.find(issue => issue.status === 'untouched');
+        // if there are no more untouched issues, move to the next canvas item automatically
+        if (!untouched) {
+            // get the index of the selectedIssueItem in the selected course's issueItems array
+            const index = this.courseService.selectedCourse.issueItems.indexOf(this.courseService.selectedIssueItem);
+            // if you are not on the last issueItem, then move to the next one
+            if (index <= this.courseService.selectedCourse.issueItems.length) {
+                this.courseService.selectedIssueItem = this.courseService.selectedCourse.issueItems[index + 1];
+            }
+        }
+    }
+
+    /**
+     * Determines the classes used to style buttons based on the
+     * current status of the issue they belong to.
+     * @param {string} desiredStatus What status the issue current is.
+     * @param {string} elType Either "button" or "icon".
+     * @returns {string} The classes to apply to the element.
+     */
+    getButtonClasses(desiredStatus: string, elType: string) {
+        let classes = '';
+        if (elType === 'button') {
+            classes += 'waves-effect waves btn white';
+        }
+        if (this.issue.status !== 'untouched' && this.issue.status !== desiredStatus) {
+            classes += ' text-lighten-4';
+        } else if (desiredStatus === 'approved') {
+            classes += ' text-accent-4';
+        } else if (desiredStatus === 'skipped') {
+            classes += ' text-darken-2';
+        }
+        return classes;
+    }
+
+    /**
+     * Manages the validity of the form on each keystroke.
+     * @param optionKey The key of the option this came from.
+     */
+    onChange(optionKey) {
+        if (['untouched', 'fixed', 'failed'].includes(this.issue.status)) {
+            this.issue.status = 'untouched';
+        }
+        if (!this.issue.tempValues) {
+            this.issue.tempValues = {};
+        }
+        this.issue.tempValues[optionKey] = this.issue.formGroup.value[optionKey];
+    }
+
+    /**
+     * Returns whether or not the item's status is fixed or failed.
+     * @returns {boolean} Whether or not this issue's status is fixed or failed.
+     */
+    isFixed() {
+        return this.issue.status === 'fixed' || this.issue.status === 'failed';
+    }
+
+    /**
+     * Since Object.keys does not work in angular templating, this is
+     * a workaround. It checks if the issue has any HTML to display in
+     * the editor. Used by the app-code-editor tag to determine if it
+     * should display.
+     */
+    showEditor() {
+        return Object.keys(this.issue.html).length > 0;
     }
 }

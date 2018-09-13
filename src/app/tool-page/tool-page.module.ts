@@ -4,11 +4,11 @@ import { MaterializeModule } from 'angular2-materialize';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { ItemListComponent } from './item-list/item-list.component';
+import { ItemCardComponent } from './item-card/item-card.component';
 import { IssueListComponent } from './issue-list/issue-list.component';
-import { IssueCardComponent } from './issue-card/issue-card.component';
-import { IssueDetailsComponent } from './issue-details/issue-details.component';
 import { IssueNavComponent } from './issue-nav/issue-nav.component';
-import { IssueContainerComponent } from './issue-container/issue-container.component';
+import { IssueCardComponent } from './issue-card/issue-card.component';
 import { ToolViewComponent } from './tool-view/tool-view.component';
 import { StatBadgeComponent } from './stat-badge/stat-badge.component';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
@@ -26,11 +26,11 @@ import { CodeEditorComponent } from './code-editor/code-editor.component';
         ReactiveFormsModule
     ],
     declarations: [
+        ItemListComponent,
+        ItemCardComponent,
         IssueListComponent,
-        IssueCardComponent,
-        IssueDetailsComponent,
         IssueNavComponent,
-        IssueContainerComponent,
+        IssueCardComponent,
         ToolViewComponent,
         StatBadgeComponent,
         CodeEditorComponent,

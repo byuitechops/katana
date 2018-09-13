@@ -1,31 +1,34 @@
-/* Container for the issue-list element */
+/* The container for all issue-container elements */
 
-.issueList {
-    width: var(--issueList-width);
+.issueDetails {
+    width: calc(100vw - var(--issueList-width));
+    max-height: calc(100vh - var(--header-height));
+    padding: 0 15px 0 0;
+}
+
+/* The header for issue-details */
+
+.issueDetails__header {
     box-sizing: border-box;
-    padding: 0 15px;
+    font-size: 20px;
+    height: var(--toolView-titleBar-height);
+    line-height: var(--toolView-titleBar-height);
+    padding: 0 10px;
 }
 
-/* The container for all of the issue items */
+/* The currently selected item's title */
 
-.issueList__list {
-    max-height: calc(100vh - var(--header-height) - var(--toolView-titleBar-height));
-    overflow-y: auto;
-    padding-right: var(--scrollbar-offset);
+.issueDetails__itemTitle {
+    background-color: var(--cobalt);
+    margin-left: 15px;
+    font-size: 20px;
 }
 
-/* The message that appears if no issue items are avaiable */
+/* The box that holds all of the issue-container elements */
 
-.noIssuesMessage {
-    color: var(--ashen);
-    position: absolute;
-    width: 100vw;
-    padding-top: 200px;
-    z-index: 100;
-    font-size: 30px;
-    text-align: center;
-}
-
-.noIssuesMessage i { 
-    font-size: 40px;
+.issueDetails__issueBox {
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow: auto;
+    max-height: calc(100vh - (var(--header-height) + 52px));
 }
