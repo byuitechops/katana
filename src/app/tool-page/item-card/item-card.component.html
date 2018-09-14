@@ -1,0 +1,26 @@
+<div id="{{issueItem.item_id}}" [class.selectedCard]="this.courseService.selectedIssueItem === issueItem"
+    class="issueCard card z-depth-1 scale-transition">
+    <div class="issueCard_titleLine">
+        <div>
+            <i #typeIcon id="typeIcon" materialize="tooltip" class="material-icons issueCard_tag tooltipped" data-position="left">
+                {{getTypeIcon()}}
+            </i>
+            <div class="issueCard_title">
+                {{issueItem.title}}
+            </div>
+        </div>
+        <a target="_blank" href="{{issueItem.link}}" class="issueCard_link tooltipped" materialize="tooltip" data-position="right"
+            data-tooltip="Open in Canvas">
+            <i class="material-icons">open_in_new</i>
+        </a>
+    </div>
+    <ul>
+        <li *ngFor="let issue of issueItem.issues; let i = index;" class="issueCard_issue">
+            <i class="material-icons issueCard_tag" [ngClass]="courseService.getTextColorClasses(issue.status)">
+                {{courseService.getStatusIcon(issue.status)}}
+            </i>
+            <!-- If a user clicks a title on an issueItem card, it will take the user to that issue card -->
+            <a (click)="viewIssueCard(issueItem.item_id, i)">{{issue.title}}</a>
+        </li>
+    </ul>
+</div>

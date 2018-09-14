@@ -29,11 +29,11 @@ export class ToolViewComponent {
      */
     getIssueCount() {
         return this.courseService.courses.reduce((acc, course) => {
-            if (!course.issueItems) return acc;
+            if (!course.issueItems) { return acc; }
             return acc += course.issueItems.reduce((acc2, issueItem) => {
-                if (!issueItem.issues) return acc2;
+                if (!issueItem.issues) { return acc2; }
                 return acc2 += issueItem.issues.length;
-            }, 0)
+            }, 0);
         }, 0);
     }
 }

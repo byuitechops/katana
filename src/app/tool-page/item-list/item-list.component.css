@@ -1,0 +1,31 @@
+/* Container for the issue-list element */
+
+.issueList {
+    width: var(--issueList-width);
+    box-sizing: border-box;
+    padding: 0 15px;
+}
+
+/* The container for all of the issue items */
+
+.issueList__list {
+    max-height: calc(100vh - var(--header-height) - var(--toolView-titleBar-height));
+    overflow-y: auto;
+    padding-right: var(--scrollbar-offset);
+}
+
+/* The message that appears if no issue items are avaiable */
+
+.noIssuesMessage {
+    color: var(--ashen);
+    position: absolute;
+    width: 100vw;
+    padding-top: 200px;
+    z-index: 100;
+    font-size: 30px;
+    text-align: center;
+}
+
+.noIssuesMessage i { 
+    font-size: 40px;
+}
