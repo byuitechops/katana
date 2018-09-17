@@ -15,7 +15,7 @@ import { Error } from './interfaces';
 @Injectable({
     providedIn: 'root'
 })
-export class KatanaService {
+export class ServerService {
 
     /**
      * Handles formatting the correct URL for the web sockets.

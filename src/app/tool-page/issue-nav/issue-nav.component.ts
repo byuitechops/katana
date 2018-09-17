@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CourseService } from '../../course.service';
-import { KatanaService } from '../../katana.service';
+import { ServerService } from '../../server.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { EventEmitter } from '@angular/core';
 import { ToolService } from '../../tool.service';
@@ -27,11 +27,11 @@ export class IssueNavComponent {
      * Constructor
      * @param courseService Provides information and management for selected courses.
      * @param toolService Provides information and management for available tools.
-     * @param katanaService Provides functionality to make API calls to the Katana server.
+     * @param serverService Provides functionality to make API calls to the Katana server.
      */
     constructor(public courseService: CourseService,
         public toolService: ToolService,
-        public katanaService: KatanaService) { }
+        public serverService: ServerService) { }
 
     /**
      * Opens the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.

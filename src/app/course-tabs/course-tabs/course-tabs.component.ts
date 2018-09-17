@@ -3,7 +3,7 @@ import { CourseService } from '../../course.service';
 import { ToolService } from '../../tool.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { SettingsService } from '../../settings.service';
-import { KatanaService } from '../../katana.service';
+import { ServerService } from '../../server.service';
 
 /** The Course Tabs bar, along with the action buttons (settings, feedback, etc.). */
 @Component({

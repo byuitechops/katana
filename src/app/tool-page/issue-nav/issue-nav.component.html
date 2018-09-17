@@ -50,7 +50,7 @@
                         </i>
                     </td>
                     <!-- <td>
-                        <a class="waves-effect btn-flat blue-text text-accent-3 right" (click)="katanaService.fixIssues([course])">Fix</a>
+                        <a class="waves-effect btn-flat blue-text text-accent-3 right" (click)="serverService.fixIssues([course])">Fix</a>
                     </td> -->
                 </tr>
             </tbody>
@@ -59,7 +59,7 @@
     </div>
     <div class="modal-footer">
         <a class="modal-action modal-close waves-effect btn-flat blue-grey-text text-darken-3 left" (click)="closeModal()">Cancel</a>
-        <a class="modal-action modal-close waves-effect btn blue accent-3" (click)="katanaService.fixIssues(courseService.courses)">Fix All Approved Issues</a>
+        <a class="modal-action modal-close waves-effect btn blue accent-3" (click)="serverService.fixIssues(courseService.courses)">Fix All Approved Issues</a>
     </div>
 
 </div>

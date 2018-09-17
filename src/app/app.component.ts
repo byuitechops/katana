@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, Event, NavigationEnd } from '@angular/router';
 import { CourseService } from './course.service';
-import { KatanaService } from './katana.service';
+import { ServerService } from './server.service';
 import { ToastService } from './toast.service';
 import { ToolService } from './tool.service';
 import { AuthGuardService } from './authguard.service'; // Being used in app.component.html (i.e. DO NOT DELETE)
@@ -30,7 +30,7 @@ export class AppComponent {
      *
      * @param router Used to navigate the user as needed.
      * @param courseService Provides information and management for selected courses.
-     * @param katanaService Provides functionality for making API calls to the Katana server.
+     * @param serverService Provides functionality for making API calls to the Katana server.
      * @param toolService Provides information and management for available tools.
      * @param toastService Provides toast notification functionality.
      * @param authGuardService Provides Firebase authentication functionality.
@@ -38,7 +38,7 @@ export class AppComponent {
      */
     constructor(private router: Router,
         private courseService: CourseService,
-        private katanaService: KatanaService,
+        private serverService: ServerService,
         public toolService: ToolService,
         private toastService: ToastService,
         private settingsService: SettingsService,
@@ -46,7 +46,7 @@ export class AppComponent {
 
         // Set the theme
         if (localStorage['katanaTheme']) {
-            settingsService.setTheme(localStorage['katanaTheme'])
+            settingsService.setTheme(localStorage['katanaTheme']);
         }
 
         router.events.subscribe((event: Event) => {
@@ -65,8 +65,8 @@ export class AppComponent {
                 });
 
                 // Clear out the web sockets in case any are still running
-                katanaService.sockets.forEach(socket => socket.close());
-                katanaService.sockets = [];
+                serverService.sockets.forEach(socket => socket.close());
+                serverService.sockets = [];
 
             } else if (event instanceof NavigationEnd &&
                 event.urlAfterRedirects.includes('/issues')) {
