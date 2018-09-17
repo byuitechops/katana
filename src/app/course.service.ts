@@ -19,7 +19,7 @@ export class CourseService {
     /**
      * The currently selected {@link Course}.
      */
-    _selectedCourse: Course;
+    private _selectedCourse: Course;
 
     /**
      * The currently selected {@link IssueItem}.

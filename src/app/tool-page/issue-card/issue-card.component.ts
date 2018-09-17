@@ -145,7 +145,7 @@ export class IssueCardComponent implements OnInit {
      * @returns {boolean} Whether or not this issue's status is fixed or failed.
      */
     isFixed() {
-        return this.issue.status === 'fixed' || this.issue.status === 'failed';
+        return ['fixed', 'failed'].includes(this.issue.status); //this.issue.status === 'fixed' || this.issue.status === 'failed';
     }
 
     /**
