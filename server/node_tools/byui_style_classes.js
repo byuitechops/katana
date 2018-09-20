@@ -3,11 +3,11 @@ const cheerio = require('cheerio');
 /** ***************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
-function discover(canvasItem, issueItem, options) {
+function discover(canvasItem, itemCard, options) {
     if (canvasItem.getHtml() === null) return;
     var $ = cheerio.load(canvasItem.getHtml());
     
@@ -90,29 +90,29 @@ function discover(canvasItem, issueItem, options) {
             updatedHtml
         };
 
-        issueItem.newIssue(title, display, details, html);
+        itemCard.newIssue(title, display, details, html);
     }
 }
 
 /** ***************************************************************
  * Fixes issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, including its issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, including its issues
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {array} fixedIssues - All issues discovered.
  *****************************************************************/
-function fix(canvasItem, issueItem, options) {
+function fix(canvasItem, itemCard, options) {
     return new Promise(async (resolve, reject) => {
         try {
             if (canvasItem.getHtml() === null) return;
-            if (issueItem.issues[0].status !== 'approved') return;
-            if (issueItem.issues[0].html.updatedHtml === issueItem.issues[0].html.currentHtml) return;
+            if (itemCard.issues[0].status !== 'approved') return;
+            if (itemCard.issues[0].html.updatedHtml === itemCard.issues[0].html.currentHtml) return;
             // set the html to the updatedHtml from the discover function + the edits they make in the editor
-            canvasItem.setHtml(issueItem.issues[0].html.updatedHtml);
-            issueItem.issues[0].status = 'fixed';
+            canvasItem.setHtml(itemCard.issues[0].html.updatedHtml);
+            itemCard.issues[0].status = 'fixed';
             resolve();
         } catch (e) {
-            issueItem.issues[0].status = 'failed';
+            itemCard.issues[0].status = 'failed';
             reject(e);
         }
     });
@@ -133,7 +133,7 @@ module.exports = {
         'assignments',
         'discussions',
         'quizzes',
-        'quizQuestions'
+        'quizQuestions',
     ],
     discoverOptions: [],
     fixOptions: [],

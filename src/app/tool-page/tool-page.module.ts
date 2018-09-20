@@ -6,9 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ItemListComponent } from './item-list/item-list.component';
 import { ItemCardComponent } from './item-card/item-card.component';
-import { IssueListComponent } from './issue-list/issue-list.component';
+import { ResultListComponent } from './result-list/result-list.component';
 import { IssueNavComponent } from './issue-nav/issue-nav.component';
-import { IssueCardComponent } from './issue-card/issue-card.component';
+import { ResultCardComponent } from './result-card/result-card.component';
 import { ToolViewComponent } from './tool-view/tool-view.component';
 import { StatBadgeComponent } from './stat-badge/stat-badge.component';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
@@ -28,9 +28,9 @@ import { CodeEditorComponent } from './code-editor/code-editor.component';
     declarations: [
         ItemListComponent,
         ItemCardComponent,
-        IssueListComponent,
+        ResultListComponent,
         IssueNavComponent,
-        IssueCardComponent,
+        ResultCardComponent,
         ToolViewComponent,
         StatBadgeComponent,
         CodeEditorComponent,

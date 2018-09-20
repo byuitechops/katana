@@ -41,11 +41,11 @@
                 <tr *ngFor="let course of courseService.courses" class="flex-container" style="width:100%">
                     <td>
                         <app-stat-badge class="overview-statBadge" (click)="closeModal();courseService.selectedCourse = course" [statTitle]="course.course_code"
-                            [statCount]="getIssueItems(course).length" [side]="'left'"></app-stat-badge>
+                            [statCount]="getItemCards(course).length" [side]="'left'"></app-stat-badge>
                     </td>
                     <td style="flex-grow:1;display:flex;flex-wrap:wrap;margin-left: 10px">
-                        <i *ngFor="let issue of getIssueItems(course)" class="material-icons issueIcon" [ngClass]="courseService.getTextColorClasses(issue.status)"
-                            (click)="selectIssueItem(course, issue)">
+                        <i *ngFor="let issue of getItemCards(course)" class="material-icons issueIcon" [ngClass]="courseService.getTextColorClasses(issue.status)"
+                            (click)="selectItemCard(course, issue)">
                             {{courseService.getStatusIcon(issue.status)}}
                         </i>
                     </td>

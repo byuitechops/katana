@@ -55,12 +55,12 @@ export class AppComponent {
 
                 // RESET all properties not used outside of tool view
 
-                courseService.selectedIssueItem = null;
+                courseService.selectedItemCard = null;
                 courseService.selectedCourse = null;
                 toolService.toolViewOpen = false;
                 toolService.selectedDiscoverOptions = false;
                 courseService.courses.forEach(course => {
-                    course.issueItems = [];
+                    course.itemCards = [];
                     course.processing = false;
                 });
 

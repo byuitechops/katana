@@ -63,11 +63,11 @@ export class CourseTabsComponent {
      * @returns {number} The total number of issues matching the provided status.
      */
     getIssueCount(course, status): number | string {
-        if (!course.issueItems) return 0;
-        if (course.error) return 'E';
-        return course.issueItems.reduce((acc, issueItem) => {
-            let issues = issueItem.issues.filter(issue => {
-                if (!status) return true;
+        if (!course.itemCards) { return 0; }
+        if (course.error) { return 'E'; }
+        return course.itemCards.reduce((acc, itemCard) => {
+            const issues = itemCard.issues.filter(issue => {
+                if (!status) { return true; }
                 return issue.status === status;
             });
             return acc + issues.length;

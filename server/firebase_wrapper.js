@@ -49,10 +49,10 @@ function _log(collectionTitle, data) {
         for (let i = 1; i < divisor; i++) {
             let chunk = 0;
             let chunkedData = Object.assign({}, data);
-            chunkedData.issueItems = [];
-            while (count < data.issueItems.length && chunk + Buffer.byteLength(data.issueItems[count]) < 1000000) {
-                chunk += Buffer.byteLength(data.issueItems[count]);
-                chunkedData.issueItems.push(data.issueItems[count]);
+            chunkedData.itemCards = [];
+            while (count < data.itemCards.length && chunk + Buffer.byteLength(data.itemCards[count]) < 1000000) {
+                chunk += Buffer.byteLength(data.itemCards[count]);
+                chunkedData.itemCards.push(data.itemCards[count]);
                 ++count;
             }
             db.collection(collectionTitle).add(chunkedData);

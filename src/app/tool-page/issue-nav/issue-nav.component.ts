@@ -48,26 +48,26 @@ export class IssueNavComponent {
     }
 
     /**
-     * Returns the user the {@link IssueItem}s belonging to the provided course.
-     * @param course The course to retrieve the IssueItems from.
-     * @returns {IssueItem[]} The IssueItems belonging to the provided course.
+     * Returns the user the {@link ItemCard}s belonging to the provided course.
+     * @param course The course to retrieve the ItemCards from.
+     * @returns {ItemCard[]} The ItemCards belonging to the provided course.
      */
-    getIssueItems(course) {
-        if (!course.issueItems) { return []; }
-        return course.issueItems.reduce((acc, issueItem) => {
-            if (!issueItem.issues) { return acc; }
-            return [...acc, ...issueItem.issues];
+    getItemCards(course) {
+        if (!course.itemCards) { return []; }
+        return course.itemCards.reduce((acc, itemCard) => {
+            if (!itemCard.issues) { return acc; }
+            return [...acc, ...itemCard.issues];
         }, []);
     }
 
     /**
-     * Sets the currently selected course and currently selected {@link IssueItem}.
+     * Sets the currently selected course and currently selected {@link ItemCard}.
      * @param course The course to set as the currently selected course.
-     * @param issue The issue to use to set the currently selected IssueItem.
+     * @param issue The issue to use to set the currently selected ItemCard.
      */
-    selectIssueItem(course, issue) {
+    selectItemCard(course, issue) {
         this.courseService.selectedCourse = course;
-        this.courseService.selectedIssueItem = course.issueItems.find(issueItem => issueItem.issues.includes(issue));
+        this.courseService.selectedItemCard = course.itemCards.find(itemCard => itemCard.issues.includes(issue));
         this.closeModal();
     }
 
@@ -77,8 +77,8 @@ export class IssueNavComponent {
     approveAll() {
         // only approve the issues if the tool's 'enableApproveAll' attribute is set to true
         if (this.toolService.selectedTool.enableApproveAll === true) {
-            this.courseService.selectedCourse.issueItems.forEach(issueItem => {
-                issueItem.issues.forEach(issue => {
+            this.courseService.selectedCourse.itemCards.forEach(itemCard => {
+                itemCard.issues.forEach(issue => {
                     issue.status = 'approved';
                 });
             });
@@ -92,7 +92,7 @@ export class IssueNavComponent {
     downloadIssues() {
         let csvReport = '';
         this.courseService.courses.forEach((course, i) => {
-            course.issueItems.forEach((issueItem, j) => {
+            course.itemCards.forEach((itemCard, j) => {
                 if (i < 1 && j < 1) {
                     csvReport = csvFormatRows([[
                         'Issue Title',
@@ -104,7 +104,7 @@ export class IssueNavComponent {
                         'Category',
                         'Link',
                         'Details',
-                    ]].concat(issueItem.issues.map(issue => {
+                    ]].concat(itemCard.issues.map(issue => {
                         const flatIssueDetails = Object.entries(issue.details).reduce((acc, pair) => {
                             const detail = `${pair[0]}: ${pair[1]}`;
                             return acc.concat(detail);
@@ -114,17 +114,17 @@ export class IssueNavComponent {
                             issue.title,
                             issue.status,
                             issue.optionValues ? issue.optionValues : '',
-                            issueItem.title,
-                            issueItem.item_id,
-                            issueItem.course_id,
-                            issueItem.category,
-                            issueItem.link,
+                            itemCard.title,
+                            itemCard.item_id,
+                            itemCard.course_id,
+                            itemCard.category,
+                            itemCard.link,
                             ...flatIssueDetails
                         ];
                     }))) + '\n';
                 } else {
                     // Make the log without the header
-                    csvReport += csvFormatRows(issueItem.issues.map(issue => {
+                    csvReport += csvFormatRows(itemCard.issues.map(issue => {
                         const flatIssueDetails = Object.entries(issue.details).reduce((acc, pair) => {
                             const detail = `${pair[0]}: ${pair[1]}`;
                             return acc.concat(detail);
@@ -133,11 +133,11 @@ export class IssueNavComponent {
                             issue.title,
                             issue.status,
                             issue.optionValues ? issue.optionValues : '',
-                            issueItem.title,
-                            issueItem.item_id,
-                            issueItem.course_id,
-                            issueItem.category,
-                            issueItem.link,
+                            itemCard.title,
+                            itemCard.item_id,
+                            itemCard.course_id,
+                            itemCard.category,
+                            itemCard.link,
                             ...flatIssueDetails
                         ];
                     })) + '\n';

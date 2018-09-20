@@ -4,10 +4,10 @@ const he = require('he');
 /******************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
  *****************************************************************/
-function discover(canvasItem, issueItem, options) {
+function discover(canvasItem, itemCard, options) {
     // Create the necessary variables to create issue items
     let title = 'Matching link found',
         display = '',
@@ -20,7 +20,7 @@ function discover(canvasItem, issueItem, options) {
     options.searchURL = he.decode(options.searchURL);
 
     // Check if the issue item is a module item
-    if (issueItem.category === 'moduleItems') {
+    if (itemCard.category === 'moduleItems') {
     // Get the external url
         let link = canvasItem.external_url;
         // Check if the link is truthy
@@ -34,7 +34,7 @@ function discover(canvasItem, issueItem, options) {
                 display += '<h3>Proposed External URL</h3>';
                 display += `<a href="${options.defaultURL} target="_blank">${options.defaultURL}</a>`;
                 // Create the issue item
-                issueItem.newIssue(title, display, details);
+                itemCard.newIssue(title, display, details);
             }
         }
     } else {
@@ -145,7 +145,7 @@ function discover(canvasItem, issueItem, options) {
             }
 
             // Create the issue item
-            issueItem.newIssue(title, display, details, html);
+            itemCard.newIssue(title, display, details, html);
         });
     }
 }
@@ -153,24 +153,24 @@ function discover(canvasItem, issueItem, options) {
 /** ***************************************************************
  * Fixes issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, including its issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, including its issues
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {array} fixedIssues - All issues discovered.
  *****************************************************************/
-function fix(canvasItem, issueItem, options) {
+function fix(canvasItem, itemCard, options) {
     return new Promise(async (resolve, reject) => {
         try {
             // Use he to decode any named and numerical character references in the searched URL. Canvas, by default, has these in their content editor
             options.searchURL = he.decode(options.searchURL);
             // Check if the issue item is a module item
-            if (issueItem.category === 'moduleItems') {
+            if (itemCard.category === 'moduleItems') {
                 // Set the external url and title to the user provided values
                 canvasItem.external_url = options.defaultURL;
                 if (options.newAlias) {
                     canvasItem.setTitle(options.newAlias);
                 }
                 // Set the status to fixed
-                issueItem.issues[0].status = 'fixed';
+                itemCard.issues[0].status = 'fixed';
                 resolve();
             } else {
                 // Load the canvas item's HTML into cheerio
@@ -193,7 +193,7 @@ function fix(canvasItem, issueItem, options) {
                 }
 
                 // Make the fixes
-                issueItem.issues.forEach(issue => {
+                itemCard.issues.forEach(issue => {
                     // Using the index we passed in from discover(), get the correct link on the page
                     let link = links[issue.details.i];
                     // Change the attributes for the correct tag(a, iframe, img) and set the status to fixed
@@ -223,7 +223,7 @@ function fix(canvasItem, issueItem, options) {
                 resolve();
             }
         } catch (e) {
-            issueItem.issues[0].status = 'untouched';
+            itemCard.issues[0].status = 'untouched';
             reject(e);
         }
     });
