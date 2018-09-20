@@ -26,7 +26,7 @@ To set up your own instance of Katana, follow these steps:
 
 8. Follow any [additional setup processes](https://byuitechops.github.io/katana/docs/additional-documentation/setup.html) you need
 
-We strongly recommend that you also install our **[Canvas Course Exporter](https://github.com/byuitechops/canvas-course-exporter)** tool as well, so that anything that doesn't go according to plan in your Katana development can be fixed with a backed-up course.
+We **strongly recommend** that you install our **[Canvas Course Exporter](https://github.com/byuitechops/canvas-course-exporter)** tool as well, so that anything that doesn't go according to plan in your Katana development can be fixed with a backed-up course.
 
 ## Development
 
