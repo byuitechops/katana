@@ -59,7 +59,11 @@
 }
 
 div.option__text {
-    padding: 0 10px !important;
+    padding-right: 10px;
+}
+
+div.option__text>input{
+    padding-left: 10px;
 }
 
 button[type="submit"] {
