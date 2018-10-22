@@ -12,6 +12,8 @@ import { IssueContainerComponent } from './issue-container/issue-container.compo
 import { ToolViewComponent } from './tool-view/tool-view.component';
 import { StatBadgeComponent } from './stat-badge/stat-badge.component';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
+import { IssueReportPipe } from '../issue-report.pipe';
+import { IssueReportComponent } from './issue-report/issue-report.component';
 
 @NgModule({
     imports: [
@@ -26,6 +28,8 @@ import { CodeEditorComponent } from './code-editor/code-editor.component';
         ReactiveFormsModule
     ],
     declarations: [
+        IssueReportPipe,
+        IssueReportComponent,
         IssueListComponent,
         IssueCardComponent,
         IssueDetailsComponent,
@@ -34,6 +38,7 @@ import { CodeEditorComponent } from './code-editor/code-editor.component';
         ToolViewComponent,
         StatBadgeComponent,
         CodeEditorComponent,
+        IssueReportPipe
     ]
 })
 export class ToolPageModule { }

@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 import { CourseService } from '../../course.service';
 import { IssueItem } from '../../interfaces';
+import { IssueReportPipe } from '../../issue-report.pipe'
 
 @Component({
   selector: 'app-issue-report',
@@ -18,7 +19,7 @@ export class IssueReportComponent implements AfterViewInit {
   constructor(public courseService: CourseService) {}
 
   ngAfterViewInit() {
-      document.querySelector('#details').innerHTML = 'Hello World';
+    //   document.querySelector('#details').innerHTML = 'Hello World';
   }
 
   /**
@@ -31,6 +32,13 @@ export class IssueReportComponent implements AfterViewInit {
       } else {
           return this.courseService.selectedCourse.issueItems.slice(0, this.issueItemCount);
       }
+  }
+
+  /**
+   * Provides the headings for the issue report
+   */
+  getReportHeadings() {
+    return ["Title", ...Object.keys(this.courseService.selectedCourse.issueItems[0].issues[0].details), "HTML"];
   }
 
 }

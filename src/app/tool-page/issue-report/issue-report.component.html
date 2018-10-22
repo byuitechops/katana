@@ -4,9 +4,12 @@
   </h1>
   <div class="issueList__list">
     <table *ngFor="let issueItem of getIssueItems()" class="white">
-      <tr *ngFor="let issue of issueItem.issues">
+      <thead>
+        <th *ngFor="let heading of getReportHeadings()">{{ heading }}</th>
+      </thead>
+      <tr *ngFor="let issue of (issueItem.issues | issueReport)">
         <td>{{issue ? issue.title : ''}}</td>
-        <td id="details" #details></td>
+        <td id="details">{{issue.details[0]}}</td>
         <td>{{issue ? issue.html.currentHtml : ''}}</td>
       </tr>
     </table>
