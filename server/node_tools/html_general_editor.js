@@ -36,6 +36,29 @@ function discover(canvasItem, itemCard, options) {
         `;
     }
 
+// if they selected tags to search by, then check if the html contains any of them
+   if (options.searchTags) {
+       let tagsFound = [];
+       options.searchTags.forEach(tag => {
+           // if the number of tags found is more than zero
+           if ($(tag).length !== 0) {
+               // if the tag type hasn't been added to tagsFound yet, add it
+               if (!tagsFound.includes(tag)) {
+                   tagsFound.push(tag);
+               }
+           }
+       });
+       // if tagsFound is empty, then the tag wasn't found
+       if (tagsFound.length === 0) return;
+       // add the tags that were searched for and found to the display
+       display += `
+           <h2>Tags Searched For</h2>
+           <div>${options.searchTags.join(' ')}</div>
+           <h2>Tags Found</h2>
+           <div>${tagsFound.join(' ')}</div>
+       `;
+   }
+
     let details = {};
 
     itemCard.newIssue(title, display, details, html);
@@ -81,6 +104,36 @@ module.exports = {
         'quizQuestions'
     ],
     discoverOptions: [{
+       title: 'HTML Tags to Search For',
+       key: 'searchTags',
+       description: 'Which HTML tags would you like to search for?',
+       type: 'multiselect',
+       choices: [
+           'a',
+           'b',
+           'br',
+           'em',
+           'h1',
+           'h2',
+           'h3',
+           'h4',
+           'h5',
+           'h6',
+           'i',
+           'iframe',
+           'img',
+           'link',
+           'ol',
+           'script',
+           'span',
+           'strong',
+           'table',
+           'tbody',
+           'thead',
+           'ul',
+       ],
+       required: false
+   }, {
         title: 'Search Phrase',
         key: 'searchPhrase',
         description: 'What search phrase would you like to look for?',
