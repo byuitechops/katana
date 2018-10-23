@@ -9,13 +9,14 @@ const cheerio = require('cheerio');
  *****************************************************************/
 function discover(canvasItem, itemCard, options) {
     if (canvasItem.getHtml() === null) return;
-    var $ = cheerio.load(canvasItem.getHtml());
+    let $ = cheerio.load(canvasItem.getHtml());
     
     // get the correct course code and stick it into an array, each word being an element
     let codeSegments = options.courseInfo.course_code.split(' ');
 
     // take the class code array and format it into the css class
     let styleClass = (codeSegments[0] + (codeSegments[1] ? codeSegments[1] : '')).toLowerCase().replace(/:/g, '');
+    styleClass = styleClass.replace(/onlinemaster/i, '');
 
     // return the first element that has the classes 'byui' and the correct course class together, if one exists
     let styleClassEl = $(`.byui.${styleClass}`).first();
@@ -28,7 +29,6 @@ function discover(canvasItem, itemCard, options) {
 
         // check for the correct classes being present, but formatted incorrectly
         let incorrectLowerCaseClass = $(`.byui${styleClass}`).first();
-        // check for the correct classes being present, but formatted incorrectly
         let incorrectUpperCaseClass = $(`.byui${styleClass.toUpperCase()}`).first();
 
         // Remove scripts from the html
@@ -65,17 +65,13 @@ function discover(canvasItem, itemCard, options) {
         `;
 
         if (byuiClass.length === 0 && incorrectLowerCaseClass.length === 0 && incorrectUpperCaseClass.length === 0) {
-            // Wrap all of the HTML with the div with the right classes
-            $('body').html(`<div class="byui ${styleClass}">${$('body').html()}</div>`);
+            $('body').html(`<div class="byui ${styleClass}">${$('body').html()}</div>`); // Wrap all of the HTML with the div with the right classes
         } else if (incorrectLowerCaseClass.length !== 0) {
-            // Correct the existing classes
-            $(incorrectLowerCaseClass).attr('class', `byui ${styleClass}`);
+            $(incorrectLowerCaseClass).attr('class', `byui ${styleClass}`); // Correct the existing classes
         } else if (incorrectUpperCaseClass.length !== 0) {
-            // Correct the existing classes
-            $(incorrectUpperCaseClass).attr('class', `byui ${styleClass}`);
+            $(incorrectUpperCaseClass).attr('class', `byui ${styleClass}`); // Correct the existing classes
         } else {
-            // Correct the existing classes
-            $(byuiClass).attr('class', `byui ${styleClass}`);
+            $(byuiClass).attr('class', `byui ${styleClass}`); // Correct the existing classes
         }
 
         let updatedHtml = $('body').html();
@@ -135,8 +131,15 @@ module.exports = {
         'quizzes',
         'quizQuestions',
     ],
-    discoverOptions: [],
-    fixOptions: [],
+    discoverOptions: [
+    // {
+    //     title: 'Classes to Insert',
+    //     key: 'newClasses',
+    //     description: `Put the new style classes you'd like to insert here. If you omit 'byui' then it will automatically add it for you.`,
+    //     type: 'text',
+    //     required: false
+    // }
+    ],
     editorTabs: [{
         title: 'Updated HTML',
         htmlKey: 'updatedHtml',
