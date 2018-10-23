@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 import { CourseService } from '../../course.service';
-import { IssueItem } from '../../interfaces';
 import { IssueReportPipe } from '../../issue-report.pipe'
+import { Issue } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-issue-report',
@@ -23,15 +23,10 @@ export class IssueReportComponent implements AfterViewInit {
   }
 
   /**
-   * Provides {@link IssueItem}s to load into the list as {@link IssueCard}s, based on the
-   * number allowed (issueItemCount).
+   * Returns a flat array of all the selected course's issues
    */
-  getIssueItems(): IssueItem[] {
-      if (this.courseService.selectedCourse.issueItems.length < this.issueItemCount) {
-          return this.courseService.selectedCourse.issueItems;
-      } else {
-          return this.courseService.selectedCourse.issueItems.slice(0, this.issueItemCount);
-      }
+  getIssues(): Issue[] {
+    return this.courseService.selectedCourse.issueItems.reduce((acc, issueItem) => acc.concat(issueItem.issues), []);
   }
 
   /**
