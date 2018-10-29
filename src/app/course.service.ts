@@ -41,7 +41,7 @@ export class CourseService {
     }
 
     set selectedCourse(course: Course) {
-        if (course === this._selectedCourse || !course) return;
+        if (course === this._selectedCourse || !course) { return; }
         // Set the selected course to a reference, so we don't have issues when updating the course objects
         this._selectedCourse = course;
         this.courseChange.emit(this._selectedCourse);

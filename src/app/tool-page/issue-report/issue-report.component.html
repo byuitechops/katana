@@ -1,6 +1,6 @@
 <div class="issueList">
   <h1 class="issueList__title white-text">
-    Look at this cool report
+    Report for {{getCourseNames()}}
   </h1>
   <div class="issueList__list">
     <table class="white">
@@ -8,10 +8,10 @@
         <th *ngFor="let heading of getReportHeadings()">{{ heading }}</th>
       </thead>
       <tbody>
-        <tr *ngFor="let issues of getIssues()">
+        <tr *ngFor="let issues of (getIssues() | issueReport)">
           <!-- <tr *ngFor="let issue of (issueItem.issues | issueReport)"> -->
           <td>{{issue ? issue.title : ''}}</td>
-          <!-- <td id="details">{{issue.details[0]}}</td> -->
+          <!-- <td *ngFor="let detail of issue.details">{{detail}}</td> -->
           <td>{{issue ? issue.html.currentHtml : ''}}</td>
         </tr>
       </tbody>

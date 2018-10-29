@@ -36,30 +36,58 @@ function discover(canvasItem, issueItem, options) {
         `;
     }
 
-    // if they selected tags to search by, then check if the html contains any of them
+    // if they entered tags to search for in the html or text
     if (options.searchTags) {
-        let tagsFound = [];
-        options.searchTags.forEach(tag => {
-            // if the number of tags found is more than zero
-            if ($(tag).length !== 0) {
-                // if the tag type hasn't been added to tagsFound yet, add it
-                if (!tagsFound.includes(tag)) {
-                    tagsFound.push(tag);
-                }
-            }
-        });
-        // if tagsFound is empty, then the tag wasn't found
-        if (tagsFound.length === 0) return;
+        /* an array of encoded html entities with their unicode regex equivalents, 
+        the unicode being searchable in the html while the encoding is not */
+        const encodedEntities = [{
+            html: '&nbsp;',
+            unicodeRegex: /\u00a0/gi,
+        }, {
+            html: '&amp;',
+            unicodeRegex: /\u0026/gi,
+        }];
 
-        // add the tags that were searched for and found to the display
+        // search through each searchTag and see if it exists in the html/text
+        let foundTags = options.searchTags.reduce((acc, entity) => {
+            const isEncoded = encodedEntities.find(encodedEntity => encodedEntity.html === entity);
+            if (isEncoded) {
+                // check if the encoded html's unicode is found in the canvasItem since the encoded html isn't found properly
+                const foundInHTML = isEncoded.unicodeRegex.test(currentHtml.toLowerCase()) || isEncoded.unicodeRegex.test(currentText.toLowerCase());
+                // if so then add the tag to the accumulator
+                if (foundInHTML) {
+                    return acc.concat(entity);
+                }
+                // if neither the html tag nor encoded html were found, then return the accumulator
+                return acc;
+            } else {
+                // if the number of tags found is more than zero
+                if ($(entity).length !== 0) {
+                    // if the tag type hasn't been added to tagsFound yet, add it
+                    if (!acc.includes(entity)) {
+                        return acc.concat(entity);
+                    }
+                }
+                // if neither the html tag nor encoded html were found, then return the accumulator
+                return acc;
+            }
+        }, []);
+    
+        // if no tags were found, return
+        if (foundTags.length === 0) { return; }
+
+        // remove the '&' from the entity name so that it renders in the html
+        const searchedFor = options.searchTags.map(tag => tag.replace('&', ''));
+        foundTags = foundTags.map(tag => tag.replace('&', ''));
+
+        // add the tags to the display
         display += `
             <h2>Tags Searched For</h2>
-            <div>${options.searchTags.join(' ')}</div>
+            <div>${searchedFor.join(' ')}</div>
             <h2>Tags Found</h2>
-            <div>${tagsFound.join(' ')}</div>
+            <div>${foundTags.join(' ')}</div>
         `;
     }
-
 
     let details = {};
 
@@ -111,22 +139,16 @@ module.exports = {
         description: 'Which HTML tags would you like to search for?',
         type: 'multiselect',
         choices: [
-            'a',
-            'b',
+            '&nbsp;',
+            '&amp;',
             'br', 
             'em', 
             'h1', 
             'h2',
-            'h3',
-            'h4',
-            'h5',
-            'h6',
             'i',
             'iframe',
             'img',
-            'link',
             'ol',
-            'script',
             'span',
             'strong',
             'table',

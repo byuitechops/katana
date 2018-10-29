@@ -43,7 +43,7 @@ export class IssueListComponent {
         }
     }
 
-    /** 
+    /**
      * Provides {@link IssueItem}s to load into the list as {@link IssueCard}s, based on the
      * number allowed (issueItemCount).
      */
