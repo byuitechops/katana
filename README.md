@@ -26,13 +26,21 @@ To set up your own instance of Katana, follow these steps:
 
 8. Follow any [additional setup processes](https://byuitechops.github.io/katana/docs/additional-documentation/setup.html) you need
 
+We **strongly recommend** that you install our **[Canvas Course Exporter](https://github.com/byuitechops/canvas-course-exporter)** tool as well, so that anything that doesn't go according to plan in your Katana development can be fixed with a backed-up course.
+
 ## Development
 
-For development, use this command to build the angular front-end and launch the server immediately after:
+For development, use the following commands:
 
-```npm run fullbuild```
+```npm run fullbuild``` to build the angular front-end and launch the server immediately after
 
-It can then be accessed via `localhost:8000` (or whichever port you specify in `server/settings.json`).
+```npm start``` to launch the server if the angular front-end is already built
+
+```npm run docs``` to run **[Compodocs](https://compodoc.app/)** on your Katana Project
+
+```npm run insFullbuild``` to build the angular front-end and launch the server with the `--inspect-brk` flag
+
+Once the angular front-end is built and the server is running, Katana can then be accessed via `localhost:8000` (or whichever port you specify in `server/settings.json`).
 
 You can also deploy it for others to use by using your IP Address and your port number. So if you were running on `port 8000` and your IP Address was `10.1.182.255` then you could deploy it on your network with the url `10.1.182.255:8000`, though hosting it on a server with a url for your users to access would of course be better.
 

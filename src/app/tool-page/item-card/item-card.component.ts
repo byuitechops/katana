@@ -1,9 +1,9 @@
 import { Component, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { CourseService } from '../../course.service';
-import { IssueItem } from '../../interfaces';
+import { ItemCard } from '../../interfaces';
 
 /**
- * Manages the display for a single {@link IssueItem}.
+ * Manages the display for a single {@link ItemCard}.
  */
 @Component({
     selector: 'app-item-card',
@@ -12,9 +12,9 @@ import { IssueItem } from '../../interfaces';
 })
 export class ItemCardComponent implements AfterViewInit {
     /**
-     * The {@link IssueItem} used by this component.
+     * The {@link ItemCard} used by this component.
      */
-    @Input('issueItem') issueItem: IssueItem;
+    @Input('itemCard') itemCard: ItemCard;
     /**
      * The position of the component in the {@link IssueListComponent}.
      */
@@ -49,12 +49,12 @@ export class ItemCardComponent implements AfterViewInit {
             'modules': 'Module',
             'moduleItems': 'Module Item',
         };
-        this.typeIcon.nativeElement.setAttribute('data-tooltip', types[this.issueItem.category]);
+        this.typeIcon.nativeElement.setAttribute('data-tooltip', types[this.itemCard.category]);
     }
 
     /**
      * This is used to determine the icon shown at the top left of a card.
-     * It is based on the IssueItem's item_type property, or the type of
+     * It is based on the ItemCard's item_type property, or the type of
      * the item in Canvas. (i.e. Page)
      * @returns {string} The icon title to use to display the icon.
      */
@@ -70,16 +70,16 @@ export class ItemCardComponent implements AfterViewInit {
             'modules': 'view_agenda',
             'moduleItems': 'view_list',
         };
-        return typeIcons[this.issueItem.category];
+        return typeIcons[this.itemCard.category];
     }
 
     /**
-     * This is used in place of typical anchors. It will look scroll to the issue card selected from the issueItem card
-     * @param issueItemId Provides the issueItem's id that helps form the issue card's id for the anchor tag to work
-     * @param i Provides the index of the issue in IssueItem.issues[] to help form the unique id for the issue card
+     * This is used in place of typical anchors. It will look scroll to the issue card selected from the itemCard card
+     * @param itemCardId Provides the itemCard's id that helps form the issue card's id for the anchor tag to work
+     * @param i Provides the index of the issue in ItemCard.issues[] to help form the unique id for the issue card
      */
-    viewIssueCard(issueItemId, i) {
-        const el = document.getElementById(`${issueItemId}-${i}`);
+    viewIssueCard(itemCardId, i) {
+        const el = document.getElementById(`${itemCardId}-${i}`);
         el.scrollIntoView();
     }
 }

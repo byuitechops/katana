@@ -213,7 +213,10 @@ export class SettingsService {
      * @ignore
      */
     buildProcessingMessage() {
-        return `${this.getRandom(this.processingVerbs)} ${this.getRandom(this.processingAdjectives)} ${this.getRandom(this.processingNouns)}...`;
+        const verb = this.getRandom(this.processingVerbs);
+        const adjective = this.getRandom(this.processingAdjectives);
+        const noun = this.getRandom(this.processingNouns);
+        return `${verb} ${adjective} ${noun}...`;
     }
 
     /**

@@ -10,7 +10,7 @@ var categories = {
     'Folder': 'folders'
 };
 
-module.exports = class IssueItem {
+module.exports = class ItemCard {
     constructor(item) {
         this.title = item.getTitle();
         this.course_id = item.getParentIds()[0];

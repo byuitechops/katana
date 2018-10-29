@@ -3,10 +3,10 @@ const cheerio = require('cheerio');
 /** ***************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
  *****************************************************************/
-function discover(canvasItem, issueItem, options) {
+function discover(canvasItem, itemCard, options) {
     if (canvasItem.getHtml() === null) return;
     var $ = cheerio.load(canvasItem.getHtml());
     var images = $('img');
@@ -50,7 +50,7 @@ function discover(canvasItem, issueItem, options) {
                 description
             };
 
-            issueItem.newIssue(title, display, details);
+            itemCard.newIssue(title, display, details);
         }
     });
 }
@@ -58,17 +58,17 @@ function discover(canvasItem, issueItem, options) {
 /** ***************************************************************
  * Fixes issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, including its issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, including its issues
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {array} fixedIssues - All issues discovered.
  *****************************************************************/
-function fix(canvasItem, issueItem, options) {
+function fix(canvasItem, itemCard, options) {
     return new Promise(async (resolve, reject) => {
         try {
             if (canvasItem.getHtml()) {
                 var $ = cheerio.load(canvasItem.getHtml());
 
-                issueItem.issues.forEach(issue => {
+                itemCard.issues.forEach(issue => {
                     let image = $(`img[src="${issue.details.image}"]`).first();
                     if (image && issue.optionValues.newAltText) {
                         $(image).attr('alt', issue.optionValues.newAltText);
@@ -80,7 +80,7 @@ function fix(canvasItem, issueItem, options) {
                 resolve();
             }
         } catch (e) {
-            issueItem.issues.forEach(issue => {
+            itemCard.issues.forEach(issue => {
                 if (issue.status === 'approved') {
                     issue.status = 'failed';
                 }

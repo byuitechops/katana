@@ -49,11 +49,11 @@ export class ToolService {
     /**
      * The category selected by the user.
      */
-    _selectedCategory: Category;
+    private _selectedCategory: Category;
     /**
      * The tool selected by the user.
      */
-    _selectedTool: Tool;
+    private _selectedTool: Tool;
     /**
      * The discovery options chosen by the user on the options page for the selected tool.
      */

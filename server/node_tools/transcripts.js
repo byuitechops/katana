@@ -2,10 +2,10 @@ const cheerio = require('cheerio');
 /** ***************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
  *****************************************************************/
-function discover(canvasItem, issueItem, options) {
+function discover(canvasItem, itemCard, options) {
     let $ = cheerio.load(canvasItem.getHtml());
     let title = '';
     let description = '';
@@ -80,7 +80,7 @@ function discover(canvasItem, issueItem, options) {
             html.highlight = $(element).attr('href');
 
             // Make the issue item
-            issueItem.newIssue(title, display, details, html);
+            itemCard.newIssue(title, display, details, html);
 
         });
     } else {
@@ -181,7 +181,7 @@ function discover(canvasItem, issueItem, options) {
                         html.highlight = linkHtml;
 
                         // Make the issue item
-                        issueItem.newIssue(title, display, details, html);
+                        itemCard.newIssue(title, display, details, html);
                     }
                 } else {
                     // The current media has zero siblings
@@ -208,7 +208,7 @@ function discover(canvasItem, issueItem, options) {
                     html.highlight = linkHtml;
 
                     // Make the issue item
-                    issueItem.newIssue(title, display, details, html);
+                    itemCard.newIssue(title, display, details, html);
                 }
             });
         }

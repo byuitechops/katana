@@ -42,7 +42,6 @@ const firebaseWrapper = require('./firebase_wrapper.js');
 const logActions = require('./logging.js');
 const tool_prep = require('./tool_prep.js');
 const course_retrieval = require('./course_retrieval.js');
-const make_downloadable_backup = require('./make_downloadable_backup.js');
 
 /** Initializes the firebase */
 firebaseWrapper.initializeFirebase();

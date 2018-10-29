@@ -100,13 +100,13 @@ export interface Category {
 }
 
 
-/** Represents a single issue in an {@link IssueItem}. */
+/** Represents a single issue in an {@link ItemCard}. */
 export interface Issue {
     /** The title of the issue */
     title: string;
     /** The status of the issue (untouched, approved, skipped, fixed, failed) */
     status: string;
-    /** The HTML string used to display the contents of the issue in its {@link IssueContainerComponent} */
+    /** The HTML string used to display the contents of the issue in its {@link ResultCardComponent} */
     display: string;
     /** An object containing issue-specific details */
     details: object;
@@ -123,7 +123,7 @@ export interface Issue {
 }
 
 /** Represents an item in Canvas, such as a page or quiz. */
-export interface IssueItem {
+export interface ItemCard {
     /** The title of the item in Canvas */
     title: string;
     /** The course ID the item belongs to in Canvas */
@@ -152,8 +152,8 @@ export interface Course {
     platform: string;
     /** The current instructor for the course */
     instructor: string;
-    /** The {@link IssueItem}s for this course */
-    issueItems: IssueItem[];
+    /** The {@link ItemCard}s for this course */
+    itemCards: ItemCard[];
     /** URL to the course in Canvas */
     url: string;
     /** The sub-account the course is under in Canvas */

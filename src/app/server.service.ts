@@ -15,7 +15,7 @@ import { Error } from './interfaces';
 @Injectable({
     providedIn: 'root'
 })
-export class KatanaService {
+export class ServerService {
 
     /**
      * Handles formatting the correct URL for the web sockets.
@@ -235,8 +235,8 @@ export class KatanaService {
             this.toolService.processing = true;
 
             const fixables = courses.filter(course => {
-                return course.issueItems && course.issueItems.some(issueItems => {
-                    if (issueItems.issues.some(issue => issue.status === 'approved')) {
+                return course.itemCards && course.itemCards.some(itemCards => {
+                    if (itemCards.issues.some(issue => issue.status === 'approved')) {
                         course.processing = true;
                         return true;
                     } else {
@@ -264,8 +264,8 @@ export class KatanaService {
                     fixables.forEach(course => {
                         course.processing = true;
                         // Save the option values for each issue, but remove the formGroup and questionModel
-                        course.issueItems.forEach(issueItem => {
-                            issueItem.issues.forEach(issue => {
+                        course.itemCards.forEach(itemCard => {
+                            itemCard.issues.forEach(issue => {
                                 if (issue.formGroup) {
                                     issue.optionValues = issue.formGroup.value;
                                     delete issue.formGroup;

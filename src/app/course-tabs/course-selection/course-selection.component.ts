@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { KatanaService } from '../../katana.service';
+import { ServerService } from '../../server.service';
 import { CourseService } from '../../course.service';
 import { Course } from '../../interfaces';
 
@@ -35,10 +35,10 @@ export class CourseSelectionComponent {
 
     /**
      * Constructor
-     * @param {KatanaService} katanaService Provides functionality for making API calls to the Katana server.
+     * @param {ServerService} serverService Provides functionality for making API calls to the Katana server.
      * @param {CourseService} courseService Provides information and management for selected courses.
      */
-    constructor(private katanaService: KatanaService,
+    constructor(private serverService: ServerService,
         public courseService: CourseService) { }
 
     /**
@@ -57,7 +57,7 @@ export class CourseSelectionComponent {
             this.searching = true;
 
             // Send the search parameters to the katana service to build the correct URI
-            this.katanaService.getCourses({
+            this.serverService.getCourses({
                 subAccount: this.subAccount.nativeElement.value,
                 term: this.term.nativeElement.value,
                 blueprint: this.blueprint.nativeElement.value,

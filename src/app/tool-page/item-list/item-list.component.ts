@@ -1,9 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CourseService } from '../../course.service';
-import { IssueItem } from '../../interfaces';
+import { ItemCard } from '../../interfaces';
 
 /**
- * Display for the list of {@link IssueItem}s in the currently selected course.
+ * Display for the list of {@link ItemCard}s in the currently selected course.
  */
 @Component({
     selector: 'app-item-list',
@@ -15,8 +15,8 @@ export class ItemListComponent {
     /** Element reference to the issue list. */
     @ViewChild('issueList') issueListEl: ElementRef;
 
-    /** The number of {@link IssueItem}s currently loaded in the list. Used for lazy loading. */
-    issueItemCount = 15;
+    /** The number of {@link ItemCard}s currently loaded in the list. Used for lazy loading. */
+    itemCardCount = 15;
 
     /**
      * Constructor
@@ -24,34 +24,34 @@ export class ItemListComponent {
      */
     constructor(public courseService: CourseService) {
         this.courseService.courseChange.subscribe(() => {
-            this.issueItemCount = 15;
+            this.itemCardCount = 15;
             this.issueListEl.nativeElement.scrollTop = 0;
         });
     }
 
     /**
      * Runs as the user scrolls down the list. If the user reaches near the bottom of the list, it will
-     * load more {@link IssueItem}s into the list. This is, essentially, lazy loading. It helps prevent
-     * poor load times with massive amounts of IssueItems, but does cause a little bit of stuttering.
+     * load more {@link ItemCard}s into the list. This is, essentially, lazy loading. It helps prevent
+     * poor load times with massive amounts of ItemCards, but does cause a little bit of stuttering.
      */
     onScroll() {
         const maxScrollTop = this.issueListEl.nativeElement.scrollHeight - this.issueListEl.nativeElement.clientHeight;
         if (maxScrollTop - this.issueListEl.nativeElement.scrollTop < 500) {
-            if (this.courseService.selectedCourse.issueItems.length > this.issueItemCount) {
-                this.issueItemCount += 15;
+            if (this.courseService.selectedCourse.itemCards.length > this.itemCardCount) {
+                this.itemCardCount += 15;
             }
         }
     }
 
     /**
-     * Provides {@link IssueItem}s to load into the list as {@link IssueCard}s, based on the
-     * number allowed (issueItemCount).
+     * Provides {@link ItemCard}s to load into the list as {@link IssueCard}s, based on the
+     * number allowed (itemCardCount).
      */
-    getIssueItems(): IssueItem[] {
-        if (this.courseService.selectedCourse.issueItems.length < this.issueItemCount) {
-            return this.courseService.selectedCourse.issueItems;
+    getItemCards(): ItemCard[] {
+        if (this.courseService.selectedCourse.itemCards.length < this.itemCardCount) {
+            return this.courseService.selectedCourse.itemCards;
         } else {
-            return this.courseService.selectedCourse.issueItems.slice(0, this.issueItemCount);
+            return this.courseService.selectedCourse.itemCards.slice(0, this.itemCardCount);
         }
     }
 }

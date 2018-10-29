@@ -1,11 +1,11 @@
 /** ***************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
-function discover(canvasItem, issueItem, options) {
+function discover(canvasItem, itemCard, options) {
 
     if (canvasItem.discussion_type !== 'threaded') {
 
@@ -13,26 +13,26 @@ function discover(canvasItem, issueItem, options) {
         let display = '<div>This will enable the "Allow threaded replies" setting on this discussion board.</div>';
         let details = {};
 
-        issueItem.newIssue(title, display, details);
+        itemCard.newIssue(title, display, details);
     }
 }
 
 /** ***************************************************************
  * Fixes issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, including its issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, including its issues
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {array} fixedIssues - All issues discovered.
  *****************************************************************/
-function fix(canvasItem, issueItem, options) {
+function fix(canvasItem, itemCard, options) {
     return new Promise(async (resolve, reject) => {
-        if (issueItem.issues[0].status !== 'approved') return;
+        if (itemCard.issues[0].status !== 'approved') return;
         try {
             canvasItem.discussion_type = 'threaded';
-            issueItem.issues[0].status = 'fixed';
+            itemCard.issues[0].status = 'fixed';
             resolve();
         } catch (e) {
-            issueItem.issues[0].status = 'failed';
+            itemCard.issues[0].status = 'failed';
             reject(e);
         }
     });

@@ -7,7 +7,7 @@
 
             <div class="ashen-text" [class.pulseypulse]="course.processing">
                 {{course.course_code}}
-                <span *ngIf="course.issueItems.length > 0" class="issue-badge">{{getIssueCount(course, 'untouched')}}</span>
+                <span *ngIf="course.itemCards.length > 0" class="issue-badge">{{getIssueCount(course, 'untouched')}}</span>
             </div>
 
             <div class="course-action-container" *ngIf="courseService.courseSelectionOpen">

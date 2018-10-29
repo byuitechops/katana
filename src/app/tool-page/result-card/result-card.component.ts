@@ -8,11 +8,11 @@ import { OptionModel } from '../../classes';
  * Container for the display of a single {@link Issue}.
  */
 @Component({
-    selector: 'app-issue-card',
-    templateUrl: './issue-card.component.html',
-    styleUrls: ['./issue-card.component.css']
+    selector: 'app-result-card',
+    templateUrl: './result-card.component.html',
+    styleUrls: ['./result-card.component.css']
 })
-export class IssueCardComponent implements OnInit {
+export class ResultCardComponent implements OnInit {
     /** The issue attached to the display. */
     @Input('issue') issue: Issue;
 
@@ -82,24 +82,24 @@ export class IssueCardComponent implements OnInit {
         } else {
             this.issue.status = newStatus;
         }
-        // check if you need to move to the next issueItem or not
+        // check if you need to move to the next itemCard or not
         this.getNextItem();
     }
 
     /**
      * Checks if all of the issue status's have been set
-     * then it sets the selectedIssueItem to the next one in the list automatically
+     * then it sets the selectedItemCard to the next one in the list automatically
      */
     getNextItem() {
         // check if there are any issues that are still untouched on the canvas item
-        const untouched = this.courseService.selectedIssueItem.issues.find(issue => issue.status === 'untouched');
+        const untouched = this.courseService.selectedItemCard.issues.find(issue => issue.status === 'untouched');
         // if there are no more untouched issues, move to the next canvas item automatically
         if (!untouched) {
-            // get the index of the selectedIssueItem in the selected course's issueItems array
-            const index = this.courseService.selectedCourse.issueItems.indexOf(this.courseService.selectedIssueItem);
-            // if you are not on the last issueItem, then move to the next one
-            if (index <= this.courseService.selectedCourse.issueItems.length) {
-                this.courseService.selectedIssueItem = this.courseService.selectedCourse.issueItems[index + 1];
+            // get the index of the selectedItemCard in the selected course's itemCards array
+            const index = this.courseService.selectedCourse.itemCards.indexOf(this.courseService.selectedItemCard);
+            // if you are not on the last itemCard, then move to the next one
+            if (index <= this.courseService.selectedCourse.itemCards.length) {
+                this.courseService.selectedItemCard = this.courseService.selectedCourse.itemCards[index + 1];
             }
         }
     }
@@ -145,7 +145,7 @@ export class IssueCardComponent implements OnInit {
      * @returns {boolean} Whether or not this issue's status is fixed or failed.
      */
     isFixed() {
-        return this.issue.status === 'fixed' || this.issue.status === 'failed';
+        return ['fixed', 'failed'].includes(this.issue.status);
     }
 
     /**

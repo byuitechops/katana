@@ -15,11 +15,11 @@ async function getItems(course_id) {
 /** ***************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
-async function discover(canvasItem, issueItem, options) {
+async function discover(canvasItem, itemCard, options) {
     // don't include quizzes or discussions a second time as an assignment. Just grab the assignments if the type is 'Assignment'
     if (canvasItem.constructor.name === 'Assignment' && (canvasItem.discussion_topic !== undefined || canvasItem.is_quiz_assignment !== false)) return; 
     let title = `This ${canvasItem.constructor.name} is located under:`;
@@ -35,9 +35,9 @@ async function discover(canvasItem, issueItem, options) {
     ];
     
     // if it is a new course, get it's quizzes, discussions, and assignments
-    if (!Object.values(courseIds).includes(issueItem.course_id)) {
-        courseIds[issueItem.course_id] = issueItem.course_id;
-        await getItems(issueItem.course_id);
+    if (!Object.values(courseIds).includes(itemCard.course_id)) {
+        courseIds[itemCard.course_id] = itemCard.course_id;
+        await getItems(itemCard.course_id);
     }
 
     if (canvasItem.constructor.name === 'Quiz') {
@@ -55,7 +55,7 @@ async function discover(canvasItem, issueItem, options) {
         }
     }
     // check for more than one module item with filter here
-    let isModuleItem = moduleItems[issueItem.course_id].find(item => {
+    let isModuleItem = moduleItems[itemCard.course_id].find(item => {
         // get the quiz/discussion id off of the module item from the 'url' attribute on the module item
         let id = Number(item.url.split('/').pop());
         return id === canvasItem.id;
@@ -72,7 +72,7 @@ async function discover(canvasItem, issueItem, options) {
         </ul>
     `;
     
-    issueItem.newIssue(title, display, details);
+    itemCard.newIssue(title, display, details);
 }
 
 module.exports = {

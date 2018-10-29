@@ -29,10 +29,10 @@ export class ToolViewComponent {
      */
     getIssueCount() {
         return this.courseService.courses.reduce((acc, course) => {
-            if (!course.issueItems) { return acc; }
-            return acc += course.issueItems.reduce((acc2, issueItem) => {
-                if (!issueItem.issues) { return acc2; }
-                return acc2 += issueItem.issues.length;
+            if (!course.itemCards) { return acc; }
+            return acc += course.itemCards.reduce((acc2, itemCard) => {
+                if (!itemCard.issues) { return acc2; }
+                return acc2 += itemCard.issues.length;
             }, 0);
         }, 0);
     }

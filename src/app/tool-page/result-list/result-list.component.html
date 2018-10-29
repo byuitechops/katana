@@ -1,0 +1,10 @@
+<div class="issueDetails">
+    <h1 style="display:inline-block" class="white-text">
+        Results
+    </h1>
+    <span class="issueDetails__itemTitle ashen-text">{{this.courseService.selectedItemCard ? this.courseService.selectedItemCard.title : ''}}</span>
+    <div *ngIf="courseService.selectedItemCard" class="issueDetails__issueBox">
+        <!-- For each issue in the selected issue item, create an app-issue-container component. The id is consisted of the itemCard's id and the index of the issue itself in the selected itemCard's issue array -->
+        <app-result-card *ngFor="let issue of courseService.selectedItemCard.issues; let i = index" [index]="i" [issue]="issue" id="{{courseService.selectedItemCard.item_id}}-{{i}}"></app-result-card>
+    </div>
+</div>

@@ -3,10 +3,10 @@ const cheerio = require('cheerio');
 /** ***************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
  *****************************************************************/
-function discover(canvasItem, issueItem, options) {
+function discover(canvasItem, itemCard, options) {
     // ADD ability to check module items
     if (canvasItem.getHtml() === null) return;
     var $ = cheerio.load(canvasItem.getHtml());
@@ -60,7 +60,7 @@ function discover(canvasItem, issueItem, options) {
                 oldUrl,
                 newUrl
             };
-            issueItem.newIssue(title, display, details);
+            itemCard.newIssue(title, display, details);
         }
     });
 }
@@ -68,15 +68,15 @@ function discover(canvasItem, issueItem, options) {
 /** ***************************************************************
  * Fixes issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, including its issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, including its issues
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {array} fixedIssues - All issues discovered.
  *****************************************************************/
-function fix(canvasItem, issueItem, options) {
+function fix(canvasItem, itemCard, options) {
     return new Promise(async (resolve, reject) => {
         try {
             var $ = cheerio.load(canvasItem.getHtml());
-            issueItem.issues.forEach(issue => {
+            itemCard.issues.forEach(issue => {
                 if (issue.status === 'approved') {
                     let link = $(`${issue.details.tag}[${issue.details.attribute}="${issue.details.oldUrl}"]`).first();
                     if (link) {
@@ -91,7 +91,7 @@ function fix(canvasItem, issueItem, options) {
             canvasItem.setHtml($.html());
             resolve();
         } catch (e) {
-            issueItem.issues[0].status = 'failed';
+            itemCard.issues[0].status = 'failed';
             reject(e);
         }
     });
