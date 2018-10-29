@@ -3,11 +3,11 @@ const cheerio = require('cheerio');
 /** ***************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} itemCard - The IssueItem for the item, without any issues
+ * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {IssueItem} - The item in IssueItem format 
  *****************************************************************/
-function discover(canvasItem, itemCard, options) {
+function discover(canvasItem, issueItem, options) {
     if (canvasItem.getHtml() === null) return;
     let $ = cheerio.load(canvasItem.getHtml());
     let currentHtml = canvasItem.getHtml();
@@ -17,7 +17,7 @@ function discover(canvasItem, itemCard, options) {
         updatedHtml: currentHtml,
         highlight: options.searchPhrase
     };
-
+    
     let title = 'HTML Edit';
     let description = 'Edit the HTML of the page in the \'UPDATED HTML\' tab below and click \'Approve\' button to update the HTML in Canvas.';
     let display = `<div>${description}</div>`;
@@ -36,51 +36,81 @@ function discover(canvasItem, itemCard, options) {
         `;
     }
 
-// if they selected tags to search by, then check if the html contains any of them
-   if (options.searchTags) {
-       let tagsFound = [];
-       options.searchTags.forEach(tag => {
-           // if the number of tags found is more than zero
-           if ($(tag).length !== 0) {
-               // if the tag type hasn't been added to tagsFound yet, add it
-               if (!tagsFound.includes(tag)) {
-                   tagsFound.push(tag);
-               }
-           }
-       });
-       // if tagsFound is empty, then the tag wasn't found
-       if (tagsFound.length === 0) return;
-       // add the tags that were searched for and found to the display
-       display += `
-           <h2>Tags Searched For</h2>
-           <div>${options.searchTags.join(' ')}</div>
-           <h2>Tags Found</h2>
-           <div>${tagsFound.join(' ')}</div>
-       `;
-   }
+    // if they entered tags to search for in the html or text
+    if (options.searchTags) {
+        /* an array of encoded html entities with their unicode regex equivalents, 
+        the unicode being searchable in the html while the encoding is not */
+        const encodedEntities = [{
+            html: '&nbsp;',
+            unicodeRegex: /\u00a0/gi,
+        }, {
+            html: '&amp;',
+            unicodeRegex: /\u0026/gi,
+        }];
+
+        // search through each searchTag and see if it exists in the html/text
+        let foundTags = options.searchTags.reduce((acc, entity) => {
+            const isEncoded = encodedEntities.find(encodedEntity => encodedEntity.html === entity);
+            if (isEncoded) {
+                // check if the encoded html's unicode is found in the canvasItem since the encoded html isn't found properly
+                const foundInHTML = isEncoded.unicodeRegex.test(currentHtml.toLowerCase()) || isEncoded.unicodeRegex.test(currentText.toLowerCase());
+                // if so then add the tag to the accumulator
+                if (foundInHTML) {
+                    return acc.concat(entity);
+                }
+                // if neither the html tag nor encoded html were found, then return the accumulator
+                return acc;
+            } else {
+                // if the number of tags found is more than zero
+                if ($(entity).length !== 0) {
+                    // if the tag type hasn't been added to tagsFound yet, add it
+                    if (!acc.includes(entity)) {
+                        return acc.concat(entity);
+                    }
+                }
+                // if neither the html tag nor encoded html were found, then return the accumulator
+                return acc;
+            }
+        }, []);
+    
+        // if no tags were found, return
+        if (foundTags.length === 0) { return; }
+
+        // remove the '&' from the entity name so that it renders in the html
+        const searchedFor = options.searchTags.map(tag => tag.replace('&', ''));
+        foundTags = foundTags.map(tag => tag.replace('&', ''));
+
+        // add the tags to the display
+        display += `
+            <h2>Tags Searched For</h2>
+            <div>${searchedFor.join(' ')}</div>
+            <h2>Tags Found</h2>
+            <div>${foundTags.join(' ')}</div>
+        `;
+    }
 
     let details = {};
 
-    itemCard.newIssue(title, display, details, html);
+    issueItem.newIssue(title, display, details, html);
 }
 
 /** ***************************************************************
  * Fixes issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} itemCard - The IssueItem for the item, including its issues
+ * @param {IssueItem} issueItem - The IssueItem for the item, including its issues
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {array} fixedIssues - All issues discovered.
  *****************************************************************/
-function fix(canvasItem, itemCard, options) {
+function fix(canvasItem, issueItem, options) {
     return new Promise(async (resolve, reject) => {
         try {
-            if (canvasItem.getHtml() === null || itemCard.issues[0].status !== 'approved') return;
-            if (itemCard.issues[0].html.updatedHtml === itemCard.issues[0].html.currentHtml) return;
-            canvasItem.setHtml(itemCard.issues[0].html.updatedHtml);
-            itemCard.issues[0].status = 'fixed';
+            if (canvasItem.getHtml() === null || issueItem.issues[0].status !== 'approved') return;
+            if (issueItem.issues[0].html.updatedHtml === issueItem.issues[0].html.currentHtml) return;
+            canvasItem.setHtml(issueItem.issues[0].html.updatedHtml);
+            issueItem.issues[0].status = 'fixed';
             resolve();
         } catch (e) {
-            itemCard.issues[0].status = 'failed';
+            issueItem.issues[0].status = 'failed';
             reject(e);
         }
     });
@@ -104,36 +134,30 @@ module.exports = {
         'quizQuestions'
     ],
     discoverOptions: [{
-       title: 'HTML Tags to Search For',
-       key: 'searchTags',
-       description: 'Which HTML tags would you like to search for?',
-       type: 'multiselect',
-       choices: [
-           'a',
-           'b',
-           'br',
-           'em',
-           'h1',
-           'h2',
-           'h3',
-           'h4',
-           'h5',
-           'h6',
-           'i',
-           'iframe',
-           'img',
-           'link',
-           'ol',
-           'script',
-           'span',
-           'strong',
-           'table',
-           'tbody',
-           'thead',
-           'ul',
-       ],
-       required: false
-   }, {
+        title: 'HTML Tags to Search For',
+        key: 'searchTags',
+        description: 'Which HTML tags would you like to search for?',
+        type: 'multiselect',
+        choices: [
+            '&nbsp;',
+            '&amp;',
+            'br', 
+            'em', 
+            'h1', 
+            'h2',
+            'i',
+            'iframe',
+            'img',
+            'ol',
+            'span',
+            'strong',
+            'table',
+            'tbody',
+            'thead',
+            'ul',
+        ],
+        required: false
+    }, {
         title: 'Search Phrase',
         key: 'searchPhrase',
         description: 'What search phrase would you like to look for?',
