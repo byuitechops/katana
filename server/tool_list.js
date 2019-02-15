@@ -15,4 +15,5 @@ module.exports = {
     'item_locator': new NodeTool(require('./node_tools/item_locator.js')),
     'link_editor': new NodeTool(require('./node_tools/link_editor.js')),
     'transcripts': new NodeTool(require('./node_tools/transcripts.js')),
+    'fix_question_comments': new NodeTool(require('./node_tools/fix_question_comments.js')),
 };
