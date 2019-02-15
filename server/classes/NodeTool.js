@@ -35,7 +35,7 @@ module.exports = class NodeTool {
             itemCard.issues.forEach(issue => {
                 if (issue.html && Object.keys(issue.html).length > 0) {
                     Object.keys(issue.html).forEach(key => {
-                        if (issue.html[key] !== undefined) {
+                        if (issue.html[key] !== undefined && issue.html[key] !== null) {
                             let $ = cheerio.load(issue.html[key])
                             let tags = $('link').add('script');
                             tags.each((i, tag) => {
