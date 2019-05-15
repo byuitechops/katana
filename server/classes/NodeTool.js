@@ -14,7 +14,7 @@ module.exports = class NodeTool {
         this.toolType = details.toolType;
         this.toolCategory = details.toolCategory;
         this.fixMessage = details.fixMessage;
-        this.categories = details.categories;
+        this.categories = details.categories.filter(category => category !== 'quizQuestions');
         this.discoverOptions = details.discoverOptions || [];
         this.fixOptions = details.fixOptions || [];
         this.editorTabs = details.editorTabs || [];
