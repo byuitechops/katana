@@ -2,10 +2,14 @@
     margin: auto;
     padding: 25px 50px;
     max-height: calc(100vh - var(--header-height));
+    margin-top: var(--header-height);
+    overflow-y: auto;
 }
 
 .categories.frosted {
     overflow: hidden;
+    z-index: -1;
+    position: relative;
 }
 
 .tools {
@@ -25,7 +29,6 @@
     text-align: center;
     margin: 20px;
     transition: all .1s ease-in-out;
-    position: relative;
     cursor: pointer;
     animation: .5s fadeIn;
 }

@@ -4,6 +4,19 @@
     height: 5px;
 }
 
+.tabs-container ::-webkit-scrollbar-thumb {
+    background: var(--primary-3);
+    border-top: 1px solid var(--primary-4);
+    border-left: none;
+  }
+
+.tabs-container {
+    position: fixed;
+    top: var(--breadcrumbs-height);
+    width: 100vw;
+    z-index: 2;
+}
+
 .tabs {
     height: var(--breadcrumbs-height) !important;
 }
@@ -69,6 +82,9 @@
 
 .action-button-container {
     display: flex;
+    position: sticky;
+    right: 0;
+    z-index: 5;
     margin-left: auto;
 }
 

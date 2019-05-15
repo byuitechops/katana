@@ -1,109 +1,111 @@
-<div class="courseSearch" [class.visible]="courseService.courseSelectionOpen">
-  <div class="courseSearch__title">Course Selection
-      <button *ngIf="courseService.courseSelectionOpen" class="waves-effect red lighten-1 btn removeAll" (click)="removeAll()">Remove All</button>
-  </div>
-  <div class="courseSearch__courseSelection">
-    <div class="courseSearch__search">
-      <div class="courseSearch__options">
-        <label>Sub-Account
-          <select (change)="getCourses()" #subAccount>
-            <option value=""></option>
-            <option value="13">Development</option>
-            <!-- <option value="5">Online</option>
+<div class="courseSearch" [class.visible]="courseService.courseSelectionOpen" (click)="closeCourseSelect();">
+  <div class="courseSearch__courseSelection" (click)="stopEvent($event);">
+    <h2 class="courseSearch__header">
+      Course Selection
+    </h2>
+    <label>Sub-Account
+      <select (change)="getCourses()" #subAccount>
+        <option value=""></option>
+        <option value="13">Development</option>
+        <!-- <option value="5">Online</option>
               <option value="8">Sandbox</option>
               <option value="24">Pathway</option> -->
-            <option value="41">EnglishConnect</option>
-            <option value="1" selected>All</option>
-          </select>
-        </label>
-        <label>Term
-          <select (change)="getCourses()" #term>
-            <option value=""></option>
-            <option value="10">Fall</option>
-            <option value="4">Winter</option>
-            <option value="9">Spring</option> -->
-            <option value="5">Master Courses</option>
-            <option value="1">Default Term</option>
-            <option value="" selected>All</option>
-          </select>
-        </label>
-        <label>Blueprint
-          <select (change)="getCourses()" #blueprint>
-            <option value=""></option>
-            <option value="true">True</option>
-            <option value="false">False</option>
-            <option value="" selected>All</option>
-          </select>
-        </label>
-        <label>Search By
-          <select (change)="getCourses()" #searchBy>
-            <option value="teacher">Instructor</option>
-            <option value="course" selected>Course</option>
-          </select>
-        </label>
-        <div class="courseSearch__input">
-          <label>Search Term</label>
-          <input type="text" placeholder="Search courses..." (input)="getCourses()" #searchText/>
-        </div>
-      </div>
-      <label>Results {{courseResults.length !== 0 ? '(' + courseResults.length + ')': '0'}}</label>
-      <table class="highlight">
-        <thead>
-          <tr>
-            <th>+/-</th>
-            <th (click)="sortBy('course_name')">Name</th>
-            <th (click)="sortBy('course_code')">Code</th>
-            <th (click)="sortBy('instructor')">Instructor</th>
-            <th (click)="sortBy('account')">Account</th>
-            <th (click)="sortBy('term')">Term</th>
-            <th (click)="sortBy('blueprint')">Blueprint</th>
-            <th (click)="sortBy('id')">ID</th>
-            <th>Open in Canvas</th>
+        <option value="41">EnglishConnect</option>
+        <option value="1" selected>All</option>
+      </select>
+    </label>
+    <label>Term
+      <select (change)="getCourses()" #term>
+        <option value=""></option>
+        <option value="10">Fall 2018</option>
+        <option value="4">Winter 2018</option>
+        <option value="9">Spring 2018</option> -->
+        <option value="5">Master Courses</option>
+        <option value="1">Default Term</option>
+        <option value="" selected>All</option>
+      </select>
+    </label>
+    <label>Blueprint
+      <select (change)="getCourses()" #blueprint>
+        <option value=""></option>
+        <option value="true">True</option>
+        <option value="false">False</option>
+        <option value="" selected>All</option>
+      </select>
+    </label>
+    <label>Search By
+      <select (change)="getCourses()" #searchBy>
+        <option value="teacher">Instructor</option>
+        <option value="course" selected>Course</option>
+      </select>
+    </label>
+    <label>Search Term</label>
+    <input type="text" placeholder="Search courses..." (input)="getCourses()" #searchText/>
+
+    <div class="flex-container label-row">
+      <label>Results {{courseResults.length !== 0 ? '(' + courseResults.length + ')': '(0)'}}</label>
+      <button class="btn green green-accent-4 waves-effect addAll" (click)="addAll()" [class.disabled]="courseResults.length === 0" >Add All Results</button>
+      <button *ngIf="courseService.courseSelectionOpen" class="waves-effect red lighten-1 btn removeAll" [class.disabled]="courseService.courses.length == 0"
+        (click)="removeAll()">Remove All Courses</button>
+    </div>
+
+    <table class="highlight">
+      <thead>
+        <tr>
+          <th>+/-</th>
+          <!-- <th></th> -->
+          <th (click)="sortBy('course_name')">Name</th>
+          <th (click)="sortBy('course_code')">Code</th>
+          <th (click)="sortBy('instructor')">Instructor</th>
+          <th (click)="sortBy('account')">Account</th>
+          <th (click)="sortBy('term')">Term</th>
+          <th (click)="sortBy('blueprint')">Blueprint</th>
+          <th (click)="sortBy('id')">ID</th>
+          <th>Open in Canvas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="!searching">
+          <tr *ngFor="let course of courseResults" [ngClass]="isAdded(course) ? 'grey lighten-2' : ''" class="table-element-{{course.id}}">
+            <td (click)="courseService.addCourse(course)">
+              <i class="material-icons">{{isAdded(course) ? 'remove_circle' : 'add_circle'}}</i>
+            </td>
+            <td (click)="courseService.addCourse(course)">{{course.course_name}}</td>
+            <td (click)="courseService.addCourse(course)">{{course.course_code}}</td>
+            <td (click)="courseService.addCourse(course)">{{course.instructor}}</td>
+            <td (click)="courseService.addCourse(course)">{{course.account}}</td>
+            <td (click)="courseService.addCourse(course)">{{course.term}}</td>
+            <td (click)="courseService.addCourse(course)">{{course.blueprint}}</td>
+            <td (click)="courseService.addCourse(course)">{{course.id}}</td>
+            <td>
+              <a href="{{course.url}}" target="_blank">
+                <i class="material-icons">open_in_new</i>
+              </a>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          <ng-container *ngIf="!searching">
-            <tr *ngFor="let course of courseResults" [ngClass]="isAdded(course) ? 'grey lighten-2' : ''" class="table-element-{{course.id}}">
-              <td (click)="courseService.addCourse(course)">
-                <i class="material-icons">{{isAdded(course) ? 'remove_circle' : 'add_circle'}}</i>
-              </td>
-              <td (click)="courseService.addCourse(course)">{{course.course_name}}</td>
-              <td (click)="courseService.addCourse(course)">{{course.course_code}}</td>
-              <td (click)="courseService.addCourse(course)">{{course.instructor}}</td>
-              <td (click)="courseService.addCourse(course)">{{course.account}}</td>
-              <td (click)="courseService.addCourse(course)">{{course.term}}</td>
-              <td (click)="courseService.addCourse(course)">{{course.blueprint}}</td>
-              <td (click)="courseService.addCourse(course)">{{course.id}}</td>
-              <td>
-                <a href="{{course.url}}" target="_blank">
-                  <i class="material-icons">open_in_new</i>
-                </a>
-              </td>
-            </tr>
-          </ng-container>
-          <!-- Put the loader in the body if loading -->
-          <div *ngIf="searching">
-            <div class="loader">
-              <div class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-blue-only">
-                  <div class="circle-clipper left">
-                    <div class="circle"></div>
-                  </div>
-                  <div class="gap-patch">
-                    <div class="circle"></div>
-                  </div>
-                  <div class="circle-clipper right">
-                    <div class="circle"></div>
-                  </div>
+        </ng-container>
+        <!-- Put the loader in the body if loading -->
+        <div *ngIf="searching">
+          <div class="loader">
+            <div class="preloader-wrapper big active">
+              <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                  <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                  <div class="circle"></div>
                 </div>
               </div>
             </div>
-            <div class="loader">
-              Searching ...
-            </div>
           </div>
-        </tbody>
-      </table>
-    </div>
+          <div class="loader">
+            Searching ...
+          </div>
+        </div>
+      </tbody>
+    </table>
   </div>
 </div>

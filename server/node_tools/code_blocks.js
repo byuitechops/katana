@@ -3,10 +3,10 @@ const cheerio = require('cheerio');
 /** ***************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
  *****************************************************************/
-function discover(canvasItem, issueItem, options) {
+function discover(canvasItem, itemCard, options) {
     // If the Canvas Item's HTML returns null, return
     if (canvasItem.getHtml() === null) return;
     // Load the Canvas item into Cheerio
@@ -66,8 +66,8 @@ function discover(canvasItem, issueItem, options) {
                 description
             };
 
-            // Create the issueItem
-            issueItem.newIssue(title, display, details, html);
+            // Create the itemCard
+            itemCard.newIssue(title, display, details, html);
         }
     });
 }
@@ -75,11 +75,11 @@ function discover(canvasItem, issueItem, options) {
 /** ***************************************************************
  * Fixes issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, including its issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, including its issues
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {array} fixedIssues - All issues discovered.
  *****************************************************************/
-function fix(canvasItem, issueItem, options) {
+function fix(canvasItem, itemCard, options) {
     return new Promise(async (resolve, reject) => {
         try {
             //Check if the Canvas item is empty, if so return
@@ -90,7 +90,7 @@ function fix(canvasItem, issueItem, options) {
                 let codeBlocks = $('code');
 
                 // Loop through each issue item
-                issueItem.issues.forEach(issue => {
+                itemCard.issues.forEach(issue => {
                     // Get the correct code block for this item. i is the index to the correct code block to edit
                     let codeBlock = $(codeBlocks[issue.details.i]);
                     // Check if codeBlock and newLangText are truthy, if so change the language class and set the status to fixed
@@ -105,7 +105,7 @@ function fix(canvasItem, issueItem, options) {
                 resolve();
             }
         } catch (e) {
-            issueItem.issues.forEach(issue => {
+            itemCard.issues.forEach(issue => {
                 issue.status = 'failed';
             });
             reject(e);

@@ -6,16 +6,16 @@ var courseFiles = {};
 /** ***************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
  *****************************************************************/
-async function discover(canvasItem, issueItem, options) {
+async function discover(canvasItem, itemCard, options) {
     if (canvasItem.getHtml() === null) return;
     var $ = cheerio.load(canvasItem.getHtml());
     var images = $('img');
 
-    if (!courseFiles[issueItem.course_id + 'c']) {
-        courseFiles[issueItem.course_id + 'c'] = await canvas.get(`/api/v1/courses/${issueItem.course_id}/files?content_types=image`);
+    if (!courseFiles[itemCard.course_id + 'c']) {
+        courseFiles[itemCard.course_id + 'c'] = await canvas.get(`/api/v1/courses/${itemCard.course_id}/files?content_types=image`);
         // console.log(courseFiles);
     }
     images.each((i,image) => {
@@ -36,7 +36,7 @@ async function discover(canvasItem, issueItem, options) {
         
         var newFilePath = '';
         if (found) {
-            // newFilePath = `https://byui.instructure.com/courses/${issueItem.course_id}/files/${found.id}/preview`;
+            // newFilePath = `https://byui.instructure.com/courses/${itemCard.course_id}/files/${found.id}/preview`;
             var modifiedUrl = found.url.split('=');
             var verifierNum = modifiedUrl[modifiedUrl.length - 1];
             var pathArray = found.url.split('/');
@@ -57,7 +57,7 @@ async function discover(canvasItem, issueItem, options) {
         `;
         
         if (newFilePath !== '') {
-            console.log(`Adding to display for ${issueItem.course_id}, ${issueItem.title}`);
+            console.log(`Adding to display for ${itemCard.course_id}, ${itemCard.title}`);
             display += `
             <h3>Suggested File Path</h3>
             <div class="code-block">${newFilePath}</div>
@@ -68,7 +68,7 @@ async function discover(canvasItem, issueItem, options) {
                 description
             };
         }
-        issueItem.newIssue(title, display, details);
+        itemCard.newIssue(title, display, details);
     });
     return;
 }
@@ -76,17 +76,17 @@ async function discover(canvasItem, issueItem, options) {
 /** ***************************************************************
  * Fixes issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, including its issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, including its issues
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {array} fixedIssues - All issues discovered.
  *****************************************************************/
-function fix(canvasItem, issueItem, options) {
+function fix(canvasItem, itemCard, options) {
     return new Promise(async (resolve, reject) => {
         try {
             if (canvasItem.getHtml()) {
                 var $ = cheerio.load(canvasItem.getHtml());
 
-                issueItem.issues.forEach(issue => {
+                itemCard.issues.forEach(issue => {
                     if (issue.status === 'approved') {
 
                         let image = $(`img[src="${issue.details.image}"]`).first();
@@ -103,7 +103,7 @@ function fix(canvasItem, issueItem, options) {
                 resolve();
             }
         } catch (e) {
-            issueItem.issues.forEach(issue => {
+            itemCard.issues.forEach(issue => {
                 if (issue.status === 'approved') {
                     issue.status = 'failed';
                 }

@@ -22,7 +22,7 @@ export class CategoriesComponent {
      * categories.component.html (i.e. DO NOT DELETE)
      ************************************************************/
     constructor(public toolService: ToolService,
-        private courseService: CourseService) { }
+        public courseService: CourseService) { }
 
     /** **********************************************************
      * This sets the selected {@link Category} on the Tool service.

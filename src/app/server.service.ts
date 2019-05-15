@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { auth, database } from 'firebase';
 import { AuthGuardService } from './authguard.service';
 import { resolve } from 'url';
+import { Error } from './interfaces';
 
 /**
  * Provides access to make calls to the Katana server.
@@ -14,7 +15,7 @@ import { resolve } from 'url';
 @Injectable({
     providedIn: 'root'
 })
-export class KatanaService {
+export class ServerService {
 
     /**
      * Handles formatting the correct URL for the web sockets.
@@ -83,6 +84,29 @@ export class KatanaService {
 
         });
     }
+// not being used
+    downloadCourseBackup(body) {
+        return new Promise((resolve, reject) => {
+            if (!this.authGuardService.canActivate()) {
+                return reject(new Error('Download Course Backup: User is not authenticated.'));
+            }
+            const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+            headers.append('Content-Type', 'application/json');
+
+            this.authGuardService.retrieveToken()
+            .then(userIdToken => {
+                    this.http.post(`/api/course-make-backup?userIdToken=${userIdToken}`, body, { headers: headers }).subscribe(
+                        (data) => {
+                            resolve(data);
+                        },
+                        (err) => {
+                            this.errorHandler(err);
+                            reject();
+                        });
+                })
+                .catch(this.errorHandler);
+        });
+    }
 
     /**
      * Retrieves a list of courses from Canvas.
@@ -90,7 +114,7 @@ export class KatanaService {
     getCourses(body) {
         return new Promise((resolve, reject) => {
             if (!this.authGuardService.canActivate()) {
-                return reject(new Error('Course Search: User is not authenticated.'));
+                return reject(new Error('Course Selection: User is not authenticated.'));
             }
             const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             headers.append('Content-Type', 'application/json');
@@ -145,6 +169,7 @@ export class KatanaService {
             socket.addEventListener('message', (event) => {
                 const data = JSON.parse(event.data);
                 if (data.state === 'READY') {
+                    // TODO: Make this asynchronous, making the sockets and all
                     courses.forEach(course => {
                         // Set the course processing
                         course.processing = true;
@@ -210,8 +235,8 @@ export class KatanaService {
             this.toolService.processing = true;
 
             const fixables = courses.filter(course => {
-                return course.issueItems && course.issueItems.some(issueItems => {
-                    if (issueItems.issues.some(issue => issue.status === 'approved')) {
+                return course.itemCards && course.itemCards.some(itemCards => {
+                    if (itemCards.issues.some(issue => issue.status === 'approved')) {
                         course.processing = true;
                         return true;
                     } else {
@@ -239,8 +264,8 @@ export class KatanaService {
                     fixables.forEach(course => {
                         course.processing = true;
                         // Save the option values for each issue, but remove the formGroup and questionModel
-                        course.issueItems.forEach(issueItem => {
-                            issueItem.issues.forEach(issue => {
+                        course.itemCards.forEach(itemCard => {
+                            itemCard.issues.forEach(issue => {
                                 if (issue.formGroup) {
                                     issue.optionValues = issue.formGroup.value;
                                     delete issue.formGroup;

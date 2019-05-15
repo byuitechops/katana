@@ -3,6 +3,7 @@
     display: flex;
     justify-content: center;
     padding: 55px;
+    margin-top: var(--header-height);
 }
 
 .optionsView__container {
@@ -13,6 +14,11 @@
 
 .optionsView__title {
     padding: 10px 20px;
+}
+
+.optionsView.frosted {
+    position: relative;
+    z-index: -1;
 }
 
 .categories-container>label {
@@ -53,5 +59,13 @@
 }
 
 div.option__text {
-    padding: 0 10px !important;
+    padding-right: 10px;
+}
+
+div.option__text>input{
+    padding-left: 10px;
+}
+
+button[type="submit"] {
+    margin-left: 10px;
 }

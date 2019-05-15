@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ToolSelectionComponent } from './tool-selection.component';
+import { ResultListComponent } from './result-list.component';
 
-describe('ToolSelectionComponent', () => {
-  let component: ToolSelectionComponent;
-  let fixture: ComponentFixture<ToolSelectionComponent>;
+describe('IssueDetailsComponent', () => {
+  let component: ResultListComponent;
+  let fixture: ComponentFixture<ResultListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ToolSelectionComponent ]
+      declarations: [ ResultListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ToolSelectionComponent);
+    fixture = TestBed.createComponent(ResultListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

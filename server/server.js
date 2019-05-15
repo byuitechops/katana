@@ -65,6 +65,21 @@ apiRouter.post('/course-retrieval', (req, res) => {
 });
 
 /** ***********************************************************************
+ * Makes a copy of the course and sends the download link back to the user.
+ * @returns {string} - Link to download the course ".imscc" file
+ ************************************************************************/
+apiRouter.post('/course-make-backup', (req, res) => {
+    make_downloadable_backup(req.body)
+        .then(exportedContent => {
+            res.status(200).send(exportedContent);
+        })
+        .catch((e) => {
+            console.error(e);
+            res.status(500).send(new Error('Internal server error'));
+        });
+});
+
+/** ***********************************************************************
  * Sends the list of tools to the client.
  * @returns {Tool[]} - List of tools available from the server
  ************************************************************************/
@@ -186,5 +201,5 @@ app.use('/api', apiRouter);
 
 // Starts the server
 app.listen(settings.server.port, () => {
-    console.log('Katana Server has launched.');
+    console.log(`Katana Server has launched on port ${settings.server.port}.`);
 });

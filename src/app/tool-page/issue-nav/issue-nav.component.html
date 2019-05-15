@@ -1,4 +1,4 @@
-<div materialize class="issueApproval navy" *ngIf="courseService.selectedCourse.error === undefined && toolService.selectedTool.toolType === 'fix'">
+<div class="issueApproval navy" *ngIf="courseService.selectedCourse.error === undefined && toolService.selectedTool.toolType === 'fix'">
 
     <!-- Container to hold the fix approved and kebob menu buttons -->
     <div class="issueApproval__buttonContainer">
@@ -41,16 +41,16 @@
                 <tr *ngFor="let course of courseService.courses" class="flex-container" style="width:100%">
                     <td>
                         <app-stat-badge class="overview-statBadge" (click)="closeModal();courseService.selectedCourse = course" [statTitle]="course.course_code"
-                            [statCount]="getIssueItems(course).length" [side]="'left'"></app-stat-badge>
+                            [statCount]="getItemCards(course).length" [side]="'left'"></app-stat-badge>
                     </td>
                     <td style="flex-grow:1;display:flex;flex-wrap:wrap;margin-left: 10px">
-                        <i *ngFor="let issue of getIssueItems(course)" class="material-icons issueIcon" [ngClass]="courseService.getTextColorClasses(issue.status)"
-                            (click)="selectIssueItem(course, issue)">
+                        <i *ngFor="let issue of getItemCards(course)" class="material-icons issueIcon" [ngClass]="courseService.getTextColorClasses(issue.status)"
+                            (click)="selectItemCard(course, issue)">
                             {{courseService.getStatusIcon(issue.status)}}
                         </i>
                     </td>
                     <!-- <td>
-                        <a class="waves-effect btn-flat blue-text text-accent-3 right" (click)="katanaService.fixIssues([course])">Fix</a>
+                        <a class="waves-effect btn-flat blue-text text-accent-3 right" (click)="serverService.fixIssues([course])">Fix</a>
                     </td> -->
                 </tr>
             </tbody>
@@ -59,7 +59,7 @@
     </div>
     <div class="modal-footer">
         <a class="modal-action modal-close waves-effect btn-flat blue-grey-text text-darken-3 left" (click)="closeModal()">Cancel</a>
-        <a class="modal-action modal-close waves-effect btn blue accent-3" (click)="katanaService.fixIssues(courseService.courses)">Fix All Approved Issues</a>
+        <a class="modal-action modal-close waves-effect btn blue accent-3" (click)="serverService.fixIssues(courseService.courses)">Fix All Approved Issues</a>
     </div>
 
 </div>

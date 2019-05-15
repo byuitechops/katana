@@ -28,6 +28,7 @@ function logMe(status, type, tool_id, course_name, course_id, userEmail) {
 async function getCanvasItems(course, options) {
     // Build the canvas-api-wrapper course and get all the needed items
     let canvasCourse = canvas.getCourse(course.id);
+    
     let items = [];
 
     for (var i = 0; i < options.categories.length; i++) {
@@ -79,34 +80,35 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
                 instructorName: course.instructorName
             };
 
+            course.itemCards = [];
+            
             // Run each item through the discover function of the selected tool
-            course.issueItems = allItems.reduce((acc, item) => {
-                let issueItem = toolList[tool_id].discover(item, options);
-                return issueItem.issues.length > 0 ? acc.concat(issueItem) : acc;
-            }, []);
+            // DO THIS FOR FIX AS WELL. CURRENTLY NOT ASYNC FOR FIX
+            for (let i = 0; i < allItems.length; i++) {
+                let itemCard = await toolList[tool_id].discover(allItems[i], options);
+                if (itemCard.issues.length > 0) {
+                    course.itemCards.push(itemCard);
+                }
+            }
 
             // Log the issue items
-            course.issueItems.forEach(issueItem => issueItem.issues.forEach(issue => {
+            course.itemCards.forEach(itemCard => itemCard.issues.forEach(issue => {
                 issue.details.employeeEmail = employeeEmail;
                 issue.tool_id = tool_id;
             }));
 
             // Log the issue items on our own logs
-            logActions.toolLogs = course.issueItems;
+            logActions.toolLogs = course.itemCards;
             logActions.logTool();
 
             // Log all discovered issues to Firestore
             if (settings.firebase.log_tools) {
-                firebaseWrapper.toolLog({
-                    course_id: course.id,
-                    tool_id,
-                    issueItems: course.issueItems.map(issueItem => JSON.stringify(issueItem))
-                });
+                firebaseWrapper.toolLog({course_id: course.id, tool_id, itemCards: course.itemCards.map(itemCard => JSON.stringify(itemCard))});
             }
 
             // Add fixed count to firestore stats
             if (settings.firebase.statistics) {
-                let totalDiscovered = course.issueItems.reduce((acc, issueItem) => acc += issueItem.issues.length, 0);
+                let totalDiscovered = course.itemCards.reduce((acc, itemCard) => acc += itemCard.issues.length, 0);
                 if (totalDiscovered > 0) {
                     firebaseWrapper.incrementCounts('Discovered', 'total', totalDiscovered);
                 }
@@ -124,7 +126,7 @@ function discoverIssues(tool_id, course, options, employeeEmail) {
 /**
  * Fixes the provided issue items in Canvas with the specified tool.
  * @param {string} tool_id - The ID of the tool to be run
- * @param {Course[]} course - The course who's issueItems are to be fixed
+ * @param {Course[]} course - The course who's itemCards are to be fixed
  * @param {object} options - An object containing the option values specific to the tool
  * @returns {Course[]} - Array of courses, which include their updated IssueItems
  */
@@ -140,26 +142,26 @@ function fixIssues(tool_id, course, options, employeeEmail) {
                 instructorName: course.instructorName
             };
 
-            // Keep track of which issueItems's issues are already fixed (for stats)
-            let alreadyFixed = course.issueItems.reduce((acc, issueItem) => {
-                issueItem.issues.forEach(issue => {
+            // Keep track of which itemCards's issues are already fixed (for stats)
+            let alreadyFixed = course.itemCards.reduce((acc, itemCard) => {
+                itemCard.issues.forEach(issue => {
                     if (issue.status === 'fixed') acc.push(issue);
                 });
                 return acc;
             }, []);
 
-            let fixPromises = course.issueItems.map(issueItem => toolList[tool_id].fix(issueItem, options));
+            let fixPromises = course.itemCards.map(itemCard => toolList[tool_id].fix(itemCard, options));
 
             Promise.all(fixPromises)
                 .then(() => {
                     // Log the issue items
-                    logActions.toolLogs = course.issueItems;
+                    logActions.toolLogs = course.itemCards;
                     logActions.logTool();
 
                     // Add fixed count to firestore stats
                     if (settings.firebase.statistics) {
-                        let totalFixes = course.issueItems.reduce((acc, issueItem) => {
-                            let fixedCount = issueItem.issues.filter(issue => issue.status === 'fixed' && !alreadyFixed.includes(issue)).length;
+                        let totalFixes = course.itemCards.reduce((acc, itemCard) => {
+                            let fixedCount = itemCard.issues.filter(issue => issue.status === 'fixed' && !alreadyFixed.includes(issue)).length;
                             return acc += fixedCount;
                         }, 0);
                         if (totalFixes > 0) {

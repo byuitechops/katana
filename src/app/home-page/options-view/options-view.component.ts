@@ -2,7 +2,7 @@ import { Component, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToolService } from '../../tool.service';
 import { CourseService } from '../../course.service';
-import { KatanaService } from '../../server.service';
+import { ServerService } from '../../server.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { FormGroup } from '@angular/forms';
 import { DiscoverOption } from '../../interfaces';
@@ -41,13 +41,13 @@ export class OptionsViewComponent {
     /**
      * Constructor
      * @param {ToolService} toolService Provides information and management for available courses.
-     * @param {KatanaService} katanaService Provides functionality to make API calls to the Katana server.
+     * @param {ServerService} serverService Provides functionality to make API calls to the Katana server.
      * @param {CourseService} courseService Provides information and management for selected courses.
      * @param {Router} router Used to navigate the user as needed.
      */
     constructor(public toolService: ToolService,
-        public katanaService: KatanaService,
-        private courseService: CourseService,
+        public serverService: ServerService,
+        public courseService: CourseService,
         private router: Router) {
 
         this.optionModel = new OptionModel(this.toolService.selectedTool.discoverOptions);
@@ -69,11 +69,11 @@ export class OptionsViewComponent {
     }
 
     /**
-     * Determines the open/close status of the modal.
+     * Determines the open/close status of the "no courses selected" modal.
      * @returns {boolean} Whether or not the modal is currently open.
      */
-    modalIsOpen(): boolean {
-        return !!document.querySelector('.modal-overlay');
+    noCourseModalOpen(): boolean {
+        return !!document.querySelector('#fixModal.open');
     }
 
     /**
@@ -101,7 +101,7 @@ export class OptionsViewComponent {
 
         // Send request
         this.toolService.selectedDiscoverOptions = options;
-        this.katanaService.discoverIssues(this.courseService.courses)
+        this.serverService.discoverIssues(this.courseService.courses)
             .catch(console.error);
         this.router.navigate([`home/tools/${this.toolService.selectedTool.id}/issues`]);
     }

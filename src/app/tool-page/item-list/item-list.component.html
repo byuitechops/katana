@@ -1,0 +1,24 @@
+<div class="issueList">
+    <h1 class="issueList__title white-text">
+        Items
+        <span class="header_thin">({{courseService.selectedCourse && courseService.selectedCourse.itemCards ? courseService.selectedCourse.itemCards.length
+            : 0}})</span>
+    </h1>
+    <div class="issueList__list" (scroll)="onScroll()" #issueList>
+        <app-item-card *ngFor="let itemCard of getItemCards(); let i = index" [position]="i" [itemCard]="itemCard" (click)="courseService.selectedItemCard = itemCard">
+        </app-item-card>
+        <div class="noIssuesMessage" *ngIf="courseService.selectedCourse && courseService.selectedCourse.itemCards && courseService.selectedCourse.itemCards.length === 0 && !courseService.selectedCourse.error">
+            No issues were discovered in this course.
+            <div>
+                <i class="material-icons">tag_faces</i>
+            </div>
+        </div>
+        <div class="noIssuesMessage" *ngIf="courseService.selectedCourse && courseService.selectedCourse.itemCards && courseService.selectedCourse.error">
+            <p>This course failed to process.</p>
+            Please contact a Katana developer with the tool name and course ID.
+            <div>
+                <i class="material-icons">sentiment_very_dissatisfied</i>
+            </div>
+        </div>
+    </div>
+</div>

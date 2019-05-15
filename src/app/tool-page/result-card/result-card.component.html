@@ -4,7 +4,7 @@
     <h2 class="cobalt-text">{{issue.title}}</h2>
     <div class="issueContainer__issueDetails" #issueDetails></div>
 
-    <form materialize (ngSubmit)="onSubmit()" [formGroup]="issue.formGroup" #optionsForm="ngForm">
+    <form materialize [formGroup]="issue.formGroup" #optionsForm="ngForm">
       <div *ngFor="let option of issue.optionModel.options" class="form-row">
         <h3>{{option.title}}</h3>
         <div class="option__description">{{option.description}}</div>
@@ -35,7 +35,7 @@
 
   <!-- Code Editor - Will only show up if the issue has contents in its "html" property -->
   <div *ngIf="showEditor()">
-    <app-code-editor (sessionValues)="handleEditorSessionValues($event)" [tabs]="buildEditorTabs()" [highlight]="issue.html.highlight"
+    <app-code-editor [issue]="issue" [tabs]="buildEditorTabs()" [highlight]="issue.html.highlight"
       #codeEditor></app-code-editor>
   </div>
 

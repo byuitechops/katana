@@ -8,14 +8,14 @@ import { OptionModel } from './classes';
 export interface DiscoverOption {
     /** The title of the option */
     title: string;
-    /** The key used to identify the option in the form */
-    key: string;
     /** The description to display to the user for the option */
     description: string;
+    /** The key used to identify the option in the form */
+    key: string;
     /** The input type. Available types are "text", "dropdown", and "multiselect." */
     type: string;
     /** The available choices for the option (not applicable to "text" type) */
-    choices: object[];
+    choices?: object[];
     /** The default text for "text" type options */
     defaultText?: string;
     /** Whether or not it is a required option on the form */
@@ -29,14 +29,14 @@ export interface DiscoverOption {
 export interface FixOption {
     /** The title for the option */
     title: string;
-    /** The key used to identify the option in the form */
-    key: string;
     /** The description to display to the user */
     description: string;
+    /** The key used to identify the option in the form */
+    key: string;
     /** The input type. Available types are "text", "dropdown", and "multiselect." */
     type: string;
     /** The available choices for the option (not applicable to "text" type) */
-    choices: object[];
+    choices?: object[];
     /** Default text for "text" type options */
     defaultText?: string;
     /** Whether or not the option is required in the form */
@@ -81,6 +81,8 @@ export interface Tool {
     fixMessage?: string;
     /** The tabs to go into the HTML editor on the issue, if needed */
     editorTabs?: EditorTab[];
+    /** Whether or not the 'Approve All' button is available on the tool or not */
+    enableApproveAll?: boolean;
 }
 
 /**
@@ -98,13 +100,13 @@ export interface Category {
 }
 
 
-/** Represents a single issue in an {@link IssueItem}. */
+/** Represents a single issue in an {@link ItemCard}. */
 export interface Issue {
     /** The title of the issue */
     title: string;
     /** The status of the issue (untouched, approved, skipped, fixed, failed) */
     status: string;
-    /** The HTML string used to display the contents of the issue in its {@link IssueContainerComponent} */
+    /** The HTML string used to display the contents of the issue in its {@link ResultCardComponent} */
     display: string;
     /** An object containing issue-specific details */
     details: object;
@@ -121,7 +123,7 @@ export interface Issue {
 }
 
 /** Represents an item in Canvas, such as a page or quiz. */
-export interface IssueItem {
+export interface ItemCard {
     /** The title of the item in Canvas */
     title: string;
     /** The course ID the item belongs to in Canvas */
@@ -150,8 +152,8 @@ export interface Course {
     platform: string;
     /** The current instructor for the course */
     instructor: string;
-    /** The {@link IssueItem}s for this course */
-    issueItems: IssueItem[];
+    /** The {@link ItemCard}s for this course */
+    itemCards: ItemCard[];
     /** URL to the course in Canvas */
     url: string;
     /** The sub-account the course is under in Canvas */
@@ -164,4 +166,12 @@ export interface Course {
     processing?: boolean;
     /** If an error is returned by a tool, it is attached to the course here */
     error?: string;
+}
+
+/** Standard Error object with a status property */
+export interface Error {
+    name: string;
+    message: string;
+    stack?: string;
+    status: string;
 }

@@ -3,10 +3,10 @@ const cheerio = require('cheerio');
 /** ***************************************************************
  * Discovers issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, without any issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, without any issues
  * @param {object} options - Options specific to the tool selected by the user
  *****************************************************************/
-function discover(canvasItem, issueItem, options) {
+function discover(canvasItem, itemCard, options) {
     if (canvasItem.getHtml() == null) return;
     let $ = cheerio.load(canvasItem.getHtml());
     let voidElements = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
@@ -40,18 +40,18 @@ function discover(canvasItem, issueItem, options) {
         };
 
         // Add new issues as needed
-        issueItem.newIssue(title, display, details, html);
+        itemCard.newIssue(title, display, details, html);
     });
 }
 
 /** ***************************************************************
  * Fixes issues in the item provided.
  * @param {object} canvasItem - Canvas item produced by the Canvas API Wrapper
- * @param {IssueItem} issueItem - The IssueItem for the item, including its issues
+ * @param {IssueItem} itemCard - The IssueItem for the item, including its issues
  * @param {object} options - Options specific to the tool selected by the user
  * @returns {array} fixedIssues - All issues discovered.
  *****************************************************************/
-function fix(canvasItem, issueItem, options) {
+function fix(canvasItem, itemCard, options) {
     return new Promise(async (resolve, reject) => {
         try {
             if (canvasItem.getHtml()) {
@@ -60,7 +60,7 @@ function fix(canvasItem, issueItem, options) {
                 let className = options.cssClassName.replace(/ /g, '.');
                 let matchedElements = $(`.${className}`);
                 // Loop through each issue and apply each new class
-                issueItem.issues.forEach(issue => {
+                itemCard.issues.forEach(issue => {
                     let newClassName = issue.optionValues.newClassName;
                     let element = $(matchedElements[issue.details.i]);
 
@@ -81,7 +81,7 @@ function fix(canvasItem, issueItem, options) {
                 resolve();
             }
         } catch (e) {
-            issueItem.issues[0].status = 'untouched';
+            itemCard.issues[0].status = 'untouched';
             reject(e);
         }
     });
@@ -107,7 +107,7 @@ module.exports = {
     discoverOptions: [{
         title: 'Conditions',
         key: 'cssClassName',
-        description: 'The name of the CSS class you would like to change(Case Sensitive).',
+        description: 'The name of the CSS class you would like to change (Case Sensitive).',
         type: 'text',
         choices: [],
         required: true

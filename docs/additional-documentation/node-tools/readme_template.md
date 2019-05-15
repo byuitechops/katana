@@ -4,57 +4,42 @@
 ### *Tool Type*: <search/fix>
 ### *Tool Category*: <html/itemSettings>
 ### *Categories*: <assignments/discussions/files/moduleItems/modules/pages/quizzes/quizQuestions>
-### *Required*: <Required/Recommended/Optional> (Ask Zach or Daniel about this)
 
-This tool is built to be used by the Brigham Young University - Idaho Katana Tool. It utilizes the standard `module.exports = {}` signature and uses both Google's Firebase and our own CSV logging functions. You can view extended documentation [Here](https://byuitechops.github.io/katana/docs/additional-documentation/firebase/firebase-wrapper.html).
+This tool is built to be used by the Brigham Young University - Idaho Katana Tool. It utilizes both Google's Firebase and our own CSV logging functions. You can view extended documentation [here](https://byuitechops.github.io/katana/docs/additional-documentation/firebase/firebase-wrapper.html).
 
 ## Purpose
 
-Describe the reason why this child module exists, and its goals.
+Describe the reason why this tool exists, and its goals.
 
-## How to Install
+## Discover Options
 
-```
-npm install my-child-module
-```
+If there are discover options, put them in the table below:
 
-## Run Requirements
+| Title | Description | Key | Type | Choices | Default Text | Required |
+|-------|-------------|-----|------|---------|--------------|----------|
+|Conditions|Do you want to include all image alt attributes or just empty and missing alt attributes?|altCondition|dropdown|'', 'All image alt attributes', 'Only empty and missing'||true|
 
-List any necessary requirements, such as fields on the `course.info` object. Include if it needs to run first, last, or similar stipulations. 
+## Fix Options
 
-## Options
+If there are fix options, put them in the table below:
 
-If there are options that need to be set before the module runs, include them in a table, like this:
+| Title | Description | Key | Type | Choices | Default Text | Required |
+|-------|-------------|-----|------|---------|--------------|----------|
+|New Alt Text|Please enter the new alt text for this image.|newAltText|text|||true|
 
-| Option | Values | Description |
-|--------|--------|-------------|
-|Create Lesson Folders| true/false | Determines if lesson folders should be created inside of "documents" and "media."|
-|Remove Course Image| true/false | Determines if the course image will be removed. |
 
-## Outputs
+## Editor Tabs
 
-If your module adds anything to `course.info` or anywhere else on the course object, please include a description of each in a table:
-
-| Option | Type | Location |
-|--------|--------|-------------|
-|Lesson Folders| Array | course.info|
+If editor tabs are used, explain why each exists here.
 
 ## Process
 
-Describe in steps how the module accomplishes its goals.
+Describe in steps how the tool accomplishes its goals.
 
-1. Does this thing
-2. Does that thing
-3. Does that other thing
-
-## Log Categories
-
-List the categories used in logging data in your module.
-
-- Discussions Created
-- Canvas Files Deleted
-- etc.
+1. First it...
+2. Then it...
+3. Finally it...
 
 ## Requirements
 
-These are the expectations for the child module. What does it need to do? What is the "customer" wanting from it? 
+These are the expectations for the tool. What does it need to do? What is the "customer" wanting from it?

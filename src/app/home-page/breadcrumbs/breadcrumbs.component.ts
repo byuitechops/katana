@@ -18,12 +18,12 @@ export class BreadcrumbsComponent {
      * Constructor
      * @param router Used to verify current location and navigate user to new page.
      * @param toolService Used to verify currently selected tool.
-     * @param authGuardService Enables Sign Out button. Being used in 
+     * @param authGuardService Enables Sign Out button. Being used in
      * breadcrumbs.component.html (i.e. DO NOT DELETE)
      */
-    constructor(private router: Router,
+    constructor(public router: Router,
         public toolService: ToolService,
-        private authGuardService: AuthGuardService) { }
+        public authGuardService: AuthGuardService) { }
 
     /**
      * Builds a URL, then navigates the router to it.

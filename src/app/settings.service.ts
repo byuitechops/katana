@@ -150,7 +150,7 @@ export class SettingsService {
         'practical',
     ];
 
-    /** 
+    /**
      * The themes that can be set. Set by using the `setTheme()` method on this service.
      */
     themes = {
@@ -186,7 +186,7 @@ export class SettingsService {
             'charcoal': '#65727D',
             'ashen': 'red',
         }
-    }
+    };
 
     /** Constructor */
     constructor() { }
@@ -205,7 +205,7 @@ export class SettingsService {
      * @ignore
      */
     getRandom(arr) {
-        let randy = Math.floor(Math.random() * arr.length);
+        const randy = Math.floor(Math.random() * arr.length);
         return arr[randy];
     }
 
@@ -213,7 +213,10 @@ export class SettingsService {
      * @ignore
      */
     buildProcessingMessage() {
-        return `${this.getRandom(this.processingVerbs)} ${this.getRandom(this.processingAdjectives)} ${this.getRandom(this.processingNouns)}...`;
+        const verb = this.getRandom(this.processingVerbs);
+        const adjective = this.getRandom(this.processingAdjectives);
+        const noun = this.getRandom(this.processingNouns);
+        return `${verb} ${adjective} ${noun}...`;
     }
 
     /**

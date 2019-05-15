@@ -8,11 +8,11 @@ import { OptionModel } from '../../classes';
  * Container for the display of a single {@link Issue}.
  */
 @Component({
-    selector: 'app-issue-container',
-    templateUrl: './issue-container.component.html',
-    styleUrls: ['./issue-container.component.css']
+    selector: 'app-result-card',
+    templateUrl: './result-card.component.html',
+    styleUrls: ['./result-card.component.css']
 })
-export class IssueContainerComponent implements OnInit {
+export class ResultCardComponent implements OnInit {
     /** The issue attached to the display. */
     @Input('issue') issue: Issue;
 
@@ -31,8 +31,8 @@ export class IssueContainerComponent implements OnInit {
      * @param courseService Provides information and management for selected courses.
      * Being used in issue-container.component.html (i.e. DO NOT DELETE)
      */
-    constructor(private toolService: ToolService,
-        private courseService: CourseService) { }
+    constructor(public toolService: ToolService,
+        public courseService: CourseService) { }
 
     /**
      * Fired when the component is initialized, this manages the item's display.
@@ -59,7 +59,7 @@ export class IssueContainerComponent implements OnInit {
      * @returns {Object[]} The tabs to use to build the editor instance.
      */
     buildEditorTabs() {
-        if (!this.toolService.selectedTool.editorTabs) return;
+        if (!this.toolService.selectedTool.editorTabs) { return; }
         return this.toolService.selectedTool.editorTabs.map(editorTab => {
             return {
                 title: editorTab.title,
@@ -74,12 +74,33 @@ export class IssueContainerComponent implements OnInit {
      * @param newStatus The new status to set the issue to.
      */
     setIssueStatus(newStatus) {
+        // if the status is already 'fixed', don't change it or do anything
         if (this.issue.status === 'fixed') {
             return;
         } else if (newStatus === this.issue.status) {
             this.issue.status = 'untouched';
         } else {
             this.issue.status = newStatus;
+        }
+        // check if you need to move to the next itemCard or not
+        this.getNextItem();
+    }
+
+    /**
+     * Checks if all of the issue status's have been set
+     * then it sets the selectedItemCard to the next one in the list automatically
+     */
+    getNextItem() {
+        // check if there are any issues that are still untouched on the canvas item
+        const untouched = this.courseService.selectedItemCard.issues.find(issue => issue.status === 'untouched');
+        // if there are no more untouched issues, move to the next canvas item automatically
+        if (!untouched) {
+            // get the index of the selectedItemCard in the selected course's itemCards array
+            const index = this.courseService.selectedCourse.itemCards.indexOf(this.courseService.selectedItemCard);
+            // if you are not on the last itemCard, then move to the next one
+            if (index <= this.courseService.selectedCourse.itemCards.length) {
+                this.courseService.selectedItemCard = this.courseService.selectedCourse.itemCards[index + 1];
+            }
         }
     }
 
@@ -124,7 +145,7 @@ export class IssueContainerComponent implements OnInit {
      * @returns {boolean} Whether or not this issue's status is fixed or failed.
      */
     isFixed() {
-        return this.issue.status === 'fixed' || this.issue.status === 'failed';
+        return ['fixed', 'failed'].includes(this.issue.status);
     }
 
     /**

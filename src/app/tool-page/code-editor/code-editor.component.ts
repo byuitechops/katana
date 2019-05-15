@@ -22,7 +22,7 @@ export class CodeEditorComponent implements OnInit {
      * If certain key words should be highlighted by the editor's
      * search functionality, this should be passed as
      * a string. It will be converted into a regex, so
-     * a regex string (to be passed into the RegExp constructor) 
+     * a regex string (to be passed into the RegExp constructor)
      * can also be passed in.
      */
     @Input('highlight') highlight: string;
@@ -53,7 +53,7 @@ export class CodeEditorComponent implements OnInit {
      * it is expanded, currently. Whether or not it can be edited is
      * determined by the tab's "readOnly" property.
      */
-    viewExpanded = false;
+    viewExpanded = true;
 
     /**
      * Stores the tab objects passed in to the "tabs" input. For whatever reason,
@@ -62,7 +62,7 @@ export class CodeEditorComponent implements OnInit {
      * This helps with those reference issues. This is set during the "ngOnInit"
      * method.
      */
-    _tabs: any[] = [];
+    private _tabs: any[] = [];
 
     /**
      * Constructor
@@ -108,11 +108,12 @@ export class CodeEditorComponent implements OnInit {
      * editor's current session.
      */
     setEditorSession(tab) {
-        if (!tab.session) return;
+        if (!tab.session) { return; }
         this.editor.setReadOnly(tab.readOnly);
         this.editor.setSession(tab.session);
         this.activeTab = tab;
 
+        // If the user changes the code in the editor, it will change this issue status to untouched
         this.editor.on('change', () => {
             if (this.issue.status === 'approved') {
                 this.issue.status = 'untouched';

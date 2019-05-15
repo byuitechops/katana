@@ -3,14 +3,14 @@ import { CourseService } from '../../course.service'; // Being used in issue-det
 
 /**
  * Container for all {@link IssueContainerComponent}s used to display
- * issues within the currently selected {@link IssueItem}.
+ * issues within the currently selected {@link ItemCard}.
  */
 @Component({
-    selector: 'app-issue-details',
-    templateUrl: './issue-details.component.html',
-    styleUrls: ['./issue-details.component.css']
+    selector: 'app-result-list',
+    templateUrl: './result-list.component.html',
+    styleUrls: ['./result-list.component.css']
 })
-export class IssueDetailsComponent {
+export class ResultListComponent {
     /**
      * Constructor
      * @param courseService Provides information and management for selected courses.

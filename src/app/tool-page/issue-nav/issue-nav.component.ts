@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CourseService } from '../../course.service';
-import { KatanaService } from '../../server.service';
+import { ServerService } from '../../server.service';
 import { MaterializeAction } from 'angular2-materialize';
 import { EventEmitter } from '@angular/core';
 import { ToolService } from '../../tool.service';
@@ -27,49 +27,62 @@ export class IssueNavComponent {
      * Constructor
      * @param courseService Provides information and management for selected courses.
      * @param toolService Provides information and management for available tools.
-     * @param katanaService Provides functionality to make API calls to the Katana server.
+     * @param serverService Provides functionality to make API calls to the Katana server.
      */
     constructor(public courseService: CourseService,
         public toolService: ToolService,
-        public katanaService: KatanaService) { }
-
+        public serverService: ServerService) { }
 
     /**
      * Opens the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
      */
     openModal() {
-        this.modalActions.emit({ action: "modal", params: ['open'] });
+        this.modalActions.emit({ action: 'modal', params: ['open'] });
     }
 
     /**
      * Closes the modal using [angular2-materialize]{@link https://www.npmjs.com/package/angular2-materialize}.
      */
     closeModal() {
-        this.modalActions.emit({ action: "modal", params: ['close'] });
+        this.modalActions.emit({ action: 'modal', params: ['close'] });
     }
 
     /**
-     * Returns the user the {@link IssueItem}s belonging to the provided course.
-     * @param course The course to retrieve the IssueItems from.
-     * @returns {IssueItem[]} The IssueItems belonging to the provided course.
+     * Returns the user the {@link ItemCard}s belonging to the provided course.
+     * @param course The course to retrieve the ItemCards from.
+     * @returns {ItemCard[]} The ItemCards belonging to the provided course.
      */
-    getIssueItems(course) {
-        if (!course.issueItems) return [];
-        return course.issueItems.reduce((acc, issueItem) => {
-            if (!issueItem.issues) return acc;
-            return [...acc, ...issueItem.issues];
+    getItemCards(course) {
+        if (!course.itemCards) { return []; }
+        return course.itemCards.reduce((acc, itemCard) => {
+            if (!itemCard.issues) { return acc; }
+            return [...acc, ...itemCard.issues];
         }, []);
     }
 
     /**
-     * Sets the currently selected course and currently selected {@link IssueItem}.
+     * Sets the currently selected course and currently selected {@link ItemCard}.
      * @param course The course to set as the currently selected course.
-     * @param issue The issue to use to set the currently selected IssueItem.
+     * @param issue The issue to use to set the currently selected ItemCard.
      */
-    selectIssueItem(course, issue) {
+    selectItemCard(course, issue) {
         this.courseService.selectedCourse = course;
-        this.courseService.selectedIssueItem = course.issueItems.find(issueItem => issueItem.issues.includes(issue));
+        this.courseService.selectedItemCard = course.itemCards.find(itemCard => itemCard.issues.includes(issue));
         this.closeModal();
+    }
+
+    /**
+     * A method to set the status of each issue in the selected course to 'approved'
+     */
+    approveAll() {
+        // only approve the issues if the tool's 'enableApproveAll' attribute is set to true
+        if (this.toolService.selectedTool.enableApproveAll === true) {
+            this.courseService.selectedCourse.itemCards.forEach(itemCard => {
+                itemCard.issues.forEach(issue => {
+                    issue.status = 'approved';
+                });
+            });
+        }
     }
 
     /**
@@ -79,21 +92,21 @@ export class IssueNavComponent {
     downloadIssues() {
         let csvReport = '';
         this.courseService.courses.forEach((course, i) => {
-            course.issueItems.forEach((issueItem, j) => {
+            course.itemCards.forEach((itemCard, j) => {
                 if (i < 1 && j < 1) {
                     csvReport = csvFormatRows([[
-                        "Issue Title",
-                        "Status",
-                        "Option Values",
-                        "Item Title",
-                        "Item ID",
-                        "Course ID",
-                        "Category",
-                        "Link",
-                        "Details",
-                    ]].concat(issueItem.issues.map(issue => {
-                        var flatIssueDetails = Object.entries(issue.details).reduce((acc, pair) => {
-                            var detail = `${pair[0]}: ${pair[1]}`;
+                        'Issue Title',
+                        'Status',
+                        'Option Values',
+                        'Item Title',
+                        'Item ID',
+                        'Course ID',
+                        'Category',
+                        'Link',
+                        'Details',
+                    ]].concat(itemCard.issues.map(issue => {
+                        const flatIssueDetails = Object.entries(issue.details).reduce((acc, pair) => {
+                            const detail = `${pair[0]}: ${pair[1]}`;
                             return acc.concat(detail);
                         }, []);
 
@@ -101,30 +114,30 @@ export class IssueNavComponent {
                             issue.title,
                             issue.status,
                             issue.optionValues ? issue.optionValues : '',
-                            issueItem.title,
-                            issueItem.item_id,
-                            issueItem.course_id,
-                            issueItem.category,
-                            issueItem.link,
+                            itemCard.title,
+                            itemCard.item_id,
+                            itemCard.course_id,
+                            itemCard.category,
+                            itemCard.link,
                             ...flatIssueDetails
                         ];
                     }))) + '\n';
                 } else {
                     // Make the log without the header
-                    csvReport += csvFormatRows(issueItem.issues.map(issue => {
-                        var flatIssueDetails = Object.entries(issue.details).reduce((acc, pair) => {
-                            var detail = `${pair[0]}: ${pair[1]}`;
+                    csvReport += csvFormatRows(itemCard.issues.map(issue => {
+                        const flatIssueDetails = Object.entries(issue.details).reduce((acc, pair) => {
+                            const detail = `${pair[0]}: ${pair[1]}`;
                             return acc.concat(detail);
                         }, []);
                         return [
                             issue.title,
                             issue.status,
                             issue.optionValues ? issue.optionValues : '',
-                            issueItem.title,
-                            issueItem.item_id,
-                            issueItem.course_id,
-                            issueItem.category,
-                            issueItem.link,
+                            itemCard.title,
+                            itemCard.item_id,
+                            itemCard.course_id,
+                            itemCard.category,
+                            itemCard.link,
                             ...flatIssueDetails
                         ];
                     })) + '\n';
@@ -133,10 +146,10 @@ export class IssueNavComponent {
         });
 
         // Setup the link to download the csv report
-        let fileName = 'csvReport.csv';
-        let a = <HTMLAnchorElement>document.getElementById("download");
-        var blob = new Blob([csvReport], { type: "octet/stream" });
-        var url = window.URL.createObjectURL(blob);
+        const fileName = 'csvReport.csv';
+        const a = <HTMLAnchorElement>document.getElementById('download');
+        const blob = new Blob([csvReport], { type: 'octet/stream' });
+        const url = window.URL.createObjectURL(blob);
 
         a.href = url;
         a.download = fileName;

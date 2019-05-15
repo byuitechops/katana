@@ -1,10 +1,10 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Course, IssueItem } from './interfaces';
+import { Course, ItemCard } from './interfaces';
 
 /**
  * Provides information and management for a variety of things, but mainly the
  * courses the user selects via the {@link CourseSelectionComponent}. Also provides
- * functionality for styling and counts based on {@link Course}s' {@link IssueItem}s.
+ * functionality for styling and counts based on {@link Course}s' {@link ItemCard}s.
  */
 @Injectable({
     providedIn: 'root'
@@ -19,12 +19,12 @@ export class CourseService {
     /**
      * The currently selected {@link Course}.
      */
-    _selectedCourse: Course;
+    private _selectedCourse: Course;
 
     /**
-     * The currently selected {@link IssueItem}.
+     * The currently selected {@link ItemCard}.
      */
-    selectedIssueItem: IssueItem;
+    selectedItemCard: ItemCard;
 
     /**
      * Whether or not the {@link CourseSelectionComponent} is open.
@@ -41,11 +41,11 @@ export class CourseService {
     }
 
     set selectedCourse(course: Course) {
-        if (course === this._selectedCourse || !course) return;
+        if (course === this._selectedCourse || !course) { return; }
         // Set the selected course to a reference, so we don't have issues when updating the course objects
         this._selectedCourse = course;
         this.courseChange.emit(this._selectedCourse);
-        this.selectedIssueItem = this._selectedCourse.issueItems ? this._selectedCourse.issueItems.find(issueItem => issueItem.course_id === course.id) : null;
+        this.selectedItemCard = this._selectedCourse.itemCards ? this._selectedCourse.itemCards.find(itemCard => itemCard.course_id === course.id) : null;
     }
 
     get courses() {
@@ -69,8 +69,8 @@ export class CourseService {
             if (!sessionStorage['katana_course' + course.id]) {
                 sessionStorage['katana_course' + course.id] = JSON.stringify(course);
             }
-            if (!course.issueItems) {
-                course.issueItems = [];
+            if (!course.itemCards) {
+                course.itemCards = [];
             }
             this.coursesObj[`c${course.id}`] = course;
         } else {
@@ -97,11 +97,11 @@ export class CourseService {
      */
     getCourseIssueCount(status): number {
         if (this.selectedCourse) {
-            return this.selectedCourse.issueItems.reduce((acc, issueItem) => {
+            return this.selectedCourse.itemCards.reduce((acc, itemCard) => {
                 if (!status) {
-                    return acc + issueItem.issues.length;
+                    return acc + itemCard.issues.length;
                 }
-                const issues = issueItem.issues.filter(issue => issue.status === status);
+                const issues = itemCard.issues.filter(issue => issue.status === status);
                 return acc + issues.length;
             }, 0);
         }
@@ -138,7 +138,7 @@ export class CourseService {
 
     /**
      * This is used to determine the icon color for the status icon of an
-     * individual issue, as shown on an IssueItem card.
+     * individual issue, as shown on an ItemCard card.
      * @param {string} [status] The status of the issue.
      * @returns {string} The classes to apply to the element.
      */
