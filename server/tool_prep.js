@@ -34,7 +34,7 @@ async function getCanvasItems(course, options) {
     for (var i = 0; i < options.categories.length; i++) {
         if (['pages', 'quizzes', 'modules'].includes(options.categories[i])) {
             // If pages, quizzes, or modules, get ALL values for them
-            items = items.concat(...(await canvasCourse[options.categories[i]].getComplete()));
+            items = items.concat(...await canvasCourse[options.categories[i]].getComplete());
 
         } else if (['quizQuestions', 'moduleItems'].includes(options.categories[i])) {
             // If looking for quiz questions or module items, flatten them here
@@ -48,7 +48,7 @@ async function getCanvasItems(course, options) {
 
         } else {
             // Otherwise, just get the category's items
-            items = items.concat(...(await canvasCourse[options.categories[i]].get()));
+            items = items.concat(...await canvasCourse[options.categories[i]].get());
         }
     }
 
