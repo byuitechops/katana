@@ -10,7 +10,7 @@ const cheerio = require('cheerio');
 function discover(canvasItem, itemCard, options) {
     if (canvasItem.getHtml() === null) return;
     let $ = cheerio.load(canvasItem.getHtml());
-    
+
     // get the correct course code and stick it into an array, each word being an element
     let codeSegments = options.courseInfo.course_code.split(' ');
 
@@ -19,13 +19,13 @@ function discover(canvasItem, itemCard, options) {
     styleClass = styleClass.replace(/onlinemaster/i, '');
 
     // return the first element that has the classes 'byui' and the correct course class together, if one exists
-    let styleClassEl = $(`.byui.${styleClass}`).first();
+    let styleClassEl = $(`div.byui.${styleClass}`).first();
 
     // if it doesn't exist, stick the classes on a new div that wraps the current html
     if (styleClassEl && styleClassEl.length === 0) {
 
         // return the first element that has the 'byui' class on it
-        let byuiClass = $('.byui').first();
+        let byuiClass = $('div.byui').first();
 
         // check for the correct classes being present, but formatted incorrectly
         let incorrectLowerCaseClass = $(`.byui${styleClass}`).first();
@@ -132,13 +132,13 @@ module.exports = {
         'quizQuestions',
     ],
     discoverOptions: [
-    // {
-    //     title: 'Classes to Insert',
-    //     key: 'newClasses',
-    //     description: `Put the new style classes you'd like to insert here. If you omit 'byui' then it will automatically add it for you.`,
-    //     type: 'text',
-    //     required: false
-    // }
+        // {
+        //     title: 'Classes to Insert',
+        //     key: 'newClasses',
+        //     description: `Put the new style classes you'd like to insert here. If you omit 'byui' then it will automatically add it for you.`,
+        //     type: 'text',
+        //     required: false
+        // }
     ],
     editorTabs: [{
         title: 'Updated HTML',
