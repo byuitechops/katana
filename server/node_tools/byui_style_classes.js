@@ -18,18 +18,18 @@ function discover(canvasItem, itemCard, options) {
     let styleClass = (codeSegments[0] + (codeSegments[1] ? codeSegments[1] : '')).toLowerCase().replace(/:/g, '');
     styleClass = styleClass.replace(/onlinemaster/i, '');
 
-    // return the first element that has the classes 'byui' and the correct course class together, if one exists
-    let styleClassEl = $(`.byui.${styleClass}`).first();
+    // return the first div that has the classes 'byui' and the correct course class together, if one exists
+    let styleClassEl = $(`div.byui.${styleClass}`).first();
 
     // if it doesn't exist, stick the classes on a new div that wraps the current html
     if (styleClassEl && styleClassEl.length === 0) {
 
-        // return the first element that has the 'byui' class on it
-        let byuiClass = $('.byui').first();
+        // return the first div that has the 'byui' class on it
+        let byuiClass = $('div.byui').first();
 
         // check for the correct classes being present, but formatted incorrectly
-        let incorrectLowerCaseClass = $(`.byui${styleClass}`).first();
-        let incorrectUpperCaseClass = $(`.byui${styleClass.toUpperCase()}`).first();
+        let incorrectLowerCaseClass = $(`div.byui${styleClass}`).first();
+        let incorrectUpperCaseClass = $(`div.byui${styleClass.toUpperCase()}`).first();
 
         // Remove scripts from the html
         $('script').remove();
