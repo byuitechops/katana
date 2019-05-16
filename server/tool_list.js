@@ -17,4 +17,5 @@ module.exports = {
     'transcripts': new NodeTool(require('./node_tools/transcripts.js')),
     'fix_question_comments': new NodeTool(require('./node_tools/fix_question_comments.js')),
     'empty_hrefs': new NodeTool(require('./node_tools/empty_hrefs.js')),
+    'empty_a_tags': new NodeTool(require('./node_tools/empty_a_tags.js'))
 };
