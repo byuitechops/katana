@@ -18,7 +18,7 @@ To set up your own instance of Katana, follow these steps:
 
 5. Deploy Firebase using the steps described in [this document](https://byuitechops.github.io/katana/docs/additional-documentation/setup/setting-up-firebase.html)
 
-6. Build production files with `ng build --prod`
+6. Build production files with `ng build --prod` (angular must be installed globally for --prod)
 
 <!-- 7. Copy the `server` directory and the contents of the `/dist` folder into the directory you will be deploying from -->
 
