@@ -62,7 +62,7 @@ export class CodeEditorComponent implements OnInit {
      * This helps with those reference issues. This is set during the "ngOnInit"
      * method.
      */
-    private _tabs: any[] = [];
+    public _tabs: any[] = [];
 
     /**
      * Constructor
