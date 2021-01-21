@@ -43,7 +43,7 @@
     "object-sizeof": "^1.2.0",
     "rxjs": "^6.2.0",
     "rxjs-compat": "^6.2.1",
-    "socket.io": "^2.1.1",
+    "socket.io": "^2.4.0",
     "ws": "^5.2.1",
     "zone.js": "^0.8.26"
   },
