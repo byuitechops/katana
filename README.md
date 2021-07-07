@@ -44,6 +44,8 @@ Once the angular front-end is built and the server is running, Katana can then b
 
 You can also deploy it for others to use by using your IP Address and your port number. So if you were running on `port 8000` and your IP Address was `10.1.182.255` then you could deploy it on your network with the url `10.1.182.255:8000`, though hosting it on a server with a url for your users to access would of course be better.
 
+You may need to add a new IP address to firebase if the computer changed it. If you run `ipconfig` as a command, the IP address will be listed under the IPv4 address. Then, go to firebase settings as described above in [this document](https://byuitechops.github.io/katana/docs/additional-documentation/setup/setting-up-firebase.html). Under the "Develop" tab on the left side of the screen, go to Authentication. Under the signin method tab, add that IP address to "authorized domains."
+
 # Documentation
 
 ### Additional Setup
