@@ -33,7 +33,7 @@
     "cheerio": "^1.0.0-rc.2",
     "core-js": "^2.5.4",
     "d3-dsv": "^1.0.8",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-ws": "^4.0.0",
     "firebase": "^5.2.0",
     "firebase-admin": "^5.12.1",
